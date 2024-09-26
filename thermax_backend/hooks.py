@@ -173,10 +173,10 @@ app_license = "mit"
 
 # Overriding Methods
 # ------------------------------
-#
-# override_whitelisted_methods = {
-# 	"frappe.desk.doctype.event.event.get_events": "thermax_backend.event.get_events"
-# }
+
+override_whitelisted_methods = {
+	"thermax_backend.thermax_backend.doctype.main_package.api.get_main_package_list": "thermax_backend.thermax_backend.doctype.main_package.api.get_main_package_list"
+}
 #
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,
