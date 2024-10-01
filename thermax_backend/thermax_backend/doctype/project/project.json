@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:project_name",
+ "autoname": "hash",
  "creation": "2024-09-26 15:36:27.380755",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -10,7 +10,7 @@
   "project_oc_number",
   "client_name",
   "consultant_name",
-  "user"
+  "approver"
  ],
  "fields": [
   {
@@ -37,7 +37,7 @@
    "options": "Consultant"
   },
   {
-   "fieldname": "user",
+   "fieldname": "approver",
    "fieldtype": "Link",
    "label": "Approver",
    "options": "User"
@@ -45,11 +45,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-09-26 15:41:39.267656",
+ "modified": "2024-10-01 00:20:18.308595",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Project",
- "naming_rule": "By fieldname",
+ "naming_rule": "Random",
  "owner": "Administrator",
  "permissions": [
   {

@@ -1,23 +1,15 @@
-import frappe
+from frappe import frappe
 
 @frappe.whitelist()
 def get_main_package_list():
-    # Get all Main Package records and link Sub Package records
-    main_packages = frappe.get_all("Main Package", fields=["name", "package_name"], order_by="creation asc")
-
-    result = []
+    # Get all Main Package records
+    main_packages = frappe.db.get_list("Main Package", fields=["*"], order_by="creation asc")  # Specify the fields you want to retrieve
 
     for main_package in main_packages:
-        # Fetch the full document to access the get_children method
-        main_package_doc = frappe.get_doc('Main Package', main_package['name'])
-        
-        sub_packages = sorted(main_package_doc.sub_packages, key=lambda x: x.creation)
-        
-        # Combine the main package data with its sub packages
-        main_package_with_subs = {
-            **main_package,
-            'sub_packages': sub_packages
-        }
-        
-        result.append(main_package_with_subs)
-    return result
+        sub_packages = frappe.db.get_list("Sub Package", fields=["*"], filters={"main_package_name": main_package.get('name')}, order_by="creation asc")
+
+        main_package["sub_packages"] = sub_packages
+
+    
+    
+    return main_packages
