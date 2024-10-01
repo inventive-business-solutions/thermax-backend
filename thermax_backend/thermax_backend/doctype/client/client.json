@@ -13,7 +13,7 @@
   {
    "fieldname": "client_name",
    "fieldtype": "Data",
-   "label": "Name",
+   "label": "Client Name",
    "unique": 1
   },
   {
@@ -24,7 +24,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-09-26 15:33:04.967396",
+ "modified": "2024-09-30 22:24:53.066647",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Client",
