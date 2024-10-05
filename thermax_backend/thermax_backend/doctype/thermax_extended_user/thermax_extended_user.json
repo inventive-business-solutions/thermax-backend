@@ -1,0 +1,51 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:email",
+ "creation": "2024-10-04 01:09:31.913537",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "email",
+  "digital_signature"
+ ],
+ "fields": [
+  {
+   "fieldname": "email",
+   "fieldtype": "Link",
+   "label": "Email",
+   "options": "User",
+   "unique": 1
+  },
+  {
+   "fieldname": "digital_signature",
+   "fieldtype": "Attach Image",
+   "label": "Digital Signature"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-10-04 01:11:28.694381",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "Thermax Extended User",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
