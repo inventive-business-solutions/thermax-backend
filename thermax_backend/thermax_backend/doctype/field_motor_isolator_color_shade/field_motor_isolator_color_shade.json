@@ -1,0 +1,41 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-10-04 14:13:22.861062",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "isolator_color_shade"
+ ],
+ "fields": [
+  {
+   "fieldname": "isolator_color_shade",
+   "fieldtype": "Data",
+   "label": "Isolator Color Shade"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-10-04 14:13:35.844666",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "Field Motor Isolator Color Shade",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
