@@ -1,0 +1,18 @@
+<div class="container">
+	<div class="row">
+		<div class="col-12">
+			<p>{{ _("Dear") }} {{ first_name }}{% if last_name %} {{ last_name }}{% endif %},</p>
+			<p>{{_("You have been assigned EniMAX superuser for Division")}} {{division_name}}</p>
+			<p>{{ _("Click on below link to verify your account.") }}</p>
+			<p>
+				<a class="btn btn-primary" href="{{ verification_link }}"
+					>{{ _("Verify your email address") }}</a
+				>
+			</p>
+			<p>
+				{{ _("Regards") }},<br />
+				{{ sent_by }}
+			</p>
+		</div>
+	</div>
+</div>
