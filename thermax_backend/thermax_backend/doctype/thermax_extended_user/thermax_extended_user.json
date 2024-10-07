@@ -7,7 +7,9 @@
  "engine": "InnoDB",
  "field_order": [
   "email",
-  "digital_signature"
+  "digital_signature",
+  "division",
+  "name_initial"
  ],
  "fields": [
   {
@@ -21,11 +23,22 @@
    "fieldname": "digital_signature",
    "fieldtype": "Attach Image",
    "label": "Digital Signature"
+  },
+  {
+   "fieldname": "division",
+   "fieldtype": "Link",
+   "label": "Division",
+   "options": "Division"
+  },
+  {
+   "fieldname": "name_initial",
+   "fieldtype": "Data",
+   "label": "Name Initial"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 01:11:28.694381",
+ "modified": "2024-10-07 13:33:42.896936",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Thermax Extended User",

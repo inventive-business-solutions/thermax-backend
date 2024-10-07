@@ -6,7 +6,8 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "division_name"
+  "division_name",
+  "division_superuser"
  ],
  "fields": [
   {
@@ -14,11 +15,17 @@
    "fieldtype": "Data",
    "label": "Division Name",
    "unique": 1
+  },
+  {
+   "fieldname": "division_superuser",
+   "fieldtype": "Link",
+   "label": "Division Superuser",
+   "options": "User"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 00:03:17.538925",
+ "modified": "2024-10-06 23:17:15.563287",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Division",
