@@ -52,3 +52,8 @@ def trigger_send_credentials(email, password, sent_by):
         now=True,
     )
     return "Account credentials has been sent to your email."
+
+@frappe.whitelist()
+def get_user_by_role():
+    user = frappe.get_all("Thermax Extended User", filters={"is_superuser": True}, fields=["*"])
+    return user
