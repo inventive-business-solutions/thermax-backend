@@ -175,7 +175,11 @@ app_license = "mit"
 # ------------------------------
 
 override_whitelisted_methods = {
-	"thermax_backend.thermax_backend.doctype.main_package.api.get_main_package_list": "thermax_backend.thermax_backend.doctype.main_package.api.get_main_package_list"
+	"main_package.get_main_package_list": "thermax_backend.thermax_backend.doctype.main_package.api.get_main_package_list",
+    "thermax_extended_user.trigger_email_verification_mail": "thermax_backend.thermax_backend.doctype.thermax_extended_user.api.trigger_email_verification_mail",
+    "thermax_extended_user.trigger_send_credentials": "thermax_backend.thermax_backend.doctype.thermax_extended_user.api.trigger_send_credentials",
+    "thermax_extended_user.get_user_by_role": "thermax_backend.thermax_backend.doctype.thermax_extended_user.api.get_user_by_role"
+    
 }
 #
 # each overriding function accepts a `data` argument;
