@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:panel_enclosure",
  "creation": "2024-10-04 11:49:35.952973",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "panel_enclosure",
    "fieldtype": "Data",
-   "label": "Panel Enclosure"
+   "label": "Panel Enclosure",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 11:49:52.071125",
+ "modified": "2024-10-14 16:49:44.431913",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Panel Enclosure Make",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

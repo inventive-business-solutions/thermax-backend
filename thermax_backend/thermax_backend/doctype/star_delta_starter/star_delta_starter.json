@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:star_delta_starter",
  "creation": "2024-10-04 11:55:48.255074",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -10,16 +12,18 @@
  "fields": [
   {
    "fieldname": "star_delta_starter",
-   "fieldtype": "Float",
-   "label": "Star Delta Starter"
+   "fieldtype": "Data",
+   "label": "Star Delta Starter",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 11:56:01.384890",
+ "modified": "2024-10-14 17:12:16.180169",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Star Delta Starter",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

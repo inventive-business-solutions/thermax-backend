@@ -1,7 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
- "autoname": "hash",
+ "autoname": "field:efficiency_level_safe_area_details",
  "creation": "2024-10-04 09:46:32.729605",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -12,16 +13,17 @@
   {
    "fieldname": "efficiency_level_safe_area_details",
    "fieldtype": "Data",
-   "label": "Efficiency Level Safe Area Details"
+   "label": "Efficiency Level Safe Area Details",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 09:47:17.897491",
+ "modified": "2024-10-14 14:57:30.475901",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Efficiency Level Safe Area",
- "naming_rule": "Random",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

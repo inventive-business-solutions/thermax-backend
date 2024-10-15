@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:ferrule",
  "creation": "2024-10-04 13:36:10.860038",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "ferrule",
    "fieldtype": "Data",
-   "label": "Ferrule"
+   "label": "Ferrule",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 13:36:17.589378",
+ "modified": "2024-10-15 10:01:19.900343",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Ferrule",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

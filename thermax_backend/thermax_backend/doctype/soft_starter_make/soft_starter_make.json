@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:soft_starter",
  "creation": "2024-10-04 11:51:48.175394",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "soft_starter",
    "fieldtype": "Data",
-   "label": "Soft Starter"
+   "label": "Soft Starter",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 11:52:00.695900",
+ "modified": "2024-10-14 16:57:30.090697",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Soft Starter Make",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

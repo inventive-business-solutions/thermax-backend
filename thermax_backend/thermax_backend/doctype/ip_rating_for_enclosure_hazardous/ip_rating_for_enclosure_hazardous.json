@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:ip_rating_for_enclosure",
  "creation": "2024-10-04 10:14:19.755351",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "ip_rating_for_enclosure",
    "fieldtype": "Data",
-   "label": "IP rating for Enclosure"
+   "label": "IP rating for Enclosure",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 10:14:37.465198",
+ "modified": "2024-10-14 15:11:20.427403",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "IP rating for Enclosure Hazardous",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

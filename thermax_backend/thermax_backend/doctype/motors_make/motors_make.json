@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:motors",
  "creation": "2024-10-04 11:46:32.200281",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "motors",
    "fieldtype": "Data",
-   "label": "Motors"
+   "label": "Motors",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 11:46:58.275855",
+ "modified": "2024-10-14 16:28:34.203153",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Motors Make",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

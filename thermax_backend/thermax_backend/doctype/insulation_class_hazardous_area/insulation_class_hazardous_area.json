@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:insulation_class_hazardous_area_details",
  "creation": "2024-10-04 09:51:33.350076",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "insulation_class_hazardous_area_details",
    "fieldtype": "Data",
-   "label": "Insulation Class Hazardous Area Details"
+   "label": "Insulation Class Hazardous Area Details",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 09:51:50.516068",
+ "modified": "2024-10-14 15:04:31.417351",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Insulation Class Hazardous Area",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
