@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:ampere",
  "creation": "2024-10-06 13:06:36.001832",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "ampere",
    "fieldtype": "Data",
-   "label": "Ampere"
+   "label": "Ampere",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 13:06:53.866799",
+ "modified": "2024-10-15 14:38:32.067644",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "SD Incomer Above Ampere",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

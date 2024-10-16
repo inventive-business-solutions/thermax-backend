@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:type_of_output",
  "creation": "2024-10-14 11:56:16.414037",
@@ -18,7 +19,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-14 11:56:42.709498",
+ "modified": "2024-10-15 17:18:23.547840",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "AI Modules Type of Output",

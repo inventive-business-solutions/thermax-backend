@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:ups_type",
  "creation": "2024-10-06 17:07:05.426627",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "ups_type",
    "fieldtype": "Data",
-   "label": "UPS Type"
+   "label": "UPS Type",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 17:07:22.429939",
+ "modified": "2024-10-15 16:25:35.003956",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "PLC UPS Type",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

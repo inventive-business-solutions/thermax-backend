@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:indicating_lamp_color_for_non_ups_power_supply",
  "creation": "2024-10-07 08:56:53.961151",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "indicating_lamp_color_for_non_ups_power_supply",
    "fieldtype": "Data",
-   "label": "Indicating Lamp Color for Non UPS Power Supply"
+   "label": "Indicating Lamp Color for Non UPS Power Supply",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-07 08:57:28.714322",
+ "modified": "2024-10-15 16:59:42.275171",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Indicating Lamp Color for Non-UPS Power Supply",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

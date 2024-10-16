@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:width",
  "creation": "2024-10-14 14:15:27.027201",
@@ -18,7 +19,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-14 14:15:41.007330",
+ "modified": "2024-10-16 11:58:09.802797",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Cable Tray Width",

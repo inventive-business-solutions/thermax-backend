@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:a",
  "creation": "2024-10-06 13:38:33.514314",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "a",
    "fieldtype": "Data",
-   "label": "A"
+   "label": "A",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 13:39:04.434878",
+ "modified": "2024-10-15 15:09:10.836336",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "GA PCC Construction A",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

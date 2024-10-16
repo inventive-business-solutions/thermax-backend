@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:interrogation_voltage",
  "creation": "2024-10-14 11:44:13.609557",
@@ -18,7 +19,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-14 11:45:27.875966",
+ "modified": "2024-10-15 17:08:32.250427",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "DI Modules Interrogation Voltage",

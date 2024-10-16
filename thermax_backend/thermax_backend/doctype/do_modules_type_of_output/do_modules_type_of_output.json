@@ -1,16 +1,17 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
- "autoname": "field:type_of_input",
+ "autoname": "field:type_of_output",
  "creation": "2024-10-14 11:47:24.883032",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "type_of_input"
+  "type_of_output"
  ],
  "fields": [
   {
-   "fieldname": "type_of_input",
+   "fieldname": "type_of_output",
    "fieldtype": "Data",
    "label": "Type Of Input",
    "unique": 1
@@ -18,10 +19,10 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-14 11:47:48.853021",
+ "modified": "2024-10-15 17:16:00.565074",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
- "name": "DO Modules Type Of Input",
+ "name": "DO Modules Type Of Output",
  "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [

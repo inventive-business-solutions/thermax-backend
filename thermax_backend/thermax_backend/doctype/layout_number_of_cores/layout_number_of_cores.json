@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:cores",
  "creation": "2024-10-14 12:50:54.107387",
@@ -18,7 +19,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-14 12:51:17.686924",
+ "modified": "2024-10-16 00:16:43.112029",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Layout Number Of Cores",

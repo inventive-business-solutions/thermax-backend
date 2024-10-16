@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:density",
  "creation": "2024-10-14 11:46:31.293898",
@@ -18,7 +19,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-14 11:46:48.705584",
+ "modified": "2024-10-15 17:12:07.078072",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "DO Modules Density",

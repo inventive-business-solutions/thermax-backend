@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:commercial_grade_pc",
  "creation": "2024-10-14 12:26:00.075960",
@@ -18,7 +19,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-14 12:26:35.127144",
+ "modified": "2024-10-15 23:18:59.111460",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "EO Commercial Grade PC",

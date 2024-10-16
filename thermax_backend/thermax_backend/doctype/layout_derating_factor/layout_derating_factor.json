@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:derating_factor",
  "creation": "2024-10-14 14:00:54.469682",
@@ -18,7 +19,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-14 14:01:28.755236",
+ "modified": "2024-10-16 11:52:40.541059",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Layout Derating Factor",

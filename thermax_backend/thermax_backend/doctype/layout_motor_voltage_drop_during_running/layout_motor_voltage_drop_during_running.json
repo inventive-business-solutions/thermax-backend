@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:voltage_drop",
  "creation": "2024-10-14 12:56:58.953011",
@@ -18,7 +19,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-14 12:57:19.239095",
+ "modified": "2024-10-16 11:49:35.355924",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Layout Motor voltage drop during running",

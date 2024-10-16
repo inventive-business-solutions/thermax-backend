@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:type_of_gland",
  "creation": "2024-10-14 14:06:30.546883",
@@ -18,7 +19,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-14 14:06:53.646861",
+ "modified": "2024-10-16 11:54:15.070919",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Type Of Gland",

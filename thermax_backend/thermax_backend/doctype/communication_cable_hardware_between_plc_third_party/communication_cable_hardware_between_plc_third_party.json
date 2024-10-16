@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:cc_and_hardware",
  "creation": "2024-10-14 12:45:34.114735",
@@ -18,7 +19,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-14 12:46:29.112656",
+ "modified": "2024-10-15 23:39:09.744736",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Communication Cable Hardware Between PLC Third Party",

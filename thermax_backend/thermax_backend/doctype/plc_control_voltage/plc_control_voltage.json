@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:control_voltage",
  "creation": "2024-10-06 17:24:37.582436",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "control_voltage",
    "fieldtype": "Data",
-   "label": "Control Voltage"
+   "label": "Control Voltage",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 17:24:46.115743",
+ "modified": "2024-10-15 16:55:43.337525",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "PLC Control Voltage",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

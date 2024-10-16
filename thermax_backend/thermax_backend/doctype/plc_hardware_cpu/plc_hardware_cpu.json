@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:cpu_processor",
  "creation": "2024-10-06 17:10:51.228181",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "cpu_processor",
    "fieldtype": "Data",
-   "label": "CPU Processor"
+   "label": "CPU Processor",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 17:11:11.218667",
+ "modified": "2024-10-15 16:32:31.666333",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "PLC Hardware CPU",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
