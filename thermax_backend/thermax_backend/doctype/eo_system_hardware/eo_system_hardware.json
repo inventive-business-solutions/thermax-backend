@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:system_hardware",
  "creation": "2024-10-14 12:24:44.474558",
@@ -18,7 +19,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-14 12:25:11.727140",
+ "modified": "2024-10-15 17:51:53.932702",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "EO System Hardware",

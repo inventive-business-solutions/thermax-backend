@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "format:{width}-{height}-{thickness}",
  "creation": "2024-10-14 14:24:02.287166",
@@ -33,7 +34,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-14 14:31:29.794031",
+ "modified": "2024-10-16 12:04:28.294079",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Perforated Type",

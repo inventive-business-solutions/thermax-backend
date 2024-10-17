@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:gland_make",
  "creation": "2024-10-14 14:01:47.751851",
@@ -18,7 +19,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-14 14:02:11.370755",
+ "modified": "2024-10-16 11:52:58.698305",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Gland Make",

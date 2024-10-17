@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:moc",
  "creation": "2024-10-14 14:04:36.336351",
@@ -18,7 +19,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-14 14:05:05.086155",
+ "modified": "2024-10-16 11:53:30.923157",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Gland MOC",

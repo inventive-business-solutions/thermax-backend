@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:conductor",
  "creation": "2024-10-14 12:58:17.416973",
@@ -18,7 +19,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-14 12:58:39.087261",
+ "modified": "2024-10-16 11:50:28.666215",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Layout Conductor",

@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class DOModulesTypeOfInput(Document):
+class DOModulesTypeOfOutput(Document):
 	pass

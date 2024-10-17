@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:count",
  "creation": "2024-10-14 12:09:57.863955",
@@ -18,7 +19,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-14 12:10:32.999756",
+ "modified": "2024-10-15 17:37:16.511051",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "IO Count",

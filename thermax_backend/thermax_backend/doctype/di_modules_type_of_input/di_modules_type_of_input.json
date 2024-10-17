@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:type_of_input",
  "creation": "2024-10-14 11:43:08.402474",
@@ -18,7 +19,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-14 11:43:29.556802",
+ "modified": "2024-10-15 17:10:55.407264",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "DI Modules Type Of Input",

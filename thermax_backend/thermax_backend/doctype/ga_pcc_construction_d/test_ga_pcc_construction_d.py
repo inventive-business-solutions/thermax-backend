@@ -12,18 +12,18 @@ EXTRA_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
 IGNORE_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
 
 
-class TestDOModulesTypeOfInput(UnitTestCase):
+class TestGAPCCConstructionD(UnitTestCase):
 	"""
-	Unit tests for DOModulesTypeOfInput.
+	Unit tests for GAPCCConstructionD.
 	Use this class for testing individual functions and methods.
 	"""
 
 	pass
 
 
-class TestDOModulesTypeOfInput(IntegrationTestCase):
+class TestGAPCCConstructionD(IntegrationTestCase):
 	"""
-	Integration tests for DOModulesTypeOfInput.
+	Integration tests for GAPCCConstructionD.
 	Use this class for testing interactions between multiple components.
 	"""
 

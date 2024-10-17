@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:earth_pit",
  "creation": "2024-10-14 14:46:59.532408",
@@ -18,7 +19,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-14 14:47:17.817917",
+ "modified": "2024-10-16 12:12:05.046885",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Earth Pit",

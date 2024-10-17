@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:specific_requirement",
  "creation": "2024-10-14 12:51:56.960088",
@@ -18,7 +19,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-14 12:52:16.977469",
+ "modified": "2024-10-16 00:06:16.368956",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Layout Specific requirement",

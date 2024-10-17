@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:position",
  "creation": "2024-10-06 16:42:59.630618",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "position",
    "fieldtype": "Data",
-   "label": "Position"
+   "label": "Position",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 16:43:08.391187",
+ "modified": "2024-10-15 15:50:50.711512",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "GA Cable Entry Position",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

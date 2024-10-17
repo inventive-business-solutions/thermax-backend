@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:vertical_distance",
  "creation": "2024-10-14 14:12:36.622220",
@@ -18,7 +19,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-14 14:12:58.972796",
+ "modified": "2024-10-16 11:57:43.834877",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Vertical Distance",

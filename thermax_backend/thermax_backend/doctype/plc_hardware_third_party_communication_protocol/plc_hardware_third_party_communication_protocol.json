@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:third_party_communication_protocol",
  "creation": "2024-10-06 17:13:32.913713",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "third_party_communication_protocol",
    "fieldtype": "Data",
-   "label": "Third Party Communication Protocol"
+   "label": "Third Party Communication Protocol",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 17:13:47.131050",
+ "modified": "2024-10-15 16:34:28.898070",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "PLC Hardware Third Party Communication Protocol",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

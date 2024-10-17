@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:cpu_redundancy",
  "creation": "2024-10-06 17:16:13.000863",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "cpu_redundancy",
    "fieldtype": "Data",
-   "label": "CPU Redundancy"
+   "label": "CPU Redundancy",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 17:16:20.265338",
+ "modified": "2024-10-15 16:40:13.991298",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "PLC CPU Redundancy",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

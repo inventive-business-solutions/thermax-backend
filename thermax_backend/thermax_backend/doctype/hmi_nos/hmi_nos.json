@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:hmi",
  "creation": "2024-10-14 12:14:30.202753",
@@ -18,7 +19,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-14 12:14:50.972889",
+ "modified": "2024-10-15 17:40:43.422842",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "HMI NOs",

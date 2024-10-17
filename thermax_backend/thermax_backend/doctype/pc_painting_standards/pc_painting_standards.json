@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:painting_standards",
  "creation": "2024-10-06 16:44:01.463566",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "painting_standards",
    "fieldtype": "Data",
-   "label": "Painting Standards"
+   "label": "Painting Standards",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 16:44:21.503155",
+ "modified": "2024-10-15 15:52:24.053589",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "PC Painting Standards",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
