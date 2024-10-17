@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:cable_insulation_pvc",
  "creation": "2024-10-04 13:35:19.455411",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "cable_insulation_pvc",
    "fieldtype": "Data",
-   "label": "Cable Insulation PVC"
+   "label": "Cable Insulation PVC",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 13:35:35.991186",
+ "modified": "2024-10-15 09:59:49.871949",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Cable Insulation PVC",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

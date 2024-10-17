@@ -1,0 +1,45 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "field:cable_placement",
+ "creation": "2024-10-14 14:10:12.595029",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "cable_placement"
+ ],
+ "fields": [
+  {
+   "fieldname": "cable_placement",
+   "fieldtype": "Data",
+   "label": "Cable Placement",
+   "unique": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-10-16 11:55:07.807487",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "Cable Placement",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

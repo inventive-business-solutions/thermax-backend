@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:degree_of_enclosure_protection",
  "creation": "2024-10-06 16:42:11.057782",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "degree_of_enclosure_protection",
    "fieldtype": "Data",
-   "label": "Degree Of Enclosure Protection"
+   "label": "Degree Of Enclosure Protection",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 16:42:32.980789",
+ "modified": "2024-10-15 15:49:13.040103",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "GA Degree Of Enclosure Protection",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

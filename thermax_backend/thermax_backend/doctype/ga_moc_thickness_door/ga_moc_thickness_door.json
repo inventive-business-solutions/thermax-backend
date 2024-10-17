@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:door_and_component",
  "creation": "2024-10-06 13:33:43.565668",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -10,16 +12,18 @@
  "fields": [
   {
    "fieldname": "door_and_component",
-   "fieldtype": "Float",
-   "label": "Door and Component"
+   "fieldtype": "Data",
+   "label": "Door and Component",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 13:34:27.105549",
+ "modified": "2024-10-15 15:03:56.267807",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "GA MOC Thickness Door",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

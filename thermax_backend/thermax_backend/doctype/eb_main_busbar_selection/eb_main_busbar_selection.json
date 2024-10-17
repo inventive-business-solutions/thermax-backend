@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:main_busbar_selection",
  "creation": "2024-10-06 11:06:54.681720",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "main_busbar_selection",
    "fieldtype": "Data",
-   "label": "Main Busbar Selection"
+   "label": "Main Busbar Selection",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 11:07:08.103702",
+ "modified": "2024-10-15 12:15:53.038891",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "EB Main Busbar Selection",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

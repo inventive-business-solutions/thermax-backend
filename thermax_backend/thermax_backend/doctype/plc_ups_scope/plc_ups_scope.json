@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:ups_scope",
  "creation": "2024-10-06 17:06:09.208974",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "ups_scope",
    "fieldtype": "Data",
-   "label": "UPS Scope"
+   "label": "UPS Scope",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 17:06:19.598291",
+ "modified": "2024-10-15 16:23:52.619380",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "PLC UPS Scope",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

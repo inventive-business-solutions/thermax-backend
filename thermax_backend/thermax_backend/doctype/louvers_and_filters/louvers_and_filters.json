@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:louvers_and_filters",
  "creation": "2024-10-06 11:16:04.776758",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "louvers_and_filters",
    "fieldtype": "Data",
-   "label": "Louvers and Filters"
+   "label": "Louvers and Filters",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 11:16:16.890432",
+ "modified": "2024-10-15 12:36:52.269290",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Louvers and Filters",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

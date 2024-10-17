@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:qty",
  "creation": "2024-10-04 14:11:57.833565",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "qty",
    "fieldtype": "Data",
-   "label": "Qty"
+   "label": "Qty",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 14:12:22.890826",
+ "modified": "2024-10-15 10:49:39.904639",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Field Motor Isolator General QTY",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

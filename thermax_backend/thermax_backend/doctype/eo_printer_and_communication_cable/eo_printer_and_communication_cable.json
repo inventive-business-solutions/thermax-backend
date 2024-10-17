@@ -1,0 +1,45 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "field:printer_and_cc",
+ "creation": "2024-10-14 12:39:14.745650",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "printer_and_cc"
+ ],
+ "fields": [
+  {
+   "fieldname": "printer_and_cc",
+   "fieldtype": "Data",
+   "label": "Printer and CC",
+   "unique": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-10-15 23:28:00.861057",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "EO Printer and Communication Cable",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

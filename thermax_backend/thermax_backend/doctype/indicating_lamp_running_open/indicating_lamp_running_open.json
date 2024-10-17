@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:running_open",
  "creation": "2024-10-04 13:48:52.841213",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "running_open",
    "fieldtype": "Data",
-   "label": "Running Open"
+   "label": "Running Open",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 13:49:06.313944",
+ "modified": "2024-10-15 10:33:00.157863",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Indicating Lamp Running Open",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

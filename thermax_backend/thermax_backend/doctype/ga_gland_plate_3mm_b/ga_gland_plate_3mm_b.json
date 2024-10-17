@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:drilled",
  "creation": "2024-10-06 16:39:27.483649",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "drilled",
    "fieldtype": "Data",
-   "label": "Drilled"
+   "label": "Drilled",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 16:39:44.433140",
+ "modified": "2024-10-15 15:42:29.843740",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "GA Gland Plate 3mm B",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

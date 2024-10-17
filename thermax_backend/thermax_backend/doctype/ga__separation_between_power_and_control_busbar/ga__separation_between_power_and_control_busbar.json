@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:separation_between_power_and_control_busbar",
  "creation": "2024-10-06 16:41:03.523805",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "separation_between_power_and_control_busbar",
    "fieldtype": "Data",
-   "label": " separation between power and control busbar"
+   "label": " separation between power and control busbar",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 16:41:25.677690",
+ "modified": "2024-10-15 15:46:02.640753",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "GA  separation between power and control busbar",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:pb_material",
  "creation": "2024-10-06 10:41:03.935257",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "pb_material",
    "fieldtype": "Data",
-   "label": "PB Material"
+   "label": "PB Material",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 10:41:19.096111",
+ "modified": "2024-10-15 11:42:48.702213",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "PB Material",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

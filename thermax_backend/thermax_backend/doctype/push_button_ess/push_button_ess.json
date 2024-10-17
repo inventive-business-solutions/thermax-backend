@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:ess",
  "creation": "2024-10-04 13:41:25.187496",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "ess",
    "fieldtype": "Data",
-   "label": "ESS"
+   "label": "ESS",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 13:41:43.955172",
+ "modified": "2024-10-15 10:12:32.881233",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Push Button ESS",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

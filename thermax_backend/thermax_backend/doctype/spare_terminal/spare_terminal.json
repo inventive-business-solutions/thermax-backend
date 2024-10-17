@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:spare_terminal",
  "creation": "2024-10-04 13:38:26.867642",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "spare_terminal",
    "fieldtype": "Int",
-   "label": "Spare Terminal"
+   "label": "Spare Terminal",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 13:38:38.169187",
+ "modified": "2024-10-15 10:04:35.826658",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Spare Terminal",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

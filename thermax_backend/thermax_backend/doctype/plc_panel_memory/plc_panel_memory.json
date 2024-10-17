@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:panel_memory",
  "creation": "2024-10-06 17:21:28.080462",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "panel_memory",
    "fieldtype": "Data",
-   "label": "Panel Memory"
+   "label": "Panel Memory",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 17:21:39.952522",
+ "modified": "2024-10-15 16:51:48.909547",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "PLC Panel Memory",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

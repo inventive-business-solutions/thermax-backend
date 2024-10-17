@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:thickness",
  "creation": "2024-10-06 16:47:18.952873",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "thickness",
    "fieldtype": "Data",
-   "label": "Thickness"
+   "label": "Thickness",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 16:47:29.149766",
+ "modified": "2024-10-15 16:10:19.487509",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "PC Min Coating Thickness",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

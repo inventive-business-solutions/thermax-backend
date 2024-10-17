@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:temperature_rise_limited_to",
  "creation": "2024-10-04 09:54:32.547363",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "temperature_rise_limited_to",
    "fieldtype": "Data",
-   "label": "Temperature rise limited to"
+   "label": "Temperature rise limited to",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 09:54:48.432701",
+ "modified": "2024-10-14 15:08:11.969451",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Hazardous Temperature rise limited to",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

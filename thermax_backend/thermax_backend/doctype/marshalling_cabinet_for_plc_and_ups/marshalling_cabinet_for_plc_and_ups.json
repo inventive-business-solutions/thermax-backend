@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:marshalling_cabinet",
  "creation": "2024-10-06 17:23:21.948221",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "marshalling_cabinet",
    "fieldtype": "Data",
-   "label": "Marshalling Cabinet"
+   "label": "Marshalling Cabinet",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 17:23:30.401801",
+ "modified": "2024-10-15 16:54:10.488600",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Marshalling Cabinet for PLC and UPS",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:speed_decrease_push_button",
  "creation": "2024-10-06 10:36:16.979481",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "speed_decrease_push_button",
    "fieldtype": "Data",
-   "label": "Speed Decrease Push Button"
+   "label": "Speed Decrease Push Button",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 10:36:31.580648",
+ "modified": "2024-10-15 11:25:16.692496",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "LPBS Speed Decrease Push Button",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
