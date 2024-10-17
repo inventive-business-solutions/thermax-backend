@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class PanelSummary(Document):
+class ProjectInformation(Document):
 	pass

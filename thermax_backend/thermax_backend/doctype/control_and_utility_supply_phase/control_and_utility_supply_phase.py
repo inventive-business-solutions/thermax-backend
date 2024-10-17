@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class AmbientTemperatureMin(Document):
+class ControlandUtilitySupplyPhase(Document):
 	pass

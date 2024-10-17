@@ -1,27 +1,28 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "hash",
- "creation": "2024-09-26 15:12:48.818218",
+ "autoname": "field:phase",
+ "creation": "2024-09-26 13:12:09.013960",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "temperature"
+  "phase"
  ],
  "fields": [
   {
-   "fieldname": "temperature",
-   "fieldtype": "Int",
-   "label": "Temperature"
+   "fieldname": "phase",
+   "fieldtype": "Data",
+   "label": "Phase",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-09-26 15:13:37.236406",
+ "modified": "2024-10-08 23:35:44.343564",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
- "name": "Ambient Temperature Min",
- "naming_rule": "Random",
+ "name": "Main Supply Phase",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

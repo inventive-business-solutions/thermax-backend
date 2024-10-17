@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestAmbientTemperatureMin(FrappeTestCase):
+class TestControlandUtilitySupplyPhase(FrappeTestCase):
 	pass

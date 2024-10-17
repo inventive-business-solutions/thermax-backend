@@ -1,24 +1,31 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:panel_type",
+ "autoname": "field:panel_name",
  "creation": "2024-10-04 09:34:17.630461",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "panel_name",
   "panel_type"
  ],
  "fields": [
   {
-   "fieldname": "panel_type",
+   "fieldname": "panel_name",
    "fieldtype": "Data",
-   "label": "Panel Type",
+   "label": "Panel Name",
    "unique": 1
+  },
+  {
+   "fieldname": "panel_type",
+   "fieldtype": "Select",
+   "label": "Panel Type",
+   "options": "MCC\nPCC\nMCC cum PCC"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 09:36:53.193078",
+ "modified": "2024-10-08 01:45:16.850087",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Panel Type",

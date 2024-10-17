@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "hash",
+ "autoname": "field:frequency",
  "creation": "2024-09-26 15:00:10.338404",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,17 +11,18 @@
  "fields": [
   {
    "fieldname": "frequency",
-   "fieldtype": "Float",
-   "label": "Frequency"
+   "fieldtype": "Int",
+   "label": "Frequency",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-09-26 15:00:44.654953",
+ "modified": "2024-10-08 23:30:35.331731",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Frequency",
- "naming_rule": "Random",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
