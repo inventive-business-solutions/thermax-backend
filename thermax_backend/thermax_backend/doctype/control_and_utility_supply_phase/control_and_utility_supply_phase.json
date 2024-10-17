@@ -1,8 +1,8 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "hash",
- "creation": "2024-09-26 13:12:09.013960",
+ "autoname": "field:phase",
+ "creation": "2024-10-08 13:11:46.531256",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
@@ -12,16 +12,17 @@
   {
    "fieldname": "phase",
    "fieldtype": "Data",
-   "label": "Phase"
+   "label": "Phase",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-09-26 13:12:32.798623",
+ "modified": "2024-10-08 23:36:52.313652",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
- "name": "Phase",
- "naming_rule": "Random",
+ "name": "Control and Utility Supply Phase",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

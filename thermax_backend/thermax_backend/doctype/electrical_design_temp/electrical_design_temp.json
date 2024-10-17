@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "field:temperature",
  "creation": "2024-09-26 15:14:35.672213",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +12,17 @@
   {
    "fieldname": "temperature",
    "fieldtype": "Int",
-   "label": "Temperature"
+   "label": "Temperature",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-09-26 15:14:50.582903",
+ "modified": "2024-10-08 23:23:22.613916",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Electrical Design Temp",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

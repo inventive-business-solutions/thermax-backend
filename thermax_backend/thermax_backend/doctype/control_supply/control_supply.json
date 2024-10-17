@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "field:control_supply",
  "creation": "2024-09-26 13:17:28.012239",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +12,17 @@
   {
    "fieldname": "control_supply",
    "fieldtype": "Data",
-   "label": "Control Supply"
+   "label": "Control Supply",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-09-26 13:17:45.062892",
+ "modified": "2024-10-09 00:06:28.747955",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Control Supply",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

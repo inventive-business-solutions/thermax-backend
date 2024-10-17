@@ -1,7 +1,7 @@
 // Copyright (c) 2024, Abhishek Bankar and contributors
 // For license information, please see license.txt
 
-// frappe.ui.form.on("Ambient Temperature Min", {
+// frappe.ui.form.on("Control and Utility Supply Phase", {
 // 	refresh(frm) {
 
 // 	},
