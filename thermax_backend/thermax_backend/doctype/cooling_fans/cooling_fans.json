@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:cooling_fans",
  "creation": "2024-10-06 11:14:31.858277",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "cooling_fans",
    "fieldtype": "Data",
-   "label": "Cooling Fans"
+   "label": "Cooling Fans",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 11:14:49.133832",
+ "modified": "2024-10-15 12:35:16.660015",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Cooling Fans",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:type",
  "creation": "2024-10-06 10:20:17.332265",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "type",
    "fieldtype": "Data",
-   "label": "Type"
+   "label": "Type",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 10:20:45.357534",
+ "modified": "2024-10-15 10:57:30.406741",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Local Push Button Station Type",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

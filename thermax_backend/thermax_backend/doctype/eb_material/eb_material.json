@@ -1,25 +1,29 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:material",
  "creation": "2024-10-06 11:07:56.910619",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "eb_material"
+  "material"
  ],
  "fields": [
   {
-   "fieldname": "eb_material",
+   "fieldname": "material",
    "fieldtype": "Data",
-   "label": "EB Material"
+   "label": "EB Material",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 11:08:11.869356",
+ "modified": "2024-10-15 12:18:12.412833",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "EB Material",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

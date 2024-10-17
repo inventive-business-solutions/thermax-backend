@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:power_wiring_color",
  "creation": "2024-10-04 12:29:18.171852",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "power_wiring_color",
    "fieldtype": "Data",
-   "label": "Power Wiring Color"
+   "label": "Power Wiring Color",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 12:29:39.817672",
+ "modified": "2024-10-14 17:43:57.298434",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Power Wiring Color",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

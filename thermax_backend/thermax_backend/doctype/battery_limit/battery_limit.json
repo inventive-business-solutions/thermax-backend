@@ -1,27 +1,28 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "hash",
+ "autoname": "field:battery_limit",
  "creation": "2024-10-04 09:41:56.679903",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "power_supply_at_the"
+  "battery_limit"
  ],
  "fields": [
   {
-   "fieldname": "power_supply_at_the",
+   "fieldname": "battery_limit",
    "fieldtype": "Data",
-   "label": "Power Supply at the"
+   "label": "Power Supply at the",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 09:42:36.853107",
+ "modified": "2024-10-14 11:17:03.519377",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Battery Limit",
- "naming_rule": "Random",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

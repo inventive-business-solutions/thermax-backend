@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:winding_rtd",
  "creation": "2024-10-04 10:52:34.530135",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -10,16 +12,18 @@
  "fields": [
   {
    "fieldname": "winding_rtd",
-   "fieldtype": "Float",
-   "label": "Winding RTD"
+   "fieldtype": "Data",
+   "label": "Winding RTD",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 10:52:44.554052",
+ "modified": "2024-10-14 15:44:19.263459",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Winding RTD Safe",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

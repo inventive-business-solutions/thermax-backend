@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:cable_entry",
  "creation": "2024-10-04 14:14:22.557846",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "cable_entry",
    "fieldtype": "Data",
-   "label": "Cable Entry"
+   "label": "Cable Entry",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 14:14:34.402332",
+ "modified": "2024-10-15 10:55:03.695737",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Field Motor Isolator General Cable Entry",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

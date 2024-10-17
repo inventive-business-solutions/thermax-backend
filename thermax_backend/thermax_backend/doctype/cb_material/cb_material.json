@@ -1,25 +1,29 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:material",
  "creation": "2024-10-06 11:00:25.636196",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "cb_material"
+  "material"
  ],
  "fields": [
   {
-   "fieldname": "cb_material",
+   "fieldname": "material",
    "fieldtype": "Data",
-   "label": "CB Material"
+   "label": "CB Material",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 11:00:44.246626",
+ "modified": "2024-10-15 12:11:43.544025",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "CB Material",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

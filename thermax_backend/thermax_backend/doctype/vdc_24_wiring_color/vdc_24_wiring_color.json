@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:vdc_24_wiring_color",
  "creation": "2024-10-04 12:34:26.931093",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "vdc_24_wiring_color",
    "fieldtype": "Data",
-   "label": "VDC 24 Wiring Color"
+   "label": "VDC 24 Wiring Color",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 12:34:46.961844",
+ "modified": "2024-10-14 17:52:51.833659",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "VDC 24 Wiring Color",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

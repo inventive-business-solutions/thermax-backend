@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:speed_decrease_pb",
  "creation": "2024-10-04 13:43:32.454778",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "speed_decrease_pb",
    "fieldtype": "Data",
-   "label": "Speed Decrease PB"
+   "label": "Speed Decrease PB",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 13:43:56.169716",
+ "modified": "2024-10-15 10:17:08.710558",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Speed Decrease PB",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

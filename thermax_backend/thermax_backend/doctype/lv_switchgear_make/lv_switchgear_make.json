@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:lv_switchgear",
  "creation": "2024-10-04 11:48:18.485172",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "lv_switchgear",
    "fieldtype": "Data",
-   "label": "LV Switchgear"
+   "label": "LV Switchgear",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 11:48:42.912672",
+ "modified": "2024-10-14 16:47:51.808249",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "LV switchgear Make",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

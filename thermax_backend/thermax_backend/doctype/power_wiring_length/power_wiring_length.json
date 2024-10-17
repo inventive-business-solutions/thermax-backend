@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:power_wiring_length",
  "creation": "2024-10-04 12:30:16.730580",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "power_wiring_length",
    "fieldtype": "Data",
-   "label": "Power Wiring Length"
+   "label": "Power Wiring Length",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 12:30:33.964620",
+ "modified": "2024-10-14 17:46:11.000529",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Power Wiring Length",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

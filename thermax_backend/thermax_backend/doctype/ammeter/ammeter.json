@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:ammeter",
  "creation": "2024-10-04 11:56:53.202814",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -10,16 +12,18 @@
  "fields": [
   {
    "fieldname": "ammeter",
-   "fieldtype": "Float",
-   "label": "Ammeter"
+   "fieldtype": "Data",
+   "label": "Ammeter",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 11:57:20.539721",
+ "modified": "2024-10-14 17:22:14.450486",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Ammeter",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

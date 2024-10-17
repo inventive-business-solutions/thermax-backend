@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:stop",
  "creation": "2024-10-04 13:40:27.190030",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "stop",
    "fieldtype": "Data",
-   "label": "Stop"
+   "label": "Stop",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 13:40:42.029173",
+ "modified": "2024-10-15 10:08:29.093990",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Push Button Stop",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

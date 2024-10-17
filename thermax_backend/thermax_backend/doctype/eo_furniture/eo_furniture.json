@@ -1,0 +1,44 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:furniture",
+ "creation": "2024-10-14 12:42:23.102996",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "furniture"
+ ],
+ "fields": [
+  {
+   "fieldname": "furniture",
+   "fieldtype": "Data",
+   "label": "Furniture",
+   "unique": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-10-14 12:42:39.786228",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "EO Furniture",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

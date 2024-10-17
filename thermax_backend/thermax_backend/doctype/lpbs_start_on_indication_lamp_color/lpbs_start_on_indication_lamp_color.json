@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:start_on_indication_lamp_color",
  "creation": "2024-10-06 10:33:18.776572",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "start_on_indication_lamp_color",
    "fieldtype": "Data",
-   "label": "Start ON Indication Lamp Color"
+   "label": "Start ON Indication Lamp Color",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 10:33:33.861188",
+ "modified": "2024-10-15 11:14:00.418796",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "LPBS Start ON Indication Lamp Color",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
