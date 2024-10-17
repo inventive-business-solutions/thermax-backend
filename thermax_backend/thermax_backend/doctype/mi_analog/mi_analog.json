@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:analog",
  "creation": "2024-10-06 13:28:10.513014",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "analog",
    "fieldtype": "Data",
-   "label": "Analog"
+   "label": "Analog",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 13:28:19.812505",
+ "modified": "2024-10-15 14:50:08.422129",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "MI Analog",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:body_material",
  "creation": "2024-10-04 11:26:49.665088",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "body_material",
    "fieldtype": "Data",
-   "label": "Body Material"
+   "label": "Body Material",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 11:27:06.436909",
+ "modified": "2024-10-14 15:59:38.238702",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Body Material Safe",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

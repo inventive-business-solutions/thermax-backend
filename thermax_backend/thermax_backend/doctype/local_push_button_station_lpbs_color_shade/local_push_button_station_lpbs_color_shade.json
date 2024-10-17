@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:lpbs_color_shade",
  "creation": "2024-10-06 10:28:04.480429",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "lpbs_color_shade",
    "fieldtype": "Data",
-   "label": "LPBS Color Shade"
+   "label": "LPBS Color Shade",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 10:28:16.928935",
+ "modified": "2024-10-15 11:06:03.026897",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Local Push Button Station LPBS Color Shade",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

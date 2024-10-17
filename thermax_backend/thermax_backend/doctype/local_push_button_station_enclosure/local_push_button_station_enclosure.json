@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:enclosure",
  "creation": "2024-10-06 10:21:39.390565",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "enclosure",
    "fieldtype": "Data",
-   "label": "Enclosure"
+   "label": "Enclosure",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 10:21:51.278207",
+ "modified": "2024-10-15 10:58:46.634285",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Local Push Button Station Enclosure",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

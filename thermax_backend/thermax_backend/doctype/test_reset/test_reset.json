@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:test_reset",
  "creation": "2024-10-04 13:45:07.602235",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "test_reset",
    "fieldtype": "Data",
-   "label": "Test Reset"
+   "label": "Test Reset",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 13:45:27.123543",
+ "modified": "2024-10-15 10:25:09.104371",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Test Reset",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

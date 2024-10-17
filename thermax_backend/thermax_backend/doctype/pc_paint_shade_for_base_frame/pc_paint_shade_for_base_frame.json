@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:paint_shade",
  "creation": "2024-10-06 16:46:45.299144",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "paint_shade",
    "fieldtype": "Data",
-   "label": "Paint Shade"
+   "label": "Paint Shade",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 16:46:52.952292",
+ "modified": "2024-10-15 16:08:53.841974",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "PC Paint shade for base frame",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

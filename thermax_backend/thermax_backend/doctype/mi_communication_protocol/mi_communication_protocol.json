@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:communication_protocol",
  "creation": "2024-10-06 13:29:59.522154",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "communication_protocol",
    "fieldtype": "Data",
-   "label": "Communication Protocol"
+   "label": "Communication Protocol",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 13:30:12.637402",
+ "modified": "2024-10-15 14:57:24.180389",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "MI Communication Protocol",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

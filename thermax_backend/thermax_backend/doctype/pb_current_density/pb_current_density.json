@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:pb_current_density",
  "creation": "2024-10-06 10:42:24.383017",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "pb_current_density",
    "fieldtype": "Data",
-   "label": "PB Current Density"
+   "label": "PB Current Density",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 10:42:35.851361",
+ "modified": "2024-10-15 11:50:50.544383",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "PB Current Density",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

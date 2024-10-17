@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:client_system_communication",
  "creation": "2024-10-06 17:14:31.640407",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "client_system_communication",
    "fieldtype": "Data",
-   "label": "Client System Communication"
+   "label": "Client System Communication",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 17:14:51.257343",
+ "modified": "2024-10-15 16:36:54.377737",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "PLC Hardware Client System Communication",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

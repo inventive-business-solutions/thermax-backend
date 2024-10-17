@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:control_transformer",
  "creation": "2024-10-06 11:18:47.104579",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "control_transformer",
    "fieldtype": "Data",
-   "label": "Control Transformer"
+   "label": "Control Transformer",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 11:19:12.473785",
+ "modified": "2024-10-15 12:40:09.804406",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "CC Control Transformer",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

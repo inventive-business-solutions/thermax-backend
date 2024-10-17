@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:type",
  "creation": "2024-10-04 13:51:19.341322",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "type",
    "fieldtype": "Data",
-   "label": "Type"
+   "label": "Type",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 13:51:38.173747",
+ "modified": "2024-10-15 10:40:35.386469",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Field Motor Isolator General Type",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

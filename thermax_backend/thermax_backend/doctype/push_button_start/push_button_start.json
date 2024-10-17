@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:start",
  "creation": "2024-10-04 13:39:44.231766",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "start",
    "fieldtype": "Data",
-   "label": "Start"
+   "label": "Start",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 13:39:52.531230",
+ "modified": "2024-10-15 10:06:43.177807",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Push Button Start",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

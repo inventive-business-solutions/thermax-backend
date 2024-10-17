@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:stopped_closed",
  "creation": "2024-10-04 13:49:45.737758",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "stopped_closed",
    "fieldtype": "Data",
-   "label": "Stopped Closed"
+   "label": "Stopped Closed",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 13:49:56.258854",
+ "modified": "2024-10-15 10:35:12.791184",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Indicating Lamp Stopped Closed",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:ammeter_configuration",
  "creation": "2024-10-04 11:58:03.347773",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "ammeter_configuration",
    "fieldtype": "Data",
-   "label": "Ammeter Configuration"
+   "label": "Ammeter Configuration",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 12:06:39.913474",
+ "modified": "2024-10-14 17:24:47.958816",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Ammeter Configuration",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

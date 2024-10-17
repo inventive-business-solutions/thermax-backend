@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:lockable",
  "creation": "2024-10-04 13:47:30.252710",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "lockable",
    "fieldtype": "Data",
-   "label": "Lockable"
+   "label": "Lockable",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 13:47:37.859479",
+ "modified": "2024-10-15 10:29:11.961284",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Lockable Selector Switch On MCC Panel Front Door",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

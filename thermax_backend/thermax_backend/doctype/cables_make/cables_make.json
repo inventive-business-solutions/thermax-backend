@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:cable",
  "creation": "2024-10-04 11:47:12.962409",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "cable",
    "fieldtype": "Data",
-   "label": "Cable"
+   "label": "Cable",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 11:47:40.514198",
+ "modified": "2024-10-14 16:44:49.571608",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Cables Make",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

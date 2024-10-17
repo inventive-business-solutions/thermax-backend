@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:material",
  "creation": "2024-10-04 13:57:01.154148",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "material",
    "fieldtype": "Data",
-   "label": "Material"
+   "label": "Material",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 13:57:11.597027",
+ "modified": "2024-10-15 10:44:36.641916",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Field Motor Isolator General Material",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

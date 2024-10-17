@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:qty",
  "creation": "2024-10-06 10:25:42.843699",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "qty",
    "fieldtype": "Data",
-   "label": "Qty"
+   "label": "Qty",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 10:26:01.517296",
+ "modified": "2024-10-15 11:03:54.660365",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Local Push Button Station Qty",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

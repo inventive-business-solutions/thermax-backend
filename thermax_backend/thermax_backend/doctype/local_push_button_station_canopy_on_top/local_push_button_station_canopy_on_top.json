@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:canopy_on_top",
  "creation": "2024-10-06 10:29:30.205251",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "canopy_on_top",
    "fieldtype": "Data",
-   "label": "Canopy On top"
+   "label": "Canopy On top",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 10:29:41.003060",
+ "modified": "2024-10-15 11:10:08.240761",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Local Push Button Station Canopy On top",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:earth_busbar_position",
  "creation": "2024-10-06 11:10:52.188489",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "earth_busbar_position",
    "fieldtype": "Data",
-   "label": "Earth Busbar Position"
+   "label": "Earth Busbar Position",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 11:11:04.784986",
+ "modified": "2024-10-15 12:26:23.707984",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "EB Earth Busbar Position",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

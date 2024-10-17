@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:isolator_color_shade",
  "creation": "2024-10-04 14:13:22.861062",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "isolator_color_shade",
    "fieldtype": "Data",
-   "label": "Isolator Color Shade"
+   "label": "Isolator Color Shade",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 14:13:35.844666",
+ "modified": "2024-10-15 10:51:19.181129",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Field Motor Isolator Color Shade",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

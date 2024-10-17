@@ -1,6 +1,8 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:alarm_annunciator",
  "creation": "2024-10-06 11:17:38.372714",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +13,17 @@
   {
    "fieldname": "alarm_annunciator",
    "fieldtype": "Data",
-   "label": "Alarm Annunciator"
+   "label": "Alarm Annunciator",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-06 11:17:46.713819",
+ "modified": "2024-10-15 12:38:29.721542",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Alarm Annunciator",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
