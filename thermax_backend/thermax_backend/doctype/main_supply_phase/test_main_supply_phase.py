@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestPanelSummary(FrappeTestCase):
+class TestMainSupplyPhase(FrappeTestCase):
 	pass

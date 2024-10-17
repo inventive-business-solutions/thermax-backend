@@ -11,7 +11,8 @@
   "client_name",
   "consultant_name",
   "approver",
-  "division"
+  "division",
+  "is_complete"
  ],
  "fields": [
   {
@@ -48,11 +49,17 @@
    "fieldtype": "Link",
    "label": "Division",
    "options": "Division"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_complete",
+   "fieldtype": "Check",
+   "label": "Is Complete"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-08 00:27:47.720108",
+ "modified": "2024-10-10 19:52:15.539785",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Project",

@@ -1,0 +1,190 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:project_id",
+ "creation": "2024-10-08 14:09:20.344968",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "project_id",
+  "project_location",
+  "main_supply_mv",
+  "main_supply_mv_variation",
+  "main_supply_mv_phase",
+  "main_supply_lv",
+  "main_supply_lv_variation",
+  "main_supply_lv_phase",
+  "control_supply",
+  "control_supply_variation",
+  "control_supply_phase",
+  "utility_supply",
+  "utility_supply_variation",
+  "utility_supply_phase",
+  "frequency",
+  "frequency_variation",
+  "fault_level",
+  "sec",
+  "ambient_temperature_max",
+  "ambient_temperature_min",
+  "electrical_design_temperature",
+  "seismic_zone"
+ ],
+ "fields": [
+  {
+   "fieldname": "project_id",
+   "fieldtype": "Link",
+   "label": "Project ID",
+   "options": "Project",
+   "unique": 1
+  },
+  {
+   "fieldname": "project_location",
+   "fieldtype": "Data",
+   "label": "Project Location"
+  },
+  {
+   "fieldname": "main_supply_mv",
+   "fieldtype": "Link",
+   "label": "Main Supply MV",
+   "options": "Main Supply MV"
+  },
+  {
+   "fieldname": "main_supply_mv_variation",
+   "fieldtype": "Link",
+   "label": "Main Supply MV Variation",
+   "options": "Voltage Variation"
+  },
+  {
+   "fieldname": "main_supply_mv_phase",
+   "fieldtype": "Link",
+   "label": "Main Supply MV Phase",
+   "options": "Main Supply Phase"
+  },
+  {
+   "fieldname": "main_supply_lv",
+   "fieldtype": "Link",
+   "label": "Main Supply LV",
+   "options": "Main Supply LV"
+  },
+  {
+   "fieldname": "main_supply_lv_variation",
+   "fieldtype": "Link",
+   "label": "Main Supply LV Variation",
+   "options": "Voltage Variation"
+  },
+  {
+   "fieldname": "main_supply_lv_phase",
+   "fieldtype": "Link",
+   "label": "Main Supply LV Phase",
+   "options": "Main Supply Phase"
+  },
+  {
+   "fieldname": "control_supply",
+   "fieldtype": "Link",
+   "label": "Control Supply",
+   "options": "Control Supply"
+  },
+  {
+   "fieldname": "control_supply_variation",
+   "fieldtype": "Link",
+   "label": "Control Supply Variation",
+   "options": "Voltage Variation"
+  },
+  {
+   "fieldname": "control_supply_phase",
+   "fieldtype": "Link",
+   "label": "Control Supply Phase",
+   "options": "Control and Utility Supply Phase"
+  },
+  {
+   "fieldname": "utility_supply",
+   "fieldtype": "Link",
+   "label": "Utility Supply",
+   "options": "Utility Supply"
+  },
+  {
+   "fieldname": "utility_supply_variation",
+   "fieldtype": "Link",
+   "label": "Utility Supply Variation",
+   "options": "Voltage Variation"
+  },
+  {
+   "fieldname": "utility_supply_phase",
+   "fieldtype": "Link",
+   "label": "Utility Supply Phase",
+   "options": "Control and Utility Supply Phase"
+  },
+  {
+   "fieldname": "frequency",
+   "fieldtype": "Link",
+   "label": "Frequency",
+   "options": "Frequency"
+  },
+  {
+   "fieldname": "frequency_variation",
+   "fieldtype": "Link",
+   "label": "Frequency Variation",
+   "options": "Frequency Variation"
+  },
+  {
+   "fieldname": "fault_level",
+   "fieldtype": "Link",
+   "label": "Fault Level",
+   "options": "Fault Level"
+  },
+  {
+   "fieldname": "sec",
+   "fieldtype": "Link",
+   "label": "Sec",
+   "options": "Sec"
+  },
+  {
+   "fieldname": "ambient_temperature_max",
+   "fieldtype": "Link",
+   "label": "Ambient Temperature Max",
+   "options": "Ambient Temperature Max"
+  },
+  {
+   "fieldname": "ambient_temperature_min",
+   "fieldtype": "Data",
+   "label": "Ambient Temperature Min"
+  },
+  {
+   "fieldname": "electrical_design_temperature",
+   "fieldtype": "Link",
+   "label": "Electrical Design Temperature",
+   "options": "Electrical Design Temp"
+  },
+  {
+   "fieldname": "seismic_zone",
+   "fieldtype": "Link",
+   "label": "Seismic Zone",
+   "options": "Seismic zone"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-10-08 14:32:23.265155",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "Project Information",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

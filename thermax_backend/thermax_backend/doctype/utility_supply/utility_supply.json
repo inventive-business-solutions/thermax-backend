@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "hash",
+ "autoname": "field:utility_supply",
  "creation": "2024-09-26 14:58:02.710258",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -12,16 +12,17 @@
   {
    "fieldname": "utility_supply",
    "fieldtype": "Data",
-   "label": "Utility Supply"
+   "label": "Utility Supply",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-09-26 14:58:31.472490",
+ "modified": "2024-10-09 00:08:37.991562",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Utility Supply",
- "naming_rule": "Random",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
