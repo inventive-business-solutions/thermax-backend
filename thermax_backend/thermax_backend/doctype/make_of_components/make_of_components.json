@@ -1,0 +1,238 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:id",
+ "creation": "2024-09-16 12:18:55.500219",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "motors",
+  "cables",
+  "iv_switch_gear",
+  "push_button_station",
+  "mcc_enclosure",
+  "lighting_fixtures_led",
+  "variable_frequency_speed_drive_vfd_vsd",
+  "soft_starter",
+  "iv_capacitor",
+  "auto_power_factory_relay",
+  "transformer",
+  "ht_breaker",
+  "dg_set",
+  "field_1",
+  "field_2",
+  "field_3",
+  "field_4",
+  "field_5",
+  "id",
+  "lighting_fixtures_metal",
+  "current_transformer",
+  "push_button_station_fp",
+  "panel_indicating_lamp",
+  "selector_switch",
+  "push_button",
+  "ammeter",
+  "voltameter",
+  "frequency_meter",
+  "energy_meter",
+  "ht_switch_gear",
+  "ht_transformer",
+  "palen_enclosure",
+  "plc"
+ ],
+ "fields": [
+  {
+   "fieldname": "motors",
+   "fieldtype": "Data",
+   "label": "Motors"
+  },
+  {
+   "fieldname": "cables",
+   "fieldtype": "Data",
+   "label": "Cables"
+  },
+  {
+   "fieldname": "iv_switch_gear",
+   "fieldtype": "Data",
+   "label": "IV Switch Gear"
+  },
+  {
+   "fieldname": "push_button_station",
+   "fieldtype": "Data",
+   "label": "Push Button Station"
+  },
+  {
+   "fieldname": "mcc_enclosure",
+   "fieldtype": "Data",
+   "label": "MCC Enclosure"
+  },
+  {
+   "fieldname": "lighting_fixtures_led",
+   "fieldtype": "Data",
+   "label": "Lighting Fixtures LED"
+  },
+  {
+   "fieldname": "variable_frequency_speed_drive_vfd_vsd",
+   "fieldtype": "Data",
+   "label": "Variable Frequency Speed Drive VFD VSD"
+  },
+  {
+   "fieldname": "soft_starter",
+   "fieldtype": "Data",
+   "label": "Soft Starter"
+  },
+  {
+   "fieldname": "iv_capacitor",
+   "fieldtype": "Data",
+   "label": "IV Capacitor"
+  },
+  {
+   "fieldname": "auto_power_factory_relay",
+   "fieldtype": "Data",
+   "label": "Auto Power Factory Relay"
+  },
+  {
+   "fieldname": "transformer",
+   "fieldtype": "Data",
+   "label": "Transformer"
+  },
+  {
+   "fieldname": "ht_breaker",
+   "fieldtype": "Data",
+   "label": "Ht Breaker"
+  },
+  {
+   "fieldname": "dg_set",
+   "fieldtype": "Data",
+   "label": "DG Set"
+  },
+  {
+   "fieldname": "field_1",
+   "fieldtype": "Data",
+   "label": "Field_1"
+  },
+  {
+   "fieldname": "field_2",
+   "fieldtype": "Data",
+   "label": "Field_2"
+  },
+  {
+   "fieldname": "field_3",
+   "fieldtype": "Data",
+   "label": "Field_3"
+  },
+  {
+   "fieldname": "field_4",
+   "fieldtype": "Data",
+   "label": "Field_4"
+  },
+  {
+   "fieldname": "field_5",
+   "fieldtype": "Data",
+   "label": "Field_5"
+  },
+  {
+   "fieldname": "id",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "id",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "lighting_fixtures_metal",
+   "fieldtype": "Data",
+   "label": "Lighting Fixtures Metal"
+  },
+  {
+   "fieldname": "current_transformer",
+   "fieldtype": "Data",
+   "label": "Current Transformer"
+  },
+  {
+   "fieldname": "push_button_station_fp",
+   "fieldtype": "Data",
+   "label": "Push Button Station FP"
+  },
+  {
+   "fieldname": "panel_indicating_lamp",
+   "fieldtype": "Data",
+   "label": "Panel Indicating Lamp"
+  },
+  {
+   "fieldname": "selector_switch",
+   "fieldtype": "Data",
+   "label": "Selector Switch"
+  },
+  {
+   "fieldname": "push_button",
+   "fieldtype": "Data",
+   "label": "Push Button"
+  },
+  {
+   "fieldname": "ammeter",
+   "fieldtype": "Data",
+   "label": "Ammeter"
+  },
+  {
+   "fieldname": "voltameter",
+   "fieldtype": "Data",
+   "label": "Voltameter"
+  },
+  {
+   "fieldname": "frequency_meter",
+   "fieldtype": "Data",
+   "label": "Frequency Meter"
+  },
+  {
+   "fieldname": "energy_meter",
+   "fieldtype": "Data",
+   "label": "Energy Meter"
+  },
+  {
+   "fieldname": "ht_switch_gear",
+   "fieldtype": "Data",
+   "label": "Ht Switch Gear"
+  },
+  {
+   "fieldname": "ht_transformer",
+   "fieldtype": "Data",
+   "label": "Ht Transformer"
+  },
+  {
+   "fieldname": "palen_enclosure",
+   "fieldtype": "Data",
+   "label": "Palen Enclosure"
+  },
+  {
+   "fieldname": "plc",
+   "fieldtype": "Data",
+   "label": "PLC"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-10-19 19:42:55.035171",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "Make Of Components",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

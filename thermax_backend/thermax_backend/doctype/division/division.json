@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:division_name",
  "creation": "2024-10-04 00:01:32.112819",
@@ -18,7 +19,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-07 19:53:31.256973",
+ "modified": "2024-10-17 10:01:28.538230",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Division",
