@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class Phase(Document):
+class MainSupplyPhase(Document):
 	pass

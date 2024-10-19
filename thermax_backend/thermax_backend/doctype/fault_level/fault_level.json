@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "hash",
+ "autoname": "field:fault_level",
  "creation": "2024-09-26 15:02:52.828944",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -12,16 +12,17 @@
   {
    "fieldname": "fault_level",
    "fieldtype": "Int",
-   "label": "Fault Level"
+   "label": "Fault Level",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-09-26 15:03:18.903557",
+ "modified": "2024-10-08 23:26:05.639422",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Fault Level",
- "naming_rule": "Random",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "hash",
+ "autoname": "field:voltage",
  "creation": "2024-09-26 12:58:08.952094",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,17 +11,18 @@
  "fields": [
   {
    "fieldname": "voltage",
-   "fieldtype": "Int",
-   "label": "Voltage"
+   "fieldtype": "Data",
+   "label": "Voltage",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-09-26 13:06:13.060551",
+ "modified": "2024-10-09 00:01:54.280122",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Main Supply LV",
- "naming_rule": "Random",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

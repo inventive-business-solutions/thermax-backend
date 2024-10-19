@@ -10,13 +10,13 @@
  "fields": [
   {
    "fieldname": "variation",
-   "fieldtype": "Float",
+   "fieldtype": "Data",
    "label": "Variation"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-09-26 13:15:38.719572",
+ "modified": "2024-10-08 13:06:14.687139",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Variation",
