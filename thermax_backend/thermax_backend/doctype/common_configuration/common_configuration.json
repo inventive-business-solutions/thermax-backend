@@ -1,0 +1,531 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-10-19 18:15:24.957276",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "dol_starter",
+  "star_delta_starter",
+  "ammeter",
+  "ammeter_configuration",
+  "mcc_switchgear_type",
+  "switchgear_combination",
+  "pole",
+  "design_and_manufacturers_standard",
+  "testing_standard",
+  "power_wiring_color",
+  "power_wiring_length",
+  "control_wiring_color",
+  "control_wiring_length",
+  "24_vdc_wiring_color",
+  "24_vdc_wiring_length",
+  "analog_signal_wiring_color",
+  "analog_signal_wiring_length",
+  "ct_wiring_color",
+  "ct_wiring_length",
+  "cable_insulation_pvc",
+  "ferrule",
+  "common_requirement",
+  "start",
+  "stop",
+  "ess",
+  "speed",
+  "speed_increase_pb",
+  "speed_decrease_pb",
+  "alarm_knowledge_and_lamp_test",
+  "test_reset",
+  "selector_switch_applicable",
+  "selector_switch_lockable",
+  "running_open",
+  "stopped_closed",
+  "trip",
+  "field_motor_isolator_type",
+  "field_motor_isolator_enclosure",
+  "field_motor_isolator_material",
+  "field_motor_isolator_qty",
+  "field_motor_isolator_color_shade",
+  "field_motor_isolator_cable_entry",
+  "field_motor_isolator_canopy_on_top",
+  "local_push_button_type",
+  "local_push_button_enclosure",
+  "local_push_button_material",
+  "local_push_button_qty",
+  "local_push_button_color_shade",
+  "local_push_button_canopy_on_top",
+  "start_push_button_colour",
+  "lpbs_on_indication_lamp_color",
+  "lpbs_off_indication_lamp_color",
+  "speed_increase_push_button",
+  "speed_decrease_push_button",
+  "apfc_relay",
+  "power_bus_main_busbar_selection",
+  "power_bus_pvc_sleeve",
+  "power_bus_material",
+  "power_bus_current_density",
+  "power_bus_rating_of_busbar",
+  "control_bus_main_busbar_selection",
+  "controrl_bus_pvc_sleeve",
+  "control_bus_material",
+  "control_bus_current_density",
+  "control_bus_rating_of_busbar",
+  "metering_for_feeders",
+  "cooling_fans",
+  "louvers_and_filters",
+  "alarm_annunciator",
+  "control_transformer",
+  "commissioning_spare",
+  "two_year_operational_spare"
+ ],
+ "fields": [
+  {
+   "fieldname": "dol_starter",
+   "fieldtype": "Link",
+   "label": "DOL Starter",
+   "options": "DOL Starter"
+  },
+  {
+   "fieldname": "star_delta_starter",
+   "fieldtype": "Link",
+   "label": "Star Delta Starter",
+   "options": "Star Delta Starter"
+  },
+  {
+   "fieldname": "ammeter",
+   "fieldtype": "Link",
+   "label": "Ammeter",
+   "options": "Ammeter"
+  },
+  {
+   "fieldname": "ammeter_configuration",
+   "fieldtype": "Link",
+   "label": "Ammeter Configuration",
+   "options": "Ammeter Configuration"
+  },
+  {
+   "fieldname": "mcc_switchgear_type",
+   "fieldtype": "Link",
+   "label": "MCC Switchgear Type",
+   "options": "MCC Switchgear type"
+  },
+  {
+   "fieldname": "switchgear_combination",
+   "fieldtype": "Link",
+   "label": "Switchgear Combination",
+   "options": "Switchgear Combination"
+  },
+  {
+   "fieldname": "pole",
+   "fieldtype": "Link",
+   "label": "Pole",
+   "options": "Supply Feeder Pole"
+  },
+  {
+   "fieldname": "design_and_manufacturers_standard",
+   "fieldtype": "Link",
+   "label": "Design and Manufacturer's Standard",
+   "options": "Supply Feeder DM Standard"
+  },
+  {
+   "fieldname": "testing_standard",
+   "fieldtype": "Link",
+   "label": "Testing Standard",
+   "options": "Supply Feeder Testing Standard"
+  },
+  {
+   "fieldname": "power_wiring_color",
+   "fieldtype": "Link",
+   "label": "Power Wiring Color",
+   "options": "Power Wiring Color"
+  },
+  {
+   "fieldname": "power_wiring_length",
+   "fieldtype": "Link",
+   "label": "Power Wiring Length",
+   "options": "Power Wiring Length"
+  },
+  {
+   "fieldname": "control_wiring_color",
+   "fieldtype": "Link",
+   "label": "Control Wiring Color",
+   "options": "Control Wiring Color"
+  },
+  {
+   "fieldname": "control_wiring_length",
+   "fieldtype": "Link",
+   "label": "Control Wiring Length",
+   "options": "Control Wiring Length"
+  },
+  {
+   "fieldname": "24_vdc_wiring_color",
+   "fieldtype": "Link",
+   "label": "24 VDC Wiring Color",
+   "options": "VDC 24 Wiring Color"
+  },
+  {
+   "fieldname": "24_vdc_wiring_length",
+   "fieldtype": "Link",
+   "label": "24 VDC Wiring Length",
+   "options": "VDC 24 Wiring Length"
+  },
+  {
+   "fieldname": "analog_signal_wiring_color",
+   "fieldtype": "Link",
+   "label": "Analog Signal Wiring Color",
+   "options": "Analog Signal Wiring Color"
+  },
+  {
+   "fieldname": "analog_signal_wiring_length",
+   "fieldtype": "Link",
+   "label": "Analog Signal Wiring Length",
+   "options": "Analog Signal Wiring Length"
+  },
+  {
+   "fieldname": "ct_wiring_color",
+   "fieldtype": "Link",
+   "label": "CT Wiring Color",
+   "options": "CT Wiring Color"
+  },
+  {
+   "fieldname": "ct_wiring_length",
+   "fieldtype": "Link",
+   "label": "CT Wiring Length",
+   "options": "CT Wiring Length"
+  },
+  {
+   "fieldname": "cable_insulation_pvc",
+   "fieldtype": "Link",
+   "label": "Cable Insulation PVC",
+   "options": "Cable Insulation PVC"
+  },
+  {
+   "fieldname": "ferrule",
+   "fieldtype": "Link",
+   "label": "Ferrule",
+   "options": "Ferrule"
+  },
+  {
+   "fieldname": "common_requirement",
+   "fieldtype": "Link",
+   "label": "Common Requirement",
+   "options": "Wiring Common Requirement"
+  },
+  {
+   "fieldname": "start",
+   "fieldtype": "Link",
+   "label": "Start",
+   "options": "Push Button Start"
+  },
+  {
+   "fieldname": "stop",
+   "fieldtype": "Link",
+   "label": "Stop",
+   "options": "Push Button Stop"
+  },
+  {
+   "fieldname": "ess",
+   "fieldtype": "Link",
+   "label": "ESS",
+   "options": "Push Button ESS"
+  },
+  {
+   "fieldname": "speed",
+   "fieldtype": "Data",
+   "label": "Speed"
+  },
+  {
+   "fieldname": "speed_increase_pb",
+   "fieldtype": "Link",
+   "label": "Speed Increase PB",
+   "options": "Speed Increase PB"
+  },
+  {
+   "fieldname": "speed_decrease_pb",
+   "fieldtype": "Link",
+   "label": "Speed Decrease PB",
+   "options": "Speed Decrease PB"
+  },
+  {
+   "fieldname": "alarm_knowledge_and_lamp_test",
+   "fieldtype": "Link",
+   "label": "Alarm Knowledge and Lamp Test",
+   "options": "Alarm Acknowledge and Lamp Test"
+  },
+  {
+   "fieldname": "test_reset",
+   "fieldtype": "Link",
+   "label": "Test Reset",
+   "options": "Test Reset"
+  },
+  {
+   "fieldname": "selector_switch_applicable",
+   "fieldtype": "Link",
+   "label": "Selector Switch Applicable",
+   "options": "Applicable Selector Switch On MCC Panel Front Door"
+  },
+  {
+   "fieldname": "selector_switch_lockable",
+   "fieldtype": "Link",
+   "label": "Selector Switch Lockable",
+   "options": "Lockable Selector Switch On MCC Panel Front Door"
+  },
+  {
+   "fieldname": "running_open",
+   "fieldtype": "Link",
+   "label": "Running Open",
+   "options": "Indicating Lamp Running Open"
+  },
+  {
+   "fieldname": "stopped_closed",
+   "fieldtype": "Link",
+   "label": "Stopped Closed",
+   "options": "Indicating Lamp Stopped Closed"
+  },
+  {
+   "fieldname": "trip",
+   "fieldtype": "Link",
+   "label": "Trip",
+   "options": "Indicating Lamp Trip"
+  },
+  {
+   "fieldname": "field_motor_isolator_type",
+   "fieldtype": "Link",
+   "label": "Field Motor Isolator Type",
+   "options": "Field Motor Isolator General Type"
+  },
+  {
+   "fieldname": "field_motor_isolator_enclosure",
+   "fieldtype": "Link",
+   "label": "Field Motor Isolator Enclosure",
+   "options": "Field Motor Isolator General Enclosure"
+  },
+  {
+   "fieldname": "field_motor_isolator_material",
+   "fieldtype": "Link",
+   "label": "Field Motor Isolator Material",
+   "options": "Field Motor Isolator General Material"
+  },
+  {
+   "fieldname": "field_motor_isolator_qty",
+   "fieldtype": "Link",
+   "label": "Field Motor Isolator QTY",
+   "options": "Field Motor Isolator General QTY"
+  },
+  {
+   "fieldname": "field_motor_isolator_color_shade",
+   "fieldtype": "Link",
+   "label": "Field Motor Isolator Color Shade",
+   "options": "Field Motor Isolator Color Shade"
+  },
+  {
+   "fieldname": "field_motor_isolator_cable_entry",
+   "fieldtype": "Link",
+   "label": "Field Motor Isolator Cable Entry",
+   "options": "Field Motor Isolator General Cable Entry"
+  },
+  {
+   "fieldname": "field_motor_isolator_canopy_on_top",
+   "fieldtype": "Link",
+   "label": "Field Motor Isolator Canopy On Top",
+   "options": "Field Motor Isolator Canopy On Top"
+  },
+  {
+   "fieldname": "local_push_button_type",
+   "fieldtype": "Link",
+   "label": "Local Push Button Type",
+   "options": "Local Push Button Station Type"
+  },
+  {
+   "fieldname": "local_push_button_enclosure",
+   "fieldtype": "Link",
+   "label": "Local Push Button Enclosure",
+   "options": "Local Push Button Station Enclosure"
+  },
+  {
+   "fieldname": "local_push_button_material",
+   "fieldtype": "Link",
+   "label": "Local Push Button Material",
+   "options": "Local Push Button Station Material"
+  },
+  {
+   "fieldname": "local_push_button_qty",
+   "fieldtype": "Link",
+   "label": "Local Push Button QTY",
+   "options": "Local Push Button Station Qty"
+  },
+  {
+   "fieldname": "local_push_button_color_shade",
+   "fieldtype": "Link",
+   "label": "Local Push Button Color Shade",
+   "options": "Local Push Button Station LPBS Color Shade"
+  },
+  {
+   "fieldname": "local_push_button_canopy_on_top",
+   "fieldtype": "Link",
+   "label": "Local Push Button Canopy On Top",
+   "options": "Local Push Button Station Canopy On top"
+  },
+  {
+   "fieldname": "start_push_button_colour",
+   "fieldtype": "Link",
+   "label": "Start Push Button Colour",
+   "options": "LPBS Start Push Button Color"
+  },
+  {
+   "fieldname": "lpbs_on_indication_lamp_color",
+   "fieldtype": "Link",
+   "label": "LPBS ON Indication Lamp Color",
+   "options": "LPBS Start ON Indication Lamp Color"
+  },
+  {
+   "fieldname": "lpbs_off_indication_lamp_color",
+   "fieldtype": "Link",
+   "label": "LPBS OFF Indication Lamp Color",
+   "options": "LPBS Stop OFF Indication Lamp Color"
+  },
+  {
+   "fieldname": "speed_increase_push_button",
+   "fieldtype": "Link",
+   "label": "Speed Increase Push Button",
+   "options": "LPBS Speed Increase Push Button"
+  },
+  {
+   "fieldname": "speed_decrease_push_button",
+   "fieldtype": "Link",
+   "label": "Speed Decrease Push Button",
+   "options": "Speed Decrease PB"
+  },
+  {
+   "fieldname": "apfc_relay",
+   "fieldtype": "Link",
+   "label": "APFC Relay",
+   "options": "APFC Relay"
+  },
+  {
+   "fieldname": "power_bus_main_busbar_selection",
+   "fieldtype": "Link",
+   "label": "Power Bus Main Busbar Selection",
+   "options": "PB Main Busbar Selection"
+  },
+  {
+   "fieldname": "power_bus_pvc_sleeve",
+   "fieldtype": "Link",
+   "label": "Power Bus PVC Sleeve",
+   "options": "PB Heat Shrinkable Color PVC sleeve"
+  },
+  {
+   "fieldname": "power_bus_material",
+   "fieldtype": "Link",
+   "label": "Power Bus Material",
+   "options": "PB Material"
+  },
+  {
+   "fieldname": "power_bus_current_density",
+   "fieldtype": "Link",
+   "label": "Power Bus Current Density",
+   "options": "PB Current Density"
+  },
+  {
+   "fieldname": "power_bus_rating_of_busbar",
+   "fieldtype": "Link",
+   "label": "Power Bus Rating of Busbar",
+   "options": "PB Rating of Busbar"
+  },
+  {
+   "fieldname": "control_bus_main_busbar_selection",
+   "fieldtype": "Link",
+   "label": "Control Bus Main Busbar Selection",
+   "options": "CB Main Busbar Selection"
+  },
+  {
+   "fieldname": "controrl_bus_pvc_sleeve",
+   "fieldtype": "Link",
+   "label": "Controrl Bus PVC Sleeve",
+   "options": "CB Heat Shrinkable Color PVC sleeve"
+  },
+  {
+   "fieldname": "control_bus_material",
+   "fieldtype": "Link",
+   "label": "Control Bus Material",
+   "options": "CB Material"
+  },
+  {
+   "fieldname": "control_bus_current_density",
+   "fieldtype": "Link",
+   "label": "Control Bus Current Density",
+   "options": "CB Current Density"
+  },
+  {
+   "fieldname": "control_bus_rating_of_busbar",
+   "fieldtype": "Link",
+   "label": "Control Bus Rating of Busbar",
+   "options": "CB Rating of Busbar"
+  },
+  {
+   "fieldname": "metering_for_feeders",
+   "fieldtype": "Link",
+   "label": "Metering For Feeders",
+   "options": "Metering for Feeder"
+  },
+  {
+   "fieldname": "cooling_fans",
+   "fieldtype": "Link",
+   "label": "Cooling Fans",
+   "options": "Cooling Fans"
+  },
+  {
+   "fieldname": "louvers_and_filters",
+   "fieldtype": "Link",
+   "label": "Louvers and Filters",
+   "options": "Louvers and Filters"
+  },
+  {
+   "fieldname": "alarm_annunciator",
+   "fieldtype": "Link",
+   "label": "Alarm Annunciator",
+   "options": "Alarm Annunciator"
+  },
+  {
+   "fieldname": "control_transformer",
+   "fieldtype": "Link",
+   "label": "Control Transformer",
+   "options": "Control Transformer"
+  },
+  {
+   "fieldname": "commissioning_spare",
+   "fieldtype": "Link",
+   "label": "Commissioning Spare",
+   "options": "CC Commissioning spare"
+  },
+  {
+   "fieldname": "two_year_operational_spare",
+   "fieldtype": "Link",
+   "label": "Two Year Operational spare",
+   "options": "CC Two year operational spare"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-10-20 21:06:54.201463",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "Common Configuration",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
