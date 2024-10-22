@@ -22,7 +22,7 @@
  "modified": "2024-10-15 15:46:02.640753",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
- "name": "GA  separation between power and control busbar",
+ "name": "GA separation between power and control busbar",
  "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
