@@ -2,24 +2,24 @@
  "actions": [],
  "allow_import": 1,
  "allow_rename": 1,
- "autoname": "field:pole",
+ "autoname": "field:incomer_pole",
  "creation": "2024-10-06 12:53:17.742549",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "pole"
+  "incomer_pole"
  ],
  "fields": [
   {
-   "fieldname": "pole",
+   "fieldname": "incomer_pole",
    "fieldtype": "Data",
-   "label": "Pole",
+   "label": "Incomer Pole",
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-15 14:32:23.870151",
+ "modified": "2024-10-31 00:28:48.164212",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "SD Incomer Pole",

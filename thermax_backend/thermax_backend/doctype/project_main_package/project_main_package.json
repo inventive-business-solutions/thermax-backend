@@ -1,0 +1,97 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2024-10-18 15:35:11.442572",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "linking_keys_section",
+  "revision_id",
+  "project_main_package_data_section",
+  "main_package_name",
+  "standard",
+  "zone",
+  "gas_group",
+  "temperature_class",
+  "sub_packages"
+ ],
+ "fields": [
+  {
+   "fieldname": "main_package_name",
+   "fieldtype": "Data",
+   "label": "Main Package Name"
+  },
+  {
+   "fieldname": "standard",
+   "fieldtype": "Link",
+   "label": "Standard",
+   "options": "Classification Area Standard"
+  },
+  {
+   "fieldname": "zone",
+   "fieldtype": "Link",
+   "label": "Zone",
+   "options": "Classification Area Zone"
+  },
+  {
+   "fieldname": "gas_group",
+   "fieldtype": "Link",
+   "label": "Gas Group",
+   "options": "Classification Area Gas Group"
+  },
+  {
+   "fieldname": "temperature_class",
+   "fieldtype": "Link",
+   "label": "Temperature Class",
+   "options": "Classification Area Temperature Class"
+  },
+  {
+   "fieldname": "sub_packages",
+   "fieldtype": "Table",
+   "label": "Sub Packages",
+   "options": "Project Sub Package"
+  },
+  {
+   "fieldname": "linking_keys_section",
+   "fieldtype": "Section Break",
+   "label": "Linking Keys"
+  },
+  {
+   "fieldname": "project_main_package_data_section",
+   "fieldtype": "Section Break",
+   "label": "Project Main Package Data"
+  },
+  {
+   "fieldname": "revision_id",
+   "fieldtype": "Link",
+   "label": "Revision ID",
+   "options": "Design Basis Revision History"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-11-05 18:29:59.732684",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "Project Main Package",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

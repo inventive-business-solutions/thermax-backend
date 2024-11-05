@@ -2,24 +2,24 @@
  "actions": [],
  "allow_import": 1,
  "allow_rename": 1,
- "autoname": "field:current_density",
+ "autoname": "field:ga_current_density",
  "creation": "2024-10-06 13:44:07.443177",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "current_density"
+  "ga_current_density"
  ],
  "fields": [
   {
-   "fieldname": "current_density",
+   "fieldname": "ga_current_density",
    "fieldtype": "Data",
-   "label": "Current Density",
+   "label": "GA Current Density",
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-15 15:32:41.009942",
+ "modified": "2024-10-31 07:43:04.569399",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "GA Current Density",

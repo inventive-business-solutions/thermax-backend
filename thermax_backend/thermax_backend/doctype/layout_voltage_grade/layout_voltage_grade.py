@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class LayoutVoltagegrade(Document):
+class LayoutVoltageGrade(Document):
 	pass

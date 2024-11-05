@@ -2,24 +2,24 @@
  "actions": [],
  "allow_import": 1,
  "allow_rename": 1,
- "autoname": "field:incomer",
+ "autoname": "field:incomer_ampere",
  "creation": "2024-10-06 12:52:12.037050",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "incomer"
+  "incomer_ampere"
  ],
  "fields": [
   {
-   "fieldname": "incomer",
+   "fieldname": "incomer_ampere",
    "fieldtype": "Data",
-   "label": "Incomer",
+   "label": "Incomer Ampere",
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-15 14:29:48.714337",
+ "modified": "2024-10-31 00:25:59.859330",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "SD Incomer Ampere",

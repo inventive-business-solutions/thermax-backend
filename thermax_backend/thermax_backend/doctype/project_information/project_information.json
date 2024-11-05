@@ -6,7 +6,9 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "linking_keys_section",
   "project_id",
+  "project_information_section",
   "project_location",
   "main_supply_mv",
   "main_supply_mv_variation",
@@ -160,11 +162,21 @@
    "fieldtype": "Link",
    "label": "Seismic Zone",
    "options": "Seismic zone"
+  },
+  {
+   "fieldname": "linking_keys_section",
+   "fieldtype": "Section Break",
+   "label": "Linking Keys"
+  },
+  {
+   "fieldname": "project_information_section",
+   "fieldtype": "Section Break",
+   "label": "Project Information"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-08 14:32:23.265155",
+ "modified": "2024-11-05 12:35:44.478431",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Project Information",

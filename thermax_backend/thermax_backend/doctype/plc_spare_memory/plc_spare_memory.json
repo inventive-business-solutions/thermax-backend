@@ -12,14 +12,14 @@
  "fields": [
   {
    "fieldname": "memory",
-   "fieldtype": "Int",
+   "fieldtype": "Data",
    "label": "Memory",
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-15 17:38:38.870154",
+ "modified": "2024-11-04 18:48:27.164110",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "PLC Spare Memory",

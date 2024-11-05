@@ -2,24 +2,24 @@
  "actions": [],
  "allow_import": 1,
  "allow_rename": 1,
- "autoname": "field:insulation_class_safe_area_details",
+ "autoname": "field:insulation_class",
  "creation": "2024-10-04 09:50:22.139379",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "insulation_class_safe_area_details"
+  "insulation_class"
  ],
  "fields": [
   {
-   "fieldname": "insulation_class_safe_area_details",
+   "fieldname": "insulation_class",
    "fieldtype": "Data",
-   "label": "Insulation Class Safe Area Details",
+   "label": "Insulation Class",
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-14 14:59:41.648601",
+ "modified": "2024-10-24 12:52:09.023941",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Insulation Class Safe Area",

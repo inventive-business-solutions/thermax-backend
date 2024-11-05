@@ -2,24 +2,24 @@
  "actions": [],
  "allow_import": 1,
  "allow_rename": 1,
- "autoname": "field:type",
+ "autoname": "field:lpbs_type",
  "creation": "2024-10-06 10:20:17.332265",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "type"
+  "lpbs_type"
  ],
  "fields": [
   {
-   "fieldname": "type",
+   "fieldname": "lpbs_type",
    "fieldtype": "Data",
-   "label": "Type",
+   "label": "LPBS Type",
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-15 10:57:30.406741",
+ "modified": "2024-10-30 12:32:56.106607",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Local Push Button Station Type",

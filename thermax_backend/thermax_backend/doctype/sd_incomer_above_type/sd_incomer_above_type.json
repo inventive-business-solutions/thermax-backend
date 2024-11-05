@@ -2,24 +2,24 @@
  "actions": [],
  "allow_import": 1,
  "allow_rename": 1,
- "autoname": "field:type",
+ "autoname": "field:incomer_above_type",
  "creation": "2024-10-06 13:11:17.697938",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "type"
+  "incomer_above_type"
  ],
  "fields": [
   {
-   "fieldname": "type",
+   "fieldname": "incomer_above_type",
    "fieldtype": "Data",
-   "label": "Type",
+   "label": "Incomer Above Type",
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-15 14:43:13.890004",
+ "modified": "2024-10-31 00:50:29.623557",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "SD Incomer Above Type",

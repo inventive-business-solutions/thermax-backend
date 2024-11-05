@@ -1,25 +1,28 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "field:minimum_temperature",
  "creation": "2024-10-04 10:31:57.145750",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "minimum_deg_c"
+  "minimum_temperature"
  ],
  "fields": [
   {
-   "fieldname": "minimum_deg_c",
+   "fieldname": "minimum_temperature",
    "fieldtype": "Int",
-   "label": "Minimum Deg C"
+   "label": "Minimum Temperature",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-04 10:32:25.870435",
+ "modified": "2024-10-24 13:11:09.970493",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Minimum Deg C Safe",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {

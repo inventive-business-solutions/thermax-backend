@@ -1,0 +1,44 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-10-18 16:29:30.432760",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sub_package_name",
+  "area_of_classification",
+  "is_sub_package_selected"
+ ],
+ "fields": [
+  {
+   "fieldname": "sub_package_name",
+   "fieldtype": "Data",
+   "label": "Sub Package Name"
+  },
+  {
+   "fieldname": "area_of_classification",
+   "fieldtype": "Link",
+   "label": "Area of Classification",
+   "options": "Area of Classification"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_sub_package_selected",
+   "fieldtype": "Check",
+   "label": "Is Sub Package Selected"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-10-22 14:31:38.639174",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "Project Sub Package",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -2,24 +2,24 @@
  "actions": [],
  "allow_import": 1,
  "allow_rename": 1,
- "autoname": "field:type",
+ "autoname": "field:incomer_type",
  "creation": "2024-10-06 13:03:45.468823",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "type"
+  "incomer_type"
  ],
  "fields": [
   {
-   "fieldname": "type",
+   "fieldname": "incomer_type",
    "fieldtype": "Data",
-   "label": "Type",
+   "label": "Incomer Type",
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-15 14:35:20.453448",
+ "modified": "2024-10-31 00:30:47.529360",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "SD Incomer Type",

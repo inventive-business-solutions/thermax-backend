@@ -1,0 +1,105 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2024-09-16 12:18:55.500219",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "linking_keys_section",
+  "revision_id",
+  "section_break_pehl",
+  "motor",
+  "cable",
+  "lv_switchgear",
+  "panel_enclosure",
+  "variable_frequency_speed_drive_vfd_vsd",
+  "soft_starter",
+  "plc"
+ ],
+ "fields": [
+  {
+   "fieldname": "variable_frequency_speed_drive_vfd_vsd",
+   "fieldtype": "Link",
+   "label": "Variable Frequency Speed Drive VFD VSD",
+   "options": "VFD VSD Make"
+  },
+  {
+   "fieldname": "soft_starter",
+   "fieldtype": "Link",
+   "label": "Soft Starter",
+   "options": "Soft Starter Make"
+  },
+  {
+   "fieldname": "plc",
+   "fieldtype": "Link",
+   "label": "PLC",
+   "options": "PLC Make"
+  },
+  {
+   "fieldname": "lv_switchgear",
+   "fieldtype": "Link",
+   "label": "LV Switchgear",
+   "options": "LV Switchgear Make"
+  },
+  {
+   "fieldname": "motor",
+   "fieldtype": "Link",
+   "label": "Motor",
+   "options": "Motors Make"
+  },
+  {
+   "fieldname": "cable",
+   "fieldtype": "Link",
+   "label": "Cable",
+   "options": "Cables Make"
+  },
+  {
+   "fieldname": "panel_enclosure",
+   "fieldtype": "Link",
+   "label": "Panel Enclosure",
+   "options": "Panel Enclosure Make"
+  },
+  {
+   "fieldname": "revision_id",
+   "fieldtype": "Link",
+   "label": "Revision ID",
+   "options": "Design Basis Revision History"
+  },
+  {
+   "fieldname": "section_break_pehl",
+   "fieldtype": "Section Break",
+   "label": "Make of Component"
+  },
+  {
+   "fieldname": "linking_keys_section",
+   "fieldtype": "Section Break",
+   "label": "Linking Keys"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-11-05 20:45:01.238521",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "Make Of Components",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
