@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class LayoutSpecificrequirement(Document):
+class LayoutSpecificRequirement(Document):
 	pass

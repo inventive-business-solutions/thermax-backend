@@ -12,18 +12,18 @@ EXTRA_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
 IGNORE_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
 
 
-class TestLayoutSpecificrequirement(UnitTestCase):
+class TestLayoutSpecificRequirement(UnitTestCase):
 	"""
-	Unit tests for LayoutSpecificrequirement.
+	Unit tests for LayoutSpecificRequirement.
 	Use this class for testing individual functions and methods.
 	"""
 
 	pass
 
 
-class TestLayoutSpecificrequirement(IntegrationTestCase):
+class TestLayoutSpecificRequirement(IntegrationTestCase):
 	"""
-	Integration tests for LayoutSpecificrequirement.
+	Integration tests for LayoutSpecificRequirement.
 	Use this class for testing interactions between multiple components.
 	"""
 

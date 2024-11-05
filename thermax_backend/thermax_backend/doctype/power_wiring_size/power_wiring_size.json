@@ -1,0 +1,45 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "field:power_wiring_size",
+ "creation": "2024-10-04 12:30:16.730580",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "power_wiring_size"
+ ],
+ "fields": [
+  {
+   "fieldname": "power_wiring_size",
+   "fieldtype": "Data",
+   "label": "Power Wiring Size",
+   "unique": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-10-25 12:41:28.627355",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "Power Wiring Size",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -11,13 +11,13 @@
  "fields": [
   {
    "fieldname": "voltage",
-   "fieldtype": "Float",
+   "fieldtype": "Data",
    "label": "Voltage"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-08 13:00:06.470172",
+ "modified": "2024-11-05 22:14:46.977231",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Main Supply MV",

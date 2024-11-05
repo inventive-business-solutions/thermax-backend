@@ -12,14 +12,14 @@
  "fields": [
   {
    "fieldname": "interrogation_voltage",
-   "fieldtype": "Int",
+   "fieldtype": "Data",
    "label": "Interrogation Voltage",
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-15 17:08:32.250427",
+ "modified": "2024-11-04 00:16:14.958886",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "DI Modules Interrogation Voltage",

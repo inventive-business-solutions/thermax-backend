@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class LPBSStartONIndicationLampColor(Document):
+class LPBSStartOnIndicationLampColor(Document):
 	pass

@@ -2,9 +2,9 @@ from frappe import frappe
 
 @frappe.whitelist()
 def get_project_main_package_list():
-    project_id = frappe.request.args.get("project_id")
+    revision_id = frappe.request.args.get("revision_id")
     # Get all Main Package records
-    main_packages = frappe.db.get_list("Project Main Package", fields=["*"], filters={"project_id": project_id}, order_by="creation asc")
+    main_packages = frappe.db.get_list("Project Main Package", fields=["*"], filters={"revision_id": revision_id}, order_by="creation asc")
 
     for main_package in main_packages:
         # Get all Sub Package records

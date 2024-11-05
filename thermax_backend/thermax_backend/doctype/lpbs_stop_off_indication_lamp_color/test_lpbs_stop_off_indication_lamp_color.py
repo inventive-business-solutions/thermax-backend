@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestLPBSStopOFFIndicationLampColor(FrappeTestCase):
+class TestLPBSStopOffIndicationLampColor(FrappeTestCase):
 	pass

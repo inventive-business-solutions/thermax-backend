@@ -2,24 +2,24 @@
  "actions": [],
  "allow_import": 1,
  "allow_rename": 1,
- "autoname": "field:ip_rating_for_terminal_box",
+ "autoname": "field:terminal_box_ip_rating",
  "creation": "2024-10-04 10:37:25.215794",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "ip_rating_for_terminal_box"
+  "terminal_box_ip_rating"
  ],
  "fields": [
   {
-   "fieldname": "ip_rating_for_terminal_box",
+   "fieldname": "terminal_box_ip_rating",
    "fieldtype": "Data",
-   "label": "IP rating for Terminal Box",
+   "label": "Terminal Box IP Rating",
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-14 15:21:24.477176",
+ "modified": "2024-10-24 20:13:03.571944",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "IP rating for Terminal Box Hazardous",

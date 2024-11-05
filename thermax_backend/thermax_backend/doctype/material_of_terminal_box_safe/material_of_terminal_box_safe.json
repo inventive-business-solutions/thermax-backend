@@ -2,24 +2,24 @@
  "actions": [],
  "allow_import": 1,
  "allow_rename": 1,
- "autoname": "field:material_of_terminal_box",
+ "autoname": "field:terminal_box_material",
  "creation": "2024-10-04 11:29:43.267331",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "material_of_terminal_box"
+  "terminal_box_material"
  ],
  "fields": [
   {
-   "fieldname": "material_of_terminal_box",
+   "fieldname": "terminal_box_material",
    "fieldtype": "Data",
-   "label": "Material of Terminal Box",
+   "label": "Terminal Box Material",
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-14 16:04:25.327280",
+ "modified": "2024-10-24 12:58:45.164033",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Material of Terminal Box Safe",

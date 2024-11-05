@@ -1,7 +1,7 @@
 // Copyright (c) 2024, Abhishek Bankar and contributors
 // For license information, please see license.txt
 
-// frappe.ui.form.on("Layout Type Of Insulation", {
+// frappe.ui.form.on("Layout Type of Insulation", {
 // 	refresh(frm) {
 
 // 	},

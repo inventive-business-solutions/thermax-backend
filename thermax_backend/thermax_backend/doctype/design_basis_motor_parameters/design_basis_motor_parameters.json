@@ -1,0 +1,260 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2024-10-23 23:32:19.175481",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "project_id",
+  "safe_area_efficiency_level",
+  "safe_area_insulation_class",
+  "safe_area_temperature_rise",
+  "safe_area_enclosure_ip_rating",
+  "safe_area_max_temperature",
+  "safe_area_min_temperature",
+  "safe_area_altitude",
+  "safe_area_terminal_box_ip_rating",
+  "safe_area_thermister",
+  "safe_area_space_heater",
+  "safe_area_certification",
+  "safe_area_bearing_rtd",
+  "safe_area_winding_rtd",
+  "safe_area_bearing_type",
+  "safe_area_duty",
+  "safe_area_surface_factor",
+  "safe_area_cooling_type",
+  "safe_area_body_material",
+  "safe_area_terminal_box_material",
+  "safe_area_paint_type_and_shade",
+  "safe_area_starts_hour_permissible",
+  "column_break_tgdx",
+  "hazardous_area_efficiency_level",
+  "hazardous_area_insulation_class",
+  "hazardous_area_temperature_rise",
+  "hazardous_area_enclosure_ip_rating",
+  "hazardous_area_max_temperature",
+  "hazardous_area_min_temperature",
+  "hazardous_area_altitude",
+  "hazardous_area_terminal_box_ip_rating",
+  "hazardous_area_thermister",
+  "hazardous_area_space_heater"
+ ],
+ "fields": [
+  {
+   "fieldname": "project_id",
+   "fieldtype": "Link",
+   "label": "Project ID",
+   "options": "Project"
+  },
+  {
+   "fieldname": "safe_area_efficiency_level",
+   "fieldtype": "Link",
+   "label": "Safe Area Efficiency Level",
+   "options": "Efficiency Level Safe Area"
+  },
+  {
+   "fieldname": "safe_area_insulation_class",
+   "fieldtype": "Link",
+   "label": "Safe Area Insulation Class",
+   "options": "Insulation Class Safe Area"
+  },
+  {
+   "fieldname": "safe_area_temperature_rise",
+   "fieldtype": "Link",
+   "label": "Safe Area Temperature Rise",
+   "options": "Safe Temperature Rise"
+  },
+  {
+   "fieldname": "safe_area_enclosure_ip_rating",
+   "fieldtype": "Data",
+   "label": "Safe Area Enclosure IP Rating"
+  },
+  {
+   "fieldname": "safe_area_max_temperature",
+   "fieldtype": "Link",
+   "label": "Safe Area Max Temperature",
+   "options": "Maximum Deg C Safe"
+  },
+  {
+   "fieldname": "safe_area_min_temperature",
+   "fieldtype": "Link",
+   "label": "Safe Area Min Temperature",
+   "options": "Minimum Deg C Safe"
+  },
+  {
+   "fieldname": "safe_area_altitude",
+   "fieldtype": "Link",
+   "label": "Safe Area Altitude",
+   "options": "Altitude Safe"
+  },
+  {
+   "fieldname": "safe_area_terminal_box_ip_rating",
+   "fieldtype": "Link",
+   "label": "Safe Area Terminal Box IP Rating",
+   "options": "IP rating for Terminal Box Safe"
+  },
+  {
+   "fieldname": "safe_area_thermister",
+   "fieldtype": "Link",
+   "label": "Safe Area Thermister",
+   "options": "Thermister Safe"
+  },
+  {
+   "fieldname": "safe_area_space_heater",
+   "fieldtype": "Link",
+   "label": "Safe Area Space Heater",
+   "options": "Space Heater Safe"
+  },
+  {
+   "fieldname": "safe_area_certification",
+   "fieldtype": "Data",
+   "label": "Safe Area Certification"
+  },
+  {
+   "fieldname": "safe_area_bearing_rtd",
+   "fieldtype": "Link",
+   "label": "Safe Area Bearing RTD",
+   "options": "Bearing RTD Safe"
+  },
+  {
+   "fieldname": "safe_area_winding_rtd",
+   "fieldtype": "Link",
+   "label": "Safe Area Winding RTD",
+   "options": "Winding RTD Safe"
+  },
+  {
+   "fieldname": "safe_area_bearing_type",
+   "fieldtype": "Data",
+   "label": "Safe Area Bearing Type"
+  },
+  {
+   "fieldname": "safe_area_duty",
+   "fieldtype": "Link",
+   "label": "Safe Area Duty",
+   "options": "Duty Safe"
+  },
+  {
+   "fieldname": "safe_area_surface_factor",
+   "fieldtype": "Link",
+   "label": "Safe Area Surface Factor",
+   "options": "Service Factor Safe"
+  },
+  {
+   "fieldname": "safe_area_cooling_type",
+   "fieldtype": "Link",
+   "label": "Safe Area Cooling Type",
+   "options": "Type of Cooling Safe"
+  },
+  {
+   "fieldname": "safe_area_body_material",
+   "fieldtype": "Link",
+   "label": "Safe Area Body Material",
+   "options": "Body Material Safe"
+  },
+  {
+   "fieldname": "safe_area_terminal_box_material",
+   "fieldtype": "Link",
+   "label": "Safe Area Terminal Box Material",
+   "options": "Material of Terminal Box Safe"
+  },
+  {
+   "fieldname": "safe_area_paint_type_and_shade",
+   "fieldtype": "Data",
+   "label": "Safe Area Paint Type And Shade"
+  },
+  {
+   "fieldname": "safe_area_starts_hour_permissible",
+   "fieldtype": "Data",
+   "label": "Safe Area Starts Hour Permissible"
+  },
+  {
+   "fieldname": "column_break_tgdx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "hazardous_area_efficiency_level",
+   "fieldtype": "Link",
+   "label": "Hazardous Area Efficiency Level",
+   "options": "Efficiency Level Hazardous Area"
+  },
+  {
+   "fieldname": "hazardous_area_insulation_class",
+   "fieldtype": "Link",
+   "label": "Hazardous Area Insulation Class",
+   "options": "Insulation Class Hazardous Area"
+  },
+  {
+   "fieldname": "hazardous_area_temperature_rise",
+   "fieldtype": "Link",
+   "label": "Hazardous Area Temperature Rise",
+   "options": "Hazardous Temperature rise limited to"
+  },
+  {
+   "fieldname": "hazardous_area_enclosure_ip_rating",
+   "fieldtype": "Data",
+   "label": "Hazardous Area Enclosure IP Rating"
+  },
+  {
+   "fieldname": "hazardous_area_max_temperature",
+   "fieldtype": "Link",
+   "label": "Hazardous Area Max Temperature",
+   "options": "Maximum Deg C Hazardous"
+  },
+  {
+   "fieldname": "hazardous_area_min_temperature",
+   "fieldtype": "Link",
+   "label": "Hazardous Area Min Temperature",
+   "options": "Minimum Deg C Hazardous"
+  },
+  {
+   "fieldname": "hazardous_area_altitude",
+   "fieldtype": "Link",
+   "label": "Hazardous Area Altitude",
+   "options": "Altitude Hazardous"
+  },
+  {
+   "fieldname": "hazardous_area_terminal_box_ip_rating",
+   "fieldtype": "Link",
+   "label": "Hazardous Area Terminal Box IP Rating",
+   "options": "IP rating for Terminal Box Hazardous"
+  },
+  {
+   "fieldname": "hazardous_area_thermister",
+   "fieldtype": "Link",
+   "label": "Hazardous Area Thermister",
+   "options": "Thermister Hazardous"
+  },
+  {
+   "fieldname": "hazardous_area_space_heater",
+   "fieldtype": "Link",
+   "label": "Hazardous Area Space Heater",
+   "options": "Space Heater Hazardous"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-10-24 00:28:42.090066",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "Design Basis Motor Parameters",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
