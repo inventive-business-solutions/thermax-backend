@@ -2,24 +2,24 @@
  "actions": [],
  "allow_import": 1,
  "allow_rename": 1,
- "autoname": "field:analog",
+ "autoname": "field:mi_analog",
  "creation": "2024-10-06 13:28:10.513014",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "analog"
+  "mi_analog"
  ],
  "fields": [
   {
-   "fieldname": "analog",
+   "fieldname": "mi_analog",
    "fieldtype": "Data",
-   "label": "Analog",
+   "label": "MI Analog",
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-15 14:50:08.422129",
+ "modified": "2024-10-31 01:04:01.514014",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "MI Analog",

@@ -2,24 +2,24 @@
  "actions": [],
  "allow_import": 1,
  "allow_rename": 1,
- "autoname": "field:frame",
+ "autoname": "field:ga_panel_mounting_frame",
  "creation": "2024-10-06 16:34:31.826518",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "frame"
+  "ga_panel_mounting_frame"
  ],
  "fields": [
   {
-   "fieldname": "frame",
+   "fieldname": "ga_panel_mounting_frame",
    "fieldtype": "Data",
-   "label": "frame",
+   "label": "GA Panel Mounting Frame",
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-15 15:36:27.117810",
+ "modified": "2024-10-31 07:46:18.345320",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "GA Panel Mounting Frame",

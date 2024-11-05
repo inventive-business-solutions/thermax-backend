@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestMCCSwitchgeartype(FrappeTestCase):
+class TestMCCSwitchgearType(FrappeTestCase):
 	pass

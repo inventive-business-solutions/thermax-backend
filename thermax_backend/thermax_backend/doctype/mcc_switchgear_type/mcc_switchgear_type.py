@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class MCCSwitchgeartype(Document):
+class MCCSwitchgearType(Document):
 	pass

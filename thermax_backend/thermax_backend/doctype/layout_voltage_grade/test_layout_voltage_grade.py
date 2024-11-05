@@ -12,18 +12,18 @@ EXTRA_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
 IGNORE_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
 
 
-class TestLayoutVoltagegrade(UnitTestCase):
+class TestLayoutVoltageGrade(UnitTestCase):
 	"""
-	Unit tests for LayoutVoltagegrade.
+	Unit tests for LayoutVoltageGrade.
 	Use this class for testing individual functions and methods.
 	"""
 
 	pass
 
 
-class TestLayoutVoltagegrade(IntegrationTestCase):
+class TestLayoutVoltageGrade(IntegrationTestCase):
 	"""
-	Integration tests for LayoutVoltagegrade.
+	Integration tests for LayoutVoltageGrade.
 	Use this class for testing interactions between multiple components.
 	"""
 

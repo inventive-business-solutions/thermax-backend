@@ -6,7 +6,7 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "project_id",
+  "revision_id",
   "is_package_selection_enabled",
   "battery_limit"
  ],
@@ -24,15 +24,15 @@
    "options": "Battery Limit"
   },
   {
-   "fieldname": "project_id",
+   "fieldname": "revision_id",
    "fieldtype": "Link",
-   "label": "Project ID",
-   "options": "Project"
+   "label": "Revision ID",
+   "options": "Design Basis Revision History"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-22 15:56:27.095441",
+ "modified": "2024-11-01 18:14:10.234112",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Design Basis General Info",

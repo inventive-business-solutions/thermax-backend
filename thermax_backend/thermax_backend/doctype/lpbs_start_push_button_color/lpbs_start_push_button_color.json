@@ -2,24 +2,24 @@
  "actions": [],
  "allow_import": 1,
  "allow_rename": 1,
- "autoname": "field:start_push_button_color",
+ "autoname": "field:lpbs_push_button_start_color",
  "creation": "2024-10-06 10:31:53.572353",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "start_push_button_color"
+  "lpbs_push_button_start_color"
  ],
  "fields": [
   {
-   "fieldname": "start_push_button_color",
+   "fieldname": "lpbs_push_button_start_color",
    "fieldtype": "Data",
-   "label": "Start Push Button Color",
+   "label": "LPBS Push Button Start Color",
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-15 11:11:43.628055",
+ "modified": "2024-10-30 17:39:48.281112",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "LPBS Start Push Button Color",

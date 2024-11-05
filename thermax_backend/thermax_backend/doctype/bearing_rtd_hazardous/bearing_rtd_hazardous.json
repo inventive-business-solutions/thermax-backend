@@ -2,7 +2,7 @@
  "actions": [],
  "allow_import": 1,
  "allow_rename": 1,
- "autoname": "fieldbearing_rtd",
+ "autoname": "field:bearing_rtd",
  "creation": "2024-10-04 10:51:35.104299",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -13,12 +13,13 @@
   {
    "fieldname": "bearing_rtd",
    "fieldtype": "Data",
-   "label": "Bearing RTD"
+   "label": "Bearing RTD",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-14 15:42:12.447186",
+ "modified": "2024-10-25 00:43:26.156689",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Bearing RTD Hazardous",

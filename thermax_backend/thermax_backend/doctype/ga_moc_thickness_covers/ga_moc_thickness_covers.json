@@ -2,24 +2,24 @@
  "actions": [],
  "allow_import": 1,
  "allow_rename": 1,
- "autoname": "field:top_and_side",
+ "autoname": "field:top_and_side_moc_thickness",
  "creation": "2024-10-06 13:35:16.945897",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "top_and_side"
+  "top_and_side_moc_thickness"
  ],
  "fields": [
   {
-   "fieldname": "top_and_side",
+   "fieldname": "top_and_side_moc_thickness",
    "fieldtype": "Data",
-   "label": "Top and Side",
+   "label": "Top and Side MOC Thickness",
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-15 15:06:37.434795",
+ "modified": "2024-10-31 01:18:16.624238",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "GA MOC Thickness Covers",

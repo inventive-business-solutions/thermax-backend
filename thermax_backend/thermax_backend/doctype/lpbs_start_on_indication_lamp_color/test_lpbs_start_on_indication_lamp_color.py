@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestLPBSStartONIndicationLampColor(FrappeTestCase):
+class TestLPBSStartOnIndicationLampColor(FrappeTestCase):
 	pass

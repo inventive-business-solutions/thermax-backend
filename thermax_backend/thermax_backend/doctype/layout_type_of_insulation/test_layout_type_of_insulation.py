@@ -12,18 +12,18 @@ EXTRA_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
 IGNORE_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
 
 
-class TestLayoutTypeOfInsulation(UnitTestCase):
+class TestLayoutTypeofInsulation(UnitTestCase):
 	"""
-	Unit tests for LayoutTypeOfInsulation.
+	Unit tests for LayoutTypeofInsulation.
 	Use this class for testing individual functions and methods.
 	"""
 
 	pass
 
 
-class TestLayoutTypeOfInsulation(IntegrationTestCase):
+class TestLayoutTypeofInsulation(IntegrationTestCase):
 	"""
-	Integration tests for LayoutTypeOfInsulation.
+	Integration tests for LayoutTypeofInsulation.
 	Use this class for testing interactions between multiple components.
 	"""
 

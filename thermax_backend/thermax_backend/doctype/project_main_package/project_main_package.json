@@ -6,7 +6,9 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "project_id",
+  "linking_keys_section",
+  "revision_id",
+  "project_main_package_data_section",
   "main_package_name",
   "standard",
   "zone",
@@ -15,12 +17,6 @@
   "sub_packages"
  ],
  "fields": [
-  {
-   "fieldname": "project_id",
-   "fieldtype": "Link",
-   "label": "Project ID",
-   "options": "Project"
-  },
   {
    "fieldname": "main_package_name",
    "fieldtype": "Data",
@@ -55,11 +51,27 @@
    "fieldtype": "Table",
    "label": "Sub Packages",
    "options": "Project Sub Package"
+  },
+  {
+   "fieldname": "linking_keys_section",
+   "fieldtype": "Section Break",
+   "label": "Linking Keys"
+  },
+  {
+   "fieldname": "project_main_package_data_section",
+   "fieldtype": "Section Break",
+   "label": "Project Main Package Data"
+  },
+  {
+   "fieldname": "revision_id",
+   "fieldtype": "Link",
+   "label": "Revision ID",
+   "options": "Design Basis Revision History"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-22 14:32:02.696246",
+ "modified": "2024-11-05 18:29:59.732684",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Project Main Package",
