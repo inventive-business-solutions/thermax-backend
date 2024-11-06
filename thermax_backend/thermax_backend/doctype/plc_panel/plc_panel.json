@@ -1,0 +1,540 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2024-11-06 00:38:15.582315",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "linking_keys_section",
+  "revision_id",
+  "panel_id",
+  "ups_section",
+  "ups_scope",
+  "ups_type",
+  "ups_battery_type",
+  "ups_battery_backup_time",
+  "is_ups_battery_mounting_rack_selected",
+  "plc_hardware_section",
+  "plc_cpu_or_processor_module_or_series",
+  "is_bulk_power_supply_selected",
+  "plc_communication_between_cpu_and_io_card",
+  "is_third_party_communication_protocol_selected",
+  "third_party_communication_protocol",
+  "is_client_system_communication_selected",
+  "client_system_communication",
+  "redundancy_section",
+  "is_power_supply_redundancy_selected",
+  "is_cpu_redundancy_selected",
+  "cpu_redundancy",
+  "is_io_redundancy_selected",
+  "is_cpu_and_io_card_redundancy_selected",
+  "is_cpu_and_hmi_scada_card_redundancy_selected",
+  "is_cpu_and_third_party_services_redundancy_selected",
+  "plc_panel_section",
+  "plc_panel_memory",
+  "is_plc_and_ups_marshalling_cabinet_selected",
+  "marshalling_cabinet_for_plc_and_ups",
+  "panel_mounted_ac",
+  "control_voltage",
+  "indicating_lamp_push_button_and_isolation_switch_section",
+  "push_button_colour_acknowledge",
+  "push_button_color_reset",
+  "indicating_lamp_color_for_nonups_power_supply",
+  "indicating_lamp_colour_for_ups_power_supply",
+  "di_module_section",
+  "is_di_module_density_selected",
+  "di_module_density",
+  "is_di_module_input_type_selected",
+  "di_module_input_type",
+  "is_interrogation_voltage_selected",
+  "interrogation_voltage",
+  "di_module_scan_time",
+  "do_module_section",
+  "is_do_module_density_selected",
+  "do_module_density",
+  "is_do_module_output_type_selected",
+  "do_module_output_type",
+  "output_contact_rating_of_interposing_relay",
+  "is_no_of_contact_selected",
+  "do_module_no_of_contact",
+  "output_status_on_processor_or_module_failure",
+  "ai_module_section",
+  "is_ai_module_density_selected",
+  "ai_module_density",
+  "is_ai_module_output_type_selected",
+  "ai_module_output_type",
+  "ai_module_scan_time",
+  "is_ai_module_hart_protocol_support_selected",
+  "rtd_tc_module_section",
+  "is_rtd_tc_module_density_selected",
+  "rtd_tc_module_density",
+  "is_rtd_tc_module_input_type_selected",
+  "rtd_tc_module_input_type",
+  "rtd_tc_module_scan_time",
+  "is_rtd_tc_module_hart_protocol_support_selected",
+  "ao_module_section",
+  "is_ao_module_density_selected",
+  "ao_module_density",
+  "is_ao_module_output_type_selected",
+  "ao_module_output_type",
+  "ao_module_scan_time",
+  "is_ao_module_hart_protocol_support_selected"
+ ],
+ "fields": [
+  {
+   "fieldname": "linking_keys_section",
+   "fieldtype": "Section Break",
+   "label": "Linking Keys"
+  },
+  {
+   "fieldname": "revision_id",
+   "fieldtype": "Link",
+   "label": "Revision ID",
+   "options": "Design Basis Revision History"
+  },
+  {
+   "fieldname": "panel_id",
+   "fieldtype": "Link",
+   "label": "Panel ID",
+   "options": "Project Panel Data"
+  },
+  {
+   "fieldname": "ups_section",
+   "fieldtype": "Section Break",
+   "label": "UPS"
+  },
+  {
+   "fieldname": "ups_scope",
+   "fieldtype": "Link",
+   "label": "UPS Scope",
+   "options": "PLC UPS Scope"
+  },
+  {
+   "fieldname": "ups_type",
+   "fieldtype": "Link",
+   "label": "UPS Type",
+   "options": "PLC UPS Type"
+  },
+  {
+   "fieldname": "ups_battery_type",
+   "fieldtype": "Link",
+   "label": "UPS Battery Type",
+   "options": "PLC UPS Battery Type"
+  },
+  {
+   "fieldname": "ups_battery_backup_time",
+   "fieldtype": "Link",
+   "label": "UPS Battery Backup Time",
+   "options": "PLC UPS Battery Backup Time"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_ups_battery_mounting_rack_selected",
+   "fieldtype": "Check",
+   "label": "Is UPS Battery Mounting Rack Selected"
+  },
+  {
+   "fieldname": "plc_hardware_section",
+   "fieldtype": "Section Break",
+   "label": " PLC Hardware"
+  },
+  {
+   "fieldname": "plc_cpu_or_processor_module_or_series",
+   "fieldtype": "Data",
+   "label": "PLC CPU or Processor Module or Series"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_bulk_power_supply_selected",
+   "fieldtype": "Check",
+   "label": "Is Bulk Power Supply Selected"
+  },
+  {
+   "fieldname": "plc_communication_between_cpu_and_io_card",
+   "fieldtype": "Data",
+   "label": "PLC Communication between CPU and IO card"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_third_party_communication_protocol_selected",
+   "fieldtype": "Check",
+   "label": "Is Third Party Communication Protocol Selected"
+  },
+  {
+   "fieldname": "third_party_communication_protocol",
+   "fieldtype": "Link",
+   "label": "Third Party Communication Protocol",
+   "options": "PLC Hardware Third Party Communication Protocol"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_client_system_communication_selected",
+   "fieldtype": "Check",
+   "label": "Is Client System Communication Selected"
+  },
+  {
+   "fieldname": "client_system_communication",
+   "fieldtype": "Link",
+   "label": "Client System Communication",
+   "options": "Communication Cable Hardware Between PLC Client System"
+  },
+  {
+   "fieldname": "redundancy_section",
+   "fieldtype": "Section Break",
+   "label": "Redundancy"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_power_supply_redundancy_selected",
+   "fieldtype": "Check",
+   "label": "Is Power Supply Redundancy Selected"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_cpu_redundancy_selected",
+   "fieldtype": "Check",
+   "label": "Is CPU Redundancy Selected"
+  },
+  {
+   "fieldname": "cpu_redundancy",
+   "fieldtype": "Link",
+   "label": "CPU Redundancy",
+   "options": "PLC CPU Redundancy"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_io_redundancy_selected",
+   "fieldtype": "Check",
+   "label": "Is IO Redundancy Selected"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_cpu_and_io_card_redundancy_selected",
+   "fieldtype": "Check",
+   "label": "Is CPU and IO Card Redundancy Selected"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_cpu_and_hmi_scada_card_redundancy_selected",
+   "fieldtype": "Check",
+   "label": "Is CPU and HMI SCADA Card Redundancy Selected"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_cpu_and_third_party_services_redundancy_selected",
+   "fieldtype": "Check",
+   "label": "Is CPU and Third Party Services Redundancy Selected"
+  },
+  {
+   "fieldname": "plc_panel_section",
+   "fieldtype": "Section Break",
+   "label": " PLC Panel"
+  },
+  {
+   "fieldname": "plc_panel_memory",
+   "fieldtype": "Link",
+   "label": "PLC Panel Memory",
+   "options": "PLC Panel Memory"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_plc_and_ups_marshalling_cabinet_selected",
+   "fieldtype": "Check",
+   "label": "Is PLC and UPS Marshalling Cabinet Selected"
+  },
+  {
+   "fieldname": "marshalling_cabinet_for_plc_and_ups",
+   "fieldtype": "Link",
+   "label": "Marshalling Cabinet for PLC and UPS",
+   "options": "Marshalling Cabinet for PLC and UPS"
+  },
+  {
+   "fieldname": "panel_mounted_ac",
+   "fieldtype": "Link",
+   "label": "Panel Mounted AC",
+   "options": "PLC Panel mounted AC"
+  },
+  {
+   "fieldname": "control_voltage",
+   "fieldtype": "Link",
+   "label": "Control Voltage",
+   "options": "PLC Control Voltage"
+  },
+  {
+   "fieldname": "indicating_lamp_push_button_and_isolation_switch_section",
+   "fieldtype": "Section Break",
+   "label": " Indicating Lamp Push Button and Isolation Switch"
+  },
+  {
+   "fieldname": "push_button_colour_acknowledge",
+   "fieldtype": "Link",
+   "label": "Push Button Colour Acknowledge",
+   "options": "Push Button Color Acknowledge"
+  },
+  {
+   "fieldname": "push_button_color_reset",
+   "fieldtype": "Link",
+   "label": "Push Button Color Reset",
+   "options": "Push Button Color Reset"
+  },
+  {
+   "fieldname": "indicating_lamp_color_for_nonups_power_supply",
+   "fieldtype": "Link",
+   "label": " Indicating Lamp Color for NonUPS Power Supply",
+   "options": "Indicating Lamp Color for Non-UPS Power Supply"
+  },
+  {
+   "fieldname": "indicating_lamp_colour_for_ups_power_supply",
+   "fieldtype": "Link",
+   "label": "Indicating Lamp Colour for UPS Power Supply",
+   "options": "Indicating Lamp Color for UPS Power Supply"
+  },
+  {
+   "fieldname": "di_module_section",
+   "fieldtype": "Section Break",
+   "label": "DI Module"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_di_module_density_selected",
+   "fieldtype": "Check",
+   "label": "Is DI Module Density Selected"
+  },
+  {
+   "fieldname": "di_module_density",
+   "fieldtype": "Link",
+   "label": "DI Module Density",
+   "options": "DI Modules Density"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_di_module_input_type_selected",
+   "fieldtype": "Check",
+   "label": "Is DI Module Input Type Selected"
+  },
+  {
+   "fieldname": "di_module_input_type",
+   "fieldtype": "Link",
+   "label": "DI Module Input Type",
+   "options": "DI Modules Type Of Input"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_interrogation_voltage_selected",
+   "fieldtype": "Check",
+   "label": "Is Interrogation Voltage Selected"
+  },
+  {
+   "fieldname": "interrogation_voltage",
+   "fieldtype": "Link",
+   "label": "Interrogation Voltage",
+   "options": "DI Modules Interrogation Voltage"
+  },
+  {
+   "fieldname": "di_module_scan_time",
+   "fieldtype": "Link",
+   "label": "DI Module Scan Time",
+   "options": "DI Modules Scan Time"
+  },
+  {
+   "fieldname": "do_module_section",
+   "fieldtype": "Section Break",
+   "label": "DO Module"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_do_module_density_selected",
+   "fieldtype": "Check",
+   "label": "Is DO Module Density Selected"
+  },
+  {
+   "fieldname": "do_module_density",
+   "fieldtype": "Link",
+   "label": "DO Module Density",
+   "options": "DO Modules Density"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_do_module_output_type_selected",
+   "fieldtype": "Check",
+   "label": "Is DO Module Output Type Selected"
+  },
+  {
+   "fieldname": "do_module_output_type",
+   "fieldtype": "Link",
+   "label": "DO Module Output Type",
+   "options": "DO Modules Type Of Output"
+  },
+  {
+   "fieldname": "output_contact_rating_of_interposing_relay",
+   "fieldtype": "Link",
+   "label": " Output Contact Rating of Interposing relay",
+   "options": "DO  Output Contact rating of Interposing relay"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_no_of_contact_selected",
+   "fieldtype": "Check",
+   "label": "Is No of Contact Selected"
+  },
+  {
+   "fieldname": "do_module_no_of_contact",
+   "fieldtype": "Data",
+   "label": "DO Module No of Contact"
+  },
+  {
+   "fieldname": "output_status_on_processor_or_module_failure",
+   "fieldtype": "Data",
+   "label": "Output Status on Processor or Module Failure"
+  },
+  {
+   "fieldname": "ai_module_section",
+   "fieldtype": "Section Break",
+   "label": "AI Module"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_ai_module_density_selected",
+   "fieldtype": "Check",
+   "label": "Is AI Module Density Selected"
+  },
+  {
+   "fieldname": "ai_module_density",
+   "fieldtype": "Link",
+   "label": "AI Module Density",
+   "options": "AI Module Density"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_ai_module_output_type_selected",
+   "fieldtype": "Check",
+   "label": "Is AI Module Output Type Selected"
+  },
+  {
+   "fieldname": "ai_module_output_type",
+   "fieldtype": "Link",
+   "label": "AI Module Output Type",
+   "options": "AI Modules Type of Output"
+  },
+  {
+   "fieldname": "ai_module_scan_time",
+   "fieldtype": "Link",
+   "label": "AI Module Scan Time",
+   "options": "AI Modules Scan Time"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_ai_module_hart_protocol_support_selected",
+   "fieldtype": "Check",
+   "label": "Is AI Module HART Protocol Support Selected"
+  },
+  {
+   "fieldname": "rtd_tc_module_section",
+   "fieldtype": "Section Break",
+   "label": "RTD TC Module"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_rtd_tc_module_density_selected",
+   "fieldtype": "Check",
+   "label": "Is RTD TC Module Density Selected"
+  },
+  {
+   "fieldname": "rtd_tc_module_density",
+   "fieldtype": "Link",
+   "label": "RTD TC Module Density",
+   "options": "RTD Density"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_rtd_tc_module_input_type_selected",
+   "fieldtype": "Check",
+   "label": "Is RTD TC Module Input Type Selected"
+  },
+  {
+   "fieldname": "rtd_tc_module_input_type",
+   "fieldtype": "Link",
+   "label": "RTD TC Module Input Type",
+   "options": "RTD Type Of Input"
+  },
+  {
+   "fieldname": "rtd_tc_module_scan_time",
+   "fieldtype": "Link",
+   "label": "RTD TC Module Scan Time",
+   "options": "RTD Scan Time"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_rtd_tc_module_hart_protocol_support_selected",
+   "fieldtype": "Check",
+   "label": "Is RTD TC Module HART Protocol Support Selected"
+  },
+  {
+   "fieldname": "ao_module_section",
+   "fieldtype": "Section Break",
+   "label": "AO Module"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_ao_module_density_selected",
+   "fieldtype": "Check",
+   "label": "Is AO Module Density Selected"
+  },
+  {
+   "fieldname": "ao_module_density",
+   "fieldtype": "Link",
+   "label": "AO Module Density",
+   "options": "AO Modules Density"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_ao_module_output_type_selected",
+   "fieldtype": "Check",
+   "label": "Is AO Module Output Type Selected"
+  },
+  {
+   "fieldname": "ao_module_output_type",
+   "fieldtype": "Link",
+   "label": "AO Module Output Type",
+   "options": "AO Modules Type of Output"
+  },
+  {
+   "fieldname": "ao_module_scan_time",
+   "fieldtype": "Link",
+   "label": "AO Module Scan Time",
+   "options": "AO Modules Scan Time"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_ao_module_hart_protocol_support_selected",
+   "fieldtype": "Check",
+   "label": "Is AO Module HART Protocol Support Selected"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-11-06 03:59:34.433707",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "PLC Panel",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

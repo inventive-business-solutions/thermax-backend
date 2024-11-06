@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:thermister",
  "creation": "2024-10-04 10:38:27.159507",
@@ -18,7 +19,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-14 15:23:57.926814",
+ "modified": "2024-11-06 08:28:02.482831",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Thermister Safe",

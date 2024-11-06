@@ -1,0 +1,63 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:panel_id",
+ "creation": "2024-10-11 11:48:21.050908",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "panel_id",
+  "sld",
+  "panel_specification",
+  "tentative_panel_gad"
+ ],
+ "fields": [
+  {
+   "fieldname": "panel_id",
+   "fieldtype": "Link",
+   "label": "Panel ID",
+   "options": "Project Panel Data",
+   "unique": 1
+  },
+  {
+   "fieldname": "sld",
+   "fieldtype": "Data",
+   "label": "SLD"
+  },
+  {
+   "fieldname": "panel_specification",
+   "fieldtype": "Data",
+   "label": "Panel Specification"
+  },
+  {
+   "fieldname": "tentative_panel_gad",
+   "fieldtype": "Data",
+   "label": "Tentative Panel GAD"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-11-06 07:37:10.178867",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "Dynamic Document List",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
