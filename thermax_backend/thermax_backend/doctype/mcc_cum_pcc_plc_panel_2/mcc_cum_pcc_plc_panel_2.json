@@ -1,0 +1,314 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2024-11-04 21:06:27.668170",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "plc_tab",
+  "linking_keys_section",
+  "revision_id",
+  "panel_id",
+  "plc_spare_section",
+  "is_plc_spare_io_count_selected",
+  "plc_spare_io_count",
+  "is_plc_spare_memory_selected",
+  "plc_spare_memory",
+  "human_interface_device_section",
+  "is_no_of_hid_es_selected",
+  "no_of_hid_es",
+  "is_no_of_hid_os_selected",
+  "no_of_hid_os",
+  "is_no_of_hid_hmi_selected",
+  "no_of_hid_hmi",
+  "is_hid_hmi_size_selected",
+  "hid_hmi_size",
+  "software_section",
+  "is_scada_development_license_selected",
+  "no_of_scada_development_license",
+  "is_scada_runtime_license_selected",
+  "no_of_scada_runtime_license",
+  "is_hmi_development_license_selected",
+  "no_of_hmi_development_license",
+  "is_plc_programming_license_software_selected",
+  "no_of_plc_programming_license_software",
+  "engineering_or_operating_scada_station_section",
+  "system_hardware",
+  "commercial_grade_pc",
+  "monitor_size",
+  "windows_operating_system",
+  "is_printer_with_cable_selected",
+  "printer_with_communication_cable",
+  "no_of_printer",
+  "printer_cable",
+  "is_furniture_for_scada_station_selected",
+  "furniture_for_scada_station",
+  "hardware_between_plc_and_scada_pc",
+  "hardware_between_plc_and_third_party",
+  "hardware_between_plc_and_client_system",
+  "iiot_requirement",
+  "mandatory_spares"
+ ],
+ "fields": [
+  {
+   "fieldname": "plc_tab",
+   "fieldtype": "Tab Break",
+   "label": "PLC"
+  },
+  {
+   "fieldname": "linking_keys_section",
+   "fieldtype": "Section Break",
+   "label": "Linking Keys"
+  },
+  {
+   "fieldname": "revision_id",
+   "fieldtype": "Link",
+   "label": "Revision ID",
+   "options": "Design Basis Revision History"
+  },
+  {
+   "fieldname": "panel_id",
+   "fieldtype": "Link",
+   "label": "Panel ID",
+   "options": "Project Panel Data"
+  },
+  {
+   "fieldname": "plc_spare_section",
+   "fieldtype": "Section Break",
+   "label": "PLC Spare"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_plc_spare_io_count_selected",
+   "fieldtype": "Check",
+   "label": "Is PLC Spare IO Count Selected"
+  },
+  {
+   "fieldname": "plc_spare_io_count",
+   "fieldtype": "Link",
+   "label": "PLC Spare IO Count",
+   "options": "PLC IO Count"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_plc_spare_memory_selected",
+   "fieldtype": "Check",
+   "label": "Is PLC Spare Memory Selected"
+  },
+  {
+   "fieldname": "plc_spare_memory",
+   "fieldtype": "Link",
+   "label": "PLC Spare Memory",
+   "options": "PLC Spare Memory"
+  },
+  {
+   "fieldname": "human_interface_device_section",
+   "fieldtype": "Section Break",
+   "label": "Human Interface Device"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_no_of_hid_es_selected",
+   "fieldtype": "Check",
+   "label": "Is No of HID ES Selected"
+  },
+  {
+   "fieldname": "no_of_hid_es",
+   "fieldtype": "Int",
+   "label": "No of HID ES"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_no_of_hid_os_selected",
+   "fieldtype": "Check",
+   "label": "Is No of HID OS Selected"
+  },
+  {
+   "fieldname": "no_of_hid_os",
+   "fieldtype": "Int",
+   "label": "No of HID OS"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_no_of_hid_hmi_selected",
+   "fieldtype": "Check",
+   "label": "Is No of HID HMI Selected"
+  },
+  {
+   "fieldname": "no_of_hid_hmi",
+   "fieldtype": "Int",
+   "label": "No of HID HMI"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_hid_hmi_size_selected",
+   "fieldtype": "Check",
+   "label": "Is HID HMI Size Selected"
+  },
+  {
+   "fieldname": "hid_hmi_size",
+   "fieldtype": "Link",
+   "label": "HID HMI Size",
+   "options": "PLC HMI Size"
+  },
+  {
+   "fieldname": "software_section",
+   "fieldtype": "Section Break",
+   "label": "Software"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_scada_development_license_selected",
+   "fieldtype": "Check",
+   "label": "Is SCADA Development License Selected"
+  },
+  {
+   "fieldname": "no_of_scada_development_license",
+   "fieldtype": "Int",
+   "label": "No of SCADA Development License"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_scada_runtime_license_selected",
+   "fieldtype": "Check",
+   "label": "Is SCADA Runtime License Selected"
+  },
+  {
+   "fieldname": "no_of_scada_runtime_license",
+   "fieldtype": "Int",
+   "label": "No of SCADA Runtime License"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_hmi_development_license_selected",
+   "fieldtype": "Check",
+   "label": "Is HMI Development License Selected"
+  },
+  {
+   "fieldname": "no_of_hmi_development_license",
+   "fieldtype": "Int",
+   "label": "No of HMI Development License"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_plc_programming_license_software_selected",
+   "fieldtype": "Check",
+   "label": "Is PLC Programming License Software Selected"
+  },
+  {
+   "fieldname": "no_of_plc_programming_license_software",
+   "fieldtype": "Data",
+   "label": "No of PLC Programming License Software"
+  },
+  {
+   "fieldname": "engineering_or_operating_scada_station_section",
+   "fieldtype": "Section Break",
+   "label": "Engineering or Operating SCADA Station"
+  },
+  {
+   "fieldname": "system_hardware",
+   "fieldtype": "Link",
+   "label": "System Hardware",
+   "options": "EO System Hardware"
+  },
+  {
+   "fieldname": "commercial_grade_pc",
+   "fieldtype": "Text",
+   "label": "Commercial Grade PC"
+  },
+  {
+   "fieldname": "monitor_size",
+   "fieldtype": "Link",
+   "label": "Monitor Size",
+   "options": "EO Monitor Size"
+  },
+  {
+   "fieldname": "windows_operating_system",
+   "fieldtype": "Data",
+   "label": "Windows Operating System"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_printer_with_cable_selected",
+   "fieldtype": "Check",
+   "label": "Is Printer With Cable Selected"
+  },
+  {
+   "fieldname": "printer_with_communication_cable",
+   "fieldtype": "Data",
+   "label": "Printer With Communication Cable "
+  },
+  {
+   "fieldname": "no_of_printer",
+   "fieldtype": "Int",
+   "label": "No of Printer"
+  },
+  {
+   "fieldname": "printer_cable",
+   "fieldtype": "Data",
+   "label": "Printer Cable"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_furniture_for_scada_station_selected",
+   "fieldtype": "Check",
+   "label": "Is Furniture for SCADA Station Selected"
+  },
+  {
+   "fieldname": "furniture_for_scada_station",
+   "fieldtype": "Data",
+   "label": "Furniture for SCADA Station"
+  },
+  {
+   "fieldname": "hardware_between_plc_and_scada_pc",
+   "fieldtype": "Data",
+   "label": "Hardware Between PLC and SCADA PC"
+  },
+  {
+   "fieldname": "hardware_between_plc_and_third_party",
+   "fieldtype": "Data",
+   "label": "Hardware Between PLC and Third Party"
+  },
+  {
+   "fieldname": "hardware_between_plc_and_client_system",
+   "fieldtype": "Data",
+   "label": "Hardware Between PLC and Client System"
+  },
+  {
+   "fieldname": "iiot_requirement",
+   "fieldtype": "Data",
+   "label": "IIOT Requirement"
+  },
+  {
+   "fieldname": "mandatory_spares",
+   "fieldtype": "Data",
+   "label": "Mandatory Spares"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-11-06 07:40:20.970746",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "MCC Cum PCC PLC Panel 2",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
