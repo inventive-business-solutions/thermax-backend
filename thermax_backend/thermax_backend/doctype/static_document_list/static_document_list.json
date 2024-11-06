@@ -1,0 +1,165 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:project_id",
+ "creation": "2024-10-11 00:20:28.412242",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "linking_keys_section",
+  "project_id",
+  "static_document_list_section",
+  "electrical_load_list",
+  "control_schemes",
+  "lpbs_specifications_and_list",
+  "local_isolator_specifications_and_list",
+  "electrical_cable_schedule",
+  "lt_cable_sizing",
+  "cable_specification_and_bom",
+  "cable_tray_layout_e_and_i",
+  "cable_tray_support_details_and_bom",
+  "cable_tray_and_hardware_specification_and_bom",
+  "earthing_layout",
+  "earthing_calculation_input_sheet_will_be_provided",
+  "earthing_material_bom",
+  "motor_canopy_list_and_specification",
+  "motor_specification",
+  "motor_location_layout",
+  "illumination_layout_and_sld",
+  "illumination_cable_schedule"
+ ],
+ "fields": [
+  {
+   "fieldname": "linking_keys_section",
+   "fieldtype": "Section Break",
+   "label": "Linking Keys"
+  },
+  {
+   "fieldname": "project_id",
+   "fieldtype": "Link",
+   "label": "Project ID",
+   "options": "Project",
+   "unique": 1
+  },
+  {
+   "fieldname": "static_document_list_section",
+   "fieldtype": "Section Break",
+   "label": "Static Document List"
+  },
+  {
+   "fieldname": "electrical_load_list",
+   "fieldtype": "Data",
+   "label": "Electrical Load List"
+  },
+  {
+   "fieldname": "control_schemes",
+   "fieldtype": "Data",
+   "label": "Control Schemes"
+  },
+  {
+   "fieldname": "lpbs_specifications_and_list",
+   "fieldtype": "Data",
+   "label": "LPBS Specifications And List"
+  },
+  {
+   "fieldname": "local_isolator_specifications_and_list",
+   "fieldtype": "Data",
+   "label": "Local Isolator Specifications And List"
+  },
+  {
+   "fieldname": "electrical_cable_schedule",
+   "fieldtype": "Data",
+   "label": "Electrical cable schedule"
+  },
+  {
+   "fieldname": "lt_cable_sizing",
+   "fieldtype": "Data",
+   "label": "LT Cable Sizing"
+  },
+  {
+   "fieldname": "cable_specification_and_bom",
+   "fieldtype": "Data",
+   "label": "Cable Specification and BOM"
+  },
+  {
+   "fieldname": "cable_tray_layout_e_and_i",
+   "fieldtype": "Data",
+   "label": "Cable Tray Layout (E and I)"
+  },
+  {
+   "fieldname": "cable_tray_support_details_and_bom",
+   "fieldtype": "Data",
+   "label": "Cable tray support details and BOM"
+  },
+  {
+   "fieldname": "cable_tray_and_hardware_specification_and_bom",
+   "fieldtype": "Data",
+   "label": "Cable Tray and Hardware Specification and BOM"
+  },
+  {
+   "fieldname": "earthing_layout",
+   "fieldtype": "Data",
+   "label": "Earthing layout"
+  },
+  {
+   "fieldname": "earthing_calculation_input_sheet_will_be_provided",
+   "fieldtype": "Data",
+   "label": "Earthing Calculation (Input sheet will be provided)"
+  },
+  {
+   "fieldname": "earthing_material_bom",
+   "fieldtype": "Data",
+   "label": "Earthing Material BOM"
+  },
+  {
+   "fieldname": "motor_canopy_list_and_specification",
+   "fieldtype": "Data",
+   "label": "Motor Canopy list and specification"
+  },
+  {
+   "fieldname": "motor_specification",
+   "fieldtype": "Data",
+   "label": "Motor Specification"
+  },
+  {
+   "fieldname": "motor_location_layout",
+   "fieldtype": "Data",
+   "label": "Motor Location layout"
+  },
+  {
+   "fieldname": "illumination_layout_and_sld",
+   "fieldtype": "Data",
+   "label": "Illumination layout and SLD"
+  },
+  {
+   "fieldname": "illumination_cable_schedule",
+   "fieldtype": "Data",
+   "label": "Illumination Cable Schedule"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-11-06 04:01:09.858206",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "Static Document List",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:panel_name",
  "creation": "2024-10-04 09:34:17.630461",
@@ -25,7 +26,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-08 01:45:16.850087",
+ "modified": "2024-11-06 09:41:57.687831",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Panel Type",

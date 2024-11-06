@@ -1,24 +1,25 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
- "autoname": "field:efficiency_level_hazardous_area_details",
+ "autoname": "field:efficiency_level",
  "creation": "2024-10-04 09:48:54.354531",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "efficiency_level_hazardous_area_details"
+  "efficiency_level"
  ],
  "fields": [
   {
-   "fieldname": "efficiency_level_hazardous_area_details",
+   "fieldname": "efficiency_level",
    "fieldtype": "Data",
-   "label": "Efficiency Level Hazardous Area Details",
+   "label": "Efficiency Level",
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-14 14:58:42.208374",
+ "modified": "2024-11-06 08:26:31.546973",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Efficiency Level Hazardous Area",
