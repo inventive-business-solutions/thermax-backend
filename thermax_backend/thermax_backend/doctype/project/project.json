@@ -18,8 +18,7 @@
   {
    "fieldname": "project_name",
    "fieldtype": "Data",
-   "label": "Project Name",
-   "unique": 1
+   "label": "Project Name"
   },
   {
    "fieldname": "project_oc_number",
@@ -40,9 +39,8 @@
   },
   {
    "fieldname": "approver",
-   "fieldtype": "Link",
-   "label": "Approver",
-   "options": "User"
+   "fieldtype": "Data",
+   "label": "Approver"
   },
   {
    "fieldname": "division",
@@ -59,7 +57,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-06 08:28:50.275522",
+ "modified": "2024-11-07 11:17:41.584584",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Project",
