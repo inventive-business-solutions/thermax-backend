@@ -1,0 +1,212 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2024-11-07 09:59:15.205125",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "scheme",
+  "sub_scheme",
+  "scheme_title",
+  "description",
+  "breaker",
+  "lpbs",
+  "lpbs_inc_dec_ind",
+  "ammeter",
+  "thermistor_relay",
+  "motor_space_heater",
+  "plc_current_signal",
+  "plc_speed_signal",
+  "olr",
+  "phase",
+  "limit_switch",
+  "motor_protection_relay",
+  "field_isolator",
+  "local_panel",
+  "field_ess",
+  "electronic_relay",
+  "plc1_and_plc2",
+  "mcc_start_stop",
+  "input_choke",
+  "output_choke",
+  "separate_plc_start_stop",
+  "di",
+  "do",
+  "ai",
+  "ao"
+ ],
+ "fields": [
+  {
+   "fieldname": "scheme",
+   "fieldtype": "Data",
+   "label": "Scheme"
+  },
+  {
+   "fieldname": "sub_scheme",
+   "fieldtype": "Data",
+   "label": "Sub Scheme"
+  },
+  {
+   "fieldname": "scheme_title",
+   "fieldtype": "Data",
+   "label": "Scheme Title"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Data",
+   "label": "Description"
+  },
+  {
+   "fieldname": "breaker",
+   "fieldtype": "Data",
+   "label": "Breaker"
+  },
+  {
+   "fieldname": "lpbs",
+   "fieldtype": "Data",
+   "label": "LPBS"
+  },
+  {
+   "fieldname": "lpbs_inc_dec_ind",
+   "fieldtype": "Data",
+   "label": "LPBS INC DEC IND"
+  },
+  {
+   "fieldname": "ammeter",
+   "fieldtype": "Data",
+   "label": "Ammeter"
+  },
+  {
+   "fieldname": "thermistor_relay",
+   "fieldtype": "Data",
+   "label": "Thermistor Relay"
+  },
+  {
+   "fieldname": "motor_space_heater",
+   "fieldtype": "Data",
+   "label": "Motor Space Heater"
+  },
+  {
+   "fieldname": "plc_current_signal",
+   "fieldtype": "Data",
+   "label": "PLC Current Signal"
+  },
+  {
+   "fieldname": "plc_speed_signal",
+   "fieldtype": "Data",
+   "label": "PLC Speed Signal"
+  },
+  {
+   "fieldname": "olr",
+   "fieldtype": "Data",
+   "label": "OLR"
+  },
+  {
+   "fieldname": "phase",
+   "fieldtype": "Data",
+   "label": "Phase"
+  },
+  {
+   "fieldname": "limit_switch",
+   "fieldtype": "Data",
+   "label": "Limit Switch"
+  },
+  {
+   "fieldname": "motor_protection_relay",
+   "fieldtype": "Data",
+   "label": "Motor Protection Relay"
+  },
+  {
+   "fieldname": "field_isolator",
+   "fieldtype": "Data",
+   "label": "Field Isolator"
+  },
+  {
+   "fieldname": "local_panel",
+   "fieldtype": "Data",
+   "label": "Local Panel"
+  },
+  {
+   "fieldname": "field_ess",
+   "fieldtype": "Data",
+   "label": "Field ESS"
+  },
+  {
+   "fieldname": "electronic_relay",
+   "fieldtype": "Data",
+   "label": "Electronic Relay"
+  },
+  {
+   "fieldname": "plc1_and_plc2",
+   "fieldtype": "Data",
+   "label": "PLC1 and PLC2"
+  },
+  {
+   "fieldname": "mcc_start_stop",
+   "fieldtype": "Data",
+   "label": "MCC Start Stop"
+  },
+  {
+   "fieldname": "input_choke",
+   "fieldtype": "Data",
+   "label": "Input Choke"
+  },
+  {
+   "fieldname": "output_choke",
+   "fieldtype": "Data",
+   "label": "Output Choke"
+  },
+  {
+   "fieldname": "separate_plc_start_stop",
+   "fieldtype": "Data",
+   "label": "Separate PLC Start Stop"
+  },
+  {
+   "fieldname": "di",
+   "fieldtype": "Int",
+   "label": "DI"
+  },
+  {
+   "fieldname": "do",
+   "fieldtype": "Int",
+   "label": "DO"
+  },
+  {
+   "fieldname": "ai",
+   "fieldtype": "Int",
+   "label": "AI"
+  },
+  {
+   "fieldname": "ao",
+   "fieldtype": "Int",
+   "label": "AO"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-11-07 10:16:27.688780",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "Heating Control System Index",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
