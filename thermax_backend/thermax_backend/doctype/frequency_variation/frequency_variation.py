@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class Variation(Document):
+class FrequencyVariation(Document):
 	pass

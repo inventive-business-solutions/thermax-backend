@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "field:variation",
  "creation": "2024-09-26 13:09:02.106471",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +12,17 @@
   {
    "fieldname": "variation",
    "fieldtype": "Data",
-   "label": "Variation"
+   "label": "Variation",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-08 13:06:14.687139",
+ "modified": "2024-11-06 14:39:35.673722",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
- "name": "Variation",
+ "name": "Voltage Variation",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
