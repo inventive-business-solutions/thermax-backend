@@ -1,7 +1,7 @@
 // Copyright (c) 2024, Abhishek Bankar and contributors
 // For license information, please see license.txt
 
-// frappe.ui.form.on("Variation", {
+// frappe.ui.form.on("Voltage Variation", {
 // 	refresh(frm) {
 
 // 	},

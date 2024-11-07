@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestVariation(FrappeTestCase):
+class TestVoltageVariation(FrappeTestCase):
 	pass
