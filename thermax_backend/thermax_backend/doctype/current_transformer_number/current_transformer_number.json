@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:current_transformer_number",
  "creation": "2024-10-21 11:14:23.262419",
@@ -18,7 +19,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-06 07:53:04.448994",
+ "modified": "2024-11-09 02:59:56.945159",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Current Transformer Number",
