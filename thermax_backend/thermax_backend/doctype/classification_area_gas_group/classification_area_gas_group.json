@@ -2,27 +2,27 @@
  "actions": [],
  "allow_import": 1,
  "allow_rename": 1,
- "autoname": "field:standard",
- "creation": "2024-10-18 15:43:17.347815",
+ "autoname": "field:gas_group",
+ "creation": "2024-10-18 15:45:28.671845",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "standard"
+  "gas_group"
  ],
  "fields": [
   {
-   "fieldname": "standard",
+   "fieldname": "gas_group",
    "fieldtype": "Data",
-   "label": "Standard",
+   "label": "Gas Group",
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-08 14:21:35.373662",
+ "modified": "2024-11-08 14:22:52.114643",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
- "name": "Classification Area Standard",
+ "name": "Classification Area Gas Group",
  "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
