@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:battery_limit",
  "creation": "2024-10-04 09:41:56.679903",
@@ -18,7 +19,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-06 08:36:45.754072",
+ "modified": "2024-11-08 10:44:52.154766",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Battery Limit",
