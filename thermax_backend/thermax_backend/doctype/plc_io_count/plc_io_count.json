@@ -12,14 +12,14 @@
  "fields": [
   {
    "fieldname": "count",
-   "fieldtype": "Int",
+   "fieldtype": "Data",
    "label": "Count",
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-15 17:37:16.511051",
+ "modified": "2024-11-09 05:10:13.557582",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "PLC IO Count",
