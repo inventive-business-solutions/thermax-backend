@@ -2,27 +2,27 @@
  "actions": [],
  "allow_import": 1,
  "allow_rename": 1,
- "autoname": "field:standard",
- "creation": "2024-10-18 15:43:17.347815",
+ "autoname": "field:temperature_class",
+ "creation": "2024-10-18 15:46:32.488837",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "standard"
+  "temperature_class"
  ],
  "fields": [
   {
-   "fieldname": "standard",
+   "fieldname": "temperature_class",
    "fieldtype": "Data",
-   "label": "Standard",
+   "label": "Temperature Class",
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-08 14:21:35.373662",
+ "modified": "2024-11-08 14:23:25.138721",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
- "name": "Classification Area Standard",
+ "name": "Classification Area Temperature Class",
  "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [

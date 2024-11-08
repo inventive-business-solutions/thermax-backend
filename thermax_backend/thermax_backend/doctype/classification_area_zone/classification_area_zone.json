@@ -2,27 +2,27 @@
  "actions": [],
  "allow_import": 1,
  "allow_rename": 1,
- "autoname": "field:standard",
- "creation": "2024-10-18 15:43:17.347815",
+ "autoname": "field:zone",
+ "creation": "2024-10-18 15:44:24.532591",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "standard"
+  "zone"
  ],
  "fields": [
   {
-   "fieldname": "standard",
+   "fieldname": "zone",
    "fieldtype": "Data",
-   "label": "Standard",
+   "label": "Zone",
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-08 14:21:35.373662",
+ "modified": "2024-11-08 12:01:50.159513",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
- "name": "Classification Area Standard",
+ "name": "Classification Area Zone",
  "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
