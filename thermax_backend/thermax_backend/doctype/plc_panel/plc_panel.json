@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "hash",
  "creation": "2024-11-06 00:38:15.582315",
@@ -177,7 +178,7 @@
    "fieldname": "client_system_communication",
    "fieldtype": "Link",
    "label": "Client System Communication",
-   "options": "Communication Cable Hardware Between PLC Client System"
+   "options": "PLC Hardware Client System Communication"
   },
   {
    "fieldname": "redundancy_section",
@@ -251,9 +252,8 @@
   },
   {
    "fieldname": "panel_mounted_ac",
-   "fieldtype": "Link",
-   "label": "Panel Mounted AC",
-   "options": "PLC Panel mounted AC"
+   "fieldtype": "Data",
+   "label": "Panel Mounted AC"
   },
   {
    "fieldname": "control_voltage",
@@ -333,9 +333,8 @@
   },
   {
    "fieldname": "di_module_scan_time",
-   "fieldtype": "Link",
-   "label": "DI Module Scan Time",
-   "options": "DI Modules Scan Time"
+   "fieldtype": "Data",
+   "label": "DI Module Scan Time"
   },
   {
    "fieldname": "do_module_section",
@@ -368,9 +367,8 @@
   },
   {
    "fieldname": "output_contact_rating_of_interposing_relay",
-   "fieldtype": "Link",
-   "label": " Output Contact Rating of Interposing relay",
-   "options": "DO  Output Contact rating of Interposing relay"
+   "fieldtype": "Data",
+   "label": " Output Contact Rating of Interposing relay"
   },
   {
    "default": "0",
@@ -413,15 +411,13 @@
   },
   {
    "fieldname": "ai_module_output_type",
-   "fieldtype": "Link",
-   "label": "AI Module Output Type",
-   "options": "AI Modules Type of Output"
+   "fieldtype": "Data",
+   "label": "AI Module Output Type"
   },
   {
    "fieldname": "ai_module_scan_time",
-   "fieldtype": "Link",
-   "label": "AI Module Scan Time",
-   "options": "AI Modules Scan Time"
+   "fieldtype": "Data",
+   "label": "AI Module Scan Time"
   },
   {
    "default": "0",
@@ -460,9 +456,8 @@
   },
   {
    "fieldname": "rtd_tc_module_scan_time",
-   "fieldtype": "Link",
-   "label": "RTD TC Module Scan Time",
-   "options": "RTD Scan Time"
+   "fieldtype": "Data",
+   "label": "RTD TC Module Scan Time"
   },
   {
    "default": "0",
@@ -501,9 +496,8 @@
   },
   {
    "fieldname": "ao_module_scan_time",
-   "fieldtype": "Link",
-   "label": "AO Module Scan Time",
-   "options": "AO Modules Scan Time"
+   "fieldtype": "Data",
+   "label": "AO Module Scan Time"
   },
   {
    "default": "0",
@@ -514,7 +508,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-06 03:59:34.433707",
+ "modified": "2024-11-09 04:49:56.059668",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "PLC Panel",
