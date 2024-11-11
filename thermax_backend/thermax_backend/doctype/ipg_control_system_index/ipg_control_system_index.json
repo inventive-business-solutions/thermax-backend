@@ -1,0 +1,170 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2024-11-11 13:01:40.379440",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "scheme",
+  "type",
+  "starter",
+  "di",
+  "do",
+  "ai",
+  "ao",
+  "mccb",
+  "mpcb",
+  "ammeter",
+  "current_transducer",
+  "olr",
+  "rating",
+  "lpbs",
+  "space_heater",
+  "eocr_eolr",
+  "thermistor",
+  "current_signal_multiplier",
+  "speed_signal_multiplier",
+  "input_choke",
+  "output_choke",
+  "semiconductor_fuse"
+ ],
+ "fields": [
+  {
+   "fieldname": "type",
+   "fieldtype": "Data",
+   "label": "Type"
+  },
+  {
+   "fieldname": "starter",
+   "fieldtype": "Data",
+   "label": "Starter"
+  },
+  {
+   "fieldname": "di",
+   "fieldtype": "Int",
+   "label": "DI"
+  },
+  {
+   "fieldname": "do",
+   "fieldtype": "Int",
+   "label": "DO"
+  },
+  {
+   "fieldname": "ai",
+   "fieldtype": "Int",
+   "label": "AI"
+  },
+  {
+   "fieldname": "ao",
+   "fieldtype": "Int",
+   "label": "AO"
+  },
+  {
+   "fieldname": "mccb",
+   "fieldtype": "Data",
+   "label": "MCCB"
+  },
+  {
+   "fieldname": "mpcb",
+   "fieldtype": "Data",
+   "label": "MPCB"
+  },
+  {
+   "fieldname": "ammeter",
+   "fieldtype": "Data",
+   "label": "Ammeter"
+  },
+  {
+   "fieldname": "current_transducer",
+   "fieldtype": "Data",
+   "label": "Current Transducer"
+  },
+  {
+   "fieldname": "olr",
+   "fieldtype": "Data",
+   "label": "OLR"
+  },
+  {
+   "fieldname": "rating",
+   "fieldtype": "Data",
+   "label": "Rating"
+  },
+  {
+   "fieldname": "lpbs",
+   "fieldtype": "Data",
+   "label": "LPBS"
+  },
+  {
+   "fieldname": "space_heater",
+   "fieldtype": "Data",
+   "label": "Space Heater"
+  },
+  {
+   "fieldname": "eocr_eolr",
+   "fieldtype": "Data",
+   "label": "EOCR EOLR"
+  },
+  {
+   "fieldname": "thermistor",
+   "fieldtype": "Data",
+   "label": "Thermistor"
+  },
+  {
+   "fieldname": "current_signal_multiplier",
+   "fieldtype": "Data",
+   "label": "Current Signal Multiplier"
+  },
+  {
+   "fieldname": "speed_signal_multiplier",
+   "fieldtype": "Data",
+   "label": "Speed Signal Multiplier"
+  },
+  {
+   "fieldname": "input_choke",
+   "fieldtype": "Data",
+   "label": "Input Choke"
+  },
+  {
+   "fieldname": "output_choke",
+   "fieldtype": "Data",
+   "label": "Output Choke"
+  },
+  {
+   "fieldname": "semiconductor_fuse",
+   "fieldtype": "Data",
+   "label": "Semiconductor Fuse"
+  },
+  {
+   "fieldname": "scheme",
+   "fieldtype": "Data",
+   "label": "Scheme"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-11-11 15:48:57.296060",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "IPG Control System Index",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
