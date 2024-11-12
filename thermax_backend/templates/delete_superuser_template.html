@@ -1,0 +1,17 @@
+<div class="container">
+	<div class="row">
+		<div class="col-12">
+			<p>{{ _("Dear") }} {{ first_name }}{% if last_name %} {{ last_name }}{% endif %},</p>
+			<p>
+				{% if is_superuser %} {{ _("You have been removed as an EnIMAX superuser for
+				division") }} {{ division_name }} {% else %} {{ _("You have been removed as an
+				EnIMAX user for Division") }} {{ division_name }} {% endif %}
+			</p>
+			<p>{{ _("Please revert to this email for conflicts, if any.") }}</p>
+			<p>
+				{{ _("Regards") }},<br />
+				{{ sent_by }}
+			</p>
+		</div>
+	</div>
+</div>

@@ -180,6 +180,7 @@ override_whitelisted_methods = {
     "thermax_extended_user.trigger_send_credentials": "thermax_backend.thermax_backend.doctype.thermax_extended_user.api.trigger_send_credentials",
     "thermax_extended_user.get_user_by_role": "thermax_backend.thermax_backend.doctype.thermax_extended_user.api.get_user_by_role",
     "project_main_package.get_project_main_package_list": "thermax_backend.thermax_backend.doctype.project_main_package.api.get_project_main_package_list",
+    "thermax_extended_user.trigger_delete_user": "thermax_backend.thermax_backend.doctype.thermax_extended_user.api.trigger_delete_user",
     
 }
 #
