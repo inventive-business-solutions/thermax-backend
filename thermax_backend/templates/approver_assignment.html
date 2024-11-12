@@ -1,0 +1,21 @@
+<div class="container mt-4">
+	<div class="row">
+		<div class="col-12">
+			<p class="h5">
+				{{ _("Dear") }} {{ first_name }}{% if last_name %} {{ last_name }}{% endif %},
+			</p>
+			<p class="mt-3">
+				{{_("You have been assigned approver for following by ")}} {{project_owner}}
+			</p>
+			<div class="border p-3 mb-4 bg-light">
+				<p class="mb-1"><strong>OC No. :</strong> {{ project_oc_number }}</p>
+				<p class="mb-1"><strong>Project Name:</strong> {{ project_name }}</p>
+			</div>
+			<p>
+				You will be intimated with separate email once design parameters are ready for
+				review and approval.
+			</p>
+			<p class="mt-4">{{ _("Regards") }},<br />{{ sent_by }}</p>
+		</div>
+	</div>
+</div>
