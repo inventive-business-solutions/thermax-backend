@@ -12,18 +12,18 @@ EXTRA_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
 IGNORE_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
 
 
-class TestMakeOfComponents(UnitTestCase):
+class TestDesignBasisMakeofComponent(UnitTestCase):
 	"""
-	Unit tests for MakeOfComponents.
+	Unit tests for DesignBasisMakeofComponent.
 	Use this class for testing individual functions and methods.
 	"""
 
 	pass
 
 
-class TestMakeOfComponents(IntegrationTestCase):
+class TestDesignBasisMakeofComponent(IntegrationTestCase):
 	"""
-	Integration tests for MakeOfComponents.
+	Integration tests for DesignBasisMakeofComponent.
 	Use this class for testing interactions between multiple components.
 	"""
 

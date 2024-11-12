@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class MakeOfComponents(Document):
+class DesignBasisMakeofComponent(Document):
 	pass

@@ -2,13 +2,13 @@
  "actions": [],
  "allow_rename": 1,
  "autoname": "hash",
- "creation": "2024-09-16 12:18:55.500219",
+ "creation": "2024-11-12 17:33:23.335375",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "linking_keys_section",
   "revision_id",
-  "section_break_pehl",
+  "section_break_mwgx",
   "motor",
   "cable",
   "lv_switchgear",
@@ -18,6 +18,45 @@
   "plc"
  ],
  "fields": [
+  {
+   "fieldname": "linking_keys_section",
+   "fieldtype": "Section Break",
+   "label": "Linking Keys"
+  },
+  {
+   "fieldname": "revision_id",
+   "fieldtype": "Link",
+   "label": "Revision ID",
+   "options": "Design Basis Revision History"
+  },
+  {
+   "fieldname": "section_break_mwgx",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "motor",
+   "fieldtype": "Link",
+   "label": "Motor",
+   "options": "Motors Make"
+  },
+  {
+   "fieldname": "cable",
+   "fieldtype": "Link",
+   "label": "Cable",
+   "options": "Cables Make"
+  },
+  {
+   "fieldname": "lv_switchgear",
+   "fieldtype": "Link",
+   "label": "LV Switchgear",
+   "options": "LV Switchgear Make"
+  },
+  {
+   "fieldname": "panel_enclosure",
+   "fieldtype": "Link",
+   "label": "Panel Enclosure",
+   "options": "Panel Enclosure Make"
+  },
   {
    "fieldname": "variable_frequency_speed_drive_vfd_vsd",
    "fieldtype": "Link",
@@ -35,54 +74,14 @@
    "fieldtype": "Link",
    "label": "PLC",
    "options": "PLC Make"
-  },
-  {
-   "fieldname": "lv_switchgear",
-   "fieldtype": "Link",
-   "label": "LV Switchgear",
-   "options": "LV Switchgear Make"
-  },
-  {
-   "fieldname": "motor",
-   "fieldtype": "Link",
-   "label": "Motor",
-   "options": "Motors Make"
-  },
-  {
-   "fieldname": "cable",
-   "fieldtype": "Link",
-   "label": "Cable",
-   "options": "Cables Make"
-  },
-  {
-   "fieldname": "panel_enclosure",
-   "fieldtype": "Link",
-   "label": "Panel Enclosure",
-   "options": "Panel Enclosure Make"
-  },
-  {
-   "fieldname": "revision_id",
-   "fieldtype": "Link",
-   "label": "Revision ID",
-   "options": "Design Basis Revision History"
-  },
-  {
-   "fieldname": "section_break_pehl",
-   "fieldtype": "Section Break",
-   "label": "Make of Component"
-  },
-  {
-   "fieldname": "linking_keys_section",
-   "fieldtype": "Section Break",
-   "label": "Linking Keys"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-07 12:49:33.343881",
+ "modified": "2024-11-12 17:38:59.141359",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
- "name": "Make Of Components",
+ "name": "Design Basis Make of Component",
  "naming_rule": "Random",
  "owner": "Administrator",
  "permissions": [
