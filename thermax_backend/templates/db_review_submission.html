@@ -2,19 +2,16 @@
 	<div class="row">
 		<div class="col-12">
 			<p class="h5">
-				{{ _("Dear") }} {{ first_name }}{% if last_name %} {{ last_name }}{% endif %},
+				{{ _("Dear") }} {{ approver_first_name }}{% if approver_last_name %} {{
+				approver_last_name }}{% endif %},
 			</p>
-			<p class="mt-3">
-				{{_("You have been assigned approver for following by ")}} {{project_owner}}
-			</p>
+			<p class="mt-3">{{_("Design Basis for following project is ready for review.")}}</p>
 			<div class="border p-3 mb-4 bg-light">
 				<p class="mb-1"><strong>Project OC No. :</strong> {{ project_oc_number }}</p>
 				<p class="mb-1"><strong>Project Name:</strong> {{ project_name }}</p>
 			</div>
-			<p>
-				You will be intimated with separate email once design parameters are ready for
-				review and approval.
-			</p>
+			<p>{{ _("Please review and let me know your comments, if any") }}</p>
+			<p>{{ _("If there are no changes then please click approve button.") }}</p>
 			<p class="mt-4">{{ _("Regards") }},<br />{{ sent_by }}</p>
 		</div>
 	</div>
