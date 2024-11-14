@@ -24,15 +24,16 @@
    "label": "Is Released"
   },
   {
+   "default": "Review Unsubmitted",
    "fieldname": "status",
    "fieldtype": "Select",
    "label": "Status",
-   "options": "Success\nApproved"
+   "options": "Review Unsubmitted\nReview Submitted\nReview Resubmitted\nApproved\nReleased"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-06 04:00:46.475581",
+ "modified": "2024-11-14 14:31:50.312705",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Design Basis Revision History",
