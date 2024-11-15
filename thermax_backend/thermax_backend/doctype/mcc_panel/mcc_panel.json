@@ -25,6 +25,8 @@
   "is_red_cb_in_service",
   "is_white_healthy_trip_circuit_selected",
   "current_transformer_coating",
+  "control_transformer_coating",
+  "control_transformer_configuration",
   "current_transformer_number",
   "alarm_annunciator",
   "mi_analog",
@@ -551,11 +553,23 @@
    "fieldname": "heater_temperature",
    "fieldtype": "Data",
    "label": "Heater Temperature"
+  },
+  {
+   "fieldname": "control_transformer_coating",
+   "fieldtype": "Link",
+   "label": "Control Transformer Coating",
+   "options": "Current Transformer Coating"
+  },
+  {
+   "fieldname": "control_transformer_configuration",
+   "fieldtype": "Link",
+   "label": "Control Transformer Configuration",
+   "options": "Control Transformer Configuration"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-06 07:34:37.507555",
+ "modified": "2024-11-15 19:04:31.685027",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "MCC Panel",
