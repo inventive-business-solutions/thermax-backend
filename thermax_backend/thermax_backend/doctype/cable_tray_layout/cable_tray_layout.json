@@ -37,14 +37,17 @@
   "power_cable_tray_section",
   "is_pct_perforated_type_selected",
   "pct_perforated_type_width",
+  "pct_perforated_type_max_width",
   "pct_perforated_type_height",
   "pct_perforated_type_thickness",
   "is_pct_ladder_type_selected",
   "pct_ladder_type_width",
+  "pct_ladder_type_max_width",
   "pct_ladder_type_height",
   "pct_ladder_type_thickness",
   "is_pct_mesh_type_selected",
   "pct_mesh_type_width",
+  "pct_mesh_type_max_length",
   "pct_mesh_type_height",
   "pct_mesh_type_thickness",
   "is_pct_conduit_selected",
@@ -53,14 +56,17 @@
   "control_cable_tray_section",
   "is_cct_perforated_type_selected",
   "cct_perforated_type_width",
+  "cct_perforated_type_max_width",
   "cct_perforated_type_height",
   "cct_perforated_type_thickness",
   "is_cct_ladder_type_selected",
   "cct_ladder_type_width",
+  "cct_ladder_type_max_width",
   "cct_ladder_type_height",
   "cct_ladder_type_thickness",
   "is_cct_mesh_type_selected",
   "cct_mesh_type_width",
+  "cct_mesh_type_max_width",
   "cct_mesh_type_height",
   "cct_mesh_type_thickness",
   "is_cct_conduit_selected",
@@ -69,14 +75,17 @@
   "single_cable_tray_section",
   "is_sct_perforated_type_selected",
   "sct_perforated_type_width",
+  "sct_perforated_type_max_width",
   "sct_perforated_type_height",
   "sct_perforated_type_thickness",
   "is_sct_ladder_type_selected",
   "sct_ladder_type_width",
+  "sct_ladder_type_max_width",
   "sct_ladder_type_height",
   "sct_ladder_type_thickness",
   "is_sct_mesh_type_selected",
   "sct_mesh_type_width",
+  "sct_mesh_type_max_width",
   "sct_mesh_type_height",
   "sct_mesh_type_thickness",
   "is_sct_conduit_selected",
@@ -528,11 +537,66 @@
    "fieldtype": "Link",
    "label": "SCT Conduit Size",
    "options": "Conduit Size"
+  },
+  {
+   "fetch_if_empty": 1,
+   "fieldname": "pct_perforated_type_max_width",
+   "fieldtype": "Link",
+   "label": "PCT Perforated Type Max. Width",
+   "options": "Cable Tray Width"
+  },
+  {
+   "fieldname": "pct_ladder_type_max_width",
+   "fieldtype": "Link",
+   "label": "PCT Ladder Type Max. Width",
+   "options": "Cable Tray Width"
+  },
+  {
+   "fieldname": "pct_mesh_type_max_length",
+   "fieldtype": "Link",
+   "label": "PCT Mesh Type Max. Width",
+   "options": "Cable Tray Width"
+  },
+  {
+   "fieldname": "cct_perforated_type_max_width",
+   "fieldtype": "Link",
+   "label": "CCT Perforated Type Max. Width",
+   "options": "Cable Tray Width"
+  },
+  {
+   "fieldname": "cct_ladder_type_max_width",
+   "fieldtype": "Link",
+   "label": "CCT Ladder Type Max. Width",
+   "options": "Cable Tray Width"
+  },
+  {
+   "fieldname": "cct_mesh_type_max_width",
+   "fieldtype": "Link",
+   "label": "CCT Mesh Type Max. Width",
+   "options": "Cable Tray Width"
+  },
+  {
+   "fieldname": "sct_perforated_type_max_width",
+   "fieldtype": "Link",
+   "label": "SCT Perforated Type Max. Width",
+   "options": "Cable Tray Width"
+  },
+  {
+   "fieldname": "sct_ladder_type_max_width",
+   "fieldtype": "Link",
+   "label": "SCT Ladder Type Max. Width",
+   "options": "Cable Tray Width"
+  },
+  {
+   "fieldname": "sct_mesh_type_max_width",
+   "fieldtype": "Link",
+   "label": "SCT Mesh Type Max. Width",
+   "options": "Cable Tray Width"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-06 07:33:12.515657",
+ "modified": "2024-11-15 12:01:16.569313",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Cable Tray Layout",
