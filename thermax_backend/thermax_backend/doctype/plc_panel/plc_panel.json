@@ -119,9 +119,8 @@
   },
   {
    "fieldname": "ups_battery_type",
-   "fieldtype": "Link",
-   "label": "UPS Battery Type",
-   "options": "PLC UPS Battery Type"
+   "fieldtype": "Data",
+   "label": "UPS Battery Type"
   },
   {
    "fieldname": "ups_battery_backup_time",
@@ -508,7 +507,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-09 04:49:56.059668",
+ "modified": "2024-11-14 23:50:07.431316",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "PLC Panel",
