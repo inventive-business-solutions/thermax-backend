@@ -15,7 +15,15 @@
   "panel_enclosure",
   "variable_frequency_speed_drive_vfd_vsd",
   "soft_starter",
-  "plc"
+  "plc",
+  "column_break_satf",
+  "preferred_motor",
+  "preferred_cable",
+  "preferred_lv_switchgear",
+  "preferred_panel_enclosure",
+  "preferred_vfdvsd",
+  "preferred_soft_starter",
+  "preferred_plc"
  ],
  "fields": [
   {
@@ -35,50 +43,89 @@
   },
   {
    "fieldname": "motor",
-   "fieldtype": "Link",
+   "fieldtype": "Text",
    "label": "Motor",
    "options": "Motors Make"
   },
   {
    "fieldname": "cable",
-   "fieldtype": "Link",
+   "fieldtype": "Text",
    "label": "Cable",
    "options": "Cables Make"
   },
   {
    "fieldname": "lv_switchgear",
-   "fieldtype": "Link",
+   "fieldtype": "Text",
    "label": "LV Switchgear",
    "options": "LV Switchgear Make"
   },
   {
    "fieldname": "panel_enclosure",
-   "fieldtype": "Link",
+   "fieldtype": "Text",
    "label": "Panel Enclosure",
    "options": "Panel Enclosure Make"
   },
   {
    "fieldname": "variable_frequency_speed_drive_vfd_vsd",
-   "fieldtype": "Link",
+   "fieldtype": "Text",
    "label": "Variable Frequency Speed Drive VFD VSD",
    "options": "VFD VSD Make"
   },
   {
    "fieldname": "soft_starter",
-   "fieldtype": "Link",
+   "fieldtype": "Text",
    "label": "Soft Starter",
    "options": "Soft Starter Make"
   },
   {
    "fieldname": "plc",
-   "fieldtype": "Link",
+   "fieldtype": "Text",
    "label": "PLC",
    "options": "PLC Make"
+  },
+  {
+   "fieldname": "preferred_motor",
+   "fieldtype": "Data",
+   "label": "Preferred Motor"
+  },
+  {
+   "fieldname": "preferred_cable",
+   "fieldtype": "Data",
+   "label": "Preferred Cable"
+  },
+  {
+   "fieldname": "preferred_lv_switchgear",
+   "fieldtype": "Data",
+   "label": "Preferred LV Switchgear"
+  },
+  {
+   "fieldname": "column_break_satf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "preferred_panel_enclosure",
+   "fieldtype": "Data",
+   "label": "Preferred Panel Enclosure"
+  },
+  {
+   "fieldname": "preferred_vfdvsd",
+   "fieldtype": "Data",
+   "label": "Preferred VFD/VSD"
+  },
+  {
+   "fieldname": "preferred_soft_starter",
+   "fieldtype": "Data",
+   "label": "Preferred Soft Starter"
+  },
+  {
+   "fieldname": "preferred_plc",
+   "fieldtype": "Data",
+   "label": "Preferred PLC"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-12 17:38:59.141359",
+ "modified": "2024-11-16 14:27:02.810276",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Design Basis Make of Component",
