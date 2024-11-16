@@ -1,12 +1,13 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:package_name",
+ "autoname": "hash",
  "creation": "2024-09-26 23:22:08.767337",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "package_name"
+  "package_name",
+  "division_name"
  ],
  "fields": [
   {
@@ -14,15 +15,23 @@
    "fieldtype": "Data",
    "label": "Package Name",
    "unique": 1
+  },
+  {
+   "fieldname": "division_name",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Division Name",
+   "options": "Division",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-13 14:41:46.387507",
+ "modified": "2024-11-16 16:15:46.866905",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Main Package",
- "naming_rule": "By fieldname",
+ "naming_rule": "Random",
  "owner": "Administrator",
  "permissions": [
   {
