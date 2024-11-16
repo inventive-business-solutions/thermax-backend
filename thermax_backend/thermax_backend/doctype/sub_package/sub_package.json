@@ -7,7 +7,9 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "main_package_name",
+  "linking_keys_section",
+  "main_package_id",
+  "section_break_gars",
   "package_name",
   "classification_area"
  ],
@@ -24,15 +26,25 @@
    "options": "Area of Classification"
   },
   {
-   "fieldname": "main_package_name",
+   "fieldname": "main_package_id",
    "fieldtype": "Link",
-   "label": "Main Package Name",
+   "label": "Main Package ID",
    "options": "Main Package"
+  },
+  {
+   "fieldname": "section_break_gars",
+   "fieldtype": "Section Break",
+   "label": "Sub Package Data"
+  },
+  {
+   "fieldname": "linking_keys_section",
+   "fieldtype": "Section Break",
+   "label": "Linking Keys"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-09-29 10:43:45.457234",
+ "modified": "2024-11-16 15:13:05.191005",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Sub Package",
