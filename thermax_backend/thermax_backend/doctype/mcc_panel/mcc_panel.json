@@ -89,7 +89,14 @@
   "heater_evaporation",
   "heater_output",
   "heater_connected_load",
-  "heater_temperature"
+  "heater_temperature",
+  "name_plate_details_for_spg_section",
+  "spg_name_plate_unit_name",
+  "spg_name_plate_capacity",
+  "spg_name_plate_manufacturing_year",
+  "spg_name_plate_weight",
+  "spg_name_plate_oc_number",
+  "spg_name_plate_part_code"
  ],
  "fields": [
   {
@@ -565,11 +572,46 @@
    "fieldtype": "Link",
    "label": "Control Transformer Configuration",
    "options": "Control Transformer Configuration"
+  },
+  {
+   "fieldname": "name_plate_details_for_spg_section",
+   "fieldtype": "Section Break",
+   "label": "Name Plate Details for SPG"
+  },
+  {
+   "fieldname": "spg_name_plate_unit_name",
+   "fieldtype": "Data",
+   "label": "SPG Name Plate Unit Name"
+  },
+  {
+   "fieldname": "spg_name_plate_capacity",
+   "fieldtype": "Data",
+   "label": "SPG Name Plate Capacity"
+  },
+  {
+   "fieldname": "spg_name_plate_manufacturing_year",
+   "fieldtype": "Data",
+   "label": "SPG Name Plate Manufacturing Year"
+  },
+  {
+   "fieldname": "spg_name_plate_weight",
+   "fieldtype": "Data",
+   "label": "SPG Name Plate Weight"
+  },
+  {
+   "fieldname": "spg_name_plate_oc_number",
+   "fieldtype": "Data",
+   "label": "SPG Name Plate OC Number"
+  },
+  {
+   "fieldname": "spg_name_plate_part_code",
+   "fieldtype": "Data",
+   "label": "SPG Name Plate Part Code"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-15 19:04:31.685027",
+ "modified": "2024-11-17 22:01:13.654079",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "MCC Panel",
