@@ -36,19 +36,20 @@ def trigger_email_verification_mail(email, division_name, verification_link, sen
     return "Email verification link has been sent to your email."
 
 @frappe.whitelist()
-def trigger_send_credentials(email, password, division_name, is_superuser, sent_by, subject):
-    user = frappe.get_doc("User", email)
+def trigger_send_credentials(recipient_email, cc_email, password, division_name, is_superuser, sent_by, subject):
+    user = frappe.get_doc("User", recipient_email)
     template = frappe.render_template('/templates/send_credentials_template.html', {
         "first_name": user.first_name,
         "last_name": user.last_name,
-        "email": email,
+        "email": recipient_email,
         "password": password,
         "division_name": division_name,
         "is_superuser": bool(is_superuser),
         "sent_by": sent_by
     })
     frappe.sendmail(
-        recipients=email,
+        recipients=recipient_email,
+        cc=cc_email,
         subject=subject,
         message=template,
         now=True,
@@ -61,8 +62,8 @@ def get_user_by_role():
     return user
 
 @frappe.whitelist()
-def trigger_delete_user(email, subject, division_name, is_superuser, sent_by):
-    user = frappe.get_doc("User", email)
+def trigger_delete_user(recipient_email, cc_email, subject, division_name, is_superuser, sent_by):
+    user = frappe.get_doc("User", recipient_email)
     template = frappe.render_template('/templates/delete_superuser_template.html', {
         "first_name": user.first_name,
         "last_name": user.last_name,
@@ -71,7 +72,8 @@ def trigger_delete_user(email, subject, division_name, is_superuser, sent_by):
         "sent_by": sent_by
     })
     frappe.sendmail(
-        recipients=email,
+        recipients=recipient_email,
+        cc=cc_email,
         subject=subject,
         message=template,
         now=True,
