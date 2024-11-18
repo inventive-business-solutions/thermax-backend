@@ -5,7 +5,9 @@
 				{{ _("Dear") }} {{ first_name }}{% if last_name %} {{ last_name }}{% endif %},
 			</p>
 			<p class="mt-3">
-				{{_("You have been assigned approver for following by ")}} {{project_owner}}
+				{{_("You have been assigned approver for following project by ")}} {{
+				project_creator_first_name }}{% if project_creator_last_name %} {{
+				project_creator_last_name }}{% endif %}
 			</p>
 			<div class="border p-3 mb-4 bg-light">
 				<p class="mb-1"><strong>Project OC No. :</strong> {{ project_oc_number }}</p>
