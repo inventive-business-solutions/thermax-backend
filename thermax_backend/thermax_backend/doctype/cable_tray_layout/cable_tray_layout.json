@@ -18,7 +18,12 @@
   "cable_installation",
   "motor_voltage_drop_during_starting",
   "voltage_grade",
-  "derating_factor",
+  "touching_factor_air",
+  "touching_factor_burid",
+  "ambient_temp_factor_air",
+  "ambient_temp_factor_burid",
+  "derating_factor_air",
+  "derating_factor_burid",
   "gland_details_section",
   "gland_make",
   "moc",
@@ -162,11 +167,6 @@
    "fieldtype": "Link",
    "label": "Voltage Grade",
    "options": "Layout Voltage Grade"
-  },
-  {
-   "fieldname": "derating_factor",
-   "fieldtype": "Data",
-   "label": "Derating Factor"
   },
   {
    "fieldname": "gland_details_section",
@@ -592,11 +592,41 @@
    "fieldtype": "Link",
    "label": "SCT Mesh Type Max. Width",
    "options": "Cable Tray Width"
+  },
+  {
+   "fieldname": "derating_factor_air",
+   "fieldtype": "Int",
+   "label": "Derating Factor Air"
+  },
+  {
+   "fieldname": "derating_factor_burid",
+   "fieldtype": "Int",
+   "label": "Derating Factor Burid"
+  },
+  {
+   "fieldname": "touching_factor_air",
+   "fieldtype": "Int",
+   "label": "Touching Factor Air"
+  },
+  {
+   "fieldname": "touching_factor_burid",
+   "fieldtype": "Int",
+   "label": "Touching Factor Burid"
+  },
+  {
+   "fieldname": "ambient_temp_factor_air",
+   "fieldtype": "Int",
+   "label": "Ambient Temp Factor Air"
+  },
+  {
+   "fieldname": "ambient_temp_factor_burid",
+   "fieldtype": "Int",
+   "label": "Ambient Temp Factor Burid"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-15 12:01:16.569313",
+ "modified": "2024-11-19 16:23:59.785681",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Cable Tray Layout",
