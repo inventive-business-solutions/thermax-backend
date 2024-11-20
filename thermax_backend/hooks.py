@@ -184,7 +184,8 @@ override_whitelisted_methods = {
     "project.trigger_approver_notification_mail": "thermax_backend.thermax_backend.doctype.project.api.trigger_approver_notification_mail",
     "db_revision.trigger_review_submission_mail": "thermax_backend.thermax_backend.doctype.design_basis_revision_history.api.trigger_review_submission_mail",  
     "db_revision.trigger_review_resubmission_mail": "thermax_backend.thermax_backend.doctype.design_basis_revision_history.api.trigger_review_resubmission_mail", 
-    "db_revision.trigger_review_approval_mail": "thermax_backend.thermax_backend.doctype.design_basis_revision_history.api.trigger_review_approval_mail",    
+    "db_revision.trigger_review_approval_mail": "thermax_backend.thermax_backend.doctype.design_basis_revision_history.api.trigger_review_approval_mail",  
+    "db_revision.get_design_basis_excel": "thermax_backend.thermax_backend.doctype.design_basis_revision_history.api.get_design_basis_excel",  
 }
 #
 # each overriding function accepts a `data` argument;
