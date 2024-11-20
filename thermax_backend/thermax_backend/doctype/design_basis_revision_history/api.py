@@ -109,6 +109,7 @@ def get_design_basis_excel():
     template_path = frappe.frappe.get_app_path(
         "thermax_backend", "templates", "design_basis_template.xlsx"
     )
+
     template_workbook = load_workbook(template_path)
 
     cover_sheet = template_workbook["COVER"]
@@ -917,33 +918,12 @@ def get_design_basis_excel():
     template_workbook.remove(pcc_sheet)
     template_workbook.remove(mcc_cum_plc_sheet)
 
-    # output = io.BytesIO()
-    # template_workbook.save(output)
-    # output.seek(0)
-
-    excel_save_path = frappe.frappe.get_app_path(
-        "thermax_backend", "templates", "generated_design_basis.xlsx"
-    )
-
-    template_workbook.save(excel_save_path)
+    output = io.BytesIO()
+    template_workbook.save(output)
+    output.seek(0)
 
     frappe.local.response.filename = "generated_design_basis.xlsx"
-    frappe.local.response.filecontent = open(excel_save_path, "rb").read()
+    frappe.local.response.filecontent = output.getvalue()
     frappe.local.response.type = "binary"
 
-    # frappe.local.response.headers = {
-    #     "content-disposition": "attachment; filename=generated_design.xlsx",
-    #     "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-    # }
-
     return _("File generated successfully.")
-
-    # # Set Frappe response for binary file
-    # frappe.local.response.filename = "generated_design_basis.xlsx"
-    # frappe.local.response.filecontent = output.getvalue()
-    # # Use `.read()` to ensure the full file content is read
-    # frappe.local.response.type = "binary"
-
-    # return _("File generated successfully.")
-
-    # return metadata
