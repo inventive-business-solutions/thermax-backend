@@ -1,0 +1,171 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2024-11-21 15:43:42.768405",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "linking_keys_section",
+  "division_name",
+  "combination_data_section",
+  "lpbs_type",
+  "start_push_button",
+  "emergency_stop_push_button",
+  "start_indication_button",
+  "stop_indication_button",
+  "local_remote_selector_switch",
+  "speed_push_button",
+  "analog_ammeter",
+  "analog_rpm_meter",
+  "diecast_moc",
+  "frp_moc",
+  "crca_moc",
+  "ss304_moc",
+  "lcs",
+  "lcs_inc_dec",
+  "lcs_rpm",
+  "description_1",
+  "description_2",
+  "description_3"
+ ],
+ "fields": [
+  {
+   "fieldname": "linking_keys_section",
+   "fieldtype": "Section Break",
+   "label": "Linking Keys"
+  },
+  {
+   "fieldname": "division_name",
+   "fieldtype": "Link",
+   "label": "Division Name",
+   "options": "Division"
+  },
+  {
+   "fieldname": "combination_data_section",
+   "fieldtype": "Section Break",
+   "label": "Combination Data"
+  },
+  {
+   "fieldname": "lpbs_type",
+   "fieldtype": "Data",
+   "label": "LPBS Type"
+  },
+  {
+   "fieldname": "start_push_button",
+   "fieldtype": "Data",
+   "label": "Start Push Button"
+  },
+  {
+   "fieldname": "emergency_stop_push_button",
+   "fieldtype": "Data",
+   "label": "Emergency Stop Push Button"
+  },
+  {
+   "fieldname": "start_indication_button",
+   "fieldtype": "Data",
+   "label": "Start Indication Button"
+  },
+  {
+   "fieldname": "stop_indication_button",
+   "fieldtype": "Data",
+   "label": "Stop Indication Button"
+  },
+  {
+   "fieldname": "local_remote_selector_switch",
+   "fieldtype": "Data",
+   "label": "Local Remote Selector Switch"
+  },
+  {
+   "fieldname": "speed_push_button",
+   "fieldtype": "Data",
+   "label": "Speed Push Button"
+  },
+  {
+   "fieldname": "analog_ammeter",
+   "fieldtype": "Data",
+   "label": "Analog Ammeter"
+  },
+  {
+   "fieldname": "analog_rpm_meter",
+   "fieldtype": "Data",
+   "label": "Analog RPM Meter"
+  },
+  {
+   "fieldname": "diecast_moc",
+   "fieldtype": "Data",
+   "label": "Diecast MOC"
+  },
+  {
+   "fieldname": "frp_moc",
+   "fieldtype": "Data",
+   "label": "FRP MOC"
+  },
+  {
+   "fieldname": "crca_moc",
+   "fieldtype": "Data",
+   "label": "CRCA MOC"
+  },
+  {
+   "fieldname": "ss304_moc",
+   "fieldtype": "Data",
+   "label": "SS304 MOC"
+  },
+  {
+   "fieldname": "lcs",
+   "fieldtype": "Data",
+   "label": "LCS"
+  },
+  {
+   "fieldname": "lcs_inc_dec",
+   "fieldtype": "Data",
+   "label": "LCS INC DEC"
+  },
+  {
+   "fieldname": "lcs_rpm",
+   "fieldtype": "Data",
+   "label": "LCS RPM"
+  },
+  {
+   "fieldname": "description_1",
+   "fieldtype": "Data",
+   "label": "Description 1"
+  },
+  {
+   "fieldname": "description_2",
+   "fieldtype": "Data",
+   "label": "Description 2"
+  },
+  {
+   "fieldname": "description_3",
+   "fieldtype": "Data",
+   "label": "Description 3"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-11-21 16:02:30.545117",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "LPBS Combination",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
