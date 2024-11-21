@@ -1,0 +1,159 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2024-11-21 09:56:12.226995",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "metadata_section",
+  "kw",
+  "hp",
+  "motor_current_amp_il",
+  "motor_current_amp_ip",
+  "size",
+  "current_amps",
+  "approx_cable_od",
+  "type",
+  "et",
+  "metric",
+  "lug_size",
+  "lugs_motor_side",
+  "lugs_panel_side",
+  "material",
+  "no_of_run",
+  "no_of_runs_core",
+  "starter",
+  "voltage",
+  "times"
+ ],
+ "fields": [
+  {
+   "fieldname": "metadata_section",
+   "fieldtype": "Section Break",
+   "label": "Metadata"
+  },
+  {
+   "fieldname": "kw",
+   "fieldtype": "Float",
+   "label": "KW",
+   "precision": "2"
+  },
+  {
+   "fieldname": "hp",
+   "fieldtype": "Float",
+   "label": "HP"
+  },
+  {
+   "fieldname": "motor_current_amp_il",
+   "fieldtype": "Float",
+   "label": "Motor Current Amp IL"
+  },
+  {
+   "fieldname": "motor_current_amp_ip",
+   "fieldtype": "Float",
+   "label": "Motor Current Amp IP"
+  },
+  {
+   "fieldname": "size",
+   "fieldtype": "Data",
+   "label": "Size"
+  },
+  {
+   "fieldname": "current_amps",
+   "fieldtype": "Int",
+   "label": "Current Amps"
+  },
+  {
+   "fieldname": "approx_cable_od",
+   "fieldtype": "Data",
+   "label": "Approx Cable OD"
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Data",
+   "label": "Type"
+  },
+  {
+   "fieldname": "et",
+   "fieldtype": "Data",
+   "label": "ET"
+  },
+  {
+   "fieldname": "metric",
+   "fieldtype": "Data",
+   "label": "Metric"
+  },
+  {
+   "fieldname": "lug_size",
+   "fieldtype": "Float",
+   "label": "Lug Size"
+  },
+  {
+   "fieldname": "lugs_motor_side",
+   "fieldtype": "Data",
+   "label": "Lugs Motor Side"
+  },
+  {
+   "fieldname": "lugs_panel_side",
+   "fieldtype": "Data",
+   "label": "Lugs Panel Side"
+  },
+  {
+   "fieldname": "material",
+   "fieldtype": "Data",
+   "label": "Material"
+  },
+  {
+   "fieldname": "no_of_run",
+   "fieldtype": "Int",
+   "label": "No of Run"
+  },
+  {
+   "fieldname": "no_of_runs_core",
+   "fieldtype": "Data",
+   "label": "No of Runs Core"
+  },
+  {
+   "fieldname": "starter",
+   "fieldtype": "Data",
+   "label": "Starter"
+  },
+  {
+   "fieldname": "voltage",
+   "fieldtype": "Int",
+   "label": "Voltage"
+  },
+  {
+   "fieldname": "times",
+   "fieldtype": "Int",
+   "label": "Times"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-11-21 10:25:35.573598",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "Cable Size Heating",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
