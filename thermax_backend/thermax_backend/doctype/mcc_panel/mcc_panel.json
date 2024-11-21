@@ -24,6 +24,7 @@
   "is_blue_cb_spring_charge_selected",
   "is_red_cb_in_service",
   "is_white_healthy_trip_circuit_selected",
+  "led_type_other_input",
   "current_transformer_coating",
   "control_transformer_coating",
   "control_transformer_configuration",
@@ -96,7 +97,9 @@
   "spg_name_plate_manufacturing_year",
   "spg_name_plate_weight",
   "spg_name_plate_oc_number",
-  "spg_name_plate_part_code"
+  "spg_name_plate_part_code",
+  "special_notes_section",
+  "special_note"
  ],
  "fields": [
   {
@@ -607,11 +610,26 @@
    "fieldname": "spg_name_plate_part_code",
    "fieldtype": "Data",
    "label": "SPG Name Plate Part Code"
+  },
+  {
+   "fieldname": "led_type_other_input",
+   "fieldtype": "Data",
+   "label": "LED type Other Input"
+  },
+  {
+   "fieldname": "special_notes_section",
+   "fieldtype": "Section Break",
+   "label": "Special Notes"
+  },
+  {
+   "fieldname": "special_note",
+   "fieldtype": "Data",
+   "label": "Special Note"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-17 22:01:13.654079",
+ "modified": "2024-11-21 13:04:06.936156",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "MCC Panel",

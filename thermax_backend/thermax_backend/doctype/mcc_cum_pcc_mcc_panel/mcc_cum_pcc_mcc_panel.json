@@ -25,6 +25,7 @@
   "is_blue_cb_spring_charge_selected",
   "is_red_cb_in_service",
   "is_white_healthy_trip_circuit_selected",
+  "led_type_other_input",
   "current_transformer_coating",
   "current_transformer_number",
   "alarm_annunciator",
@@ -88,7 +89,9 @@
   "heater_evaporation",
   "heater_output",
   "heater_connected_load",
-  "heater_temperature"
+  "heater_temperature",
+  "special_notes_section",
+  "special_note"
  ],
  "fields": [
   {
@@ -557,11 +560,26 @@
    "fieldname": "heater_temperature",
    "fieldtype": "Data",
    "label": "Heater Temperature"
+  },
+  {
+   "fieldname": "special_notes_section",
+   "fieldtype": "Section Break",
+   "label": "Special Notes"
+  },
+  {
+   "fieldname": "special_note",
+   "fieldtype": "Data",
+   "label": "Special Note"
+  },
+  {
+   "fieldname": "led_type_other_input",
+   "fieldtype": "Data",
+   "label": "LED type Other Input"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-06 07:34:05.223166",
+ "modified": "2024-11-21 13:06:04.830077",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "MCC Cum PCC MCC Panel",

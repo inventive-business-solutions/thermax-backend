@@ -25,6 +25,7 @@
   "is_red_cb_in_service",
   "is_white_healthy_trip_circuit_selected",
   "alarm_annunciator",
+  "led_type_other_input",
   "metering_instruments_for_incomer_section",
   "mi_analog",
   "mi_digital",
@@ -93,7 +94,9 @@
   "spg_name_plate_manufacturing_year",
   "spg_name_plate_weight",
   "spg_name_plate_oc_number",
-  "spg_name_plate_part_code"
+  "spg_name_plate_part_code",
+  "special_notes_section",
+  "special_note"
  ],
  "fields": [
   {
@@ -584,11 +587,26 @@
    "fieldname": "spg_name_plate_part_code",
    "fieldtype": "Data",
    "label": "SPG Name Plate Part Code"
+  },
+  {
+   "fieldname": "led_type_other_input",
+   "fieldtype": "Data",
+   "label": "LED type Other Input"
+  },
+  {
+   "fieldname": "special_notes_section",
+   "fieldtype": "Section Break",
+   "label": "Special Notes"
+  },
+  {
+   "fieldname": "special_note",
+   "fieldtype": "Data",
+   "label": "Special Note"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-17 22:03:36.810060",
+ "modified": "2024-11-21 13:03:54.233221",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "PCC Panel",
