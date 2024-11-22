@@ -43,17 +43,20 @@
   {
    "fieldname": "hp",
    "fieldtype": "Float",
-   "label": "HP"
+   "label": "HP",
+   "precision": "2"
   },
   {
    "fieldname": "motor_current_amp_il",
    "fieldtype": "Float",
-   "label": "Motor Current Amp IL"
+   "label": "Motor Current Amp IL",
+   "precision": "2"
   },
   {
    "fieldname": "motor_current_amp_ip",
    "fieldtype": "Float",
-   "label": "Motor Current Amp IP"
+   "label": "Motor Current Amp IP",
+   "precision": "2"
   },
   {
    "fieldname": "size",
@@ -88,7 +91,8 @@
   {
    "fieldname": "lug_size",
    "fieldtype": "Float",
-   "label": "Lug Size"
+   "label": "Lug Size",
+   "precision": "2"
   },
   {
    "fieldname": "lugs_motor_side",
@@ -133,7 +137,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-21 10:25:35.573598",
+ "modified": "2024-11-22 10:17:40.644165",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Cable Size Heating",
