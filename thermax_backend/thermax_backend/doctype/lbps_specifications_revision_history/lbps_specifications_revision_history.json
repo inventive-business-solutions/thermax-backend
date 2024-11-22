@@ -2,7 +2,7 @@
  "actions": [],
  "allow_rename": 1,
  "autoname": "hash",
- "creation": "2024-11-01 18:04:43.751716",
+ "creation": "2024-11-22 15:32:59.440750",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
@@ -18,11 +18,11 @@
    "options": "Project"
   },
   {
-   "default": "Review Unsubmitted",
+   "default": "Not Released",
    "fieldname": "status",
    "fieldtype": "Select",
    "label": "Status",
-   "options": "Review Unsubmitted\nReview Submitted\nReview Resubmitted\nApproved\nReleased"
+   "options": "Not Released\nReleased"
   },
   {
    "default": "Issued for Review",
@@ -33,10 +33,10 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-22 15:57:06.986069",
+ "modified": "2024-11-22 15:59:02.298433",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
- "name": "Design Basis Revision History",
+ "name": "LBPS Specifications Revision History",
  "naming_rule": "Random",
  "owner": "Administrator",
  "permissions": [
