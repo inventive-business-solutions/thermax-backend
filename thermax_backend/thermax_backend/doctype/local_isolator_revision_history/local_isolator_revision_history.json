@@ -8,7 +8,8 @@
  "field_order": [
   "project_id",
   "status",
-  "description"
+  "description",
+  "local_isolator_list"
  ],
  "fields": [
   {
@@ -29,11 +30,17 @@
    "fieldname": "description",
    "fieldtype": "Text",
    "label": "Description"
+  },
+  {
+   "fieldname": "local_isolator_list",
+   "fieldtype": "Table",
+   "label": "Local Isolator List",
+   "options": "Local Isolator Specification and List"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-22 15:59:22.853870",
+ "modified": "2024-11-25 20:15:10.268847",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Local Isolator Revision History",

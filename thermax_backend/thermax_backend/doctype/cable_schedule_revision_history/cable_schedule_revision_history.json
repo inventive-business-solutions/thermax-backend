@@ -8,7 +8,8 @@
  "field_order": [
   "project_id",
   "status",
-  "description"
+  "description",
+  "cable_schedule_data"
  ],
  "fields": [
   {
@@ -29,11 +30,17 @@
    "fieldname": "description",
    "fieldtype": "Text",
    "label": "Description"
+  },
+  {
+   "fieldname": "cable_schedule_data",
+   "fieldtype": "Table",
+   "label": "Cable Schedule Data",
+   "options": "Cable Schedule"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-22 15:57:48.294541",
+ "modified": "2024-11-25 20:12:27.225842",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Cable Schedule Revision History",

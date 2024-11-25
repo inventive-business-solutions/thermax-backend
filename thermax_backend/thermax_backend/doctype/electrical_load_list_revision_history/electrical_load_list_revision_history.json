@@ -8,7 +8,8 @@
  "field_order": [
   "project_id",
   "status",
-  "description"
+  "description",
+  "electrical_load_list"
  ],
  "fields": [
   {
@@ -29,11 +30,17 @@
    "fieldname": "description",
    "fieldtype": "Text",
    "label": "Description"
+  },
+  {
+   "fieldname": "electrical_load_list",
+   "fieldtype": "Table",
+   "label": "Electrical Load List",
+   "options": "Electrical Load List"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-22 15:57:28.833973",
+ "modified": "2024-11-25 19:32:00.071158",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Electrical Load List Revision History",
