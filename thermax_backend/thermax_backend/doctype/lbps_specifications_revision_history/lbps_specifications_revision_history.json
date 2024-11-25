@@ -8,7 +8,8 @@
  "field_order": [
   "project_id",
   "status",
-  "description"
+  "description",
+  "lbps_specifications_list"
  ],
  "fields": [
   {
@@ -29,11 +30,17 @@
    "fieldname": "description",
    "fieldtype": "Text",
    "label": "Description"
+  },
+  {
+   "fieldname": "lbps_specifications_list",
+   "fieldtype": "Table",
+   "label": "LBPS Specifications List",
+   "options": "LBPS Specification and List"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-22 15:59:02.298433",
+ "modified": "2024-11-25 20:14:56.199135",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "LBPS Specifications Revision History",
