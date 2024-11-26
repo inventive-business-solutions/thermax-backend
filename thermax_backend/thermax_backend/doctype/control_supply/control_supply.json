@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:control_supply",
  "creation": "2024-09-26 13:17:28.012239",
@@ -18,7 +19,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-06 08:31:01.263326",
+ "modified": "2024-11-22 14:58:55.564332",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Control Supply",

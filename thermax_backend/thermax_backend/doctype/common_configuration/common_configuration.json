@@ -32,6 +32,7 @@
   "cable_insulation_pvc",
   "ferrule",
   "common_requirement",
+  "spare_terminal",
   "push_button_start",
   "push_button_stop",
   "push_button_ess",
@@ -560,11 +561,17 @@
   {
    "fieldname": "section_break_tfff",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "spare_terminal",
+   "fieldtype": "Link",
+   "label": "Spare Terminal",
+   "options": "Spare Terminal"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-06 07:35:49.147283",
+ "modified": "2024-11-24 18:30:23.317993",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Common Configuration",

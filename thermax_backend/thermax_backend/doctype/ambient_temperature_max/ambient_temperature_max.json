@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:temperature",
  "creation": "2024-09-26 15:06:24.893556",
@@ -11,14 +12,14 @@
  "fields": [
   {
    "fieldname": "temperature",
-   "fieldtype": "Int",
+   "fieldtype": "Data",
    "label": "Temperature",
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-06 08:42:00.424725",
+ "modified": "2024-11-22 11:45:19.659252",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Ambient Temperature Max",

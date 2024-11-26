@@ -15,7 +15,7 @@
   "color_scheme",
   "motor_voltage_drop_during_running",
   "copper_conductor",
-  "aluminium_copper",
+  "aluminium_conductor",
   "cable_installation",
   "motor_voltage_drop_during_starting",
   "voltage_grade",
@@ -625,7 +625,7 @@
    "options": "Layout Conductor"
   },
   {
-   "fieldname": "aluminium_copper",
+   "fieldname": "aluminium_conductor",
    "fieldtype": "Link",
    "label": "Aluminium Conductor",
    "options": "Layout Conductor"
@@ -633,7 +633,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-20 19:45:48.686003",
+ "modified": "2024-11-24 19:53:46.223190",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Cable Tray Layout",
