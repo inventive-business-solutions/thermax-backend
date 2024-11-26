@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:frequency",
  "creation": "2024-09-26 15:00:10.338404",
@@ -11,14 +12,14 @@
  "fields": [
   {
    "fieldname": "frequency",
-   "fieldtype": "Int",
+   "fieldtype": "Data",
    "label": "Frequency",
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-06 08:28:21.580580",
+ "modified": "2024-11-22 11:42:08.750499",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Frequency",

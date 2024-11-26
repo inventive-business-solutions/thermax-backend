@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "hash",
  "creation": "2024-09-26 23:22:08.767337",
@@ -27,7 +28,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-16 16:15:46.866905",
+ "modified": "2024-11-24 11:36:02.474647",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Main Package",
