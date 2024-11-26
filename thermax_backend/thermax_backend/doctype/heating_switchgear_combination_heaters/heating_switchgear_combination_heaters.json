@@ -1,0 +1,174 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2024-11-22 11:47:59.524092",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "make",
+  "switchgear_type",
+  "starter_type",
+  "hp",
+  "kw",
+  "cv",
+  "voltage",
+  "fla",
+  "fuse",
+  "breaker",
+  "fuse_holder",
+  "contractor_main_delta",
+  "contractor_star",
+  "overload_relay",
+  "section",
+  "unit_1",
+  "unit_2",
+  "unit_3",
+  "unit_4",
+  "unit_5",
+  "unit_6",
+  "unit_7"
+ ],
+ "fields": [
+  {
+   "fieldname": "make",
+   "fieldtype": "Data",
+   "label": "Make"
+  },
+  {
+   "fieldname": "switchgear_type",
+   "fieldtype": "Data",
+   "label": "Switchgear Type"
+  },
+  {
+   "fieldname": "starter_type",
+   "fieldtype": "Data",
+   "label": "Starter Type"
+  },
+  {
+   "fieldname": "hp",
+   "fieldtype": "Float",
+   "label": "HP",
+   "precision": "2"
+  },
+  {
+   "fieldname": "kw",
+   "fieldtype": "Float",
+   "label": "KW",
+   "precision": "2"
+  },
+  {
+   "fieldname": "cv",
+   "fieldtype": "Float",
+   "label": "CV",
+   "precision": "2"
+  },
+  {
+   "fieldname": "voltage",
+   "fieldtype": "Int",
+   "label": "Voltage"
+  },
+  {
+   "fieldname": "fla",
+   "fieldtype": "Float",
+   "label": "FLA",
+   "precision": "2"
+  },
+  {
+   "fieldname": "fuse",
+   "fieldtype": "Data",
+   "label": "Fuse"
+  },
+  {
+   "fieldname": "breaker",
+   "fieldtype": "Data",
+   "label": "Breaker"
+  },
+  {
+   "fieldname": "fuse_holder",
+   "fieldtype": "Data",
+   "label": "Fuse Holder"
+  },
+  {
+   "fieldname": "contractor_main_delta",
+   "fieldtype": "Data",
+   "label": "Contractor Main Delta"
+  },
+  {
+   "fieldname": "contractor_star",
+   "fieldtype": "Data",
+   "label": "Contractor Star"
+  },
+  {
+   "fieldname": "overload_relay",
+   "fieldtype": "Data",
+   "label": "Overload Relay"
+  },
+  {
+   "fieldname": "section",
+   "fieldtype": "Data",
+   "label": "Section"
+  },
+  {
+   "fieldname": "unit_1",
+   "fieldtype": "Data",
+   "label": "Unit 1"
+  },
+  {
+   "fieldname": "unit_2",
+   "fieldtype": "Data",
+   "label": "Unit 2"
+  },
+  {
+   "fieldname": "unit_3",
+   "fieldtype": "Data",
+   "label": "Unit 3"
+  },
+  {
+   "fieldname": "unit_4",
+   "fieldtype": "Data",
+   "label": "Unit 4"
+  },
+  {
+   "fieldname": "unit_5",
+   "fieldtype": "Data",
+   "label": "Unit 5"
+  },
+  {
+   "fieldname": "unit_6",
+   "fieldtype": "Data",
+   "label": "Unit 6"
+  },
+  {
+   "fieldname": "unit_7",
+   "fieldtype": "Data",
+   "label": "Unit 7"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-11-22 13:29:20.867161",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "Heating Switchgear Combination Heaters",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

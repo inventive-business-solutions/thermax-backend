@@ -2,13 +2,14 @@
  "actions": [],
  "allow_rename": 1,
  "autoname": "hash",
- "creation": "2024-11-01 18:04:43.751716",
+ "creation": "2024-11-22 15:30:29.276728",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "project_id",
   "status",
-  "description"
+  "description",
+  "motor_canopy_list"
  ],
  "fields": [
   {
@@ -18,25 +19,31 @@
    "options": "Project"
   },
   {
-   "default": "Review Unsubmitted",
+   "default": "Not Released",
    "fieldname": "status",
    "fieldtype": "Select",
    "label": "Status",
-   "options": "Review Unsubmitted\nReview Submitted\nReview Resubmitted\nApproved\nReleased"
+   "options": "Not Released\nReleased"
   },
   {
    "default": "Issued for Review",
    "fieldname": "description",
    "fieldtype": "Text",
    "label": "Description"
+  },
+  {
+   "fieldname": "motor_canopy_list",
+   "fieldtype": "Table",
+   "label": "Motor Canopy List",
+   "options": "Motor Canopy List"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-22 15:57:06.986069",
+ "modified": "2024-11-25 20:13:21.525921",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
- "name": "Design Basis Revision History",
+ "name": "Motor Canopy Revision History",
  "naming_rule": "Random",
  "owner": "Administrator",
  "permissions": [
