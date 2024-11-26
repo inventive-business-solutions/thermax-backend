@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class ElectricalLoadList(Document):
+class LoadListData(Document):
 	pass
