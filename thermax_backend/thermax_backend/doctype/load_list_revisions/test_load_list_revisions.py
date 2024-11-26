@@ -12,18 +12,18 @@ EXTRA_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
 IGNORE_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
 
 
-class UnitTestElectricalLoadListRevisionHistory(UnitTestCase):
+class UnitTestLoadListRevisions(UnitTestCase):
 	"""
-	Unit tests for ElectricalLoadListRevisionHistory.
+	Unit tests for LoadListRevisions.
 	Use this class for testing individual functions and methods.
 	"""
 
 	pass
 
 
-class IntegrationTestElectricalLoadListRevisionHistory(IntegrationTestCase):
+class IntegrationTestLoadListRevisions(IntegrationTestCase):
 	"""
-	Integration tests for ElectricalLoadListRevisionHistory.
+	Integration tests for LoadListRevisions.
 	Use this class for testing interactions between multiple components.
 	"""
 
