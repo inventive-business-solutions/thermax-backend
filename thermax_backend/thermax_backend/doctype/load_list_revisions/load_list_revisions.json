@@ -2,36 +2,21 @@
  "actions": [],
  "allow_rename": 1,
  "autoname": "hash",
- "creation": "2024-11-26 14:29:19.412534",
+ "creation": "2024-11-26 15:47:13.408694",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "linking_keys_section",
   "project_id",
-  "revision_info_section",
   "status",
   "description",
-  "link_data_section",
-  "electrical_load_list"
+  "electrical_load_list_data"
  ],
  "fields": [
   {
-   "fieldname": "linking_keys_section",
-   "fieldtype": "Section Break",
-   "label": "Linking Keys"
-  },
-  {
    "fieldname": "project_id",
    "fieldtype": "Link",
-   "in_list_view": 1,
    "label": "Project ID",
-   "options": "Project",
-   "reqd": 1
-  },
-  {
-   "fieldname": "revision_info_section",
-   "fieldtype": "Section Break",
-   "label": "Revision Info"
+   "options": "Project"
   },
   {
    "fieldname": "status",
@@ -45,23 +30,18 @@
    "label": "Description"
   },
   {
-   "fieldname": "link_data_section",
-   "fieldtype": "Section Break",
-   "label": "Link Data"
-  },
-  {
-   "fieldname": "electrical_load_list",
+   "fieldname": "electrical_load_list_data",
    "fieldtype": "Table",
-   "label": "Electrical Load List",
-   "options": "Electrical Load List"
+   "label": "Electrical Load List Data",
+   "options": "Load List Data"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-26 15:31:33.861322",
+ "modified": "2024-11-26 15:49:46.928588",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
- "name": "Electrical Load List Revision History",
+ "name": "Load List Revisions",
  "naming_rule": "Random",
  "owner": "Administrator",
  "permissions": [
