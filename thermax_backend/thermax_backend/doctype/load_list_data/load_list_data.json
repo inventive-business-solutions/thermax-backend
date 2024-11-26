@@ -7,19 +7,275 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "tag_number"
+  "tag_number",
+  "service_description",
+  "working_kw",
+  "standby_kw",
+  "kva",
+  "starter_type",
+  "supply_voltage",
+  "phase",
+  "starting_time",
+  "eocr_applicable",
+  "lpbs_type",
+  "control_scheme",
+  "panel",
+  "bus_segregation",
+  "motor_rpm",
+  "motor_mounting_type",
+  "motor_frame_size",
+  "motor_gd2",
+  "motor_driven_equipment_gd2",
+  "bkw",
+  "coupling_type",
+  "package",
+  "area",
+  "standard",
+  "zone",
+  "gas_group",
+  "temperature_class",
+  "remark",
+  "rev",
+  "space_heater",
+  "bearing_rtd",
+  "wiring_rtd",
+  "thermistor",
+  "bearing_type",
+  "power_factor",
+  "motor_efficiency",
+  "local_isolator",
+  "panel_ammeter",
+  "motor_make",
+  "motor_scope",
+  "motor_location",
+  "motor_part_code",
+  "motor_rated_current"
  ],
  "fields": [
   {
    "fieldname": "tag_number",
    "fieldtype": "Data",
    "label": "Tag Number"
+  },
+  {
+   "fieldname": "service_description",
+   "fieldtype": "Data",
+   "label": "Service Description"
+  },
+  {
+   "fieldname": "working_kw",
+   "fieldtype": "Float",
+   "label": "Working KW",
+   "precision": "2"
+  },
+  {
+   "fieldname": "standby_kw",
+   "fieldtype": "Float",
+   "label": "Standby KW",
+   "precision": "2"
+  },
+  {
+   "fieldname": "kva",
+   "fieldtype": "Float",
+   "label": "KVA",
+   "precision": "2"
+  },
+  {
+   "fieldname": "starter_type",
+   "fieldtype": "Data",
+   "label": "Starter Type"
+  },
+  {
+   "fieldname": "supply_voltage",
+   "fieldtype": "Int",
+   "label": "Supply Voltage"
+  },
+  {
+   "fieldname": "phase",
+   "fieldtype": "Data",
+   "label": "Phase"
+  },
+  {
+   "fieldname": "starting_time",
+   "fieldtype": "Data",
+   "label": "Starting Time"
+  },
+  {
+   "fieldname": "eocr_applicable",
+   "fieldtype": "Data",
+   "label": "EOCR Applicable"
+  },
+  {
+   "fieldname": "lpbs_type",
+   "fieldtype": "Data",
+   "label": "LPBS Type"
+  },
+  {
+   "fieldname": "control_scheme",
+   "fieldtype": "Data",
+   "label": "Control Scheme"
+  },
+  {
+   "fieldname": "panel",
+   "fieldtype": "Data",
+   "label": "Panel"
+  },
+  {
+   "fieldname": "bus_segregation",
+   "fieldtype": "Data",
+   "label": "Bus Segregation"
+  },
+  {
+   "fieldname": "motor_rpm",
+   "fieldtype": "Int",
+   "label": "Motor RPM"
+  },
+  {
+   "fieldname": "motor_mounting_type",
+   "fieldtype": "Data",
+   "label": "Motor Mounting Type"
+  },
+  {
+   "fieldname": "motor_frame_size",
+   "fieldtype": "Data",
+   "label": "Motor Frame Size"
+  },
+  {
+   "fieldname": "motor_gd2",
+   "fieldtype": "Data",
+   "label": "Motor GD2"
+  },
+  {
+   "fieldname": "motor_driven_equipment_gd2",
+   "fieldtype": "Data",
+   "label": "Motor Driven Equipment GD2"
+  },
+  {
+   "fieldname": "bkw",
+   "fieldtype": "Data",
+   "label": "BKW"
+  },
+  {
+   "fieldname": "coupling_type",
+   "fieldtype": "Data",
+   "label": "Coupling Type"
+  },
+  {
+   "fieldname": "package",
+   "fieldtype": "Data",
+   "label": "Package"
+  },
+  {
+   "fieldname": "area",
+   "fieldtype": "Data",
+   "label": "Area"
+  },
+  {
+   "fieldname": "standard",
+   "fieldtype": "Data",
+   "label": "Standard"
+  },
+  {
+   "fieldname": "zone",
+   "fieldtype": "Data",
+   "label": "Zone"
+  },
+  {
+   "fieldname": "gas_group",
+   "fieldtype": "Data",
+   "label": "Gas Group"
+  },
+  {
+   "fieldname": "temperature_class",
+   "fieldtype": "Data",
+   "label": "Temperature Class"
+  },
+  {
+   "fieldname": "remark",
+   "fieldtype": "Data",
+   "label": "Remark"
+  },
+  {
+   "fieldname": "rev",
+   "fieldtype": "Data",
+   "label": "Rev"
+  },
+  {
+   "fieldname": "space_heater",
+   "fieldtype": "Data",
+   "label": "Space Heater"
+  },
+  {
+   "fieldname": "bearing_rtd",
+   "fieldtype": "Data",
+   "label": "Bearing RTD"
+  },
+  {
+   "fieldname": "wiring_rtd",
+   "fieldtype": "Data",
+   "label": "Wiring RTD"
+  },
+  {
+   "fieldname": "thermistor",
+   "fieldtype": "Data",
+   "label": "Thermistor"
+  },
+  {
+   "fieldname": "bearing_type",
+   "fieldtype": "Data",
+   "label": "Bearing Type"
+  },
+  {
+   "fieldname": "power_factor",
+   "fieldtype": "Float",
+   "label": "Power Factor",
+   "precision": "2"
+  },
+  {
+   "fieldname": "motor_efficiency",
+   "fieldtype": "Data",
+   "label": "Motor Efficiency"
+  },
+  {
+   "fieldname": "local_isolator",
+   "fieldtype": "Data",
+   "label": "Local Isolator"
+  },
+  {
+   "fieldname": "panel_ammeter",
+   "fieldtype": "Data",
+   "label": "Panel Ammeter"
+  },
+  {
+   "fieldname": "motor_make",
+   "fieldtype": "Data",
+   "label": "Motor Make"
+  },
+  {
+   "fieldname": "motor_scope",
+   "fieldtype": "Data",
+   "label": "Motor Scope"
+  },
+  {
+   "fieldname": "motor_location",
+   "fieldtype": "Data",
+   "label": "Motor Location"
+  },
+  {
+   "fieldname": "motor_part_code",
+   "fieldtype": "Data",
+   "label": "Motor Part Code"
+  },
+  {
+   "fieldname": "motor_rated_current",
+   "fieldtype": "Data",
+   "label": "Motor Rated Current"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-11-26 15:46:34.357122",
+ "modified": "2024-11-26 16:41:44.844524",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Load List Data",
