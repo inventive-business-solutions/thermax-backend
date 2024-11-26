@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:fault_level",
  "creation": "2024-09-26 15:02:52.828944",
@@ -11,14 +12,14 @@
  "fields": [
   {
    "fieldname": "fault_level",
-   "fieldtype": "Int",
+   "fieldtype": "Data",
    "label": "Fault Level",
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-06 08:31:20.203454",
+ "modified": "2024-11-22 11:43:35.400540",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Fault Level",

@@ -3,6 +3,8 @@ from frappe import _
 from openpyxl import Workbook, load_workbook
 from copy import copy
 import io
+from datetime import datetime
+
 
 
 @frappe.whitelist()
@@ -96,6 +98,8 @@ def get_design_basis_excel():
     payload = frappe.local.form_dict
     metadata = payload.get("metadata")
     project = payload.get("project")
+    document_revisions = payload.get("documentRevisions")
+    project_package_data = payload.get("projectMainPkgData")
     project_info = payload.get("projectInfo")
     general_info = payload.get("generalInfo")
     motor_parameters = payload.get("motorParameters")
@@ -121,33 +125,157 @@ def get_design_basis_excel():
 
     # Cover Sheet
 
-    cover_sheet["A3"] = metadata.get("division_name")
-    cover_sheet["D7"] = project.get("client_name")
-    cover_sheet["D8"] = project.get("consultant_name")
-    cover_sheet["D9"] = project.get("project_name")
-    cover_sheet["D10"] = project.get("project_oc_number")
+    # Cover Sheet
+    division_name = metadata.get("division_name").upper()  # Get the division name and convert to uppercase
+    if division_name == "WWS SPG":
+        cover_sheet["A3"] = "Water & Waste Solution".upper()  # Replace with desired text
+        cover_sheet["A4"] = "411 026"
+    elif division_name == "Enviro":
+        cover_sheet["A4"] = "411 026"
+    else:
+        cover_sheet["A3"] = division_name.upper()  # Otherwise, use the original division name
 
-    cover_sheet["E36"] = metadata.get("prepared_by_initials")
-    cover_sheet["F36"] = metadata.get("checked_by_initials")
-    cover_sheet["G36"] = metadata.get("approved_by_initials")
+    # cover_sheet["A3"] = metadata.get("division_name").upper()
+
+    revision_date = document_revisions[0].get("modified")
+    revision_date = datetime.strptime(revision_date, "%Y-%m-%d %H:%M:%S.%f").strftime("%d/%m/%Y")
+
+    cover_sheet["C36"] = revision_date
+    cover_sheet["D7"] = project.get("client_name").upper()
+    cover_sheet["D8"] = project.get("consultant_name").upper()
+    cover_sheet["D9"] = project.get("project_name").upper()
+    cover_sheet["D10"] = project.get("project_oc_number").upper()
+
+    cover_sheet["D36"] = document_revisions[0].get("status") # from payload
+
+    project_owner = project.get("owner")
+    project_approver = project.get("approver")
+
+    prepped_by_initial = frappe.db.get_value("Thermax Extended User", project_owner, "name_initial")
+    checked_by_initial = frappe.db.get_value("Thermax Extended User", project_approver, "name_initial")
+    super_user_initial = frappe.db.get_value("Thermax Extended User",{"is_superuser":1}, "name_initial")
+    
+    cover_sheet["E36"] = prepped_by_initial
+    cover_sheet["F36"] = checked_by_initial
+    cover_sheet["G36"] = super_user_initial
 
     # Revision Sheet
 
     """
         Design Basis Sheet
     """
+
+    # from datetime import datetime
+
+# Assuming 'revision_sheet' is already defined and is a valid object
+# and 'document_revisions' is a list of dictionaries containing the revision data.
+
+# Start from row 6 (assuming you want to fill from row 6 onwards)
+    
+    start_row = 6
+    modified_revision_date = document_revisions[0].get("modified")
+    modified_revision_date = datetime.strptime(modified_revision_date, "%Y-%m-%d %H:%M:%S.%f").strftime("%d-%m-%Y")
+
+    if(len(document_revisions) > 1):
+
+        for idx, revision in enumerate(document_revisions):
+            # Extracting the modified date and formatting it
+            modified_revision_date = revision.get("modified")
+            
+            if modified_revision_date:
+                modified_revision_date = datetime.strptime(modified_revision_date, "%Y-%m-%d %H:%M:%S.%f").strftime("%d-%m-%Y")
+            else:
+                modified_revision_date = ""  # Handle cases where 'modified' might be None
+
+                # Update the revision_sheet with the current revision data
+                revision_sheet[f"B{start_row + idx}"] = revision.get("idx")
+                revision_sheet[f"D{start_row + idx}"] = modified_revision_date
+                revision_sheet[f"E{start_row + idx}"] = revision.get("status")
+    else:
+        some = document_revisions[0].get("idx")
+        revision_sheet[f"B6"] = f"R{some}"
+        revision_sheet[f"D6"] = modified_revision_date
+        revision_sheet[f"E6"] = document_revisions[0].get("status")
+
+   
+    
     # General Information
 
+    main_supply_lv = project_info.get("main_supply_lv")
+    main_supply_lv_variation = project_info.get("main_supply_lv_variation")
+    main_supply_lv_phase = project_info.get("main_supply_lv_phase")
+
+    main_supply_mv = project_info.get("main_supply_mv")
+    main_supply_mv_variation = project_info.get("main_supply_mv_variation")
+    main_supply_mv_phase = project_info.get("main_supply_mv_phase")
+
+    control_supply = project_info.get("control_supply")
+    control_supply_variation = project_info.get("control_supply_variation")
+    control_supply_phase = project_info.get("control_supply_phase")
+    
+    utility_supply = project_info.get("utility_supply")
+    utility_supply_variation = project_info.get("utility_supply_variation")
+    utility_supply_phase = project_info.get("utility_supply_phase")
+
+    utility_supply_data = f"{utility_supply}, Variation: {utility_supply_variation}, {utility_supply_phase}"
+    if utility_supply_variation == "NA":
+        utility_supply_data = utility_supply
+
+    control_supply_data = f"{control_supply}, Variation: {control_supply_variation}, {control_supply_phase}"
+    if control_supply_variation == "NA" :
+        control_supply_data = control_supply
+
+    mv_data = f"{main_supply_mv}, Variation: {main_supply_mv_variation}, {main_supply_mv_phase}"
+    if main_supply_mv == "NA" :
+        mv_data = "Not Applicable"
+
+    project_info_freq = project_info.get("frequency")
+    preojct_info_freq_var = project.get("frequency_variation")
+    project_info_frequency_data = f"{project_info_freq} Hz , Variation: {preojct_info_freq_var}"
+
+    project_info_fault = project_info.get("fault_level")
+    project_info_sec = project_info.get("sec")
+    fault_data = f"{project_info_fault} KA {project_info_sec} sec"
+
+    ambient_temperature_max_data = project_info.get("ambient_temperature_max")
+    ambient_temperature_min_data = project_info.get("ambient_temperature_min")
+
+
+
+    # Initialize variables
+    variable1 = ""  # For Safe Area subpackage names
+    variable2 = ""  # For other subpackage names
+
+    # Loop through the subpackage array
+    for main_package in project_package_data:
+        for sub_package in main_package['sub_packages']:
+            if sub_package['area_of_classification'] == 'Safe Area':
+                # Append to variable1 with a comma if it's not empty
+                if variable1:
+                    variable1 += ", "
+                variable1 += sub_package['sub_package_name']
+            else:
+                # Append to variable2 with a comma if it's not empty
+                if variable2:
+                    variable2 += ", "
+                variable2 += sub_package['sub_package_name']
+
+    
+    design_basis_sheet["C4"] = project_package_data[0].get("main_package_name")
+    design_basis_sheet["C5"] = variable1
+    design_basis_sheet["C6"] = variable2
     design_basis_sheet["C8"] = general_info.get("battery_limit")
-    design_basis_sheet["C9"] = project_info.get("main_supply_mv")
-    design_basis_sheet["C10"] = project_info.get("main_supply_lv")
-    design_basis_sheet["C11"] = project_info.get("control_supply")
-    design_basis_sheet["C12"] = project_info.get("utility_supply")
-    design_basis_sheet["C13"] = project_info.get("frequency")
-    design_basis_sheet["C14"] = project_info.get("fault_level")
-    design_basis_sheet["C15"] = project_info.get("ambient_temperature_max")
-    design_basis_sheet["C16"] = project_info.get("ambient_temperature_min")
-    design_basis_sheet["C17"] = project_info.get("electrical_design_temperature")
+    design_basis_sheet["C9"] = mv_data
+    design_basis_sheet["C10"] = f"{main_supply_lv}, Variation: {main_supply_lv_variation}, {main_supply_lv_phase}"
+    design_basis_sheet["C11"] = control_supply_data
+    design_basis_sheet["C12"] = utility_supply_data
+    design_basis_sheet["C13"] = project_info_frequency_data
+    design_basis_sheet["C14"] = fault_data
+    design_basis_sheet["C15"] = f"{ambient_temperature_max_data} Deg C"
+    design_basis_sheet["C16"] = f"{ambient_temperature_min_data} Deg C"
+
+    electrical_design_temp_data = project_info.get("electrical_design_temperature")
+    design_basis_sheet["C17"] = f"{electrical_design_temp_data} Deg C"
     design_basis_sheet["C18"] = project_info.get("seismic_zone")
 
     """
@@ -164,7 +292,7 @@ def get_design_basis_excel():
     design_basis_sheet["E28"] = motor_parameters.get("safe_area_terminal_box_ip_rating")
     design_basis_sheet["E29"] = motor_parameters.get("safe_area_thermister")
     design_basis_sheet["E30"] = motor_parameters.get("safe_area_space_heater")
-    design_basis_sheet["E31"] = motor_parameters.get("hazardous_area_certification")
+    design_basis_sheet["E31"] = "Not Applicable"
     design_basis_sheet["E32"] = motor_parameters.get("safe_area_bearing_rtd")
     design_basis_sheet["E33"] = motor_parameters.get("safe_area_winding_rtd")
     design_basis_sheet["E34"] = motor_parameters.get("safe_area_bearing_type")
@@ -214,25 +342,47 @@ def get_design_basis_excel():
     """
         Make of Components
     """
-    design_basis_sheet["E66"] = make_of_components.get("motor")
-    design_basis_sheet["E67"] = make_of_components.get("cable")
-    design_basis_sheet["E68"] = make_of_components.get("lv_switchgear")
-    design_basis_sheet["E69"] = make_of_components.get("panel_enclosure")
-    design_basis_sheet["E70"] = make_of_components.get(
-        "variable_frequency_speed_drive_vfd_vsd"
-    )
-    design_basis_sheet["E71"] = make_of_components.get("soft_starter")
-    design_basis_sheet["E72"] = make_of_components.get("plc")
+
+    def clean_and_replace(value):
+        # Clean the string by removing brackets and quotes
+        cleaned_value = value.replace('[', '').replace(']', '').replace('"', '').strip()
+        # Replace "NA" with "Not Applicable"
+        if cleaned_value == "NA":
+            return "Not Applicable"
+        return cleaned_value
+
+
+
+
+    motor_string = clean_and_replace(make_of_components.get("motor", "NA"))
+    cable_string = clean_and_replace(make_of_components.get("cable", "NA"))
+    lv_switchgear_string = clean_and_replace(make_of_components.get("lv_switchgear", "NA"))
+    panel_enclosure_string = clean_and_replace(make_of_components.get("panel_enclosure", "NA"))
+    variable_frequency_string = clean_and_replace(make_of_components.get("variable_frequency_speed_drive_vfd_vsd", "NA"))
+    soft_starter_string = clean_and_replace(make_of_components.get("soft_starter", "NA"))
+    plc_string = clean_and_replace(make_of_components.get("plc", "NA"))
+    
+    design_basis_sheet["E66"] = motor_string
+    design_basis_sheet["E67"] = cable_string
+    design_basis_sheet["E68"] = lv_switchgear_string
+    design_basis_sheet["E69"] = panel_enclosure_string
+    design_basis_sheet["E70"] = variable_frequency_string
+    design_basis_sheet["E71"] = soft_starter_string
+    design_basis_sheet["E72"] = plc_string
 
     """
         Common Configuration
     """
+    switchgear_combination_data = common_configuration.get("supply_feeder_standard")
+    if not division_name == "WWS SPG" and "Fuseless" not in switchgear_combination_data:
+        switchgear_combination_data =  "Not Applicable"
+
     design_basis_sheet["E74"] = common_configuration.get("dol_starter")
     design_basis_sheet["E75"] = common_configuration.get("star_delta_starter")
     design_basis_sheet["E76"] = common_configuration.get("ammeter")
     design_basis_sheet["E77"] = common_configuration.get("ammeter_configuration")
     design_basis_sheet["E78"] = common_configuration.get("mcc_switchgear_type")
-    design_basis_sheet["E79"] = common_configuration.get("switchgear_combination")
+    design_basis_sheet["E79"] = switchgear_combination_data
     design_basis_sheet["E80"] = common_configuration.get("pole")
     design_basis_sheet["E81"] = common_configuration.get("supply_feeder_standard")
     design_basis_sheet["E82"] = common_configuration.get("dm_standard")
@@ -258,7 +408,8 @@ def get_design_basis_excel():
     """
         Terminal
     """
-    design_basis_sheet["E99"] = common_configuration.get("spare_terminal")
+    spare_terminal_data = common_configuration.get("spare_terminal")
+    design_basis_sheet["E99"] = f"{spare_terminal_data} %"
 
     """
         Push Button Color
@@ -276,7 +427,14 @@ def get_design_basis_excel():
     """
         Selector Switch
     """
-    design_basis_sheet["E109"] = common_configuration.get("selector_switch_applicable")
+    selector_switch_applicable_data = common_configuration.get("selector_switch_applicable")
+    selector_switch_locable_data = common_configuration.get("selector_switch_lockable").replace("'", "").strip()
+    selector_switch__data = f"{selector_switch_applicable_data}, {selector_switch_locable_data}"
+
+    if selector_switch_applicable_data == "Not Applicable":
+        selector_switch__data = "Not Applicable"
+        
+    design_basis_sheet["E109"] = selector_switch__data
 
     """
         Indicating Lamp
@@ -349,7 +507,7 @@ def get_design_basis_excel():
     design_basis_sheet["E147"] = common_configuration.get(
         "earth_bus_main_busbar_selection"
     )
-    design_basis_sheet["E148"] = common_configuration.get("earth_bus_heat_pvc_sleeve")
+    design_basis_sheet["E148"] = common_configuration.get("earth_bus_busbar_position")
     design_basis_sheet["E149"] = common_configuration.get("earth_bus_material")
     design_basis_sheet["E150"] = common_configuration.get("earth_bus_current_density")
     design_basis_sheet["E151"] = common_configuration.get("earth_bus_rating_of_busbar")
@@ -375,7 +533,8 @@ def get_design_basis_excel():
     """
         APFC
     """
-    design_basis_sheet["E162"] = common_configuration.get("apfc_relay")
+    apfc_relay = common_configuration.get("apfc_relay")
+    design_basis_sheet["E162"] = f"{apfc_relay} Stage"
 
     """
         Power Cable
@@ -393,16 +552,16 @@ def get_design_basis_excel():
     design_basis_sheet["E170"] = cable_tray_layout.get("copper_conductor")
     design_basis_sheet["E171"] = cable_tray_layout.get("aluminiun_conductor")
     design_basis_sheet["E172"] = cable_tray_layout.get("voltage_grade")
-    design_basis_sheet["E173"] = cable_tray_layout.get("touching_factor_for_air")
+    design_basis_sheet["E173"] = cable_tray_layout.get("touching_factor_air")
     design_basis_sheet["E174"] = cable_tray_layout.get(
-        "ambient_temperature_factor_for_air"
+        "ambient_temp_factor_air"
     )
-    design_basis_sheet["E175"] = cable_tray_layout.get("derating_factor_for_air")
-    design_basis_sheet["E176"] = cable_tray_layout.get("touching_factor_for_buried")
+    design_basis_sheet["E175"] = cable_tray_layout.get("derating_factor_air")
+    design_basis_sheet["E176"] = cable_tray_layout.get("touching_factor_burid")
     design_basis_sheet["E177"] = cable_tray_layout.get(
-        "ambient_temperature_factor_for_buried"
+        "ambient_temp_factor_burid"
     )
-    design_basis_sheet["E178"] = cable_tray_layout.get("derating_factor_for_buried")
+    design_basis_sheet["E178"] = cable_tray_layout.get("derating_factor_burid")
 
     """
         Gland
@@ -410,8 +569,24 @@ def get_design_basis_excel():
     design_basis_sheet["E180"] = cable_tray_layout.get("gland_make")
     design_basis_sheet["E181"] = cable_tray_layout.get("moc")
     design_basis_sheet["E182"] = cable_tray_layout.get("type_of_gland")
-    design_basis_sheet["E183"] = cable_tray_layout.get("safe_area_gland_type")
-    design_basis_sheet["E184"] = cable_tray_layout.get("hazardous_area_gland_type")
+
+    #logic for Gland Type
+
+    safe_area_gland_data = "Not Applicable"
+    hazardous_area_gland_data = "Not Applicable"
+
+    if len(project_package_data) > 0:
+        for main_package in project_package_data:
+            for sub_package in main_package['sub_packages']:
+                if sub_package['area_of_classification'] == 'Safe Area':
+                    # Append to variable1 with a comma if it's not empty
+                    safe_area_gland_data = "Weatherproof"
+                else:
+                    # Append to variable2 with a comma if it's not empty
+                    hazardous_area_gland_data = "Flameproof"
+
+    design_basis_sheet["E183"] = safe_area_gland_data
+    design_basis_sheet["E184"] = hazardous_area_gland_data
 
     """
         Cable Tray
@@ -419,8 +594,10 @@ def get_design_basis_excel():
     design_basis_sheet["E186"] = cable_tray_layout.get("future_space_on_trays")
     design_basis_sheet["E187"] = cable_tray_layout.get("cable_placement")
     design_basis_sheet["E188"] = cable_tray_layout.get("orientation")
-    design_basis_sheet["E189"] = cable_tray_layout.get("vertical_distance")
-    design_basis_sheet["E190"] = cable_tray_layout.get("horizontal_distance")
+    vertical_distance_data = cable_tray_layout.get("vertical_distance")
+    design_basis_sheet["E189"] = f"{vertical_distance_data} mm"
+    horizontal_distance_data = cable_tray_layout.get("horizontal_distance")
+    design_basis_sheet["E190"] = f"{horizontal_distance_data} mm"
     design_basis_sheet["E191"] = cable_tray_layout.get("dry_area")
     design_basis_sheet["E192"] = cable_tray_layout.get("wet_area")
 
@@ -430,7 +607,21 @@ def get_design_basis_excel():
     design_basis_sheet["E194"] = earthing_layout_data.get("earthing_system")
     design_basis_sheet["E195"] = earthing_layout_data.get("earth_strip")
     design_basis_sheet["E196"] = earthing_layout_data.get("earth_pit")
-    design_basis_sheet["E197"] = earthing_layout_data.get("soil_resistivity")
+    soil_resistivity_data = earthing_layout_data.get("soil_resistivity")
+    design_basis_sheet["E197"] = f"{soil_resistivity_data} ohm"
+
+    def na_To_string(value):
+        if value == "NA" :
+            return "Not Applicable"
+        return value
+        
+    def number_To_string(value):
+        if value == 0 :
+            return "Not Applicable"
+        elif value == 1 :
+            return "Applicable"
+        else:
+            return value
 
     for project_panel in project_panels:
         if project_panel.get("panel_main_type") == "MCC":
@@ -443,11 +634,22 @@ def get_design_basis_excel():
             panel_sheet["E5"] = (
                 f"Upto - {panel_data.get('incomer_ampere')} - {panel_data.get('incomer_pole')} Pole {panel_data.get('incomer_type')} > {panel_data.get('incomer_above_ampere')} - {panel_data.get('incomer_above_pole')} Pole {panel_data.get('incomer_above_type')}"
             )
-            panel_sheet["E6"] = panel_data.get("led_type_indication_lamp")
+
+            
+            indication_lamp_led_data = panel_data.get("is_led_type_lamp_selected")
+            indication_lamp_led_data = number_To_string(indication_lamp_led_data)
+            others_data = panel_data.get("led_type_other_input")
+            indication_data = indication_lamp_led_data
+            if others_data and not others_data == "NA":
+                indication_data = f"{indication_lamp_led_data}, {others_data}"
+            
+            panel_sheet["E6"] = indication_data
             panel_sheet["E7"] = panel_data.get("current_transformer_coating")
             panel_sheet["E8"] = panel_data.get("current_transformer_number")
-            panel_sheet["E9"] = panel_data.get("control_transformer_coating")
-            panel_sheet["E10"] = panel_data.get("control_transformer_configuration")
+            control_transformer_coating = panel_data.get("control_transformer_coating")
+            panel_sheet["E9"] = na_To_string(control_transformer_coating)
+            control_transformer_configuration = panel_data.get("control_transformer_configuration")
+            panel_sheet["E10"] = na_To_string(control_transformer_configuration)
             panel_sheet["E11"] = panel_data.get("alarm_annunciator")
 
             """
@@ -461,24 +663,31 @@ def get_design_basis_excel():
             """
                 General Arrangement				
             """
+
+
             panel_sheet["E15"] = panel_data.get("ga_moc_material")
-            panel_sheet["E16"] = panel_data.get("ga_moc_thickness_door")
-            panel_sheet["E17"] = panel_data.get("ga_moc_thickness_covers")
-            panel_sheet["E18"] = (
-                f"{panel_data.get('ga_mcc_compartmental'), {panel_data.get('ga_mcc_construction_front_type')}, {panel_data.get('ga_mcc_construction_drawout_type')}, {panel_data.get('ga_mcc_construction_type')}}"
-            )
+            ga_moc_thickness_door = panel_data.get("ga_moc_thickness_door")
+            panel_sheet["E16"] = (f"{ga_moc_thickness_door} mm")
+            ga_moc_thickness_covers = panel_data.get("ga_moc_thickness_covers")
+            panel_sheet["E17"] = (f"{ga_moc_thickness_covers} mm")
+            ga_data = f"{panel_data.get('ga_mcc_compartmental'), {panel_data.get('ga_mcc_construction_front_type')}, {panel_data.get('ga_mcc_construction_drawout_type')}, {panel_data.get('ga_mcc_construction_type')}}"
+            ga_data = ga_data.replace("{", "").replace("}", "").replace("'","").replace("(", "").replace(")", "").strip()
+            panel_sheet["E18"] = ga_data
             panel_sheet["E19"] = panel_data.get("busbar_material_of_construction")
             panel_sheet["E20"] = panel_data.get("ga_current_density")
             panel_sheet["E21"] = panel_data.get("ga_panel_mounting_frame")
-            panel_sheet["E22"] = panel_data.get("ga_panel_mounting_height")
-            panel_sheet["E23"] = panel_data.get("is_marshalling_section_selected")
-            panel_sheet["E24"] = panel_data.get("is_cable_alley_section_selected")
-            panel_sheet["E25"] = panel_data.get(
-                "is_power_and_bus_separation_section_selected"
-            )
-            panel_sheet["E26"] = panel_data.get(
-                "is_both_side_extension_section_selected"
-            )
+            ga_panel_mounting_height =  panel_data.get("ga_panel_mounting_height")
+            panel_sheet["E22"] = (f"{ga_panel_mounting_height} mm")
+
+            is_marshalling_section_selected = panel_data.get("is_marshalling_section_selected")
+            is_cable_alley_section_selected = panel_data.get("is_cable_alley_section_selected")
+            is_power_and_bus_separation_section_selected = panel_data.get("is_power_and_bus_separation_section_selected")
+            is_both_side_extension_section_selected = panel_data.get("is_both_side_extension_section_selected")
+            panel_sheet["E23"] = number_To_string(is_marshalling_section_selected)
+            panel_sheet["E24"] = number_To_string(is_cable_alley_section_selected)
+            panel_sheet["E25"] = number_To_string(is_power_and_bus_separation_section_selected)
+            panel_sheet["E26"] = number_To_string(is_both_side_extension_section_selected)
+            
             panel_sheet["E27"] = panel_data.get("ga_gland_plate_3mm_drill_type")
             panel_sheet["E28"] = panel_data.get("ga_gland_plate_3mm_attachment_type")
             panel_sheet["E29"] = panel_data.get("ga_busbar_chamber_position")
@@ -508,44 +717,79 @@ def get_design_basis_excel():
             """
                 Punching Details
             """
+            boiler_mcc_power_vac_data = panel_data.get('boiler_power_supply_vac')
+            boiler_mcc_power_supply_data = (f"{panel_data.get('boiler_power_supply_vac')}, {panel_data.get('boiler_power_supply_phase')}, {panel_data.get('boiler_power_supply_frequency')} Hz")
+            if boiler_mcc_power_vac_data == "NA":
+                boiler_mcc_power_supply_data = "Not Applicable"
+
+            boiler_mcc_control_vac_data = panel_data.get('boiler_control_supply_vac')
+            boiler_mcc_control_supply_data = (f"{panel_data.get('boiler_control_supply_vac')}, {panel_data.get('boiler_control_supply_phase')}, {panel_data.get('boiler_control_supply_frequency')} Hz")
+            if boiler_mcc_control_vac_data == "NA":
+                boiler_mcc_control_supply_data = "Not Applicable"
 
             # Punching Details for Boiler
-            panel_sheet["E44"] = panel_data.get("boiler_model")
-            panel_sheet["E45"] = panel_data.get("boiler_fuel")
-            panel_sheet["E46"] = panel_data.get("boiler_year")
-            panel_sheet["E47"] = (
-                f"{panel_data.get('boiler_power_supply_vac')} VAC {panel_data.get('boiler_power_supply_phase')} Phase {panel_data.get('boiler_power_supply_frequency')} Hz"
-            )
-            panel_sheet["E48"] = (
-                f"{panel_data.get('boiler_control_supply_vac')} {panel_data.get('boiler_control_supply_phase')} {panel_data.get('boiler_control_supply_frequency')}"
-            )
-            panel_sheet["E49"] = panel_data.get("boiler_evaporation")
-            panel_sheet["E50"] = panel_data.get("boiler_output")
-            panel_sheet["E51"] = panel_data.get("boiler_connected_load")
-            panel_sheet["E52"] = panel_data.get("boiler_design_pressure")
+            boiler_model = panel_data.get("boiler_model")
+            boiler_fuel = panel_data.get("boiler_fuel")
+            boiler_year = panel_data.get("boiler_year")
+            boiler_evaporation = panel_data.get("boiler_evaporation")
+            boiler_output = panel_data.get("boiler_output")
+            boiler_connected_load = panel_data.get("boiler_connected_load")
+            boiler_design_pressure = panel_data.get("boiler_design_pressure")
+
+            panel_sheet["E44"] = na_To_string(boiler_model)
+            panel_sheet["E45"] = na_To_string(boiler_fuel)
+            panel_sheet["E46"] = na_To_string(boiler_year)
+            panel_sheet["E47"] = na_To_string(boiler_mcc_power_supply_data)
+            panel_sheet["E48"] = na_To_string(boiler_mcc_control_supply_data)
+            panel_sheet["E49"] = na_To_string(boiler_evaporation)
+            panel_sheet["E50"] = na_To_string(boiler_output)
+            panel_sheet["E51"] = na_To_string(boiler_connected_load)
+            panel_sheet["E52"] = na_To_string(boiler_design_pressure)
 
             # Punching Details for Heater
-            panel_sheet["E54"] = panel_data.get("heater_model")
-            panel_sheet["E55"] = panel_data.get("heater_fuel")
-            panel_sheet["E56"] = panel_data.get("heater_year")
-            panel_sheet["E57"] = (
-                f"{panel_data.get('heater_power_supply_vac')} VAC {panel_data.get('heater_power_supply_phase')} Phase {panel_data.get('heater_power_supply_frequency')} Hz"
-            )
-            panel_sheet["E58"] = (
-                f"{panel_data.get('heater_control_supply_vac')} {panel_data.get('heater_control_supply_phase')} {panel_data.get('heater_control_supply_frequency')}"
-            )
-            panel_sheet["E59"] = panel_data.get("heater_evaporation")
-            panel_sheet["E60"] = panel_data.get("heater_output")
-            panel_sheet["E61"] = panel_data.get("heater_connected_load")
-            panel_sheet["E62"] = panel_data.get("heater_temperature")
+
+            heater_mcc_power_vac_data = panel_data.get('boiler_power_supply_vac')
+            heater_mcc_power_supply_data = (f"{panel_data.get('heater_power_supply_vac')}, {panel_data.get('heater_power_supply_phase')}, {panel_data.get('heater_power_supply_frequency')} Hz")
+            if heater_mcc_power_vac_data == "NA":
+                heater_mcc_power_supply_data = "Not Applicable"
+
+            heater_mcc_control_vac_data = panel_data.get('boiler_control_supply_vac')
+            heater_mcc_control_supply_data = (f"{panel_data.get('heater_control_supply_vac')}, {panel_data.get('heater_control_supply_phase')}, {panel_data.get('heater_control_supply_frequency')}")
+            if heater_mcc_control_vac_data == "NA":
+                heater_mcc_control_supply_data = "Not Applicable"
+
+            heater_model = panel_data.get("heater_model")
+            heater_fuel = panel_data.get("heater_fuel")
+            heater_year = panel_data.get("heater_year")
+            heater_evaporation = panel_data.get("heater_evaporation")
+            heater_output = panel_data.get("heater_output")
+            heater_connected_load = panel_data.get("heater_connected_load")
+            heater_temperature = panel_data.get("heater_temperature")
+
+            panel_sheet["E54"] = na_To_string(heater_model)
+            panel_sheet["E55"] = na_To_string(heater_fuel)
+            panel_sheet["E56"] = na_To_string(heater_year)
+            panel_sheet["E57"] = na_To_string(heater_mcc_power_supply_data)
+            panel_sheet["E58"] = na_To_string(heater_mcc_control_supply_data)
+            panel_sheet["E59"] = na_To_string(heater_evaporation)
+            panel_sheet["E60"] = na_To_string(heater_output)
+            panel_sheet["E61"] = na_To_string(heater_connected_load)
+            panel_sheet["E62"] = na_To_string(heater_temperature)
 
             # Name Plate Details for SPG
-            panel_sheet["E64"] = panel_data.get("spg_name_plate_unit_name")
-            panel_sheet["E65"] = panel_data.get("spg_name_plate_capacity")
-            panel_sheet["E66"] = panel_data.get("spg_name_plate_manufacturing_year")
-            panel_sheet["E67"] = panel_data.get("spg_name_plate_weight")
-            panel_sheet["E68"] = panel_data.get("spg_name_plate_oc_number")
-            panel_sheet["E69"] = panel_data.get("spg_name_plate_part_code")
+            spg_name_plate_unit_name = panel_data.get("spg_name_plate_unit_name")
+            spg_name_plate_capacity = panel_data.get("spg_name_plate_capacity")
+            spg_name_plate_manufacturing_year = panel_data.get("spg_name_plate_manufacturing_year")
+            spg_name_plate_weight = panel_data.get("spg_name_plate_weight")
+            spg_name_plate_oc_number = panel_data.get("spg_name_plate_oc_number")
+            spg_name_plate_part_code = panel_data.get("spg_name_plate_part_code")
+
+            panel_sheet["E64"] = na_To_string(spg_name_plate_unit_name)
+            panel_sheet["E65"] = na_To_string(spg_name_plate_capacity)
+            panel_sheet["E66"] = na_To_string(spg_name_plate_manufacturing_year)
+            panel_sheet["E67"] = na_To_string(spg_name_plate_weight)
+            panel_sheet["E68"] = na_To_string(spg_name_plate_oc_number)
+            panel_sheet["E69"] = na_To_string(spg_name_plate_part_code)
 
         if project_panel.get("panel_main_type") == "PCC":
             panel_sheet = template_workbook.copy_worksheet(pcc_sheet)
@@ -558,9 +802,18 @@ def get_design_basis_excel():
             panel_sheet["E5"] = (
                 f"Upto - {panel_data.get('incomer_ampere')} - {panel_data.get('incomer_pole')} Pole {panel_data.get('incomer_type')} > {panel_data.get('incomer_above_ampere')} - {panel_data.get('incomer_above_pole')} Pole {panel_data.get('incomer_above_type')}"
             )
-            panel_sheet["E6"] = panel_data.get("led_type_indication_lamp")
-            panel_sheet["E7"] = panel_data.get("control_transformer_coating")
-            panel_sheet["E8"] = panel_data.get("control_transformer_configuration")
+
+            indication_lamp_led_data = panel_data.get("is_led_type_lamp_selected")
+            indication_lamp_led_data = number_To_string(indication_lamp_led_data)
+            others_data = panel_data.get("led_type_other_input")
+            indication_data = indication_lamp_led_data
+            if others_data and not others_data == "NA":
+                indication_data = f"{indication_lamp_led_data}, {others_data}"
+            panel_sheet["E6"] = indication_data
+            control_transformer_coating = panel_data.get("control_transformer_coating")
+            panel_sheet["E7"] = na_To_string(control_transformer_coating)
+            control_transformer_configuration = panel_data.get("control_transformer_configuration")
+            panel_sheet["E8"] = na_To_string(control_transformer_configuration)
             panel_sheet["E9"] = panel_data.get("alarm_annunciator")
 
             """
@@ -574,23 +827,30 @@ def get_design_basis_excel():
                 General Arrangement
             """
             panel_sheet["E13"] = panel_data.get("ga_moc_material")
-            panel_sheet["E14"] = panel_data.get("ga_moc_thickness_door")
-            panel_sheet["E15"] = panel_data.get("ga_moc_thickness_covers")
-            panel_sheet["E16"] = (
-                f"{panel_data.get('ga_mcc_compartmental'), {panel_data.get('ga_mcc_construction_front_type')}, {panel_data.get('ga_mcc_construction_drawout_type')}, {panel_data.get('ga_mcc_construction_type')}}"
-            )
+            ga_moc_thickness_door = panel_data.get("ga_moc_thickness_door")            
+            panel_sheet["E14"] = f"{ga_moc_thickness_door} mm"
+            ga_moc_thickness_covers = panel_data.get("ga_moc_thickness_covers")
+            panel_sheet["E15"] = f"{ga_moc_thickness_covers} mm"
+
+            ga_data = f"{panel_data.get('ga_mcc_compartmental'), {panel_data.get('ga_mcc_construction_front_type')}, {panel_data.get('ga_mcc_construction_drawout_type')}, {panel_data.get('ga_mcc_construction_type')}}"
+            ga_data = ga_data.replace("{", "").replace("}", "").replace("'","").replace("(", "").replace(")", "").strip()            
+            panel_sheet["E16"] = ga_data
+
             panel_sheet["E17"] = panel_data.get("busbar_material_of_construction")
             panel_sheet["E18"] = panel_data.get("ga_current_density")
             panel_sheet["E19"] = panel_data.get("ga_panel_mounting_frame")
-            panel_sheet["E20"] = panel_data.get("ga_panel_mounting_height")
-            panel_sheet["E21"] = panel_data.get("is_marshalling_section_selected")
-            panel_sheet["E22"] = panel_data.get("is_cable_alley_section_selected")
-            panel_sheet["E23"] = panel_data.get(
-                "is_power_and_bus_separation_section_selected"
-            )
-            panel_sheet["E24"] = panel_data.get(
-                "is_both_side_extension_section_selected"
-            )
+            ga_panel_mounting_height =  panel_data.get("ga_panel_mounting_height")
+            panel_sheet["E20"] = f"{ga_panel_mounting_height} mm"
+
+            is_marshalling_section_selected = panel_data.get("is_marshalling_section_selected")
+            is_cable_alley_section_selected = panel_data.get("is_cable_alley_section_selected")
+            is_power_and_bus_separation_section_selected = panel_data.get("is_power_and_bus_separation_section_selected")
+            is_both_side_extension_section_selected = panel_data.get("is_both_side_extension_section_selected")
+            panel_sheet["E21"] = number_To_string(is_marshalling_section_selected)
+            panel_sheet["E22"] = number_To_string(is_cable_alley_section_selected)
+            panel_sheet["E23"] = number_To_string(is_power_and_bus_separation_section_selected)
+            panel_sheet["E24"] = number_To_string(is_both_side_extension_section_selected)
+
             panel_sheet["E25"] = panel_data.get("ga_gland_plate_3mm_drill_type")
             panel_sheet["E26"] = panel_data.get("ga_gland_plate_3mm_attachment_type")
             panel_sheet["E27"] = panel_data.get("ga_busbar_chamber_position")
@@ -615,45 +875,84 @@ def get_design_basis_excel():
             """
                 Punching Details
             """
+
+            boiler_mcc_power_vac_data = panel_data.get('boiler_power_supply_vac')
+            boiler_mcc_power_supply_data = (f"{panel_data.get('boiler_power_supply_vac')}, {panel_data.get('boiler_power_supply_phase')}, {panel_data.get('boiler_power_supply_frequency')} Hz")
+            if boiler_mcc_power_vac_data == "NA":
+                boiler_mcc_power_supply_data = "Not Applicable"
+
+            boiler_mcc_control_vac_data = panel_data.get('boiler_control_supply_vac')
+            boiler_mcc_control_supply_data = (f"{panel_data.get('boiler_control_supply_vac')}, {panel_data.get('boiler_control_supply_phase')}, {panel_data.get('boiler_control_supply_frequency')} Hz")
+            if boiler_mcc_control_vac_data == "NA":
+                boiler_mcc_control_supply_data = "Not Applicable"
+            
             # Punching Details for Boiler
-            panel_sheet["E40"] = panel_data.get("boiler_model")
-            panel_sheet["E41"] = panel_data.get("boiler_fuel")
-            panel_sheet["E42"] = panel_data.get("boiler_year")
-            panel_sheet["E43"] = (
-                f"{panel_data.get('boiler_power_supply_vac')} VAC {panel_data.get('boiler_power_supply_phase')} Phase {panel_data.get('boiler_power_supply_frequency')} Hz"
-            )
-            panel_sheet["E44"] = (
-                f"{panel_data.get('boiler_control_supply_vac')} {panel_data.get('boiler_control_supply_phase')} {panel_data.get('boiler_control_supply_frequency')}"
-            )
-            panel_sheet["E45"] = panel_data.get("boiler_evaporation")
-            panel_sheet["E46"] = panel_data.get("boiler_output")
-            panel_sheet["E47"] = panel_data.get("boiler_connected_load")
-            panel_sheet["E48"] = panel_data.get("boiler_design_pressure")
+
+            boiler_model = panel_data.get("boiler_model")
+            boiler_fuel = panel_data.get("boiler_fuel")
+            boiler_year = panel_data.get("boiler_year")
+            boiler_evaporation = panel_data.get("boiler_evaporation")
+            boiler_output = panel_data.get("boiler_output")
+            boiler_connected_load = panel_data.get("boiler_connected_load")
+            boiler_design_pressure = panel_data.get("boiler_design_pressure")
+
+
+            panel_sheet["E40"] = na_To_string(boiler_model)
+            panel_sheet["E41"] = na_To_string(boiler_fuel)
+            panel_sheet["E42"] = na_To_string(boiler_year)
+            panel_sheet["E43"] = na_To_string(boiler_mcc_power_supply_data)
+            panel_sheet["E44"] = na_To_string(boiler_mcc_control_supply_data)
+            panel_sheet["E45"] = na_To_string(boiler_evaporation)
+            panel_sheet["E46"] = na_To_string(boiler_output)
+            panel_sheet["E47"] = na_To_string(boiler_connected_load)
+            panel_sheet["E48"] = na_To_string(boiler_design_pressure)
 
             # Punching Details for Heater
-            panel_sheet["E50"] = panel_data.get("heater_model")
-            panel_sheet["E51"] = panel_data.get("heater_fuel")
-            panel_sheet["E52"] = panel_data.get("heater_year")
-            panel_sheet["E53"] = (
-                f"{panel_data.get('heater_power_supply_vac')} VAC {panel_data.get('heater_power_supply_phase')} Phase {panel_data.get('heater_power_supply_frequency')} Hz"
-            )
-            panel_sheet["E54"] = (
-                f"{panel_data.get('heater_control_supply_vac')} {panel_data.get('heater_control_supply_phase')} {panel_data.get('heater_control_supply_frequency')}"
-            )
-            panel_sheet["E55"] = panel_data.get("heater_evaporation")
-            panel_sheet["E56"] = panel_data.get("heater_output")
-            panel_sheet["E57"] = panel_data.get("heater_connected_load")
-            panel_sheet["E58"] = panel_data.get("heater_temperature")
+
+            heater_mcc_power_vac_data = panel_data.get('boiler_power_supply_vac')
+            heater_mcc_power_supply_data = (f"{panel_data.get('heater_power_supply_vac')}, {panel_data.get('heater_power_supply_phase')}, {panel_data.get('heater_power_supply_frequency')} Hz")
+            if heater_mcc_power_vac_data == "NA":
+                heater_mcc_power_supply_data = "Not Applicable"
+
+            heater_mcc_control_vac_data = panel_data.get('boiler_control_supply_vac')
+            heater_mcc_control_supply_data = (f"{panel_data.get('heater_control_supply_vac')}, {panel_data.get('heater_control_supply_phase')}, {panel_data.get('heater_control_supply_frequency')}")
+            if heater_mcc_control_vac_data == "NA":
+                heater_mcc_control_supply_data = "Not Applicable"
+
+            heater_model = panel_data.get("heater_model")
+            heater_fuel = panel_data.get("heater_fuel")
+            heater_year = panel_data.get("heater_year")
+            heater_evaporation = panel_data.get("heater_evaporation")
+            heater_output = panel_data.get("heater_output")
+            heater_connected_load = panel_data.get("heater_connected_load")
+            heater_temperature = panel_data.get("heater_temperature")
+
+            panel_sheet["E50"] = na_To_string(heater_model)
+            panel_sheet["E51"] = na_To_string(heater_fuel)
+            panel_sheet["E52"] = na_To_string(heater_year)
+            panel_sheet["E53"] = na_To_string(heater_mcc_power_supply_data)
+            panel_sheet["E54"] = na_To_string(heater_mcc_control_supply_data)
+            panel_sheet["E55"] = na_To_string(heater_evaporation)
+            panel_sheet["E56"] = na_To_string(heater_output)
+            panel_sheet["E57"] = na_To_string(heater_connected_load)
+            panel_sheet["E58"] = na_To_string(heater_temperature)
 
             """
                 Name Plate Details for SPG
             """
-            panel_sheet["E60"] = panel_data.get("spg_name_plate_unit_name")
-            panel_sheet["E61"] = panel_data.get("spg_name_plate_capacity")
-            panel_sheet["E62"] = panel_data.get("spg_name_plate_manufacturing_year")
-            panel_sheet["E63"] = panel_data.get("spg_name_plate_weight")
-            panel_sheet["E64"] = panel_data.get("spg_name_plate_oc_number")
-            panel_sheet["E65"] = panel_data.get("spg_name_plate_part_code")
+            spg_name_plate_unit_name = panel_data.get("spg_name_plate_unit_name")
+            spg_name_plate_capacity = panel_data.get("spg_name_plate_capacity")
+            spg_name_plate_manufacturing_year = panel_data.get("spg_name_plate_manufacturing_year")
+            spg_name_plate_weight = panel_data.get("spg_name_plate_weight")
+            spg_name_plate_oc_number = panel_data.get("spg_name_plate_oc_number")
+            spg_name_plate_part_code = panel_data.get("spg_name_plate_part_code")
+
+            panel_sheet["E60"] = na_To_string(spg_name_plate_unit_name)
+            panel_sheet["E61"] = na_To_string(spg_name_plate_capacity)
+            panel_sheet["E62"] = na_To_string(spg_name_plate_manufacturing_year)
+            panel_sheet["E63"] = na_To_string(spg_name_plate_weight)
+            panel_sheet["E64"] = na_To_string(spg_name_plate_oc_number)
+            panel_sheet["E65"] = na_To_string(spg_name_plate_part_code)
 
         if project_panel.get("panel_main_type") == "MCC cum PCC":
             panel_sheet = template_workbook.copy_worksheet(mcc_cum_plc_sheet)
@@ -661,17 +960,27 @@ def get_design_basis_excel():
             mcc_panel_data = project_panel.get("mccPanelData")
             plc_panel_data = project_panel.get("plcPanelData")
 
-            """
-                Selection Details
-            """
+            # """
+            #     Selection Details
+            # """
             panel_sheet["E5"] = (
                 f"Upto - {mcc_panel_data.get('incomer_ampere')} - {mcc_panel_data.get('incomer_pole')} Pole {mcc_panel_data.get('incomer_type')} > {mcc_panel_data.get('incomer_above_ampere')} - {mcc_panel_data.get('incomer_above_pole')} Pole {mcc_panel_data.get('incomer_above_type')}"
             )
-            panel_sheet["E6"] = mcc_panel_data.get("led_type_indication_lamp")
+            
+            indication_lamp_led_data = mcc_panel_data.get("is_led_type_lamp_selected")
+            indication_lamp_led_data = number_To_string(indication_lamp_led_data)
+            others_data = mcc_panel_data.get("led_type_other_input")
+            indication_data = indication_lamp_led_data
+            if others_data and not others_data == "NA":
+                indication_data = f"{indication_lamp_led_data}, {others_data}"
+
+            panel_sheet["E6"] = indication_data
             panel_sheet["E7"] = mcc_panel_data.get("current_transformer_coating")
             panel_sheet["E8"] = mcc_panel_data.get("current_transformer_number")
-            panel_sheet["E9"] = mcc_panel_data.get("control_transformer_coating")
-            panel_sheet["E10"] = mcc_panel_data.get("control_transformer_configuration")
+            control_transformer_coating = mcc_panel_data.get("control_transformer_coating")
+            panel_sheet["E9"] = na_To_string(control_transformer_coating)
+            control_transformer_configuration = mcc_panel_data.get("control_transformer_configuration")
+            panel_sheet["E10"] = na_To_string(control_transformer_configuration)
             panel_sheet["E11"] = mcc_panel_data.get("alarm_annunciator")
 
             """
@@ -685,23 +994,32 @@ def get_design_basis_excel():
                 General Arrangement				
             """
             panel_sheet["E15"] = mcc_panel_data.get("ga_moc_material")
-            panel_sheet["E16"] = mcc_panel_data.get("ga_moc_thickness_door")
-            panel_sheet["E17"] = mcc_panel_data.get("ga_moc_thickness_covers")
-            panel_sheet["E18"] = (
-                f"{mcc_panel_data.get('ga_mcc_compartmental'), {mcc_panel_data.get('ga_mcc_construction_front_type')}, {mcc_panel_data.get('ga_mcc_construction_drawout_type')}, {mcc_panel_data.get('ga_mcc_construction_type')}}"
-            )
+            ga_moc_thickness_door = mcc_panel_data.get("ga_moc_thickness_door")
+            panel_sheet["E16"] = (f"{ga_moc_thickness_door} mm")
+            ga_moc_thickness_covers = mcc_panel_data.get("ga_moc_thickness_covers")
+            panel_sheet["E17"] = (f"{ga_moc_thickness_covers} mm")
+            
+            ga_data = f"{mcc_panel_data.get('ga_mcc_compartmental'), {mcc_panel_data.get('ga_mcc_construction_front_type')}, {mcc_panel_data.get('ga_mcc_construction_drawout_type')}, {mcc_panel_data.get('ga_mcc_construction_type')}}"
+            ga_data = ga_data.replace("{", "").replace("}", "").replace("'","").replace("(", "").replace(")", "").strip()
+            panel_sheet["E18"] = ga_data
+            
             panel_sheet["E19"] = mcc_panel_data.get("busbar_material_of_construction")
             panel_sheet["E20"] = mcc_panel_data.get("ga_current_density")
             panel_sheet["E21"] = mcc_panel_data.get("ga_panel_mounting_frame")
-            panel_sheet["E22"] = mcc_panel_data.get("ga_panel_mounting_height")
-            panel_sheet["E23"] = mcc_panel_data.get("is_marshalling_section_selected")
-            panel_sheet["E24"] = mcc_panel_data.get("is_cable_alley_section_selected")
-            panel_sheet["E25"] = mcc_panel_data.get(
-                "is_power_and_bus_separation_section_selected"
-            )
-            panel_sheet["E26"] = mcc_panel_data.get(
-                "is_both_side_extension_section_selected"
-            )
+            ga_panel_mounting_height = mcc_panel_data.get("ga_panel_mounting_height")
+            panel_sheet["E22"] = (f"{ga_panel_mounting_height} mm")
+            
+            
+            is_marshalling_section_selected = mcc_panel_data.get("is_marshalling_section_selected")
+            is_cable_alley_section_selected = mcc_panel_data.get("is_cable_alley_section_selected")
+            is_power_and_bus_separation_section_selected = mcc_panel_data.get("is_power_and_bus_separation_section_selected")
+            is_both_side_extension_section_selected = mcc_panel_data.get("is_both_side_extension_section_selected")
+            panel_sheet["E23"] = number_To_string(is_marshalling_section_selected)
+            panel_sheet["E24"] = number_To_string(is_cable_alley_section_selected)
+            panel_sheet["E25"] = number_To_string(is_power_and_bus_separation_section_selected)
+            panel_sheet["E26"] = number_To_string(is_both_side_extension_section_selected)
+            
+            
             panel_sheet["E27"] = mcc_panel_data.get("ga_gland_plate_3mm_drill_type")
             panel_sheet["E28"] = mcc_panel_data.get(
                 "ga_gland_plate_3mm_attachment_type"
@@ -737,42 +1055,82 @@ def get_design_basis_excel():
             """
 
             # Punching Details for Boiler
-            panel_sheet["E44"] = mcc_panel_data.get("boiler_model")
-            panel_sheet["E45"] = mcc_panel_data.get("boiler_fuel")
-            panel_sheet["E46"] = mcc_panel_data.get("boiler_year")
-            panel_sheet["E47"] = (
-                f"{mcc_panel_data.get('boiler_power_supply_vac')} VAC {mcc_panel_data.get('boiler_power_supply_phase')} Phase {mcc_panel_data.get('boiler_power_supply_frequency')} Hz"
-            )
-            panel_sheet["E48"] = (
-                f"{mcc_panel_data.get('boiler_control_supply_vac')} {mcc_panel_data.get('boiler_control_supply_phase')} {mcc_panel_data.get('boiler_control_supply_frequency')}"
-            )
-            panel_sheet["E49"] = mcc_panel_data.get("boiler_evaporation")
-            panel_sheet["E50"] = mcc_panel_data.get("boiler_output")
-            panel_sheet["E51"] = mcc_panel_data.get("boiler_connected_load")
-            panel_sheet["E52"] = mcc_panel_data.get("boiler_design_pressure")
 
-            # Punching Details for Heater
-            panel_sheet["E54"] = mcc_panel_data.get("heater_model")
-            panel_sheet["E55"] = mcc_panel_data.get("heater_fuel")
-            panel_sheet["E56"] = mcc_panel_data.get("heater_year")
-            panel_sheet["E57"] = (
-                f"{mcc_panel_data.get('heater_power_supply_vac')} VAC {mcc_panel_data.get('heater_power_supply_phase')} Phase {mcc_panel_data.get('heater_power_supply_frequency')} Hz"
-            )
-            panel_sheet["E58"] = (
-                f"{mcc_panel_data.get('heater_control_supply_vac')} {mcc_panel_data.get('heater_control_supply_phase')} {mcc_panel_data.get('heater_control_supply_frequency')}"
-            )
-            panel_sheet["E59"] = mcc_panel_data.get("heater_evaporation")
-            panel_sheet["E60"] = mcc_panel_data.get("heater_output")
-            panel_sheet["E61"] = mcc_panel_data.get("heater_connected_load")
-            panel_sheet["E62"] = mcc_panel_data.get("heater_temperature")
+            boiler_mcc_power_vac_data = mcc_panel_data.get('boiler_power_supply_vac')
+            boiler_mcc_power_supply_data = (f"{mcc_panel_data.get('boiler_power_supply_vac')}, {mcc_panel_data.get('boiler_power_supply_phase')}, {mcc_panel_data.get('boiler_power_supply_frequency')} Hz")
+            if boiler_mcc_power_vac_data == "NA":
+                boiler_mcc_power_supply_data = "Not Applicable"
 
-            # Name Plate Details for SPG
-            panel_sheet["E64"] = mcc_panel_data.get("spg_name_plate_unit_name")
-            panel_sheet["E65"] = mcc_panel_data.get("spg_name_plate_capacity")
-            panel_sheet["E66"] = mcc_panel_data.get("spg_name_plate_manufacturing_year")
-            panel_sheet["E67"] = mcc_panel_data.get("spg_name_plate_weight")
-            panel_sheet["E68"] = mcc_panel_data.get("spg_name_plate_oc_number")
-            panel_sheet["E69"] = mcc_panel_data.get("spg_name_plate_part_code")
+            boiler_mcc_control_vac_data = mcc_panel_data.get('boiler_control_supply_vac')
+            boiler_mcc_control_supply_data = (f"{mcc_panel_data.get('boiler_control_supply_vac')}, {mcc_panel_data.get('boiler_control_supply_phase')}, {mcc_panel_data.get('boiler_control_supply_frequency')} Hz")
+            if boiler_mcc_control_vac_data == "NA":
+                boiler_mcc_control_supply_data = "Not Applicable"
+
+            # Punching Details for Boiler
+            boiler_model = mcc_panel_data.get("boiler_model")
+            boiler_fuel = mcc_panel_data.get("boiler_fuel")
+            boiler_year = mcc_panel_data.get("boiler_year")
+            boiler_evaporation = mcc_panel_data.get("boiler_evaporation")
+            boiler_output = mcc_panel_data.get("boiler_output")
+            boiler_connected_load = mcc_panel_data.get("boiler_connected_load")
+            boiler_design_pressure = mcc_panel_data.get("boiler_design_pressure")
+
+
+            panel_sheet["E44"] = na_To_string(boiler_model)
+            panel_sheet["E45"] = na_To_string(boiler_fuel)
+            panel_sheet["E46"] = na_To_string(boiler_year)
+            panel_sheet["E47"] = na_To_string(boiler_mcc_power_supply_data)
+            panel_sheet["E48"] = na_To_string(boiler_mcc_control_supply_data)
+            panel_sheet["E49"] = na_To_string(boiler_evaporation)
+            panel_sheet["E50"] = na_To_string(boiler_output)
+            panel_sheet["E51"] = na_To_string(boiler_connected_load)
+            panel_sheet["E52"] = na_To_string(boiler_design_pressure)
+
+            # # Punching Details for Heater
+            heater_mcc_power_vac_data = mcc_panel_data.get('boiler_power_supply_vac')
+            heater_mcc_power_supply_data = (f"{mcc_panel_data.get('heater_power_supply_vac')}, {mcc_panel_data.get('heater_power_supply_phase')}, {mcc_panel_data.get('heater_power_supply_frequency')} Hz")
+            if heater_mcc_power_vac_data == "NA":
+                heater_mcc_power_supply_data = "Not Applicable"
+
+            heater_mcc_control_vac_data = mcc_panel_data.get('boiler_control_supply_vac')
+            heater_mcc_control_supply_data = (f"{mcc_panel_data.get('heater_control_supply_vac')}, {mcc_panel_data.get('heater_control_supply_phase')}, {mcc_panel_data.get('heater_control_supply_frequency')}")
+            if heater_mcc_control_vac_data == "NA":
+                heater_mcc_control_supply_data = "Not Applicable"
+
+            heater_model = mcc_panel_data.get("heater_model")
+            heater_fuel = mcc_panel_data.get("heater_fuel")
+            heater_year = mcc_panel_data.get("heater_year")
+            heater_evaporation = mcc_panel_data.get("heater_evaporation")
+            heater_output = mcc_panel_data.get("heater_output")
+            heater_connected_load = mcc_panel_data.get("heater_connected_load")
+            heater_temperature = mcc_panel_data.get("heater_temperature")
+
+
+            panel_sheet["E54"] = na_To_string(heater_model)
+            panel_sheet["E55"] = na_To_string(heater_fuel)
+            panel_sheet["E56"] = na_To_string(heater_year)
+            panel_sheet["E57"] = na_To_string(heater_mcc_power_supply_data)
+            panel_sheet["E58"] = na_To_string(heater_mcc_control_supply_data)
+            panel_sheet["E59"] = na_To_string(heater_evaporation)
+            panel_sheet["E60"] = na_To_string(heater_output)
+            panel_sheet["E61"] = na_To_string(heater_connected_load)
+            panel_sheet["E62"] = na_To_string(heater_temperature)
+
+
+            # # Name Plate Details for SPG
+            spg_name_plate_unit_name = mcc_panel_data.get("spg_name_plate_unit_name")
+            spg_name_plate_capacity = mcc_panel_data.get("spg_name_plate_capacity")
+            spg_name_plate_manufacturing_year = mcc_panel_data.get("spg_name_plate_manufacturing_year")
+            spg_name_plate_weight = mcc_panel_data.get("spg_name_plate_weight")
+            spg_name_plate_oc_number = mcc_panel_data.get("spg_name_plate_oc_number")
+            spg_name_plate_part_code = mcc_panel_data.get("spg_name_plate_part_code")
+
+            panel_sheet["E64"] = na_To_string(spg_name_plate_unit_name)
+            panel_sheet["E65"] = na_To_string(spg_name_plate_capacity)
+            panel_sheet["E66"] = na_To_string(spg_name_plate_manufacturing_year)
+            panel_sheet["E67"] = na_To_string(spg_name_plate_weight)
+            panel_sheet["E68"] = na_To_string(spg_name_plate_oc_number)
+            panel_sheet["E69"] = na_To_string(spg_name_plate_part_code)
 
             """
                 PLC
@@ -781,14 +1139,19 @@ def get_design_basis_excel():
             panel_sheet["E72"] = plc_panel_data.get("ups_scope")
             panel_sheet["E73"] = plc_panel_data.get("ups_type")
             panel_sheet["E74"] = plc_panel_data.get("ups_battery_type")
-            panel_sheet["E75"] = plc_panel_data.get(
-                "is_ups_battery_mounting_rack_selected"
-            )
+            
+            is_ups_battery_mounting_rack_selected = plc_panel_data.get("is_ups_battery_mounting_rack_selected")
+            if is_ups_battery_mounting_rack_selected == 1:
+                is_ups_battery_mounting_rack_selected = "Applicable"
+            else:
+                is_ups_battery_mounting_rack_selected = "Not Applicable"
+            panel_sheet["E75"] = is_ups_battery_mounting_rack_selected
             panel_sheet["E76"] = plc_panel_data.get("ups_battery_backup_time")
 
             # PLC Hardware
             panel_sheet["E78"] = plc_panel_data.get("approved_plc_hardware_make")
-            panel_sheet["E79"] = plc_panel_data.get("is_bulk_power_supply_selected")
+            is_bulk_power_supply_selected = plc_panel_data.get("is_bulk_power_supply_selected")
+            panel_sheet["E79"] = number_To_string(is_bulk_power_supply_selected)
             panel_sheet["E80"] = plc_panel_data.get(
                 "plc_cpu_or_processor_module_or_series"
             )
@@ -801,19 +1164,18 @@ def get_design_basis_excel():
             panel_sheet["E83"] = plc_panel_data.get("client_system_communication")
 
             # Redundancy
-            panel_sheet["E85"] = plc_panel_data.get(
-                "is_power_supply_redundancy_selected"
-            )
-            panel_sheet["E86"] = plc_panel_data.get("is_io_redundancy_selected")
-            panel_sheet["E87"] = plc_panel_data.get(
-                "is_cpu_and_io_card_redundancy_selected"
-            )
-            panel_sheet["E88"] = plc_panel_data.get(
-                "is_cpu_and_hmi_scada_card_redundancy_selected"
-            )
-            panel_sheet["E89"] = plc_panel_data.get(
-                "is_cpu_and_third_party_services_redundancy_selected"
-            )
+
+            is_power_supply_redundancy_selected = plc_panel_data.get("is_power_supply_redundancy_selected")
+            is_io_redundancy_selected = plc_panel_data.get("is_io_redundancy_selected")
+            is_cpu_and_io_card_redundancy_selected = plc_panel_data.get("is_cpu_and_io_card_redundancy_selected")
+            is_cpu_and_hmi_scada_card_redundancy_selected = plc_panel_data.get("is_cpu_and_hmi_scada_card_redundancy_selected")
+            is_cpu_and_third_party_services_redundancy_selected = plc_panel_data.get("is_cpu_and_third_party_services_redundancy_selected")
+
+            panel_sheet["E85"] = number_To_string(is_power_supply_redundancy_selected)
+            panel_sheet["E86"] = number_To_string(is_io_redundancy_selected)
+            panel_sheet["E87"] = number_To_string(is_cpu_and_io_card_redundancy_selected)
+            panel_sheet["E88"] = number_To_string(is_cpu_and_hmi_scada_card_redundancy_selected)
+            panel_sheet["E89"] = number_To_string(is_cpu_and_third_party_services_redundancy_selected)
             panel_sheet["E90"] = plc_panel_data.get("cpu_redundancy")
 
             # PLC Panel
@@ -855,25 +1217,26 @@ def get_design_basis_excel():
             panel_sheet["E113"] = plc_panel_data.get("ai_module_density")
             panel_sheet["E114"] = plc_panel_data.get("ai_module_output_type")
             panel_sheet["E115"] = plc_panel_data.get("ai_module_scan_time")
-            panel_sheet["E116"] = plc_panel_data.get(
-                "is_ai_module_hart_protocol_support_selected"
-            )
+            
+            is_ai_module_hart_protocol_support_selected =  plc_panel_data.get("is_ai_module_hart_protocol_support_selected")
+            panel_sheet["E116"] = number_To_string(is_ai_module_hart_protocol_support_selected)
 
             # RTD / TC Modules
             panel_sheet["E118"] = plc_panel_data.get("rtd_tc_module_density")
             panel_sheet["E119"] = plc_panel_data.get("rtd_tc_module_input_type")
             panel_sheet["E120"] = plc_panel_data.get("rtd_tc_module_scan_time")
-            panel_sheet["E121"] = plc_panel_data.get(
-                "is_rtd_tc_module_hart_protocol_support_selected"
+
+            is_rtd_tc_module_hart_protocol_support_selected =  plc_panel_data.get("is_rtd_tc_module_hart_protocol_support_selected"
             )
+            panel_sheet["E121"] = number_To_string(is_rtd_tc_module_hart_protocol_support_selected)
 
             # AO Modules
             panel_sheet["E123"] = plc_panel_data.get("ao_module_density")
             panel_sheet["E124"] = plc_panel_data.get("ao_module_output_type")
             panel_sheet["E125"] = plc_panel_data.get("ao_module_scan_time")
-            panel_sheet["E126"] = plc_panel_data.get(
-                "is_ao_module_hart_protocol_support_selected"
-            )
+            
+            is_ao_module_hart_protocol_support_selected = plc_panel_data.get("is_ao_module_hart_protocol_support_selected")
+            panel_sheet["E126"] = number_To_string(is_ao_module_hart_protocol_support_selected)
 
             # PLC Spare
             panel_sheet["E128"] = plc_panel_data.get("plc_spare_io_count")
@@ -883,36 +1246,60 @@ def get_design_basis_excel():
             panel_sheet["E131"] = plc_panel_data.get("no_of_hid_es")
             panel_sheet["E132"] = plc_panel_data.get("no_of_hid_os")
             panel_sheet["E133"] = plc_panel_data.get("no_of_hid_hmi")
-            panel_sheet["E134"] = plc_panel_data.get("hid_hmi_size")
+            hid_hmi_size = plc_panel_data.get("hid_hmi_size")
+            panel_sheet["E134"] = f"{hid_hmi_size} inch"
 
             # Software
-            panel_sheet["E136"] = plc_panel_data.get("no_of_scada_development_license")
-            panel_sheet["E137"] = plc_panel_data.get("no_of_scada_runtime_license")
-            panel_sheet["E138"] = plc_panel_data.get("no_of_hmi_development_license")
-            panel_sheet["E139"] = plc_panel_data.get(
-                "no_of_plc_programming_license_software"
-            )
+            no_of_scada_development_license = plc_panel_data.get("no_of_scada_development_license")
+            no_of_scada_runtime_license = plc_panel_data.get("no_of_scada_runtime_license")
+            no_of_hmi_development_license = plc_panel_data.get("no_of_hmi_development_license")
+            no_of_plc_programming_license_software = plc_panel_data.get("no_of_plc_programming_license_software")    
+
+            panel_sheet["E136"] = number_To_string(no_of_scada_development_license)
+            panel_sheet["E137"] = number_To_string(no_of_scada_runtime_license)
+            panel_sheet["E138"] = number_To_string(no_of_hmi_development_license)
+            if no_of_plc_programming_license_software == 1:
+                no_of_plc_programming_license_software = "Applicable"
+            else:
+                no_of_plc_programming_license_software = "Not Applicable"
+            panel_sheet["E139"] = no_of_plc_programming_license_software
 
             # Engineering / Operating SCADA Station
-            panel_sheet["E141"] = plc_panel_data.get("system_hardware")
-            panel_sheet["E142"] = plc_panel_data.get("commercial_grade_pc")
-            panel_sheet["E143"] = plc_panel_data.get("monitor_size")
-            panel_sheet["E144"] = plc_panel_data.get("windows_operating_system")
-            panel_sheet["E145"] = plc_panel_data.get("printer_with_communication_cable")
-            panel_sheet["E146"] = plc_panel_data.get("no_of_printer")
-            panel_sheet["E147"] = plc_panel_data.get("printer_cable")
-            panel_sheet["E148"] = plc_panel_data.get("furniture_for_scada_station")
-            panel_sheet["E149"] = plc_panel_data.get(
-                "hardware_between_plc_and_scada_pc"
-            )
-            panel_sheet["E150"] = plc_panel_data.get(
+
+            system_hardware = plc_panel_data.get("system_hardware")
+            commercial_grade_pc = plc_panel_data.get("commercial_grade_pc")
+            monitor_size = plc_panel_data.get("monitor_size")
+            windows_operating_system = plc_panel_data.get("windows_operating_system")
+            printer_with_communication_cable = plc_panel_data.get("printer_with_communication_cable")
+            no_of_printer = plc_panel_data.get("no_of_printer")
+            printer_cable = plc_panel_data.get("printer_cable")
+            furniture_for_scada_station = plc_panel_data.get("furniture_for_scada_station")
+            hardware_between_plc_and_scada_pc = plc_panel_data.get("hardware_between_plc_and_scada_pc")
+
+
+            panel_sheet["E141"] = na_To_string(system_hardware)
+            panel_sheet["E142"] = na_To_string(commercial_grade_pc)
+            panel_sheet["E143"] = f"{na_To_string(monitor_size)} inch"
+            panel_sheet["E144"] = na_To_string(windows_operating_system)
+            panel_sheet["E145"] = na_To_string(printer_with_communication_cable)
+            panel_sheet["E146"] = na_To_string(no_of_printer)
+            panel_sheet["E147"] = na_To_string(printer_cable)
+            panel_sheet["E148"] = na_To_string(furniture_for_scada_station)
+            panel_sheet["E149"] = na_To_string(hardware_between_plc_and_scada_pc)
+
+            hardware_between_plc_and_third_party = plc_panel_data.get(
                 "hardware_between_plc_and_third_party"
             )
-            panel_sheet["E151"] = plc_panel_data.get(
+            panel_sheet["E150"] = na_To_string(hardware_between_plc_and_third_party)
+            hardware_between_plc_and_client_system = plc_panel_data.get(
                 "hardware_between_plc_and_client_system"
             )
-            panel_sheet["E152"] = plc_panel_data.get("iiot_requirement")
-            panel_sheet["E153"] = plc_panel_data.get("mandatory_spares")
+            hardware_between_plc_and_client_system = na_To_string(hardware_between_plc_and_client_system)
+            panel_sheet["E151"] = na_To_string(hardware_between_plc_and_client_system)
+            iiot_requirement = plc_panel_data.get("mandatory_spares")
+            panel_sheet["E152"] = na_To_string(iiot_requirement)
+            mandatory_spares = plc_panel_data.get("mandatory_spares")
+            panel_sheet["E153"] = na_To_string(mandatory_spares)
 
     template_workbook.remove(mcc_sheet)
     template_workbook.remove(pcc_sheet)

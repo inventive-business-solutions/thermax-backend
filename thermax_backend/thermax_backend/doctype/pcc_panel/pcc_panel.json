@@ -24,6 +24,8 @@
   "is_blue_cb_spring_charge_selected",
   "is_red_cb_in_service",
   "is_white_healthy_trip_circuit_selected",
+  "control_transformer_coating",
+  "control_transformer_configuration",
   "alarm_annunciator",
   "led_type_other_input",
   "metering_instruments_for_incomer_section",
@@ -602,11 +604,21 @@
    "fieldname": "special_note",
    "fieldtype": "Data",
    "label": "Special Note"
+  },
+  {
+   "fieldname": "control_transformer_coating",
+   "fieldtype": "Data",
+   "label": "Control Transformer Coating"
+  },
+  {
+   "fieldname": "control_transformer_configuration",
+   "fieldtype": "Data",
+   "label": "Control Transformer Configuration"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-21 13:03:54.233221",
+ "modified": "2024-11-26 05:07:05.070850",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "PCC Panel",
