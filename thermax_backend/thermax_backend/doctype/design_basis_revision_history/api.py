@@ -138,7 +138,7 @@ def get_design_basis_excel():
     # cover_sheet["A3"] = metadata.get("division_name").upper()
 
     revision_date = document_revisions[0].get("modified")
-    revision_date = datetime.strptime(revision_date, "%Y-%m-%d %H:%M:%S.%f").strftime("%d/%m/%Y")
+    revision_date = datetime.strptime(revision_date, "%Y-%m-%d %H:%M:%S.%f").strftime("%d-%m-s%Y")
 
     cover_sheet["C36"] = revision_date
     cover_sheet["D7"] = project.get("client_name").upper()
@@ -151,9 +151,11 @@ def get_design_basis_excel():
     project_owner = project.get("owner")
     project_approver = project.get("approver")
 
+    division_current = metadata.get("division_name")
+
     prepped_by_initial = frappe.db.get_value("Thermax Extended User", project_owner, "name_initial")
     checked_by_initial = frappe.db.get_value("Thermax Extended User", project_approver, "name_initial")
-    super_user_initial = frappe.db.get_value("Thermax Extended User",{"is_superuser":1}, "name_initial")
+    super_user_initial = frappe.db.get_value("Thermax Extended User",{"is_superuser":1, "division":division_current}, "name_initial")
     
     cover_sheet["E36"] = prepped_by_initial
     cover_sheet["F36"] = checked_by_initial
@@ -247,23 +249,32 @@ def get_design_basis_excel():
     variable2 = ""  # For other subpackage names
 
     # Loop through the subpackage array
-    for main_package in project_package_data:
-        for sub_package in main_package['sub_packages']:
-            if sub_package['area_of_classification'] == 'Safe Area':
-                # Append to variable1 with a comma if it's not empty
-                if variable1:
-                    variable1 += ", "
-                variable1 += sub_package['sub_package_name']
-            else:
-                # Append to variable2 with a comma if it's not empty
-                if variable2:
-                    variable2 += ", "
-                variable2 += sub_package['sub_package_name']
+    if len(project_package_data) >= 1:
+        for main_package in project_package_data:
+            for sub_package in main_package['sub_packages']:
+                if sub_package['area_of_classification'] == 'Safe Area':
+                    # Append to variable1 with a comma if it's not empty
+                    if variable1:
+                        variable1 += ", "
+                    variable1 += sub_package['sub_package_name']
+                else:
+                    # Append to variable2 with a comma if it's not empty
+                    if variable2:
+                        variable2 += ", "
+                    variable2 += sub_package['sub_package_name']
 
+        
+        design_basis_sheet["C4"] = project_package_data[0].get("main_package_name")
+        design_basis_sheet["C5"] = variable1
+        design_basis_sheet["C6"] = variable2
     
-    design_basis_sheet["C4"] = project_package_data[0].get("main_package_name")
-    design_basis_sheet["C5"] = variable1
-    design_basis_sheet["C6"] = variable2
+    else:
+        design_basis_sheet["C4"] = "Not Applicable"
+        design_basis_sheet["C5"] = "Not Applicable"
+        design_basis_sheet["C6"] = "Not Applicable"
+
+
+
     design_basis_sheet["C8"] = general_info.get("battery_limit")
     design_basis_sheet["C9"] = mv_data
     design_basis_sheet["C10"] = f"{main_supply_lv}, Variation: {main_supply_lv_variation}, {main_supply_lv_phase}"
