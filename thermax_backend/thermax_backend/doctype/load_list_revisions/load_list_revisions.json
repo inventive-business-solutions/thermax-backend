@@ -2,14 +2,14 @@
  "actions": [],
  "allow_rename": 1,
  "autoname": "hash",
- "creation": "2024-11-22 15:28:55.659494",
+ "creation": "2024-11-26 15:47:13.408694",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "project_id",
   "status",
   "description",
-  "cable_schedule_data"
+  "electrical_load_list_data"
  ],
  "fields": [
   {
@@ -19,31 +19,29 @@
    "options": "Project"
   },
   {
-   "default": "Not Released",
    "fieldname": "status",
    "fieldtype": "Select",
    "label": "Status",
    "options": "Not Released\nReleased"
   },
   {
-   "default": "Issued for Review",
    "fieldname": "description",
    "fieldtype": "Text",
    "label": "Description"
   },
   {
-   "fieldname": "cable_schedule_data",
+   "fieldname": "electrical_load_list_data",
    "fieldtype": "Table",
-   "label": "Cable Schedule Data",
-   "options": "Cable Schedule"
+   "label": "Electrical Load List Data",
+   "options": "Load List Data"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-25 20:12:27.225842",
+ "modified": "2024-11-26 15:49:46.928588",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
- "name": "Cable Schedule Revision History",
+ "name": "Load List Revisions",
  "naming_rule": "Random",
  "owner": "Administrator",
  "permissions": [

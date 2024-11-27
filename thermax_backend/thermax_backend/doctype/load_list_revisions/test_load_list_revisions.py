@@ -12,18 +12,18 @@ EXTRA_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
 IGNORE_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
 
 
-class TestLBPSSpecificationandList(UnitTestCase):
+class UnitTestLoadListRevisions(UnitTestCase):
 	"""
-	Unit tests for LBPSSpecificationandList.
+	Unit tests for LoadListRevisions.
 	Use this class for testing individual functions and methods.
 	"""
 
 	pass
 
 
-class TestLBPSSpecificationandList(IntegrationTestCase):
+class IntegrationTestLoadListRevisions(IntegrationTestCase):
 	"""
-	Integration tests for LBPSSpecificationandList.
+	Integration tests for LoadListRevisions.
 	Use this class for testing interactions between multiple components.
 	"""
 

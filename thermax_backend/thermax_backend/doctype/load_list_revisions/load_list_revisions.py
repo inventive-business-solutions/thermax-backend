@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class LBPSSpecificationsRevisionHistory(Document):
+class LoadListRevisions(Document):
 	pass
