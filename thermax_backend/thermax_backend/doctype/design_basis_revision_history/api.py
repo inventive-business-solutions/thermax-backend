@@ -290,8 +290,9 @@ def get_design_basis_excel():
         design_basis_sheet["C5"] = "Not Applicable"
         design_basis_sheet["C6"] = "Not Applicable"
 
+    area_classification_data = frappe.db.get_value("Project Main Package", {"revision_id":current_revision_id}, ["main_package_name", "standard","zone","gas_group","temperature_class"])
 
-
+    design_basis_sheet["C7"] = f"{area_classification_data[0]}, {area_classification_data[1]}, {area_classification_data[2]}, {area_classification_data[3]}, "
     design_basis_sheet["C8"] = general_info.get("battery_limit")
     design_basis_sheet["C9"] = mv_data
     design_basis_sheet["C10"] = f"{main_supply_lv}, Variation: {main_supply_lv_variation}, {main_supply_lv_phase}"
@@ -1403,25 +1404,66 @@ def get_design_basis_excel():
             panel_sheet["E129"] = na_To_string(plc_spare_memory)
 
             # Human Interface Device
-            panel_sheet["E131"] = plc_panel_data.get("no_of_hid_es")
-            panel_sheet["E132"] = plc_panel_data.get("no_of_hid_os")
-            panel_sheet["E133"] = plc_panel_data.get("no_of_hid_hmi")
+            is_no_of_hid_es_selected = plc_panel_data.get("is_no_of_hid_es_selected")
+            is_no_of_hid_os_selected = plc_panel_data.get("is_no_of_hid_os_selected")
+            is_no_of_hid_hmi_selected = plc_panel_data.get("is_no_of_hid_hmi_selected")
+            is_hid_hmi_size_selected = plc_panel_data.get("is_hid_hmi_size_selected")
+
+            no_of_hid_es = plc_panel_data.get("no_of_hid_es")
+            no_of_hid_os = plc_panel_data.get("no_of_hid_os")
+            no_of_hid_hmi = plc_panel_data.get("no_of_hid_hmi")
             hid_hmi_size = plc_panel_data.get("hid_hmi_size")
-            panel_sheet["E134"] = f"{hid_hmi_size} inch"
+
+            if is_no_of_hid_es_selected == 0 :
+                no_of_hid_es = "Not Applicable"
+
+            if is_no_of_hid_os_selected == 0 :
+                no_of_hid_os = "Not Applicable"
+
+            if is_no_of_hid_hmi_selected == 0 :
+                no_of_hid_hmi = "Not Applicable"
+
+            if is_hid_hmi_size_selected == 0 :
+                hid_hmi_size = "Not Applicable"
+            else:
+                hid_hmi_size = f"{hid_hmi_size} inch"
+
+
+
+            panel_sheet["E131"] = no_of_hid_es
+            panel_sheet["E132"] = no_of_hid_os
+            panel_sheet["E133"] = no_of_hid_hmi
+            panel_sheet["E134"] = hid_hmi_size
 
             # Software
+
+            is_scada_development_license_selected = plc_panel_data.get("is_scada_development_license_selected")
+            is_scada_runtime_license_selected = plc_panel_data.get("is_scada_runtime_license_selected")
+            is_hmi_development_license_selected = plc_panel_data.get("is_hmi_development_license_selected")
+            is_plc_programming_license_software_selected = plc_panel_data.get("is_plc_programming_license_software_selected")
+
+
             no_of_scada_development_license = plc_panel_data.get("no_of_scada_development_license")
             no_of_scada_runtime_license = plc_panel_data.get("no_of_scada_runtime_license")
             no_of_hmi_development_license = plc_panel_data.get("no_of_hmi_development_license")
-            no_of_plc_programming_license_software = plc_panel_data.get("no_of_plc_programming_license_software")    
+            no_of_plc_programming_license_software = plc_panel_data.get("no_of_plc_programming_license_software")
 
-            panel_sheet["E136"] = number_To_string(no_of_scada_development_license)
-            panel_sheet["E137"] = number_To_string(no_of_scada_runtime_license)
-            panel_sheet["E138"] = number_To_string(no_of_hmi_development_license)
-            if no_of_plc_programming_license_software == 1:
-                no_of_plc_programming_license_software = "Applicable"
-            else:
+            if is_scada_development_license_selected == 0:
+                no_of_scada_development_license = "Not Applicable"
+
+            if is_scada_runtime_license_selected == 0:
+                no_of_scada_runtime_license = "Not Applicable"
+
+            if is_hmi_development_license_selected == 0:
+                no_of_hmi_development_license = "Not Applicable"
+
+            if is_plc_programming_license_software_selected == 0:
                 no_of_plc_programming_license_software = "Not Applicable"
+
+            
+            panel_sheet["E136"] = no_of_scada_development_license
+            panel_sheet["E137"] = no_of_scada_runtime_license
+            panel_sheet["E138"] = no_of_hmi_development_license
             panel_sheet["E139"] = no_of_plc_programming_license_software
 
             # Engineering / Operating SCADA Station
@@ -1430,11 +1472,21 @@ def get_design_basis_excel():
             commercial_grade_pc = plc_panel_data.get("commercial_grade_pc")
             monitor_size = plc_panel_data.get("monitor_size")
             windows_operating_system = plc_panel_data.get("windows_operating_system")
+            is_printer_with_cable_selected = plc_panel_data.get("is_printer_with_cable_selected")
             printer_with_communication_cable = plc_panel_data.get("printer_with_communication_cable")
             no_of_printer = plc_panel_data.get("no_of_printer")
             printer_cable = plc_panel_data.get("printer_cable")
+            is_furniture_for_scada_station_selected = plc_panel_data.get("is_furniture_for_scada_station_selected")
             furniture_for_scada_station = plc_panel_data.get("furniture_for_scada_station")
             hardware_between_plc_and_scada_pc = plc_panel_data.get("hardware_between_plc_and_scada_pc")
+
+            if is_printer_with_cable_selected == 0:
+                printer_with_communication_cable = "Not Applicable"
+                no_of_printer = "Not Applicable"
+                printer_cable = "Not Applicable"
+
+            if is_furniture_for_scada_station_selected == 0:
+                furniture_for_scada_station = "Not Applicable"
 
 
             panel_sheet["E141"] = na_To_string(system_hardware)

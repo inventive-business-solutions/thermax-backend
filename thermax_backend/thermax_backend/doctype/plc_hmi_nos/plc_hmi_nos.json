@@ -12,14 +12,14 @@
  "fields": [
   {
    "fieldname": "plc_hmi_nos",
-   "fieldtype": "Int",
+   "fieldtype": "Data",
    "label": "PLC HMI NOs",
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-06 07:41:47.232334",
+ "modified": "2024-11-28 22:08:49.177600",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "PLC HMI NOs",
