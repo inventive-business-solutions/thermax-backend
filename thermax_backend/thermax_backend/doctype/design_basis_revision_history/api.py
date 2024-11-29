@@ -290,9 +290,9 @@ def get_design_basis_excel():
         design_basis_sheet["C5"] = "Not Applicable"
         design_basis_sheet["C6"] = "Not Applicable"
 
-    area_classification_data = frappe.db.get_value("Project Main Package", {"revision_id":current_revision_id}, ["main_package_name", "standard","zone","gas_group","temperature_class"])
+    area_classification_data = frappe.db.get_value("Project Main Package", {"revision_id":current_revision_id}, ["standard","zone","gas_group","temperature_class"])
 
-    design_basis_sheet["C7"] = f"{area_classification_data[0]}, {area_classification_data[1]}, {area_classification_data[2]}, {area_classification_data[3]}, "
+    design_basis_sheet["C7"] = f"Standard-{area_classification_data[0]}, {area_classification_data[1]}, Gas Group-{area_classification_data[2]}, Temperature Class-{area_classification_data[3]}"
     design_basis_sheet["C8"] = general_info.get("battery_limit")
     design_basis_sheet["C9"] = mv_data
     design_basis_sheet["C10"] = f"{main_supply_lv}, Variation: {main_supply_lv_variation}, {main_supply_lv_phase}"
@@ -407,7 +407,8 @@ def get_design_basis_excel():
     if not division_name == "WWS SPG" and "Fuseless" not in mcc_switchgear_type:
         switchgear_combination_data =  "Not Applicable"
 
-    design_basis_sheet["E74"] = common_configuration.get("dol_starter")
+    dol_starter = common_configuration.get("dol_starter")
+    design_basis_sheet["E74"] = na_To_string(dol_starter)
     design_basis_sheet["E75"] = common_configuration.get("star_delta_starter")
     design_basis_sheet["E76"] = common_configuration.get("ammeter")
     design_basis_sheet["E77"] = common_configuration.get("ammeter_configuration")
@@ -415,8 +416,11 @@ def get_design_basis_excel():
     design_basis_sheet["E79"] = switchgear_combination_data
     design_basis_sheet["E80"] = common_configuration.get("pole")
     design_basis_sheet["E81"] = common_configuration.get("supply_feeder_standard")
-    design_basis_sheet["E82"] = common_configuration.get("dm_standard")
-    design_basis_sheet["E83"] = common_configuration.get("testing_standard")
+    
+    dm_standard = common_configuration.get("dm_standard")
+    design_basis_sheet["E82"] = na_To_string(dm_standard)
+    testing_standard = common_configuration.get("testing_standard")
+    design_basis_sheet["E83"] = na_To_string(testing_standard)
 
     """
         Wiring
@@ -454,10 +458,12 @@ def get_design_basis_excel():
     design_basis_sheet["E103"] = common_configuration.get("push_button_ess")
     design_basis_sheet["E104"] = na_To_string(speed_increase_pb)
     design_basis_sheet["E105"] = na_To_string(speed_decrease_pb)
-    design_basis_sheet["E106"] = common_configuration.get(
+    alarm_acknowledge_and_lamp_test = common_configuration.get(
         "alarm_acknowledge_and_lamp_test"
     )
-    design_basis_sheet["E107"] = common_configuration.get("test_reset")
+    design_basis_sheet["E106"] = na_To_string(alarm_acknowledge_and_lamp_test)
+    test_reset = common_configuration.get("test_reset")
+    design_basis_sheet["E107"] = na_To_string(test_reset)
 
     """
         Selector Switch
@@ -513,23 +519,17 @@ def get_design_basis_excel():
     lpbs_speed_increase = common_configuration.get("lpbs_speed_increase")
     lpbs_speed_decrease = common_configuration.get("lpbs_speed_decrease")
 
-    design_basis_sheet["E123"] = common_configuration.get("lpbs_type")
-    design_basis_sheet["E124"] = common_configuration.get("lpbs_enclosure")
-    design_basis_sheet["E125"] = common_configuration.get("lpbs_material")
-    design_basis_sheet["E126"] = common_configuration.get("lpbs_qty")
-    design_basis_sheet["E127"] = common_configuration.get("lpbs_color_shade")
-    design_basis_sheet["E128"] = common_configuration.get("lpbs_canopy_on_top")
-    design_basis_sheet["E129"] = common_configuration.get(
-        "lpbs_push_button_start_color"
-    )
-    design_basis_sheet["E130"] = common_configuration.get(
-        "lpbs_indication_lamp_start_color"
-    )
-    design_basis_sheet["E131"] = common_configuration.get(
-        "lpbs_indication_lamp_stop_color"
-    )
-    design_basis_sheet["E132"] = common_configuration.get("lpbs_speed_increase")
-    design_basis_sheet["E133"] = common_configuration.get("lpbs_speed_decrease")
+    design_basis_sheet["E123"] = na_To_string(lpbs_type)
+    design_basis_sheet["E124"] = na_To_string(lpbs_enclosure)
+    design_basis_sheet["E125"] = na_To_string(lpbs_material)
+    design_basis_sheet["E126"] = na_To_string(lpbs_qty)
+    design_basis_sheet["E127"] = na_To_string(lpbs_color_shade)
+    design_basis_sheet["E128"] = na_To_string(lpbs_canopy_on_top)
+    design_basis_sheet["E129"] = na_To_string(lpbs_push_button_start_color)
+    design_basis_sheet["E130"] = na_To_string(lpbs_indication_lamp_start_color)
+    design_basis_sheet["E131"] = na_To_string(lpbs_indication_lamp_stop_color)
+    design_basis_sheet["E132"] = na_To_string(lpbs_speed_increase)
+    design_basis_sheet["E133"] = na_To_string(lpbs_speed_decrease)
 
     """
         Power Bus
@@ -708,9 +708,9 @@ def get_design_basis_excel():
 
             indication_lamp_led_data = panel_data.get("is_led_type_lamp_selected")
             if indication_lamp_led_data == "NA":
-                indication_lamp_led_data = "OFF"
+                indication_data = "OFF"
             else:
-                indication_lamp_led_data = "ON"
+                indication_data = "ON"
             
             panel_sheet["E6"] = indication_data
             current_transformer_coating = panel_data.get("current_transformer_coating")
@@ -904,6 +904,13 @@ def get_design_basis_excel():
             indication_data = indication_lamp_led_data
             if others_data and not others_data == "NA":
                 indication_data = f"{indication_lamp_led_data}, {others_data}"
+
+            indication_lamp_led_data = panel_data.get("is_led_type_lamp_selected")
+            if indication_lamp_led_data == "NA":
+                indication_data = "OFF"
+            else:
+                indication_data = "ON"
+                
             panel_sheet["E6"] = indication_data
             control_transformer_coating = panel_data.get("control_transformer_coating")
             panel_sheet["E7"] = na_To_string(control_transformer_coating)
@@ -1096,9 +1103,9 @@ def get_design_basis_excel():
 
             indication_lamp_led_data = mcc_panel_data.get("is_led_type_lamp_selected")
             if indication_lamp_led_data == "NA":
-                indication_lamp_led_data = "OFF"
+                indication_data = "OFF"
             else:
-                indication_lamp_led_data = "ON"
+                indication_data = "ON"
 
             panel_sheet["E6"] = indication_data
             current_transformer_coating = mcc_panel_data.get("current_transformer_coating")
@@ -1245,6 +1252,18 @@ def get_design_basis_excel():
             heater_connected_load = mcc_panel_data.get("heater_connected_load")
             heater_temperature = mcc_panel_data.get("heater_temperature")
 
+            heater_selected =  frappe.db.get_value("MCC Panel",{"revision_id": current_revision_id},["is_punching_details_for_heater_selected"])
+            if is_boiler_selected == 0:
+                heater_pcc_power_supply_data = "NA"
+                heater_pcc_control_supply_data = "NA"
+                heater_model = "NA"
+                heater_fuel = "NA"
+                heater_year = "NA"
+                heater_evaporation = "NA"
+                heater_output = "NA"
+                heater_connected_load = "NA"
+                heater_design_pressure = "NA"
+
 
             panel_sheet["E54"] = na_To_string(heater_model)
             panel_sheet["E55"] = na_To_string(heater_fuel)
@@ -1324,13 +1343,14 @@ def get_design_basis_excel():
             is_cpu_and_io_card_redundancy_selected = plc_panel_data.get("is_cpu_and_io_card_redundancy_selected")
             is_cpu_and_hmi_scada_card_redundancy_selected = plc_panel_data.get("is_cpu_and_hmi_scada_card_redundancy_selected")
             is_cpu_and_third_party_services_redundancy_selected = plc_panel_data.get("is_cpu_and_third_party_services_redundancy_selected")
+            cpu_redundancy = plc_panel_data.get("cpu_redundancy")
 
             panel_sheet["E85"] = number_To_string(is_power_supply_redundancy_selected)
             panel_sheet["E86"] = number_To_string(is_io_redundancy_selected)
             panel_sheet["E87"] = number_To_string(is_cpu_and_io_card_redundancy_selected)
             panel_sheet["E88"] = number_To_string(is_cpu_and_hmi_scada_card_redundancy_selected)
             panel_sheet["E89"] = number_To_string(is_cpu_and_third_party_services_redundancy_selected)
-            panel_sheet["E90"] = plc_panel_data.get("cpu_redundancy")
+            panel_sheet["E90"] = na_To_string(cpu_redundancy)
 
             # PLC Panel
             panel_sheet["E92"] = plc_panel_data.get("plc_panel_memory")
