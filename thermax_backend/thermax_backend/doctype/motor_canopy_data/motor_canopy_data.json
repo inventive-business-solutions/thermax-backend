@@ -1,0 +1,123 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2024-12-03 09:47:18.116158",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "data_section",
+  "tag_number",
+  "service_description",
+  "quantity",
+  "motor_rated_current",
+  "rpm",
+  "motor_mounting_type",
+  "motor_frame_size",
+  "motor_location",
+  "moc",
+  "canopy_model_number",
+  "canopy_leg_length",
+  "canopy_cut_out",
+  "part_code",
+  "motor_scope",
+  "remark"
+ ],
+ "fields": [
+  {
+   "fieldname": "data_section",
+   "fieldtype": "Section Break",
+   "label": "Data"
+  },
+  {
+   "fieldname": "tag_number",
+   "fieldtype": "Data",
+   "label": "Tag Number"
+  },
+  {
+   "fieldname": "service_description",
+   "fieldtype": "Data",
+   "label": "Service Description"
+  },
+  {
+   "fieldname": "quantity",
+   "fieldtype": "Int",
+   "label": "Quantity"
+  },
+  {
+   "fieldname": "motor_rated_current",
+   "fieldtype": "Float",
+   "label": "Motor Rated Current",
+   "precision": "2"
+  },
+  {
+   "fieldname": "rpm",
+   "fieldtype": "Int",
+   "label": "RPM"
+  },
+  {
+   "fieldname": "motor_mounting_type",
+   "fieldtype": "Data",
+   "label": "Motor Mounting Type"
+  },
+  {
+   "fieldname": "motor_frame_size",
+   "fieldtype": "Data",
+   "label": "Motor Frame Size"
+  },
+  {
+   "fieldname": "motor_location",
+   "fieldtype": "Data",
+   "label": "Motor Location"
+  },
+  {
+   "fieldname": "moc",
+   "fieldtype": "Data",
+   "label": "MOC"
+  },
+  {
+   "fieldname": "canopy_model_number",
+   "fieldtype": "Data",
+   "label": "Canopy Model Number"
+  },
+  {
+   "fieldname": "canopy_leg_length",
+   "fieldtype": "Data",
+   "label": "Canopy Leg Length"
+  },
+  {
+   "fieldname": "canopy_cut_out",
+   "fieldtype": "Data",
+   "label": "Canopy Cut Out"
+  },
+  {
+   "fieldname": "part_code",
+   "fieldtype": "Data",
+   "label": "Part Code"
+  },
+  {
+   "fieldname": "motor_scope",
+   "fieldtype": "Data",
+   "label": "Motor Scope"
+  },
+  {
+   "fieldname": "remark",
+   "fieldtype": "Data",
+   "label": "Remark"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-12-03 09:52:21.609396",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "Motor Canopy Data",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

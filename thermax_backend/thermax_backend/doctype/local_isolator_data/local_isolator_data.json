@@ -1,0 +1,74 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2024-12-03 17:59:39.910109",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "data_section",
+  "fmi_type",
+  "fmi_enclosure",
+  "fmi_material",
+  "fmi_quantity",
+  "ifm_isolator_color_shade",
+  "ifm_cable_entry",
+  "canopy_on_top"
+ ],
+ "fields": [
+  {
+   "fieldname": "data_section",
+   "fieldtype": "Section Break",
+   "label": "Data"
+  },
+  {
+   "fieldname": "fmi_type",
+   "fieldtype": "Data",
+   "label": "FMI Type"
+  },
+  {
+   "fieldname": "fmi_enclosure",
+   "fieldtype": "Data",
+   "label": "FMI Enclosure"
+  },
+  {
+   "fieldname": "fmi_material",
+   "fieldtype": "Data",
+   "label": "FMI Material"
+  },
+  {
+   "fieldname": "fmi_quantity",
+   "fieldtype": "Data",
+   "label": "FMI Quantity"
+  },
+  {
+   "fieldname": "ifm_isolator_color_shade",
+   "fieldtype": "Data",
+   "label": "IFM Isolator Color Shade"
+  },
+  {
+   "fieldname": "ifm_cable_entry",
+   "fieldtype": "Data",
+   "label": "IFM Cable Entry"
+  },
+  {
+   "fieldname": "canopy_on_top",
+   "fieldtype": "Data",
+   "label": "Canopy on Top"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-12-03 18:01:44.135069",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "Local Isolator Data",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

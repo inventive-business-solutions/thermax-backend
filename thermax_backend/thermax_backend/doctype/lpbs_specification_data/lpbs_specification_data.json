@@ -1,0 +1,98 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2024-12-03 17:47:46.185995",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "data_section",
+  "lpbs_type",
+  "lpbs_enclosure",
+  "lpbs_material",
+  "lpbs_quantity",
+  "lpbs_isolator_color_shade",
+  "canopy_on_top",
+  "start_push_button_color",
+  "start_on_indication_lamp_color",
+  "stop_off_indication_lamp_color",
+  "pbc_speed_1",
+  "pbc_speed_2"
+ ],
+ "fields": [
+  {
+   "fieldname": "data_section",
+   "fieldtype": "Section Break",
+   "label": "Data"
+  },
+  {
+   "fieldname": "lpbs_type",
+   "fieldtype": "Data",
+   "label": "LPBS Type"
+  },
+  {
+   "fieldname": "lpbs_enclosure",
+   "fieldtype": "Data",
+   "label": "LPBS Enclosure"
+  },
+  {
+   "fieldname": "lpbs_material",
+   "fieldtype": "Data",
+   "label": "LPBS Material"
+  },
+  {
+   "fieldname": "lpbs_quantity",
+   "fieldtype": "Data",
+   "label": "LPBS Quantity"
+  },
+  {
+   "fieldname": "lpbs_isolator_color_shade",
+   "fieldtype": "Data",
+   "label": "LPBS Isolator Color Shade"
+  },
+  {
+   "fieldname": "canopy_on_top",
+   "fieldtype": "Data",
+   "label": "Canopy on Top"
+  },
+  {
+   "fieldname": "start_push_button_color",
+   "fieldtype": "Data",
+   "label": "Start Push Button Color"
+  },
+  {
+   "fieldname": "start_on_indication_lamp_color",
+   "fieldtype": "Data",
+   "label": "Start on Indication Lamp Color"
+  },
+  {
+   "fieldname": "stop_off_indication_lamp_color",
+   "fieldtype": "Data",
+   "label": "Stop off Indication Lamp Color"
+  },
+  {
+   "fieldname": "pbc_speed_1",
+   "fieldtype": "Data",
+   "label": "PBC Speed 1"
+  },
+  {
+   "fieldname": "pbc_speed_2",
+   "fieldtype": "Data",
+   "label": "PBC Speed 2"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-12-03 17:53:08.380656",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "LPBS Specification Data",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
