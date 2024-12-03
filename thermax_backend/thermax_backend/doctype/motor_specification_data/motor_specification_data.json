@@ -1,0 +1,128 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2024-12-03 17:11:09.724407",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "data_section",
+  "ambient_temperature",
+  "altitude",
+  "area_classification",
+  "standard",
+  "zone",
+  "gas_group",
+  "temperature_class",
+  "voltage",
+  "frequency",
+  "combined_voltage_frequency_variation",
+  "degree_of_protection",
+  "insulation_class",
+  "temperature_rise_limit",
+  "cooling_type",
+  "frame_material",
+  "material_of_terminal_box"
+ ],
+ "fields": [
+  {
+   "fieldname": "data_section",
+   "fieldtype": "Section Break",
+   "label": "Data"
+  },
+  {
+   "fieldname": "ambient_temperature",
+   "fieldtype": "Data",
+   "label": "Ambient Temperature"
+  },
+  {
+   "fieldname": "altitude",
+   "fieldtype": "Data",
+   "label": "Altitude"
+  },
+  {
+   "fieldname": "area_classification",
+   "fieldtype": "Data",
+   "label": "Area Classification"
+  },
+  {
+   "fieldname": "standard",
+   "fieldtype": "Data",
+   "label": "Standard"
+  },
+  {
+   "fieldname": "zone",
+   "fieldtype": "Data",
+   "label": "Zone"
+  },
+  {
+   "fieldname": "gas_group",
+   "fieldtype": "Data",
+   "label": "Gas Group"
+  },
+  {
+   "fieldname": "temperature_class",
+   "fieldtype": "Data",
+   "label": "Temperature Class"
+  },
+  {
+   "fieldname": "voltage",
+   "fieldtype": "Data",
+   "label": "Voltage"
+  },
+  {
+   "fieldname": "frequency",
+   "fieldtype": "Data",
+   "label": "Frequency"
+  },
+  {
+   "fieldname": "combined_voltage_frequency_variation",
+   "fieldtype": "Data",
+   "label": "Combined Voltage Frequency Variation"
+  },
+  {
+   "fieldname": "degree_of_protection",
+   "fieldtype": "Data",
+   "label": "Degree of Protection"
+  },
+  {
+   "fieldname": "insulation_class",
+   "fieldtype": "Data",
+   "label": "Insulation Class"
+  },
+  {
+   "fieldname": "temperature_rise_limit",
+   "fieldtype": "Data",
+   "label": "Temperature Rise Limit"
+  },
+  {
+   "fieldname": "cooling_type",
+   "fieldtype": "Data",
+   "label": "Cooling Type"
+  },
+  {
+   "fieldname": "frame_material",
+   "fieldtype": "Data",
+   "label": "Frame Material"
+  },
+  {
+   "fieldname": "material_of_terminal_box",
+   "fieldtype": "Data",
+   "label": "Material of Terminal Box"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-12-03 17:17:14.980357",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "Motor Specification Data",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

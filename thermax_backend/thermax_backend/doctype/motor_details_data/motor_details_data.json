@@ -1,0 +1,220 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2024-12-03 17:17:58.649939",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "serial_number",
+  "tag_number",
+  "service_description",
+  "working_kw",
+  "motor_rated_current",
+  "rpm",
+  "type_of_mounting",
+  "motor_frame_size",
+  "motor_gd2",
+  "gd2_of_driven_equipment",
+  "bkw",
+  "type_of_couplings",
+  "location",
+  "voltage",
+  "frequency",
+  "feeder_type",
+  "cable_size",
+  "space_heater",
+  "roller_bearing",
+  "insulated_bearing",
+  "thermistor",
+  "rtd",
+  "btd",
+  "motor_energy_efficiency",
+  "full_load_current",
+  "power_factor",
+  "motor_efficiency_at_100",
+  "make",
+  "part_code",
+  "remark",
+  "area",
+  "motor_scope"
+ ],
+ "fields": [
+  {
+   "fieldname": "serial_number",
+   "fieldtype": "Data",
+   "label": "Serial Number"
+  },
+  {
+   "fieldname": "tag_number",
+   "fieldtype": "Data",
+   "label": "Tag Number"
+  },
+  {
+   "fieldname": "service_description",
+   "fieldtype": "Data",
+   "label": "Service Description"
+  },
+  {
+   "fieldname": "working_kw",
+   "fieldtype": "Float",
+   "label": "Working KW",
+   "precision": "2"
+  },
+  {
+   "fieldname": "motor_rated_current",
+   "fieldtype": "Float",
+   "label": "Motor Rated Current"
+  },
+  {
+   "fieldname": "rpm",
+   "fieldtype": "Int",
+   "label": "RPM"
+  },
+  {
+   "fieldname": "type_of_mounting",
+   "fieldtype": "Data",
+   "label": "Type of Mounting"
+  },
+  {
+   "fieldname": "motor_frame_size",
+   "fieldtype": "Data",
+   "label": "Motor Frame Size"
+  },
+  {
+   "fieldname": "motor_gd2",
+   "fieldtype": "Data",
+   "label": "Motor GD2"
+  },
+  {
+   "fieldname": "gd2_of_driven_equipment",
+   "fieldtype": "Data",
+   "label": "GD2 of Driven Equipment"
+  },
+  {
+   "fieldname": "bkw",
+   "fieldtype": "Data",
+   "label": "BKW"
+  },
+  {
+   "fieldname": "type_of_couplings",
+   "fieldtype": "Data",
+   "label": "Type of Couplings"
+  },
+  {
+   "fieldname": "location",
+   "fieldtype": "Data",
+   "label": "Location"
+  },
+  {
+   "fieldname": "voltage",
+   "fieldtype": "Int",
+   "label": "Voltage"
+  },
+  {
+   "fieldname": "frequency",
+   "fieldtype": "Int",
+   "label": "Frequency"
+  },
+  {
+   "fieldname": "feeder_type",
+   "fieldtype": "Data",
+   "label": "Feeder Type"
+  },
+  {
+   "fieldname": "cable_size",
+   "fieldtype": "Data",
+   "label": "Cable Size"
+  },
+  {
+   "fieldname": "space_heater",
+   "fieldtype": "Data",
+   "label": "Space Heater"
+  },
+  {
+   "fieldname": "roller_bearing",
+   "fieldtype": "Data",
+   "label": "Roller Bearing"
+  },
+  {
+   "fieldname": "insulated_bearing",
+   "fieldtype": "Data",
+   "label": "Insulated Bearing"
+  },
+  {
+   "fieldname": "thermistor",
+   "fieldtype": "Data",
+   "label": "Thermistor"
+  },
+  {
+   "fieldname": "rtd",
+   "fieldtype": "Data",
+   "label": "RTD"
+  },
+  {
+   "fieldname": "btd",
+   "fieldtype": "Data",
+   "label": "BTD"
+  },
+  {
+   "fieldname": "motor_energy_efficiency",
+   "fieldtype": "Data",
+   "label": "Motor Energy Efficiency"
+  },
+  {
+   "fieldname": "full_load_current",
+   "fieldtype": "Data",
+   "label": "Full Load Current"
+  },
+  {
+   "fieldname": "power_factor",
+   "fieldtype": "Float",
+   "label": "Power Factor",
+   "precision": "2"
+  },
+  {
+   "fieldname": "motor_efficiency_at_100",
+   "fieldtype": "Data",
+   "label": "Motor Efficiency at 100"
+  },
+  {
+   "fieldname": "make",
+   "fieldtype": "Data",
+   "label": "Make"
+  },
+  {
+   "fieldname": "part_code",
+   "fieldtype": "Data",
+   "label": "Part Code"
+  },
+  {
+   "fieldname": "remark",
+   "fieldtype": "Data",
+   "label": "Remark"
+  },
+  {
+   "fieldname": "area",
+   "fieldtype": "Data",
+   "label": "Area"
+  },
+  {
+   "fieldname": "motor_scope",
+   "fieldtype": "Data",
+   "label": "Motor Scope"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-12-03 17:26:57.301245",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "Motor Details Data",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

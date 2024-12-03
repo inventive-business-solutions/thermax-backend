@@ -1,0 +1,68 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2024-12-03 18:02:44.100729",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "data_section",
+  "serial_number",
+  "tag_number",
+  "service_description",
+  "working_kw",
+  "motor_rated_current",
+  "local_isolator"
+ ],
+ "fields": [
+  {
+   "fieldname": "data_section",
+   "fieldtype": "Section Break",
+   "label": "Data"
+  },
+  {
+   "fieldname": "serial_number",
+   "fieldtype": "Data",
+   "label": "Serial Number"
+  },
+  {
+   "fieldname": "tag_number",
+   "fieldtype": "Data",
+   "label": "Tag Number"
+  },
+  {
+   "fieldname": "service_description",
+   "fieldtype": "Data",
+   "label": "Service Description"
+  },
+  {
+   "fieldname": "working_kw",
+   "fieldtype": "Data",
+   "label": "Working KW"
+  },
+  {
+   "fieldname": "motor_rated_current",
+   "fieldtype": "Data",
+   "label": "Motor Rated Current"
+  },
+  {
+   "fieldname": "local_isolator",
+   "fieldtype": "Data",
+   "label": "Local Isolator"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-12-03 18:04:10.942321",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "Local Isolator Motor Details Data",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

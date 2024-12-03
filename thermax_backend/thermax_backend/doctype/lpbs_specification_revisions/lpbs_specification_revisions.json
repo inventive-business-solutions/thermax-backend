@@ -1,0 +1,64 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2024-12-03 17:56:28.464699",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "project_id",
+  "status",
+  "description",
+  "lpbs_specification_data"
+ ],
+ "fields": [
+  {
+   "fieldname": "project_id",
+   "fieldtype": "Link",
+   "label": "Project ID",
+   "options": "Project"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Not Released\nReleased"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "lpbs_specification_data",
+   "fieldtype": "Table",
+   "label": "LPBS Specification Data",
+   "options": "LPBS Specification Data"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-12-03 17:57:48.301566",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "LPBS Specification Revisions",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
