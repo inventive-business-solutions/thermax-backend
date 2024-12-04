@@ -449,15 +449,21 @@ def get_design_basis_excel():
         Push Button Color
     """
     speed_increase_pb = common_configuration.get("speed_increase_pb")
+    is_push_button_speed_selected = common_configuration.get("is_push_button_speed_selected")
     speed_decrease_pb = common_configuration.get("speed_decrease_pb")
+    
+    if(is_push_button_speed_selected == 0):
+        speed_increase_pb = "Not Applicable"
+        speed_decrease_pb = "Not Applicable"
+
     push_button_start = common_configuration.get("push_button_start")
     push_button_stop = common_configuration.get("push_button_stop")
 
     design_basis_sheet["E101"] = na_To_string(push_button_start)
     design_basis_sheet["E102"] = na_To_string(push_button_stop)
     design_basis_sheet["E103"] = common_configuration.get("push_button_ess")
-    design_basis_sheet["E104"] = na_To_string(speed_increase_pb)
-    design_basis_sheet["E105"] = na_To_string(speed_decrease_pb)
+    design_basis_sheet["E104"] = speed_increase_pb
+    design_basis_sheet["E105"] = speed_decrease_pb
     alarm_acknowledge_and_lamp_test = common_configuration.get(
         "alarm_acknowledge_and_lamp_test"
     )
