@@ -1,0 +1,117 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2024-12-04 16:51:12.094728",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "data_section",
+  "make",
+  "moc",
+  "model",
+  "frame_size",
+  "leg_length",
+  "canopy_model_number",
+  "cut_out",
+  "kw",
+  "pole",
+  "speed",
+  "mounting_type",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "data_section",
+   "fieldtype": "Section Break",
+   "label": "Data"
+  },
+  {
+   "fieldname": "make",
+   "fieldtype": "Data",
+   "label": "Make"
+  },
+  {
+   "fieldname": "moc",
+   "fieldtype": "Data",
+   "label": "MOC"
+  },
+  {
+   "fieldname": "model",
+   "fieldtype": "Data",
+   "label": "Model"
+  },
+  {
+   "fieldname": "frame_size",
+   "fieldtype": "Data",
+   "label": "Frame Size"
+  },
+  {
+   "fieldname": "leg_length",
+   "fieldtype": "Data",
+   "label": "Leg Length"
+  },
+  {
+   "fieldname": "canopy_model_number",
+   "fieldtype": "Data",
+   "label": "Canopy Model Number"
+  },
+  {
+   "fieldname": "cut_out",
+   "fieldtype": "Data",
+   "label": "Cut Out"
+  },
+  {
+   "fieldname": "kw",
+   "fieldtype": "Float",
+   "label": "KW",
+   "precision": "2"
+  },
+  {
+   "fieldname": "pole",
+   "fieldtype": "Int",
+   "label": "Pole"
+  },
+  {
+   "fieldname": "speed",
+   "fieldtype": "Int",
+   "label": "Speed"
+  },
+  {
+   "fieldname": "mounting_type",
+   "fieldtype": "Data",
+   "label": "Mounting Type"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text",
+   "label": "Description"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-12-04 17:14:49.018610",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "Motor Canopy List Metadata",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
