@@ -1,0 +1,204 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2024-12-02 11:10:22.385050",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "data_section",
+  "tag_number",
+  "service_description",
+  "working_kw",
+  "standby_kw",
+  "kva",
+  "starter_type",
+  "supply_voltage",
+  "motor_rated_current",
+  "cable_material",
+  "cos_running",
+  "cos_starting",
+  "resistance_meter",
+  "reactance_meter",
+  "apex_length",
+  "vd_running",
+  "vd_starting",
+  "percent_vd_running",
+  "percent_vd_starting",
+  "selected_cable_capacity_amp",
+  "derating_factor",
+  "final_capacity",
+  "number_of_runs",
+  "number_of_cores",
+  "final_cable_size",
+  "cable_selected_status",
+  "cable_size_heating_chart"
+ ],
+ "fields": [
+  {
+   "fieldname": "data_section",
+   "fieldtype": "Section Break",
+   "label": "Data"
+  },
+  {
+   "fieldname": "tag_number",
+   "fieldtype": "Data",
+   "label": "Tag Number"
+  },
+  {
+   "fieldname": "service_description",
+   "fieldtype": "Data",
+   "label": "Service Description"
+  },
+  {
+   "fieldname": "working_kw",
+   "fieldtype": "Float",
+   "label": "Working KW",
+   "precision": "2"
+  },
+  {
+   "fieldname": "standby_kw",
+   "fieldtype": "Float",
+   "label": "Standby KW",
+   "precision": "2"
+  },
+  {
+   "fieldname": "kva",
+   "fieldtype": "Float",
+   "label": "KVA",
+   "precision": "2"
+  },
+  {
+   "fieldname": "starter_type",
+   "fieldtype": "Data",
+   "label": "Starter Type"
+  },
+  {
+   "fieldname": "supply_voltage",
+   "fieldtype": "Int",
+   "label": "Supply Voltage"
+  },
+  {
+   "fieldname": "motor_rated_current",
+   "fieldtype": "Float",
+   "label": "Motor Rated Current",
+   "precision": "2"
+  },
+  {
+   "fieldname": "cable_material",
+   "fieldtype": "Data",
+   "label": "Cable Material"
+  },
+  {
+   "fieldname": "cos_running",
+   "fieldtype": "Float",
+   "label": "Cos Running",
+   "precision": "2"
+  },
+  {
+   "fieldname": "cos_starting",
+   "fieldtype": "Float",
+   "label": "Cos Starting",
+   "precision": "2"
+  },
+  {
+   "fieldname": "resistance_meter",
+   "fieldtype": "Float",
+   "label": "Resistance Meter",
+   "precision": "2"
+  },
+  {
+   "fieldname": "reactance_meter",
+   "fieldtype": "Float",
+   "label": "Reactance Meter",
+   "precision": "2"
+  },
+  {
+   "fieldname": "apex_length",
+   "fieldtype": "Float",
+   "label": "Apex Length",
+   "precision": "2"
+  },
+  {
+   "fieldname": "vd_running",
+   "fieldtype": "Float",
+   "label": "VD Running",
+   "precision": "2"
+  },
+  {
+   "fieldname": "vd_starting",
+   "fieldtype": "Float",
+   "label": "VD Starting",
+   "precision": "2"
+  },
+  {
+   "fieldname": "percent_vd_running",
+   "fieldtype": "Float",
+   "label": "Percent VD Running",
+   "precision": "2"
+  },
+  {
+   "fieldname": "percent_vd_starting",
+   "fieldtype": "Float",
+   "label": "Percent VD Starting",
+   "precision": "2"
+  },
+  {
+   "fieldname": "selected_cable_capacity_amp",
+   "fieldtype": "Float",
+   "label": "Selected Cable Capacity Amp",
+   "precision": "2"
+  },
+  {
+   "fieldname": "derating_factor",
+   "fieldtype": "Float",
+   "label": "Derating Factor",
+   "precision": "2"
+  },
+  {
+   "fieldname": "final_capacity",
+   "fieldtype": "Float",
+   "label": "Final Capacity",
+   "precision": "2"
+  },
+  {
+   "fieldname": "number_of_runs",
+   "fieldtype": "Int",
+   "label": "Number of Runs"
+  },
+  {
+   "fieldname": "number_of_cores",
+   "fieldtype": "Data",
+   "label": "Number of Cores"
+  },
+  {
+   "fieldname": "final_cable_size",
+   "fieldtype": "Data",
+   "label": "Final Cable Size"
+  },
+  {
+   "fieldname": "cable_selected_status",
+   "fieldtype": "Data",
+   "label": "Cable Selected Status"
+  },
+  {
+   "fieldname": "cable_size_heating_chart",
+   "fieldtype": "Data",
+   "label": "Cable Size Heating Chart"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-12-02 11:20:49.960326",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "Cable Schedule Data",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
