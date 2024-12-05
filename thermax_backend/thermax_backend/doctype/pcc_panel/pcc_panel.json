@@ -24,6 +24,7 @@
   "is_blue_cb_spring_charge_selected",
   "is_red_cb_in_service",
   "is_white_healthy_trip_circuit_selected",
+  "is_other_selected",
   "control_transformer_coating",
   "control_transformer_configuration",
   "alarm_annunciator",
@@ -186,8 +187,9 @@
   {
    "default": "0",
    "fieldname": "is_led_type_lamp_selected",
-   "fieldtype": "Check",
-   "label": "Is LED Type Lamp Selected"
+   "fieldtype": "Select",
+   "label": "Is LED Type Lamp Selected",
+   "options": "0\n1"
   },
   {
    "default": "0",
@@ -310,26 +312,30 @@
   {
    "default": "0",
    "fieldname": "is_marshalling_section_selected",
-   "fieldtype": "Check",
-   "label": "Is Marshalling Section Selected"
+   "fieldtype": "Select",
+   "label": "Is Marshalling Section Selected",
+   "options": "0\n1"
   },
   {
    "default": "0",
    "fieldname": "is_cable_alley_section_selected",
-   "fieldtype": "Check",
-   "label": "Is Cable Alley Section Selected"
+   "fieldtype": "Select",
+   "label": "Is Cable Alley Section Selected",
+   "options": "0\n1"
   },
   {
    "default": "0",
    "fieldname": "is_power_and_bus_separation_section_selected",
-   "fieldtype": "Check",
-   "label": "Is Power and Bus Separation Section Selected"
+   "fieldtype": "Select",
+   "label": "Is Power and Bus Separation Section Selected",
+   "options": "0\n1"
   },
   {
    "default": "0",
    "fieldname": "is_both_side_extension_section_selected",
-   "fieldtype": "Check",
-   "label": "Is Both Side Extension Section Selected"
+   "fieldtype": "Select",
+   "label": "Is Both Side Extension Section Selected",
+   "options": "0\n1"
   },
   {
    "fieldname": "ga_gland_plate_3mm_drill_type",
@@ -416,8 +422,9 @@
   {
    "default": "0",
    "fieldname": "is_punching_details_for_boiler_selected",
-   "fieldtype": "Check",
-   "label": "Is Punching Details for Boiler Selected"
+   "fieldtype": "Select",
+   "label": "Is Punching Details for Boiler Selected",
+   "options": "0\n1"
   },
   {
    "fieldname": "boiler_model",
@@ -487,8 +494,9 @@
   {
    "default": "0",
    "fieldname": "is_punching_details_for_heater_selected",
-   "fieldtype": "Check",
-   "label": "Is Punching Details for Heater Selected"
+   "fieldtype": "Select",
+   "label": "Is Punching Details for Heater Selected",
+   "options": "0\n1"
   },
   {
    "fieldname": "heater_model",
@@ -614,11 +622,18 @@
    "fieldname": "control_transformer_configuration",
    "fieldtype": "Data",
    "label": "Control Transformer Configuration"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_other_selected",
+   "fieldtype": "Select",
+   "label": "Is Other Selected",
+   "options": "0\n1"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-26 05:07:05.070850",
+ "modified": "2024-12-04 21:30:32.606212",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "PCC Panel",

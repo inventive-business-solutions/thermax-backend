@@ -24,6 +24,7 @@
   "is_blue_cb_spring_charge_selected",
   "is_red_cb_in_service",
   "is_white_healthy_trip_circuit_selected",
+  "is_other_selected",
   "led_type_other_input",
   "current_transformer_coating",
   "control_transformer_coating",
@@ -187,8 +188,9 @@
   {
    "default": "0",
    "fieldname": "is_led_type_lamp_selected",
-   "fieldtype": "Check",
-   "label": "Is LED Type Lamp Selected"
+   "fieldtype": "Select",
+   "label": "Is LED Type Lamp Selected",
+   "options": "0\n1"
   },
   {
    "default": "0",
@@ -314,7 +316,8 @@
    "default": "0",
    "fieldname": "is_marshalling_section_selected",
    "fieldtype": "Check",
-   "label": "Is Marshalling Section Selected"
+   "label": "Is Marshalling Section Selected",
+   "options": "\n"
   },
   {
    "default": "0",
@@ -425,8 +428,9 @@
   {
    "default": "0",
    "fieldname": "is_punching_details_for_boiler_selected",
-   "fieldtype": "Check",
-   "label": "Is Punching Details for Boiler Selected"
+   "fieldtype": "Select",
+   "label": "Is Punching Details for Boiler Selected",
+   "options": "0\n1"
   },
   {
    "fieldname": "boiler_model",
@@ -496,8 +500,9 @@
   {
    "default": "0",
    "fieldname": "is_punching_details_for_heater_selected",
-   "fieldtype": "Check",
-   "label": "Is Punching Details for Heater Selected"
+   "fieldtype": "Select",
+   "label": "Is Punching Details for Heater Selected",
+   "options": "0\n1"
   },
   {
    "fieldname": "heater_model",
@@ -625,11 +630,18 @@
    "fieldname": "special_note",
    "fieldtype": "Data",
    "label": "Special Note"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_other_selected",
+   "fieldtype": "Select",
+   "label": " Is Other Selected",
+   "options": "0\n1"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-21 13:04:06.936156",
+ "modified": "2024-12-04 21:26:31.199416",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "MCC Panel",

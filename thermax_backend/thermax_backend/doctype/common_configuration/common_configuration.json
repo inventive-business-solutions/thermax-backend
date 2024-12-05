@@ -395,8 +395,9 @@
   {
    "default": "0",
    "fieldname": "is_push_button_speed_selected",
-   "fieldtype": "Check",
-   "label": "Is Push Button Speed Selected"
+   "fieldtype": "Select",
+   "label": "Is Push Button Speed Selected",
+   "options": "0\n1"
   },
   {
    "fieldname": "alarm_acknowledge_and_lamp_test",
@@ -571,7 +572,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-24 18:30:23.317993",
+ "modified": "2024-12-03 22:28:08.985913",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Common Configuration",
