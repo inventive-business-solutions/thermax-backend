@@ -147,7 +147,7 @@ def get_design_basis_excel():
     if division_name == "WWS SPG":
         cover_sheet["A3"] = "Water & Waste Solution".upper()  # Replace with desired text
         cover_sheet["A4"] = "411 026"
-    elif division_name == "Enviro":
+    elif division_name == "Enviro".upper():
         cover_sheet["A4"] = "411 026"
     else:
         cover_sheet["A3"] = division_name.upper()  # Otherwise, use the original division name
@@ -452,7 +452,7 @@ def get_design_basis_excel():
     is_push_button_speed_selected = common_configuration.get("is_push_button_speed_selected")
     speed_decrease_pb = common_configuration.get("speed_decrease_pb")
     
-    if(is_push_button_speed_selected == 0):
+    if(is_push_button_speed_selected == "0"):
         speed_increase_pb = "Not Applicable"
         speed_decrease_pb = "Not Applicable"
 
