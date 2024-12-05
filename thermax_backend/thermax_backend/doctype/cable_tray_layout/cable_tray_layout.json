@@ -227,8 +227,9 @@
   {
    "default": "0",
    "fieldname": "is_dry_area_selected",
-   "fieldtype": "Check",
-   "label": "Is Dry Area Selected"
+   "fieldtype": "Select",
+   "label": "Is Dry Area Selected",
+   "options": "0\n1"
   },
   {
    "fieldname": "dry_area",
@@ -239,8 +240,9 @@
   {
    "default": "0",
    "fieldname": "is_wet_area_selected",
-   "fieldtype": "Check",
-   "label": "Is Wet Area Selected"
+   "fieldtype": "Select",
+   "label": "Is Wet Area Selected",
+   "options": "0\n1"
   },
   {
    "fieldname": "wet_area",
@@ -256,8 +258,9 @@
   {
    "default": "0",
    "fieldname": "is_pct_perforated_type_selected",
-   "fieldtype": "Check",
-   "label": "Is PCT Perforated Type Selected"
+   "fieldtype": "Select",
+   "label": "Is PCT Perforated Type Selected",
+   "options": "0\n1"
   },
   {
    "fieldname": "pct_perforated_type_width",
@@ -280,8 +283,9 @@
   {
    "default": "0",
    "fieldname": "is_pct_ladder_type_selected",
-   "fieldtype": "Check",
-   "label": "Is PCT Ladder Type Selected"
+   "fieldtype": "Select",
+   "label": "Is PCT Ladder Type Selected",
+   "options": "0\n1"
   },
   {
    "fieldname": "pct_ladder_type_width",
@@ -304,8 +308,9 @@
   {
    "default": "0",
    "fieldname": "is_pct_mesh_type_selected",
-   "fieldtype": "Check",
-   "label": "Is PCT Mesh Type Selected"
+   "fieldtype": "Select",
+   "label": "Is PCT Mesh Type Selected",
+   "options": "0\n1"
   },
   {
    "fieldname": "pct_mesh_type_width",
@@ -328,8 +333,9 @@
   {
    "default": "0",
    "fieldname": "is_pct_conduit_selected",
-   "fieldtype": "Check",
-   "label": "Is PCT Conduit Selected"
+   "fieldtype": "Select",
+   "label": "Is PCT Conduit Selected",
+   "options": "0\n1"
   },
   {
    "fieldname": "pct_conduit_moc",
@@ -351,8 +357,9 @@
   {
    "default": "0",
    "fieldname": "is_cct_perforated_type_selected",
-   "fieldtype": "Check",
-   "label": "Is CCT Perforated Type Selected"
+   "fieldtype": "Select",
+   "label": "Is CCT Perforated Type Selected",
+   "options": "0\n1"
   },
   {
    "fieldname": "cct_perforated_type_width",
@@ -375,8 +382,9 @@
   {
    "default": "0",
    "fieldname": "is_cct_ladder_type_selected",
-   "fieldtype": "Check",
-   "label": "Is CCT Ladder Type Selected"
+   "fieldtype": "Select",
+   "label": "Is CCT Ladder Type Selected",
+   "options": "0\n1"
   },
   {
    "fieldname": "cct_ladder_type_width",
@@ -399,8 +407,9 @@
   {
    "default": "0",
    "fieldname": "is_cct_mesh_type_selected",
-   "fieldtype": "Check",
-   "label": "Is CCT Mesh Type Selected"
+   "fieldtype": "Select",
+   "label": "Is CCT Mesh Type Selected",
+   "options": "0\n1"
   },
   {
    "fieldname": "cct_mesh_type_width",
@@ -423,8 +432,9 @@
   {
    "default": "0",
    "fieldname": "is_cct_conduit_selected",
-   "fieldtype": "Check",
-   "label": "Is CCT Conduit Selected"
+   "fieldtype": "Select",
+   "label": "Is CCT Conduit Selected",
+   "options": "0\n1"
   },
   {
    "fieldname": "cct_conduit_moc",
@@ -446,8 +456,9 @@
   {
    "default": "0",
    "fieldname": "is_sct_perforated_type_selected",
-   "fieldtype": "Check",
-   "label": "Is SCT Perforated Type Selected"
+   "fieldtype": "Select",
+   "label": "Is SCT Perforated Type Selected",
+   "options": "0\n1"
   },
   {
    "fieldname": "sct_perforated_type_width",
@@ -470,8 +481,9 @@
   {
    "default": "0",
    "fieldname": "is_sct_ladder_type_selected",
-   "fieldtype": "Check",
-   "label": "Is SCT Ladder Type Selected"
+   "fieldtype": "Select",
+   "label": "Is SCT Ladder Type Selected",
+   "options": "0\n1"
   },
   {
    "fieldname": "sct_ladder_type_width",
@@ -494,8 +506,9 @@
   {
    "default": "0",
    "fieldname": "is_sct_mesh_type_selected",
-   "fieldtype": "Check",
-   "label": "Is SCT Mesh Type Selected"
+   "fieldtype": "Select",
+   "label": "Is SCT Mesh Type Selected",
+   "options": "0\n1"
   },
   {
    "fieldname": "sct_mesh_type_width",
@@ -518,8 +531,9 @@
   {
    "default": "0",
    "fieldname": "is_sct_conduit_selected",
-   "fieldtype": "Check",
-   "label": "Is SCT Conduit Selected"
+   "fieldtype": "Select",
+   "label": "Is SCT Conduit Selected",
+   "options": "0\n1"
   },
   {
    "fieldname": "sct_conduit_moc",
@@ -633,7 +647,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-24 19:53:46.223190",
+ "modified": "2024-12-03 23:25:53.978799",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Cable Tray Layout",

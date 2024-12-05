@@ -21,6 +21,7 @@
   "is_lsig_selected",
   "is_lsi_selected",
   "is_neural_link_with_disconnect_facility_selected",
+  "is_other_selected",
   "is_led_type_lamp_selected",
   "is_blue_cb_spring_charge_selected",
   "is_red_cb_in_service",
@@ -184,8 +185,9 @@
   {
    "default": "0",
    "fieldname": "is_led_type_lamp_selected",
-   "fieldtype": "Check",
-   "label": "Is LED Type Lamp Selected"
+   "fieldtype": "Select",
+   "label": "Is LED Type Lamp Selected",
+   "options": "0\n1"
   },
   {
    "default": "0",
@@ -310,26 +312,30 @@
   {
    "default": "0",
    "fieldname": "is_marshalling_section_selected",
-   "fieldtype": "Check",
-   "label": "Is Marshalling Section Selected"
+   "fieldtype": "Select",
+   "label": "Is Marshalling Section Selected",
+   "options": "0\n1"
   },
   {
    "default": "0",
    "fieldname": "is_cable_alley_section_selected",
-   "fieldtype": "Check",
-   "label": "Is Cable Alley Section Selected"
+   "fieldtype": "Select",
+   "label": "Is Cable Alley Section Selected",
+   "options": "0\n1"
   },
   {
    "default": "0",
    "fieldname": "is_power_and_bus_separation_section_selected",
-   "fieldtype": "Check",
-   "label": "Is Power and Bus Separation Section Selected"
+   "fieldtype": "Select",
+   "label": "Is Power and Bus Separation Section Selected",
+   "options": "0\n1"
   },
   {
    "default": "0",
    "fieldname": "is_both_side_extension_section_selected",
-   "fieldtype": "Check",
-   "label": "Is Both Side Extension Section Selected"
+   "fieldtype": "Select",
+   "label": "Is Both Side Extension Section Selected",
+   "options": "0\n1"
   },
   {
    "fieldname": "ga_gland_plate_3mm_drill_type",
@@ -422,8 +428,9 @@
   {
    "default": "0",
    "fieldname": "is_punching_details_for_boiler_selected",
-   "fieldtype": "Check",
-   "label": "Is Punching Details for Boiler Selected"
+   "fieldtype": "Select",
+   "label": "Is Punching Details for Boiler Selected",
+   "options": "0\n1"
   },
   {
    "fieldname": "boiler_model",
@@ -493,8 +500,9 @@
   {
    "default": "0",
    "fieldname": "is_punching_details_for_heater_selected",
-   "fieldtype": "Check",
-   "label": "Is Punching Details for Heater Selected"
+   "fieldtype": "Select",
+   "label": "Is Punching Details for Heater Selected",
+   "options": "0\n1"
   },
   {
    "fieldname": "heater_model",
@@ -575,11 +583,18 @@
    "fieldname": "led_type_other_input",
    "fieldtype": "Data",
    "label": "LED type Other Input"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_other_selected",
+   "fieldtype": "Select",
+   "label": "Is Other Selected",
+   "options": "0\n1"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-21 13:06:04.830077",
+ "modified": "2024-12-04 21:35:51.281877",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "MCC Cum PCC MCC Panel",
