@@ -1,0 +1,125 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2024-12-07 12:45:42.451057",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "data_section",
+  "kw",
+  "moc",
+  "number_of_core",
+  "od",
+  "weight_of_cable",
+  "current_ground",
+  "current_air",
+  "cable_type",
+  "dbl_x",
+  "dbl_r",
+  "dbl_area",
+  "sizes"
+ ],
+ "fields": [
+  {
+   "fieldname": "data_section",
+   "fieldtype": "Section Break",
+   "label": "Data"
+  },
+  {
+   "fieldname": "kw",
+   "fieldtype": "Float",
+   "label": "KW",
+   "precision": "2"
+  },
+  {
+   "fieldname": "moc",
+   "fieldtype": "Data",
+   "label": "MOC"
+  },
+  {
+   "fieldname": "number_of_core",
+   "fieldtype": "Int",
+   "label": "Number of Core"
+  },
+  {
+   "fieldname": "od",
+   "fieldtype": "Float",
+   "label": "OD",
+   "precision": "2"
+  },
+  {
+   "fieldname": "weight_of_cable",
+   "fieldtype": "Float",
+   "label": "Weight of Cable",
+   "precision": "2"
+  },
+  {
+   "fieldname": "current_ground",
+   "fieldtype": "Float",
+   "label": "Current Ground",
+   "precision": "2"
+  },
+  {
+   "fieldname": "current_air",
+   "fieldtype": "Float",
+   "label": "Current Air",
+   "precision": "2"
+  },
+  {
+   "fieldname": "cable_type",
+   "fieldtype": "Data",
+   "label": "Cable Type"
+  },
+  {
+   "fieldname": "dbl_x",
+   "fieldtype": "Float",
+   "label": "DBL X",
+   "precision": "2"
+  },
+  {
+   "fieldname": "dbl_r",
+   "fieldtype": "Float",
+   "label": "DBL R",
+   "precision": "2"
+  },
+  {
+   "fieldname": "dbl_area",
+   "fieldtype": "Float",
+   "label": "DBL Area",
+   "precision": "2"
+  },
+  {
+   "fieldname": "sizes",
+   "fieldtype": "Data",
+   "label": "Sizes",
+   "precision": "2"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-12-07 12:52:35.627981",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "Cable Sizing Data",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
