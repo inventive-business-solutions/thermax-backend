@@ -11,6 +11,7 @@
  ],
  "fields": [
   {
+   "default": "IS",
    "fieldname": "standard",
    "fieldtype": "Data",
    "label": "Standard",
@@ -19,7 +20,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-08 14:21:35.373662",
+ "modified": "2024-12-05 15:45:39.604963",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Classification Area Standard",

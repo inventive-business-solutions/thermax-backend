@@ -11,6 +11,7 @@
  ],
  "fields": [
   {
+   "default": "Zone 2",
    "fieldname": "zone",
    "fieldtype": "Data",
    "label": "Zone",
@@ -19,7 +20,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-08 12:01:50.159513",
+ "modified": "2024-12-05 15:46:18.813989",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Classification Area Zone",
