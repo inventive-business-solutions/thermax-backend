@@ -11,6 +11,7 @@
  ],
  "fields": [
   {
+   "default": "IIA/IIB",
    "fieldname": "gas_group",
    "fieldtype": "Data",
    "label": "Gas Group",
@@ -19,7 +20,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-08 14:22:52.114643",
+ "modified": "2024-12-05 15:46:57.972649",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Classification Area Gas Group",

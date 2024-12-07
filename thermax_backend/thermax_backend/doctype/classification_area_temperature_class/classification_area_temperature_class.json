@@ -11,6 +11,7 @@
  ],
  "fields": [
   {
+   "default": "T3",
    "fieldname": "temperature_class",
    "fieldtype": "Data",
    "label": "Temperature Class",
@@ -19,7 +20,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-08 14:23:25.138721",
+ "modified": "2024-12-05 15:47:31.696722",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Classification Area Temperature Class",
