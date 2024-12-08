@@ -175,17 +175,18 @@ app_license = "mit"
 # ------------------------------
 
 override_whitelisted_methods = {
-	"main_package.get_main_package_list": "thermax_backend.thermax_backend.doctype.main_package.api.get_main_package_list",
+    "main_package.get_main_package_list": "thermax_backend.thermax_backend.doctype.main_package.api.get_main_package_list",
     "thermax_extended_user.trigger_email_verification_mail": "thermax_backend.thermax_backend.doctype.thermax_extended_user.api.trigger_email_verification_mail",
     "thermax_extended_user.trigger_send_credentials": "thermax_backend.thermax_backend.doctype.thermax_extended_user.api.trigger_send_credentials",
     "thermax_extended_user.get_user_by_role": "thermax_backend.thermax_backend.doctype.thermax_extended_user.api.get_user_by_role",
     "project_main_package.get_project_main_package_list": "thermax_backend.thermax_backend.doctype.project_main_package.api.get_project_main_package_list",
     "thermax_extended_user.trigger_delete_user": "thermax_backend.thermax_backend.doctype.thermax_extended_user.api.trigger_delete_user",
     "project.trigger_approver_notification_mail": "thermax_backend.thermax_backend.doctype.project.api.trigger_approver_notification_mail",
-    "db_revision.trigger_review_submission_mail": "thermax_backend.thermax_backend.doctype.design_basis_revision_history.api.trigger_review_submission_mail",  
-    "db_revision.trigger_review_resubmission_mail": "thermax_backend.thermax_backend.doctype.design_basis_revision_history.api.trigger_review_resubmission_mail", 
-    "db_revision.trigger_review_approval_mail": "thermax_backend.thermax_backend.doctype.design_basis_revision_history.api.trigger_review_approval_mail",  
-    "db_revision.get_design_basis_excel": "thermax_backend.thermax_backend.doctype.design_basis_revision_history.api.get_design_basis_excel",  
+    "db_revision.trigger_review_submission_mail": "thermax_backend.thermax_backend.doctype.design_basis_revision_history.api.trigger_review_submission_mail",
+    "db_revision.trigger_review_resubmission_mail": "thermax_backend.thermax_backend.doctype.design_basis_revision_history.api.trigger_review_resubmission_mail",
+    "db_revision.trigger_review_approval_mail": "thermax_backend.thermax_backend.doctype.design_basis_revision_history.api.trigger_review_approval_mail",
+    "db_revision.get_design_basis_excel": "thermax_backend.thermax_backend.doctype.design_basis_revision_history.api.get_design_basis_excel",
+    "load_list_revisions.get_load_list_excel": "thermax_backend.thermax_backend.doctype.load_list_revisions.api.get_load_list_excel",
 }
 #
 # each overriding function accepts a `data` argument;
@@ -251,4 +252,3 @@ override_whitelisted_methods = {
 # default_log_clearing_doctypes = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
-
