@@ -319,14 +319,31 @@ def get_design_basis_excel():
         "temperature_class": "default_temperature_class",  # Replace with your actual default value
     }
 
-    area_classification_data = [
-        value if value is not None else default_values[field]
-        for value, field in zip(area_classification_data, default_values.keys())
-    ]
+    if area_classification_data is None:
+        area_classification_data = [
+            default_values[field] for field in default_values.keys()
+        ]
+    else:
+        area_classification_data = [
+            value if value is not None else default_values[field]
+            for value, field in zip(area_classification_data, default_values.keys())
+        ]
 
-    design_basis_sheet["C7"] = (
-        f"Standard-{area_classification_data[0]}, {area_classification_data[1]}, Gas Group-{area_classification_data[2]}, Temperature Class-{area_classification_data[3]}"
+    # Safeguard against missing indices in area_classification_data
+    standard = area_classification_data[0] if len(area_classification_data) > 0 else ""
+    classification_1 = (
+        area_classification_data[1] if len(area_classification_data) > 1 else ""
     )
+    gas_group = area_classification_data[2] if len(area_classification_data) > 2 else ""
+    temperature_class = (
+        area_classification_data[3] if len(area_classification_data) > 3 else ""
+    )
+
+    # Create the final string
+    design_basis_sheet["C7"] = (
+        f"Standard-{standard}, {classification_1}, Gas Group-{gas_group}, Temperature Class-{temperature_class}"
+    )
+
     design_basis_sheet["C8"] = general_info.get("battery_limit")
     design_basis_sheet["C9"] = mv_data
     design_basis_sheet["C10"] = (
@@ -409,11 +426,16 @@ def get_design_basis_excel():
     """
 
     def clean_and_replace(value):
+        if value is None:
+            return "Not Applicable"  # Or any other default value you want for None
+
         # Clean the string by removing brackets and quotes
         cleaned_value = value.replace("[", "").replace("]", "").replace('"', "").strip()
+
         # Replace "NA" with "Not Applicable"
         if cleaned_value == "NA":
             return "Not Applicable"
+
         return cleaned_value
 
     motor_string = clean_and_replace(make_of_components.get("motor", "NA"))
@@ -445,7 +467,11 @@ def get_design_basis_excel():
     """
     switchgear_combination_data = common_configuration.get("switchgear_combination")
     mcc_switchgear_type = common_configuration.get("mcc_switchgear_type")
-    if not division_name == "WWS SPG" and "Fuseless" not in mcc_switchgear_type:
+    if (
+        not division_name == "WWS SPG"
+        and mcc_switchgear_type
+        and "Fuseless" not in mcc_switchgear_type
+    ):
         switchgear_combination_data = "Not Applicable"
 
     dol_starter = common_configuration.get("dol_starter")
