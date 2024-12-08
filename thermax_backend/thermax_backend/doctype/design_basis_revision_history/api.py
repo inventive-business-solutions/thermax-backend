@@ -147,7 +147,7 @@ def get_design_basis_excel():
     if division_name == "WWS SPG":
         cover_sheet["A3"] = "Water & Waste Solution".upper()  # Replace with desired text
         cover_sheet["A4"] = "411 026"
-    elif division_name == "Enviro":
+    elif division_name == "Enviro".upper():
         cover_sheet["A4"] = "411 026"
     else:
         cover_sheet["A3"] = division_name.upper()  # Otherwise, use the original division name
@@ -291,6 +291,18 @@ def get_design_basis_excel():
         design_basis_sheet["C6"] = "Not Applicable"
 
     area_classification_data = frappe.db.get_value("Project Main Package", {"revision_id":current_revision_id}, ["standard","zone","gas_group","temperature_class"])
+
+    default_values = {
+        "standard": "default_standard",  # Replace with your actual default value
+        "zone": "default_zone",          # Replace with your actual default value
+        "gas_group": "default_gas_group",# Replace with your actual default value
+        "temperature_class": "default_temperature_class" # Replace with your actual default value
+    }
+
+    area_classification_data = [
+        value if value is not None else default_values[field]
+        for value, field in zip(area_classification_data, default_values.keys())
+    ]
 
     design_basis_sheet["C7"] = f"Standard-{area_classification_data[0]}, {area_classification_data[1]}, Gas Group-{area_classification_data[2]}, Temperature Class-{area_classification_data[3]}"
     design_basis_sheet["C8"] = general_info.get("battery_limit")
@@ -449,15 +461,21 @@ def get_design_basis_excel():
         Push Button Color
     """
     speed_increase_pb = common_configuration.get("speed_increase_pb")
+    is_push_button_speed_selected = common_configuration.get("is_push_button_speed_selected")
     speed_decrease_pb = common_configuration.get("speed_decrease_pb")
+    
+    if(is_push_button_speed_selected == "0"):
+        speed_increase_pb = "Not Applicable"
+        speed_decrease_pb = "Not Applicable"
+
     push_button_start = common_configuration.get("push_button_start")
     push_button_stop = common_configuration.get("push_button_stop")
 
     design_basis_sheet["E101"] = na_To_string(push_button_start)
     design_basis_sheet["E102"] = na_To_string(push_button_stop)
     design_basis_sheet["E103"] = common_configuration.get("push_button_ess")
-    design_basis_sheet["E104"] = na_To_string(speed_increase_pb)
-    design_basis_sheet["E105"] = na_To_string(speed_decrease_pb)
+    design_basis_sheet["E104"] = speed_increase_pb
+    design_basis_sheet["E105"] = speed_decrease_pb
     alarm_acknowledge_and_lamp_test = common_configuration.get(
         "alarm_acknowledge_and_lamp_test"
     )
@@ -1332,9 +1350,16 @@ def get_design_basis_excel():
             third_party_protocol = plc_panel_data.get(
                 "third_party_communication_protocol"
             )
+            is_third_party_communication_protocol_selected = plc_panel_data.get("is_third_party_communication_protocol_selected")
+            if is_third_party_communication_protocol_selected == "0":
+                third_party_protocol = "Not Applicable"
+                
             panel_sheet["E82"] = na_To_string(third_party_protocol)
+            is_client_system_communication_selected = plc_panel_data.get("is_client_system_communication_selected")
+            if is_client_system_communication_selected == "0":
+                client_system_communication = "Not Applicable"
             client_system_communication = plc_panel_data.get("client_system_communication")
-            panel_sheet["E83"] = na_To_string(client_system_communication)
+            panel_sheet["E83"] = client_system_communication
 
             # Redundancy
 
@@ -1343,6 +1368,10 @@ def get_design_basis_excel():
             is_cpu_and_io_card_redundancy_selected = plc_panel_data.get("is_cpu_and_io_card_redundancy_selected")
             is_cpu_and_hmi_scada_card_redundancy_selected = plc_panel_data.get("is_cpu_and_hmi_scada_card_redundancy_selected")
             is_cpu_and_third_party_services_redundancy_selected = plc_panel_data.get("is_cpu_and_third_party_services_redundancy_selected")
+
+            is_cpu_redundancy_selected = plc_panel_data.get("is_cpu_redundancy_selected")
+            if is_cpu_redundancy_selected == "0":
+                cpu_redundancy = "Not Applicable"
             cpu_redundancy = plc_panel_data.get("cpu_redundancy")
 
             panel_sheet["E85"] = number_To_string(is_power_supply_redundancy_selected)
@@ -1356,9 +1385,14 @@ def get_design_basis_excel():
             panel_sheet["E92"] = plc_panel_data.get("plc_panel_memory")
             panel_sheet["E93"] = plc_panel_data.get("panel_mounted_ac")
             panel_sheet["E94"] = plc_panel_data.get("control_voltage")
+            is_plc_and_ups_marshalling_cabinet_selected = plc_panel_data.get("is_plc_and_ups_marshalling_cabinet_selected")
+                
+
             marshalling_cabinet_for_plc_and_ups = plc_panel_data.get(
                 "marshalling_cabinet_for_plc_and_ups"
             )
+            if is_plc_and_ups_marshalling_cabinet_selected == "0":
+                marshalling_cabinet_for_plc_and_ups = "Not Applicable"
             panel_sheet["E95"] = na_To_string(marshalling_cabinet_for_plc_and_ups)
 
             # Indicating Lamp, Push Button & Isolation Switch
@@ -1387,7 +1421,12 @@ def get_design_basis_excel():
                 "output_status_on_processor_or_module_failure"
             )
             do_module_no_of_contact = plc_panel_data.get("do_module_no_of_contact")
-            panel_sheet["E111"] = na_To_string(do_module_no_of_contact)
+
+            is_no_of_contact_selected = plc_panel_data.get("is_no_of_contact_selected")
+
+            if is_no_of_contact_selected == "0":
+                do_module_no_of_contact = "Not Applicable"
+            panel_sheet["E111"] = do_module_no_of_contact
 
             # AI Modules
             panel_sheet["E113"] = plc_panel_data.get("ai_module_density")
@@ -1398,13 +1437,20 @@ def get_design_basis_excel():
             panel_sheet["E116"] = number_To_string(is_ai_module_hart_protocol_support_selected)
 
             # RTD / TC Modules
+
             rtd_tc_module_density = plc_panel_data.get("rtd_tc_module_density")
             rtd_tc_module_input_type = plc_panel_data.get("rtd_tc_module_input_type")
             rtd_tc_module_scan_time = plc_panel_data.get("rtd_tc_module_scan_time")
 
-            panel_sheet["E118"] = na_To_string(rtd_tc_module_density)
-            panel_sheet["E119"] = na_To_string(rtd_tc_module_input_type)
-            panel_sheet["E120"] = na_To_string(rtd_tc_module_scan_time)
+            is_rtd_tc_moduule_selected_controlled = plc_panel_data.get("is_rtd_tc_moduule_selected")
+            if is_rtd_tc_moduule_selected_controlled == "0":
+                rtd_tc_module_density = "Not Applicable"
+                rtd_tc_module_input_type = "Not Applicable"
+                rtd_tc_module_scan_time = "Not Applicable"
+
+            panel_sheet["E118"] = rtd_tc_module_density
+            panel_sheet["E119"] = rtd_tc_module_input_type
+            panel_sheet["E120"] = rtd_tc_module_scan_time
 
             is_rtd_tc_module_hart_protocol_support_selected =  plc_panel_data.get("is_rtd_tc_module_hart_protocol_support_selected")
             panel_sheet["E121"] = number_To_string(is_rtd_tc_module_hart_protocol_support_selected)
@@ -1419,8 +1465,17 @@ def get_design_basis_excel():
 
             # PLC Spare
             plc_spare_io_count = plc_panel_data.get("plc_spare_io_count")
-            panel_sheet["E128"] = na_To_string(plc_spare_io_count)
+            is_plc_spare_io_count_selected = plc_panel_data.get("is_plc_spare_io_count_selected")
+
+            if is_plc_spare_io_count_selected == "0":
+                plc_spare_io_count = "Not Applicable"
+
+            panel_sheet["E128"] = plc_spare_io_count
             plc_spare_memory = plc_panel_data.get("plc_spare_memory")
+            is_plc_spare_memory_selected = plc_panel_data.get("is_plc_spare_memory_selected")
+            if is_plc_spare_memory_selected == "0":
+                plc_spare_memory = "Not Applicable"
+
             panel_sheet["E129"] = na_To_string(plc_spare_memory)
 
             # Human Interface Device

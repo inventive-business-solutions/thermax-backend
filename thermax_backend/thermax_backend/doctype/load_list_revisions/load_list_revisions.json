@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "hash",
  "creation": "2024-11-26 15:47:13.408694",
@@ -38,7 +39,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-26 15:49:46.928588",
+ "modified": "2024-12-02 19:20:34.193282",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Load List Revisions",
