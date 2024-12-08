@@ -13,7 +13,8 @@
   "service_description",
   "working_kw",
   "motor_rated_current",
-  "local_isolator"
+  "local_isolator",
+  "motor_location"
  ],
  "fields": [
   {
@@ -50,12 +51,17 @@
    "fieldname": "local_isolator",
    "fieldtype": "Data",
    "label": "Local Isolator"
+  },
+  {
+   "fieldname": "motor_location",
+   "fieldtype": "Data",
+   "label": "Motor Location"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-12-03 18:04:10.942321",
+ "modified": "2024-12-08 17:45:12.314856",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Local Isolator Motor Details Data",
