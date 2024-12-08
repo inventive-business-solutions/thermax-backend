@@ -292,6 +292,18 @@ def get_design_basis_excel():
 
     area_classification_data = frappe.db.get_value("Project Main Package", {"revision_id":current_revision_id}, ["standard","zone","gas_group","temperature_class"])
 
+    default_values = {
+        "standard": "default_standard",  # Replace with your actual default value
+        "zone": "default_zone",          # Replace with your actual default value
+        "gas_group": "default_gas_group",# Replace with your actual default value
+        "temperature_class": "default_temperature_class" # Replace with your actual default value
+    }
+
+    area_classification_data = [
+        value if value is not None else default_values[field]
+        for value, field in zip(area_classification_data, default_values.keys())
+    ]
+
     design_basis_sheet["C7"] = f"Standard-{area_classification_data[0]}, {area_classification_data[1]}, Gas Group-{area_classification_data[2]}, Temperature Class-{area_classification_data[3]}"
     design_basis_sheet["C8"] = general_info.get("battery_limit")
     design_basis_sheet["C9"] = mv_data
