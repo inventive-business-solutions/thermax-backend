@@ -121,9 +121,9 @@ def get_design_basis_excel():
         return value
 
     def number_To_string(value):
-        if value == 0:
+        if value == "0" :
             return "Not Applicable"
-        elif value == 1:
+        elif value == "1" :
             return "Applicable"
         else:
             return value
@@ -313,10 +313,10 @@ def get_design_basis_excel():
     )
 
     default_values = {
-        "standard": "default_standard",  # Replace with your actual default value
-        "zone": "default_zone",  # Replace with your actual default value
-        "gas_group": "default_gas_group",  # Replace with your actual default value
-        "temperature_class": "default_temperature_class",  # Replace with your actual default value
+        "standard": "IS",  # Replace with your actual default value
+        "zone": "Zone 2",          # Replace with your actual default value
+        "gas_group": "IIA/IIB",# Replace with your actual default value
+        "temperature_class": "T3" # Replace with your actual default value
     }
 
     if area_classification_data is None:
@@ -515,10 +515,8 @@ def get_design_basis_excel():
     """
         Push Button Color
     """
+    is_push_button_speed_selected = common_configuration.get("is_push_button_speed_selected")
     speed_increase_pb = common_configuration.get("speed_increase_pb")
-    is_push_button_speed_selected = common_configuration.get(
-        "is_push_button_speed_selected"
-    )
     speed_decrease_pb = common_configuration.get("speed_decrease_pb")
 
     if is_push_button_speed_selected == "0":
@@ -578,17 +576,30 @@ def get_design_basis_excel():
     field_motor_cable_entry = common_configuration.get("field_motor_cable_entry")
     field_motor_canopy_on_top = common_configuration.get("field_motor_canopy_on_top")
 
-    design_basis_sheet["E115"] = na_To_string(field_motor_type)
-    design_basis_sheet["E116"] = na_To_string(field_motor_enclosure)
-    design_basis_sheet["E117"] = na_To_string(field_motor_material)
-    design_basis_sheet["E118"] = na_To_string(field_motor_qty)
-    design_basis_sheet["E119"] = na_To_string(field_motor_isolator_color_shade)
-    design_basis_sheet["E121"] = na_To_string(field_motor_cable_entry)
-    design_basis_sheet["E120"] = na_To_string(field_motor_canopy_on_top)
+    is_field_motor_isolator_selected = common_configuration.get("is_field_motor_isolator_selected")
+
+    if is_field_motor_isolator_selected == "0":
+        field_motor_type = "Not Applicable"
+        field_motor_enclosure = "Not Applicable"
+        field_motor_material = "Not Applicable"
+        field_motor_qty = "Not Applicable"
+        field_motor_isolator_color_shade = "Not Applicable"
+        field_motor_cable_entry = "Not Applicable"
+        field_motor_canopy_on_top = "Not Applicable"
+
+    design_basis_sheet["E115"] = field_motor_type
+    design_basis_sheet["E116"] = field_motor_enclosure
+    design_basis_sheet["E117"] = field_motor_material
+    design_basis_sheet["E118"] = field_motor_qty
+    design_basis_sheet["E119"] = field_motor_isolator_color_shade
+    design_basis_sheet["E121"] = field_motor_cable_entry
+    design_basis_sheet["E120"] = field_motor_canopy_on_top
 
     """
         Local Push Button Station (General Specifications)				
     """
+
+    is_local_push_button_station_selected = common_configuration.get("is_local_push_button_station_selected")
 
     lpbs_type = common_configuration.get("lpbs_type")
     lpbs_enclosure = common_configuration.get("lpbs_enclosure")
@@ -608,17 +619,31 @@ def get_design_basis_excel():
     lpbs_speed_increase = common_configuration.get("lpbs_speed_increase")
     lpbs_speed_decrease = common_configuration.get("lpbs_speed_decrease")
 
-    design_basis_sheet["E123"] = na_To_string(lpbs_type)
-    design_basis_sheet["E124"] = na_To_string(lpbs_enclosure)
-    design_basis_sheet["E125"] = na_To_string(lpbs_material)
-    design_basis_sheet["E126"] = na_To_string(lpbs_qty)
-    design_basis_sheet["E127"] = na_To_string(lpbs_color_shade)
-    design_basis_sheet["E128"] = na_To_string(lpbs_canopy_on_top)
-    design_basis_sheet["E129"] = na_To_string(lpbs_push_button_start_color)
-    design_basis_sheet["E130"] = na_To_string(lpbs_indication_lamp_start_color)
-    design_basis_sheet["E131"] = na_To_string(lpbs_indication_lamp_stop_color)
-    design_basis_sheet["E132"] = na_To_string(lpbs_speed_increase)
-    design_basis_sheet["E133"] = na_To_string(lpbs_speed_decrease)
+    if is_local_push_button_station_selected == "0":
+        lpbs_type = "Not Applicable"
+        lpbs_enclosure = "Not Applicable"
+        lpbs_material = "Not Applicable"
+        lpbs_qty = "Not Applicable"
+        lpbs_color_shade = "Not Applicable"
+        lpbs_canopy_on_top = "Not Applicable"
+        lpbs_push_button_start_color = "Not Applicable"
+        lpbs_indication_lamp_start_color = "Not Applicable"
+        lpbs_indication_lamp_stop_color = "Not Applicable"
+        lpbs_speed_increase = "Not Applicable"
+        lpbs_speed_decrease = "Not Applicable"
+    
+
+    design_basis_sheet["E123"] = lpbs_type
+    design_basis_sheet["E124"] = lpbs_enclosure
+    design_basis_sheet["E125"] = lpbs_material
+    design_basis_sheet["E126"] = lpbs_qty
+    design_basis_sheet["E127"] = lpbs_color_shade
+    design_basis_sheet["E128"] = lpbs_canopy_on_top
+    design_basis_sheet["E129"] = lpbs_push_button_start_color
+    design_basis_sheet["E130"] = lpbs_indication_lamp_start_color
+    design_basis_sheet["E131"] = lpbs_indication_lamp_stop_color
+    design_basis_sheet["E132"] = lpbs_speed_increase
+    design_basis_sheet["E133"] = lpbs_speed_decrease
 
     """
         Power Bus
@@ -778,23 +803,26 @@ def get_design_basis_excel():
                 f"Upto - {panel_data.get('incomer_ampere')} - {panel_data.get('incomer_pole')} Pole {panel_data.get('incomer_type')} > {panel_data.get('incomer_above_ampere')} - {panel_data.get('incomer_above_pole')} Pole {panel_data.get('incomer_above_type')}"
             )
 
-            indication_lamp_led_data = panel_data.get("is_led_type_lamp_selected")
-            if indication_lamp_led_data == "NA":
-                indication_lamp_led_data = "OFF"
+            is_led_type_lamp_selected = panel_data.get("is_led_type_lamp_selected")
+
+            if is_led_type_lamp_selected == "0":
+                is_led_type_lamp_selected = "OFF"
             else:
-                indication_lamp_led_data = "ON"
+                is_led_type_lamp_selected = "ON"
 
-            others_data = panel_data.get("led_type_other_input")
-            indication_data = indication_lamp_led_data
-            if others_data and not others_data == "NA":
-                indication_data = f"{indication_lamp_led_data}, {others_data}"
+            
+            is_other_selected = panel_data.get("is_other_selected")
+            led_type_other_input = panel_data.get("led_type_other_input")
 
-            indication_lamp_led_data = panel_data.get("is_led_type_lamp_selected")
-            if indication_lamp_led_data == "NA":
-                indication_data = "OFF"
-            else:
-                indication_data = "ON"
+            if led_type_other_input == "NA":
+                led_type_other_input = "Not Applicable"
 
+            indication_data = f"{is_led_type_lamp_selected}, {led_type_other_input}"
+
+            if is_other_selected == 0:
+                indication_data = is_led_type_lamp_selected
+            
+            
             panel_sheet["E6"] = indication_data
             current_transformer_coating = panel_data.get("current_transformer_coating")
             current_transformer_number = panel_data.get("current_transformer_number")
@@ -1009,21 +1037,28 @@ def get_design_basis_excel():
             """
             panel_sheet["E5"] = (
                 f"Upto - {panel_data.get('incomer_ampere')} - {panel_data.get('incomer_pole')} Pole {panel_data.get('incomer_type')} > {panel_data.get('incomer_above_ampere')} - {panel_data.get('incomer_above_pole')} Pole {panel_data.get('incomer_above_type')}"
-            )
+            ) 
 
-            indication_lamp_led_data = panel_data.get("is_led_type_lamp_selected")
-            indication_lamp_led_data = number_To_string(indication_lamp_led_data)
-            others_data = panel_data.get("led_type_other_input")
-            indication_data = indication_lamp_led_data
-            if others_data and not others_data == "NA":
-                indication_data = f"{indication_lamp_led_data}, {others_data}"
+            is_led_type_lamp_selected = panel_data.get("is_led_type_lamp_selected")
 
-            indication_lamp_led_data = panel_data.get("is_led_type_lamp_selected")
-            if indication_lamp_led_data == "NA":
-                indication_data = "OFF"
+            if is_led_type_lamp_selected == "0":
+                is_led_type_lamp_selected = "OFF"
             else:
-                indication_data = "ON"
+                is_led_type_lamp_selected = "ON"
 
+            
+            is_other_selected = panel_data.get("is_other_selected")
+            led_type_other_input = panel_data.get("led_type_other_input")
+
+            if led_type_other_input == "NA":
+                led_type_other_input = "Not Applicable"
+
+            indication_data = f"{is_led_type_lamp_selected}, {led_type_other_input}"
+
+            if is_other_selected == 0:
+                indication_data = is_led_type_lamp_selected
+            
+            
             panel_sheet["E6"] = indication_data
             control_transformer_coating = panel_data.get("control_transformer_coating")
             panel_sheet["E7"] = na_To_string(control_transformer_coating)
@@ -1236,19 +1271,26 @@ def get_design_basis_excel():
                 f"Upto - {mcc_panel_data.get('incomer_ampere')} - {mcc_panel_data.get('incomer_pole')} Pole {mcc_panel_data.get('incomer_type')} > {mcc_panel_data.get('incomer_above_ampere')} - {mcc_panel_data.get('incomer_above_pole')} Pole {mcc_panel_data.get('incomer_above_type')}"
             )
 
-            indication_lamp_led_data = mcc_panel_data.get("is_led_type_lamp_selected")
-            indication_lamp_led_data = number_To_string(indication_lamp_led_data)
-            others_data = mcc_panel_data.get("led_type_other_input")
-            indication_data = indication_lamp_led_data
-            if others_data and not others_data == "NA":
-                indication_data = f"{indication_lamp_led_data}, {others_data}"
+            is_led_type_lamp_selected = panel_data.get("is_led_type_lamp_selected")
 
-            indication_lamp_led_data = mcc_panel_data.get("is_led_type_lamp_selected")
-            if indication_lamp_led_data == "NA":
-                indication_data = "OFF"
+            if is_led_type_lamp_selected == "0":
+                is_led_type_lamp_selected = "OFF"
             else:
-                indication_data = "ON"
+                is_led_type_lamp_selected = "ON"
 
+            
+            is_other_selected = panel_data.get("is_other_selected")
+            led_type_other_input = panel_data.get("led_type_other_input")
+
+            if led_type_other_input == "NA":
+                led_type_other_input = "Not Applicable"
+
+            indication_data = f"{is_led_type_lamp_selected}, {led_type_other_input}"
+
+            if is_other_selected == 0:
+                indication_data = is_led_type_lamp_selected
+            
+            
             panel_sheet["E6"] = indication_data
             current_transformer_coating = mcc_panel_data.get(
                 "current_transformer_coating"
@@ -1694,16 +1736,16 @@ def get_design_basis_excel():
             no_of_hid_hmi = plc_panel_data.get("no_of_hid_hmi")
             hid_hmi_size = plc_panel_data.get("hid_hmi_size")
 
-            if is_no_of_hid_es_selected == 0:
+            if is_no_of_hid_es_selected == "0" :
                 no_of_hid_es = "Not Applicable"
 
-            if is_no_of_hid_os_selected == 0:
+            if is_no_of_hid_os_selected == "0" :
                 no_of_hid_os = "Not Applicable"
 
-            if is_no_of_hid_hmi_selected == 0:
+            if is_no_of_hid_hmi_selected == "0" :
                 no_of_hid_hmi = "Not Applicable"
 
-            if is_hid_hmi_size_selected == 0:
+            if is_hid_hmi_size_selected == "0" :
                 hid_hmi_size = "Not Applicable"
             else:
                 hid_hmi_size = f"{hid_hmi_size} inch"
