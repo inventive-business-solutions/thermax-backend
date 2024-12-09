@@ -92,6 +92,7 @@
   "heater_connected_load",
   "heater_temperature",
   "name_plate_details_for_spg_section",
+  "is_spg_applicable",
   "spg_name_plate_unit_name",
   "spg_name_plate_capacity",
   "spg_name_plate_manufacturing_year",
@@ -626,14 +627,19 @@
   {
    "default": "0",
    "fieldname": "is_other_selected",
+   "fieldtype": "Check",
+   "label": "Is Other Selected"
+  },
+  {
+   "fieldname": "is_spg_applicable",
    "fieldtype": "Select",
-   "label": "Is Other Selected",
+   "label": "Is Spg Applicable",
    "options": "0\n1"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-04 21:30:32.606212",
+ "modified": "2024-12-08 23:30:48.597777",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "PCC Panel",

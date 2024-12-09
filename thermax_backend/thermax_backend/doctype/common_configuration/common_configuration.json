@@ -37,6 +37,8 @@
   "push_button_stop",
   "push_button_ess",
   "is_push_button_speed_selected",
+  "is_field_motor_isolator_selected",
+  "is_local_push_button_station_selected",
   "speed_increase_pb",
   "speed_decrease_pb",
   "alarm_acknowledge_and_lamp_test",
@@ -568,11 +570,25 @@
    "fieldtype": "Link",
    "label": "Spare Terminal",
    "options": "Spare Terminal"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_field_motor_isolator_selected",
+   "fieldtype": "Select",
+   "label": "Is Field Motor Isolator Selected",
+   "options": "0\n1"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_local_push_button_station_selected",
+   "fieldtype": "Select",
+   "label": "Is Local Push Button Station Selected",
+   "options": "0\n1"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-03 22:28:08.985913",
+ "modified": "2024-12-08 18:42:33.553890",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Common Configuration",
