@@ -140,20 +140,22 @@ def get_design_basis_excel():
     current_revision_id = general_info.get("revision_id")
 
     # Cover Sheet
-    division_name = metadata.get(
-        "division_name"
-    ).upper()  # Get the division name and convert to uppercase
-    if division_name == "WWS SPG":
-        cover_sheet["A3"] = (
-            "Water & Waste Solution".upper()
-        )  # Replace with desired text
-        cover_sheet["A4"] = "411 026"
-    elif division_name == "Enviro".upper():
-        cover_sheet["A4"] = "411 026"
-    else:
-        cover_sheet["A3"] = (
-            division_name.upper()
-        )  # Otherwise, use the original division name
+    division_name = metadata.get("division_name")
+    cover_sheet["A3"] = division_name.upper()
+
+    match division_name:
+        case "Heating":
+            cover_sheet["A4"] = "PUNE - 411 019"
+        case "WWS SPG":
+            cover_sheet["A3"] = "WATER & WASTE SOLUTION"
+            cover_sheet["A4"] = "PUNE - 411 026"
+        case "WWS IPG":
+            cover_sheet["A3"] = "WATER & WASTE SOLUTION"
+            cover_sheet["A4"] = "PUNE - 411 026"
+        case "Enviro":
+            cover_sheet["A4"] = "PUNE - 411 026"
+        case _:
+            cover_sheet["A4"] = "PUNE - 411 026"
 
     # cover_sheet["A3"] = metadata.get("division_name").upper()
 
@@ -162,13 +164,19 @@ def get_design_basis_excel():
         "%d-%m-%Y"
     )
 
+    document_revisions_length = len(document_revisions)
+
+
+
+    cover_sheet["B36"] = f"R{document_revisions_length-1}"
     cover_sheet["C36"] = revision_date
     cover_sheet["D7"] = project.get("client_name").upper()
     cover_sheet["D8"] = project.get("consultant_name").upper()
     cover_sheet["D9"] = project.get("project_name").upper()
     cover_sheet["D10"] = project.get("project_oc_number").upper()
 
-    cover_sheet["D36"] = document_revisions[0].get("status")  # from payload
+    # cover_sheet["D36"] = document_revisions[0].get("status")  # from payload
+    cover_sheet["D36"] = "ISSUED FOR APPROVAL"  # from payload
 
     project_owner = project.get("owner")
     project_approver = project.get("approver")
@@ -205,14 +213,15 @@ def get_design_basis_excel():
     # Start from row 6 (assuming you want to fill from row 6 onwards)
 
     start_row = 6
+
     modified_revision_date = document_revisions[0].get("modified")
     modified_revision_date = datetime.strptime(
         modified_revision_date, "%Y-%m-%d %H:%M:%S.%f"
     ).strftime("%d-%m-%Y")
 
-    if len(document_revisions) > 1:
+    if document_revisions_length > 1:
 
-        for idx, revision in enumerate(document_revisions):
+        for index, revision in enumerate(document_revisions):
             # Extracting the modified date and formatting it
             modified_revision_date = revision.get("modified")
 
@@ -226,12 +235,12 @@ def get_design_basis_excel():
                 )
 
                 # Update the revision_sheet with the current revision data
-                revision_sheet[f"B{start_row + idx}"] = revision.get("idx")
-                revision_sheet[f"D{start_row + idx}"] = modified_revision_date
-                revision_sheet[f"E{start_row + idx}"] = revision.get("status")
+                revision_sheet[f"B{start_row + index}"] = f"R{index}"
+                revision_sheet[f"D{start_row + index}"] = modified_revision_date
+                revision_sheet[f"E{start_row + index}"] = revision.get("status")
     else:
-        some = document_revisions[0].get("idx")
-        revision_sheet[f"B6"] = f"R{some}"
+        # some = document_revisions[0].get("idx")
+        revision_sheet[f"B6"] = f"R{document_revisions_length-1}"
         revision_sheet[f"D6"] = modified_revision_date
         revision_sheet[f"E6"] = document_revisions[0].get("status")
 
