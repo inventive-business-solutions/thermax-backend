@@ -16,6 +16,7 @@
   "variable_frequency_speed_drive_vfd_vsd",
   "soft_starter",
   "plc",
+  "gland_make",
   "column_break_satf",
   "preferred_motor",
   "preferred_cable",
@@ -23,7 +24,8 @@
   "preferred_panel_enclosure",
   "preferred_vfdvsd",
   "preferred_soft_starter",
-  "preferred_plc"
+  "preferred_plc",
+  "preferred_gland_make"
  ],
  "fields": [
   {
@@ -121,11 +123,22 @@
    "fieldname": "preferred_plc",
    "fieldtype": "Data",
    "label": "Preferred PLC"
+  },
+  {
+   "fieldname": "gland_make",
+   "fieldtype": "Text",
+   "label": "Gland Make",
+   "options": "Gland Make"
+  },
+  {
+   "fieldname": "preferred_gland_make",
+   "fieldtype": "Data",
+   "label": "Preferred Gland Make"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-16 14:27:02.810276",
+ "modified": "2024-12-12 15:58:03.097357",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Design Basis Make of Component",

@@ -42,7 +42,9 @@
   "speed_increase_pb",
   "speed_decrease_pb",
   "alarm_acknowledge_and_lamp_test",
+  "lamp_test_push_button",
   "test_reset",
+  "test_reset2",
   "selector_switch_applicable",
   "selector_switch_lockable",
   "running_open",
@@ -191,12 +193,6 @@
    "fieldtype": "Link",
    "label": "Speed Decrease PB",
    "options": "Speed Decrease PB"
-  },
-  {
-   "fieldname": "test_reset",
-   "fieldtype": "Link",
-   "label": "Test Reset",
-   "options": "Test Reset"
   },
   {
    "fieldname": "selector_switch_applicable",
@@ -404,7 +400,7 @@
   {
    "fieldname": "alarm_acknowledge_and_lamp_test",
    "fieldtype": "Link",
-   "label": "Alarm Knowledge and Lamp Test",
+   "label": "Alarm Knowledge Push Button",
    "options": "Alarm Acknowledge and Lamp Test"
   },
   {
@@ -584,11 +580,29 @@
    "fieldtype": "Select",
    "label": "Is Local Push Button Station Selected",
    "options": "0\n1"
+  },
+  {
+   "fieldname": "test_reset",
+   "fieldtype": "Link",
+   "label": "Test",
+   "options": "Test Reset"
+  },
+  {
+   "fieldname": "test_reset2",
+   "fieldtype": "Link",
+   "label": "Reset",
+   "options": "Test Reset 2"
+  },
+  {
+   "fieldname": "lamp_test_push_button",
+   "fieldtype": "Link",
+   "label": "Lamp Test Push Button",
+   "options": "Alarm Acknowledge and Lamp Test2"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-08 18:42:33.553890",
+ "modified": "2024-12-12 14:11:45.299719",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Common Configuration",
