@@ -5,102 +5,119 @@ from copy import copy
 import io
 from datetime import datetime
 
-@frappe.whiltelist()
-def trigger_review_submission_mail(
-    approver_email, project_owner_email, project_oc_number, project_name, subject
-):
-    approver = frappe.get_doc("User", approver_email)
-    project_owner = frappe.get_doc("User", project_owner_email)
-    template = frappe.render_template(
-        "/templates/db_review_submission.html",
-        {
-            "approver_first_name": approver.first_name,
-            "approver_last_name": approver.last_name,
-            "project_oc_number": project_oc_number,
-            "project_name": project_name,
-            "sent_by": f"{project_owner.first_name} {project_owner.last_name}",
-        },
-    )
-    frappe.sendmail(
-        recipients=approver_email,
-        cc=project_owner_email,
-        subject=subject,
-        message=template,
-        now=True,
-    )
-    return "Submit for review notification mail sent successfully"
+# @frappe.whiltelist()
+# def trigger_review_submission_mail(
+#     approver_email, project_owner_email, project_oc_number, project_name, subject
+# ):
+#     approver = frappe.get_doc("User", approver_email)
+#     project_owner = frappe.get_doc("User", project_owner_email)
+#     template = frappe.render_template(
+#         "/templates/db_review_submission.html",
+#         {
+#             "approver_first_name": approver.first_name,
+#             "approver_last_name": approver.last_name,
+#             "project_oc_number": project_oc_number,
+#             "project_name": project_name,
+#             "sent_by": f"{project_owner.first_name} {project_owner.last_name}",
+#         },
+#     )
+#     frappe.sendmail(
+#         recipients=approver_email,
+#         cc=project_owner_email,
+#         subject=subject,
+#         message=template,
+#         now=True,
+#     )
+#     return "Submit for review notification mail sent successfully"
 
-@frappe.whitelist()
-def trigger_review_resubmission_mail(
-    approver_email,
-    project_owner_email,
-    project_oc_number,
-    project_name,
-    feedback_description,
-    subject,
-    attachments,
-):
-    approver = frappe.get_doc("User", approver_email)
-    project_owner = frappe.get_doc("User", project_owner_email)
-    template = frappe.render_template(
-        "/templates/db_review_resubmission.html",
-        {
-            "owner_first_name": project_owner.first_name,
-            "owner_last_name": project_owner.last_name,
-            "project_oc_number": project_oc_number,
-            "project_name": project_name,
-            "feedback_description": feedback_description,
-            "approvar_name": f"{approver.first_name} {approver.last_name}",
-        },
-    )
-    frappe.sendmail(
-        recipients=project_owner_email,
-        cc=approver_email,
-        subject=subject,
-        message=template,
-        now=True,
-        attachments=attachments,
-    )
-    return "Resubmit for review notification mail sent successfully"
+# @frappe.whitelist()
+# def trigger_review_resubmission_mail(
+#     approver_email,
+#     project_owner_email,
+#     project_oc_number,
+#     project_name,
+#     feedback_description,
+#     subject,
+#     attachments,
+# ):
+#     approver = frappe.get_doc("User", approver_email)
+#     project_owner = frappe.get_doc("User", project_owner_email)
+#     template = frappe.render_template(
+#         "/templates/db_review_resubmission.html",
+#         {
+#             "owner_first_name": project_owner.first_name,
+#             "owner_last_name": project_owner.last_name,
+#             "project_oc_number": project_oc_number,
+#             "project_name": project_name,
+#             "feedback_description": feedback_description,
+#             "approvar_name": f"{approver.first_name} {approver.last_name}",
+#         },
+#     )
+#     frappe.sendmail(
+#         recipients=project_owner_email,
+#         cc=approver_email,
+#         subject=subject,
+#         message=template,
+#         now=True,
+#         attachments=attachments,
+#     )
+#     return "Resubmit for review notification mail sent successfully"
 
 
-@frappe.whitelist()
-def trigger_review_approval_mail(
-    approver_email, project_owner_email, project_oc_number, project_name, subject
-):
-    approver = frappe.get_doc("User", approver_email)
-    project_owner = frappe.get_doc("User", project_owner_email)
-    template = frappe.render_template(
-        "/templates/db_review_approval.html",
-        {
-            "owner_first_name": project_owner.first_name,
-            "owner_last_name": project_owner.last_name,
-            "project_oc_number": project_oc_number,
-            "project_name": project_name,
-            "approvar_name": f"{approver.first_name} {approver.last_name}",
-        },
-    )
-    frappe.sendmail(
-        recipients=project_owner_email,
-        cc=approver_email,
-        subject=subject,
-        message=template,
-        now=True,
-    )
-    return "Approval notification mail sent successfully"
+# @frappe.whitelist()
+# def trigger_review_approval_mail(
+#     approver_email, project_owner_email, project_oc_number, project_name, subject
+# ):
+#     approver = frappe.get_doc("User", approver_email)
+#     project_owner = frappe.get_doc("User", project_owner_email)
+#     template = frappe.render_template(
+#         "/templates/db_review_approval.html",
+#         {
+#             "owner_first_name": project_owner.first_name,
+#             "owner_last_name": project_owner.last_name,
+#             "project_oc_number": project_oc_number,
+#             "project_name": project_name,
+#             "approvar_name": f"{approver.first_name} {approver.last_name}",
+#         },
+#     )
+#     frappe.sendmail(
+#         recipients=project_owner_email,
+#         cc=approver_email,
+#         subject=subject,
+#         message=template,
+#         now=True,
+#     )
+#     return "Approval notification mail sent successfully"
 
 
 @frappe.whitelist()
 def get_local_isolator_excel(): 
     payload = frappe.local.form_dict
-    metadata = payload.get("metadata")
-    project = payload.get("project")
-    # division = payload.get("division")
-    document_revision = payload.get("documentRevisions")
-    project_id  = payload.get("project_id")
-    status = payload.get("status")
-    description = payload.get("description")
-    electrical_load_list_data = payload.get("electrical_load_list_data")
+    revision_id = payload.get("revision_id")
+    project_id = revision_data.get("project_id")
+
+    document_revisions = payload.get("document_revision")
+
+    revision_data = frappe.get_doc("Local Isolator Revisions", project_id).as_dict()
+    project = frappe.get_doc("Project", project_id).as_dict()
+    division_name = project.get("division")
+
+    local_isolator_data = revision_data.local_isolator_data
+    local_isolator_motor_details_data = revision_data.local_isolator_motor_details_data
+
+    project_owner = project.get("owner")
+    project_approver = project.get("approver")
+    prepped_by_initial = frappe.db.get_value(
+        "Thermax Extended User", project_owner, "name_initial"
+    )
+    checked_by_initial = frappe.db.get_value(
+        "Thermax Extended User", project_approver, "name_initial"
+    )
+    super_user_initial = frappe.db.get_value(
+        "Thermax Extended User",
+        {"is_superuser": 1, "division": division_name},
+        "name_initial",
+    )
 
     template_path = frappe.frappe.get_app_path(
         "thermax_backend", "templates", "local_isolator_specification_template.xlsx.xlsx"
@@ -114,19 +131,28 @@ def get_local_isolator_excel():
     bom_list_sheet = template_workbook["BOM LIST"]
 
     # COVER
+    cover_sheet["A3"] = division_name.upper()
 
-    division_name = metadata.get("division_name").upper()  # Get the division name and convert to uppercase
-    # cover_sheet["A4"] = "411 026" just to ensure
-    if division_name == "WWS SPG":
-        cover_sheet["A3"] = "Water & Waste Solution".upper()  # Replace with desired text
-        cover_sheet["A4"] = "411 026"
-    elif division_name == "Enviro".upper():
-        cover_sheet["A4"] = "411 026"
-    else:
-        cover_sheet["A3"] = division_name.upper()  # Otherwise, use the original division name
+    match division_name:
+        case "Heating":
+            cover_sheet["A4"] = "PUNE - 411 019"
+        case "WWS SPG":
+            cover_sheet["A3"] = "WATER & WASTE SOLUTION"
+            cover_sheet["A4"] = "PUNE - 411 026"
+        case "WWS IPG":
+            cover_sheet["A3"] = "WATER & WASTE SOLUTION"
+            cover_sheet["A4"] = "PUNE - 411 026"
+        case "Enviro":
+            cover_sheet["A4"] = "PUNE - 411 026"
+        case _:
+            cover_sheet["A4"] = "PUNE - 411 026"
 
     
-    cover_sheet["D6"] = "LOCAL ISOLATOR SPECIFICATION"
+    revision_date = revision_data.get("modified")
+    
+    cover_sheet["C36"] = revision_date.strftime("%d-%m-%Y")
+
+    # cover_sheet["D6"] = "LOCAL ISOLATOR SPECIFICATION"
     cover_sheet["D7"] = project.get("client_name").upper()
     cover_sheet["D8"] = project.get("consultant_name").upper()
     cover_sheet["D9"] = project.get("project_name").upper()
@@ -135,10 +161,11 @@ def get_local_isolator_excel():
 
 
     cover_sheet["B36"] = "0" # revision number (index or length - 1)
-    cover_sheet["D36"] = "Not Released"
-    cover_sheet["E36"] = "SP"
-    cover_sheet["F36"] = "JS"
-    cover_sheet["G36"] = "RBB"
+    cover_sheet["D36"] = revision_data.get("status")
+
+    cover_sheet["E36"] = prepped_by_initial
+    cover_sheet["F36"] = checked_by_initial
+    cover_sheet["G36"] = super_user_initial
 
 
 
@@ -148,8 +175,8 @@ def get_local_isolator_excel():
     start_row = 6
     
 
-    if len(document_revision) > 1: 
-        for idx, revision in enumerate(document_revision) :
+    if len(document_revisions) > 1: 
+        for idx, revision in enumerate(document_revisions) :
             modified_revision_date = revision.get("modified")
 
             if modified_revision_date:
@@ -159,11 +186,13 @@ def get_local_isolator_excel():
                 revision_sheet[f"B{start_row + idx}"] = revision.get("idx")
                 revision_sheet[f"D{start_row + idx}"] = modified_revision_date
                 revision_sheet[f"E{start_row + idx}"] = revision.get("status")
+
+    else :
+        revision_sheet["B6"] = "R0"
+        revision_sheet["D6"] = "DATE"
+        revision_sheet["E6"] = "Status"
         
 
-    # revision_sheet["B6"] = "R0"
-    # revision_sheet["D6"] = "DATE"
-    # revision_sheet["E6"] = "Status"
 
 
     # ISOLATOR 
