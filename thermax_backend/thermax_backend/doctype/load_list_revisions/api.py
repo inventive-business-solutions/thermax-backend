@@ -1,32 +1,33 @@
 import io
 import frappe
 from frappe import _
-from openpyxl import load_workbook
-from openpyxl.utils import range_boundaries
-from thermax_backend.thermax_backend.doctype.load_list_revisions.create_load_list_excel import (
+from thermax_backend.thermax_backend.doctype.load_list_revisions.create_load_list_common_sheets import (
+    create_load_list_common_sheets,
+)
+from thermax_backend.thermax_backend.doctype.load_list_revisions.create_load_list_sheet import (
     create_load_list_excel,
 )
-from datetime import datetime
 
 
 @frappe.whitelist()
 def get_load_list_excel():
+    """
+    Generates an Excel sheet for the electrical load list based on the specified division.
+    """
     payload = frappe.local.form_dict
     revision_id = payload.get("revision_id")
-
     revision_data = frappe.get_doc("Load List Revisions", revision_id).as_dict()
-
-    revision_lists = frappe.db.get_list("Load List Revisions", {"project_id": project_id}, "*")
-    revision_lists_len = len(revision_lists)
-
     project_id = revision_data.get("project_id")
+
     project = frappe.get_doc("Project", project_id).as_dict()
-    division_name = project.get("division")
-    project_owner = project.get("owner")
-    project_approver = project.get("approver")
-    prepped_by_initial = frappe.db.get_value(
-        "Thermax Extended User", project_owner, "name_initial"
+
+    template_workbook = create_load_list_common_sheets(project, revision_data)
+    template_workbook = create_load_list_excel(
+        revision_data=revision_data,
+        project=project,
+        template_workbook=template_workbook,
     )
+<<<<<<< HEAD
     checked_by_initial = frappe.db.get_value(
         "Thermax Extended User", project_approver, "name_initial"
     )
@@ -149,6 +150,8 @@ def get_load_list_excel():
 
     template_workbook.remove(load_list_output_sheet)
     all_panels_sheet.title = "LOAD LIST OUTPUT"
+=======
+>>>>>>> 11a05c2 (division wise load list templates added)
 
     # template_workbook.save("electrical_load_list.xlsx")
 
