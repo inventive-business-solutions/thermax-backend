@@ -241,7 +241,7 @@ def get_design_basis_excel():
     else:
         # some = document_revisions[0].get("idx")
         revision_sheet[f"B6"] = f"R{document_revisions_length-1}"
-        revision_sheet[f"D6"] = modified_revision_date
+        revision_sheet[f"D6"] = "modified_revision_date"
         revision_sheet[f"E6"] = document_revisions[0].get("status")
 
     # General Information
