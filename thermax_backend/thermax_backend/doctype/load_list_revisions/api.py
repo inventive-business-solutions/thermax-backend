@@ -113,7 +113,7 @@ def get_load_list_excel():
                 revision_sheet[f"E{start_row + index}"] = "ISSUED FOR APPROVAL"
     else:
         revision_sheet[f"B6"] = f"R{revision_lists_len-1}"
-        revision_sheet[f"D6"] = modified_revision_date
+        revision_sheet[f"D6"] = "modified_revision_date"
         revision_sheet[f"E6"] = "ISSUED FOR APPROVAL"
 
 
