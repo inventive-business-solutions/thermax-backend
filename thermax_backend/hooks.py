@@ -187,6 +187,7 @@ override_whitelisted_methods = {
     "db_revision.trigger_review_approval_mail": "thermax_backend.thermax_backend.doctype.design_basis_revision_history.api.trigger_review_approval_mail",
     "db_revision.get_design_basis_excel": "thermax_backend.thermax_backend.doctype.design_basis_revision_history.api.get_design_basis_excel",
     "load_list_revisions.get_load_list_excel": "thermax_backend.thermax_backend.doctype.load_list_revisions.api.get_load_list_excel",
+    "cable_schedule_revisions.get_voltage_drop_excel": "thermax_backend.thermax_backend.doctype.cable_schedule_revisions.api.get_voltage_drop_excel",
 }
 #
 # each overriding function accepts a `data` argument;
