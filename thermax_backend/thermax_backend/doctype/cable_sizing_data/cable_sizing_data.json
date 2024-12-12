@@ -40,8 +40,9 @@
   },
   {
    "fieldname": "number_of_core",
-   "fieldtype": "Int",
-   "label": "Number of Core"
+   "fieldtype": "Float",
+   "label": "Number of Core",
+   "precision": "1"
   },
   {
    "fieldname": "od",
@@ -76,13 +77,13 @@
    "fieldname": "dbl_x",
    "fieldtype": "Float",
    "label": "DBL X",
-   "precision": "2"
+   "precision": "4"
   },
   {
    "fieldname": "dbl_r",
    "fieldtype": "Float",
    "label": "DBL R",
-   "precision": "2"
+   "precision": "4"
   },
   {
    "fieldname": "dbl_area",
@@ -99,7 +100,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-07 12:52:35.627981",
+ "modified": "2024-12-12 09:32:59.027412",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Cable Sizing Data",
