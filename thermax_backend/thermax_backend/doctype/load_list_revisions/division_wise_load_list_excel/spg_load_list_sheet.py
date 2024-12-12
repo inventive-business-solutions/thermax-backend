@@ -1,11 +1,48 @@
-def create_load_list_excel(
-    electrical_load_list_data, load_list_output_sheet, division_name
-):
+import frappe
+from openpyxl import load_workbook
+
+
+def get_spg_load_list_excel(electrical_load_list_data, panels_data, template_workbook):
+    """
+    Gets the Excel workbook for the "Heating" or "WWS SPG" division.
+    """
+
+    load_list_output_sheet = template_workbook["LOAD LIST OUTPUT"]
+    all_panels_sheet = template_workbook.copy_worksheet(load_list_output_sheet)
+
+    all_panels_sheet = create_spg_load_list_excel(
+        electrical_load_list_data=electrical_load_list_data,
+        load_list_output_sheet=all_panels_sheet,
+    )
+
+    for panel_name, panel_data in panels_data.items():
+        panel_sheet = template_workbook.copy_worksheet(load_list_output_sheet)
+        panel_sheet.title = panel_name
+
+        panel_sheet = create_spg_load_list_excel(
+            electrical_load_list_data=panel_data,
+            load_list_output_sheet=panel_sheet,
+        )
+
+    template_workbook.remove(load_list_output_sheet)
+    all_panels_sheet.title = "LOAD LIST OUTPUT"
+    return template_workbook
+
+
+def create_spg_load_list_excel(electrical_load_list_data, load_list_output_sheet):
+    """
+    Generates an Excel sheet for the electrical load list for the "Heating" or "WWS SPG" division.
+    Args:
+        electrical_load_list_data (list): The data representing the electrical load list.
+    Returns:
+        object: The updated Excel worksheet object containing the load list.
+    """
+
     total_rows = len(electrical_load_list_data)
     template_row_number = 3
     dynamic_start_row_number = template_row_number + 1
     template_range_start_col = 1  # Column A
-    template_range_end_col = 17  # Column Q (Q is the 17th column)
+    template_range_end_col = 17  # Column Q (17 the column number)
 
     # Get the row height of the template row
     template_row_height = load_list_output_sheet.row_dimensions[
@@ -18,7 +55,7 @@ def create_load_list_excel(
     for merged_range in merged_ranges:
         try:
             load_list_output_sheet.unmerge_cells(str(merged_range))
-        except KeyError as e:
+        except KeyError:
             continue
 
     for row in range(
@@ -52,7 +89,7 @@ def create_load_list_excel(
 
     for index, data in enumerate(electrical_load_list_data):
         row = template_row_number + index
-        load_list_output_sheet.cell(row=row, column=1, value=data.get("idx"))
+        load_list_output_sheet.cell(row=row, column=1, value=index + 1)
         load_list_output_sheet.cell(row=row, column=2, value=data.get("tag_number"))
         load_list_output_sheet.cell(
             row=row, column=3, value=data.get("service_description")
@@ -130,7 +167,7 @@ def create_load_list_excel(
     )
     load_list_output_sheet.row_dimensions[calculated_row_start_number + 4].height = 15
 
-    # TOTAL POWER CONSUMPTION (Total)
+    # TOTAL CONNECTED LOAD
     load_list_output_sheet.merge_cells(
         f"A{calculated_row_start_number + 5}:C{calculated_row_start_number + 5}"
     )
@@ -138,14 +175,7 @@ def create_load_list_excel(
         f"E{calculated_row_start_number + 5}:Q{calculated_row_start_number + 5}"
     )
     load_list_output_sheet.row_dimensions[calculated_row_start_number + 5].height = 30
-    max_standby_kw = max(
-        (item.get("standby_kw", 0) or 0 for item in electrical_load_list_data),
-        default=0,
-    )
-    total_power_consumption = total_working_kw + max_standby_kw * 0.5
-    load_list_output_sheet[f"D{calculated_row_start_number + 5}"] = (
-        total_power_consumption
-    )
+    load_list_output_sheet[f"D{calculated_row_start_number + 5}"] = total_working_kw
 
     # Row Gap
     load_list_output_sheet.merge_cells(
@@ -153,15 +183,26 @@ def create_load_list_excel(
     )
     load_list_output_sheet.row_dimensions[calculated_row_start_number + 6].height = 15
 
-    # TOTAL CONNECTED LOAD
+    # TOTAL LOAD
     load_list_output_sheet.merge_cells(
         f"A{calculated_row_start_number + 7}:C{calculated_row_start_number + 7}"
     )
     load_list_output_sheet.merge_cells(
-        f"E{calculated_row_start_number + 7}:Q{calculated_row_start_number + 7}"
+        f"F{calculated_row_start_number + 7}:J{calculated_row_start_number + 7}"
     )
+    load_list_output_sheet.merge_cells(
+        f"K{calculated_row_start_number + 7}:Q{calculated_row_start_number + 7}"
+    )
+    if electrical_load_list_data and len(electrical_load_list_data) > 0:
+        supply_voltage = electrical_load_list_data[0].get("supply_voltage", 0)
+    else:
+        supply_voltage = 0
     load_list_output_sheet.row_dimensions[calculated_row_start_number + 7].height = 30
-    load_list_output_sheet[f"D{calculated_row_start_number + 7}"] = total_working_kw
+    if supply_voltage == 0:
+        total_load = 0
+    else:
+        total_load = total_working_kw * 1000 / (1.732 * supply_voltage * 0.8)
+    load_list_output_sheet[f"D{calculated_row_start_number + 7}"] = round(total_load, 2)
 
     # Row Gap
     load_list_output_sheet.merge_cells(
@@ -169,38 +210,8 @@ def create_load_list_excel(
     )
     load_list_output_sheet.row_dimensions[calculated_row_start_number + 8].height = 15
 
-    # TOTAL LOAD
     load_list_output_sheet.merge_cells(
-        f"A{calculated_row_start_number + 9}:C{calculated_row_start_number + 9}"
-    )
-    load_list_output_sheet.merge_cells(
-        f"F{calculated_row_start_number + 9}:J{calculated_row_start_number + 9}"
-    )
-    load_list_output_sheet.merge_cells(
-        f"K{calculated_row_start_number + 9}:Q{calculated_row_start_number + 9}"
-    )
-    if electrical_load_list_data and len(electrical_load_list_data) > 0:
-        supply_voltage = electrical_load_list_data[0].get("supply_voltage", 0)
-    else:
-        supply_voltage = 0
-    load_list_output_sheet.row_dimensions[calculated_row_start_number + 9].height = 30
-    if supply_voltage == 0:
-        total_load = 0
-    else:
-        total_load = total_working_kw * 1000 / (1.732 * supply_voltage * 0.8)
-    load_list_output_sheet[f"D{calculated_row_start_number + 9}"] = round(total_load, 2)
-
-    # Row Gap
-    load_list_output_sheet.merge_cells(
-        f"A{calculated_row_start_number + 10}:Q{calculated_row_start_number + 10}"
-    )
-    load_list_output_sheet.row_dimensions[calculated_row_start_number + 10].height = 15
-
-    load_list_output_sheet.merge_cells(
-        f"D{calculated_row_start_number + 11}:Q{calculated_row_start_number + 11}"
+        f"D{calculated_row_start_number + 8}:Q{calculated_row_start_number + 8}"
     )
 
-    if division_name != "Heating":
-        load_list_output_sheet.delete_rows(calculated_row_start_number + 5)
-        load_list_output_sheet.delete_rows(calculated_row_start_number + 6)
     return load_list_output_sheet
