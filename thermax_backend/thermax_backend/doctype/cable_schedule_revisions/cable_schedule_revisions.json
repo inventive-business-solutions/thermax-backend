@@ -10,7 +10,8 @@
   "status",
   "description",
   "cable_schedule_data",
-  "excel_payload"
+  "excel_payload",
+  "multicore_cable_config"
  ],
  "fields": [
   {
@@ -40,11 +41,16 @@
    "fieldname": "excel_payload",
    "fieldtype": "JSON",
    "label": "Cable Schedule Excel Payload"
+  },
+  {
+   "fieldname": "multicore_cable_config",
+   "fieldtype": "JSON",
+   "label": "Multicolor Cable Config"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-12 21:01:13.148791",
+ "modified": "2024-12-13 13:12:46.861230",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Cable Schedule Revisions",
