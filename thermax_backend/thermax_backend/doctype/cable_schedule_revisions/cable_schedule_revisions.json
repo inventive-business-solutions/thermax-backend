@@ -9,7 +9,8 @@
   "project_id",
   "status",
   "description",
-  "cable_schedule_data"
+  "cable_schedule_data",
+  "excel_payload"
  ],
  "fields": [
   {
@@ -34,11 +35,16 @@
    "fieldtype": "Table",
    "label": "Cable Schedule Data",
    "options": "Cable Schedule Data"
+  },
+  {
+   "fieldname": "excel_payload",
+   "fieldtype": "JSON",
+   "label": "Cable Schedule Excel Payload"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-02 11:25:58.376530",
+ "modified": "2024-12-12 21:01:13.148791",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Cable Schedule Revisions",

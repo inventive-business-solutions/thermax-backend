@@ -29,7 +29,12 @@
   "ambient_temperature_max",
   "ambient_temperature_min",
   "electrical_design_temperature",
-  "seismic_zone"
+  "seismic_zone",
+  "altitude",
+  "min_humidity",
+  "max_humidity",
+  "avg_humidity",
+  "performance_humidity"
  ],
  "fields": [
   {
@@ -192,11 +197,41 @@
    "fieldname": "project_information_section",
    "fieldtype": "Section Break",
    "label": "Project Information"
+  },
+  {
+   "default": "1",
+   "fieldname": "altitude",
+   "fieldtype": "Data",
+   "label": "Altitude"
+  },
+  {
+   "default": "1",
+   "fieldname": "min_humidity",
+   "fieldtype": "Data",
+   "label": "Minimum Humidity"
+  },
+  {
+   "default": "1",
+   "fieldname": "max_humidity",
+   "fieldtype": "Data",
+   "label": "Maximum Humidity"
+  },
+  {
+   "default": "1",
+   "fieldname": "avg_humidity",
+   "fieldtype": "Data",
+   "label": "Average Humidity"
+  },
+  {
+   "default": "1",
+   "fieldname": "performance_humidity",
+   "fieldtype": "Data",
+   "label": "Performance Humidity"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-05 15:43:17.013323",
+ "modified": "2024-12-13 10:47:57.394752",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Project Information",

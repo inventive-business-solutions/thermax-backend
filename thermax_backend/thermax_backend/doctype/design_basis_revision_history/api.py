@@ -241,7 +241,7 @@ def get_design_basis_excel():
     else:
         # some = document_revisions[0].get("idx")
         revision_sheet[f"B6"] = f"R{document_revisions_length-1}"
-        revision_sheet[f"D6"] = modified_revision_date
+        revision_sheet[f"D6"] = ""
         revision_sheet[f"E6"] = document_revisions[0].get("status")
 
     # General Information
@@ -540,12 +540,32 @@ def get_design_basis_excel():
     design_basis_sheet["E103"] = common_configuration.get("push_button_ess")
     design_basis_sheet["E104"] = speed_increase_pb
     design_basis_sheet["E105"] = speed_decrease_pb
-    alarm_acknowledge_and_lamp_test = common_configuration.get(
+    alarm_acknowledge = common_configuration.get(
         "alarm_acknowledge_and_lamp_test"
     )
-    design_basis_sheet["E106"] = na_To_string(alarm_acknowledge_and_lamp_test)
-    test_reset = common_configuration.get("test_reset")
-    design_basis_sheet["E107"] = na_To_string(test_reset)
+    lamp_test = common_configuration.get(
+        "lamp_test_push_button"
+    )
+
+    if lamp_test == "NA":
+        lamp_test = "Not Applicable"
+    if alarm_acknowledge == "NA":
+        alarm_acknowledge = "Not Applicable"
+
+    alarm_acknowledge_and_lamp_test = f"Alarm Acknowledgement-{alarm_acknowledge}, Lamp Test-{lamp_test}"
+    design_basis_sheet["E106"] = alarm_acknowledge_and_lamp_test
+
+    test = common_configuration.get("test_reset")
+    reset = common_configuration.get("test_reset2")
+
+    if test == "NA":
+        test = "Not Applicable"
+    if reset == "NA":
+        reset = "Not Applicable"
+
+    test_reset = f"Test - {test}, Reset-{reset}"
+
+    design_basis_sheet["E107"] = test_reset
 
     """
         Selector Switch

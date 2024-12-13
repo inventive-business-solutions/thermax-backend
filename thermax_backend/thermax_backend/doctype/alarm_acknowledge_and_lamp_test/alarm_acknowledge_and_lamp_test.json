@@ -13,13 +13,13 @@
   {
    "fieldname": "alarm_acknowledge_and_lamp_test",
    "fieldtype": "Data",
-   "label": "Alarm Acknowledge and Lamp Test",
+   "label": "Alarm Acknowledge Push Button",
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-15 10:22:10.768695",
+ "modified": "2024-12-12 21:04:32.035899",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Alarm Acknowledge and Lamp Test",
