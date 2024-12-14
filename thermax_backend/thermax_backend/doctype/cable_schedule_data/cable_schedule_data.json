@@ -12,13 +12,18 @@
   "service_description",
   "working_kw",
   "standby_kw",
+  "supply_phase",
   "kva",
   "starter_type",
   "supply_voltage",
+  "efficiency",
   "motor_rated_current",
+  "motor_starting_current",
   "cable_material",
   "cos_running",
+  "sin_running",
   "cos_starting",
+  "sin_starting",
   "resistance_meter",
   "reactance_meter",
   "apex_length",
@@ -186,12 +191,39 @@
    "fieldname": "cable_size_heating_chart",
    "fieldtype": "Data",
    "label": "Cable Size Heating Chart"
+  },
+  {
+   "fieldname": "supply_phase",
+   "fieldtype": "Data",
+   "label": "Supply Phase"
+  },
+  {
+   "fieldname": "efficiency",
+   "fieldtype": "Percent",
+   "label": "Efficiency"
+  },
+  {
+   "fieldname": "motor_starting_current",
+   "fieldtype": "Float",
+   "label": "Motor Starting Current",
+   "precision": "2"
+  },
+  {
+   "fieldname": "sin_running",
+   "fieldtype": "Float",
+   "label": "Sin Running",
+   "precision": "2"
+  },
+  {
+   "fieldname": "sin_starting",
+   "fieldtype": "Float",
+   "label": "Sin Starting"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-12-02 11:20:49.960326",
+ "modified": "2024-12-14 16:04:35.989096",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Cable Schedule Data",
