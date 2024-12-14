@@ -7,11 +7,10 @@ from openpyxl import load_workbook
 @frappe.whitelist()
 def get_voltage_drop_excel():
     payload = frappe.local.form_dict
-    cable_schedule_revision_id = payload.get("cable_schedule_revision_id")
-    design_basis_revision_id = payload.get("design_basis_revision_id")
+    revision_id = payload.get("revision_id")
 
     cable_schedule_revision = frappe.get_doc(
-        "Cable Schedule Revisions", cable_schedule_revision_id
+        "Cable Schedule Revisions", revision_id
     ).as_dict()
     cable_schedule_data = cable_schedule_revision.get("cable_schedule_data")
 
@@ -53,8 +52,100 @@ def get_voltage_drop_excel():
 
     for index, data in enumerate(cable_schedule_data):
         row = template_row_number + index
-        voltage_drop_calculation_sheet.cell(row=row, column=1, value=data.get("idx"))
+        voltage_drop_calculation_sheet.cell(row=row, column=1, value=index + 1)
+        voltage_drop_calculation_sheet.cell(
+            row=row, column=2, value=data.get("tag_number")
+        )
+        voltage_drop_calculation_sheet.cell(
+            row=row, column=3, value=data.get("service_description")
+        )
+        standby_kw = data.get("standby_kw")
+        working_kw = data.get("working_kw")
+        non_zero_kw = standby_kw if standby_kw >= 0 else working_kw
+        voltage_drop_calculation_sheet.cell(row=row, column=4, value=non_zero_kw)
+        voltage_drop_calculation_sheet.cell(
+            row=row, column=5, value=data.get("supply_phase")
+        )
+        voltage_drop_calculation_sheet.cell(
+            row=row, column=6, value=data.get("starter_type")
+        )
+        voltage_drop_calculation_sheet.cell(
+            row=row, column=7, value=data.get("supply_voltage")
+        )
+        voltage_drop_calculation_sheet.cell(
+            row=row, column=8, value=data.get("efficiency")
+        )
+        cos_running_cell = voltage_drop_calculation_sheet.cell(
+            row=row, column=9, value=data.get("cos_running")
+        )
+        voltage_drop_calculation_sheet.cell(
+            row=row, column=10, value=f"=SIN(ACOS({cos_running_cell.coordinate}))"
+        )
+        cos_starting_cell = voltage_drop_calculation_sheet.cell(
+            row=row, column=11, value=data.get("cos_starting")
+        )
+        voltage_drop_calculation_sheet.cell(
+            row=row, column=12, value=f"=SIN(ACOS({cos_starting_cell.coordinate}))"
+        )
+        voltage_drop_calculation_sheet.cell(
+            row=row, column=13, value=data.get("motor_rated_current")
+        )
+        voltage_drop_calculation_sheet.cell(
+            row=row, column=14, value=data.get("motor_starting_current")
+        )
+        voltage_drop_calculation_sheet.cell(
+            row=row, column=15, value=data.get("cable_material")
+        )
+        voltage_drop_calculation_sheet.cell(
+            row=row, column=16, value=data.get("number_of_runs")
+        )
+        voltage_drop_calculation_sheet.cell(
+            row=row,
+            column=17,
+            value=f"{data.get('number_of_runs')} x {data.get('number_of_cores')} x {data.get('final_cable_size')}",
+        )
+        voltage_drop_calculation_sheet.cell(
+            row=row, column=18, value=data.get("resistance_meter")
+        )
+        voltage_drop_calculation_sheet.cell(
+            row=row, column=19, value=data.get("reactance_meter")
+        )
+        voltage_drop_calculation_sheet.cell(
+            row=row, column=20, value=data.get("apex_length")
+        )
+        voltage_drop_calculation_sheet.cell(
+            row=row, column=21, value=data.get("vd_running")
+        )
+        voltage_drop_calculation_sheet.cell(
+            row=row, column=22, value=data.get("vd_starting")
+        )
+        voltage_drop_calculation_sheet.cell(
+            row=row, column=23, value=data.get("percent_vd_running")
+        )
+        voltage_drop_calculation_sheet.cell(
+            row=row, column=24, value=data.get("percent_vd_starting")
+        )
+        voltage_drop_calculation_sheet.cell(
+            row=row, column=25, value=data.get("current_air")
+        )
+        voltage_drop_calculation_sheet.cell(
+            row=row, column=26, value=data.get("derating_factor")
+        )
+        voltage_drop_calculation_sheet.cell(
+            row=row, column=27, value=data.get("final_capacity")
+        )
+        voltage_drop_calculation_sheet.cell(
+            row=row, column=28, value=data.get("cable_selected_status")
+        )
 
-    template_workbook.save("voltage_dropdown_calculation.xlsx")
+    # template_workbook.save("voltage_dropdown_calculation.xlsx")
+
+    output = io.BytesIO()
+    template_workbook.save(output)
+    output.seek(0)
+
+    frappe.local.response.filename = "voltage_drop_calculation.xlsx"
+    frappe.local.response.filecontent = output.getvalue()
+    frappe.local.response.type = "binary"
 
     return _("Voltage Drop Excel Created")
