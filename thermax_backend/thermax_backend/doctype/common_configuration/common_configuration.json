@@ -38,27 +38,46 @@
   "push_button_ess",
   "is_push_button_speed_selected",
   "is_field_motor_isolator_selected",
+  "is_safe_area_isolator_selected",
+  "is_hazardous_area_isolator_selected",
   "is_local_push_button_station_selected",
   "speed_increase_pb",
   "speed_decrease_pb",
   "alarm_acknowledge_and_lamp_test",
+  "lamp_test_push_button",
   "test_reset",
+  "test_reset2",
   "selector_switch_applicable",
   "selector_switch_lockable",
   "running_open",
   "stopped_closed",
   "trip",
-  "field_motor_type",
-  "field_motor_enclosure",
-  "field_motor_material",
-  "field_motor_qty",
-  "field_motor_isolator_color_shade",
-  "field_motor_cable_entry",
-  "field_motor_canopy_on_top",
-  "lpbs_type",
-  "lpbs_enclosure",
-  "lpbs_material",
-  "lpbs_qty",
+  "safe_field_motor_type",
+  "hazardous_field_motor_type",
+  "safe_field_motor_enclosure",
+  "hazardous_field_motor_enclosure",
+  "safe_field_motor_material",
+  "hazardous_field_motor_material",
+  "safe_field_motor_thickness",
+  "hazardous_field_motor_thickness",
+  "safe_field_motor_qty",
+  "hazardous_field_motor_qty",
+  "safe_field_motor_isolator_color_shade",
+  "hazardous_field_motor_isolator_color_shade",
+  "safe_field_motor_cable_entry",
+  "hazardous_field_motor_cable_entry",
+  "safe_field_motor_canopy",
+  "hazardous_field_motor_canopy",
+  "safe_field_motor_canopy_type",
+  "hazardous_field_motor_canopy_type",
+  "safe_lpbs_type",
+  "hazardous_local_push_button_type",
+  "safe_lpbs_enclosure",
+  "hazardous_local_push_button_enclosure",
+  "safe_lpbs_material",
+  "hazardous_push_button_material",
+  "safe_lpbs_qty",
+  "hazardous_local_push_button_qty",
   "lpbs_color_shade",
   "lpbs_canopy_on_top",
   "lpbs_push_button_start_color",
@@ -195,7 +214,7 @@
   {
    "fieldname": "test_reset",
    "fieldtype": "Link",
-   "label": "Test Reset",
+   "label": "Test",
    "options": "Test Reset"
   },
   {
@@ -227,12 +246,6 @@
    "fieldtype": "Link",
    "label": "Trip",
    "options": "Indicating Lamp Trip"
-  },
-  {
-   "fieldname": "field_motor_isolator_color_shade",
-   "fieldtype": "Link",
-   "label": "Field Motor Isolator Color Shade",
-   "options": "Field Motor Isolator Color Shade"
   },
   {
    "fieldname": "apfc_relay",
@@ -404,68 +417,8 @@
   {
    "fieldname": "alarm_acknowledge_and_lamp_test",
    "fieldtype": "Link",
-   "label": "Alarm Knowledge and Lamp Test",
+   "label": "Alarm Knowledge Push Button",
    "options": "Alarm Acknowledge and Lamp Test"
-  },
-  {
-   "fieldname": "field_motor_type",
-   "fieldtype": "Link",
-   "label": "Field Motor Type",
-   "options": "Field Motor Isolator General Type"
-  },
-  {
-   "fieldname": "field_motor_enclosure",
-   "fieldtype": "Link",
-   "label": "Field Motor Enclosure",
-   "options": "Field Motor Isolator General Enclosure"
-  },
-  {
-   "fieldname": "field_motor_material",
-   "fieldtype": "Link",
-   "label": "Field Motor Material",
-   "options": "Field Motor Isolator General Material"
-  },
-  {
-   "fieldname": "field_motor_qty",
-   "fieldtype": "Link",
-   "label": "Field Motor Qty",
-   "options": "Field Motor Isolator General QTY"
-  },
-  {
-   "fieldname": "field_motor_cable_entry",
-   "fieldtype": "Link",
-   "label": "Field Motor Cable Entry",
-   "options": "Field Motor Isolator General Cable Entry"
-  },
-  {
-   "fieldname": "field_motor_canopy_on_top",
-   "fieldtype": "Link",
-   "label": "Field Motor Canopy On Top",
-   "options": "Field Motor Isolator Canopy On Top"
-  },
-  {
-   "fieldname": "lpbs_type",
-   "fieldtype": "Link",
-   "label": "Local Push Button Type",
-   "options": "Local Push Button Station Type"
-  },
-  {
-   "fieldname": "lpbs_enclosure",
-   "fieldtype": "Link",
-   "label": "Local Push Button Enclosure",
-   "options": "Local Push Button Station Enclosure"
-  },
-  {
-   "fieldname": "lpbs_material",
-   "fieldtype": "Link",
-   "label": "Local Push Button Material",
-   "options": "Local Push Button Station Material"
-  },
-  {
-   "fieldname": "lpbs_qty",
-   "fieldtype": "Link",
-   "label": "Local Push Button QTY",
-   "options": "Local Push Button Station Qty"
   },
   {
    "fieldname": "lpbs_color_shade",
@@ -584,11 +537,193 @@
    "fieldtype": "Select",
    "label": "Is Local Push Button Station Selected",
    "options": "0\n1"
+  },
+  {
+   "fieldname": "lamp_test_push_button",
+   "fieldtype": "Link",
+   "label": "Lamp Test Push Button",
+   "options": "Alarm Acknowledge and Lamp Test2"
+  },
+  {
+   "fieldname": "test_reset2",
+   "fieldtype": "Link",
+   "label": "Reset",
+   "options": "Test Reset 2"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_safe_area_isolator_selected",
+   "fieldtype": "Select",
+   "label": "Is Safe Area Isolator Selected",
+   "options": "0\n1"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_hazardous_area_isolator_selected",
+   "fieldtype": "Select",
+   "label": "Is Hazardous Area Isolator Selected",
+   "options": "0\n1"
+  },
+  {
+   "fieldname": "safe_field_motor_type",
+   "fieldtype": "Link",
+   "label": "Safe Field Motor Type",
+   "options": "Field Motor Isolator General Type"
+  },
+  {
+   "fieldname": "hazardous_field_motor_type",
+   "fieldtype": "Link",
+   "label": "Hazardous Field Motor Type",
+   "options": "Field Motor Isolator General Type"
+  },
+  {
+   "fieldname": "safe_field_motor_enclosure",
+   "fieldtype": "Link",
+   "label": "Safe Field Motor Enclosure",
+   "options": "Field Motor Isolator General Enclosure"
+  },
+  {
+   "fieldname": "hazardous_field_motor_enclosure",
+   "fieldtype": "Link",
+   "label": "Hazardous Field Motor Enclosure",
+   "options": "Field Motor Isolator General Enclosure"
+  },
+  {
+   "fieldname": "safe_field_motor_material",
+   "fieldtype": "Link",
+   "label": "Safe Field Motor Material",
+   "options": "Field Motor Isolator General Material"
+  },
+  {
+   "fieldname": "hazardous_field_motor_material",
+   "fieldtype": "Link",
+   "label": "Hazardous Field Motor Material",
+   "options": "Field Motor Isolator General Material"
+  },
+  {
+   "fieldname": "safe_field_motor_thickness",
+   "fieldtype": "Link",
+   "label": "Safe Field Motor Thickness",
+   "options": "Field Motor Thickness"
+  },
+  {
+   "fieldname": "hazardous_field_motor_thickness",
+   "fieldtype": "Link",
+   "label": "Hazardous Field Motor Thickness",
+   "options": "Field Motor Thickness"
+  },
+  {
+   "fieldname": "safe_field_motor_qty",
+   "fieldtype": "Link",
+   "label": "Safe Field Motor Qty",
+   "options": "Field Motor Isolator General QTY"
+  },
+  {
+   "fieldname": "hazardous_field_motor_qty",
+   "fieldtype": "Link",
+   "label": "Hazardous Field Motor Qty",
+   "options": "Field Motor Isolator General QTY"
+  },
+  {
+   "fieldname": "safe_field_motor_isolator_color_shade",
+   "fieldtype": "Link",
+   "label": "Safe Field Motor Isolator Color Shade",
+   "options": "Field Motor Isolator Color Shade"
+  },
+  {
+   "fieldname": "hazardous_field_motor_isolator_color_shade",
+   "fieldtype": "Link",
+   "label": "Hazardous Field Motor Isolator Color Shade",
+   "options": "Field Motor Isolator Color Shade"
+  },
+  {
+   "fieldname": "safe_field_motor_cable_entry",
+   "fieldtype": "Link",
+   "label": "Safe Field Motor Cable Entry",
+   "options": "Field Motor Isolator General Cable Entry"
+  },
+  {
+   "fieldname": "hazardous_field_motor_cable_entry",
+   "fieldtype": "Link",
+   "label": "Hazardous Field Motor Cable Entry",
+   "options": "Field Motor Isolator General Cable Entry"
+  },
+  {
+   "fieldname": "safe_field_motor_canopy",
+   "fieldtype": "Link",
+   "label": "Safe Field Motor Canopy",
+   "options": "Field Motor Isolator Canopy On Top"
+  },
+  {
+   "fieldname": "hazardous_field_motor_canopy",
+   "fieldtype": "Link",
+   "label": "Hazardous Field Motor Canopy",
+   "options": "Field Motor Isolator Canopy On Top"
+  },
+  {
+   "fieldname": "safe_field_motor_canopy_type",
+   "fieldtype": "Link",
+   "label": "Safe Field Motor Canopy Type",
+   "options": "Field Motor Isolator Canopy Type"
+  },
+  {
+   "fieldname": "hazardous_field_motor_canopy_type",
+   "fieldtype": "Link",
+   "label": "Hazardous Field Motor Canopy Type",
+   "options": "Field Motor Isolator Canopy Type"
+  },
+  {
+   "fieldname": "safe_lpbs_type",
+   "fieldtype": "Link",
+   "label": "Safe Local Push Button Type",
+   "options": "Local Push Button Station Type"
+  },
+  {
+   "fieldname": "hazardous_local_push_button_type",
+   "fieldtype": "Link",
+   "label": "Hazardous Local Push Button Type",
+   "options": "Local Push Button Station Type"
+  },
+  {
+   "fieldname": "safe_lpbs_enclosure",
+   "fieldtype": "Link",
+   "label": "Safe Local Push Button Enclosure",
+   "options": "Local Push Button Station Enclosure"
+  },
+  {
+   "fieldname": "hazardous_local_push_button_enclosure",
+   "fieldtype": "Link",
+   "label": "Hazardous Local Push Button Enclosure",
+   "options": "Local Push Button Station Enclosure"
+  },
+  {
+   "fieldname": "safe_lpbs_material",
+   "fieldtype": "Link",
+   "label": "Safe Push Button Material",
+   "options": "Local Push Button Station Material"
+  },
+  {
+   "fieldname": "hazardous_push_button_material",
+   "fieldtype": "Link",
+   "label": "Hazardous Push Button Material",
+   "options": "Local Push Button Station Material"
+  },
+  {
+   "fieldname": "safe_lpbs_qty",
+   "fieldtype": "Link",
+   "label": "Safe Local Push Button QTY",
+   "options": "Local Push Button Station Qty"
+  },
+  {
+   "fieldname": "hazardous_local_push_button_qty",
+   "fieldtype": "Link",
+   "label": "Hazardous Local Push Button QTY",
+   "options": "Local Push Button Station Qty"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-08 18:42:33.553890",
+ "modified": "2024-12-16 23:34:32.252877",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Common Configuration",

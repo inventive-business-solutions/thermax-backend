@@ -314,26 +314,26 @@
    "options": "GA Panel Mounting Height"
   },
   {
-   "default": "0",
+   "default": "1",
    "fieldname": "is_marshalling_section_selected",
    "fieldtype": "Check",
    "label": "Is Marshalling Section Selected",
    "options": "\n"
   },
   {
-   "default": "0",
+   "default": "1",
    "fieldname": "is_cable_alley_section_selected",
    "fieldtype": "Check",
    "label": "Is Cable Alley Section Selected"
   },
   {
-   "default": "0",
+   "default": "1",
    "fieldname": "is_power_and_bus_separation_section_selected",
    "fieldtype": "Check",
    "label": "Is Power and Bus Separation Section Selected"
   },
   {
-   "default": "0",
+   "default": "1",
    "fieldname": "is_both_side_extension_section_selected",
    "fieldtype": "Check",
    "label": "Is Both Side Extension Section Selected"
@@ -647,7 +647,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-08 23:30:15.261576",
+ "modified": "2024-12-15 20:04:52.601411",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "MCC Panel",

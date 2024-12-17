@@ -311,32 +311,28 @@
    "options": "GA Panel Mounting Height"
   },
   {
-   "default": "0",
+   "default": "1",
    "fieldname": "is_marshalling_section_selected",
-   "fieldtype": "Select",
-   "label": "Is Marshalling Section Selected",
-   "options": "0\n1"
+   "fieldtype": "Check",
+   "label": "Is Marshalling Section Selected"
   },
   {
-   "default": "0",
+   "default": "1",
    "fieldname": "is_cable_alley_section_selected",
-   "fieldtype": "Select",
-   "label": "Is Cable Alley Section Selected",
-   "options": "0\n1"
+   "fieldtype": "Check",
+   "label": "Is Cable Alley Section Selected"
   },
   {
-   "default": "0",
+   "default": "1",
    "fieldname": "is_power_and_bus_separation_section_selected",
-   "fieldtype": "Select",
-   "label": "Is Power and Bus Separation Section Selected",
-   "options": "0\n1"
+   "fieldtype": "Check",
+   "label": "Is Power and Bus Separation Section Selected"
   },
   {
-   "default": "0",
+   "default": "1",
    "fieldname": "is_both_side_extension_section_selected",
-   "fieldtype": "Select",
-   "label": "Is Both Side Extension Section Selected",
-   "options": "0\n1"
+   "fieldtype": "Check",
+   "label": "Is Both Side Extension Section Selected"
   },
   {
    "fieldname": "ga_gland_plate_3mm_drill_type",
@@ -639,7 +635,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-08 23:30:48.597777",
+ "modified": "2024-12-15 20:04:01.307741",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "PCC Panel",
