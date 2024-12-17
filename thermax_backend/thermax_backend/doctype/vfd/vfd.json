@@ -1,0 +1,155 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2024-12-17 17:04:02.935951",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "vfd_data_section",
+  "kw",
+  "hp",
+  "sg_select",
+  "starter_type",
+  "vfd_make",
+  "vfd_model",
+  "sw_make",
+  "sw_rating",
+  "fuse",
+  "fuse_holder",
+  "breaker",
+  "section",
+  "vfd_output_current",
+  "ambient_temperature",
+  "unit_1",
+  "unit_2",
+  "unit_3",
+  "unit_4"
+ ],
+ "fields": [
+  {
+   "fieldname": "vfd_data_section",
+   "fieldtype": "Section Break",
+   "label": "VFD Data"
+  },
+  {
+   "fieldname": "kw",
+   "fieldtype": "Float",
+   "label": "KW",
+   "precision": "2"
+  },
+  {
+   "fieldname": "hp",
+   "fieldtype": "Float",
+   "label": "HP",
+   "precision": "2"
+  },
+  {
+   "fieldname": "sg_select",
+   "fieldtype": "Data",
+   "label": "SG Select"
+  },
+  {
+   "fieldname": "starter_type",
+   "fieldtype": "Data",
+   "label": "Starter Type"
+  },
+  {
+   "fieldname": "vfd_make",
+   "fieldtype": "Data",
+   "label": "VFD Make"
+  },
+  {
+   "fieldname": "vfd_model",
+   "fieldtype": "Data",
+   "label": "VFD Model"
+  },
+  {
+   "fieldname": "sw_make",
+   "fieldtype": "Data",
+   "label": "SW Make"
+  },
+  {
+   "fieldname": "sw_rating",
+   "fieldtype": "Data",
+   "label": "SW Rating"
+  },
+  {
+   "fieldname": "fuse",
+   "fieldtype": "Data",
+   "label": "Fuse"
+  },
+  {
+   "fieldname": "fuse_holder",
+   "fieldtype": "Data",
+   "label": "Fuse Holder"
+  },
+  {
+   "fieldname": "breaker",
+   "fieldtype": "Data",
+   "label": "Breaker"
+  },
+  {
+   "fieldname": "section",
+   "fieldtype": "Data",
+   "label": "Section"
+  },
+  {
+   "fieldname": "vfd_output_current",
+   "fieldtype": "Float",
+   "label": "VFD Output Current",
+   "precision": "2"
+  },
+  {
+   "fieldname": "ambient_temperature",
+   "fieldtype": "Float",
+   "label": "Ambient Temperature"
+  },
+  {
+   "fieldname": "unit_1",
+   "fieldtype": "Data",
+   "label": "Unit 1"
+  },
+  {
+   "fieldname": "unit_2",
+   "fieldtype": "Data",
+   "label": "Unit 2"
+  },
+  {
+   "fieldname": "unit_3",
+   "fieldtype": "Data",
+   "label": "Unit 3"
+  },
+  {
+   "fieldname": "unit_4",
+   "fieldtype": "Data",
+   "label": "Unit 4"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-12-17 18:35:16.202470",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "VFD",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
