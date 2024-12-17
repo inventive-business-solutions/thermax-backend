@@ -1,0 +1,144 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2024-12-17 16:43:23.262743",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "supply_feeder_data_section",
+  "make",
+  "sg_select",
+  "starter_type",
+  "hp",
+  "kw",
+  "voltage",
+  "fla",
+  "breaker",
+  "fuse",
+  "fuse_holder",
+  "breaking_capacity",
+  "rated_current",
+  "series",
+  "pole",
+  "description",
+  "unit_1"
+ ],
+ "fields": [
+  {
+   "fieldname": "supply_feeder_data_section",
+   "fieldtype": "Section Break",
+   "label": "Supply Feeder Data"
+  },
+  {
+   "fieldname": "make",
+   "fieldtype": "Data",
+   "label": "Make"
+  },
+  {
+   "fieldname": "sg_select",
+   "fieldtype": "Data",
+   "label": "SG Select"
+  },
+  {
+   "fieldname": "starter_type",
+   "fieldtype": "Data",
+   "label": "Starter Type"
+  },
+  {
+   "fieldname": "hp",
+   "fieldtype": "Float",
+   "label": "HP",
+   "precision": "2"
+  },
+  {
+   "fieldname": "kw",
+   "fieldtype": "Float",
+   "label": "KW",
+   "precision": "2"
+  },
+  {
+   "fieldname": "voltage",
+   "fieldtype": "Int",
+   "label": "Voltage"
+  },
+  {
+   "fieldname": "fla",
+   "fieldtype": "Float",
+   "label": "FLA"
+  },
+  {
+   "fieldname": "breaker",
+   "fieldtype": "Data",
+   "label": "Breaker"
+  },
+  {
+   "fieldname": "fuse",
+   "fieldtype": "Data",
+   "label": "Fuse"
+  },
+  {
+   "fieldname": "fuse_holder",
+   "fieldtype": "Data",
+   "label": "Fuse Holder"
+  },
+  {
+   "fieldname": "breaking_capacity",
+   "fieldtype": "Int",
+   "label": "Breaking Capacity"
+  },
+  {
+   "fieldname": "rated_current",
+   "fieldtype": "Float",
+   "label": "Rated Current",
+   "precision": "2"
+  },
+  {
+   "fieldname": "series",
+   "fieldtype": "Data",
+   "label": "Series"
+  },
+  {
+   "fieldname": "pole",
+   "fieldtype": "Data",
+   "label": "Pole"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Data",
+   "label": "Description"
+  },
+  {
+   "fieldname": "unit_1",
+   "fieldtype": "Float",
+   "label": "Unit 1",
+   "precision": "2"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-12-17 17:34:01.287605",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "Supply Feeder",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

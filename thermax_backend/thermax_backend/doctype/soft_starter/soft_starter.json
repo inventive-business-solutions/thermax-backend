@@ -1,0 +1,106 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2024-12-17 16:36:13.442198",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "soft_starter_data_section",
+  "kw",
+  "hp",
+  "sg_select",
+  "vfd_make",
+  "vfd_model",
+  "sw_make",
+  "sw_rating",
+  "fuse",
+  "fuse_holder",
+  "breaker"
+ ],
+ "fields": [
+  {
+   "fieldname": "soft_starter_data_section",
+   "fieldtype": "Section Break",
+   "label": "Soft Starter Data"
+  },
+  {
+   "fieldname": "kw",
+   "fieldtype": "Float",
+   "label": "KW",
+   "precision": "2"
+  },
+  {
+   "fieldname": "hp",
+   "fieldtype": "Float",
+   "label": "HP",
+   "precision": "2"
+  },
+  {
+   "fieldname": "sg_select",
+   "fieldtype": "Data",
+   "label": "SG Select"
+  },
+  {
+   "fieldname": "vfd_make",
+   "fieldtype": "Data",
+   "label": "VFD Make"
+  },
+  {
+   "fieldname": "vfd_model",
+   "fieldtype": "Data",
+   "label": "VFD Model"
+  },
+  {
+   "fieldname": "sw_make",
+   "fieldtype": "Data",
+   "label": "SW Make"
+  },
+  {
+   "fieldname": "sw_rating",
+   "fieldtype": "Data",
+   "label": "SW Rating"
+  },
+  {
+   "fieldname": "fuse",
+   "fieldtype": "Data",
+   "label": "Fuse"
+  },
+  {
+   "fieldname": "fuse_holder",
+   "fieldtype": "Data",
+   "label": "Fuse Holder"
+  },
+  {
+   "fieldname": "breaker",
+   "fieldtype": "Data",
+   "label": "Breaker"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-12-17 17:18:01.614420",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "Soft Starter",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
