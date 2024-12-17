@@ -39,6 +39,16 @@ def create_cable_schedule_excel(revision_id):
 
     for main_index, cable_schedule_index in enumerate(cable_schedule_data, start=1):
         cable_schedule = cable_schedule_data[cable_schedule_index]
+        cables = cable_schedule_data[cable_schedule_index].get("cables", [])
+
+        if not cables:  # Check for empty array
+            panel_name = None  # Default value for empty cables
+            starter_type = None
+        else:
+            # Access panel_name safely from the first element
+            panel_name = cables[0].get("panel_name") if cables[0] else None
+            starter_type = cables[0].get("starter_type") if cables[0] else None
+
         # Append the main index number in the first column
         for col in range(template_range_start_col, template_range_end_col + 1):
             template_cell = cable_schedule_sheet.cell(
@@ -59,8 +69,22 @@ def create_cable_schedule_excel(revision_id):
         )
         current_row += 1
 
-        cables = cable_schedule_data[cable_schedule_index].get("cables", [])
         number_of_cables = len(cables)
+        cable_schedule_sheet.merge_cells(
+            f"B{current_row}:B{current_row + number_of_cables - 1}"
+        )
+        cable_schedule_sheet.cell(current_row, 2).value = panel_name
+        cable_schedule_sheet.cell(current_row, 2).alignment = Alignment(
+            horizontal="center", vertical="center"
+        )
+        cable_schedule_sheet.merge_cells(
+            f"C{current_row}:C{current_row + number_of_cables - 1}"
+        )
+        cable_schedule_sheet.cell(current_row, 3).value = starter_type
+        cable_schedule_sheet.cell(current_row, 3).alignment = Alignment(
+            horizontal="center", vertical="center"
+        )
+
         for sub_index, cable in enumerate(cables, start=1):
             # Append the sub-index number in the first column
 
@@ -84,12 +108,7 @@ def create_cable_schedule_excel(revision_id):
             cable_schedule_sheet.cell(row=current_row, column=1).alignment = Alignment(
                 horizontal="center", vertical="center"
             )
-            cable_schedule_sheet.cell(row=current_row, column=2).value = cable.get(
-                "panel_name"
-            )
-            cable_schedule_sheet.cell(row=current_row, column=3).value = cable.get(
-                "starter_type"
-            )
+
             cable_schedule_sheet.cell(row=current_row, column=4).value = cable.get(
                 "name"
             )
