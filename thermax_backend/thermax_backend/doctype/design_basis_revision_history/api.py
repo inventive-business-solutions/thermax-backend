@@ -121,9 +121,9 @@ def get_design_basis_excel():
         return value
 
     def number_To_string(value):
-        if value == "0" :
+        if value == "0" or value == 0 :
             return "Not Applicable"
-        elif value == "1" :
+        elif value == "1" or value == 1 :
             return "Applicable"
         else:
             return value
@@ -598,6 +598,7 @@ def get_design_basis_excel():
     field_motor_type = common_configuration.get("field_motor_type")
     field_motor_enclosure = common_configuration.get("field_motor_enclosure")
     field_motor_material = common_configuration.get("field_motor_material")
+    field_motor_thickness = common_configuration.get("field_motor_thickness")
     field_motor_qty = common_configuration.get("field_motor_qty")
     field_motor_isolator_color_shade = common_configuration.get(
         "field_motor_isolator_color_shade"
@@ -607,10 +608,16 @@ def get_design_basis_excel():
 
     is_field_motor_isolator_selected = common_configuration.get("is_field_motor_isolator_selected")
 
+    field_motor_material_data = f"{field_motor_material}, Thickness: {field_motor_thickness}"
+    
+    if field_motor_thickness == "NA":
+        field_motor_material_data = f"{field_motor_material}"
+
+
     if is_field_motor_isolator_selected == "0":
         field_motor_type = "Not Applicable"
         field_motor_enclosure = "Not Applicable"
-        field_motor_material = "Not Applicable"
+        field_motor_material_data = "Not Applicable"
         field_motor_qty = "Not Applicable"
         field_motor_isolator_color_shade = "Not Applicable"
         field_motor_cable_entry = "Not Applicable"
@@ -618,7 +625,7 @@ def get_design_basis_excel():
 
     design_basis_sheet["E115"] = field_motor_type
     design_basis_sheet["E116"] = field_motor_enclosure
-    design_basis_sheet["E117"] = field_motor_material
+    design_basis_sheet["E117"] = field_motor_material_data
     design_basis_sheet["E118"] = field_motor_qty
     design_basis_sheet["E119"] = field_motor_isolator_color_shade
     design_basis_sheet["E121"] = field_motor_cable_entry
@@ -1555,14 +1562,14 @@ def get_design_basis_excel():
             if ups_scope == "Client Scope" or ups_scope == "Thermax Scope":
                 ups_type = "Not Applicable"
                 ups_battery_type = "Not Applicable"
-                is_ups_battery_mounting_rack_selected = 0
+                is_ups_battery_mounting_rack_selected = "0"
                 ups_battery_backup_time = "Not Applicable"
 
             panel_sheet["E72"] = ups_scope
             panel_sheet["E73"] = ups_type
             panel_sheet["E74"] = ups_battery_type
 
-            if is_ups_battery_mounting_rack_selected == 1:
+            if is_ups_battery_mounting_rack_selected == 1 or is_ups_battery_mounting_rack_selected == "1":
                 is_ups_battery_mounting_rack_selected = "Applicable"
             else:
                 is_ups_battery_mounting_rack_selected = "Not Applicable"
@@ -1595,11 +1602,14 @@ def get_design_basis_excel():
             is_client_system_communication_selected = plc_panel_data.get(
                 "is_client_system_communication_selected"
             )
-            if is_client_system_communication_selected == "0":
-                client_system_communication = "Not Applicable"
+
             client_system_communication = plc_panel_data.get(
                 "client_system_communication"
             )
+
+            if is_client_system_communication_selected == "0" or is_client_system_communication_selected == 0:
+                client_system_communication = "Not Applicable"
+            
             panel_sheet["E83"] = client_system_communication
 
             # Redundancy
