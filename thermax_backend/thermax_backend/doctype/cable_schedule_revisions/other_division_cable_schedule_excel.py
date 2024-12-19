@@ -1,12 +1,81 @@
-from collections import defaultdict
-import frappe
 import re
+from collections import defaultdict
+
+import frappe
 from openpyxl import load_workbook
+from openpyxl.worksheet.datavalidation import DataValidation
+
 from thermax_backend.thermax_backend.doctype.cable_schedule_revisions.excel_styles import (
     cell_styles,
     get_center_border_style,
     get_left_center_style,
 )
+
+
+def get_yes_no_dropdown():
+    """
+    Get excel cell dropdown values for yes/no selection.
+    """
+    dropdown_values = ["Yes", "No"]
+    formula = f'"{",".join(dropdown_values)}"'
+    dropdown = DataValidation(type="list", formula1=formula, allow_blank=True)
+    dropdown.error = "Invalid value"
+    dropdown.errorTitle = "Invalid Input"
+    dropdown.prompt = "Please select a value from the dropdown"
+    dropdown.promptTitle = "Dropdown Input"
+    return dropdown
+
+
+def get_size_selection_dropdown():
+    """
+    Get excel cell dropdown values for cable size selection.
+    """
+    formula = "Dropdowns!A:A"
+    dropdown = DataValidation(type="list", formula1=formula, allow_blank=True)
+    dropdown.error = "Invalid value"
+    dropdown.errorTitle = "Invalid Input"
+    dropdown.prompt = "Please select a value from the dropdown"
+    dropdown.promptTitle = "Dropdown Input"
+    return dropdown
+
+
+def extract_cable_type(type_of_cable):
+    """
+    Extracts the cable type from the type_of_cable string.
+    """
+    if not type_of_cable:
+        return ""
+
+    try:
+        # Ensure the input is a string
+        type_of_cable = str(type_of_cable)
+
+        # Split the string by hyphen and check if there are at least two parts
+        parts = type_of_cable.split("-")
+        if len(parts) > 1:
+            return parts[1].strip()
+        else:
+            return ""
+    except Exception as e:
+        return ""
+
+
+def extract_cable_name(type_of_cable):
+    """
+    Extracts the cable name from the type_of_cable string.
+    """
+    type_of_cable = str(type_of_cable)
+    if not type_of_cable:
+        return ""  # Return empty string if type_of_cable is None or empty
+
+    if "Power" in type_of_cable:
+        return "PC"
+    elif "Control" in type_of_cable:
+        return "CC"
+    elif "Signal" in type_of_cable:
+        return "SC"
+    else:
+        return "Unknown"
 
 
 def extract_number(pair_core):
@@ -74,6 +143,12 @@ def create_other_division_excel(cable_schedule_data):
     template_workbook.add_named_style(left_center_style)
 
     cable_schedule_sheet = template_workbook["MCC CABLE SCHDULE"]
+    size_selection_dropdowns = get_size_selection_dropdown()
+    cable_schedule_sheet.add_data_validation(size_selection_dropdowns)
+
+    yes_no_dropdown = get_yes_no_dropdown()
+    cable_schedule_sheet.add_data_validation(yes_no_dropdown)
+
     panel_wise_data = rearrange_cable_schedule_data(cable_schedule_data)
 
     template_row_number = 8
@@ -129,9 +204,7 @@ def create_other_division_excel(cable_schedule_data):
                 end_row=current_row + max(total_panel_cores - 1, 0),
                 end_column=7,
             )
-            cable_schedule_sheet.cell(current_row, 7).value = (
-                f"FROM PANEL / JB NO {current_row}"
-            )
+            cable_schedule_sheet.cell(current_row, 7).value = panel_name
 
             # 8th column H: FROM PANEL / JB DESCRIPTION
             cable_schedule_sheet.cell(current_row, 8).style = "center_border_style"
@@ -141,9 +214,7 @@ def create_other_division_excel(cable_schedule_data):
                 end_row=current_row + max(total_panel_cores - 1, 0),
                 end_column=8,
             )
-            cable_schedule_sheet.cell(current_row, 8).value = (
-                f"FROM PANEL / JB DESCRIPTION {current_row}"
-            )
+            cable_schedule_sheet.cell(current_row, 8).value = panel_name
 
             # 9th column I: SYSTEM VOLTAGE
             cable_schedule_sheet.cell(current_row, 9).style = "center_border_style"
@@ -188,7 +259,9 @@ def create_other_division_excel(cable_schedule_data):
                     end_row=end_row,
                     end_column=2,
                 )
-                cable_schedule_sheet.cell(current_row, 2).value = cable.get("name")
+                cable_schedule_sheet.cell(current_row, 2).value = extract_cable_name(
+                    cable.get("type_of_cable")
+                )
 
                 # 3rd column C: CABLE TAG
                 cable_schedule_sheet.cell(current_row, 3).style = "center_border_style"
@@ -222,7 +295,9 @@ def create_other_division_excel(cable_schedule_data):
                     end_row=end_row,
                     end_column=12,
                 )
-                cable_schedule_sheet.cell(current_row, 12).value = cable.get("sizemm2")
+                cable_schedule_sheet.cell(current_row, 12).value = (
+                    f"{cable.get('pair_core')} X {cable.get('sizemm2')} SQ.MM. {cable.get('cable_material')} {cable.get('type_of_insulation')} ARMOURED CABLE"
+                )
 
                 # 13th column M: CABLE TYPE
                 cable_schedule_sheet.cell(current_row, 13).style = "center_border_style"
@@ -232,8 +307,8 @@ def create_other_division_excel(cable_schedule_data):
                     end_row=end_row,
                     end_column=13,
                 )
-                cable_schedule_sheet.cell(current_row, 13).value = cable.get(
-                    "type_of_cable"
+                cable_schedule_sheet.cell(current_row, 13).value = extract_cable_type(
+                    cable.get("type_of_cable")
                 )
 
                 # 16th column P: TAG NOS.
@@ -244,7 +319,9 @@ def create_other_division_excel(cable_schedule_data):
                     end_row=end_row,
                     end_column=16,
                 )
-                cable_schedule_sheet.cell(current_row, 16).value = cable.get("tag_no")
+                cable_schedule_sheet.cell(current_row, 16).value = cable.get(
+                    "tag_number"
+                )
 
                 # 18th column R: TO EQUIPMENT DESCRIPTION
                 cable_schedule_sheet.cell(current_row, 18).style = "center_border_style"
@@ -254,8 +331,8 @@ def create_other_division_excel(cable_schedule_data):
                     end_row=end_row,
                     end_column=18,
                 )
-                cable_schedule_sheet.cell(current_row, 18).value = (
-                    f"TO PANEL / JB NO {current_row}"
+                cable_schedule_sheet.cell(current_row, 18).value = cable.get(
+                    "service_description"
                 )
 
                 # 19th column S: CABLE LENGTH (IN MTR.)
@@ -279,6 +356,132 @@ def create_other_division_excel(cable_schedule_data):
                     end_column=20,
                 )
                 cable_schedule_sheet.cell(current_row, 20).value = cable.get("cable_od")
+
+                # 21st column U: ENTRY AVAILABLE AT PANEL / JB
+                cable_schedule_sheet.cell(current_row, 21).style = "center_border_style"
+                cable_schedule_sheet.merge_cells(
+                    start_row=current_row,
+                    start_column=21,
+                    end_row=end_row,
+                    end_column=21,
+                )
+                cable_schedule_sheet.cell(current_row, 21).value = "Plate"
+
+                # 22nd column V: SIZE SELECTED AT PANEL / JB
+                cable_schedule_sheet.cell(current_row, 22).style = "center_border_style"
+                cable_schedule_sheet.merge_cells(
+                    start_row=current_row,
+                    start_column=22,
+                    end_row=end_row,
+                    end_column=22,
+                )
+                size_selection_dropdowns.add(cable_schedule_sheet[f"V{current_row}"])
+
+                # 23rd column W: GLAND CAT NO AT PANEL / JB
+                cable_schedule_sheet.cell(current_row, 23).style = "center_border_style"
+                cable_schedule_sheet.merge_cells(
+                    start_row=current_row,
+                    start_column=23,
+                    end_row=end_row,
+                    end_column=23,
+                )
+                cable_schedule_sheet.cell(current_row, 23).value = (
+                    f"""=IF('GLAND SELEC. INPUT & NOTES SHT'!$H$17="Ni PLATED BRASS",IF($AQ{current_row}="NARMOURED CABLE",$AX{current_row},IF($AQ{current_row}=" ARMOURED CABLE",IF($AT{current_row}="M",$AV{current_row},IF($AT{current_row}=" ",$AU{current_row},IF($AT{current_row}="N",$AW{current_row},"NA"))))),IF($AQ{current_row}="NARMOURED CABLE",$BK{current_row},IF($AQ{current_row}=" ARMOURED CABLE",IF($BG{current_row}="M",$BI{current_row},IF($BG{current_row}=" ",$BH{current_row},IF($BG{current_row}="N",$BJ{current_row},"NA"))))))"""
+                )
+
+                # 24th column X: SHROUD REQUIREMENT AT PANEL / JB
+                cable_schedule_sheet.cell(current_row, 24).style = "center_border_style"
+                cable_schedule_sheet.merge_cells(
+                    start_row=current_row,
+                    start_column=24,
+                    end_row=end_row,
+                    end_column=24,
+                )
+                yes_no_dropdown.add(cable_schedule_sheet[f"V{current_row}"])
+
+                # 25th column Y: SHROUD CAT NO  AT PANEL / JB
+                cable_schedule_sheet.cell(current_row, 25).style = "center_border_style"
+                cable_schedule_sheet.merge_cells(
+                    start_row=current_row,
+                    start_column=25,
+                    end_row=end_row,
+                    end_column=25,
+                )
+                cable_schedule_sheet.cell(current_row, 25).value = (
+                    f"""=IF($X{current_row}="YES","PVC SHROUD FOR "&$W{current_row},"NA")"""
+                )
+
+                # 26th column Z: ENTRY AVAILABLE AT EQUIPMENT
+                cable_schedule_sheet.cell(current_row, 26).style = "center_border_style"
+                cable_schedule_sheet.merge_cells(
+                    start_row=current_row,
+                    start_column=26,
+                    end_row=end_row,
+                    end_column=26,
+                )
+
+                # 27th column AA: SIZE SELECTED AT EQUIPMENT
+                cable_schedule_sheet.cell(current_row, 27).style = "center_border_style"
+                cable_schedule_sheet.merge_cells(
+                    start_row=current_row,
+                    start_column=27,
+                    end_row=end_row,
+                    end_column=27,
+                )
+                size_selection_dropdowns.add(cable_schedule_sheet[f"AA{current_row}"])
+
+                # 28th column AB: GLAND CAT NO AT EQUIPMENT
+                cable_schedule_sheet.cell(current_row, 28).style = "center_border_style"
+                cable_schedule_sheet.merge_cells(
+                    start_row=current_row,
+                    start_column=28,
+                    end_row=end_row,
+                    end_column=28,
+                )
+                cable_schedule_sheet.cell(current_row, 28).value = (
+                    f"""=IF('GLAND SELEC. INPUT & NOTES SHT'!$H$17="Ni PLATED BRASS",IF($AQ{current_row}="NARMOURED CABLE",$BD{current_row},IF($AQ{current_row}=" ARMOURED CABLE",IF($AZ{current_row}="M",$BB{current_row},IF($AZ{current_row}=" ",$BA{current_row},IF($AZ{current_row}="N",$BC{current_row},"NA"))))),IF($AQ{current_row}="NARMOURED CABLE",$BQ{current_row},IF($AQ{current_row}=" ARMOURED CABLE",IF($BM{current_row}="M",$BO{current_row},IF($BM{current_row}=" ",$BN{current_row},IF($BM{current_row}="N",$BP{current_row},"NA"))))))"""
+                )
+
+                # 29th column AC: SHROUD REQUIREMENT AT EQUIPMENT
+                cable_schedule_sheet.cell(current_row, 29).style = "center_border_style"
+                cable_schedule_sheet.merge_cells(
+                    start_row=current_row,
+                    start_column=29,
+                    end_row=end_row,
+                    end_column=29,
+                )
+                yes_no_dropdown.add(cable_schedule_sheet[f"AC{current_row}"])
+
+                # 30th column AD: SHROUD CAT NO AT EQUIPMENT
+                cable_schedule_sheet.cell(current_row, 30).style = "center_border_style"
+                cable_schedule_sheet.merge_cells(
+                    start_row=current_row,
+                    start_column=30,
+                    end_row=end_row,
+                    end_column=30,
+                )
+                cable_schedule_sheet.cell(current_row, 30).value = (
+                    f"""=IF($AC{current_row}="YES","PVC SHROUD FOR "&$AB{current_row},"NA")"""
+                )
+
+                # 31st column AE: CABLE TRAY ROUTING
+                cable_schedule_sheet.cell(current_row, 31).style = "center_border_style"
+                cable_schedule_sheet.merge_cells(
+                    start_row=current_row,
+                    start_column=31,
+                    end_row=end_row,
+                    end_column=31,
+                )
+
+                # 32nd column AF: REMARKS
+                cable_schedule_sheet.cell(current_row, 32).style = "center_border_style"
+                cable_schedule_sheet.merge_cells(
+                    start_row=current_row,
+                    start_column=32,
+                    end_row=end_row,
+                    end_column=32,
+                )
+                cable_schedule_sheet.cell(current_row, 32).value = cable.get("comment")
 
                 for row in range(number_of_cores):
                     # 4th column D: FEEDER NO
