@@ -604,32 +604,32 @@
   },
   {
    "fieldname": "derating_factor_air",
-   "fieldtype": "Int",
+   "fieldtype": "Float",
    "label": "Derating Factor Air"
   },
   {
    "fieldname": "derating_factor_burid",
-   "fieldtype": "Int",
+   "fieldtype": "Float",
    "label": "Derating Factor Burid"
   },
   {
    "fieldname": "touching_factor_air",
-   "fieldtype": "Int",
+   "fieldtype": "Float",
    "label": "Touching Factor Air"
   },
   {
    "fieldname": "touching_factor_burid",
-   "fieldtype": "Int",
+   "fieldtype": "Float",
    "label": "Touching Factor Burid"
   },
   {
    "fieldname": "ambient_temp_factor_air",
-   "fieldtype": "Int",
+   "fieldtype": "Float",
    "label": "Ambient Temp Factor Air"
   },
   {
    "fieldname": "ambient_temp_factor_burid",
-   "fieldtype": "Int",
+   "fieldtype": "Float",
    "label": "Ambient Temp Factor Burid"
   },
   {
@@ -647,7 +647,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-03 23:25:53.978799",
+ "modified": "2024-12-19 10:13:13.400196",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Cable Tray Layout",
