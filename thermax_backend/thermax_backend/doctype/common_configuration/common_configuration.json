@@ -574,7 +574,7 @@
    "fieldname": "hazardous_field_motor_type",
    "fieldtype": "Link",
    "label": "Hazardous Field Motor Type",
-   "options": "Field Motor Isolator General Type"
+   "options": "Hazardous Area Type Isolator and Lpbs"
   },
   {
    "fieldname": "safe_field_motor_enclosure",
@@ -723,7 +723,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-16 23:34:32.252877",
+ "modified": "2024-12-18 13:44:57.632189",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Common Configuration",
