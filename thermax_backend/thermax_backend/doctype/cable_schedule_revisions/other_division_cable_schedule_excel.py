@@ -5,6 +5,24 @@ import frappe
 from openpyxl import load_workbook
 from openpyxl.worksheet.datavalidation import DataValidation
 
+from thermax_backend.thermax_backend.doctype.cable_schedule_revisions.excel_formulae import (
+    get_47_au_column_formula,
+    get_48_av_column_formula,
+    get_49_aw_column_formula,
+    get_50_ax_column_formula,
+    get_53_ba_column_formula,
+    get_54_bb_column_formula,
+    get_55_bc_column_formula,
+    get_56_bd_column_formula,
+    get_60_bh_column_formula,
+    get_61_bi_column_formula,
+    get_62_bj_column_formula,
+    get_63_bk_column_formula,
+    get_66_bn_column_formula,
+    get_67_bo_column_formula,
+    get_68_bp_column_formula,
+    get_69_bq_column_formula,
+)
 from thermax_backend.thermax_backend.doctype.cable_schedule_revisions.excel_styles import (
     cell_styles,
     get_center_border_style,
@@ -259,9 +277,11 @@ def create_other_division_excel(cable_schedule_data):
                     end_row=end_row,
                     end_column=2,
                 )
-                cable_schedule_sheet.cell(current_row, 2).value = extract_cable_name(
+                cable_schedule_sheet.cell(
+                    current_row, 2
+                ).value = f"""{extract_cable_name(
                     cable.get("type_of_cable")
-                )
+                )} - """
 
                 # 3rd column C: CABLE TAG
                 cable_schedule_sheet.cell(current_row, 3).style = "center_border_style"
@@ -473,15 +493,15 @@ def create_other_division_excel(cable_schedule_data):
                     end_column=31,
                 )
 
-                # 32nd column AF: REMARKS
-                cable_schedule_sheet.cell(current_row, 32).style = "center_border_style"
-                cable_schedule_sheet.merge_cells(
-                    start_row=current_row,
-                    start_column=32,
-                    end_row=end_row,
-                    end_column=32,
-                )
-                cable_schedule_sheet.cell(current_row, 32).value = cable.get("comment")
+                # # 32nd column AF: REMARKS
+                # cable_schedule_sheet.cell(current_row, 32).style = "center_border_style"
+                # cable_schedule_sheet.merge_cells(
+                #     start_row=current_row,
+                #     start_column=32,
+                #     end_row=end_row,
+                #     end_column=32,
+                # )
+                # cable_schedule_sheet.cell(current_row, 32).value = cable.get("comment")
 
                 for row in range(number_of_cores):
                     # 4th column D: FEEDER NO
@@ -522,6 +542,242 @@ def create_other_division_excel(cable_schedule_data):
                     # 17th column Q: TO TB NO.
                     cable_schedule_sheet.cell(current_row + row, 17).style = (
                         "center_border_style"
+                    )
+
+                    # 32nd column AF: REMARKS
+                    cable_schedule_sheet.cell(current_row + row, 32).style = (
+                        "center_border_style"
+                    )
+                    cable_schedule_sheet.cell(current_row + row, 32).value = cable.get(
+                        "comment"
+                    )
+
+                    # 33rd column AG: 50W
+                    cable_schedule_sheet.cell(current_row + row, 33).style = (
+                        "center_border_style"
+                    )
+
+                    # 34th column AH: 100W
+                    cable_schedule_sheet.cell(current_row + row, 34).style = (
+                        "center_border_style"
+                    )
+
+                    # 35th column AI: 50W
+                    cable_schedule_sheet.cell(current_row + row, 35).style = (
+                        "center_border_style"
+                    )
+
+                    # 36th column AJ: 100W
+                    cable_schedule_sheet.cell(current_row + row, 36).style = (
+                        "center_border_style"
+                    )
+
+                    # 43rd column AQ: TYPE OF CABLE
+                    cable_schedule_sheet.cell(current_row + row, 43).style = (
+                        "center_border_style"
+                    )
+                    cable_schedule_sheet.cell(current_row + row, 43).value = (
+                        f"""=RIGHT(L{current_row + row},15)"""
+                    )
+
+                    # 44th column AR: MAKE
+                    cable_schedule_sheet.cell(current_row + row, 44).style = (
+                        "center_border_style"
+                    )
+                    cable_schedule_sheet.cell(current_row + row, 44).value = (
+                        """='GLAND SELEC. INPUT & NOTES SHT'!$H$16"""
+                    )
+
+                    # 45th column AS:
+                    cable_schedule_sheet.cell(current_row + row, 45).style = (
+                        "center_border_style"
+                    )
+                    cable_schedule_sheet.cell(current_row + row, 45).value = (
+                        f"""=RIGHT($V{current_row + row},3)"""
+                    )
+
+                    # 46th column AT:
+                    cable_schedule_sheet.cell(current_row + row, 46).style = (
+                        "center_border_style"
+                    )
+                    cable_schedule_sheet.cell(current_row + row, 46).value = (
+                        f"""=LEFT($AS{current_row + row},1)"""
+                    )
+
+                    # 47th column AU:
+                    cable_schedule_sheet.cell(current_row + row, 47).style = (
+                        "center_border_style"
+                    )
+                    cable_schedule_sheet.cell(current_row + row, 47).value = (
+                        get_47_au_column_formula(current_row=current_row, row=row)
+                    )
+
+                    # 48th column AV:
+                    cable_schedule_sheet.cell(current_row + row, 48).style = (
+                        "center_border_style"
+                    )
+                    cable_schedule_sheet.cell(current_row + row, 48).value = (
+                        get_48_av_column_formula(current_row=current_row, row=row)
+                    )
+
+                    # 49th column AW:
+                    cable_schedule_sheet.cell(current_row + row, 49).style = (
+                        "center_border_style"
+                    )
+                    cable_schedule_sheet.cell(current_row + row, 49).value = (
+                        get_49_aw_column_formula(current_row=current_row, row=row)
+                    )
+
+                    # 50th column AX:
+                    cable_schedule_sheet.cell(current_row + row, 50).style = (
+                        "center_border_style"
+                    )
+                    cable_schedule_sheet.cell(current_row + row, 50).value = (
+                        get_50_ax_column_formula(current_row=current_row, row=row)
+                    )
+
+                    # 51st column AY:
+                    cable_schedule_sheet.cell(current_row + row, 51).style = (
+                        "center_border_style"
+                    )
+                    cable_schedule_sheet.cell(current_row + row, 51).value = (
+                        f"""=RIGHT($AA{current_row + row},3)"""
+                    )
+
+                    # 52nd column AZ:
+                    cable_schedule_sheet.cell(current_row + row, 52).style = (
+                        "center_border_style"
+                    )
+                    cable_schedule_sheet.cell(current_row + row, 52).value = (
+                        f"""=LEFT($AY{current_row + row},1)"""
+                    )
+
+                    # 53rd column BA:
+                    cable_schedule_sheet.cell(current_row + row, 53).style = (
+                        "center_border_style"
+                    )
+                    cable_schedule_sheet.cell(current_row + row, 53).value = (
+                        get_53_ba_column_formula(current_row=current_row, row=row)
+                    )
+
+                    # 54th column BB:
+                    cable_schedule_sheet.cell(current_row + row, 54).style = (
+                        "center_border_style"
+                    )
+                    cable_schedule_sheet.cell(current_row + row, 54).value = (
+                        get_54_bb_column_formula(current_row=current_row, row=row)
+                    )
+
+                    # 55th column BC:
+                    cable_schedule_sheet.cell(current_row + row, 55).style = (
+                        "center_border_style"
+                    )
+                    cable_schedule_sheet.cell(current_row + row, 55).value = (
+                        get_55_bc_column_formula(current_row=current_row, row=row)
+                    )
+
+                    # 56th column BD:
+                    cable_schedule_sheet.cell(current_row + row, 56).style = (
+                        "center_border_style"
+                    )
+                    cable_schedule_sheet.cell(current_row + row, 56).value = (
+                        get_56_bd_column_formula(current_row=current_row, row=row)
+                    )
+
+                    # 58th column BF:
+                    cable_schedule_sheet.cell(current_row + row, 58).style = (
+                        "center_border_style"
+                    )
+                    cable_schedule_sheet.cell(current_row + row, 58).value = (
+                        f"""=RIGHT($V{current_row + row},3)"""
+                    )
+
+                    # 59th column BG:
+                    cable_schedule_sheet.cell(current_row + row, 59).style = (
+                        "center_border_style"
+                    )
+                    cable_schedule_sheet.cell(current_row + row, 59).value = (
+                        f"""=LEFT($AS{current_row + row},1)"""
+                    )
+
+                    # 60th column BH:
+                    cable_schedule_sheet.cell(current_row + row, 60).style = (
+                        "center_border_style"
+                    )
+                    cable_schedule_sheet.cell(current_row + row, 60).value = (
+                        get_60_bh_column_formula(current_row=current_row, row=row)
+                    )
+
+                    # 61st column BI:
+                    cable_schedule_sheet.cell(current_row + row, 61).style = (
+                        "center_border_style"
+                    )
+                    cable_schedule_sheet.cell(current_row + row, 61).value = (
+                        get_61_bi_column_formula(current_row=current_row, row=row)
+                    )
+
+                    # 62nd column BJ:
+                    cable_schedule_sheet.cell(current_row + row, 62).style = (
+                        "center_border_style"
+                    )
+                    cable_schedule_sheet.cell(current_row + row, 62).value = (
+                        get_62_bj_column_formula(current_row=current_row, row=row)
+                    )
+
+                    # 63rd column BK:
+                    cable_schedule_sheet.cell(current_row + row, 63).style = (
+                        "center_border_style"
+                    )
+                    cable_schedule_sheet.cell(current_row + row, 63).value = (
+                        get_63_bk_column_formula(current_row=current_row, row=row)
+                    )
+
+                    # 64th column BL:
+                    cable_schedule_sheet.cell(current_row + row, 64).style = (
+                        "center_border_style"
+                    )
+                    cable_schedule_sheet.cell(current_row + row, 64).value = (
+                        f"""=RIGHT($AA{current_row + row},3)"""
+                    )
+
+                    # 65th column BM:
+                    cable_schedule_sheet.cell(current_row + row, 65).style = (
+                        "center_border_style"
+                    )
+                    cable_schedule_sheet.cell(current_row + row, 65).value = (
+                        f"""=LEFT($AY{current_row + row},1)"""
+                    )
+
+                    # 66th column BN:
+                    cable_schedule_sheet.cell(current_row + row, 66).style = (
+                        "center_border_style"
+                    )
+                    cable_schedule_sheet.cell(current_row + row, 66).value = (
+                        get_66_bn_column_formula(current_row=current_row, row=row)
+                    )
+
+                    # 67th column BO:
+                    cable_schedule_sheet.cell(current_row + row, 67).style = (
+                        "center_border_style"
+                    )
+                    cable_schedule_sheet.cell(current_row + row, 67).value = (
+                        get_67_bo_column_formula(current_row=current_row, row=row)
+                    )
+
+                    # 68th column BP:
+                    cable_schedule_sheet.cell(current_row + row, 68).style = (
+                        "center_border_style"
+                    )
+                    cable_schedule_sheet.cell(current_row + row, 68).value = (
+                        get_68_bp_column_formula(current_row=current_row, row=row)
+                    )
+
+                    # 69th column BQ:
+                    cable_schedule_sheet.cell(current_row + row, 69).style = (
+                        "center_border_style"
+                    )
+                    cable_schedule_sheet.cell(current_row + row, 69).value = (
+                        get_69_bq_column_formula(current_row=current_row, row=row)
                     )
 
                 # Update the current_row to the row after the merged cells
