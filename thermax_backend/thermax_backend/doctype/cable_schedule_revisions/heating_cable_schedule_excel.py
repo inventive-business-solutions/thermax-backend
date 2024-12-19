@@ -1,29 +1,14 @@
 import frappe
 from openpyxl import load_workbook
-from openpyxl.styles import NamedStyle, Font, Border, Side, Alignment
+from thermax_backend.thermax_backend.doctype.cable_schedule_revisions.other_division_cable_schedule_excel import (
+    cell_styles,
+)
 
 
-def copy_styles(source_cell, target_cell):
-    """
-    Copies the style of a source cell to a target cell.
-    """
-    target_cell.font = source_cell.font
-    target_cell.border = source_cell.border
-    target_cell.fill = source_cell.fill
-    target_cell.number_format = source_cell.number_format
-    target_cell.protection = source_cell.protection
-    target_cell.alignment = source_cell.alignment
-
-
-def create_cable_schedule_excel(revision_id):
+def create_heating_excel(cable_schedule_data):
     """
     Creates an Excel sheet for the cable schedule based on the specified revision ID.
     """
-    cable_schedule_revision = frappe.get_doc(
-        "Cable Schedule Revisions", revision_id
-    ).as_dict()
-    excel_payload = cable_schedule_revision.get("excel_payload")
-    cable_schedule_data = frappe.parse_json(excel_payload)
 
     template_path = frappe.frappe.get_app_path(
         "thermax_backend", "templates", "heating_cable_schedule_template.xlsx"
@@ -64,8 +49,8 @@ def create_cable_schedule_excel(revision_id):
         cable_schedule_sheet["B" + str(current_row)].value = cable_schedule.get(
             "motor_name"
         )
-        cable_schedule_sheet["B" + str(current_row)].alignment = Alignment(
-            horizontal="left", vertical="center"
+        cable_schedule_sheet["B" + str(current_row)].alignment = cell_styles.get(
+            "left_center"
         )
         current_row += 1
 
@@ -74,16 +59,12 @@ def create_cable_schedule_excel(revision_id):
             f"B{current_row}:B{current_row + number_of_cables - 1}"
         )
         cable_schedule_sheet.cell(current_row, 2).value = panel_name
-        cable_schedule_sheet.cell(current_row, 2).alignment = Alignment(
-            horizontal="center", vertical="center"
-        )
+        cable_schedule_sheet.cell(current_row, 2).alignment = cell_styles.get("center")
         cable_schedule_sheet.merge_cells(
             f"C{current_row}:C{current_row + number_of_cables - 1}"
         )
         cable_schedule_sheet.cell(current_row, 3).value = starter_type
-        cable_schedule_sheet.cell(current_row, 3).alignment = Alignment(
-            horizontal="center", vertical="center"
-        )
+        cable_schedule_sheet.cell(current_row, 3).alignment = cell_styles.get("center")
 
         for sub_index, cable in enumerate(cables, start=1):
             # Append the sub-index number in the first column
@@ -94,19 +75,14 @@ def create_cable_schedule_excel(revision_id):
                     row=template_row_number, column=col
                 )
                 target_cell = cable_schedule_sheet.cell(row=current_row, column=col)
-                target_cell.font = Font(bold=False)
-                target_cell.border = Border(
-                    left=Side(style="thin"),
-                    right=Side(style="thin"),
-                    top=Side(style="thin"),
-                    bottom=Side(style="thin"),
-                )
+                target_cell.font = cell_styles.get("bold")
+                target_cell.border = cell_styles.get("thin_border")
 
             cable_schedule_sheet.cell(row=current_row, column=1).value = (
                 hierarchical_index
             )
-            cable_schedule_sheet.cell(row=current_row, column=1).alignment = Alignment(
-                horizontal="center", vertical="center"
+            cable_schedule_sheet.cell(row=current_row, column=1).alignment = (
+                cell_styles.get("center")
             )
 
             cable_schedule_sheet.cell(row=current_row, column=4).value = cable.get(
