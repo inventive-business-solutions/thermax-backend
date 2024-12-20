@@ -5,5 +5,5 @@
 from frappe.model.document import Document
 
 
-class TestReset(Document):
+class TestDropdown(Document):
 	pass

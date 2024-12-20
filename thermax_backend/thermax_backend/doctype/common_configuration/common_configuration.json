@@ -215,7 +215,7 @@
    "fieldname": "test_reset",
    "fieldtype": "Link",
    "label": "Test",
-   "options": "Test Reset"
+   "options": "Test Dropdown"
   },
   {
    "fieldname": "selector_switch_applicable",
@@ -548,7 +548,7 @@
    "fieldname": "test_reset2",
    "fieldtype": "Link",
    "label": "Reset",
-   "options": "Test Reset 2"
+   "options": "Reset Dropdown"
   },
   {
    "default": "0",
@@ -723,7 +723,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-18 13:44:57.632189",
+ "modified": "2024-12-20 16:57:18.052115",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Common Configuration",

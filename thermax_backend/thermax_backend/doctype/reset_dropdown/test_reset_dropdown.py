@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestTestReset(FrappeTestCase):
+class TestResetDropdown(FrappeTestCase):
 	pass

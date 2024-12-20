@@ -1,28 +1,27 @@
 {
  "actions": [],
- "allow_import": 1,
  "allow_rename": 1,
- "autoname": "field:canopy_on_top",
- "creation": "2024-10-06 10:17:10.915500",
+ "autoname": "field:type",
+ "creation": "2024-12-16 21:50:50.299402",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "canopy_on_top"
+  "type"
  ],
  "fields": [
   {
-   "fieldname": "canopy_on_top",
+   "fieldname": "type",
    "fieldtype": "Data",
-   "label": "Canopy On Top",
+   "label": "type",
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-20 17:13:20.936510",
+ "modified": "2024-12-20 17:12:39.343494",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
- "name": "Field Motor Isolator Canopy On Top",
+ "name": "Field Motor Isolator Canopy Type",
  "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
@@ -39,7 +38,7 @@
    "write": 1
   }
  ],
- "sort_field": "creation",
+ "sort_field": "modified",
  "sort_order": "DESC",
  "states": []
 }
