@@ -1,0 +1,131 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2024-12-20 15:23:02.858996",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "tag_number",
+  "service_description",
+  "hp",
+  "kw",
+  "current",
+  "starter",
+  "make",
+  "mcc_switchgear_type",
+  "vfd",
+  "breaker_fuse",
+  "fuse_holder",
+  "contractor_main",
+  "contractor_star",
+  "contractor_delta",
+  "overlay_relay",
+  "terminal_part_number",
+  "incomer"
+ ],
+ "fields": [
+  {
+   "fieldname": "tag_number",
+   "fieldtype": "Data",
+   "label": "Tag Number"
+  },
+  {
+   "fieldname": "service_description",
+   "fieldtype": "Data",
+   "label": "Service Description"
+  },
+  {
+   "fieldname": "hp",
+   "fieldtype": "Float",
+   "label": "HP",
+   "precision": "2"
+  },
+  {
+   "fieldname": "kw",
+   "fieldtype": "Float",
+   "label": "KW",
+   "precision": "2"
+  },
+  {
+   "fieldname": "current",
+   "fieldtype": "Float",
+   "label": "Current",
+   "precision": "2"
+  },
+  {
+   "fieldname": "starter",
+   "fieldtype": "Data",
+   "label": "Starter"
+  },
+  {
+   "fieldname": "make",
+   "fieldtype": "Data",
+   "label": "Make"
+  },
+  {
+   "fieldname": "mcc_switchgear_type",
+   "fieldtype": "Data",
+   "label": "MCC Switchgear Type"
+  },
+  {
+   "fieldname": "vfd",
+   "fieldtype": "Data",
+   "label": "VFD"
+  },
+  {
+   "fieldname": "breaker_fuse",
+   "fieldtype": "Data",
+   "label": "Breaker Fuse"
+  },
+  {
+   "fieldname": "fuse_holder",
+   "fieldtype": "Data",
+   "label": "Fuse Holder"
+  },
+  {
+   "fieldname": "contractor_main",
+   "fieldtype": "Data",
+   "label": "Contractor Main"
+  },
+  {
+   "fieldname": "contractor_star",
+   "fieldtype": "Data",
+   "label": "Contractor Star"
+  },
+  {
+   "fieldname": "contractor_delta",
+   "fieldtype": "Data",
+   "label": "Contractor Delta"
+  },
+  {
+   "fieldname": "overlay_relay",
+   "fieldtype": "Data",
+   "label": "Overlay Relay"
+  },
+  {
+   "fieldname": "terminal_part_number",
+   "fieldtype": "Data",
+   "label": "Terminal Part Number"
+  },
+  {
+   "fieldname": "incomer",
+   "fieldtype": "Data",
+   "label": "Incomer"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-12-20 15:28:40.158237",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "Switchgear Selection Data",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
