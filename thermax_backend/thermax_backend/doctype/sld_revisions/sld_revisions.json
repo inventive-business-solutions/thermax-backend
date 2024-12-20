@@ -6,7 +6,10 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "project_id",
+  "status",
   "panel_name",
+  "description",
   "switchgear_selection_data"
  ],
  "fields": [
@@ -20,11 +23,28 @@
    "fieldtype": "Table",
    "label": "Switchgear Selection Data",
    "options": "Switchgear Selection Data"
+  },
+  {
+   "fieldname": "project_id",
+   "fieldtype": "Link",
+   "label": "Project ID",
+   "options": "Project"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Not Released\nReleased"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text",
+   "label": "Description"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-20 15:29:22.730840",
+ "modified": "2024-12-20 15:45:10.668655",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "SLD Revisions",
