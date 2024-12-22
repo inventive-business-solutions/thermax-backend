@@ -96,7 +96,8 @@
   "sct_mesh_type_thickness",
   "is_sct_conduit_selected",
   "sct_conduit_moc",
-  "sct_conduit_size"
+  "sct_conduit_size",
+  "cable_tray_cover"
  ],
  "fields": [
   {
@@ -643,11 +644,18 @@
    "fieldtype": "Link",
    "label": "Aluminium Conductor",
    "options": "Layout Conductor"
+  },
+  {
+   "default": "0",
+   "fieldname": "cable_tray_cover",
+   "fieldtype": "Select",
+   "label": "Cable Tray Cover",
+   "options": "0\n1"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-19 10:13:13.400196",
+ "modified": "2024-12-22 14:01:40.260722",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Cable Tray Layout",
