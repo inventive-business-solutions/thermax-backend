@@ -22,7 +22,7 @@
  "modified": "2024-12-12 21:04:32.035899",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
- "name": "Alarm Acknowledge and Lamp Test",
+ "name": "Alarm Acknowledge Dropdown",
  "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [

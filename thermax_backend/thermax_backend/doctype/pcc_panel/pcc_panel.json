@@ -401,9 +401,8 @@
   },
   {
    "fieldname": "ppc_minimum_coating_thickness",
-   "fieldtype": "Link",
-   "label": "PPC Minimum Coating Thickness",
-   "options": "PPC Minimum Coating Thickness"
+   "fieldtype": "Data",
+   "label": "PPC Minimum Coating Thickness"
   },
   {
    "fieldname": "ppc_pretreatment_panel_standard",
@@ -635,7 +634,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-15 20:04:01.307741",
+ "modified": "2024-12-23 05:56:10.226495",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "PCC Panel",

@@ -205,25 +205,25 @@
    "label": "Altitude"
   },
   {
-   "default": "1",
+   "default": "35",
    "fieldname": "min_humidity",
    "fieldtype": "Data",
    "label": "Minimum Humidity"
   },
   {
-   "default": "1",
+   "default": "85",
    "fieldname": "max_humidity",
    "fieldtype": "Data",
    "label": "Maximum Humidity"
   },
   {
-   "default": "1",
+   "default": "65",
    "fieldname": "avg_humidity",
    "fieldtype": "Data",
    "label": "Average Humidity"
   },
   {
-   "default": "1",
+   "default": "65",
    "fieldname": "performance_humidity",
    "fieldtype": "Data",
    "label": "Performance Humidity"
@@ -231,7 +231,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-13 10:47:57.394752",
+ "modified": "2024-12-23 11:39:36.891969",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Project Information",

@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestAlarmAcknowledgeandLampTest(FrappeTestCase):
+class TestHazardousAreaTypeIsolatorandLpbs(FrappeTestCase):
 	pass

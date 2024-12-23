@@ -1,27 +1,27 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:thickness",
- "creation": "2024-12-16 08:58:32.979348",
+ "autoname": "field:type",
+ "creation": "2024-12-17 08:14:16.722437",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "thickness"
+  "type"
  ],
  "fields": [
   {
-   "fieldname": "thickness",
+   "fieldname": "type",
    "fieldtype": "Data",
-   "label": "Thickness",
+   "label": "Type",
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-20 19:23:23.710010",
+ "modified": "2024-12-20 19:22:53.550331",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
- "name": "Field Motor Thickness",
+ "name": "Hazardous Area Type Isolator and Lpbs",
  "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
