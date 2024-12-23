@@ -418,7 +418,7 @@
    "fieldname": "alarm_acknowledge_and_lamp_test",
    "fieldtype": "Link",
    "label": "Alarm Knowledge Push Button",
-   "options": "Alarm Acknowledge and Lamp Test"
+   "options": "Alarm Acknowledge Dropdown"
   },
   {
    "fieldname": "lpbs_color_shade",
@@ -542,7 +542,7 @@
    "fieldname": "lamp_test_push_button",
    "fieldtype": "Link",
    "label": "Lamp Test Push Button",
-   "options": "Alarm Acknowledge and Lamp Test2"
+   "options": "Lamp Test Dropdown"
   },
   {
    "fieldname": "test_reset2",
@@ -723,7 +723,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-20 16:57:18.052115",
+ "modified": "2024-12-21 16:24:46.683357",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Common Configuration",
