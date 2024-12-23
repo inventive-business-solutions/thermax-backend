@@ -37,9 +37,9 @@
   "horizontal_distance",
   "material_construction_section",
   "is_dry_area_selected",
-  "dry_area",
+  "cable_tray_moc",
   "is_wet_area_selected",
-  "wet_area",
+  "cable_tray_moc_input",
   "power_cable_tray_section",
   "is_pct_perforated_type_selected",
   "pct_perforated_type_width",
@@ -233,23 +233,11 @@
    "options": "0\n1"
   },
   {
-   "fieldname": "dry_area",
-   "fieldtype": "Link",
-   "label": "Dry Area",
-   "options": "Material Construction Dry Area"
-  },
-  {
    "default": "0",
    "fieldname": "is_wet_area_selected",
    "fieldtype": "Select",
    "label": "Is Wet Area Selected",
    "options": "0\n1"
-  },
-  {
-   "fieldname": "wet_area",
-   "fieldtype": "Link",
-   "label": "Wet Area",
-   "options": "Material Construction Wet Area"
   },
   {
    "fieldname": "power_cable_tray_section",
@@ -651,11 +639,22 @@
    "fieldtype": "Select",
    "label": "Cable Tray Cover",
    "options": "0\n1"
+  },
+  {
+   "fieldname": "cable_tray_moc",
+   "fieldtype": "Link",
+   "label": "Cable Tray MOC",
+   "options": "Cable Tray MOC"
+  },
+  {
+   "fieldname": "cable_tray_moc_input",
+   "fieldtype": "Data",
+   "label": "Cable Tray MOC Input"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-22 14:01:40.260722",
+ "modified": "2024-12-23 05:03:36.093425",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Cable Tray Layout",
