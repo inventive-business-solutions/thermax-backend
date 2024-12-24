@@ -54,14 +54,14 @@ def get_cable_schedule_excel():
     else:
         template_workbook = create_other_division_excel(cable_schedule_data)
 
-    # template_workbook.save("cable_schedule.xlsx")
+    template_workbook.save("cable_schedule.xlsx")
 
-    output = io.BytesIO()
-    template_workbook.save(output)
-    output.seek(0)
+    # output = io.BytesIO()
+    # template_workbook.save(output)
+    # output.seek(0)
 
-    frappe.local.response.filename = "cable_schedule.xlsx"
-    frappe.local.response.filecontent = output.getvalue()
-    frappe.local.response.type = "binary"
+    # frappe.local.response.filename = "cable_schedule.xlsx"
+    # frappe.local.response.filecontent = output.getvalue()
+    # frappe.local.response.type = "binary"
 
     return _("Cable Schedule Excel Created")
