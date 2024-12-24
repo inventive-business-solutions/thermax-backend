@@ -4,6 +4,7 @@ from collections import defaultdict
 import frappe
 from openpyxl import load_workbook
 from openpyxl.worksheet.datavalidation import DataValidation
+from openpyxl.styles import Font
 
 from thermax_backend.thermax_backend.doctype.cable_schedule_revisions.excel_formulae import (
     get_47_au_column_formula,
@@ -25,6 +26,7 @@ from thermax_backend.thermax_backend.doctype.cable_schedule_revisions.excel_form
 )
 from thermax_backend.thermax_backend.doctype.cable_schedule_revisions.excel_styles import (
     cell_styles,
+    get_center_border_bold_style,
     get_center_border_style,
     get_left_center_style,
 )
@@ -146,6 +148,34 @@ def rearrange_cable_schedule_data(cable_schedule_data):
     return rearranged_data
 
 
+# Function to write table headers
+def write_table_headers(sheet, start_row, headers, style):
+    for col, header in enumerate(headers, start=6):  # Start from column 6 (F)
+        sheet.cell(start_row, col).style = style
+        sheet.cell(start_row, col).value = header
+
+
+# Function to write table rows
+def write_table_rows(sheet, start_row, data, style, unit):
+    serial_number = 1
+    for key, value in data.items():
+        sheet.cell(start_row, 6).style = style
+        sheet.cell(start_row, 6).value = serial_number
+
+        sheet.cell(start_row, 7).style = style
+        sheet.cell(start_row, 7).value = key
+
+        sheet.cell(start_row, 8).style = style
+        sheet.cell(start_row, 8).value = value
+
+        sheet.cell(start_row, 9).style = style
+        sheet.cell(start_row, 9).value = unit
+
+        serial_number += 1
+        start_row += 1
+    return start_row  # Return the next row after the table ends
+
+
 def create_other_division_excel(cable_schedule_data):
     """
     Creates an Excel sheet for the cable schedule based on the specified revision ID.
@@ -157,8 +187,10 @@ def create_other_division_excel(cable_schedule_data):
     template_workbook = load_workbook(template_path)
     center_border_style = get_center_border_style()
     left_center_style = get_left_center_style()
+    center_border_bold = get_center_border_bold_style()
     template_workbook.add_named_style(center_border_style)
     template_workbook.add_named_style(left_center_style)
+    template_workbook.add_named_style(center_border_bold)
 
     cable_schedule_sheet = template_workbook["MCC CABLE SCHDULE"]
     size_selection_dropdowns = get_size_selection_dropdown()
@@ -171,8 +203,10 @@ def create_other_division_excel(cable_schedule_data):
 
     template_row_number = 8
     current_row = template_row_number
-    template_range_start_col = 1  # Column A
-    template_range_end_col = 32  # Column AF (AF is the 32nd column)
+    power_cable_size = {}
+    control_cable_size = {}
+    gland_nos = {}
+    shroud_nos = {}
 
     for panel_name, panel_cables in panel_wise_data.items():
         # Merge and style the panel name row
@@ -315,9 +349,23 @@ def create_other_division_excel(cable_schedule_data):
                     end_row=end_row,
                     end_column=12,
                 )
-                cable_schedule_sheet.cell(current_row, 12).value = (
-                    f"{cable.get('pair_core')} X {cable.get('sizemm2')} SQ.MM. {cable.get('cable_material')} {cable.get('type_of_insulation')} ARMOURED CABLE"
-                )
+
+                size_key = f"{cable.get('pair_core')} X {cable.get('sizemm2')} SQ.MM. {cable.get('cable_material')} {cable.get('type_of_insulation')} ARMOURED CABLE"
+
+                cable_schedule_sheet.cell(current_row, 12).value = size_key
+                cable_length = cable.get("appx_length", 0)
+
+                if "Power" in cable.get("type_of_cable"):
+                    if size_key in power_cable_size:
+                        power_cable_size[size_key] += cable_length
+                    else:
+                        power_cable_size[size_key] = cable_length
+
+                if "Control" in cable.get("type_of_cable"):
+                    if size_key in control_cable_size:
+                        control_cable_size[size_key] += cable_length
+                    else:
+                        control_cable_size[size_key] = cable_length
 
                 # 13th column M: CABLE TYPE
                 cable_schedule_sheet.cell(current_row, 13).style = "center_border_style"
@@ -782,5 +830,34 @@ def create_other_division_excel(cable_schedule_data):
 
                 # Update the current_row to the row after the merged cells
                 current_row = end_row + 1
+
+    cable_summary_sheet = template_workbook["CABLE SUMMARY"]
+
+    # Initialize variables
+    headers = ["Sr. No", "CABLE SIZE", "QTY", "UNIT"]
+    bold_style = "center_border_bold_style"
+    normal_style = "center_border_style"
+    unit = "Mtrs."
+    start_row = 5
+
+    # Write the first table
+    write_table_headers(cable_summary_sheet, start_row, headers, bold_style)
+    start_row = write_table_rows(
+        cable_summary_sheet, start_row + 1, power_cable_size, normal_style, unit
+    )
+
+    # Add a 4-row gap before the second table
+    start_row += 4
+
+    # Write the title for the second table
+    cable_summary_sheet.cell(start_row, 7).style = bold_style
+    cable_summary_sheet.cell(start_row, 7).value = "CONTROL CABLE"
+    start_row += 1
+
+    # Write the second table
+    write_table_headers(cable_summary_sheet, start_row, headers, bold_style)
+    write_table_rows(
+        cable_summary_sheet, start_row + 1, control_cable_size, normal_style, unit
+    )
 
     return template_workbook

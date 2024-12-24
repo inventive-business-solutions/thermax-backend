@@ -21,6 +21,15 @@ def get_center_border_style():
     )
 
 
+def get_center_border_bold_style():
+    return NamedStyle(
+        name="center_border_bold_style",
+        alignment=cell_styles.get("center"),
+        border=cell_styles.get("all_b_thin"),
+        font=cell_styles.get("bold"),
+    )
+
+
 def get_left_center_style():
     return NamedStyle(
         name="left_center_style",
