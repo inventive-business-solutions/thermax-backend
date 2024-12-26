@@ -1,0 +1,212 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2024-12-26 17:52:35.963928",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "catalog",
+  "manufacturer",
+  "series",
+  "current_rating",
+  "description",
+  "cb_type",
+  "rating",
+  "miscellaneous_1",
+  "miscellaneous_2",
+  "assembly_code",
+  "assembly_list",
+  "type_int",
+  "user_1",
+  "user_2",
+  "user_3",
+  "text_value",
+  "weblink",
+  "wdblknam",
+  "symbol_2d",
+  "symbol_3d",
+  "recnum",
+  "accessory_1",
+  "accessory_2",
+  "block_nm",
+  "mounting",
+  "rating_cb",
+  "rating_fu",
+  "voltage",
+  "breaking_capacity"
+ ],
+ "fields": [
+  {
+   "fieldname": "catalog",
+   "fieldtype": "Data",
+   "label": "Catalog"
+  },
+  {
+   "fieldname": "manufacturer",
+   "fieldtype": "Data",
+   "label": "Manufacturer"
+  },
+  {
+   "fieldname": "series",
+   "fieldtype": "Data",
+   "label": "Series"
+  },
+  {
+   "fieldname": "current_rating",
+   "fieldtype": "Data",
+   "label": "Current Rating"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "cb_type",
+   "fieldtype": "Data",
+   "label": "CB Type"
+  },
+  {
+   "fieldname": "rating",
+   "fieldtype": "Data",
+   "label": "Rating"
+  },
+  {
+   "fieldname": "miscellaneous_1",
+   "fieldtype": "Data",
+   "label": "Miscellaneous 1"
+  },
+  {
+   "fieldname": "miscellaneous_2",
+   "fieldtype": "Data",
+   "label": "Miscellaneous 2"
+  },
+  {
+   "fieldname": "assembly_code",
+   "fieldtype": "Data",
+   "label": "Assembly Code"
+  },
+  {
+   "fieldname": "assembly_list",
+   "fieldtype": "Data",
+   "label": "Assembly List"
+  },
+  {
+   "fieldname": "type_int",
+   "fieldtype": "Data",
+   "label": "Type Int"
+  },
+  {
+   "fieldname": "user_1",
+   "fieldtype": "Data",
+   "label": "User 1"
+  },
+  {
+   "fieldname": "user_2",
+   "fieldtype": "Data",
+   "label": "User 2"
+  },
+  {
+   "fieldname": "user_3",
+   "fieldtype": "Data",
+   "label": "User 3"
+  },
+  {
+   "fieldname": "text_value",
+   "fieldtype": "Data",
+   "label": "Text Value"
+  },
+  {
+   "fieldname": "weblink",
+   "fieldtype": "Data",
+   "label": "Weblink"
+  },
+  {
+   "fieldname": "wdblknam",
+   "fieldtype": "Data",
+   "label": "WDBLKNAM"
+  },
+  {
+   "fieldname": "symbol_2d",
+   "fieldtype": "Data",
+   "label": "Symbol 2D"
+  },
+  {
+   "fieldname": "symbol_3d",
+   "fieldtype": "Data",
+   "label": "Symbol 3D"
+  },
+  {
+   "fieldname": "recnum",
+   "fieldtype": "Data",
+   "label": "Recnum"
+  },
+  {
+   "fieldname": "accessory_1",
+   "fieldtype": "Data",
+   "label": "Accessory 1"
+  },
+  {
+   "fieldname": "accessory_2",
+   "fieldtype": "Data",
+   "label": "Accessory 2"
+  },
+  {
+   "fieldname": "block_nm",
+   "fieldtype": "Data",
+   "label": "Block NM"
+  },
+  {
+   "fieldname": "mounting",
+   "fieldtype": "Data",
+   "label": "Mounting"
+  },
+  {
+   "fieldname": "rating_cb",
+   "fieldtype": "Data",
+   "label": "Rating CB"
+  },
+  {
+   "fieldname": "rating_fu",
+   "fieldtype": "Data",
+   "label": "Rating FU"
+  },
+  {
+   "fieldname": "voltage",
+   "fieldtype": "Data",
+   "label": "Voltage"
+  },
+  {
+   "fieldname": "breaking_capacity",
+   "fieldtype": "Data",
+   "label": "Breaking Capacity"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-12-26 18:00:27.116155",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "Circuit Breaker",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
