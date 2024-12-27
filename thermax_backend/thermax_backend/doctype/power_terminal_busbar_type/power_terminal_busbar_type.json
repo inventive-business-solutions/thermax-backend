@@ -1,27 +1,27 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:control_transformer_configuration",
- "creation": "2024-11-17 21:53:49.069032",
+ "autoname": "field:busbar_type",
+ "creation": "2024-12-27 15:01:29.562589",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "control_transformer_configuration"
+  "busbar_type"
  ],
  "fields": [
   {
-   "fieldname": "control_transformer_configuration",
+   "fieldname": "busbar_type",
    "fieldtype": "Data",
-   "label": "Control Transformer Configuration",
+   "label": "Busbar Type",
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-27 17:09:52.644242",
+ "modified": "2024-12-27 15:02:50.043458",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
- "name": "Control Transformer Configuration",
+ "name": "Power Terminal Busbar Type",
  "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
@@ -38,7 +38,7 @@
    "write": 1
   }
  ],
- "sort_field": "creation",
+ "sort_field": "modified",
  "sort_order": "DESC",
  "states": []
 }

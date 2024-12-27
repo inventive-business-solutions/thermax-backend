@@ -1,0 +1,415 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-12-26 12:16:51.924603",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "linking_keys_section",
+  "revision_id",
+  "section_break_dlhi",
+  "is_field_motor_isolator_selected",
+  "is_safe_area_isolator_selected",
+  "is_local_push_button_station_selected",
+  "selector_switch_applicable",
+  "selector_switch_lockable",
+  "running_open",
+  "stopped_closed",
+  "trip",
+  "safe_field_motor_type",
+  "hazardous_field_motor_type",
+  "safe_field_motor_enclosure",
+  "hazardous_field_motor_enclosure",
+  "safe_field_motor_material",
+  "hazardous_field_motor_material",
+  "safe_field_motor_thickness",
+  "hazardous_field_motor_thickness",
+  "safe_field_motor_qty",
+  "hazardous_field_motor_qty",
+  "safe_field_motor_isolator_color_shade",
+  "hazardous_field_motor_isolator_color_shade",
+  "safe_field_motor_cable_entry",
+  "hazardous_field_motor_cable_entry",
+  "safe_field_motor_canopy",
+  "hazardous_field_motor_canopy",
+  "safe_field_motor_canopy_type",
+  "hazardous_field_motor_canopy_type",
+  "safe_lpbs_type",
+  "hazardous_local_push_button_type",
+  "safe_lpbs_enclosure",
+  "hazardous_local_push_button_enclosure",
+  "safe_lpbs_material",
+  "hazardous_push_button_material",
+  "safe_lpbs_qty",
+  "hazardous_local_push_button_qty",
+  "lpbs_color_shade",
+  "lpbs_canopy_on_top",
+  "lpbs_push_button_start_color",
+  "lpbs_indication_lamp_start_color",
+  "lpbs_indication_lamp_stop_color",
+  "lpbs_speed_increase",
+  "lpbs_speed_decrease",
+  "apfc_relay",
+  "power_bus_main_busbar_selection",
+  "power_bus_heat_pvc_sleeve",
+  "power_bus_material",
+  "power_bus_current_density",
+  "power_bus_rating_of_busbar",
+  "control_bus_main_busbar_selection",
+  "control_bus_heat_pvc_sleeve",
+  "control_bus_material",
+  "control_bus_current_density",
+  "control_bus_rating_of_busbar"
+ ],
+ "fields": [
+  {
+   "fieldname": "linking_keys_section",
+   "fieldtype": "Section Break",
+   "label": "Linking Keys"
+  },
+  {
+   "fieldname": "revision_id",
+   "fieldtype": "Link",
+   "label": "Revision ID",
+   "options": "Design Basis Revision History"
+  },
+  {
+   "fieldname": "section_break_dlhi",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "is_field_motor_isolator_selected",
+   "fieldtype": "Select",
+   "label": "Is Field Motor Isolator Selected",
+   "options": "0\n1"
+  },
+  {
+   "fieldname": "is_safe_area_isolator_selected",
+   "fieldtype": "Select",
+   "label": "Is Safe Area Isolator Selected",
+   "options": "0\n1"
+  },
+  {
+   "fieldname": "is_local_push_button_station_selected",
+   "fieldtype": "Select",
+   "label": "Is Local Push Button Station Selected",
+   "options": "0\n1"
+  },
+  {
+   "fieldname": "selector_switch_applicable",
+   "fieldtype": "Select",
+   "label": "Selector Switch Applicable",
+   "options": "Applicable\nNot Applicable"
+  },
+  {
+   "fieldname": "selector_switch_lockable",
+   "fieldtype": "Select",
+   "label": "Selector Switch Lockable",
+   "options": "Lockable\nUnLockable"
+  },
+  {
+   "fieldname": "running_open",
+   "fieldtype": "Link",
+   "label": "Running Open",
+   "options": "Indicating Lamp Running Open"
+  },
+  {
+   "fieldname": "stopped_closed",
+   "fieldtype": "Link",
+   "label": "Stopped Closed",
+   "options": "Indicating Lamp Stopped Closed"
+  },
+  {
+   "fieldname": "trip",
+   "fieldtype": "Link",
+   "label": "Trip",
+   "options": "Indicating Lamp Trip"
+  },
+  {
+   "fieldname": "safe_field_motor_type",
+   "fieldtype": "Link",
+   "label": "Safe Field Motor Type",
+   "options": "Field Motor Isolator General Type"
+  },
+  {
+   "fieldname": "hazardous_field_motor_type",
+   "fieldtype": "Link",
+   "label": "Hazardous Field Motor Type",
+   "options": "Field Motor Isolator General Type"
+  },
+  {
+   "fieldname": "safe_field_motor_enclosure",
+   "fieldtype": "Link",
+   "label": "Safe Field Motor Enclosure",
+   "options": "Field Motor Isolator General Enclosure"
+  },
+  {
+   "fieldname": "hazardous_field_motor_enclosure",
+   "fieldtype": "Link",
+   "label": "Hazardous Field Motor Enclosure",
+   "options": "Field Motor Isolator General Enclosure"
+  },
+  {
+   "fieldname": "safe_field_motor_material",
+   "fieldtype": "Link",
+   "label": "Safe Field Motor Material",
+   "options": "Field Motor Isolator General Material"
+  },
+  {
+   "fieldname": "hazardous_field_motor_material",
+   "fieldtype": "Link",
+   "label": "Hazardous Field Motor Material",
+   "options": "Field Motor Isolator General Material"
+  },
+  {
+   "fieldname": "safe_field_motor_thickness",
+   "fieldtype": "Link",
+   "label": "Safe Field Motor Thickness",
+   "options": "Field Motor Thickness"
+  },
+  {
+   "fieldname": "hazardous_field_motor_thickness",
+   "fieldtype": "Link",
+   "label": "Hazardous Field Motor Thickness",
+   "options": "Field Motor Thickness"
+  },
+  {
+   "fieldname": "safe_field_motor_qty",
+   "fieldtype": "Link",
+   "label": "Safe Field Motor Qty",
+   "options": "Field Motor Isolator General QTY"
+  },
+  {
+   "fieldname": "hazardous_field_motor_qty",
+   "fieldtype": "Link",
+   "label": "Hazardous Field Motor Qty",
+   "options": "Field Motor Isolator General QTY"
+  },
+  {
+   "fieldname": "safe_field_motor_isolator_color_shade",
+   "fieldtype": "Link",
+   "label": "Safe Field Motor Isolator Color Shade",
+   "options": "Field Motor Isolator Color Shade"
+  },
+  {
+   "fieldname": "hazardous_field_motor_isolator_color_shade",
+   "fieldtype": "Link",
+   "label": "Hazardous Field Motor Isolator Color Shade",
+   "options": "Field Motor Isolator Color Shade"
+  },
+  {
+   "fieldname": "safe_field_motor_cable_entry",
+   "fieldtype": "Link",
+   "label": "Safe Field Motor Cable Entry",
+   "options": "Field Motor Isolator General Cable Entry"
+  },
+  {
+   "fieldname": "hazardous_field_motor_cable_entry",
+   "fieldtype": "Link",
+   "label": "Hazardous Field Motor Cable Entry",
+   "options": "Field Motor Isolator General Cable Entry"
+  },
+  {
+   "fieldname": "safe_field_motor_canopy",
+   "fieldtype": "Link",
+   "label": "Safe Field Motor Canopy",
+   "options": "Field Motor Isolator Canopy On Top"
+  },
+  {
+   "fieldname": "hazardous_field_motor_canopy",
+   "fieldtype": "Link",
+   "label": "Hazardous Field Motor Canopy",
+   "options": "Field Motor Isolator Canopy On Top"
+  },
+  {
+   "fieldname": "safe_field_motor_canopy_type",
+   "fieldtype": "Link",
+   "label": "Safe Field Motor Canopy Type",
+   "options": "Field Motor Isolator Canopy Type"
+  },
+  {
+   "fieldname": "hazardous_field_motor_canopy_type",
+   "fieldtype": "Link",
+   "label": "Hazardous Field Motor Canopy Type",
+   "options": "Field Motor Isolator Canopy Type"
+  },
+  {
+   "fieldname": "safe_lpbs_type",
+   "fieldtype": "Link",
+   "label": "Safe Local Push Button Type",
+   "options": "Local Push Button Station Type"
+  },
+  {
+   "fieldname": "hazardous_local_push_button_type",
+   "fieldtype": "Link",
+   "label": "Hazardous Local Push Button Type",
+   "options": "Local Push Button Station Type"
+  },
+  {
+   "fieldname": "safe_lpbs_enclosure",
+   "fieldtype": "Link",
+   "label": "Safe Local Push Button Enclosure",
+   "options": "Local Push Button Station Enclosure"
+  },
+  {
+   "fieldname": "hazardous_local_push_button_enclosure",
+   "fieldtype": "Link",
+   "label": "Hazardous Local Push Button Enclosure",
+   "options": "Local Push Button Station Enclosure"
+  },
+  {
+   "fieldname": "safe_lpbs_material",
+   "fieldtype": "Link",
+   "label": "Safe Push Button Material",
+   "options": "Local Push Button Station Material"
+  },
+  {
+   "fieldname": "hazardous_push_button_material",
+   "fieldtype": "Link",
+   "label": "Hazardous Push Button Material",
+   "options": "Local Push Button Station Material"
+  },
+  {
+   "fieldname": "safe_lpbs_qty",
+   "fieldtype": "Link",
+   "label": "Safe Local Push Button QTY",
+   "options": "Local Push Button Station Qty"
+  },
+  {
+   "fieldname": "hazardous_local_push_button_qty",
+   "fieldtype": "Link",
+   "label": "Hazardous Local Push Button QTY",
+   "options": "Local Push Button Station Qty"
+  },
+  {
+   "fieldname": "lpbs_color_shade",
+   "fieldtype": "Link",
+   "label": "Local Push Button Color Shade",
+   "options": "Local Push Button Station LPBS Color Shade"
+  },
+  {
+   "fieldname": "lpbs_canopy_on_top",
+   "fieldtype": "Link",
+   "label": "Local Push Button Canopy On Top",
+   "options": "Local Push Button Station Canopy On top"
+  },
+  {
+   "fieldname": "lpbs_push_button_start_color",
+   "fieldtype": "Link",
+   "label": "LPBS Push Button Start Color",
+   "options": "LPBS Start Push Button Color"
+  },
+  {
+   "fieldname": "lpbs_indication_lamp_start_color",
+   "fieldtype": "Link",
+   "label": "LPBS Start / On Indication Lamp Color",
+   "options": "LPBS Start On Indication Lamp Color"
+  },
+  {
+   "fieldname": "lpbs_indication_lamp_stop_color",
+   "fieldtype": "Link",
+   "label": "Stop / OFF Indication Lamp Color",
+   "options": "LPBS Stop Off Indication Lamp Color"
+  },
+  {
+   "fieldname": "lpbs_speed_increase",
+   "fieldtype": "Link",
+   "label": "LPBS Speed Increase Push Button",
+   "options": "LPBS Speed Increase Push Button"
+  },
+  {
+   "fieldname": "lpbs_speed_decrease",
+   "fieldtype": "Link",
+   "label": "LPBS Speed Decrease Push Button",
+   "options": "Speed Decrease PB"
+  },
+  {
+   "fieldname": "apfc_relay",
+   "fieldtype": "Link",
+   "label": "APFC Relay",
+   "options": "APFC Relay"
+  },
+  {
+   "fieldname": "power_bus_main_busbar_selection",
+   "fieldtype": "Link",
+   "label": "Power Bus Main Busbar Selection",
+   "options": "Power Bus Main Busbar Selection"
+  },
+  {
+   "fieldname": "power_bus_heat_pvc_sleeve",
+   "fieldtype": "Link",
+   "label": "Power Bus PVC Sleeve",
+   "options": "Power Bus Heat Shrinkable Color PVC sleeve"
+  },
+  {
+   "fieldname": "power_bus_material",
+   "fieldtype": "Link",
+   "label": "Power Bus Material",
+   "options": "Power Bus Material"
+  },
+  {
+   "fieldname": "power_bus_current_density",
+   "fieldtype": "Link",
+   "label": "Power Bus Current Density",
+   "options": "Power Bus Current Density"
+  },
+  {
+   "fieldname": "power_bus_rating_of_busbar",
+   "fieldtype": "Data",
+   "label": "Power Bus Rating of Busbar"
+  },
+  {
+   "fieldname": "control_bus_main_busbar_selection",
+   "fieldtype": "Link",
+   "label": "Control Bus Main Busbar Selection",
+   "options": "Control Bus Main Busbar Selection"
+  },
+  {
+   "fieldname": "control_bus_heat_pvc_sleeve",
+   "fieldtype": "Link",
+   "label": "Controrl Bus PVC Sleeve",
+   "options": "Control Bus Heat Shrinkable Color PVC sleeve"
+  },
+  {
+   "fieldname": "control_bus_material",
+   "fieldtype": "Link",
+   "label": "Control Bus Material",
+   "options": "Control Bus Material"
+  },
+  {
+   "fieldname": "control_bus_current_density",
+   "fieldtype": "Link",
+   "label": "Control Bus Current Density",
+   "options": "Control Bus Current Density"
+  },
+  {
+   "fieldname": "control_bus_rating_of_busbar",
+   "fieldtype": "Data",
+   "label": "Control Bus Rating of Busbar"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-12-26 16:09:29.711838",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "Common Configuration 2",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

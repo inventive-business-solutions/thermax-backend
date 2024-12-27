@@ -1,27 +1,27 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:control_transformer_configuration",
- "creation": "2024-11-17 21:53:49.069032",
+ "autoname": "field:digital_meters",
+ "creation": "2024-12-27 18:38:48.415576",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "control_transformer_configuration"
+  "digital_meters"
  ],
  "fields": [
   {
-   "fieldname": "control_transformer_configuration",
+   "fieldname": "digital_meters",
    "fieldtype": "Data",
-   "label": "Control Transformer Configuration",
+   "label": "Digital Meters",
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-27 17:09:52.644242",
+ "modified": "2024-12-27 18:58:37.693215",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
- "name": "Control Transformer Configuration",
+ "name": "Digital Meters",
  "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
@@ -38,7 +38,7 @@
    "write": 1
   }
  ],
- "sort_field": "creation",
+ "sort_field": "modified",
  "sort_order": "DESC",
  "states": []
 }
