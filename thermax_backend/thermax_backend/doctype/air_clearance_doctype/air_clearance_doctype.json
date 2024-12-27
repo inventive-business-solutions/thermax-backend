@@ -1,27 +1,27 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:control_transformer_configuration",
- "creation": "2024-11-17 21:53:49.069032",
+ "autoname": "field:air_clearance",
+ "creation": "2024-12-27 13:16:03.386233",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "control_transformer_configuration"
+  "air_clearance"
  ],
  "fields": [
   {
-   "fieldname": "control_transformer_configuration",
+   "fieldname": "air_clearance",
    "fieldtype": "Data",
-   "label": "Control Transformer Configuration",
+   "label": "Air Clearance",
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-27 17:09:52.644242",
+ "modified": "2024-12-27 14:18:54.996851",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
- "name": "Control Transformer Configuration",
+ "name": "Air Clearance Doctype",
  "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
@@ -38,7 +38,7 @@
    "write": 1
   }
  ],
- "sort_field": "creation",
+ "sort_field": "modified",
  "sort_order": "DESC",
  "states": []
 }
