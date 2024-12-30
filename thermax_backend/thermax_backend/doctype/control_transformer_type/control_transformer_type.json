@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "field:control_transformer_type",
  "creation": "2024-12-27 17:09:36.144528",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,15 +12,17 @@
   {
    "fieldname": "control_transformer_type",
    "fieldtype": "Data",
-   "label": "Control Transformer Type"
+   "label": "Control Transformer Type",
+   "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-27 17:10:56.280555",
+ "modified": "2024-12-28 22:49:38.980571",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Control Transformer Type",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
