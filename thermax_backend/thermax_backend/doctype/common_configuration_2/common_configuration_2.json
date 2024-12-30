@@ -35,15 +35,21 @@
   "safe_field_motor_canopy_type",
   "hazardous_field_motor_canopy_type",
   "safe_lpbs_type",
-  "hazardous_local_push_button_type",
+  "hazardous_lpbs_type",
   "safe_lpbs_enclosure",
-  "hazardous_local_push_button_enclosure",
+  "hazardous_lpbs_enclosure",
+  "safe_lpbs_thickness",
+  "hazardous_lpbs_thickness",
   "safe_lpbs_material",
-  "hazardous_push_button_material",
+  "hazardous_lpbs_material",
   "safe_lpbs_qty",
-  "hazardous_local_push_button_qty",
-  "lpbs_color_shade",
-  "lpbs_canopy_on_top",
+  "hazardous_lpbs_qty",
+  "safe_lpbs_color_shade",
+  "hazardous_lpbs_color_shade",
+  "safe_lpbs_canopy",
+  "hazardous_lpbs_canopy",
+  "safe_lpbs_canopy_type",
+  "hazardous_lpbs_canopy_type",
   "lpbs_push_button_start_color",
   "lpbs_indication_lamp_start_color",
   "lpbs_indication_lamp_stop_color",
@@ -135,7 +141,7 @@
    "fieldname": "hazardous_field_motor_type",
    "fieldtype": "Link",
    "label": "Hazardous Field Motor Type",
-   "options": "Field Motor Isolator General Type"
+   "options": "Hazardous Area Type Isolator and Lpbs"
   },
   {
    "fieldname": "safe_field_motor_enclosure",
@@ -240,21 +246,9 @@
    "options": "Local Push Button Station Type"
   },
   {
-   "fieldname": "hazardous_local_push_button_type",
-   "fieldtype": "Link",
-   "label": "Hazardous Local Push Button Type",
-   "options": "Local Push Button Station Type"
-  },
-  {
    "fieldname": "safe_lpbs_enclosure",
    "fieldtype": "Link",
    "label": "Safe Local Push Button Enclosure",
-   "options": "Local Push Button Station Enclosure"
-  },
-  {
-   "fieldname": "hazardous_local_push_button_enclosure",
-   "fieldtype": "Link",
-   "label": "Hazardous Local Push Button Enclosure",
    "options": "Local Push Button Station Enclosure"
   },
   {
@@ -264,34 +258,10 @@
    "options": "Local Push Button Station Material"
   },
   {
-   "fieldname": "hazardous_push_button_material",
-   "fieldtype": "Link",
-   "label": "Hazardous Push Button Material",
-   "options": "Local Push Button Station Material"
-  },
-  {
    "fieldname": "safe_lpbs_qty",
    "fieldtype": "Link",
    "label": "Safe Local Push Button QTY",
    "options": "Local Push Button Station Qty"
-  },
-  {
-   "fieldname": "hazardous_local_push_button_qty",
-   "fieldtype": "Link",
-   "label": "Hazardous Local Push Button QTY",
-   "options": "Local Push Button Station Qty"
-  },
-  {
-   "fieldname": "lpbs_color_shade",
-   "fieldtype": "Link",
-   "label": "Local Push Button Color Shade",
-   "options": "Local Push Button Station LPBS Color Shade"
-  },
-  {
-   "fieldname": "lpbs_canopy_on_top",
-   "fieldtype": "Link",
-   "label": "Local Push Button Canopy On Top",
-   "options": "Local Push Button Station Canopy On top"
   },
   {
    "fieldname": "lpbs_push_button_start_color",
@@ -386,11 +356,83 @@
    "fieldname": "control_bus_rating_of_busbar",
    "fieldtype": "Data",
    "label": "Control Bus Rating of Busbar"
+  },
+  {
+   "fieldname": "hazardous_lpbs_type",
+   "fieldtype": "Link",
+   "label": "Hazardous Local Push Button Type",
+   "options": "Hazardous Area Type Isolator and Lpbs"
+  },
+  {
+   "fieldname": "hazardous_lpbs_enclosure",
+   "fieldtype": "Link",
+   "label": "Hazardous Local Push Button Enclosure",
+   "options": "Local Push Button Station Enclosure"
+  },
+  {
+   "fieldname": "safe_lpbs_thickness",
+   "fieldtype": "Link",
+   "label": "Safe Local Push Button Thickness",
+   "options": "Field Motor Thickness"
+  },
+  {
+   "fieldname": "hazardous_lpbs_thickness",
+   "fieldtype": "Link",
+   "label": "Hazardous Local Push Button Thickness",
+   "options": "Field Motor Thickness"
+  },
+  {
+   "fieldname": "hazardous_lpbs_material",
+   "fieldtype": "Link",
+   "label": "Hazardous Push Button Material",
+   "options": "Local Push Button Station Material"
+  },
+  {
+   "fieldname": "hazardous_lpbs_qty",
+   "fieldtype": "Link",
+   "label": "Hazardous Local Push Button QTY",
+   "options": "Local Push Button Station Qty"
+  },
+  {
+   "fieldname": "safe_lpbs_color_shade",
+   "fieldtype": "Link",
+   "label": "Safe Local Push Button Color Shade",
+   "options": "Local Push Button Station LPBS Color Shade"
+  },
+  {
+   "fieldname": "hazardous_lpbs_color_shade",
+   "fieldtype": "Link",
+   "label": "Hazardous Local Push Button Color Shade",
+   "options": "Local Push Button Station LPBS Color Shade"
+  },
+  {
+   "fieldname": "safe_lpbs_canopy",
+   "fieldtype": "Link",
+   "label": "Safe Local Push Button Canopy",
+   "options": "Local Push Button Station Canopy On top"
+  },
+  {
+   "fieldname": "hazardous_lpbs_canopy",
+   "fieldtype": "Link",
+   "label": "Hazardous Local Push Button Canopy",
+   "options": "Local Push Button Station Canopy On top"
+  },
+  {
+   "fieldname": "safe_lpbs_canopy_type",
+   "fieldtype": "Link",
+   "label": "Safe Local Push Button Canopy Type",
+   "options": "Field Motor Isolator Canopy Type"
+  },
+  {
+   "fieldname": "hazardous_lpbs_canopy_type",
+   "fieldtype": "Link",
+   "label": "Hazardous Local Push Button Canopy Type",
+   "options": "Field Motor Isolator Canopy Type"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-26 16:09:29.711838",
+ "modified": "2024-12-29 01:25:34.784542",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Common Configuration 2",
