@@ -10,7 +10,8 @@
   "status",
   "panel_name",
   "description",
-  "switchgear_selection_data"
+  "switchgear_selection_data",
+  "incomer_data"
  ],
  "fields": [
   {
@@ -40,11 +41,17 @@
    "fieldname": "description",
    "fieldtype": "Text",
    "label": "Description"
+  },
+  {
+   "fieldname": "incomer_data",
+   "fieldtype": "Table",
+   "label": "Incomer Data",
+   "options": "Incomer Data"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-20 15:45:10.668655",
+ "modified": "2024-12-31 12:08:38.548074",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "SLD Revisions",
