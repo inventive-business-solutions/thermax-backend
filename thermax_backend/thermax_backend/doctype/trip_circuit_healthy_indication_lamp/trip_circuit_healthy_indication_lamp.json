@@ -1,27 +1,27 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:push_button",
- "creation": "2024-12-27 14:19:48.047262",
+ "autoname": "field:trip_circuit_healthy_indication_lamp",
+ "creation": "2024-12-31 03:02:03.057546",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "push_button"
+  "trip_circuit_healthy_indication_lamp"
  ],
  "fields": [
   {
-   "fieldname": "push_button",
+   "fieldname": "trip_circuit_healthy_indication_lamp",
    "fieldtype": "Data",
-   "label": "Push Button",
+   "label": "Trip Circuit Healthy Indication lamp",
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-31 10:41:19.355016",
+ "modified": "2024-12-31 03:02:42.478708",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
- "name": "Forward and Reverse Push Button",
+ "name": "Trip Circuit Healthy Indication lamp",
  "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
