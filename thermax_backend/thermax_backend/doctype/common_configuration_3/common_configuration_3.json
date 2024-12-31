@@ -23,7 +23,11 @@
   "alarm_annunciator",
   "control_transformer",
   "commissioning_spare",
-  "two_year_operational_spare"
+  "two_year_operational_spare",
+  "current_transformer",
+  "current_transformer_coating",
+  "current_transformer_quantity",
+  "current_transformer_configuration"
  ],
  "fields": [
   {
@@ -130,11 +134,35 @@
    "fieldtype": "Text",
    "label": "Two Year Operational spare",
    "options": "CC Two year operational spare"
+  },
+  {
+   "fieldname": "current_transformer",
+   "fieldtype": "Link",
+   "label": "Current Transformer",
+   "options": "Current Transformer"
+  },
+  {
+   "fieldname": "current_transformer_coating",
+   "fieldtype": "Link",
+   "label": "Current Transformer Coating",
+   "options": "Current Transformer Coating"
+  },
+  {
+   "fieldname": "current_transformer_quantity",
+   "fieldtype": "Link",
+   "label": "Current Transformer Quantity",
+   "options": "Current Transformer Number"
+  },
+  {
+   "fieldname": "current_transformer_configuration",
+   "fieldtype": "Link",
+   "label": "Current Transformer Configuration",
+   "options": "Current Transformer Configuration"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-31 10:43:40.735963",
+ "modified": "2024-12-31 11:54:01.388706",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Common Configuration 3",
