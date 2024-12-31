@@ -1,27 +1,27 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:push_button",
- "creation": "2024-12-27 14:19:48.047262",
+ "autoname": "field:trip_indication",
+ "creation": "2024-12-30 13:55:13.914032",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "push_button"
+  "trip_indication"
  ],
  "fields": [
   {
-   "fieldname": "push_button",
+   "fieldname": "trip_indication",
    "fieldtype": "Data",
-   "label": "Push Button",
+   "label": "Trip Indication",
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-31 10:41:19.355016",
+ "modified": "2024-12-30 13:55:35.333464",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
- "name": "Forward and Reverse Push Button",
+ "name": "Trip Indication Lamp",
  "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [

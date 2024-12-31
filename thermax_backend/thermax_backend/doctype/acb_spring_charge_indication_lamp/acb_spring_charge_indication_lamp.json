@@ -1,27 +1,27 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:push_button",
- "creation": "2024-12-27 14:19:48.047262",
+ "autoname": "field:acb_spring_lamp",
+ "creation": "2024-12-31 02:45:35.508220",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "push_button"
+  "acb_spring_lamp"
  ],
  "fields": [
   {
-   "fieldname": "push_button",
+   "fieldname": "acb_spring_lamp",
    "fieldtype": "Data",
-   "label": "Push Button",
+   "label": "ACB Spring Lamp",
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-31 10:41:19.355016",
+ "modified": "2024-12-31 03:00:38.578640",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
- "name": "Forward and Reverse Push Button",
+ "name": "ACB Spring Charge Indication lamp",
  "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [

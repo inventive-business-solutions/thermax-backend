@@ -21,6 +21,12 @@
   "is_lsi_selected",
   "is_neural_link_with_disconnect_facility_selected",
   "is_led_type_lamp_selected",
+  "is_indication_on_selected",
+  "led_type_on_input",
+  "is_indication_off_selected",
+  "led_type_off_input",
+  "is_indication_trip_selected",
+  "led_type_trip_input",
   "is_blue_cb_spring_charge_selected",
   "is_red_cb_in_service",
   "is_white_healthy_trip_circuit_selected",
@@ -193,22 +199,22 @@
    "options": "0\n1"
   },
   {
-   "default": "0",
    "fieldname": "is_blue_cb_spring_charge_selected",
-   "fieldtype": "Check",
-   "label": "Is Blue CB Spring Charge Selected"
+   "fieldtype": "Link",
+   "label": "Is Blue CB Spring Charge Selected",
+   "options": "ACB Spring Charge Indication lamp"
   },
   {
-   "default": "0",
    "fieldname": "is_red_cb_in_service",
-   "fieldtype": "Check",
-   "label": "Is Red CB In Service"
+   "fieldtype": "Link",
+   "label": "Is Red CB In Service",
+   "options": "ACB Service Indication lamp"
   },
   {
-   "default": "0",
    "fieldname": "is_white_healthy_trip_circuit_selected",
-   "fieldtype": "Check",
-   "label": "Is White Healthy Trip Circuit Selected"
+   "fieldtype": "Link",
+   "label": "Is White Healthy Trip Circuit Selected",
+   "options": "Trip Circuit Healthy Indication lamp"
   },
   {
    "fieldname": "alarm_annunciator",
@@ -630,11 +636,50 @@
    "fieldtype": "Select",
    "label": "Is Spg Applicable",
    "options": "0\n1"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_indication_on_selected",
+   "fieldtype": "Check",
+   "label": "Is Indication ON Selected",
+   "options": "0\n1"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_indication_off_selected",
+   "fieldtype": "Check",
+   "label": "Is Indication OFF Selected",
+   "options": "0\n1"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_indication_trip_selected",
+   "fieldtype": "Check",
+   "label": "Is Indication Trip Selected",
+   "options": "0\n1"
+  },
+  {
+   "fieldname": "led_type_on_input",
+   "fieldtype": "Link",
+   "label": "LED Type ON Input",
+   "options": "ON Indication Lamp"
+  },
+  {
+   "fieldname": "led_type_off_input",
+   "fieldtype": "Link",
+   "label": "LED Type OFF Input",
+   "options": "OFF Indication Lamp"
+  },
+  {
+   "fieldname": "led_type_trip_input",
+   "fieldtype": "Link",
+   "label": "LED Type Trip Input",
+   "options": "Trip Indication Lamp"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-23 05:56:10.226495",
+ "modified": "2024-12-31 10:32:08.382594",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "PCC Panel",
