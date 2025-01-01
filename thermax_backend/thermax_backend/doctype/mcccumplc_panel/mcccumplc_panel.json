@@ -94,7 +94,6 @@
   "ups_scope",
   "ups_type",
   "ups_battery_type",
-  "ups_battery_backup_time_in_min",
   "is_ups_battery_mounting_rack_selected",
   "plc_hardware_section",
   "plc_cpu_or_processor_module_or_series",
@@ -633,12 +632,6 @@
    "label": "UPS Battery Type"
   },
   {
-   "fieldname": "ups_battery_backup_time_in_min",
-   "fieldtype": "Link",
-   "label": "UPS Battery Backup Time In Min",
-   "options": "PLC UPS Battery Backup Time In Min"
-  },
-  {
    "default": "0",
    "fieldname": "is_ups_battery_mounting_rack_selected",
    "fieldtype": "Check",
@@ -866,7 +859,7 @@
    "fieldname": "do_module_no_of_contact",
    "fieldtype": "Link",
    "label": "DO Module No of Contact",
-   "options": "DO No Of Contacts"
+   "options": "Number of Contacts"
   },
   {
    "fieldname": "output_status_on_processor_or_module_failure",
@@ -876,7 +869,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-02 00:36:09.151120",
+ "modified": "2024-12-31 01:10:56.815891",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "MCCcumPLC Panel",

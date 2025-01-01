@@ -1,27 +1,34 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
- "autoname": "field:density",
- "creation": "2024-10-14 11:41:49.331321",
+ "autoname": "field:ups_redundancy",
+ "creation": "2024-12-29 23:50:29.008728",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "density"
+  "plc_ups_redundancy_section",
+  "ups_redundancy"
  ],
  "fields": [
   {
-   "fieldname": "density",
+   "fieldname": "plc_ups_redundancy_section",
+   "fieldtype": "Section Break",
+   "label": "PLC UPS Redundancy"
+  },
+  {
+   "fieldname": "ups_redundancy",
    "fieldtype": "Data",
-   "label": "Density",
+   "label": "UPS Redundancy",
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-30 20:02:33.039318",
+ "modified": "2025-01-02 02:08:18.496849",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
- "name": "DI Modules Density",
+ "name": "PLC UPS Redundancy",
  "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
