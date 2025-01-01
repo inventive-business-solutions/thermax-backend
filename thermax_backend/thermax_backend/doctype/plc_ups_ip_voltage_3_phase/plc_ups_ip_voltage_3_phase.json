@@ -1,27 +1,28 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
- "autoname": "field:density",
- "creation": "2024-10-14 11:41:49.331321",
+ "autoname": "field:voltage",
+ "creation": "2024-12-29 23:42:31.849965",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "density"
+  "voltage"
  ],
  "fields": [
   {
-   "fieldname": "density",
+   "fieldname": "voltage",
    "fieldtype": "Data",
-   "label": "Density",
+   "label": "Voltage",
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-30 20:02:33.039318",
+ "modified": "2025-01-02 02:07:36.157141",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
- "name": "DI Modules Density",
+ "name": "PLC UPS IP Voltage 3 Phase",
  "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [

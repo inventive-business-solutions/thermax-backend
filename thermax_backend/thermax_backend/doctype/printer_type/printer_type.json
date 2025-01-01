@@ -1,27 +1,28 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
- "autoname": "field:contacts",
- "creation": "2024-10-14 11:51:36.456343",
+ "autoname": "field:printer_type",
+ "creation": "2025-01-02 01:31:36.900370",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "contacts"
+  "printer_type"
  ],
  "fields": [
   {
-   "fieldname": "contacts",
+   "fieldname": "printer_type",
    "fieldtype": "Data",
-   "label": "Contacts",
+   "label": "Printer Type",
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-14 11:52:44.717480",
+ "modified": "2025-01-02 02:12:57.234720",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
- "name": "DO No Of Contacts",
+ "name": "Printer Type",
  "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [

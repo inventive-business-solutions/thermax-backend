@@ -1,0 +1,307 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2024-12-29 23:25:18.606425",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "linking_keys_section",
+  "revision_id",
+  "panel_id",
+  "supply_requirements_section",
+  "ups_control_voltage",
+  "non_ups_control_voltage",
+  "is_bulk_power_supply_selected",
+  "ups_section",
+  "ups_scope",
+  "ups_input_voltage_3p",
+  "ups_input_voltage_1p",
+  "ups_output_voltage_1p",
+  "ups_type",
+  "ups_battery_type",
+  "is_ups_battery_mounting_rack_selected",
+  "ups_battery_backup_time",
+  "ups_redundancy",
+  "plc_hardware_section",
+  "plc_cpu_system_series",
+  "plc_cpu_system_input_voltage",
+  "plc_cpu_system_battery_backup",
+  "plc_cpu_system_memory_free_space_after_program",
+  "redundancy_section",
+  "is_power_supply_plc_cpu_system_selected",
+  "is_power_supply_input_output_module_selected",
+  "is_plc_input_output_modules_system_selected",
+  "is_plc_cpu_system_and_input_output_modules_system_selected",
+  "is_plc_cpu_system_and_hmi_scada_selected",
+  "is_plc_cpu_system_and_third_party_devices_selected",
+  "is_plc_cpu_system_selected",
+  "plc_cpu_system",
+  "plc_panel_mounted_section",
+  "panel_mounted_ac",
+  "is_marshalling_cabinet_for_plc_and_ups_selected",
+  "marshalling_cabinet_for_plc_and_ups",
+  "panel_mounted_push_buttons_indication_lamps_and_colors_section",
+  "is_electronic_hooter_selected",
+  "electronic_hooter_acknowledge",
+  "panel_power_supply_on_color",
+  "panel_power_supply_off_color"
+ ],
+ "fields": [
+  {
+   "fieldname": "linking_keys_section",
+   "fieldtype": "Section Break",
+   "label": "Linking Keys"
+  },
+  {
+   "fieldname": "revision_id",
+   "fieldtype": "Link",
+   "label": "Revision ID",
+   "options": "Design Basis Revision History"
+  },
+  {
+   "fieldname": "panel_id",
+   "fieldtype": "Link",
+   "label": "Panel ID",
+   "options": "Project Panel Data"
+  },
+  {
+   "fieldname": "supply_requirements_section",
+   "fieldtype": "Section Break",
+   "label": "Supply Requirements"
+  },
+  {
+   "fieldname": "ups_control_voltage",
+   "fieldtype": "Link",
+   "label": "UPS Control Voltage",
+   "options": "PLC Control Voltage"
+  },
+  {
+   "fieldname": "non_ups_control_voltage",
+   "fieldtype": "Link",
+   "label": "Non UPS Control Voltage",
+   "options": "PLC Control Voltage"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_bulk_power_supply_selected",
+   "fieldtype": "Check",
+   "label": "Is Bulk Power Supply Selected"
+  },
+  {
+   "fieldname": "ups_section",
+   "fieldtype": "Section Break",
+   "label": "UPS"
+  },
+  {
+   "fieldname": "ups_scope",
+   "fieldtype": "Link",
+   "label": "UPS Scope",
+   "options": "PLC UPS Scope"
+  },
+  {
+   "fieldname": "ups_input_voltage_3p",
+   "fieldtype": "Link",
+   "label": "UPS Input Voltage 3P",
+   "options": "PLC UPS 3 Phase Voltage"
+  },
+  {
+   "fieldname": "ups_input_voltage_1p",
+   "fieldtype": "Link",
+   "label": "UPS Input Voltage 1P",
+   "options": "PLC UPS 1 Phase Voltage"
+  },
+  {
+   "fieldname": "ups_output_voltage_1p",
+   "fieldtype": "Link",
+   "label": "UPS Output Voltage 1P",
+   "options": "PLC UPS 1 Phase Voltage"
+  },
+  {
+   "fieldname": "ups_type",
+   "fieldtype": "Link",
+   "label": "UPS Type",
+   "options": "PLC UPS Type"
+  },
+  {
+   "fieldname": "ups_battery_type",
+   "fieldtype": "Link",
+   "label": "UPS Battery Type",
+   "options": "PLC UPS Battery Type"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_ups_battery_mounting_rack_selected",
+   "fieldtype": "Check",
+   "label": "Is UPS Battery Mounting Rack Selected"
+  },
+  {
+   "fieldname": "ups_battery_backup_time",
+   "fieldtype": "Link",
+   "label": "UPS Battery Backup Time",
+   "options": "PLC UPS Battery Backup Time"
+  },
+  {
+   "fieldname": "ups_redundancy",
+   "fieldtype": "Link",
+   "label": "UPS Redundancy",
+   "options": "UPS Redundancy"
+  },
+  {
+   "fieldname": "plc_hardware_section",
+   "fieldtype": "Section Break",
+   "label": "PLC Hardware"
+  },
+  {
+   "fieldname": "plc_cpu_system_series",
+   "fieldtype": "Data",
+   "label": "PLC CPU System Series"
+  },
+  {
+   "fieldname": "plc_cpu_system_input_voltage",
+   "fieldtype": "Link",
+   "label": "PLC CPU System Input Voltage",
+   "options": "PLC Control Voltage"
+  },
+  {
+   "fieldname": "plc_cpu_system_battery_backup",
+   "fieldtype": "Data",
+   "label": "PLC CPU System Battery Backup"
+  },
+  {
+   "fieldname": "plc_cpu_system_memory_free_space_after_program",
+   "fieldtype": "Data",
+   "label": "PLC CPU System Memory Free Space after Program"
+  },
+  {
+   "fieldname": "redundancy_section",
+   "fieldtype": "Section Break",
+   "label": "Redundancy"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_power_supply_plc_cpu_system_selected",
+   "fieldtype": "Check",
+   "label": "Is Power Supply PLC CPU System Selected"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_power_supply_input_output_module_selected",
+   "fieldtype": "Check",
+   "label": "Is Power Supply Input Output Module Selected"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_plc_input_output_modules_system_selected",
+   "fieldtype": "Check",
+   "label": "Is PLC Input Output Modules System Selected"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_plc_cpu_system_and_input_output_modules_system_selected",
+   "fieldtype": "Check",
+   "label": "Is PLC CPU System and Input Output Modules System Selected"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_plc_cpu_system_and_hmi_scada_selected",
+   "fieldtype": "Check",
+   "label": "Is PLC CPU System and HMI SCADA Selected"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_plc_cpu_system_and_third_party_devices_selected",
+   "fieldtype": "Check",
+   "label": "Is PLC CPU System and Third Party Devices Selected"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_plc_cpu_system_selected",
+   "fieldtype": "Check",
+   "label": "Is PLC CPU System Selected"
+  },
+  {
+   "fieldname": "plc_cpu_system",
+   "fieldtype": "Link",
+   "label": "PLC CPU System",
+   "options": "PLC CPU System"
+  },
+  {
+   "fieldname": "plc_panel_mounted_section",
+   "fieldtype": "Section Break",
+   "label": "PLC Panel Mounted"
+  },
+  {
+   "fieldname": "panel_mounted_ac",
+   "fieldtype": "Data",
+   "label": "Panel Mounted AC"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_marshalling_cabinet_for_plc_and_ups_selected",
+   "fieldtype": "Check",
+   "label": "Is Marshalling Cabinet For PLC and UPS Selected"
+  },
+  {
+   "fieldname": "marshalling_cabinet_for_plc_and_ups",
+   "fieldtype": "Link",
+   "label": "Marshalling Cabinet For PLC and UPS",
+   "options": "Marshalling Cabinet for PLC and UPS"
+  },
+  {
+   "fieldname": "panel_mounted_push_buttons_indication_lamps_and_colors_section",
+   "fieldtype": "Section Break",
+   "label": "Panel Mounted Push Buttons Indication Lamps and Colors"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_electronic_hooter_selected",
+   "fieldtype": "Check",
+   "label": "Is Electronic Hooter Selected"
+  },
+  {
+   "fieldname": "electronic_hooter_acknowledge",
+   "fieldtype": "Link",
+   "label": "Electronic Hooter Acknowledge",
+   "options": "Electronic Hooter Acknowledge"
+  },
+  {
+   "fieldname": "panel_power_supply_on_color",
+   "fieldtype": "Link",
+   "label": "Panel Power Supply On Color",
+   "options": "Panel Power Supply On"
+  },
+  {
+   "fieldname": "panel_power_supply_off_color",
+   "fieldtype": "Link",
+   "label": "Panel Power Supply Off Color",
+   "options": "Panel Power Supply Off"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-12-30 19:57:34.186738",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "Panel PLC 1",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

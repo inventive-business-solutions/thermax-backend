@@ -1,4 +1,4 @@
-# Copyright (c) 2024, Abhishek Bankar and Contributors
+# Copyright (c) 2025, Abhishek Bankar and Contributors
 # See license.txt
 
 # import frappe
@@ -12,18 +12,18 @@ EXTRA_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
 IGNORE_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
 
 
-class TestDONoOfContacts(UnitTestCase):
+class UnitTestPanelPLC23(UnitTestCase):
 	"""
-	Unit tests for DONoOfContacts.
+	Unit tests for PanelPLC23.
 	Use this class for testing individual functions and methods.
 	"""
 
 	pass
 
 
-class TestDONoOfContacts(IntegrationTestCase):
+class IntegrationTestPanelPLC23(IntegrationTestCase):
 	"""
-	Integration tests for DONoOfContacts.
+	Integration tests for PanelPLC23.
 	Use this class for testing interactions between multiple components.
 	"""
 

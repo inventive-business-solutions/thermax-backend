@@ -1,27 +1,28 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
- "autoname": "field:density",
- "creation": "2024-10-14 11:41:49.331321",
+ "autoname": "field:dropdown_options",
+ "creation": "2025-01-02 01:40:22.140592",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "density"
+  "dropdown_options"
  ],
  "fields": [
   {
-   "fieldname": "density",
+   "fieldname": "dropdown_options",
    "fieldtype": "Data",
-   "label": "Density",
+   "label": "Dropdown Options",
    "unique": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-30 20:02:33.039318",
+ "modified": "2025-01-02 02:13:36.126552",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
- "name": "DI Modules Density",
+ "name": "Interface Signal and Control Logic",
  "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
