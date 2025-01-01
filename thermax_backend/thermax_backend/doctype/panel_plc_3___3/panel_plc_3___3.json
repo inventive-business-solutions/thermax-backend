@@ -1,0 +1,421 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2024-12-31 11:12:11.483389",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "linking_keys_section",
+  "revision_id",
+  "panel_id",
+  "hmi_section",
+  "is_hmi_selected",
+  "hmi_size",
+  "hmi_quantity",
+  "hmi_hardware_make",
+  "hmi_series",
+  "hmi_input_voltage",
+  "hmi_battery_backup",
+  "human_interface_device_section",
+  "is_engineering_station_quantity_selected",
+  "engineering_station_quantity",
+  "is_engineering_cum_operating_station_quantity_selected",
+  "engineering_cum_operating_station_quantity",
+  "is_operating_station_quantity_selected",
+  "operating_station_quantity",
+  "software_license_section",
+  "is_scada_program_development_license_quantity_selected",
+  "scada_program_development_license_quantity",
+  "is_scada_runtime_license_quantity_selected",
+  "scada_runtime_license_quantity",
+  "is_plc_progamming_software_license_quantity",
+  "plc_programming_software_license_quantity",
+  "engineeringoperating_scada_station_section",
+  "system_hardware",
+  "pc_hardware_specifications",
+  "monitor_size",
+  "windows_operating_system",
+  "hardware_between_plc_and_scada_pc",
+  "is_printer_with_suitable_communication_cable_selected",
+  "printer_type",
+  "printer_size",
+  "printer_quantity",
+  "is_furniture_selected",
+  "is_console_with_chair_selected",
+  "is_plc_logic_diagram_selected",
+  "is_loop_drawing_for_complete_project_selected",
+  "communication_section",
+  "interface_signal_and_control_logic_implementation",
+  "differential_pressure_flow_linearization",
+  "third_party_comm_protocol_for_plc_cpu_system",
+  "third_party_communication_protocol",
+  "hardware_between_plc_and_third_party",
+  "is_client_system_comm_with_plc_cpu_selected",
+  "client_system_communication",
+  "hardware_between_plc_and_client_system",
+  "is_iiot_selected",
+  "iiot_gateway_mounting",
+  "iiot_gateway_note",
+  "burner_controller_lmv_section",
+  "is_burner_controller_lmv_mounting_selected",
+  "burner_controller_lmv_mounting",
+  "hardware_between_plc_and_burner_controller_lmv",
+  "burner_controller_lmv_note",
+  "plc_spares_section",
+  "spare_input_and_output_notes",
+  "commissioning_spare",
+  "two_year_operational_spare",
+  "project_specific_notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "linking_keys_section",
+   "fieldtype": "Section Break",
+   "label": "Linking Keys"
+  },
+  {
+   "fieldname": "revision_id",
+   "fieldtype": "Link",
+   "label": "Revision ID",
+   "options": "Design Basis Revision History"
+  },
+  {
+   "fieldname": "panel_id",
+   "fieldtype": "Link",
+   "label": "Panel ID",
+   "options": "Project Panel Data"
+  },
+  {
+   "fieldname": "hmi_section",
+   "fieldtype": "Section Break",
+   "label": "HMI"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_hmi_selected",
+   "fieldtype": "Check",
+   "label": "Is HMI Selected"
+  },
+  {
+   "fieldname": "hmi_size",
+   "fieldtype": "Data",
+   "label": "HMI Size"
+  },
+  {
+   "fieldname": "hmi_quantity",
+   "fieldtype": "Data",
+   "label": "HMI Quantity"
+  },
+  {
+   "fieldname": "hmi_hardware_make",
+   "fieldtype": "Data",
+   "label": "HMI Hardware Make"
+  },
+  {
+   "fieldname": "hmi_series",
+   "fieldtype": "Data",
+   "label": "HMI Series"
+  },
+  {
+   "fieldname": "hmi_input_voltage",
+   "fieldtype": "Data",
+   "label": "HMI Input Voltage"
+  },
+  {
+   "fieldname": "hmi_battery_backup",
+   "fieldtype": "Data",
+   "label": "HMI Battery Backup"
+  },
+  {
+   "fieldname": "human_interface_device_section",
+   "fieldtype": "Section Break",
+   "label": "Human Interface Device"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_engineering_station_quantity_selected",
+   "fieldtype": "Check",
+   "label": "Is Engineering Station Quantity Selected"
+  },
+  {
+   "fieldname": "engineering_station_quantity",
+   "fieldtype": "Data",
+   "label": "Engineering Station Quantity"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_engineering_cum_operating_station_quantity_selected",
+   "fieldtype": "Check",
+   "label": "Is Engineering cum Operating Station Quantity Selected"
+  },
+  {
+   "fieldname": "engineering_cum_operating_station_quantity",
+   "fieldtype": "Data",
+   "label": "Engineering cum Operating Station Quantity"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_operating_station_quantity_selected",
+   "fieldtype": "Check",
+   "label": "Is Operating Station Quantity Selected"
+  },
+  {
+   "fieldname": "operating_station_quantity",
+   "fieldtype": "Data",
+   "label": "Operating Station Quantity"
+  },
+  {
+   "fieldname": "software_license_section",
+   "fieldtype": "Section Break",
+   "label": "Software License"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_scada_program_development_license_quantity_selected",
+   "fieldtype": "Check",
+   "label": "Is SCADA Program Development License Quantity Selected"
+  },
+  {
+   "fieldname": "scada_program_development_license_quantity",
+   "fieldtype": "Data",
+   "label": "SCADA Program Development License Quantity"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_scada_runtime_license_quantity_selected",
+   "fieldtype": "Check",
+   "label": "Is SCADA Runtime License Quantity Selected"
+  },
+  {
+   "fieldname": "scada_runtime_license_quantity",
+   "fieldtype": "Data",
+   "label": "SCADA Runtime License Quantity"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_plc_progamming_software_license_quantity",
+   "fieldtype": "Check",
+   "label": "Is PLC Progamming Software License Quantity"
+  },
+  {
+   "fieldname": "plc_programming_software_license_quantity",
+   "fieldtype": "Data",
+   "label": "PLC Programming Software License Quantity"
+  },
+  {
+   "fieldname": "engineeringoperating_scada_station_section",
+   "fieldtype": "Section Break",
+   "label": "Engineering/Operating SCADA Station"
+  },
+  {
+   "fieldname": "system_hardware",
+   "fieldtype": "Data",
+   "label": "System Hardware"
+  },
+  {
+   "fieldname": "pc_hardware_specifications",
+   "fieldtype": "Text",
+   "label": "PC Hardware Specifications"
+  },
+  {
+   "fieldname": "monitor_size",
+   "fieldtype": "Data",
+   "label": "Monitor Size"
+  },
+  {
+   "fieldname": "windows_operating_system",
+   "fieldtype": "Data",
+   "label": "Windows Operating System"
+  },
+  {
+   "fieldname": "hardware_between_plc_and_scada_pc",
+   "fieldtype": "Data",
+   "label": "Hardware Between PLC and SCADA PC"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_printer_with_suitable_communication_cable_selected",
+   "fieldtype": "Check",
+   "label": "Is Printer with Suitable Communication Cable Selected"
+  },
+  {
+   "fieldname": "printer_type",
+   "fieldtype": "Data",
+   "label": "Printer Type"
+  },
+  {
+   "fieldname": "printer_size",
+   "fieldtype": "Data",
+   "label": "Printer Size"
+  },
+  {
+   "fieldname": "printer_quantity",
+   "fieldtype": "Data",
+   "label": "Printer Quantity"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_furniture_selected",
+   "fieldtype": "Check",
+   "label": "Is Furniture Selected"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_console_with_chair_selected",
+   "fieldtype": "Check",
+   "label": "Is Console With Chair Selected"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_plc_logic_diagram_selected",
+   "fieldtype": "Check",
+   "label": "Is PLC Logic Diagram Selected"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_loop_drawing_for_complete_project_selected",
+   "fieldtype": "Check",
+   "label": "Is Loop Drawing for Complete Project Selected"
+  },
+  {
+   "fieldname": "communication_section",
+   "fieldtype": "Section Break",
+   "label": "Communication"
+  },
+  {
+   "fieldname": "interface_signal_and_control_logic_implementation",
+   "fieldtype": "Data",
+   "label": "Interface Signal and Control Logic Implementation"
+  },
+  {
+   "fieldname": "differential_pressure_flow_linearization",
+   "fieldtype": "Data",
+   "label": "Differential Pressure Flow Linearization"
+  },
+  {
+   "fieldname": "third_party_comm_protocol_for_plc_cpu_system",
+   "fieldtype": "Data",
+   "label": "Third Party Comm Protocol for PLC CPU System"
+  },
+  {
+   "fieldname": "third_party_communication_protocol",
+   "fieldtype": "Text",
+   "label": "Third Party Communication Protocol"
+  },
+  {
+   "fieldname": "hardware_between_plc_and_third_party",
+   "fieldtype": "Data",
+   "label": "Hardware Between PLC and Third Party"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_client_system_comm_with_plc_cpu_selected",
+   "fieldtype": "Check",
+   "label": "Is Client System Comm with PLC CPU Selected"
+  },
+  {
+   "fieldname": "client_system_communication",
+   "fieldtype": "Text",
+   "label": "Client System Communication"
+  },
+  {
+   "fieldname": "hardware_between_plc_and_client_system",
+   "fieldtype": "Data",
+   "label": "Hardware Between PLC and Client System"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_iiot_selected",
+   "fieldtype": "Check",
+   "label": "Is IIOT Selected"
+  },
+  {
+   "fieldname": "iiot_gateway_mounting",
+   "fieldtype": "Data",
+   "label": "IIOT Gateway Mounting"
+  },
+  {
+   "fieldname": "iiot_gateway_note",
+   "fieldtype": "Text",
+   "label": "IIOT Gateway Note"
+  },
+  {
+   "fieldname": "burner_controller_lmv_section",
+   "fieldtype": "Section Break",
+   "label": "Burner Controller LMV"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_burner_controller_lmv_mounting_selected",
+   "fieldtype": "Check",
+   "label": "Is Burner Controller LMV Mounting Selected"
+  },
+  {
+   "fieldname": "burner_controller_lmv_mounting",
+   "fieldtype": "Text",
+   "label": "Burner Controller LMV Mounting"
+  },
+  {
+   "fieldname": "hardware_between_plc_and_burner_controller_lmv",
+   "fieldtype": "Data",
+   "label": "Hardware Between PLC and Burner Controller LMV"
+  },
+  {
+   "fieldname": "burner_controller_lmv_note",
+   "fieldtype": "Text",
+   "label": "Burner Controller LMV Note"
+  },
+  {
+   "fieldname": "plc_spares_section",
+   "fieldtype": "Section Break",
+   "label": "PLC Spares"
+  },
+  {
+   "fieldname": "spare_input_and_output_notes",
+   "fieldtype": "Text",
+   "label": "Spare Input and Output Notes"
+  },
+  {
+   "fieldname": "commissioning_spare",
+   "fieldtype": "Text",
+   "label": "Commissioning Spare"
+  },
+  {
+   "fieldname": "two_year_operational_spare",
+   "fieldtype": "Text",
+   "label": "Two Year Operational spare"
+  },
+  {
+   "fieldname": "project_specific_notes",
+   "fieldtype": "Text",
+   "label": "Project Specific Notes "
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-01-02 02:11:56.953877",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "Panel PLC 3 - 3",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

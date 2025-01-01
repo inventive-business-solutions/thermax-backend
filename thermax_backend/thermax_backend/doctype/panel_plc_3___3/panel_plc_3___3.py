@@ -1,9 +1,9 @@
-# Copyright (c) 2024, Abhishek Bankar and contributors
+# Copyright (c) 2025, Abhishek Bankar and contributors
 # For license information, please see license.txt
 
 # import frappe
 from frappe.model.document import Document
 
 
-class DONoOfContacts(Document):
+class PanelPLC33(Document):
 	pass
