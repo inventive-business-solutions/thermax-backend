@@ -36,6 +36,7 @@
   "control_transformer_coating",
   "control_transformer_configuration",
   "current_transformer_number",
+  "current_transformer_configuration",
   "alarm_annunciator",
   "mi_analog",
   "mi_digital",
@@ -45,13 +46,15 @@
   "ga_moc_thickness_covers",
   "ga_mcc_compartmental",
   "ga_mcc_construction_front_type",
-  "ga_mcc_construction_drawout_type",
+  "incoming_drawout_type",
+  "outgoing_drawout_type",
   "ga_mcc_construction_type",
   "busbar_material_of_construction",
   "ga_current_density",
   "ga_panel_mounting_frame",
   "ga_panel_mounting_height",
   "is_marshalling_section_selected",
+  "marshalling_section_text_area",
   "is_cable_alley_section_selected",
   "is_power_and_bus_separation_section_selected",
   "is_both_side_extension_section_selected",
@@ -61,6 +64,7 @@
   "ga_power_and_control_busbar_separation",
   "ga_enclosure_protection_degree",
   "ga_cable_entry_position",
+  "general_requirments_for_construction",
   "paintingpowder_coating_section",
   "ppc_painting_standards",
   "ppc_interior_and_exterior_paint_shade",
@@ -69,6 +73,8 @@
   "ppc_minimum_coating_thickness",
   "ppc_pretreatment_panel_standard",
   "vfd_auto_manual_selection",
+  "two_year_operational_spare",
+  "commissioning_spare",
   "punching_details_section",
   "is_punching_details_for_boiler_selected",
   "boiler_model",
@@ -287,12 +293,6 @@
    "options": "GA MCC Construction Front Type"
   },
   {
-   "fieldname": "ga_mcc_construction_drawout_type",
-   "fieldtype": "Link",
-   "label": "GA MCC Construction Drawout Type",
-   "options": "GA MCC Construction Draw Out Type"
-  },
-  {
    "fieldname": "ga_mcc_construction_type",
    "fieldtype": "Link",
    "label": "GA MCC Construction Type",
@@ -325,9 +325,9 @@
   {
    "default": "1",
    "fieldname": "is_marshalling_section_selected",
-   "fieldtype": "Check",
+   "fieldtype": "Select",
    "label": "Is Marshalling Section Selected",
-   "options": "\n"
+   "options": "0\n1"
   },
   {
    "default": "1",
@@ -687,11 +687,49 @@
    "fieldtype": "Link",
    "label": "LED Type Trip Input",
    "options": "Trip Indication Lamp"
+  },
+  {
+   "fieldname": "current_transformer_configuration",
+   "fieldtype": "Link",
+   "label": "Current Transformer Configuration",
+   "options": "Current Transformer Configuration"
+  },
+  {
+   "fieldname": "incoming_drawout_type",
+   "fieldtype": "Link",
+   "label": "Incoming Drawout Type",
+   "options": "GA MCC Construction Draw Out Type"
+  },
+  {
+   "fieldname": "outgoing_drawout_type",
+   "fieldtype": "Link",
+   "label": "Outgoing Drawout Type",
+   "options": "GA MCC Construction Draw Out Type"
+  },
+  {
+   "fieldname": "marshalling_section_text_area",
+   "fieldtype": "Data",
+   "label": "Marshalling Section Text Area"
+  },
+  {
+   "fieldname": "general_requirments_for_construction",
+   "fieldtype": "Data",
+   "label": "General Requirments For Construction"
+  },
+  {
+   "fieldname": "two_year_operational_spare",
+   "fieldtype": "Data",
+   "label": "Two Year Operational Spare"
+  },
+  {
+   "fieldname": "commissioning_spare",
+   "fieldtype": "Data",
+   "label": "Commissioning Spare"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-31 10:32:14.742635",
+ "modified": "2025-01-02 00:29:41.820368",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "MCC Panel",
