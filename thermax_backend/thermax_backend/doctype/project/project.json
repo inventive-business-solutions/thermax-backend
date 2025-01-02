@@ -6,6 +6,7 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "basic_information_section",
   "project_name",
   "project_oc_number",
   "client_name",
@@ -38,11 +39,6 @@
    "options": "Consultant"
   },
   {
-   "fieldname": "approver",
-   "fieldtype": "Data",
-   "label": "Approver"
-  },
-  {
    "fieldname": "division",
    "fieldtype": "Link",
    "label": "Division",
@@ -53,11 +49,21 @@
    "fieldname": "is_complete",
    "fieldtype": "Check",
    "label": "Is Complete"
+  },
+  {
+   "fieldname": "basic_information_section",
+   "fieldtype": "Section Break",
+   "label": "Basic Information"
+  },
+  {
+   "fieldname": "approver",
+   "fieldtype": "Data",
+   "label": "Approver"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-07 11:17:41.584584",
+ "modified": "2025-01-02 17:16:35.522780",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Project",
