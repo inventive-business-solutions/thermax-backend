@@ -6,34 +6,60 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "linking_keys_section",
   "project_id",
+  "section_break_rysg",
   "status",
-  "description"
+  "approver_email",
+  "description",
+  "clone_notes"
  ],
  "fields": [
   {
    "fieldname": "project_id",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Project ID",
-   "options": "Project"
+   "options": "Project",
+   "reqd": 1
   },
   {
    "default": "Review Unsubmitted",
    "fieldname": "status",
    "fieldtype": "Select",
    "label": "Status",
-   "options": "Review Unsubmitted\nReview Submitted\nReview Resubmitted\nApproved\nReleased"
+   "options": "Review Unsubmitted\nReview Submitted\nReview Resubmitted\nReview Resubmitted Again\nApproved\nReleased"
   },
   {
    "default": "Issued for Review",
    "fieldname": "description",
    "fieldtype": "Text",
    "label": "Description"
+  },
+  {
+   "fieldname": "approver_email",
+   "fieldtype": "Data",
+   "label": "Approver Email"
+  },
+  {
+   "default": "Issued for Review",
+   "fieldname": "clone_notes",
+   "fieldtype": "Text",
+   "label": "Clone Notes"
+  },
+  {
+   "fieldname": "linking_keys_section",
+   "fieldtype": "Section Break",
+   "label": "Linking Keys"
+  },
+  {
+   "fieldname": "section_break_rysg",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-22 15:57:06.986069",
+ "modified": "2025-01-02 23:47:06.342070",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Design Basis Revision History",
