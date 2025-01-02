@@ -23,24 +23,28 @@
    "label": "Main Package Name"
   },
   {
+   "default": "IS",
    "fieldname": "standard",
    "fieldtype": "Link",
    "label": "Standard",
    "options": "Classification Area Standard"
   },
   {
+   "default": "Zone 2",
    "fieldname": "zone",
    "fieldtype": "Link",
    "label": "Zone",
    "options": "Classification Area Zone"
   },
   {
+   "default": "IIA/IIB",
    "fieldname": "gas_group",
    "fieldtype": "Link",
    "label": "Gas Group",
    "options": "Classification Area Gas Group"
   },
   {
+   "default": "T3",
    "fieldname": "temperature_class",
    "fieldtype": "Link",
    "label": "Temperature Class",
@@ -71,7 +75,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-06 07:36:47.079027",
+ "modified": "2024-12-31 12:39:53.342120",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Project Main Package",

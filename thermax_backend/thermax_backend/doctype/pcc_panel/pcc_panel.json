@@ -33,6 +33,9 @@
   "is_other_selected",
   "control_transformer_coating",
   "control_transformer_configuration",
+  "current_transformer_coating",
+  "current_transformer_number",
+  "current_transformer_configuration",
   "alarm_annunciator",
   "led_type_other_input",
   "metering_instruments_for_incomer_section",
@@ -46,12 +49,14 @@
   "ga_pcc_compartmental",
   "ga_pcc_construction_front_type",
   "ga_pcc_construction_type",
-  "ga_pcc_construction_drawout_type",
+  "incoming_drawout_type",
+  "outgoing_drawout_type",
   "busbar_material_of_construction",
   "ga_current_density",
   "ga_panel_mounting_frame",
   "ga_panel_mounting_height",
   "is_marshalling_section_selected",
+  "marshalling_section_text_area",
   "is_cable_alley_section_selected",
   "is_power_and_bus_separation_section_selected",
   "is_both_side_extension_section_selected",
@@ -61,6 +66,7 @@
   "ga_power_and_control_busbar_separation",
   "ga_enclosure_protection_degree",
   "ga_cable_entry_position",
+  "general_requirments_for_construction",
   "paintingpowder_coating_section",
   "ppc_painting_standards",
   "ppc_interior_and_exterior_paint_shade",
@@ -68,6 +74,8 @@
   "ppc_base_frame_paint_shade",
   "ppc_minimum_coating_thickness",
   "ppc_pretreatment_panel_standard",
+  "commissioning_spare",
+  "two_year_operational_spare",
   "punching_details_section",
   "is_punching_details_for_boiler_selected",
   "boiler_model",
@@ -231,19 +239,19 @@
    "fieldname": "mi_analog",
    "fieldtype": "Link",
    "label": "MI Analog",
-   "options": "MI Analog"
+   "options": "Analog Meters"
   },
   {
    "fieldname": "mi_digital",
    "fieldtype": "Link",
    "label": "MI Digital",
-   "options": "MI Digital"
+   "options": "Digital Meters"
   },
   {
    "fieldname": "mi_communication_protocol",
    "fieldtype": "Link",
    "label": "MI Communication Protocol",
-   "options": "MI Communication Protocol"
+   "options": "Communication Protocol"
   },
   {
    "fieldname": "general_arrangement_section",
@@ -287,12 +295,6 @@
    "options": "GA MCC Construction Type"
   },
   {
-   "fieldname": "ga_pcc_construction_drawout_type",
-   "fieldtype": "Link",
-   "label": "GA PCC Construction Drawout Type",
-   "options": "GA MCC Construction Draw Out Type"
-  },
-  {
    "fieldname": "busbar_material_of_construction",
    "fieldtype": "Select",
    "label": "Busbar Material Of Construction",
@@ -319,8 +321,9 @@
   {
    "default": "1",
    "fieldname": "is_marshalling_section_selected",
-   "fieldtype": "Check",
-   "label": "Is Marshalling Section Selected"
+   "fieldtype": "Select",
+   "label": "Is Marshalling Section Selected",
+   "options": "0\n1"
   },
   {
    "default": "1",
@@ -675,11 +678,61 @@
    "fieldtype": "Link",
    "label": "LED Type Trip Input",
    "options": "Trip Indication Lamp"
+  },
+  {
+   "fieldname": "current_transformer_coating",
+   "fieldtype": "Link",
+   "label": "Current Transformer Coating",
+   "options": "Current Transformer Coating"
+  },
+  {
+   "fieldname": "current_transformer_number",
+   "fieldtype": "Link",
+   "label": "Current Transformer Number",
+   "options": "Current Transformer Number"
+  },
+  {
+   "fieldname": "current_transformer_configuration",
+   "fieldtype": "Link",
+   "label": "Current Transformer Configuration",
+   "options": "Current Transformer Configuration"
+  },
+  {
+   "fieldname": "incoming_drawout_type",
+   "fieldtype": "Link",
+   "label": "Incoming Drawout Type",
+   "options": "GA MCC Construction Draw Out Type"
+  },
+  {
+   "fieldname": "outgoing_drawout_type",
+   "fieldtype": "Link",
+   "label": "Outgoing Drawout Type",
+   "options": "GA MCC Construction Draw Out Type"
+  },
+  {
+   "fieldname": "marshalling_section_text_area",
+   "fieldtype": "Data",
+   "label": "Marshalling Section Text Area"
+  },
+  {
+   "fieldname": "general_requirments_for_construction",
+   "fieldtype": "Data",
+   "label": "General Requirements for Construction"
+  },
+  {
+   "fieldname": "commissioning_spare",
+   "fieldtype": "Data",
+   "label": "Commissioning Spare"
+  },
+  {
+   "fieldname": "two_year_operational_spare",
+   "fieldtype": "Data",
+   "label": "Two Year Operational Spare"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-31 10:32:08.382594",
+ "modified": "2025-01-02 00:28:34.912296",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "PCC Panel",
