@@ -415,9 +415,8 @@
   },
   {
    "fieldname": "ppc_pretreatment_panel_standard",
-   "fieldtype": "Link",
-   "label": "PPC Pretreatment Panel Standard",
-   "options": "PPC Pretreatment Panel Standard"
+   "fieldtype": "Data",
+   "label": "PPC Pretreatment Panel Standard"
   },
   {
    "fieldname": "punching_details_section",
@@ -732,7 +731,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-02 00:28:34.912296",
+ "modified": "2025-01-02 11:34:25.488302",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "PCC Panel",
