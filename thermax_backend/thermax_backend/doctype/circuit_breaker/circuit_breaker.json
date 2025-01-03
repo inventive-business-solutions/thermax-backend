@@ -55,8 +55,9 @@
   },
   {
    "fieldname": "current_rating",
-   "fieldtype": "Data",
-   "label": "Current Rating"
+   "fieldtype": "Float",
+   "label": "Current Rating",
+   "precision": "2"
   },
   {
    "fieldname": "description",
@@ -186,7 +187,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-31 10:38:29.576417",
+ "modified": "2025-01-03 17:57:36.688304",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Circuit Breaker",
