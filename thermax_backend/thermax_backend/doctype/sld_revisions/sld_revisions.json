@@ -7,8 +7,9 @@
  "engine": "InnoDB",
  "field_order": [
   "project_id",
-  "status",
   "panel_name",
+  "is_released",
+  "status",
   "description",
   "switchgear_selection_data",
   "incomer_data"
@@ -32,12 +33,6 @@
    "options": "Project"
   },
   {
-   "fieldname": "status",
-   "fieldtype": "Select",
-   "label": "Status",
-   "options": "Not Released\nReleased"
-  },
-  {
    "fieldname": "description",
    "fieldtype": "Text",
    "label": "Description"
@@ -47,11 +42,24 @@
    "fieldtype": "Table",
    "label": "Incomer Data",
    "options": "Incomer Data"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_released",
+   "fieldtype": "Check",
+   "label": "Is Released"
+  },
+  {
+   "default": "DEFAULT",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "DEFAULT\nDOWNLOAD_READY\nIN_PROCESS\nSUCCESS\nERROR"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-31 12:08:38.548074",
+ "modified": "2025-01-03 14:49:22.392286",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "SLD Revisions",
