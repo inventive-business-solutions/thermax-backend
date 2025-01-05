@@ -27,7 +27,8 @@
   "current_transformer",
   "current_transformer_coating",
   "current_transformer_quantity",
-  "current_transformer_configuration"
+  "current_transformer_configuration",
+  "control_transformer_type"
  ],
  "fields": [
   {
@@ -158,11 +159,17 @@
    "fieldtype": "Link",
    "label": "Current Transformer Configuration",
    "options": "Current Transformer Configuration"
+  },
+  {
+   "fieldname": "control_transformer_type",
+   "fieldtype": "Link",
+   "label": "Control Transformer Type",
+   "options": "Control Transformer Type"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-31 11:54:01.388706",
+ "modified": "2025-01-05 10:13:37.836676",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Common Configuration 3",
