@@ -27,7 +27,6 @@
   "pole",
   "supply_feeder_standard",
   "dm_standard",
-  "testing_standard",
   "power_wiring_color",
   "power_wiring_size",
   "control_wiring_color",
@@ -135,12 +134,6 @@
    "fieldtype": "Link",
    "label": "Design and Manufacturer's Standard",
    "options": "Supply Feeder DM Standard"
-  },
-  {
-   "fieldname": "testing_standard",
-   "fieldtype": "Link",
-   "label": "Testing Standard",
-   "options": "Supply Feeder Testing Standard"
   },
   {
    "fieldname": "power_wiring_color",
@@ -418,7 +411,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-31 10:40:52.746338",
+ "modified": "2025-01-03 08:37:35.403441",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Common Configuration 1",
