@@ -27,7 +27,14 @@
   "cable_size",
   "starting_time",
   "standby_kw",
-  "kva"
+  "kva",
+  "unit_2",
+  "unit_3",
+  "unit_4",
+  "section",
+  "emergency_name",
+  "control_scheme",
+  "push_button_station"
  ],
  "fields": [
   {
@@ -139,12 +146,47 @@
    "fieldtype": "Float",
    "label": "KVA",
    "precision": "2"
+  },
+  {
+   "fieldname": "unit_2",
+   "fieldtype": "Data",
+   "label": "Unit 2"
+  },
+  {
+   "fieldname": "unit_3",
+   "fieldtype": "Data",
+   "label": "Unit 3"
+  },
+  {
+   "fieldname": "unit_4",
+   "fieldtype": "Data",
+   "label": "Unit 4"
+  },
+  {
+   "fieldname": "section",
+   "fieldtype": "Data",
+   "label": "Section"
+  },
+  {
+   "fieldname": "emergency_name",
+   "fieldtype": "Data",
+   "label": "Emergency Name"
+  },
+  {
+   "fieldname": "control_scheme",
+   "fieldtype": "Data",
+   "label": "Control Scheme"
+  },
+  {
+   "fieldname": "push_button_station",
+   "fieldtype": "Data",
+   "label": "Push Button Station"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-12-24 19:05:58.055797",
+ "modified": "2025-01-05 16:16:37.009778",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Switchgear Selection Data",
