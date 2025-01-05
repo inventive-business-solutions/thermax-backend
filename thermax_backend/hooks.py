@@ -199,6 +199,7 @@ override_whitelisted_methods = {
     "layout_earthing.get_layout_earthing_dropdown": "thermax_backend.thermax_backend.doctype.layout_earthing.api.get_layout_earthing_dropdown",
     "cable_tray_layout.get_cable_tray_layout_dropdown": "thermax_backend.thermax_backend.doctype.cable_tray_layout.api.get_cable_tray_layout_dropdown",
     "sld_revisions.get_data_for_sld_generation": "thermax_backend.thermax_backend.doctype.sld_revisions.api.get_data_for_sld_generation",
+    "project.send_custom_mail": "thermax_backend.thermax_backend.doctype.project.api.send_custom_mail",
 }
 #
 # each overriding function accepts a `data` argument;
