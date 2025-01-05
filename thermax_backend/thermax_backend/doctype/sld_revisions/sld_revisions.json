@@ -6,7 +6,9 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "linking_keys_section",
   "project_id",
+  "section_break_mvwt",
   "panel_name",
   "is_released",
   "status",
@@ -61,11 +63,20 @@
    "fieldname": "sld_path",
    "fieldtype": "Small Text",
    "label": "SLD Path"
+  },
+  {
+   "fieldname": "linking_keys_section",
+   "fieldtype": "Section Break",
+   "label": "Linking Keys"
+  },
+  {
+   "fieldname": "section_break_mvwt",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-05 11:46:17.486002",
+ "modified": "2025-01-05 12:55:27.747320",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "SLD Revisions",
