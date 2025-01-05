@@ -1,7 +1,6 @@
 import frappe
 from openpyxl import load_workbook
 
-
 def create_voltage_drop_excel(revision_id):
     """
     Creates an Excel sheet for the voltage drop calculation based on the specified revision ID.
