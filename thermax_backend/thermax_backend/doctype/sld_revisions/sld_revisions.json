@@ -8,6 +8,7 @@
  "field_order": [
   "linking_keys_section",
   "project_id",
+  "panel_id",
   "section_break_mvwt",
   "panel_name",
   "is_released",
@@ -71,12 +72,19 @@
   },
   {
    "fieldname": "section_break_mvwt",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Revision Data"
+  },
+  {
+   "fieldname": "panel_id",
+   "fieldtype": "Link",
+   "label": "Panel ID",
+   "options": "Project Panel Data"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-05 12:55:27.747320",
+ "modified": "2025-01-06 16:41:36.094160",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "SLD Revisions",
