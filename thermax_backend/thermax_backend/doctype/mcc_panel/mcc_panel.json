@@ -206,21 +206,18 @@
    "options": "0\n1"
   },
   {
-   "default": "0",
    "fieldname": "is_blue_cb_spring_charge_selected",
    "fieldtype": "Link",
    "label": "Is Blue CB Spring Charge Selected",
    "options": "ACB Spring Charge Indication lamp"
   },
   {
-   "default": "0",
    "fieldname": "is_red_cb_in_service",
    "fieldtype": "Link",
    "label": "Is Red CB In Service",
    "options": "ACB Service Indication lamp"
   },
   {
-   "default": "0",
    "fieldname": "is_white_healthy_trip_circuit_selected",
    "fieldtype": "Link",
    "label": "Is White Healthy Trip Circuit Selected",
@@ -728,7 +725,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-02 11:33:40.822663",
+ "modified": "2025-01-06 17:35:58.152487",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "MCC Panel",
