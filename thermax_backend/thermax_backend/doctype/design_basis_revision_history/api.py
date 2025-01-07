@@ -125,11 +125,11 @@ def get_design_basis_excel():
         # Loading the Sheets of templates
 
 
-        cover_sheet = {}  # template_workbook["COVER"]
+        # cover_sheet = {}  # template_workbook["COVER"]
         design_basis_sheet = {} #template_workbook["Design Basis"]
-        # mcc_sheet = template_workbook["MCC"]
-        # pcc_sheet = template_workbook["PCC"]
-        # mcc_cum_plc_sheet = template_workbook["MCC CUM PLC"]
+        mcc_sheet = template_workbook["MCC"]
+        pcc_sheet = template_workbook["PCC"]
+        mcc_cum_plc_sheet = template_workbook["MCC CUM PLC"]
 
         
 
@@ -160,36 +160,34 @@ def get_design_basis_excel():
         consultant_name = project_data[0].get("consultant_name")
         modified = project_data[0].get("modified")
         
-        cover_sheet["A3"] = division_name.upper()
-        cover_sheet["D6"] = project_name.upper()
-        cover_sheet["D7"] = client_name.upper()
-        cover_sheet["D8"] = consultant_name.upper()
-        cover_sheet["D9"] = project_name.upper()
-        cover_sheet["D10"] = project_oc_number.upper()
-
-        cover_sheet["C29"] = revision_date
-        cover_sheet["D29"] = project_description
-        cover_sheet["E29"] = prepped_by_initial
-        cover_sheet["F29"] = checked_by_initial
-        cover_sheet["G29"] = super_user_initial
-        
-        
         # cover_sheet["A3"] = division_name.upper()
-        # cover_sheet["A3"] = division_name.upper()
+        # cover_sheet["D6"] = project_name.upper()
+        # cover_sheet["D7"] = client_name.upper()
+        # cover_sheet["D8"] = consultant_name.upper()
+        # cover_sheet["D9"] = project_name.upper()
+        # cover_sheet["D10"] = project_oc_number.upper()
 
-        match division_name:
-            case "Heating":
-                cover_sheet["A4"] = "PUNE - 411 019"
-            case "WWS SPG":
-                cover_sheet["A3"] = "WATER & WASTE SOLUTION"
-                cover_sheet["A4"] = "PUNE - 411 026"
-            case "WWS IPG":
-                cover_sheet["A3"] = "WATER & WASTE SOLUTION"
-                cover_sheet["A4"] = "PUNE - 411 026"
-            case "Enviro":
-                cover_sheet["A4"] = "PUNE - 411 026"
-            case _:
-                cover_sheet["A4"] = "PUNE - 411 026"
+        # cover_sheet["C29"] = revision_date
+        # cover_sheet["D29"] = project_description
+        # cover_sheet["E29"] = prepped_by_initial
+        # cover_sheet["F29"] = checked_by_initial
+        # cover_sheet["G29"] = super_user_initial
+        
+    
+
+        # match division_name:
+        #     case "Heating":
+        #         cover_sheet["A4"] = "PUNE - 411 019"
+        #     case "WWS SPG":
+        #         cover_sheet["A3"] = "WATER & WASTE SOLUTION"
+        #         cover_sheet["A4"] = "PUNE - 411 026"
+        #     case "WWS IPG":
+        #         cover_sheet["A3"] = "WATER & WASTE SOLUTION"
+        #         cover_sheet["A4"] = "PUNE - 411 026"
+        #     case "Enviro":
+        #         cover_sheet["A4"] = "PUNE - 411 026"
+        #     case _:
+        #         cover_sheet["A4"] = "PUNE - 411 026"
 
 
         # DESIGN BASIS SHEET ################################################################################################################################
@@ -873,6 +871,615 @@ def get_design_basis_excel():
         design_basis_sheet["C214"] = earth_strip
         design_basis_sheet["C215"] = earth_pit
         design_basis_sheet["C216"] = f"{soil_resistivity} ohm"
+
+        project_panel_data = frappe.db.get_list("Project Panel Data", {"revision_id": revision_id}, "*")
+        
+        for project_panel in project_panel_data:
+            if project_panel.get("panel_main_type") == "MCC":
+
+                mcc_panel_data = frappe.db.get_list("MCC Panel", {"revision_id" : revision_id}, "*")
+                mcc_panel_data = mcc_panel_data[0]
+
+
+                panel_id = mcc_panel_data.get("panel_id")
+                incomer_ampere = mcc_panel_data.get("incomer_ampere")
+                incomer_pole = mcc_panel_data.get("incomer_pole")
+                incomer_type = mcc_panel_data.get("incomer_type")
+                incomer_above_ampere = mcc_panel_data.get("incomer_above_ampere")
+                incomer_above_pole = mcc_panel_data.get("incomer_above_pole")
+                incomer_above_type = mcc_panel_data.get("incomer_above_type")
+                is_under_or_over_voltage_selected = mcc_panel_data.get("is_under_or_over_voltage_selected")
+                is_lsig_selected = mcc_panel_data.get("is_lsig_selected")
+                is_lsi_selected = mcc_panel_data.get("is_lsi_selected")
+                is_neural_link_with_disconnect_facility_selected = mcc_panel_data.get("is_neural_link_with_disconnect_facility_selected")
+                is_led_type_lamp_selected = mcc_panel_data.get("is_led_type_lamp_selected")
+
+                is_indication_on_selected = mcc_panel_data.get("is_indication_on_selected")
+                is_indication_off_selected = mcc_panel_data.get("is_indication_off_selected")
+                is_indication_trip_selected = mcc_panel_data.get("is_indication_trip_selected")
+                led_type_on_input = mcc_panel_data.get("led_type_on_input")
+                led_type_off_input = mcc_panel_data.get("led_type_off_input")
+                led_type_trip_input = mcc_panel_data.get("led_type_trip_input")
+                is_blue_cb_spring_charge_selected = mcc_panel_data.get("is_blue_cb_spring_charge_selected")
+                is_red_cb_in_service = mcc_panel_data.get("is_red_cb_in_service")
+                is_white_healthy_trip_circuit_selected = mcc_panel_data.get("is_white_healthy_trip_circuit_selected")
+                alarm_annunciator = mcc_panel_data.get("alarm_annunciator")
+                # led_type_other_input = mcc_panel_data.get("led_type_other_input")
+                # is_other_selected = mcc_panel_data.get("is_other_selected")
+
+                mcc_sheet["C6"] = led_type_on_input
+                mcc_sheet["C7"] = led_type_off_input
+                mcc_sheet["C8"] = led_type_trip_input
+                mcc_sheet["C9"] = is_blue_cb_spring_charge_selected
+                mcc_sheet["C10"] = is_red_cb_in_service
+                mcc_sheet["C11"] = is_white_healthy_trip_circuit_selected
+                mcc_sheet["C12"] = alarm_annunciator
+
+
+
+                mi_analog = mcc_panel_data.get("mi_analog")
+                mi_digital = mcc_panel_data.get("mi_digital")
+                mi_communication_protocol = mcc_panel_data.get("mi_communication_protocol")
+
+                mcc_sheet["C14"] = mi_analog
+                mcc_sheet["C15"] = mi_digital
+                mcc_sheet["C16"] = mi_communication_protocol
+                
+                
+                mcc_current_transformer_coating = mcc_panel_data.get("current_transformer_coating")
+                mcc_current_transformer_number = mcc_panel_data.get("current_transformer_number")
+                mcc_current_transformer_configuration = mcc_panel_data.get("current_transformer_configuration")
+                
+                mcc_sheet["C18"] = mcc_current_transformer_coating
+                mcc_sheet["C19"] = mcc_current_transformer_number
+                mcc_sheet["C20"] = mcc_current_transformer_configuration
+
+
+                mcc_control_transformer_coating = mcc_panel_data.get("control_transformer_coating")
+                mcc_control_transformer_configuration = mcc_panel_data.get("control_transformer_configuration")
+
+                is_power_and_bus_separation_section_selected = mcc_panel_data.get("is_power_and_bus_separation_section_selected")
+                is_both_side_extension_section_selected = mcc_panel_data.get("is_both_side_extension_section_selected")
+
+                ga_moc_material = mcc_panel_data.get("ga_moc_material")
+                ga_moc_thickness_door = mcc_panel_data.get("ga_moc_thickness_door")
+                ga_moc_thickness_covers = mcc_panel_data.get("ga_moc_thickness_covers") #top and side thickness
+                ga_gland_plate_thickness = mcc_panel_data.get("ga_gland_plate_thickness")
+                ga_panel_mounting_frame = mcc_panel_data.get("ga_panel_mounting_frame")
+                ga_panel_mounting_height = mcc_panel_data.get("ga_panel_mounting_height")
+                marshalling_section_text_area = mcc_panel_data.get("marshalling_section_text_area")
+                is_cable_alley_section_selected = mcc_panel_data.get("is_cable_alley_section_selected")
+                ga_power_and_control_busbar_separation = mcc_panel_data.get("ga_power_and_control_busbar_separation")
+                ga_enclosure_protection_degree = mcc_panel_data.get("ga_enclosure_protection_degree")
+                ga_cable_entry_position = mcc_panel_data.get("ga_cable_entry_position")
+                ga_busbar_chamber_position = mcc_panel_data.get("ga_busbar_chamber_position")
+
+                mcc_sheet["C22"] = ga_moc_material
+                mcc_sheet["C23"] = ""
+                mcc_sheet["C24"] = ga_moc_thickness_door
+                mcc_sheet["C25"] = ga_moc_thickness_covers
+                mcc_sheet["C26"] = ga_gland_plate_thickness
+                mcc_sheet["C27"] = ""
+                mcc_sheet["C28"] = ""
+                mcc_sheet["C29"] = ga_panel_mounting_frame
+                mcc_sheet["C30"] = ga_panel_mounting_height
+                mcc_sheet["C31"] = marshalling_section_text_area
+                mcc_sheet["C32"] = is_cable_alley_section_selected
+                mcc_sheet["C33"] = ga_power_and_control_busbar_separation
+                mcc_sheet["C34"] = is_both_side_extension_section_selected
+                mcc_sheet["C35"] = ga_busbar_chamber_position
+                mcc_sheet["C36"] = is_both_side_extension_section_selected
+                mcc_sheet["C37"] = ga_enclosure_protection_degree
+                mcc_sheet["C38"] = ga_cable_entry_position
+
+                general_requirments_for_construction = mcc_panel_data.get("general_requirments_for_construction")
+                ppc_interior_and_exterior_paint_shade = mcc_panel_data.get("ppc_interior_and_exterior_paint_shade")
+                ppc_component_mounting_plate_paint_shade = mcc_panel_data.get("ppc_component_mounting_plate_paint_shade")
+                ppc_minimum_coating_thickness = mcc_panel_data.get("ppc_minimum_coating_thickness")
+                ppc_pretreatment_panel_standard = mcc_panel_data.get("ppc_pretreatment_panel_standard")
+
+                ga_gland_plate_3mm_drill_type = mcc_panel_data.get("ga_gland_plate_3mm_drill_type")
+                ga_mcc_compartmental = mcc_panel_data.get("ga_mcc_compartmental")
+                ga_mcc_construction_front_type = mcc_panel_data.get("ga_mcc_construction_front_type")
+                incoming_drawout_type = mcc_panel_data.get("incoming_drawout_type")
+                outgoing_drawout_type = mcc_panel_data.get("outgoing_drawout_type")
+                ga_mcc_construction_type = mcc_panel_data.get("ga_mcc_construction_type")
+                busbar_material_of_construction = mcc_panel_data.get("busbar_material_of_construction")
+                ga_current_density = mcc_panel_data.get("ga_current_density")
+                is_marshalling_section_selected = mcc_panel_data.get("is_marshalling_section_selected")
+
+                mcc_sheet["C40"] = "As per OEM Standard"
+                mcc_sheet["C41"] = ppc_interior_and_exterior_paint_shade
+                mcc_sheet["C42"] = ppc_component_mounting_plate_paint_shade
+                mcc_sheet["C43"] = ppc_minimum_coating_thickness
+                mcc_sheet["C44"] = "Black"
+                mcc_sheet["C45"] = ppc_pretreatment_panel_standard
+                mcc_sheet["C46"] = general_requirments_for_construction
+
+                vfd_auto_manual_selection = mcc_panel_data.get("vfd_auto_manual_selection")
+                two_year_operational_spare = mcc_panel_data.get("two_year_operational_spare")
+                commissioning_spare = mcc_panel_data.get("commissioning_spare")
+
+                mcc_sheet["C48"] = vfd_auto_manual_selection
+                mcc_sheet["C50"] = commissioning_spare
+                mcc_sheet["C51"] = two_year_operational_spare
+                
+            
+                
+                ppc_painting_standards = mcc_panel_data.get("ppc_painting_standards")
+                ppc_base_frame_paint_shade = mcc_panel_data.get("ppc_base_frame_paint_shade")
+                is_punching_details_for_boiler_selected = mcc_panel_data.get("is_punching_details_for_boiler_selected")
+                boiler_model = mcc_panel_data.get("boiler_model")
+                boiler_fuel = mcc_panel_data.get("boiler_fuel")
+                boiler_year = mcc_panel_data.get("boiler_year")
+                boiler_power_supply_vac = mcc_panel_data.get("boiler_power_supply_vac")
+                boiler_power_supply_phase = mcc_panel_data.get("boiler_power_supply_phase")
+                boiler_power_supply_frequency = mcc_panel_data.get("boiler_power_supply_frequency")
+                boiler_control_supply_vac = mcc_panel_data.get("boiler_control_supply_vac")
+                boiler_control_supply_phase = mcc_panel_data.get("boiler_control_supply_phase")
+                boiler_control_supply_frequency = mcc_panel_data.get("boiler_control_supply_frequency")
+                boiler_evaporation = mcc_panel_data.get("boiler_evaporation")
+                boiler_output = mcc_panel_data.get("boiler_output")
+                boiler_connected_load = mcc_panel_data.get("boiler_connected_load")
+                boiler_design_pressure = mcc_panel_data.get("boiler_design_pressure")
+
+
+                mcc_sheet["C54"] = boiler_model
+                mcc_sheet["C55"] = boiler_fuel
+                mcc_sheet["C56"] = boiler_year
+                mcc_sheet["C57"] = f"{boiler_power_supply_vac}, {boiler_power_supply_phase}, {boiler_power_supply_frequency}"
+                mcc_sheet["C58"] = f"{boiler_control_supply_vac}, {boiler_control_supply_phase}, {boiler_control_supply_frequency}"
+                mcc_sheet["C59"] = f"{boiler_evaporation} kg/Hr"
+                mcc_sheet["C60"] = f"{boiler_output} MW"
+                mcc_sheet["C61"] = f"{boiler_connected_load} kW"
+                mcc_sheet["C62"] = f"{boiler_design_pressure} kg/cm2(g)/Bar"
+
+
+                is_punching_details_for_heater_selected = mcc_panel_data.get("is_punching_details_for_heater_selected")
+                heater_model = mcc_panel_data.get("heater_model")
+                heater_fuel = mcc_panel_data.get("heater_fuel")
+                heater_year = mcc_panel_data.get("heater_year")
+                heater_power_supply_vac = mcc_panel_data.get("heater_power_supply_vac")
+                heater_power_supply_phase = mcc_panel_data.get("heater_power_supply_phase")
+                heater_power_supply_frequency = mcc_panel_data.get("heater_power_supply_frequency")
+                heater_control_supply_vac = mcc_panel_data.get("heater_control_supply_vac")
+                heater_control_supply_phase = mcc_panel_data.get("heater_control_supply_phase")
+                heater_control_supply_frequency = mcc_panel_data.get("heater_control_supply_frequency")
+                heater_evaporation = mcc_panel_data.get("heater_evaporation")
+                heater_output = mcc_panel_data.get("heater_output")
+                heater_connected_load = mcc_panel_data.get("heater_connected_load")
+                heater_temperature = mcc_panel_data.get("heater_temperature")
+
+                mcc_sheet["C54"] = heater_model
+                mcc_sheet["C55"] = heater_fuel
+                mcc_sheet["C56"] = heater_year
+                mcc_sheet["C57"] = f"{heater_power_supply_vac}, {heater_power_supply_phase}, {heater_power_supply_frequency}"
+                mcc_sheet["C58"] = f"{heater_control_supply_vac}, {heater_control_supply_phase}, {heater_control_supply_frequency}"
+                mcc_sheet["C59"] = f"{heater_evaporation} Kcl/Hr"
+                mcc_sheet["C60"] = f"{heater_output} MW"
+                mcc_sheet["C61"] = f"{heater_connected_load} kW"
+                mcc_sheet["C62"] = f"{heater_temperature} Deg. C"
+
+                is_spg_applicable = mcc_panel_data.get("is_spg_applicable")
+                spg_name_plate_unit_name = mcc_panel_data.get("spg_name_plate_unit_name")
+                spg_name_plate_capacity = mcc_panel_data.get("spg_name_plate_capacity")
+                spg_name_plate_manufacturing_year = mcc_panel_data.get("spg_name_plate_manufacturing_year")
+                spg_name_plate_weight = mcc_panel_data.get("spg_name_plate_weight")
+                spg_name_plate_oc_number = mcc_panel_data.get("spg_name_plate_oc_number")
+                spg_name_plate_part_code = mcc_panel_data.get("spg_name_plate_part_code")
+                # special_note = mcc_panel_data.get("special_note")
+
+                mcc_sheet["C74"] = spg_name_plate_unit_name
+                mcc_sheet["C75"] = spg_name_plate_capacity
+                mcc_sheet["C76"] = spg_name_plate_manufacturing_year
+                mcc_sheet["C77"] = spg_name_plate_weight
+                mcc_sheet["C78"] = spg_name_plate_oc_number
+                mcc_sheet["C79"] = spg_name_plate_part_code
+
+            elif project_panel.get("panel_main_type") == "PCC" :
+
+                pcc_panel_data = frappe.db.get_list("PCC Panel", {"revision_id" : revision_id}, "*")
+                pcc_panel_data = pcc_panel_data[0]
+                
+                panel_id = pcc_panel_data.get("panel_id")
+                incomer_ampere = pcc_panel_data.get("incomer_ampere")
+                incomer_pole = pcc_panel_data.get("incomer_pole")
+                incomer_type = pcc_panel_data.get("incomer_type")
+                incomer_above_ampere = pcc_panel_data.get("incomer_above_ampere")
+                incomer_above_pole = pcc_panel_data.get("incomer_above_pole")
+                incomer_above_type = pcc_panel_data.get("incomer_above_type")
+                is_under_or_over_voltage_selected = pcc_panel_data.get("is_under_or_over_voltage_selected")
+                is_lsig_selected = pcc_panel_data.get("is_lsig_selected")
+                is_lsi_selected = pcc_panel_data.get("is_lsi_selected")
+                is_neural_link_with_disconnect_facility_selected = pcc_panel_data.get("is_neural_link_with_disconnect_facility_selected")
+                is_led_type_lamp_selected = pcc_panel_data.get("is_led_type_lamp_selected")
+                is_indication_on_selected = pcc_panel_data.get("is_indication_on_selected")
+                led_type_on_input = pcc_panel_data.get("led_type_on_input")
+                is_indication_off_selected = pcc_panel_data.get("is_indication_off_selected")
+                led_type_off_input = pcc_panel_data.get("led_type_off_input")
+                is_indication_trip_selected = pcc_panel_data.get("is_indication_trip_selected")
+                led_type_trip_input = pcc_panel_data.get("led_type_trip_input")
+                is_blue_cb_spring_charge_selected = pcc_panel_data.get("is_blue_cb_spring_charge_selected")
+                is_red_cb_in_service = pcc_panel_data.get("is_red_cb_in_service")
+                is_white_healthy_trip_circuit_selected = pcc_panel_data.get("is_white_healthy_trip_circuit_selected")
+                is_other_selected = pcc_panel_data.get("is_other_selected")
+                control_transformer_coating = pcc_panel_data.get("control_transformer_coating")
+                control_transformer_configuration = pcc_panel_data.get("control_transformer_configuration")
+                current_transformer_coating = pcc_panel_data.get("current_transformer_coating")
+                current_transformer_number = pcc_panel_data.get("current_transformer_number")
+                current_transformer_configuration = pcc_panel_data.get("current_transformer_configuration")
+                alarm_annunciator = pcc_panel_data.get("alarm_annunciator")
+                led_type_other_input = pcc_panel_data.get("led_type_other_input")
+                mi_analog = pcc_panel_data.get("mi_analog")
+                mi_digital = pcc_panel_data.get("mi_digital")
+                mi_communication_protocol = pcc_panel_data.get("mi_communication_protocol")
+                ga_moc_material = pcc_panel_data.get("ga_moc_material")
+                ga_moc_thickness_door = pcc_panel_data.get("ga_moc_thickness_door")
+                ga_moc_thickness_covers = pcc_panel_data.get("ga_moc_thickness_covers")
+                ga_pcc_compartmental = pcc_panel_data.get("ga_pcc_compartmental")
+                ga_pcc_construction_front_type = pcc_panel_data.get("ga_pcc_construction_front_type")
+                ga_pcc_construction_type = pcc_panel_data.get("ga_pcc_construction_type")
+                incoming_drawout_type = pcc_panel_data.get("incoming_drawout_type")
+                outgoing_drawout_type = pcc_panel_data.get("outgoing_drawout_type")
+                busbar_material_of_construction = pcc_panel_data.get("busbar_material_of_construction")
+                ga_current_density = pcc_panel_data.get("ga_current_density")
+                ga_panel_mounting_frame = pcc_panel_data.get("ga_panel_mounting_frame")
+                ga_panel_mounting_height = pcc_panel_data.get("ga_panel_mounting_height")
+                is_marshalling_section_selected = pcc_panel_data.get("is_marshalling_section_selected")
+                marshalling_section_text_area = pcc_panel_data.get("marshalling_section_text_area")
+                is_cable_alley_section_selected = pcc_panel_data.get("is_cable_alley_section_selected")
+                is_power_and_bus_separation_section_selected = pcc_panel_data.get("is_power_and_bus_separation_section_selected")
+                is_both_side_extension_section_selected = pcc_panel_data.get("is_both_side_extension_section_selected")
+                ga_gland_plate_3mm_drill_type = pcc_panel_data.get("ga_gland_plate_3mm_drill_type")
+                ga_gland_plate_3mm_attachment_type = pcc_panel_data.get("ga_gland_plate_3mm_attachment_type")
+                ga_busbar_chamber_position = pcc_panel_data.get("ga_busbar_chamber_position")
+                ga_power_and_control_busbar_separation = pcc_panel_data.get("ga_power_and_control_busbar_separation")
+                ga_enclosure_protection_degree = pcc_panel_data.get("ga_enclosure_protection_degree")
+                ga_cable_entry_position = pcc_panel_data.get("ga_cable_entry_position")
+                general_requirments_for_construction = pcc_panel_data.get("general_requirments_for_construction")
+                ppc_painting_standards = pcc_panel_data.get("ppc_painting_standards")
+                ppc_interior_and_exterior_paint_shade = pcc_panel_data.get("ppc_interior_and_exterior_paint_shade")
+                ppc_component_mounting_plate_paint_shade = pcc_panel_data.get("ppc_component_mounting_plate_paint_shade")
+                ppc_base_frame_paint_shade = pcc_panel_data.get("ppc_base_frame_paint_shade")
+                ppc_minimum_coating_thickness = pcc_panel_data.get("ppc_minimum_coating_thickness")
+                ppc_pretreatment_panel_standard = pcc_panel_data.get("ppc_pretreatment_panel_standard")
+                commissioning_spare = pcc_panel_data.get("commissioning_spare")
+                two_year_operational_spare = pcc_panel_data.get("two_year_operational_spare")
+                is_punching_details_for_boiler_selected = pcc_panel_data.get("is_punching_details_for_boiler_selected")
+                boiler_model = pcc_panel_data.get("boiler_model")
+                boiler_fuel = pcc_panel_data.get("boiler_fuel")
+                boiler_year = pcc_panel_data.get("boiler_year")
+                boiler_power_supply_vac = pcc_panel_data.get("boiler_power_supply_vac")
+                boiler_power_supply_phase = pcc_panel_data.get("boiler_power_supply_phase")
+                boiler_power_supply_frequency = pcc_panel_data.get("boiler_power_supply_frequency")
+                boiler_control_supply_vac = pcc_panel_data.get("boiler_control_supply_vac")
+                boiler_control_supply_phase = pcc_panel_data.get("boiler_control_supply_phase")
+                boiler_control_supply_frequency = pcc_panel_data.get("boiler_control_supply_frequency")
+                boiler_evaporation = pcc_panel_data.get("boiler_evaporation")
+                boiler_output = pcc_panel_data.get("boiler_output")
+                boiler_connected_load = pcc_panel_data.get("boiler_connected_load")
+                boiler_design_pressure = pcc_panel_data.get("boiler_design_pressure")
+                is_punching_details_for_heater_selected = pcc_panel_data.get("is_punching_details_for_heater_selected")
+                heater_model = pcc_panel_data.get("heater_model")
+                heater_fuel = pcc_panel_data.get("heater_fuel")
+                heater_year = pcc_panel_data.get("heater_year")
+                heater_power_supply_vac = pcc_panel_data.get("heater_power_supply_vac")
+                heater_power_supply_phase = pcc_panel_data.get("heater_power_supply_phase")
+                heater_power_supply_frequency = pcc_panel_data.get("heater_power_supply_frequency")
+                heater_control_supply_vac = pcc_panel_data.get("heater_control_supply_vac")
+                heater_control_supply_phase = pcc_panel_data.get("heater_control_supply_phase")
+                heater_control_supply_frequency = pcc_panel_data.get("heater_control_supply_frequency")
+                heater_evaporation = pcc_panel_data.get("heater_evaporation")
+                heater_output = pcc_panel_data.get("heater_output")
+                heater_connected_load = pcc_panel_data.get("heater_connected_load")
+                heater_temperature = pcc_panel_data.get("heater_temperature")
+                is_spg_applicable = pcc_panel_data.get("is_spg_applicable")
+                spg_name_plate_unit_name = pcc_panel_data.get("spg_name_plate_unit_name")
+                spg_name_plate_capacity = pcc_panel_data.get("spg_name_plate_capacity")
+                spg_name_plate_manufacturing_year = pcc_panel_data.get("spg_name_plate_manufacturing_year")
+                spg_name_plate_weight = pcc_panel_data.get("spg_name_plate_weight")
+                spg_name_plate_oc_number = pcc_panel_data.get("spg_name_plate_oc_number")
+                spg_name_plate_part_code = pcc_panel_data.get("spg_name_plate_part_code")
+                special_note = pcc_panel_data.get("special_note")
+
+                pcc_sheet["C6"] = led_type_on_input
+                pcc_sheet["C7"] = led_type_off_input
+                pcc_sheet["C8"] = led_type_trip_input
+                pcc_sheet["C9"] = is_blue_cb_spring_charge_selected
+                pcc_sheet["C10"] = is_red_cb_in_service
+                pcc_sheet["C11"] = is_white_healthy_trip_circuit_selected
+                pcc_sheet["C12"] = alarm_annunciator
+
+                pcc_sheet["C14"] = mi_analog
+                pcc_sheet["C15"] = mi_digital
+                pcc_sheet["C16"] = mi_communication_protocol
+                pcc_sheet["C18"] = mcc_current_transformer_coating
+                pcc_sheet["C19"] = mcc_current_transformer_number
+                pcc_sheet["C20"] = mcc_current_transformer_configuration
+                
+                pcc_sheet["C22"] = ga_moc_material
+                pcc_sheet["C23"] = ""
+                pcc_sheet["C24"] = ga_moc_thickness_door
+                pcc_sheet["C25"] = ga_moc_thickness_covers
+                pcc_sheet["C26"] = ga_gland_plate_thickness
+                pcc_sheet["C27"] = ""
+                pcc_sheet["C28"] = ""
+                pcc_sheet["C29"] = ga_panel_mounting_frame
+                pcc_sheet["C30"] = ga_panel_mounting_height
+                pcc_sheet["C31"] = marshalling_section_text_area
+                pcc_sheet["C32"] = is_cable_alley_section_selected
+                pcc_sheet["C33"] = ga_power_and_control_busbar_separation
+                pcc_sheet["C34"] = is_both_side_extension_section_selected
+                pcc_sheet["C35"] = ga_busbar_chamber_position
+                pcc_sheet["C36"] = is_both_side_extension_section_selected
+                pcc_sheet["C37"] = ga_enclosure_protection_degree
+                pcc_sheet["C38"] = ga_cable_entry_position
+
+                pcc_sheet["C40"] = "As per OEM Standard"
+                pcc_sheet["C41"] = ppc_interior_and_exterior_paint_shade
+                pcc_sheet["C42"] = ppc_component_mounting_plate_paint_shade
+                pcc_sheet["C43"] = ppc_minimum_coating_thickness
+                pcc_sheet["C44"] = "Black"
+                pcc_sheet["C45"] = ppc_pretreatment_panel_standard
+                pcc_sheet["C46"] = general_requirments_for_construction
+
+                pcc_sheet["C48"] = vfd_auto_manual_selection
+                pcc_sheet["C50"] = commissioning_spare
+                pcc_sheet["C51"] = two_year_operational_spare
+
+                pcc_sheet["C54"] = boiler_model
+                pcc_sheet["C55"] = boiler_fuel
+                pcc_sheet["C56"] = boiler_year
+                pcc_sheet["C57"] = f"{boiler_power_supply_vac}, {boiler_power_supply_phase}, {boiler_power_supply_frequency}"
+                pcc_sheet["C58"] = f"{boiler_control_supply_vac}, {boiler_control_supply_phase}, {boiler_control_supply_frequency}"
+                pcc_sheet["C59"] = f"{boiler_evaporation} kg/Hr"
+                pcc_sheet["C60"] = f"{boiler_output} MW"
+                pcc_sheet["C61"] = f"{boiler_connected_load} kW"
+                pcc_sheet["C62"] = f"{boiler_design_pressure} kg/cm2(g)/Bar"
+
+                pcc_sheet["C54"] = heater_model
+                pcc_sheet["C55"] = heater_fuel
+                pcc_sheet["C56"] = heater_year
+                pcc_sheet["C57"] = f"{heater_power_supply_vac}, {heater_power_supply_phase}, {heater_power_supply_frequency}"
+                pcc_sheet["C58"] = f"{heater_control_supply_vac}, {heater_control_supply_phase}, {heater_control_supply_frequency}"
+                pcc_sheet["C59"] = f"{heater_evaporation} Kcl/Hr"
+                pcc_sheet["C60"] = f"{heater_output} MW"
+                pcc_sheet["C61"] = f"{heater_connected_load} kW"
+                pcc_sheet["C62"] = f"{heater_temperature} Deg. C"
+
+                pcc_sheet["C74"] = spg_name_plate_unit_name
+                pcc_sheet["C75"] = spg_name_plate_capacity
+                pcc_sheet["C76"] = spg_name_plate_manufacturing_year
+                pcc_sheet["C77"] = spg_name_plate_weight
+                pcc_sheet["C78"] = spg_name_plate_oc_number
+                pcc_sheet["C79"] = spg_name_plate_part_code
+
+
+            elif project_panel.get("panel_main_type") == "MCC cum PCC":
+
+                mcc_panel_data = frappe.db.get_list("MCC Panel", {"revision_id" : revision_id}, "*")
+                mcc_panel_data = mcc_panel_data[0]
+
+                plc_1 = frappe.db.get_list("Panel PLC 1 - 3", {"revision_id": revision_id}, "*")
+                plc_1 = plc_1[0]
+                plc_2 = frappe.db.get_list("Panel PLC 2 - 3", {"revision_id": revision_id}, "*")
+                plc_2 = plc_2[0]
+                plc_3 = frappe.db.get_list("Panel PLC 3 - 3", {"revision_id": revision_id}, "2")
+                plc_3 = plc_3[0]
+
+                plc_panel_data = plc_1 | plc_2 | plc_3
+
+                
+
+
+
+
+                panel_id = mcc_panel_data.get("panel_id")
+                incomer_ampere = mcc_panel_data.get("incomer_ampere")
+                incomer_pole = mcc_panel_data.get("incomer_pole")
+                incomer_type = mcc_panel_data.get("incomer_type")
+                incomer_above_ampere = mcc_panel_data.get("incomer_above_ampere")
+                incomer_above_pole = mcc_panel_data.get("incomer_above_pole")
+                incomer_above_type = mcc_panel_data.get("incomer_above_type")
+                is_under_or_over_voltage_selected = mcc_panel_data.get("is_under_or_over_voltage_selected")
+                is_lsig_selected = mcc_panel_data.get("is_lsig_selected")
+                is_lsi_selected = mcc_panel_data.get("is_lsi_selected")
+                is_neural_link_with_disconnect_facility_selected = mcc_panel_data.get("is_neural_link_with_disconnect_facility_selected")
+                is_led_type_lamp_selected = mcc_panel_data.get("is_led_type_lamp_selected")
+
+                is_indication_on_selected = mcc_panel_data.get("is_indication_on_selected")
+                is_indication_off_selected = mcc_panel_data.get("is_indication_off_selected")
+                is_indication_trip_selected = mcc_panel_data.get("is_indication_trip_selected")
+                led_type_on_input = mcc_panel_data.get("led_type_on_input")
+                led_type_off_input = mcc_panel_data.get("led_type_off_input")
+                led_type_trip_input = mcc_panel_data.get("led_type_trip_input")
+                is_blue_cb_spring_charge_selected = mcc_panel_data.get("is_blue_cb_spring_charge_selected")
+                is_red_cb_in_service = mcc_panel_data.get("is_red_cb_in_service")
+                is_white_healthy_trip_circuit_selected = mcc_panel_data.get("is_white_healthy_trip_circuit_selected")
+                alarm_annunciator = mcc_panel_data.get("alarm_annunciator")
+                # led_type_other_input = mcc_panel_data.get("led_type_other_input")
+                # is_other_selected = mcc_panel_data.get("is_other_selected")
+
+                mcc_sheet["C6"] = led_type_on_input
+                mcc_sheet["C7"] = led_type_off_input
+                mcc_sheet["C8"] = led_type_trip_input
+                mcc_sheet["C9"] = is_blue_cb_spring_charge_selected
+                mcc_sheet["C10"] = is_red_cb_in_service
+                mcc_sheet["C11"] = is_white_healthy_trip_circuit_selected
+                mcc_sheet["C12"] = alarm_annunciator
+
+
+
+                mi_analog = mcc_panel_data.get("mi_analog")
+                mi_digital = mcc_panel_data.get("mi_digital")
+                mi_communication_protocol = mcc_panel_data.get("mi_communication_protocol")
+
+                mcc_sheet["C14"] = mi_analog
+                mcc_sheet["C15"] = mi_digital
+                mcc_sheet["C16"] = mi_communication_protocol
+                
+                
+                mcc_current_transformer_coating = mcc_panel_data.get("current_transformer_coating")
+                mcc_current_transformer_number = mcc_panel_data.get("current_transformer_number")
+                mcc_current_transformer_configuration = mcc_panel_data.get("current_transformer_configuration")
+                
+                mcc_sheet["C18"] = mcc_current_transformer_coating
+                mcc_sheet["C19"] = mcc_current_transformer_number
+                mcc_sheet["C20"] = mcc_current_transformer_configuration
+
+
+                mcc_control_transformer_coating = mcc_panel_data.get("control_transformer_coating")
+                mcc_control_transformer_configuration = mcc_panel_data.get("control_transformer_configuration")
+
+                is_power_and_bus_separation_section_selected = mcc_panel_data.get("is_power_and_bus_separation_section_selected")
+                is_both_side_extension_section_selected = mcc_panel_data.get("is_both_side_extension_section_selected")
+
+                ga_moc_material = mcc_panel_data.get("ga_moc_material")
+                ga_moc_thickness_door = mcc_panel_data.get("ga_moc_thickness_door")
+                ga_moc_thickness_covers = mcc_panel_data.get("ga_moc_thickness_covers") #top and side thickness
+                ga_gland_plate_thickness = mcc_panel_data.get("ga_gland_plate_thickness")
+                ga_panel_mounting_frame = mcc_panel_data.get("ga_panel_mounting_frame")
+                ga_panel_mounting_height = mcc_panel_data.get("ga_panel_mounting_height")
+                marshalling_section_text_area = mcc_panel_data.get("marshalling_section_text_area")
+                is_cable_alley_section_selected = mcc_panel_data.get("is_cable_alley_section_selected")
+                ga_power_and_control_busbar_separation = mcc_panel_data.get("ga_power_and_control_busbar_separation")
+                ga_enclosure_protection_degree = mcc_panel_data.get("ga_enclosure_protection_degree")
+                ga_cable_entry_position = mcc_panel_data.get("ga_cable_entry_position")
+                ga_busbar_chamber_position = mcc_panel_data.get("ga_busbar_chamber_position")
+
+                mcc_sheet["C22"] = ga_moc_material
+                mcc_sheet["C23"] = ""
+                mcc_sheet["C24"] = ga_moc_thickness_door
+                mcc_sheet["C25"] = ga_moc_thickness_covers
+                mcc_sheet["C26"] = ga_gland_plate_thickness
+                mcc_sheet["C27"] = ""
+                mcc_sheet["C28"] = ""
+                mcc_sheet["C29"] = ga_panel_mounting_frame
+                mcc_sheet["C30"] = ga_panel_mounting_height
+                mcc_sheet["C31"] = marshalling_section_text_area
+                mcc_sheet["C32"] = is_cable_alley_section_selected
+                mcc_sheet["C33"] = ga_power_and_control_busbar_separation
+                mcc_sheet["C34"] = is_both_side_extension_section_selected
+                mcc_sheet["C35"] = ga_busbar_chamber_position
+                mcc_sheet["C36"] = is_both_side_extension_section_selected
+                mcc_sheet["C37"] = ga_enclosure_protection_degree
+                mcc_sheet["C38"] = ga_cable_entry_position
+
+                general_requirments_for_construction = mcc_panel_data.get("general_requirments_for_construction")
+                ppc_interior_and_exterior_paint_shade = mcc_panel_data.get("ppc_interior_and_exterior_paint_shade")
+                ppc_component_mounting_plate_paint_shade = mcc_panel_data.get("ppc_component_mounting_plate_paint_shade")
+                ppc_minimum_coating_thickness = mcc_panel_data.get("ppc_minimum_coating_thickness")
+                ppc_pretreatment_panel_standard = mcc_panel_data.get("ppc_pretreatment_panel_standard")
+
+                ga_gland_plate_3mm_drill_type = mcc_panel_data.get("ga_gland_plate_3mm_drill_type")
+                ga_mcc_compartmental = mcc_panel_data.get("ga_mcc_compartmental")
+                ga_mcc_construction_front_type = mcc_panel_data.get("ga_mcc_construction_front_type")
+                incoming_drawout_type = mcc_panel_data.get("incoming_drawout_type")
+                outgoing_drawout_type = mcc_panel_data.get("outgoing_drawout_type")
+                ga_mcc_construction_type = mcc_panel_data.get("ga_mcc_construction_type")
+                busbar_material_of_construction = mcc_panel_data.get("busbar_material_of_construction")
+                ga_current_density = mcc_panel_data.get("ga_current_density")
+                is_marshalling_section_selected = mcc_panel_data.get("is_marshalling_section_selected")
+
+                mcc_sheet["C40"] = "As per OEM Standard"
+                mcc_sheet["C41"] = ppc_interior_and_exterior_paint_shade
+                mcc_sheet["C42"] = ppc_component_mounting_plate_paint_shade
+                mcc_sheet["C43"] = ppc_minimum_coating_thickness
+                mcc_sheet["C44"] = "Black"
+                mcc_sheet["C45"] = ppc_pretreatment_panel_standard
+                mcc_sheet["C46"] = general_requirments_for_construction
+
+                vfd_auto_manual_selection = mcc_panel_data.get("vfd_auto_manual_selection")
+                two_year_operational_spare = mcc_panel_data.get("two_year_operational_spare")
+                commissioning_spare = mcc_panel_data.get("commissioning_spare")
+
+                mcc_sheet["C48"] = vfd_auto_manual_selection
+                mcc_sheet["C50"] = commissioning_spare
+                mcc_sheet["C51"] = two_year_operational_spare
+                
+            
+                
+                ppc_painting_standards = mcc_panel_data.get("ppc_painting_standards")
+                ppc_base_frame_paint_shade = mcc_panel_data.get("ppc_base_frame_paint_shade")
+                is_punching_details_for_boiler_selected = mcc_panel_data.get("is_punching_details_for_boiler_selected")
+                boiler_model = mcc_panel_data.get("boiler_model")
+                boiler_fuel = mcc_panel_data.get("boiler_fuel")
+                boiler_year = mcc_panel_data.get("boiler_year")
+                boiler_power_supply_vac = mcc_panel_data.get("boiler_power_supply_vac")
+                boiler_power_supply_phase = mcc_panel_data.get("boiler_power_supply_phase")
+                boiler_power_supply_frequency = mcc_panel_data.get("boiler_power_supply_frequency")
+                boiler_control_supply_vac = mcc_panel_data.get("boiler_control_supply_vac")
+                boiler_control_supply_phase = mcc_panel_data.get("boiler_control_supply_phase")
+                boiler_control_supply_frequency = mcc_panel_data.get("boiler_control_supply_frequency")
+                boiler_evaporation = mcc_panel_data.get("boiler_evaporation")
+                boiler_output = mcc_panel_data.get("boiler_output")
+                boiler_connected_load = mcc_panel_data.get("boiler_connected_load")
+                boiler_design_pressure = mcc_panel_data.get("boiler_design_pressure")
+
+
+                mcc_sheet["C54"] = boiler_model
+                mcc_sheet["C55"] = boiler_fuel
+                mcc_sheet["C56"] = boiler_year
+                mcc_sheet["C57"] = f"{boiler_power_supply_vac}, {boiler_power_supply_phase}, {boiler_power_supply_frequency}"
+                mcc_sheet["C58"] = f"{boiler_control_supply_vac}, {boiler_control_supply_phase}, {boiler_control_supply_frequency}"
+                mcc_sheet["C59"] = f"{boiler_evaporation} kg/Hr"
+                mcc_sheet["C60"] = f"{boiler_output} MW"
+                mcc_sheet["C61"] = f"{boiler_connected_load} kW"
+                mcc_sheet["C62"] = f"{boiler_design_pressure} kg/cm2(g)/Bar"
+
+
+                is_punching_details_for_heater_selected = mcc_panel_data.get("is_punching_details_for_heater_selected")
+                heater_model = mcc_panel_data.get("heater_model")
+                heater_fuel = mcc_panel_data.get("heater_fuel")
+                heater_year = mcc_panel_data.get("heater_year")
+                heater_power_supply_vac = mcc_panel_data.get("heater_power_supply_vac")
+                heater_power_supply_phase = mcc_panel_data.get("heater_power_supply_phase")
+                heater_power_supply_frequency = mcc_panel_data.get("heater_power_supply_frequency")
+                heater_control_supply_vac = mcc_panel_data.get("heater_control_supply_vac")
+                heater_control_supply_phase = mcc_panel_data.get("heater_control_supply_phase")
+                heater_control_supply_frequency = mcc_panel_data.get("heater_control_supply_frequency")
+                heater_evaporation = mcc_panel_data.get("heater_evaporation")
+                heater_output = mcc_panel_data.get("heater_output")
+                heater_connected_load = mcc_panel_data.get("heater_connected_load")
+                heater_temperature = mcc_panel_data.get("heater_temperature")
+
+                mcc_sheet["C54"] = heater_model
+                mcc_sheet["C55"] = heater_fuel
+                mcc_sheet["C56"] = heater_year
+                mcc_sheet["C57"] = f"{heater_power_supply_vac}, {heater_power_supply_phase}, {heater_power_supply_frequency}"
+                mcc_sheet["C58"] = f"{heater_control_supply_vac}, {heater_control_supply_phase}, {heater_control_supply_frequency}"
+                mcc_sheet["C59"] = f"{heater_evaporation} Kcl/Hr"
+                mcc_sheet["C60"] = f"{heater_output} MW"
+                mcc_sheet["C61"] = f"{heater_connected_load} kW"
+                mcc_sheet["C62"] = f"{heater_temperature} Deg. C"
+
+                is_spg_applicable = mcc_panel_data.get("is_spg_applicable")
+                spg_name_plate_unit_name = mcc_panel_data.get("spg_name_plate_unit_name")
+                spg_name_plate_capacity = mcc_panel_data.get("spg_name_plate_capacity")
+                spg_name_plate_manufacturing_year = mcc_panel_data.get("spg_name_plate_manufacturing_year")
+                spg_name_plate_weight = mcc_panel_data.get("spg_name_plate_weight")
+                spg_name_plate_oc_number = mcc_panel_data.get("spg_name_plate_oc_number")
+                spg_name_plate_part_code = mcc_panel_data.get("spg_name_plate_part_code")
+                # special_note = mcc_panel_data.get("special_note")
+
+                mcc_sheet["C74"] = spg_name_plate_unit_name
+                mcc_sheet["C75"] = spg_name_plate_capacity
+                mcc_sheet["C76"] = spg_name_plate_manufacturing_year
+                mcc_sheet["C77"] = spg_name_plate_weight
+                mcc_sheet["C78"] = spg_name_plate_oc_number
+                mcc_sheet["C79"] = spg_name_plate_part_code
+
+
+
+
+                
+
+
+
+
+
+
+
         ###############################################################################################################
 
 
