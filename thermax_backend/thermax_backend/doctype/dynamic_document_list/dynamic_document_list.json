@@ -6,7 +6,9 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "linking_keys_section",
   "panel_id",
+  "section_break_dxon",
   "sld",
   "panel_specification",
   "tentative_panel_gad"
@@ -33,11 +35,20 @@
    "fieldname": "tentative_panel_gad",
    "fieldtype": "Data",
    "label": "Tentative Panel GAD"
+  },
+  {
+   "fieldname": "linking_keys_section",
+   "fieldtype": "Section Break",
+   "label": "Linking Keys"
+  },
+  {
+   "fieldname": "section_break_dxon",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-06 07:37:10.178867",
+ "modified": "2025-01-05 12:12:03.724290",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Dynamic Document List",

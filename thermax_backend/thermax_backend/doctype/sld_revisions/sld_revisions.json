@@ -12,7 +12,8 @@
   "status",
   "description",
   "switchgear_selection_data",
-  "incomer_data"
+  "incomer_data",
+  "sld_path"
  ],
  "fields": [
   {
@@ -55,11 +56,16 @@
    "fieldtype": "Select",
    "label": "Status",
    "options": "DEFAULT\nDOWNLOAD_READY\nIN_PROCESS\nSUCCESS\nERROR"
+  },
+  {
+   "fieldname": "sld_path",
+   "fieldtype": "Small Text",
+   "label": "SLD Path"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-03 14:49:22.392286",
+ "modified": "2025-01-05 11:46:17.486002",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "SLD Revisions",
