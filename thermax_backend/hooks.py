@@ -190,7 +190,6 @@ override_whitelisted_methods = {
     "cable_schedule_revisions.get_voltage_drop_excel": "thermax_backend.thermax_backend.doctype.cable_schedule_revisions.api.get_voltage_drop_excel",
     "cable_schedule_revisions.get_cable_schedule_excel": "thermax_backend.thermax_backend.doctype.cable_schedule_revisions.api.get_cable_schedule_excel",
     "project_information.get_project_info_dropdown_data": "thermax_backend.thermax_backend.doctype.project_information.api.get_project_info_dropdown_data",
-<<<<<<< HEAD
     "design_basis_make_of_component.get_make_of_component_dropdowns":"thermax_backend.thermax_backend.doctype.design_basis_make_of_component.api.get_make_of_component_dropdowns",
     "design_basis_motor_parameters.get_motor_parameters_dropdowns":"thermax_backend.thermax_backend.doctype.design_basis_motor_parameters.api.get_motor_parameters_dropdowns",
     "common_configuration_1.get_common_config_dropdown":"thermax_backend.thermax_backend.doctype.common_configuration_1.api.get_common_config_dropdown",
@@ -199,15 +198,6 @@ override_whitelisted_methods = {
     "plc_panel.get_plc_panel_dropdown":"thermax_backend.thermax_backend.doctype.plc_panel.api.get_plc_panel_dropdown",
     "layout_earthing.get_layout_earthing_dropdown":"thermax_backend.thermax_backend.doctype.layout_earthing.api.get_layout_earthing_dropdown",
     "cable_tray_layout.get_cable_tray_layout_dropdown":"thermax_backend.thermax_backend.doctype.cable_tray_layout.api.get_cable_tray_layout_dropdown",
-=======
-    "design_basis_make_of_component.get_make_of_component_dropdowns": "thermax_backend.thermax_backend.doctype.design_basis_make_of_component.api.get_make_of_component_dropdowns",
-    "design_basis_motor_parameters.get_motor_parameters_dropdowns": "thermax_backend.thermax_backend.doctype.design_basis_motor_parameters.api.get_motor_parameters_dropdowns",
-    "common_configuration.get_common_config_dropdown": "thermax_backend.thermax_backend.doctype.common_configuration.api.get_common_config_dropdown",
-    "pcc_panel.get_pcc_panel_dropdown": "thermax_backend.thermax_backend.doctype.pcc_panel.api.get_pcc_panel_dropdown",
-    "mcc_panel.get_mcc_panel_dropdown": "thermax_backend.thermax_backend.doctype.mcc_panel.api.get_mcc_panel_dropdown",
-    "plc_panel.get_plc_panel_dropdown": "thermax_backend.thermax_backend.doctype.plc_panel.api.get_plc_panel_dropdown",
-    "layout_earthing.get_layout_earthing_dropdown": "thermax_backend.thermax_backend.doctype.layout_earthing.api.get_layout_earthing_dropdown",
-    "cable_tray_layout.get_cable_tray_layout_dropdown": "thermax_backend.thermax_backend.doctype.cable_tray_layout.api.get_cable_tray_layout_dropdown",
     "sld_revisions.get_data_for_sld_generation": "thermax_backend.thermax_backend.doctype.sld_revisions.api.get_data_for_sld_generation",
     "project.send_custom_mail": "thermax_backend.thermax_backend.doctype.project.api.send_custom_mail",
 }

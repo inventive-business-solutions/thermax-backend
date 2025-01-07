@@ -125,7 +125,7 @@ def get_design_basis_excel():
         # Loading the Sheets of templates
 
 
-        # cover_sheet = {}  # template_workbook["COVER"]
+        cover_sheet = {}  # template_workbook["COVER"]
         design_basis_sheet = {} #template_workbook["Design Basis"]
         mcc_sheet = template_workbook["MCC"]
         pcc_sheet = template_workbook["PCC"]
