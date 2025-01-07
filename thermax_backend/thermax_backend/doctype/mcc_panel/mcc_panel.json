@@ -59,7 +59,7 @@
   "is_power_and_bus_separation_section_selected",
   "is_both_side_extension_section_selected",
   "ga_gland_plate_3mm_drill_type",
-  "ga_gland_plate_3mm_attachment_type",
+  "ga_gland_plate_thickness",
   "ga_busbar_chamber_position",
   "ga_power_and_control_busbar_separation",
   "ga_enclosure_protection_degree",
@@ -349,12 +349,6 @@
    "fieldtype": "Link",
    "label": "GA Gland Plate 3mm Drill Type",
    "options": "GA Gland Plate 3mm Drill Type"
-  },
-  {
-   "fieldname": "ga_gland_plate_3mm_attachment_type",
-   "fieldtype": "Link",
-   "label": "GA Gland Plate 3mm Attachment Type",
-   "options": "GA Gland Plate 3mm Attachment Type"
   },
   {
    "fieldname": "ga_busbar_chamber_position",
@@ -721,6 +715,12 @@
    "fieldname": "commissioning_spare",
    "fieldtype": "Data",
    "label": "Commissioning Spare"
+  },
+  {
+   "fieldname": "ga_gland_plate_thickness",
+   "fieldtype": "Link",
+   "label": "GA Gland Plate Thickness",
+   "options": "GA Gland Plate 3mm Attachment Type"
   }
  ],
  "index_web_pages_for_search": 1,
