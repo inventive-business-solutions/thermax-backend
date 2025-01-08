@@ -44,6 +44,7 @@
   "mi_communication_protocol",
   "general_arrangement_section",
   "ga_moc_material",
+  "door_thickness",
   "ga_moc_thickness_door",
   "ga_moc_thickness_covers",
   "ga_pcc_compartmental",
@@ -61,6 +62,7 @@
   "is_power_and_bus_separation_section_selected",
   "is_both_side_extension_section_selected",
   "ga_gland_plate_3mm_drill_type",
+  "ga_gland_plate_thickness",
   "ga_gland_plate_3mm_attachment_type",
   "ga_busbar_chamber_position",
   "ga_power_and_control_busbar_separation",
@@ -698,15 +700,13 @@
   },
   {
    "fieldname": "incoming_drawout_type",
-   "fieldtype": "Link",
-   "label": "Incoming Drawout Type",
-   "options": "GA MCC Construction Draw Out Type"
+   "fieldtype": "Data",
+   "label": "Incoming Drawout Type"
   },
   {
    "fieldname": "outgoing_drawout_type",
-   "fieldtype": "Link",
-   "label": "Outgoing Drawout Type",
-   "options": "GA MCC Construction Draw Out Type"
+   "fieldtype": "Data",
+   "label": "Outgoing Drawout Type"
   },
   {
    "fieldname": "marshalling_section_text_area",
@@ -727,11 +727,22 @@
    "fieldname": "two_year_operational_spare",
    "fieldtype": "Data",
    "label": "Two Year Operational Spare"
+  },
+  {
+   "fieldname": "door_thickness",
+   "fieldtype": "Link",
+   "label": "Door Thickness",
+   "options": "GA MOC Thickness Door"
+  },
+  {
+   "fieldname": "ga_gland_plate_thickness",
+   "fieldtype": "Data",
+   "label": "GA Gland Plate Thickness"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-02 11:34:25.488302",
+ "modified": "2025-01-07 23:24:57.922253",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "PCC Panel",
