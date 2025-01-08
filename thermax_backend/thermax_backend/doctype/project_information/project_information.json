@@ -199,7 +199,7 @@
    "label": "Project Information"
   },
   {
-   "default": "750",
+   "default": "1",
    "fieldname": "altitude",
    "fieldtype": "Data",
    "label": "Altitude"
@@ -231,7 +231,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-08 13:41:07.034902",
+ "modified": "2024-12-23 11:39:36.891969",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Project Information",
