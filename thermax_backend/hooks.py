@@ -190,6 +190,7 @@ override_whitelisted_methods = {
     "cable_schedule_revisions.get_voltage_drop_excel": "thermax_backend.thermax_backend.doctype.cable_schedule_revisions.api.get_voltage_drop_excel",
     "cable_schedule_revisions.get_cable_schedule_excel": "thermax_backend.thermax_backend.doctype.cable_schedule_revisions.api.get_cable_schedule_excel",
     "project_information.get_project_info_dropdown_data": "thermax_backend.thermax_backend.doctype.project_information.api.get_project_info_dropdown_data",
+
     "design_basis_make_of_component.get_make_of_component_dropdowns": "thermax_backend.thermax_backend.doctype.design_basis_make_of_component.api.get_make_of_component_dropdowns",
     "design_basis_motor_parameters.get_motor_parameters_dropdowns": "thermax_backend.thermax_backend.doctype.design_basis_motor_parameters.api.get_motor_parameters_dropdowns",
     "common_configuration.get_common_config_dropdown": "thermax_backend.thermax_backend.doctype.common_configuration.api.get_common_config_dropdown",

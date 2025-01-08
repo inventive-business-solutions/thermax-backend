@@ -124,9 +124,9 @@ def get_design_basis_excel():
 
         cover_sheet = {}  # template_workbook["COVER"]
         design_basis_sheet = {}  # template_workbook["Design Basis"]
-        # mcc_sheet = template_workbook["MCC"]
-        # pcc_sheet = template_workbook["PCC"]
-        # mcc_cum_plc_sheet = template_workbook["MCC CUM PLC"]
+        mcc_sheet = template_workbook["MCC"]
+        pcc_sheet = template_workbook["PCC"]
+        mcc_cum_plc_sheet = template_workbook["MCC CUM PLC"]
 
         prepped_by_initial = frappe.db.get_value(
             "Thermax Extended User", owner, "name_initial"
