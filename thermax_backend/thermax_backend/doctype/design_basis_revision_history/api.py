@@ -128,7 +128,9 @@ def get_design_basis_excel():
     # Loading the Sheets of templates
 
     cover_sheet = template_workbook["Cover"]  # template_workbook["COVER"]
-    design_basis_sheet = template_workbook["Design Basis"]  # template_workbook["Design Basis"]
+    design_basis_sheet = template_workbook[
+        "Design Basis"
+    ]  # template_workbook["Design Basis"]
     mcc_sheet = template_workbook["MCC"]
     pcc_sheet = template_workbook["PCC"]
     mcc_cum_plc_sheet = template_workbook["MCC CUM PLC"]
@@ -198,22 +200,24 @@ def get_design_basis_excel():
     control_supply = project_info_data.get("control_supply")
     control_supply_variation = project_info_data.get("control_supply_variation")
     control_supply_phase = project_info_data.get("control_supply_phase")
-    control_supply_data = f"{control_supply}, {control_supply_variation}%, {control_supply_phase}"
+    control_supply_data = (
+        f"{control_supply}, {control_supply_variation}%, {control_supply_phase}"
+    )
     if control_supply_variation == "NA":
         control_supply_data = control_supply
 
     utility_supply = project_info_data.get("utility_supply")
     utility_supply_variation = project_info_data.get("utility_supply_variation")
     utility_supply_phase = project_info_data.get("utility_supply_phase")
-    utility_supply_data = f"{utility_supply}, {utility_supply_variation}%, {utility_supply_phase}"
+    utility_supply_data = (
+        f"{utility_supply}, {utility_supply_variation}%, {utility_supply_phase}"
+    )
     if utility_supply_variation == "NA":
         utility_supply_data = utility_supply
 
     project_info_freq = project_info_data.get("frequency")
     preojct_info_freq_var = project_info_data.get("frequency_variation")
-    project_info_frequency_data = (
-        f"{project_info_freq} Hz , {preojct_info_freq_var}%"
-    )
+    project_info_frequency_data = f"{project_info_freq} Hz , {preojct_info_freq_var}%"
 
     project_info_fault = project_info_data.get("fault_level")
     project_info_sec = project_info_data.get("sec")
@@ -265,10 +269,8 @@ def get_design_basis_excel():
     # safe_sub_package = []
     # hazardous_sub_package = []
 
-    # for sub_package in sub_package_data: 
+    # for sub_package in sub_package_data:
     #     if sub_package["area_of_classification"] == "Safe Area":
-            
-
 
     # for main_package in main_packages_data:
     #     # Get all Sub Package records
@@ -431,7 +433,9 @@ def get_design_basis_excel():
     design_basis_sheet["C39"] = f"{safe_area_winding_rtd} kW & Above"
     design_basis_sheet["C40"] = safe_area_bearing_type
     design_basis_sheet["C41"] = safe_area_duty
-    design_basis_sheet["C42"] = int(safe_area_service_factor)
+    design_basis_sheet["C42"] = (
+        int(safe_area_service_factor) if safe_area_service_factor else ""
+    )
     design_basis_sheet["C43"] = safe_area_cooling_type
     design_basis_sheet["C44"] = safe_area_body_material
     design_basis_sheet["C45"] = safe_area_terminal_box_material
@@ -453,7 +457,9 @@ def get_design_basis_excel():
     design_basis_sheet["D39"] = f"{hazardous_area_winding_rtd} kW & Above"
     design_basis_sheet["D40"] = hazardous_area_bearing_type
     design_basis_sheet["D41"] = hazardous_area_duty
-    design_basis_sheet["D42"] = int(hazardous_area_service_factor)
+    design_basis_sheet["D42"] = (
+        int(hazardous_area_service_factor) if hazardous_area_service_factor else ""
+    )
     design_basis_sheet["D43"] = hazardous_area_cooling_type
     design_basis_sheet["D44"] = hazardous_area_body_material
     design_basis_sheet["D45"] = hazardous_area_terminal_box_material
@@ -468,12 +474,16 @@ def get_design_basis_excel():
     make_of_components_data = make_of_components_data[0]
 
     def handle_make_of_component(component):
-        component = component.replace('"', "").replace("[", "").replace("]", "")
-        if(component) == "NA":
+        component = (
+            component.replace('"', "").replace("[", "").replace("]", "")
+            if component
+            else "NA"
+        )
+        if (component) == "NA":
             return "Not Applicable"
-        else :
+        else:
             return component
-            
+
     motor = make_of_components_data.get("motor")
     cable = make_of_components_data.get("cable")
     lv_switchgear = make_of_components_data.get("lv_switchgear")
@@ -498,7 +508,9 @@ def get_design_basis_excel():
     design_basis_sheet["C51"] = handle_make_of_component(cable)
     design_basis_sheet["C52"] = handle_make_of_component(lv_switchgear)
     design_basis_sheet["C53"] = handle_make_of_component(panel_enclosure)
-    design_basis_sheet["C54"] = handle_make_of_component(variable_frequency_speed_drive_vfd_vsd)
+    design_basis_sheet["C54"] = handle_make_of_component(
+        variable_frequency_speed_drive_vfd_vsd
+    )
     design_basis_sheet["C55"] = handle_make_of_component(soft_starter)
     design_basis_sheet["C56"] = handle_make_of_component(plc)
 
@@ -1831,10 +1843,7 @@ def get_design_basis_excel():
             mcc_sheet["C78"] = spg_name_plate_oc_number
             mcc_sheet["C79"] = spg_name_plate_part_code
 
-
-
             # PLC fields
-            
 
     ###############################################################################################################
 
