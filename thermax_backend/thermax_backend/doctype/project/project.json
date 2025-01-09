@@ -18,12 +18,12 @@
  "fields": [
   {
    "fieldname": "project_name",
-   "fieldtype": "Data",
+   "fieldtype": "Small Text",
    "label": "Project Name"
   },
   {
    "fieldname": "project_oc_number",
-   "fieldtype": "Data",
+   "fieldtype": "Small Text",
    "label": "Project OC Number"
   },
   {
@@ -63,7 +63,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-02 17:16:35.522780",
+ "modified": "2025-01-09 18:11:02.034703",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Project",
