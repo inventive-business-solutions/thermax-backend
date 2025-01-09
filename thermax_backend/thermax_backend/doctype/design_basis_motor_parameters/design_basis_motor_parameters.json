@@ -6,6 +6,7 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "is_safe_area_present",
   "revision_id",
   "safe_area_efficiency_level",
   "safe_area_insulation_class",
@@ -299,11 +300,17 @@
    "fieldname": "hazardous_area_starts_hour_permissible",
    "fieldtype": "Data",
    "label": "Hazardous Area Starts Hour Permissible"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_safe_area_present",
+   "fieldtype": "Check",
+   "label": "Is Safe Area Present"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-06 07:42:31.996099",
+ "modified": "2025-01-09 16:34:41.067680",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Design Basis Motor Parameters",

@@ -123,12 +123,12 @@ def get_design_basis_excel():
     consultant_name = project_data.get("consultant_name")
     modified = project_data.get("modified")
 
-    ###############################################################################################################
+    ########################################################################################################################
 
     # Loading the Sheets of templates
 
-    cover_sheet = {}  # template_workbook["COVER"]
-    design_basis_sheet = {}  # template_workbook["Design Basis"]
+    cover_sheet = template_workbook["Cover"]  # template_workbook["COVER"]
+    design_basis_sheet = template_workbook["Design Basis"]  # template_workbook["Design Basis"]
     mcc_sheet = template_workbook["MCC"]
     pcc_sheet = template_workbook["PCC"]
     mcc_cum_plc_sheet = template_workbook["MCC CUM PLC"]
@@ -246,11 +246,11 @@ def get_design_basis_excel():
     design_basis_sheet["C10"] = f"{ambient_temperature_max} Deg. C"
     design_basis_sheet["C11"] = f"{ambient_temperature_min} Deg. C"
     design_basis_sheet["C12"] = f"{electrical_design_temperature} Deg. C"
-    design_basis_sheet["C13"] = seismic_zone
-    design_basis_sheet["C14"] = f"{max_humidity} %"
-    design_basis_sheet["C15"] = f"{min_humidity} %"
-    design_basis_sheet["C16"] = f"{avg_humidity} %"
-    design_basis_sheet["C17"] = f"{performance_humidity} %"
+    design_basis_sheet["C13"] = int(seismic_zone)
+    design_basis_sheet["C14"] = f"{max_humidity}%"
+    design_basis_sheet["C15"] = f"{min_humidity}%"
+    design_basis_sheet["C16"] = f"{avg_humidity}%"
+    design_basis_sheet["C17"] = f"{performance_humidity}%"
     design_basis_sheet["C18"] = f"{altitude} meters"
 
     main_packages_data = frappe.db.get_list(
@@ -259,17 +259,18 @@ def get_design_basis_excel():
         filters={"revision_id": revision_id},
         order_by="creation asc",
     )
+    main_packages_data = main_packages_data[0]
 
-    for main_package in main_packages_data:
-        # Get all Sub Package records
-        sub_packages = frappe.get_doc(
-            "Project Main Package", main_package["name"]
-        ).sub_packages
-        main_package["sub_packages"] = sub_packages
+    # for main_package in main_packages_data:
+    #     # Get all Sub Package records
+    #     sub_packages = frappe.get_doc(
+    #         "Project Main Package", main_package["name"]
+    #     ).sub_packages
+    #     main_package["sub_packages"] = sub_packages
 
     main_package_name = ""
-    if len(main_packages_data) > 1:
-        main_package_name = main_packages_data.get("main_package_name")
+    # if len(main_packages_data) > 1:
+    main_package_name = main_packages_data.get("main_package_name")
 
     area_classification_data = frappe.db.get_value(
         "Project Main Package",
@@ -421,7 +422,7 @@ def get_design_basis_excel():
     design_basis_sheet["C39"] = f"{safe_area_winding_rtd} kW & Above"
     design_basis_sheet["C40"] = safe_area_bearing_type
     design_basis_sheet["C41"] = safe_area_duty
-    design_basis_sheet["C42"] = safe_area_service_factor
+    design_basis_sheet["C42"] = int(safe_area_service_factor)
     design_basis_sheet["C43"] = safe_area_cooling_type
     design_basis_sheet["C44"] = safe_area_body_material
     design_basis_sheet["C45"] = safe_area_terminal_box_material
@@ -443,7 +444,7 @@ def get_design_basis_excel():
     design_basis_sheet["D39"] = f"{hazardous_area_winding_rtd} kW & Above"
     design_basis_sheet["D40"] = hazardous_area_bearing_type
     design_basis_sheet["D41"] = hazardous_area_duty
-    design_basis_sheet["D42"] = hazardous_area_service_factor
+    design_basis_sheet["D42"] = int(hazardous_area_service_factor)
     design_basis_sheet["D43"] = hazardous_area_cooling_type
     design_basis_sheet["D44"] = hazardous_area_body_material
     design_basis_sheet["D45"] = hazardous_area_terminal_box_material
@@ -457,6 +458,13 @@ def get_design_basis_excel():
     )
     make_of_components_data = make_of_components_data[0]
 
+    def handle_make_of_component(component):
+        component = component.replace('"', "").replace("[", "").replace("]", "")
+        if(component) == "NA":
+            return "Not Applicable"
+        else :
+            return component
+            
     motor = make_of_components_data.get("motor")
     cable = make_of_components_data.get("cable")
     lv_switchgear = make_of_components_data.get("lv_switchgear")
@@ -477,21 +485,21 @@ def get_design_basis_excel():
     preferred_plc = make_of_components_data.get("preferred_plc")
     # preferred_gland_make = make_of_components_data.get("preferred_gland_make") ,
 
-    design_basis_sheet["C50"] = motor
-    design_basis_sheet["C51"] = cable
-    design_basis_sheet["C52"] = lv_switchgear
-    design_basis_sheet["C53"] = panel_enclosure
-    design_basis_sheet["C54"] = variable_frequency_speed_drive_vfd_vsd
-    design_basis_sheet["C55"] = soft_starter
-    design_basis_sheet["C56"] = plc
+    design_basis_sheet["C50"] = handle_make_of_component(motor)
+    design_basis_sheet["C51"] = handle_make_of_component(cable)
+    design_basis_sheet["C52"] = handle_make_of_component(lv_switchgear)
+    design_basis_sheet["C53"] = handle_make_of_component(panel_enclosure)
+    design_basis_sheet["C54"] = handle_make_of_component(variable_frequency_speed_drive_vfd_vsd)
+    design_basis_sheet["C55"] = handle_make_of_component(soft_starter)
+    design_basis_sheet["C56"] = handle_make_of_component(plc)
 
-    design_basis_sheet["D50"] = preferred_motor
-    design_basis_sheet["D51"] = preferred_cable
-    design_basis_sheet["D52"] = preferred_lv_switchgear
-    design_basis_sheet["D53"] = preferred_panel_enclosure
-    design_basis_sheet["D54"] = preferred_vfdvsd
-    design_basis_sheet["D55"] = preferred_soft_starter
-    design_basis_sheet["D56"] = preferred_plc
+    # design_basis_sheet["D50"] = preferred_motor
+    # design_basis_sheet["D51"] = preferred_cable
+    # design_basis_sheet["D52"] = preferred_lv_switchgear
+    # design_basis_sheet["D53"] = preferred_panel_enclosure
+    # design_basis_sheet["D54"] = preferred_vfdvsd
+    # design_basis_sheet["D55"] = preferred_soft_starter
+    # design_basis_sheet["D56"] = preferred_plc
 
     # COMMON CONFIGURATION
 
@@ -551,11 +559,11 @@ def get_design_basis_excel():
     digital_meters = common_config_data.get("digital_meters")
     communication_protocol = common_config_data.get("communication_protocol")
 
-    design_basis_sheet["71"] = f"{ammeter} kW & Above"
-    design_basis_sheet["72"] = ammeter_configuration
-    design_basis_sheet["73"] = analog_meters
-    design_basis_sheet["74"] = digital_meters
-    design_basis_sheet["75"] = communication_protocol
+    design_basis_sheet["C71"] = f"{ammeter} kW & Above"
+    design_basis_sheet["C72"] = ammeter_configuration
+    design_basis_sheet["C73"] = analog_meters
+    design_basis_sheet["C74"] = digital_meters
+    design_basis_sheet["C75"] = communication_protocol
 
     current_transformer = common_config_data.get("current_transformer")
     current_transformer_coating = common_config_data.get("current_transformer_coating")
@@ -577,7 +585,7 @@ def get_design_basis_excel():
     supply_feeder_standard = common_config_data.get("supply_feeder_standard")
     dm_standard = common_config_data.get("dm_standard")
 
-    design_basis_sheet["84"] = dm_standard
+    # design_basis_sheet["84"] = dm_standard
 
     power_wiring_color = common_config_data.get("power_wiring_color")
     power_wiring_size = common_config_data.get("power_wiring_size")
@@ -694,7 +702,7 @@ def get_design_basis_excel():
     safe_field_motor_type = common_config_data.get("safe_field_motor_type")
     safe_field_motor_enclosure = common_config_data.get("safe_field_motor_enclosure")
     safe_field_motor_material = common_config_data.get("safe_field_motor_material")
-    # safe_field_motor_thickness = common_config_data.get("safe_field_motor_thickness")
+    safe_field_motor_thickness = common_config_data.get("safe_field_motor_thickness")
     safe_field_motor_qty = common_config_data.get("safe_field_motor_qty")
     safe_field_motor_isolator_color_shade = common_config_data.get(
         "safe_field_motor_isolator_color_shade"
@@ -804,7 +812,7 @@ def get_design_basis_excel():
     design_basis_sheet["D151"] = hazardous_lpbs_canopy_type
 
     apfc_relay = common_config_data.get("apfc_relay")
-    design_basis_sheet["D153"] = f"{apfc_relay} Stage"
+    # design_basis_sheet["D153"] = f"{apfc_relay} Stage"
 
     power_bus_main_busbar_selection = common_config_data.get(
         "power_bus_main_busbar_selection"
@@ -905,21 +913,21 @@ def get_design_basis_excel():
     derating_factor_burid = cable_tray_data.get("derating_factor_burid")
     cable_installation = cable_tray_data.get("cable_installation")
 
-    design_basis_sheet["183"] = number_of_cores
-    design_basis_sheet["184"] = specific_requirement
-    design_basis_sheet["185"] = type_of_insulation
-    design_basis_sheet["186"] = color_scheme
-    design_basis_sheet["187"] = f"{motor_voltage_drop_during_starting} %"
-    design_basis_sheet["188"] = f"{motor_voltage_drop_during_running} %"
-    design_basis_sheet["189"] = voltage_grade
-    design_basis_sheet["190"] = f"{copper_conductor} Sq. mm"
-    design_basis_sheet["191"] = f"{aluminium_conductor} Sq. mm"
-    design_basis_sheet["192"] = touching_factor_air
-    design_basis_sheet["193"] = ambient_temp_factor_air
-    design_basis_sheet["194"] = derating_factor_air
-    design_basis_sheet["195"] = touching_factor_burid
-    design_basis_sheet["196"] = ambient_temp_factor_burid
-    design_basis_sheet["197"] = derating_factor_burid
+    design_basis_sheet["C183"] = number_of_cores
+    design_basis_sheet["C184"] = specific_requirement
+    design_basis_sheet["C185"] = type_of_insulation
+    design_basis_sheet["C186"] = color_scheme
+    design_basis_sheet["C187"] = f"{motor_voltage_drop_during_starting} %"
+    design_basis_sheet["C188"] = f"{motor_voltage_drop_during_running} %"
+    design_basis_sheet["C189"] = voltage_grade
+    design_basis_sheet["C190"] = f"{copper_conductor} Sq. mm"
+    design_basis_sheet["C191"] = f"{aluminium_conductor} Sq. mm"
+    design_basis_sheet["C192"] = touching_factor_air
+    design_basis_sheet["C193"] = ambient_temp_factor_air
+    design_basis_sheet["C194"] = derating_factor_air
+    design_basis_sheet["C195"] = touching_factor_burid
+    design_basis_sheet["C196"] = ambient_temp_factor_burid
+    design_basis_sheet["C197"] = derating_factor_burid
 
     gland_make = cable_tray_data.get("gland_make")
     moc = cable_tray_data.get("moc")
@@ -1479,8 +1487,8 @@ def get_design_basis_excel():
             pcc_sheet["C46"] = general_requirments_for_construction
 
             pcc_sheet["C48"] = vfd_auto_manual_selection
-            pcc_sheet["C50"] = commissioning_spare
-            pcc_sheet["C51"] = two_year_operational_spare
+            # pcc_sheet["C50"] = commissioning_spare
+            # pcc_sheet["C51"] = two_year_operational_spare
 
             pcc_sheet["C54"] = boiler_model
             pcc_sheet["C55"] = boiler_fuel
@@ -1493,7 +1501,7 @@ def get_design_basis_excel():
             )
             pcc_sheet["C59"] = f"{boiler_evaporation} kg/Hr"
             pcc_sheet["C60"] = f"{boiler_output} MW"
-            pcc_sheet["C61"] = f"{boiler_connected_load} kW"
+            # pcc_sheet["C61"] = f"{boiler_connected_load} kW"
             pcc_sheet["C62"] = f"{boiler_design_pressure} kg/cm2(g)/Bar"
 
             pcc_sheet["C54"] = heater_model
@@ -1507,7 +1515,7 @@ def get_design_basis_excel():
             )
             pcc_sheet["C59"] = f"{heater_evaporation} Kcl/Hr"
             pcc_sheet["C60"] = f"{heater_output} MW"
-            pcc_sheet["C61"] = f"{heater_connected_load} kW"
+            # pcc_sheet["C61"] = f"{heater_connected_load} kW"
             pcc_sheet["C62"] = f"{heater_temperature} Deg. C"
 
             pcc_sheet["C74"] = spg_name_plate_unit_name
