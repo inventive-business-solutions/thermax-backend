@@ -190,7 +190,7 @@ def get_design_basis_excel():
     main_supply_mv = project_info_data.get("main_supply_mv")
     main_supply_mv_variation = project_info_data.get("main_supply_mv_variation")
     main_supply_mv_phase = project_info_data.get("main_supply_mv_phase")
-    mv_data = f"{main_supply_mv}, {main_supply_mv_variation}, {main_supply_mv_phase}"
+    mv_data = f"{main_supply_mv}, {main_supply_mv_variation}%, {main_supply_mv_phase}"
 
     if main_supply_mv == "NA":
         mv_data = "Not Applicable"
@@ -198,26 +198,26 @@ def get_design_basis_excel():
     control_supply = project_info_data.get("control_supply")
     control_supply_variation = project_info_data.get("control_supply_variation")
     control_supply_phase = project_info_data.get("control_supply_phase")
-    control_supply_data = f"{control_supply}, Variation: {control_supply_variation}, {control_supply_phase}"
+    control_supply_data = f"{control_supply}, {control_supply_variation}%, {control_supply_phase}"
     if control_supply_variation == "NA":
         control_supply_data = control_supply
 
     utility_supply = project_info_data.get("utility_supply")
     utility_supply_variation = project_info_data.get("utility_supply_variation")
     utility_supply_phase = project_info_data.get("utility_supply_phase")
-    utility_supply_data = f"{utility_supply}, Variation: {utility_supply_variation}, {utility_supply_phase}"
+    utility_supply_data = f"{utility_supply}, {utility_supply_variation}%, {utility_supply_phase}"
     if utility_supply_variation == "NA":
         utility_supply_data = utility_supply
 
     project_info_freq = project_info_data.get("frequency")
     preojct_info_freq_var = project_info_data.get("frequency_variation")
     project_info_frequency_data = (
-        f"{project_info_freq} Hz , Variation: {preojct_info_freq_var}"
+        f"{project_info_freq} Hz , {preojct_info_freq_var}%"
     )
 
     project_info_fault = project_info_data.get("fault_level")
     project_info_sec = project_info_data.get("sec")
-    fault_data = f"{project_info_fault} KA, {project_info_sec} Sec"
+    fault_data = f"{project_info_fault} kA, {project_info_sec} Sec"
 
     ambient_temperature_max = project_info_data.get("ambient_temperature_max")
     ambient_temperature_min = project_info_data.get("ambient_temperature_min")
@@ -260,6 +260,15 @@ def get_design_basis_excel():
         order_by="creation asc",
     )
     main_packages_data = main_packages_data[0]
+
+    # sub_package_data = main_packages_data["sub_packages"]
+    # safe_sub_package = []
+    # hazardous_sub_package = []
+
+    # for sub_package in sub_package_data: 
+    #     if sub_package["area_of_classification"] == "Safe Area":
+            
+
 
     # for main_package in main_packages_data:
     #     # Get all Sub Package records
@@ -1821,6 +1830,11 @@ def get_design_basis_excel():
             mcc_sheet["C77"] = spg_name_plate_weight
             mcc_sheet["C78"] = spg_name_plate_oc_number
             mcc_sheet["C79"] = spg_name_plate_part_code
+
+
+
+            # PLC fields
+            
 
     ###############################################################################################################
 
