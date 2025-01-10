@@ -10,7 +10,8 @@
   "digital_signature",
   "division",
   "name_initial",
-  "is_superuser"
+  "is_superuser",
+  "hashed_token"
  ],
  "fields": [
   {
@@ -41,11 +42,16 @@
    "fieldname": "is_superuser",
    "fieldtype": "Check",
    "label": "Is Superuser"
+  },
+  {
+   "fieldname": "hashed_token",
+   "fieldtype": "Data",
+   "label": "Hashed Token"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-06 08:37:53.137801",
+ "modified": "2025-01-10 11:31:10.794813",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Thermax Extended User",
