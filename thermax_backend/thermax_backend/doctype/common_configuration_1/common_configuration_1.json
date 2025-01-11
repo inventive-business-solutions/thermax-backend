@@ -293,9 +293,8 @@
   {
    "default": "0",
    "fieldname": "is_control_transformer_applicable",
-   "fieldtype": "Select",
-   "label": "Is Control Transformer Applicable",
-   "options": "0\n1"
+   "fieldtype": "Check",
+   "label": "Is Control Transformer Applicable"
   },
   {
    "fieldname": "control_transformer_primary_voltage",
@@ -411,7 +410,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-03 08:37:35.403441",
+ "modified": "2025-01-10 15:35:20.506272",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Common Configuration 1",

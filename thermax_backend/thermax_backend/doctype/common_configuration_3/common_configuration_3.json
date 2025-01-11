@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "hash",
  "creation": "2024-12-26 15:51:28.322053",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -169,10 +170,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-05 10:13:37.836676",
+ "modified": "2025-01-10 15:50:16.755464",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Common Configuration 3",
+ "naming_rule": "Random",
  "owner": "Administrator",
  "permissions": [
   {
