@@ -184,7 +184,7 @@ def get_design_basis_excel():
     main_supply_lv = project_info_data.get("main_supply_lv")
     main_supply_lv_variation = project_info_data.get("main_supply_lv_variation")
     main_supply_lv_phase = project_info_data.get("main_supply_lv_phase")
-    lv_data = f"{main_supply_lv}, {main_supply_lv_variation}, {main_supply_lv_phase}"
+    lv_data = f"{main_supply_lv}, {main_supply_lv_variation}%, {main_supply_lv_phase}"
 
     if main_supply_lv == "NA":
         lv_data = "Not Applicable"
@@ -266,11 +266,21 @@ def get_design_basis_excel():
     main_packages_data = main_packages_data[0]
 
     # sub_package_data = main_packages_data["sub_packages"]
-    # safe_sub_package = []
-    # hazardous_sub_package = []
+    safe_sub_package = []
+    hazardous_sub_package = []
 
     # for sub_package in sub_package_data:
     #     if sub_package["area_of_classification"] == "Safe Area":
+    #         safe_sub_package.append(sub_package['sub_package_name'])
+    #     else:
+    #         hazardous_sub_package.append(sub_package['sub_package_name'])
+
+
+    safe_sub_package = ', '.join(safe_sub_package)
+    hazardous_sub_package = ', '.join(hazardous_sub_package)
+
+
+
 
     # for main_package in main_packages_data:
     #     # Get all Sub Package records
@@ -317,8 +327,8 @@ def get_design_basis_excel():
     )
 
     design_basis_sheet["C20"] = main_package_name
-    design_basis_sheet["C21"] = main_package_name
-    design_basis_sheet["C22"] = main_package_name
+    design_basis_sheet["C21"] = safe_sub_package
+    design_basis_sheet["C22"] = hazardous_sub_package
     design_basis_sheet["C23"] = (
         f"Standard-{standard}, {classification_1}, Gas Group-{gas_group}, Temperature Class-{temperature_class}"
     )
@@ -418,6 +428,18 @@ def get_design_basis_excel():
         "hazardous_area_starts_hour_permissible"
     )
 
+    if safe_area_bearing_rtd == "NA":
+        safe_area_bearing_rtd = "Not Applicable"
+    
+    if safe_area_winding_rtd == "NA":
+        safe_area_winding_rtd = "Not Applicable"
+
+    if hazardous_area_bearing_rtd == "NA":
+        hazardous_area_bearing_rtd = "Not Applicable"
+    
+    if hazardous_area_winding_rtd == "NA":
+        hazardous_area_winding_rtd = "Not Applicable"
+
     design_basis_sheet["C27"] = safe_area_efficiency_level
     design_basis_sheet["C28"] = safe_area_insulation_class
     design_basis_sheet["C29"] = safe_area_temperature_rise
@@ -425,10 +447,10 @@ def get_design_basis_excel():
     design_basis_sheet["C31"] = f"{safe_area_max_temperature} Deg. C"
     design_basis_sheet["C32"] = f"{safe_area_min_temperature} Deg. C"
     design_basis_sheet["C33"] = f"{safe_area_altitude} meters"
-    design_basis_sheet["C34"] = f"{safe_area_terminal_box_ip_rating} kW & Above"
+    design_basis_sheet["C34"] = f"{safe_area_terminal_box_ip_rating}"
     design_basis_sheet["C35"] = f"{safe_area_thermister} kW & Above"
     design_basis_sheet["C36"] = f"{safe_area_space_heater} kW & Above"
-    design_basis_sheet["C37"] = f"{safe_area_certification} kW & Above"
+    design_basis_sheet["C37"] = f"{safe_area_certification}"
     design_basis_sheet["C38"] = f"{safe_area_bearing_rtd} kW & Above"
     design_basis_sheet["C39"] = f"{safe_area_winding_rtd} kW & Above"
     design_basis_sheet["C40"] = safe_area_bearing_type
@@ -449,10 +471,10 @@ def get_design_basis_excel():
     design_basis_sheet["D31"] = f"{hazardous_area_max_temperature} Deg. C"
     design_basis_sheet["D32"] = f"{hazardous_area_min_temperature} Deg. C"
     design_basis_sheet["D33"] = f"{hazardous_area_altitude} meters"
-    design_basis_sheet["D34"] = f"{hazardous_area_terminal_box_ip_rating} kW & Above"
+    design_basis_sheet["D34"] = f"{hazardous_area_terminal_box_ip_rating}"
     design_basis_sheet["D35"] = f"{hazardous_area_thermister} kW & Above"
     design_basis_sheet["D36"] = f"{hazardous_area_space_heater} kW & Above"
-    design_basis_sheet["D37"] = f"{hazardous_area_certification} kW & Above"
+    design_basis_sheet["D37"] = f"{hazardous_area_certification}"
     design_basis_sheet["D38"] = f"{hazardous_area_bearing_rtd} kW & Above"
     design_basis_sheet["D39"] = f"{hazardous_area_winding_rtd} kW & Above"
     design_basis_sheet["D40"] = hazardous_area_bearing_type
