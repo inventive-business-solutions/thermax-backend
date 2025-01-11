@@ -329,15 +329,13 @@
   },
   {
    "fieldname": "digital_meters",
-   "fieldtype": "Link",
-   "label": "Digital Meters",
-   "options": "Digital Meters"
+   "fieldtype": "Small Text",
+   "label": "Digital Meters"
   },
   {
    "fieldname": "analog_meters",
-   "fieldtype": "Link",
-   "label": "Analog Meters",
-   "options": "Analog Meters"
+   "fieldtype": "Small Text",
+   "label": "Analog Meters"
   },
   {
    "fieldname": "communication_protocol",
@@ -411,7 +409,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-03 08:37:35.403441",
+ "modified": "2025-01-11 18:04:07.597461",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Common Configuration 1",
