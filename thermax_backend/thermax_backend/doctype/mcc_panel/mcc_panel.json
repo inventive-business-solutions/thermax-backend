@@ -408,7 +408,7 @@
   },
   {
    "fieldname": "ppc_pretreatment_panel_standard",
-   "fieldtype": "Data",
+   "fieldtype": "Small Text",
    "label": "PPC Pretreatment Panel Standard"
   },
   {
@@ -696,7 +696,7 @@
   },
   {
    "fieldname": "marshalling_section_text_area",
-   "fieldtype": "Data",
+   "fieldtype": "Small Text",
    "label": "Marshalling Section Text Area"
   },
   {
@@ -722,7 +722,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-11 18:05:50.535249",
+ "modified": "2025-01-11 18:42:13.733476",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "MCC Panel",
