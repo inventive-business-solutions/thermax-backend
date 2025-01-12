@@ -1,194 +1,196 @@
 {
- "actions": [],
- "allow_rename": 1,
- "creation": "2024-12-26 15:51:28.322053",
- "doctype": "DocType",
- "engine": "InnoDB",
- "field_order": [
-  "linking_keys_section",
-  "revision_id",
-  "section_break_dmjt",
-  "column_break_sthc",
-  "earth_bus_main_busbar_selection",
-  "earth_bus_busbar_position",
-  "earth_bus_material",
-  "earth_bus_current_density",
-  "earth_bus_rating_of_busbar",
-  "door_earthing",
-  "instrument_earth",
-  "general_note_busbar_and_insulation_materials",
-  "metering_for_feeders",
-  "cooling_fans",
-  "louvers_and_filters",
-  "alarm_annunciator",
-  "control_transformer",
-  "commissioning_spare",
-  "two_year_operational_spare",
-  "current_transformer",
-  "current_transformer_coating",
-  "current_transformer_quantity",
-  "current_transformer_configuration",
-  "control_transformer_type"
- ],
- "fields": [
-  {
-   "fieldname": "linking_keys_section",
-   "fieldtype": "Section Break",
-   "label": "Linking Keys"
-  },
-  {
-   "fieldname": "revision_id",
-   "fieldtype": "Link",
-   "label": "Revision ID",
-   "options": "Design Basis Revision History"
-  },
-  {
-   "fieldname": "section_break_dmjt",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "column_break_sthc",
-   "fieldtype": "Column Break",
-   "options": "CC Commissioning spare"
-  },
-  {
-   "fieldname": "earth_bus_main_busbar_selection",
-   "fieldtype": "Link",
-   "label": "Earth Bus Main Busbar Selection",
-   "options": "Earth Bus Main Busbar Selection"
-  },
-  {
-   "fieldname": "earth_bus_busbar_position",
-   "fieldtype": "Link",
-   "label": "Earth Bus Busbar Position",
-   "options": "Earth Bus Busbar Position"
-  },
-  {
-   "fieldname": "earth_bus_material",
-   "fieldtype": "Link",
-   "label": "Earth Bus Material",
-   "options": "Earth Bus Material"
-  },
-  {
-   "fieldname": "earth_bus_current_density",
-   "fieldtype": "Link",
-   "label": "Earth Bus Current Density",
-   "options": "Earth Bus Current Density"
-  },
-  {
-   "fieldname": "earth_bus_rating_of_busbar",
-   "fieldtype": "Data",
-   "label": "Earth Bus Rating of Busbar"
-  },
-  {
-   "fieldname": "door_earthing",
-   "fieldtype": "Data",
-   "label": "Door Earthing"
-  },
-  {
-   "fieldname": "instrument_earth",
-   "fieldtype": "Data",
-   "label": "Instrument Earth"
-  },
-  {
-   "fieldname": "general_note_busbar_and_insulation_materials",
-   "fieldtype": "Data",
-   "label": "General Note Busbar and Insulation Materials"
-  },
-  {
-   "fieldname": "metering_for_feeders",
-   "fieldtype": "Link",
-   "label": "Metering For Feeders",
-   "options": "Metering for Feeder"
-  },
-  {
-   "fieldname": "cooling_fans",
-   "fieldtype": "Select",
-   "label": "Cooling Fans",
-   "options": "Applicable\nNot Applicable"
-  },
-  {
-   "fieldname": "louvers_and_filters",
-   "fieldtype": "Select",
-   "label": "Louvers and Filters",
-   "options": "Applicable\nNot Applicable"
-  },
-  {
-   "fieldname": "alarm_annunciator",
-   "fieldtype": "Select",
-   "label": "Alarm Annunciator",
-   "options": "Applicable\nNot Applicable"
-  },
-  {
-   "fieldname": "control_transformer",
-   "fieldtype": "Select",
-   "label": "Control Transformer",
-   "options": "Applicable\nNot Applicable"
-  },
-  {
-   "fieldname": "commissioning_spare",
-   "fieldtype": "Text",
-   "label": "Commissioning Spare"
-  },
-  {
-   "fieldname": "two_year_operational_spare",
-   "fieldtype": "Text",
-   "label": "Two Year Operational spare",
-   "options": "CC Two year operational spare"
-  },
-  {
-   "fieldname": "current_transformer",
-   "fieldtype": "Link",
-   "label": "Current Transformer",
-   "options": "Current Transformer"
-  },
-  {
-   "fieldname": "current_transformer_coating",
-   "fieldtype": "Link",
-   "label": "Current Transformer Coating",
-   "options": "Current Transformer Coating"
-  },
-  {
-   "fieldname": "current_transformer_quantity",
-   "fieldtype": "Link",
-   "label": "Current Transformer Quantity",
-   "options": "Current Transformer Number"
-  },
-  {
-   "fieldname": "current_transformer_configuration",
-   "fieldtype": "Link",
-   "label": "Current Transformer Configuration",
-   "options": "Current Transformer Configuration"
-  },
-  {
-   "fieldname": "control_transformer_type",
-   "fieldtype": "Link",
-   "label": "Control Transformer Type",
-   "options": "Control Transformer Type"
-  }
- ],
- "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2025-01-12 01:03:23.008876",
- "modified_by": "Administrator",
- "module": "Thermax Backend",
- "name": "Common Configuration 3",
- "owner": "Administrator",
- "permissions": [
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "System Manager",
-   "share": 1,
-   "write": 1
-  }
- ],
- "sort_field": "modified",
- "sort_order": "DESC",
- "states": []
+  "actions": [],
+  "allow_rename": 1,
+  "autoname": "hash",
+  "creation": "2024-12-26 15:51:28.322053",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "linking_keys_section",
+    "revision_id",
+    "section_break_dmjt",
+    "column_break_sthc",
+    "earth_bus_main_busbar_selection",
+    "earth_bus_busbar_position",
+    "earth_bus_material",
+    "earth_bus_current_density",
+    "earth_bus_rating_of_busbar",
+    "door_earthing",
+    "instrument_earth",
+    "general_note_busbar_and_insulation_materials",
+    "metering_for_feeders",
+    "cooling_fans",
+    "louvers_and_filters",
+    "alarm_annunciator",
+    "control_transformer",
+    "commissioning_spare",
+    "two_year_operational_spare",
+    "current_transformer",
+    "current_transformer_coating",
+    "current_transformer_quantity",
+    "current_transformer_configuration",
+    "control_transformer_type"
+  ],
+  "fields": [
+    {
+      "fieldname": "linking_keys_section",
+      "fieldtype": "Section Break",
+      "label": "Linking Keys"
+    },
+    {
+      "fieldname": "revision_id",
+      "fieldtype": "Link",
+      "label": "Revision ID",
+      "options": "Design Basis Revision History"
+    },
+    {
+      "fieldname": "section_break_dmjt",
+      "fieldtype": "Section Break"
+    },
+    {
+      "fieldname": "column_break_sthc",
+      "fieldtype": "Column Break",
+      "options": "CC Commissioning spare"
+    },
+    {
+      "fieldname": "earth_bus_main_busbar_selection",
+      "fieldtype": "Link",
+      "label": "Earth Bus Main Busbar Selection",
+      "options": "Earth Bus Main Busbar Selection"
+    },
+    {
+      "fieldname": "earth_bus_busbar_position",
+      "fieldtype": "Link",
+      "label": "Earth Bus Busbar Position",
+      "options": "Earth Bus Busbar Position"
+    },
+    {
+      "fieldname": "earth_bus_material",
+      "fieldtype": "Link",
+      "label": "Earth Bus Material",
+      "options": "Earth Bus Material"
+    },
+    {
+      "fieldname": "earth_bus_current_density",
+      "fieldtype": "Link",
+      "label": "Earth Bus Current Density",
+      "options": "Earth Bus Current Density"
+    },
+    {
+      "fieldname": "earth_bus_rating_of_busbar",
+      "fieldtype": "Data",
+      "label": "Earth Bus Rating of Busbar"
+    },
+    {
+      "fieldname": "door_earthing",
+      "fieldtype": "Data",
+      "label": "Door Earthing"
+    },
+    {
+      "fieldname": "instrument_earth",
+      "fieldtype": "Data",
+      "label": "Instrument Earth"
+    },
+    {
+      "fieldname": "general_note_busbar_and_insulation_materials",
+      "fieldtype": "Data",
+      "label": "General Note Busbar and Insulation Materials"
+    },
+    {
+      "fieldname": "metering_for_feeders",
+      "fieldtype": "Link",
+      "label": "Metering For Feeders",
+      "options": "Metering for Feeder"
+    },
+    {
+      "fieldname": "cooling_fans",
+      "fieldtype": "Select",
+      "label": "Cooling Fans",
+      "options": "Applicable\nNot Applicable"
+    },
+    {
+      "fieldname": "louvers_and_filters",
+      "fieldtype": "Select",
+      "label": "Louvers and Filters",
+      "options": "Applicable\nNot Applicable"
+    },
+    {
+      "fieldname": "alarm_annunciator",
+      "fieldtype": "Select",
+      "label": "Alarm Annunciator",
+      "options": "Applicable\nNot Applicable"
+    },
+    {
+      "fieldname": "control_transformer",
+      "fieldtype": "Select",
+      "label": "Control Transformer",
+      "options": "Applicable\nNot Applicable"
+    },
+    {
+      "fieldname": "commissioning_spare",
+      "fieldtype": "Text",
+      "label": "Commissioning Spare"
+    },
+    {
+      "fieldname": "two_year_operational_spare",
+      "fieldtype": "Text",
+      "label": "Two Year Operational spare",
+      "options": "CC Two year operational spare"
+    },
+    {
+      "fieldname": "current_transformer",
+      "fieldtype": "Link",
+      "label": "Current Transformer",
+      "options": "Current Transformer"
+    },
+    {
+      "fieldname": "current_transformer_coating",
+      "fieldtype": "Link",
+      "label": "Current Transformer Coating",
+      "options": "Current Transformer Coating"
+    },
+    {
+      "fieldname": "current_transformer_quantity",
+      "fieldtype": "Link",
+      "label": "Current Transformer Quantity",
+      "options": "Current Transformer Number"
+    },
+    {
+      "fieldname": "current_transformer_configuration",
+      "fieldtype": "Link",
+      "label": "Current Transformer Configuration",
+      "options": "Current Transformer Configuration"
+    },
+    {
+      "fieldname": "control_transformer_type",
+      "fieldtype": "Link",
+      "label": "Control Transformer Type",
+      "options": "Control Transformer Type"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2025-01-12 01:03:23.008876",
+  "modified_by": "Administrator",
+  "module": "Thermax Backend",
+  "name": "Common Configuration 3",
+  "naming_rule": "Random",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "states": []
 }

@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "hash",
  "creation": "2024-12-26 12:16:51.924603",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -84,22 +85,22 @@
    "fieldtype": "Section Break"
   },
   {
+   "default": "0",
    "fieldname": "is_field_motor_isolator_selected",
-   "fieldtype": "Select",
-   "label": "Is Field Motor Isolator Selected",
-   "options": "0\n1"
+   "fieldtype": "Check",
+   "label": "Is Field Motor Isolator Selected"
   },
   {
+   "default": "0",
    "fieldname": "is_safe_area_isolator_selected",
-   "fieldtype": "Select",
-   "label": "Is Safe Area Isolator Selected",
-   "options": "0\n1"
+   "fieldtype": "Check",
+   "label": "Is Safe Area Isolator Selected"
   },
   {
+   "default": "0",
    "fieldname": "is_local_push_button_station_selected",
-   "fieldtype": "Select",
-   "label": "Is Local Push Button Station Selected",
-   "options": "0\n1"
+   "fieldtype": "Check",
+   "label": "Is Local Push Button Station Selected"
   },
   {
    "fieldname": "selector_switch_applicable",
@@ -432,10 +433,11 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-29 01:25:34.784542",
+ "modified": "2025-01-10 15:46:02.096890",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Common Configuration 2",
+ "naming_rule": "Random",
  "owner": "Administrator",
  "permissions": [
   {
