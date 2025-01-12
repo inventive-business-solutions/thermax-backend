@@ -1110,7 +1110,7 @@ def get_design_basis_excel():
             panel_sheet["C19"] = current_transformer_number
             panel_sheet["C20"] = current_transformer_configuration
 
-            # mcc_sheet["C22"] = ga_moc_material
+            panel_sheet["C22"] = ga_moc_material
             # mcc_sheet["C23"] = ""
             # mcc_sheet["C24"] = ""
             # mcc_sheet["C25"] = ga_moc_thickness_covers
