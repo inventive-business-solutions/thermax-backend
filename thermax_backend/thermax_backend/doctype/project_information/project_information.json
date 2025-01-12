@@ -184,9 +184,8 @@
   {
    "default": "2",
    "fieldname": "seismic_zone",
-   "fieldtype": "Link",
-   "label": "Seismic Zone",
-   "options": "Seismic zone"
+   "fieldtype": "Data",
+   "label": "Seismic Zone"
   },
   {
    "fieldname": "linking_keys_section",
@@ -231,7 +230,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-09 18:21:30.550026",
+ "modified": "2025-01-12 13:17:12.829490",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Project Information",

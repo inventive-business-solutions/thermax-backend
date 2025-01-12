@@ -7,19 +7,25 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "dropdown_section",
   "spare_terminal"
  ],
  "fields": [
   {
    "fieldname": "spare_terminal",
-   "fieldtype": "Int",
+   "fieldtype": "Data",
    "label": "Spare Terminal",
    "unique": 1
+  },
+  {
+   "fieldname": "dropdown_section",
+   "fieldtype": "Section Break",
+   "label": "Dropdown"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-10-15 10:04:35.826658",
+ "modified": "2025-01-10 14:31:06.143263",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Spare Terminal",
