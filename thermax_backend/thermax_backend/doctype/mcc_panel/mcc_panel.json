@@ -243,21 +243,19 @@
   },
   {
    "fieldname": "mi_analog",
-   "fieldtype": "Link",
-   "label": "MI Analog",
-   "options": "MI Analog"
+   "fieldtype": "Small Text",
+   "label": "MI Analog"
   },
   {
    "fieldname": "mi_digital",
-   "fieldtype": "Link",
-   "label": "MI Digital",
-   "options": "MI Digital"
+   "fieldtype": "Small Text",
+   "label": "MI Digital"
   },
   {
    "fieldname": "mi_communication_protocol",
    "fieldtype": "Link",
    "label": "MI Communication Protocol",
-   "options": "MI Communication Protocol"
+   "options": "Communication Protocol"
   },
   {
    "fieldname": "ga_moc_material",
@@ -410,7 +408,7 @@
   },
   {
    "fieldname": "ppc_pretreatment_panel_standard",
-   "fieldtype": "Data",
+   "fieldtype": "Small Text",
    "label": "PPC Pretreatment Panel Standard"
   },
   {
@@ -718,14 +716,13 @@
   },
   {
    "fieldname": "ga_gland_plate_thickness",
-   "fieldtype": "Link",
-   "label": "GA Gland Plate Thickness",
-   "options": "GA Gland Plate 3mm Attachment Type"
+   "fieldtype": "Data",
+   "label": "GA Gland Plate Thickness"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-07 18:30:21.517094",
+ "modified": "2025-01-11 18:45:42.313258",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "MCC Panel",
