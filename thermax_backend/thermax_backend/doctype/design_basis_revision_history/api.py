@@ -269,72 +269,96 @@ def get_design_basis_excel():
     design_basis_sheet["C17"] = f"{performance_humidity}%"
     design_basis_sheet["C18"] = f"{altitude} meters"
 
-    main_packages_data = frappe.db.get_list(
+    main_packages_data_array = frappe.db.get_list(
         "Project Main Package",
         fields=["*"],
         filters={"revision_id": revision_id},
         order_by="creation asc",
     )
-    main_package_name = []
-    safe_sub_package = []
-    hazardous_sub_package = []
-    for main_package in main_packages_data:
-        main_package_name.append(main_package.get("main_package_name"))
-        sub_packages = frappe.get_doc(
-            "Project Main Package", main_package.get("name")
-        ).as_dict()
 
-        sub_package_data = sub_packages.get("sub_packages", [])
+    temp_main_package_name = "Not Applicable"
+    temp_safe_area = "Not Applicable"
+    temp_hazardous_area = "Not Applicable"
+    temp_area_of_classification = "Not Applicable"
 
-        for sub_package in sub_package_data:
-            if sub_package["area_of_classification"] == "Safe Area":
-                safe_sub_package.append(sub_package["sub_package_name"])
-            else:
-                hazardous_sub_package.append(sub_package["sub_package_name"])
+    if len(main_packages_data_array) > 0:
 
-    main_package_name = ", ".join(main_package_name)
-    safe_sub_package = ", ".join(safe_sub_package)
-    hazardous_sub_package = ", ".join(hazardous_sub_package)
+        main_packages_data = frappe.get_doc("Project Main Package",{ "revision_id": revision_id },"*").as_dict()
 
-    area_classification_data = frappe.db.get_value(
-        "Project Main Package",
-        {"revision_id": revision_id},
-        ["standard", "zone", "gas_group", "temperature_class"],
-    )
+        temp_main_package_name = main_packages_data.get("main_package_name")
 
-    default_values = {
-        "standard": "IS",  # Replace with your actual default value
-        "zone": "Zone 2",  # Replace with your actual default value
-        "gas_group": "IIA/IIB",  # Replace with your actual default value
-        "temperature_class": "T3",  # Replace with your actual default value
-    }
+        sub_package_data = main_packages_data["sub_packages"]
+        safe_sub_package = []
+        hazardous_sub_package = []
 
-    if area_classification_data is None:
-        area_classification_data = [
-            default_values[field] for field in default_values.keys()
-        ]
-    else:
-        area_classification_data = [
-            value if value is not None else default_values[field]
-            for value, field in zip(area_classification_data, default_values.keys())
-        ]
+        if len(sub_package_data) > 0:
+            for sub_package in sub_package_data:
+                if sub_package["area_of_classification"] == "Safe Area":
+                    safe_sub_package.append(sub_package['sub_package_name'])
+                else:
+                    hazardous_sub_package.append(sub_package['sub_package_name'])
 
-    # Safeguard against missing indices in area_classification_data
-    standard = area_classification_data[0] if len(area_classification_data) > 0 else ""
-    classification_1 = (
-        area_classification_data[1] if len(area_classification_data) > 1 else ""
-    )
-    gas_group = area_classification_data[2] if len(area_classification_data) > 2 else ""
-    temperature_class = (
-        area_classification_data[3] if len(area_classification_data) > 3 else ""
-    )
+            safe_sub_package = ', '.join(safe_sub_package)
+            hazardous_sub_package = ', '.join(hazardous_sub_package)
 
-    design_basis_sheet["C20"] = main_package_name
-    design_basis_sheet["C21"] = safe_sub_package
-    design_basis_sheet["C22"] = hazardous_sub_package
-    design_basis_sheet["C23"] = (
-        f"Standard-{standard}, {classification_1}, Gas Group-{gas_group}, Temperature Class-{temperature_class}"
-    )
+        area_classification_data = frappe.db.get_value(
+            "Project Main Package",
+            {"revision_id": revision_id},
+            ["standard", "zone", "gas_group", "temperature_class"],
+        )
+
+        default_values = {
+            "standard": "IS",  # Replace with your actual default value
+            "zone": "Zone 2",  # Replace with your actual default value
+            "gas_group": "IIA/IIB",  # Replace with your actual default value
+            "temperature_class": "T3",  # Replace with your actual default value
+        }
+
+        if area_classification_data is None:
+            area_classification_data = [
+                default_values[field] for field in default_values.keys()
+            ]
+        else:
+            area_classification_data = [
+                value if value is not None else default_values[field]
+                for value, field in zip(area_classification_data, default_values.keys())
+            ]
+
+        # Safeguard against missing indices in area_classification_data
+        standard = area_classification_data[0] if len(area_classification_data) > 0 else ""
+        classification_1 = (
+            area_classification_data[1] if len(area_classification_data) > 1 else ""
+        )
+        gas_group = area_classification_data[2] if len(area_classification_data) > 2 else ""
+        temperature_class = (
+            area_classification_data[3] if len(area_classification_data) > 3 else ""
+        )
+
+        area_classification_data = (
+            f"Standard-{standard}, {classification_1}, Gas Group-{gas_group}, Temperature Class-{temperature_class}"
+        )
+
+        if len(sub_package_data) > 0:
+
+            for sub_package in sub_package_data:
+                if sub_package["area_of_classification"] == "Safe Area" and (sub_package["is_sub_package_selected"] == 1 or sub_package["is_sub_package_selected"] == "1"):
+                    temp_safe_area = safe_sub_package
+                if sub_package["area_of_classification"] == "Hazardous Area" and (sub_package["is_sub_package_selected"] == 1 or sub_package["is_sub_package_selected"] == "1"):
+                    temp_hazardous_area = hazardous_sub_package
+                    temp_area_of_classification = area_classification_data
+
+        # main_package_name = ""
+        # # if len(main_packages_data) > 1:
+        # main_package_name = main_packages_data.get("main_package_name")
+
+        
+
+
+
+    design_basis_sheet["C20"] = temp_main_package_name
+    design_basis_sheet["C21"] = temp_safe_area
+    design_basis_sheet["C22"] = temp_hazardous_area
+    design_basis_sheet["C23"] = temp_area_of_classification
     design_basis_sheet["C24"] = battery_limit
 
     # MOTOR PARAMETERS
@@ -431,6 +455,16 @@ def get_design_basis_excel():
         "hazardous_area_starts_hour_permissible"
     )
 
+    def check_value_kW(value):
+        if value == "NA" or value == "Not Applicable":
+            return "Not Applicable"
+        elif value == "As per OEM Standard":
+            return value
+        elif value  == "All":
+            return f"{value} kW"
+        else:
+            return f"{value} kW and Above"
+
     if safe_area_bearing_rtd == "NA":
         safe_area_bearing_rtd = "Not Applicable"
 
@@ -443,48 +477,152 @@ def get_design_basis_excel():
     if hazardous_area_winding_rtd == "NA":
         hazardous_area_winding_rtd = "Not Applicable"
 
+    safe_area_max_temperature = f"{safe_area_max_temperature} Deg. C"
+    safe_area_min_temperature = f"{safe_area_min_temperature} Deg. C"
+    safe_area_altitude = f"{safe_area_altitude} meters"
+    safe_area_terminal_box_ip_rating = f"{safe_area_terminal_box_ip_rating}"
+    safe_area_thermister = safe_area_thermister
+    safe_area_space_heater = safe_area_space_heater
+    safe_area_certification = f"{safe_area_certification}"
+    safe_area_bearing_rtd = safe_area_bearing_rtd
+    safe_area_winding_rtd = safe_area_winding_rtd
+    safe_area_service_factor = int(safe_area_service_factor) if safe_area_service_factor else ""
+
+    if temp_safe_area == "Not Applicable":
+        safe_area_efficiency_level = "Not Applicable"
+        safe_area_insulation_class = "Not Applicable"
+        safe_area_temperature_rise = "Not Applicable"
+        safe_area_enclosure_ip_rating = "Not Applicable"
+        safe_area_max_temperature = "Not Applicable"
+        safe_area_min_temperature = "Not Applicable"
+        safe_area_altitude = "Not Applicable"
+        safe_area_terminal_box_ip_rating = "Not Applicable"
+        safe_area_thermister = "Not Applicable"
+        safe_area_space_heater = "Not Applicable"
+        safe_area_certification = "Not Applicable"
+        safe_area_bearing_rtd = "Not Applicable"
+        safe_area_winding_rtd = "Not Applicable"
+        safe_area_bearing_type = "Not Applicable"
+        safe_area_duty = "Not Applicable"
+        safe_area_service_factor = "Not Applicable"
+        safe_area_cooling_type = "Not Applicable"
+        safe_area_body_material = "Not Applicable"
+        safe_area_terminal_box_material = "Not Applicable"
+        safe_area_paint_type_and_shade = "Not Applicable"
+        safe_area_starts_hour_permissible = "Not Applicable"
+
+    if safe_area_certification == "None":
+        safe_area_certification = "Not Applicable"
+
+    # if safe_area_thermister == "NA":
+    #     safe_area_thermister = "Not Applicable"
+    # elif  safe_area_thermister == "As per OEM":
+    #     safe_area_thermister = safe_area_thermister
+    # elif safe_area_thermister == "All":
+    #     safe_area_thermister = f"{safe_area_thermister} kW"
+    # else :
+    #     safe_area_thermister = f"{safe_area_thermister} kW & Above"
+
+    if safe_area_bearing_rtd == "NA":
+        safe_area_bearing_rtd = "Not Applicable"
+    if safe_area_winding_rtd == "NA":
+        safe_area_winding_rtd = "Not Applicable"
+    
+    if safe_area_service_factor == "1" or safe_area_service_factor == 1:
+        safe_area_service_factor = "Applicable"
+    else:
+        safe_area_service_factor = "Not Applicable"
+
     design_basis_sheet["C27"] = safe_area_efficiency_level
     design_basis_sheet["C28"] = safe_area_insulation_class
     design_basis_sheet["C29"] = safe_area_temperature_rise
     design_basis_sheet["C30"] = safe_area_enclosure_ip_rating
-    design_basis_sheet["C31"] = f"{safe_area_max_temperature} Deg. C"
-    design_basis_sheet["C32"] = f"{safe_area_min_temperature} Deg. C"
-    design_basis_sheet["C33"] = f"{safe_area_altitude} meters"
-    design_basis_sheet["C34"] = f"{safe_area_terminal_box_ip_rating}"
-    design_basis_sheet["C35"] = f"{safe_area_thermister} kW & Above"
-    design_basis_sheet["C36"] = f"{safe_area_space_heater} kW & Above"
-    design_basis_sheet["C37"] = f"{safe_area_certification}"
-    design_basis_sheet["C38"] = f"{safe_area_bearing_rtd} kW & Above"
-    design_basis_sheet["C39"] = f"{safe_area_winding_rtd} kW & Above"
+    design_basis_sheet["C31"] = safe_area_max_temperature
+    design_basis_sheet["C32"] = safe_area_min_temperature
+    design_basis_sheet["C33"] = safe_area_altitude
+    design_basis_sheet["C34"] = safe_area_terminal_box_ip_rating
+    design_basis_sheet["C35"] = check_value_kW(safe_area_thermister)
+    design_basis_sheet["C36"] = check_value_kW(safe_area_space_heater)
+    design_basis_sheet["C37"] = safe_area_certification
+    design_basis_sheet["C38"] = check_value_kW(safe_area_bearing_rtd)
+    design_basis_sheet["C39"] = check_value_kW(safe_area_winding_rtd)
     design_basis_sheet["C40"] = safe_area_bearing_type
     design_basis_sheet["C41"] = safe_area_duty
-    design_basis_sheet["C42"] = (
-        int(safe_area_service_factor) if safe_area_service_factor else ""
-    )
+    design_basis_sheet["C42"] = safe_area_service_factor
     design_basis_sheet["C43"] = safe_area_cooling_type
     design_basis_sheet["C44"] = safe_area_body_material
     design_basis_sheet["C45"] = safe_area_terminal_box_material
     design_basis_sheet["C46"] = safe_area_paint_type_and_shade
     design_basis_sheet["C47"] = safe_area_starts_hour_permissible
 
+    hazardous_area_max_temperature = f"{hazardous_area_max_temperature} Deg. C"
+    hazardous_area_min_temperature = f"{hazardous_area_min_temperature} Deg. C"
+    hazardous_area_altitude = f"{hazardous_area_altitude} meters"
+    hazardous_area_terminal_box_ip_rating = f"{hazardous_area_terminal_box_ip_rating}"
+    hazardous_area_thermister = hazardous_area_thermister
+    hazardous_area_space_heater = hazardous_area_space_heater
+    hazardous_area_certification = f"{hazardous_area_certification}"
+    hazardous_area_bearing_rtd = hazardous_area_bearing_rtd
+    hazardous_area_winding_rtd = hazardous_area_winding_rtd
+    hazardous_area_service_factor = int(hazardous_area_service_factor) if hazardous_area_service_factor else ""
+
+    if temp_hazardous_area ==  "Not Applicable":
+        hazardous_area_efficiency_level = "Not Applicable"
+        hazardous_area_insulation_class = "Not Applicable"
+        hazardous_area_temperature_rise = "Not Applicable"
+        hazardous_area_enclosure_ip_rating = "Not Applicable"
+        hazardous_area_max_temperature = "Not Applicable"
+        hazardous_area_min_temperature = "Not Applicable"
+        hazardous_area_altitude = "Not Applicable"
+        hazardous_area_terminal_box_ip_rating = "Not Applicable"
+        hazardous_area_thermister = "Not Applicable"
+        hazardous_area_space_heater = "Not Applicable"
+        hazardous_area_certification = "Not Applicable"
+        hazardous_area_bearing_rtd = "Not Applicable"
+        hazardous_area_winding_rtd = "Not Applicable"
+        hazardous_area_bearing_type = "Not Applicable"
+        hazardous_area_duty = "Not Applicable"
+        hazardous_area_service_factor = "Not Applicable"
+        hazardous_area_cooling_type = "Not Applicable"
+        hazardous_area_body_material = "Not Applicable"
+        hazardous_area_terminal_box_material = "Not Applicable"
+        hazardous_area_paint_type_and_shade = "Not Applicable"
+        hazardous_area_starts_hour_permissible = "Not Applicable"
+
+    if hazardous_area_certification == "None":
+        hazardous_area_certification = "Not Applicable"
+
+    if hazardous_area_thermister == "NA" or hazardous_area_thermister == "As per OEM":
+        hazardous_area_thermister = "Not Applicable"
+    elif hazardous_area_thermister == "All":
+        hazardous_area_thermister = f"{hazardous_area_thermister} kW"
+
+    if hazardous_area_bearing_rtd == "NA":
+        hazardous_area_bearing_rtd = "Not Applicable"
+    if hazardous_area_winding_rtd == "NA":
+        hazardous_area_winding_rtd = "Not Applicable"
+
+    if hazardous_area_service_factor == "1" or hazardous_area_service_factor == 1:
+        hazardous_area_service_factor = "Applicable"
+    else:
+        hazardous_area_service_factor = "Not Applicable"
+
     design_basis_sheet["D27"] = hazardous_area_efficiency_level
     design_basis_sheet["D28"] = hazardous_area_insulation_class
     design_basis_sheet["D29"] = hazardous_area_temperature_rise
     design_basis_sheet["D30"] = hazardous_area_enclosure_ip_rating
-    design_basis_sheet["D31"] = f"{hazardous_area_max_temperature} Deg. C"
-    design_basis_sheet["D32"] = f"{hazardous_area_min_temperature} Deg. C"
-    design_basis_sheet["D33"] = f"{hazardous_area_altitude} meters"
-    design_basis_sheet["D34"] = f"{hazardous_area_terminal_box_ip_rating}"
-    design_basis_sheet["D35"] = f"{hazardous_area_thermister} kW & Above"
-    design_basis_sheet["D36"] = f"{hazardous_area_space_heater} kW & Above"
-    design_basis_sheet["D37"] = f"{hazardous_area_certification}"
-    design_basis_sheet["D38"] = f"{hazardous_area_bearing_rtd} kW & Above"
-    design_basis_sheet["D39"] = f"{hazardous_area_winding_rtd} kW & Above"
+    design_basis_sheet["D31"] = hazardous_area_max_temperature
+    design_basis_sheet["D32"] = hazardous_area_min_temperature
+    design_basis_sheet["D33"] = hazardous_area_altitude
+    design_basis_sheet["D34"] = hazardous_area_terminal_box_ip_rating
+    design_basis_sheet["D35"] = check_value_kW(hazardous_area_thermister)
+    design_basis_sheet["D36"] = check_value_kW(hazardous_area_space_heater)
+    design_basis_sheet["D37"] = hazardous_area_certification
+    design_basis_sheet["D38"] = check_value_kW(hazardous_area_bearing_rtd)
+    design_basis_sheet["D39"] = check_value_kW(hazardous_area_winding_rtd)
     design_basis_sheet["D40"] = hazardous_area_bearing_type
     design_basis_sheet["D41"] = hazardous_area_duty
-    design_basis_sheet["D42"] = (
-        int(hazardous_area_service_factor) if hazardous_area_service_factor else ""
-    )
+    design_basis_sheet["D42"] = hazardous_area_service_factor
     design_basis_sheet["D43"] = hazardous_area_cooling_type
     design_basis_sheet["D44"] = hazardous_area_body_material
     design_basis_sheet["D45"] = hazardous_area_terminal_box_material
@@ -500,7 +638,7 @@ def get_design_basis_excel():
 
     def handle_make_of_component(component):
         component = (
-            component.replace('"', "").replace("[", "").replace("]", "")
+            component.replace('"', "").replace("[", "").replace("]", "").replace(",", ", ")
             if component
             else "NA"
         )
@@ -760,6 +898,15 @@ def get_design_basis_excel():
     )
     cc_control_transformer_type = common_config_data.get("control_transformer_type")
 
+    
+    if cc_is_control_transformer_applicable == "0" or cc_is_control_transformer_applicable == 0:
+        cc_control_transformer_primary_voltage = "NA"
+        cc_control_transformer_secondary_voltage_copy = "NA"
+        cc_control_transformer_coating = "NA"
+        cc_control_transformer_quantity = "NA"
+        cc_control_transformer_configuration = "NA"
+        cc_control_transformer_type = "NA"
+
     design_basis_sheet["C59"] = na_to_string(cc_dm_standard)
     design_basis_sheet["C61"] = na_to_string(cc_control_transformer_primary_voltage)
     design_basis_sheet["C62"] = na_to_string(
@@ -770,7 +917,12 @@ def get_design_basis_excel():
     design_basis_sheet["C65"] = na_to_string(cc_control_transformer_configuration)
     design_basis_sheet["C66"] = na_to_string(cc_control_transformer_type)
 
-    design_basis_sheet["C68"] = cc_apfc_relay
+
+    apfc_data = f"{cc_apfc_relay} Stage"
+    if apfc_data == "NA":
+        apfc_data = "Not Applicable"
+
+    design_basis_sheet["C68"] = apfc_data
 
     design_basis_sheet["C70"] = cc_power_bus_main_busbar_selection
     design_basis_sheet["C71"] = cc_power_bus_heat_pvc_sleeve
@@ -793,9 +945,17 @@ def get_design_basis_excel():
     design_basis_sheet["C88"] = cc_instrument_earth
     design_basis_sheet["C89"] = cc_general_note_busbar_and_insulation_materials
 
-    design_basis_sheet["C91"] = f"{cc_dol_starter} kW & Above"
-    design_basis_sheet["C92"] = f"{cc_star_delta_starter} kW & Above"
+    dol_starter_data = f"{cc_dol_starter} kW & Below"
+    if cc_dol_starter == "NA":
+        dol_starter_data = "Not Applicable"
+    design_basis_sheet["C91"] = dol_starter_data
+    star_delta_data = f"{cc_star_delta_starter} kW & Above"
+    if cc_star_delta_starter == "NA":
+        star_delta_data = "Not Applicable"
+    design_basis_sheet["C92"] = star_delta_data
     design_basis_sheet["C93"] = cc_mcc_switchgear_type
+    if division_name == "IPG":
+        cc_switchgear_combination =  "Not Applicable"
     design_basis_sheet["C94"] = cc_switchgear_combination
 
     design_basis_sheet["C96"] = f"{cc_ammeter} kW & Above"
@@ -814,7 +974,14 @@ def get_design_basis_excel():
     )
     design_basis_sheet["C100"] = cc_communication_protocol
 
-    design_basis_sheet["C102"] = f"{cc_current_transformer} kW & Above"
+    
+    if cc_current_transformer == "NA":
+        cc_current_transformer = "Not Applicable"
+    else:
+        cc_current_transformer = f"{cc_current_transformer} kW & Above"
+    
+
+    design_basis_sheet["C102"] = cc_current_transformer
     design_basis_sheet["C103"] = cc_current_transformer_coating
     design_basis_sheet["C104"] = cc_current_transformer_quantity
     design_basis_sheet["C105"] = cc_current_transformer_configuration
@@ -842,26 +1009,52 @@ def get_design_basis_excel():
     design_basis_sheet["C127"] = cc_power_terminal_clipon
     design_basis_sheet["C128"] = cc_power_terminal_busbar_type
     design_basis_sheet["C129"] = cc_control_terminal
-    design_basis_sheet["C130"] = cc_spare_terminal
+    design_basis_sheet["C130"] = f"{cc_spare_terminal} %"
+
 
     design_basis_sheet["C132"] = cc_push_button_start
     design_basis_sheet["C133"] = cc_push_button_stop
     design_basis_sheet["C134"] = cc_push_button_ess
     design_basis_sheet["C135"] = cc_forward_push_button_start
     design_basis_sheet["C136"] = cc_reverse_push_button_start
-    design_basis_sheet["C137"] = cc_potentiometer
+    design_basis_sheet["C137"] = num_to_string(cc_potentiometer)
+
+    if cc_is_push_button_speed_selected == 0 or cc_is_push_button_speed_selected == "0":
+        cc_speed_increase_pb = "Not Applicable"
+        cc_speed_decrease_pb = "Not Applicable"
+
     design_basis_sheet["C138"] = cc_speed_increase_pb
     design_basis_sheet["C139"] = cc_speed_decrease_pb
     design_basis_sheet["C140"] = cc_alarm_acknowledge_and_lamp_test
     design_basis_sheet["C141"] = cc_test_dropdown
     design_basis_sheet["C142"] = cc_reset_dropdown
-    design_basis_sheet["C143"] = cc_lamp_test_push_button
+    design_basis_sheet["C143"] = na_to_string(cc_lamp_test_push_button)
 
+
+    if cc_selector_switch_applicable == "Applicable":
+        cc_selector_switch_applicable = f"{cc_selector_switch_applicable}, {cc_selector_switch_lockable}"
     design_basis_sheet["C145"] = cc_selector_switch_applicable
 
     design_basis_sheet["C147"] = cc_running_open
     design_basis_sheet["C148"] = cc_stopped_closed
     design_basis_sheet["C149"] = cc_trip
+
+    if cc_is_local_push_button_station_selected == 0 or cc_is_local_push_button_station_selected == "0":
+        cc_safe_field_motor_type = "Not Applicable"
+        cc_safe_field_motor_enclosure = "Not Applicable"
+        cc_safe_field_motor_material = "Not Applicable"
+        cc_safe_field_motor_qty = "Not Applicable"
+        cc_safe_field_motor_isolator_color_shade = "Not Applicable"
+        cc_safe_field_motor_cable_entry = "Not Applicable"
+        cc_safe_field_motor_canopy = "Not Applicable"
+
+        cc_hazardous_field_motor_type = "Not Applicable"
+        cc_hazardous_field_motor_enclosure = "Not Applicable"
+        cc_hazardous_field_motor_material = "Not Applicable"
+        cc_hazardous_field_motor_qty = "Not Applicable"
+        cc_hazardous_field_motor_isolator_color_shade = "Not Applicable"
+        cc_hazardous_field_motor_cable_entry = "Not Applicable"
+        cc_hazardous_field_motor_canopy = "Not Applicable"
 
     design_basis_sheet["C152"] = cc_safe_field_motor_type
     design_basis_sheet["C153"] = cc_safe_field_motor_enclosure
@@ -878,6 +1071,23 @@ def get_design_basis_excel():
     design_basis_sheet["D156"] = cc_hazardous_field_motor_isolator_color_shade
     design_basis_sheet["D157"] = cc_hazardous_field_motor_cable_entry
     design_basis_sheet["D158"] = cc_hazardous_field_motor_canopy
+
+    if cc_is_local_push_button_station_selected == 0 or cc_is_local_push_button_station_selected == "0":
+        cc_lpbs_push_button_start_color = "Not Applicable"
+        cc_forward_push_button_start = "Not Applicable"
+        cc_reverse_push_button_start = "Not Applicable"
+        cc_push_button_ess = "Not Applicable"
+        cc_lpbs_speed_increase = "Not Applicable"
+        cc_lpbs_speed_decrease = "Not Applicable"
+        cc_lpbs_indication_lamp_start_color = "Not Applicable"
+        cc_lpbs_indication_lamp_stop_color = "Not Applicable"
+        cc_safe_lpbs_type = "Not Applicable"
+        cc_safe_lpbs_enclosure = "Not Applicable"
+        cc_safe_lpbs_material = "Not Applicable"
+        cc_safe_lpbs_qty = "Not Applicable"
+        cc_safe_lpbs_color_shade = "Not Applicable"
+        cc_safe_lpbs_canopy = "Not Applicable"
+        cc_safe_lpbs_canopy_type = "Not Applicable"
 
     design_basis_sheet["C160"] = cc_lpbs_push_button_start_color
     design_basis_sheet["C161"] = cc_forward_push_button_start
@@ -1017,8 +1227,8 @@ def get_design_basis_excel():
     design_basis_sheet["C188"] = f"{ct_motor_voltage_drop_during_starting} %"
     design_basis_sheet["C189"] = f"{ct_motor_voltage_drop_during_running} %"
     design_basis_sheet["C190"] = ct_voltage_grade
-    design_basis_sheet["C191"] = f"{ct_copper_conductor} Sq. mm"
-    design_basis_sheet["C192"] = f"{ct_aluminium_conductor} Sq. mm"
+    design_basis_sheet["C191"] = f"{ct_copper_conductor} Sq. mm & Below"
+    design_basis_sheet["C192"] = f"{ct_aluminium_conductor} Sq. mm & Above"
     design_basis_sheet["C193"] = ct_touching_factor_air
     design_basis_sheet["C194"] = ct_ambient_temp_factor_air
     design_basis_sheet["C195"] = ct_derating_factor_air
@@ -1030,12 +1240,17 @@ def get_design_basis_excel():
     design_basis_sheet["C201"] = ct_moc
     design_basis_sheet["C202"] = ct_type_of_gland
 
-    design_basis_sheet["C206"] = cable_tray_cover
+    design_basis_sheet["C206"] = num_to_string(cable_tray_cover)
     design_basis_sheet["C207"] = f"{ct_future_space_on_trays} %"
     design_basis_sheet["C208"] = ct_cable_placement
     design_basis_sheet["C209"] = f"{ct_vertical_distance} mm"
     design_basis_sheet["C210"] = f"{ct_horizontal_distance} mm"
+
+    if ct_cable_tray_moc == "MS - Hot dipped Galvanised":
+        ct_cable_tray_moc = f"{ct_cable_tray_moc}, {ct_cable_tray_moc_input}"
+
     design_basis_sheet["C211"] = ct_cable_tray_moc
+
 
     earthing_layout_data = frappe.db.get_list(
         "Layout Earthing", {"revision_id": revision_id}, "*"
@@ -1451,11 +1666,14 @@ def get_design_basis_excel():
             panel_sheet["C75"] = heater_connected_load
             panel_sheet["C76"] = heater_temperature
 
+            if is_spg_applicable == "0" or is_spg_applicable == 0:
+                spg_name_plate_oc_number = "Not Applicable"
+
             panel_sheet["C78"] = na_to_string(spg_name_plate_unit_name)
             panel_sheet["C79"] = na_to_string(spg_name_plate_capacity)
             panel_sheet["C80"] = na_to_string(spg_name_plate_manufacturing_year)
             panel_sheet["C81"] = na_to_string(spg_name_plate_weight)
-            panel_sheet["C82"] = na_to_string(spg_name_plate_oc_number)
+            panel_sheet["C82"] = spg_name_plate_oc_number
             panel_sheet["C83"] = na_to_string(spg_name_plate_part_code)
 
         elif project_panel.get("panel_main_type") == "PCC":
@@ -1650,7 +1868,7 @@ def get_design_basis_excel():
             spg_name_plate_part_code = pcc_panel_data.get("spg_name_plate_part_code")
             special_note = pcc_panel_data.get("special_note")
 
-            pcc_incomer_data = f"{incomer_ampere}, {incomer_pole} Pole {incomer_type} \n{incomer_above_ampere}, {incomer_above_pole} Pole {incomer_above_type}"
+            pcc_incomer_data = f"Upto {incomer_ampere}, {incomer_pole} Pole {incomer_type} \nAbove {incomer_above_ampere}, {incomer_above_pole} Pole {incomer_above_type}"
 
             if is_indication_on_selected == "0" or is_indication_on_selected == 0:
                 led_type_on_input = "Not Applicable"
@@ -1851,11 +2069,14 @@ def get_design_basis_excel():
             panel_sheet["C73"] = heater_connected_load
             panel_sheet["C74"] = heater_temperature
 
+            if is_spg_applicable == "0" or is_spg_applicable == 0:
+                spg_name_plate_oc_number = "Not Applicable"
+
             panel_sheet["C76"] = na_to_string(spg_name_plate_unit_name)
             panel_sheet["C77"] = na_to_string(spg_name_plate_capacity)
             panel_sheet["C78"] = na_to_string(spg_name_plate_manufacturing_year)
             panel_sheet["C79"] = na_to_string(spg_name_plate_weight)
-            panel_sheet["C80"] = na_to_string(spg_name_plate_oc_number)
+            panel_sheet["C80"] = spg_name_plate_oc_number
             panel_sheet["C81"] = na_to_string(spg_name_plate_part_code)
 
         else:
@@ -1919,10 +2140,10 @@ def get_design_basis_excel():
                 "current_transformer_configuration"
             )
             alarm_annunciator = mcc_panel_data.get("alarm_annunciator")
-            mi_analog = mcc_panel_data.get("mi_analog", "NA")
-            mi_digital = mcc_panel_data.get("mi_digital", "NA")
-            mi_communication_protocol = mcc_panel_data.get(
-                "mi_communication_protocol", "NA"
+            mi_analog = mcc_panel_data.get("mi_analog") or "NA"
+            mi_digital = mcc_panel_data.get("mi_digital") or "NA"
+            mi_communication_protocol = (
+                mcc_panel_data.get("mi_communication_protocol") or "NA"
             )
             ga_moc_material = mcc_panel_data.get("ga_moc_material")
             door_thickness = mcc_panel_data.get("door_thickness")
@@ -2074,12 +2295,16 @@ def get_design_basis_excel():
                 .replace("]", "")
                 .replace('"', "")
                 .replace(",", ", ")
+                if mi_analog is not None
+                else "Not Applicable"
             )
             digital_data = (
                 mi_digital.replace("[", "")
                 .replace("]", "")
                 .replace('"', "")
                 .replace(",", ", ")
+                if mi_digital is not None
+                else "Not Applicable"
             )
 
             if "NA" in mi_analog:
@@ -2150,6 +2375,112 @@ def get_design_basis_excel():
             panel_sheet["C52"] = vfd_auto_manual_selection
             panel_sheet["C54"] = commissioning_spare
             panel_sheet["C55"] = two_year_operational_spare
+
+            mcc_boiler_power_supply = f"{boiler_power_supply_vac}, {boiler_power_supply_phase}, {boiler_power_supply_frequency}"
+            mcc_boiler_control_supply = f"{boiler_control_supply_vac}, {boiler_control_supply_phase}, {boiler_control_supply_frequency}"
+
+            if boiler_evaporation == "NA":
+                boiler_evaporation = "Not Applicable"
+            else:
+                boiler_evaporation = f"{boiler_evaporation} kg/Hr"
+
+            if boiler_output == "NA":
+                boiler_output = "Not Applicable"
+            else:
+                boiler_output = f"{boiler_output} MW"
+
+            if boiler_connected_load == "NA":
+                boiler_connected_load = "Not Applicable"
+            else:
+                boiler_connected_load = f"{boiler_connected_load} kW"
+
+            if boiler_design_pressure == "NA":
+                boiler_design_pressure = "Not Applicable"
+            else:
+                boiler_design_pressure = f"{boiler_design_pressure} kg/cm2(g)/Bar"
+
+            if (
+                is_punching_details_for_boiler_selected == "0"
+                or is_punching_details_for_boiler_selected == 0
+            ):
+                boiler_connected_load = "Not Applicable"
+                boiler_model = "Not Applicable"
+                boiler_fuel = "Not Applicable"
+                boiler_year = "Not Applicable"
+                boiler_evaporation = "Not Applicable"
+                boiler_output = "Not Applicable"
+                boiler_connected_load = "Not Applicable"
+                boiler_design_pressure = "Not Applicable"
+                mcc_boiler_power_supply = "Not Applicable"
+                mcc_boiler_control_supply = "Not Applicable"
+
+            panel_sheet["C202"] = boiler_model
+            panel_sheet["C203"] = boiler_fuel
+            panel_sheet["C204"] = boiler_year
+            panel_sheet["C205"] = mcc_boiler_power_supply
+            panel_sheet["C206"] = mcc_boiler_control_supply
+            panel_sheet["C207"] = boiler_evaporation
+            panel_sheet["C208"] = boiler_output
+            panel_sheet["C209"] = boiler_connected_load
+            panel_sheet["C210"] = boiler_design_pressure
+
+            mcc_heater_power_supply = f"{heater_power_supply_vac}, {heater_power_supply_phase}, {heater_power_supply_frequency}"
+            mcc_heater_control_supply = f"{heater_control_supply_vac}, {heater_control_supply_phase}, {heater_control_supply_frequency}"
+
+            if heater_evaporation == "NA":
+                heater_evaporation = "Not Applicable"
+            else:
+                heater_evaporation = f"{heater_evaporation} kg/Hr"
+
+            if heater_output == "NA":
+                heater_output = "Not Applicable"
+            else:
+                heater_output = f"{heater_output} MW"
+
+            if heater_connected_load == "NA":
+                heater_connected_load = "Not Applicable"
+            else:
+                heater_connected_load = f"{heater_connected_load} kW"
+
+            if heater_temperature == "NA":
+                heater_temperature = "Not Applicable"
+            else:
+                heater_temperature = f"{heater_temperature} kg/cm2(g)/Bar"
+
+            if (
+                is_punching_details_for_heater_selected == "0"
+                or is_punching_details_for_heater_selected == 0
+            ):
+                heater_model = "Not Applicable"
+                heater_fuel = "Not Applicable"
+                heater_year = "Not Applicable"
+                mcc_heater_power_supply = "Not Applicable"
+                mcc_heater_control_supply = "Not Applicable"
+                heater_evaporation = "Not Applicable"
+                heater_output = "Not Applicable"
+                heater_connected_load = "Not Applicable"
+                heater_temperature = "Not Applicable"
+
+            panel_sheet["C212"] = heater_model
+            panel_sheet["C213"] = heater_fuel
+            panel_sheet["C214"] = heater_year
+            panel_sheet["C215"] = mcc_heater_power_supply
+            panel_sheet["C216"] = mcc_heater_control_supply
+            panel_sheet["C217"] = heater_evaporation
+            panel_sheet["C218"] = heater_output
+            panel_sheet["C219"] = heater_connected_load
+            panel_sheet["C220"] = heater_temperature
+
+            if is_spg_applicable == "0" or is_spg_applicable == 0:
+                spg_name_plate_oc_number = "Not Applicable"
+
+            panel_sheet["C222"] = na_to_string(spg_name_plate_unit_name)
+            panel_sheet["C223"] = na_to_string(spg_name_plate_capacity)
+            panel_sheet["C224"] = na_to_string(spg_name_plate_manufacturing_year)
+            panel_sheet["C225"] = na_to_string(spg_name_plate_weight)
+            panel_sheet["C226"] = spg_name_plate_oc_number
+            panel_sheet["C227"] = na_to_string(spg_name_plate_part_code)
+
 
             plc_panel_1 = frappe.db.get_list(
                 "Panel PLC 1 - 3",
