@@ -2379,79 +2379,285 @@ def get_design_basis_excel():
             panel_sheet["C133"] = plc_panel.get("thermocouple_module_isolation")
             panel_sheet["C134"] = plc_panel.get("thermocouple_module_input_type")
             panel_sheet["C135"] = plc_panel.get("thermocouple_module_scan_time")
-            panel_sheet["C136"] = ""
+            is_thermocouple_module_hart_protocol_support_selected = plc_panel.get(
+                "is_thermocouple_module_hart_protocol_support_selected"
+            )
+            panel_sheet["C136"] = (
+                "Applicable"
+                if int(is_thermocouple_module_hart_protocol_support_selected) == 1
+                else "Not Applicable"
+            )
 
             # Universal Modules
-            panel_sheet["C138"] = ""
-            panel_sheet["C139"] = ""
-            panel_sheet["C140"] = ""
-            panel_sheet["C141"] = ""
-            panel_sheet["C142"] = ""
-            panel_sheet["C143"] = ""
+            panel_sheet["C138"] = plc_panel.get("universal_module_channel_density")
+            panel_sheet["C139"] = plc_panel.get("universal_module_loop_current")
+            panel_sheet["C140"] = plc_panel.get("universal_module_isolation")
+            panel_sheet["C141"] = plc_panel.get("universal_module_input_type")
+            panel_sheet["C142"] = plc_panel.get("universal_module_scan_time")
+            is_universal_module_hart_protocol_support_selected = plc_panel.get(
+                "is_universal_module_hart_protocol_support_selected"
+            )
+            panel_sheet["C143"] = (
+                "Applicable"
+                if int(is_universal_module_hart_protocol_support_selected) == 1
+                else "Not Applicable"
+            )
 
             # Terminal Block Connectors
-            panel_sheet["C145"] = ""
-            panel_sheet["C146"] = ""
-            panel_sheet["C147"] = ""
-            panel_sheet["C148"] = ""
-            panel_sheet["C149"] = ""
-            panel_sheet["C150"] = ""
+            panel_sheet["C145"] = na_to_string(
+                plc_panel.get("di_module_terminal", "NA")
+            )
+            panel_sheet["C146"] = na_to_string(
+                plc_panel.get("do_module_terminal", "NA")
+            )
+            panel_sheet["C147"] = na_to_string(
+                plc_panel.get("ai_module_terminal", "NA")
+            )
+            panel_sheet["C148"] = na_to_string(
+                plc_panel.get("ao_module_terminal", "NA")
+            )
+            panel_sheet["C149"] = na_to_string(
+                plc_panel.get("rtd_module_terminal", "NA")
+            )
+            panel_sheet["C150"] = na_to_string(
+                plc_panel.get("thermocouple_module_terminal", "NA")
+            )
 
             # HMI
-            panel_sheet["C152"] = ""
-            panel_sheet["C153"] = ""
-            panel_sheet["C154"] = ""
-            panel_sheet["C155"] = ""
-            panel_sheet["C156"] = ""
-            panel_sheet["C157"] = ""
+            is_hmi_selected = int(plc_panel.get("is_hmi_selected", 0))
+            panel_sheet["C152"] = (
+                na_to_string(plc_panel.get("hmi_size", "NA"))
+                if is_hmi_selected == 1
+                else "Not Applicable"
+            )
+            panel_sheet["C153"] = (
+                na_to_string(plc_panel.get("hmi_quantity", "NA"))
+                if is_hmi_selected == 1
+                else "Not Applicable"
+            )
+            panel_sheet["C154"] = (
+                na_to_string(plc_panel.get("hmi_hardware_make", "NA"))
+                if is_hmi_selected == 1
+                else "Not Applicable"
+            )
+            panel_sheet["C155"] = (
+                na_to_string(plc_panel.get("hmi_series", "NA"))
+                if is_hmi_selected == 1
+                else "Not Applicable"
+            )
+            panel_sheet["C156"] = (
+                na_to_string(plc_panel.get("hmi_input_voltage", "NA"))
+                if is_hmi_selected == 1
+                else "Not Applicable"
+            )
+            panel_sheet["C157"] = (
+                na_to_string(plc_panel.get("hmi_battery_backup", "NA"))
+                if is_hmi_selected == 1
+                else "Not Applicable"
+            )
 
             # Human Interface Device
-            panel_sheet["C159"] = ""
-            panel_sheet["C160"] = ""
-            panel_sheet["C161"] = ""
+            is_engineering_station_quantity_selected = int(
+                plc_panel.get("is_engineering_station_quantity_selected", 0)
+            )
+            panel_sheet["C159"] = (
+                plc_panel.get("engineering_station_quantity", 0)
+                if is_engineering_station_quantity_selected == 1
+                else "Not Applicable"
+            )
+
+            is_engineering_cum_operating_station_quantity_selected = int(
+                plc_panel.get(
+                    "is_engineering_cum_operating_station_quantity_selected", 0
+                )
+            )
+            panel_sheet["C160"] = (
+                plc_panel.get("engineering_cum_operating_station_quantity", 0)
+                if is_engineering_cum_operating_station_quantity_selected == 1
+                else "Not Applicable"
+            )
+
+            is_operating_station_quantity_selected = int(
+                plc_panel.get("is_operating_station_quantity_selected", 0)
+            )
+            panel_sheet["C161"] = (
+                plc_panel.get("operating_station_quantity", 0)
+                if is_operating_station_quantity_selected == 1
+                else "Not Applicable"
+            )
 
             # Software License
-            panel_sheet["C163"] = ""
-            panel_sheet["C164"] = ""
-            panel_sheet["C165"] = ""
+            is_scada_program_development_license_quantity_selected = int(
+                plc_panel.get(
+                    "is_scada_program_development_license_quantity_selected", 0
+                )
+            )
+            panel_sheet["C163"] = (
+                plc_panel.get("scada_program_development_license_quantity", 0)
+                if is_scada_program_development_license_quantity_selected == 1
+                else "Not Applicable"
+            )
+
+            is_scada_runtime_license_quantity_selected = int(
+                plc_panel.get("is_scada_runtime_license_quantity_selected", 0)
+            )
+            panel_sheet["C164"] = (
+                plc_panel.get("scada_runtime_license_quantity", 0)
+                if is_scada_runtime_license_quantity_selected == 1
+                else "Not Applicable"
+            )
+
+            is_plc_progamming_software_license_quantity = int(
+                plc_panel.get("is_plc_progamming_software_license_quantity", 0)
+            )
+            panel_sheet["C165"] = (
+                plc_panel.get("plc_programming_software_license_quantity", 0)
+                if is_plc_progamming_software_license_quantity == 1
+                else "Not Applicable"
+            )
 
             # Engineering/Operating SCADA Station
-            panel_sheet["C167"] = ""
-            panel_sheet["C168"] = ""
-            panel_sheet["C169"] = ""
-            panel_sheet["C170"] = ""
-            panel_sheet["C171"] = ""
-            panel_sheet["C172"] = ""
-            panel_sheet["C173"] = ""
-            panel_sheet["C174"] = ""
-            panel_sheet["C175"] = ""
-            panel_sheet["C176"] = ""
-            panel_sheet["C177"] = ""
-            panel_sheet["C178"] = ""
-            panel_sheet["C179"] = ""
+            panel_sheet["C167"] = plc_panel.get("system_hardware", "Not Applicable")
+            panel_sheet["C168"] = plc_panel.get(
+                "pc_hardware_specifications", "Not Applicable"
+            )
+            panel_sheet["C169"] = plc_panel.get("monitor_size", "Not Applicable")
+            panel_sheet["C170"] = plc_panel.get(
+                "windows_operating_system", "Not Applicable"
+            )
+            panel_sheet["C171"] = plc_panel.get(
+                "hardware_between_plc_and_scada_pc", "Not Applicable"
+            )
+
+            is_printer_with_suitable_communication_cable_selected = int(
+                plc_panel.get(
+                    "is_printer_with_suitable_communication_cable_selected", 0
+                )
+            )
+            panel_sheet["C172"] = (
+                "Applicable"
+                if is_printer_with_suitable_communication_cable_selected == 1
+                else "Not Applicable"
+            )
+            panel_sheet["C173"] = (
+                plc_panel.get("printer_type", 0)
+                if is_printer_with_suitable_communication_cable_selected == 1
+                else "Not Applicable"
+            )
+            panel_sheet["C174"] = (
+                plc_panel.get("printer_size", 0)
+                if is_printer_with_suitable_communication_cable_selected == 1
+                else "Not Applicable"
+            )
+            panel_sheet["C175"] = (
+                plc_panel.get("printer_quantity", 0)
+                if is_printer_with_suitable_communication_cable_selected == 1
+                else "Not Applicable"
+            )
+
+            panel_sheet["C176"] = (
+                "Applicable"
+                if int(plc_panel.get("is_furniture_selected", 0)) == 1
+                else "Not Applicable"
+            )
+            panel_sheet["C177"] = (
+                "Applicable"
+                if int(plc_panel.get("is_console_with_chair_selected", 0)) == 1
+                else "Not Applicable"
+            )
+            panel_sheet["C178"] = (
+                "Applicable"
+                if int(plc_panel.get("is_plc_logic_diagram_selected", 0)) == 1
+                else "Not Applicable"
+            )
+            panel_sheet["C179"] = (
+                "Applicable"
+                if int(
+                    plc_panel.get("is_loop_drawing_for_complete_project_selected", 0)
+                )
+                == 1
+                else "Not Applicable"
+            )
 
             # Communication
-            panel_sheet["C181"] = ""
-            panel_sheet["C182"] = ""
-            panel_sheet["C183"] = ""
-            panel_sheet["C184"] = ""
-            panel_sheet["C185"] = ""
-            panel_sheet["C186"] = ""
-            panel_sheet["C187"] = ""
-            panel_sheet["C188"] = ""
-            panel_sheet["C189"] = ""
-            panel_sheet["C190"] = ""
+            panel_sheet["C181"] = plc_panel.get(
+                "interface_signal_and_control_logic_implementation", "Not Applicable"
+            )
+            panel_sheet["C182"] = plc_panel.get(
+                "differential_pressure_flow_linearization", "Not Applicable"
+            )
+            panel_sheet["C183"] = plc_panel.get(
+                "third_party_comm_protocol_for_plc_cpu_system", "Not Applicable"
+            )
+            panel_sheet["C184"] = plc_panel.get(
+                "third_party_communication_protocol", "Not Applicable"
+            )
+            panel_sheet["C185"] = plc_panel.get(
+                "hardware_between_plc_and_third_party", "Not Applicable"
+            )
+
+            is_client_system_comm_with_plc_cpu_selected = int(
+                plc_panel.get("is_client_system_comm_with_plc_cpu_selected", 0)
+            )
+            panel_sheet["C186"] = (
+                "Applicable"
+                if is_client_system_comm_with_plc_cpu_selected == 1
+                else "Not Applicable"
+            )
+            panel_sheet["C187"] = (
+                plc_panel.get("client_system_communication", 0)
+                if is_client_system_comm_with_plc_cpu_selected == 1
+                else "Not Applicable"
+            )
+            panel_sheet["C188"] = (
+                plc_panel.get("hardware_between_plc_and_client_system", 0)
+                if is_client_system_comm_with_plc_cpu_selected == 1
+                else "Not Applicable"
+            )
+
+            is_iiot_selected = plc_panel.get("is_iiot_selected", 0)
+            panel_sheet["C189"] = (
+                plc_panel.get("iiot_gateway_mounting", 0)
+                if is_iiot_selected == 1
+                else "Not Applicable"
+            )
+            panel_sheet["C190"] = (
+                plc_panel.get("iiot_gateway_note", 0)
+                if is_iiot_selected == 1
+                else "Not Applicable"
+            )
 
             # Burner Controller LMV
-            panel_sheet["C192"] = ""
-            panel_sheet["C193"] = ""
-            panel_sheet["C194"] = ""
+            is_burner_controller_lmv_mounting_selected = int(
+                plc_panel.get("is_burner_controller_lmv_mounting_selected", 0)
+            )
+            panel_sheet["C192"] = (
+                plc_panel.get("burner_controller_lmv_mounting", 0)
+                if is_burner_controller_lmv_mounting_selected == 1
+                else "Not Applicable"
+            )
+            panel_sheet["C193"] = (
+                plc_panel.get("hardware_between_plc_and_burner_controller_lmv", 0)
+                if is_burner_controller_lmv_mounting_selected == 1
+                else "Not Applicable"
+            )
+            panel_sheet["C194"] = (
+                plc_panel.get("burner_controller_lmv_note", 0)
+                if is_burner_controller_lmv_mounting_selected == 1
+                else "Not Applicable"
+            )
 
             # PLC Spares
-            panel_sheet["C196"] = ""
-            panel_sheet["C197"] = ""
-            panel_sheet["C198"] = ""
-            panel_sheet["C199"] = ""
+            panel_sheet["C196"] = plc_panel.get(
+                "spare_input_and_output_notes", "Not Applicable"
+            )
+            panel_sheet["C197"] = plc_panel.get("commissioning_spare", "Not Applicable")
+            panel_sheet["C198"] = plc_panel.get(
+                "two_year_operational_spare", "Not Applicable"
+            )
+            panel_sheet["C199"] = plc_panel.get(
+                "project_specific_notes", "Not Applicable"
+            )
 
     ###############################################################################################################
 
