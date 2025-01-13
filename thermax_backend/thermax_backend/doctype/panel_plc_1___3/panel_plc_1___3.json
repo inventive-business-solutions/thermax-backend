@@ -46,7 +46,9 @@
   "is_electronic_hooter_selected",
   "electronic_hooter_acknowledge",
   "panel_power_supply_on_color",
-  "panel_power_supply_off_color"
+  "panel_power_supply_off_color",
+  "indicating_lamp_color_for_nonups_power_supply",
+  "indicating_lamp_colour_for_ups_power_supply"
  ],
  "fields": [
   {
@@ -277,11 +279,21 @@
    "fieldtype": "Link",
    "label": "Panel Power Supply Off Color",
    "options": "Panel Power Supply Off"
+  },
+  {
+   "fieldname": "indicating_lamp_color_for_nonups_power_supply",
+   "fieldtype": "Data",
+   "label": "Indicating Lamp Color for Nonups Power Supply"
+  },
+  {
+   "fieldname": "indicating_lamp_colour_for_ups_power_supply",
+   "fieldtype": "Data",
+   "label": "Indicating Lamp Color for Ups Power Supply Copy"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-02 02:06:31.427127",
+ "modified": "2025-01-13 13:26:18.801670",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Panel PLC 1 - 3",
