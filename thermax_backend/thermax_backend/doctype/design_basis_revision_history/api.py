@@ -91,6 +91,10 @@ def trigger_review_approval_mail(
     )
     return "Approval notification mail sent successfully"
 
+def num_to_string(value):
+    if value == 1 or value == "1":
+        return "Applicable"
+    return "Not Applicable"
 
 def na_to_string(value):
     if value == "NA":
@@ -976,6 +980,8 @@ def get_design_basis_excel():
             panel_sheet = template_workbook.copy_worksheet(mcc_sheet)
             panel_sheet.title = project_panel.get("panel_name")
 
+            panel_sheet["B3"] = project_panel.get("panel_name")
+
             
             incomer_ampere = mcc_panel_data.get("incomer_ampere")
             incomer_pole = mcc_panel_data.get("incomer_pole")
@@ -1009,6 +1015,7 @@ def get_design_basis_excel():
             mi_digital = mcc_panel_data.get("mi_digital")
             mi_communication_protocol = mcc_panel_data.get("mi_communication_protocol")
             ga_moc_material = mcc_panel_data.get("ga_moc_material")
+            door_thickness = mcc_panel_data.get("door_thickness")
             ga_moc_thickness_door = mcc_panel_data.get("ga_moc_thickness_door")
             ga_moc_thickness_covers = mcc_panel_data.get("ga_moc_thickness_covers")
             ga_mcc_compartmental = mcc_panel_data.get("ga_mcc_compartmental")
@@ -1080,10 +1087,20 @@ def get_design_basis_excel():
 
             incomer_data = f"Upto {incomer_ampere}, {incomer_pole} Pole {incomer_type} \nAbove {incomer_above_ampere}, {incomer_above_pole} Pole {incomer_above_type} "
 
+            if is_indication_on_selected == "0" or is_indication_on_selected == 0:
+                led_type_on_input = "Not Applicable"
+            
+            if is_indication_off_selected == "0" or is_indication_off_selected == 0:
+                led_type_off_input = "Not Applicable"
+
+            if is_indication_trip_selected == "0" or is_indication_trip_selected == 0:
+                led_type_trip_input = "Not Applicable"
+
+
             panel_sheet["C5"] = na_to_string(incomer_data)
-            panel_sheet["C6"] = na_to_string(led_type_on_input)
-            panel_sheet["C7"] = na_to_string(led_type_off_input)
-            panel_sheet["C8"] = na_to_string(led_type_trip_input)
+            panel_sheet["C6"] = led_type_on_input
+            panel_sheet["C7"] = led_type_off_input
+            panel_sheet["C8"] = led_type_trip_input
             panel_sheet["C9"] = na_to_string(is_blue_cb_spring_charge_selected)
             panel_sheet["C10"] = na_to_string(is_red_cb_in_service)
             panel_sheet["C11"] = na_to_string(is_white_healthy_trip_circuit_selected)
@@ -1110,32 +1127,40 @@ def get_design_basis_excel():
             panel_sheet["C19"] = current_transformer_number
             panel_sheet["C20"] = current_transformer_configuration
 
-            # mcc_sheet["C22"] = ga_moc_material
-            # mcc_sheet["C23"] = ""
-            # mcc_sheet["C24"] = ""
-            # mcc_sheet["C25"] = ga_moc_thickness_covers
-            # mcc_sheet["C26"] = ga_gland_plate_thickness
-            # mcc_sheet["C27"] = ""
-            # mcc_sheet["C28"] = ""
-            # mcc_sheet["C29"] = ga_panel_mounting_frame
-            # mcc_sheet["C30"] = ga_panel_mounting_height
-            # mcc_sheet["C31"] = marshalling_section_text_area
-            # mcc_sheet["C32"] = is_cable_alley_section_selected
-            # mcc_sheet["C33"] = ga_power_and_control_busbar_separation
-            # mcc_sheet["C34"] = is_both_side_extension_section_selected
-            # mcc_sheet["C36"] = is_both_side_extension_section_selected
-            # mcc_sheet["C39"] = ga_busbar_chamber_position
-            # mcc_sheet["C40"] = ""
-            # mcc_sheet["C41"] = ga_enclosure_protection_degree
-            # mcc_sheet["C42"] = ga_cable_entry_position
+            panel_sheet["C22"] = ga_moc_material #MOC
+            panel_sheet["C23"] = ga_moc_thickness_door # Component Mounting Plate Thickness 
+            panel_sheet["C24"] = door_thickness # Door Thickness 
+            panel_sheet["C25"] = ga_moc_thickness_covers # Top & Side Thickness
+            panel_sheet["C26"] = ga_gland_plate_thickness # Gland Plate Thickness
+            panel_sheet["C27"] = ga_gland_plate_3mm_drill_type # Gland Plate Type
+            panel_sheet["C28"] = ga_mcc_compartmental # Panel Front Type
+            panel_sheet["C29"] = ga_mcc_construction_front_type # Type of Construction for Board
+            panel_sheet["C30"] = incoming_drawout_type
+            panel_sheet["C31"] = outgoing_drawout_type
+            panel_sheet["C32"] = ga_mcc_construction_type # Panel Construction Type
+            panel_sheet["C33"] = ga_panel_mounting_frame # Panel Mounting
+            panel_sheet["C34"] = f"{ga_panel_mounting_height} mm" # Height of Base Frame
+
+            if is_marshalling_section_selected == 0 or is_marshalling_section_selected == "0":
+                marshalling_section_text_area = "Not Applicable"
+
+            panel_sheet["C35"] = marshalling_section_text_area # Marshalling Section
+            panel_sheet["C36"] = num_to_string(is_cable_alley_section_selected) 
+            panel_sheet["C37"] = num_to_string(is_power_and_bus_separation_section_selected) # BUS
+            panel_sheet["C38"] = num_to_string(is_both_side_extension_section_selected) # Extension on Both sides
+            panel_sheet["C39"] = ga_busbar_chamber_position # Busbar Chamber position
+            panel_sheet["C40"] = ga_power_and_control_busbar_separation # BUSBAR
+            panel_sheet["C41"] = ga_enclosure_protection_degree # Degree of Enclosure
+            panel_sheet["C42"] = ga_cable_entry_position # BUSBAR
+            
 
 
-            panel_sheet["C44"] = ppc_painting_standards
+            panel_sheet["C44"] = "As per OEM Stanadard"
             panel_sheet["C45"] = ppc_interior_and_exterior_paint_shade
             panel_sheet["C46"] = ppc_component_mounting_plate_paint_shade
             
             panel_sheet["C47"] = ppc_minimum_coating_thickness  
-            panel_sheet["C48"] = ppc_base_frame_paint_shade
+            panel_sheet["C48"] = "Black"
             panel_sheet["C49"] = ppc_pretreatment_panel_standard
             panel_sheet["C50"] = general_requirments_for_construction
             
@@ -1143,23 +1168,10 @@ def get_design_basis_excel():
             panel_sheet["C54"] = commissioning_spare
             panel_sheet["C55"] = two_year_operational_spare
 
-            # mcc_sheet["C40"] = "As per OEM Standard"
-            # mcc_sheet["C41"] = ppc_interior_and_exterior_paint_shade
-            # mcc_sheet["C42"] = ppc_component_mounting_plate_paint_shade
-            # mcc_sheet["C43"] = ppc_minimum_coating_thickness
-            # mcc_sheet["C44"] = "Black"
-            # mcc_sheet["C45"] = ppc_pretreatment_panel_standard
-
-            
-
-
-            panel_sheet["C58"] = na_to_string(boiler_model)
-            panel_sheet["C59"] = na_to_string(boiler_fuel)
-            panel_sheet["C60"] = na_to_string(boiler_year)
-            panel_sheet["C61"] = (
+            mcc_boiler_power_supply = (
                 f"{boiler_power_supply_vac}, {boiler_power_supply_phase}, {boiler_power_supply_frequency}"
             )
-            panel_sheet["C62"] = (
+            mcc_boiler_control_supply = (
                 f"{boiler_control_supply_vac}, {boiler_control_supply_phase}, {boiler_control_supply_frequency}"
             )
 
@@ -1182,21 +1194,35 @@ def get_design_basis_excel():
                 boiler_design_pressure = "Not Applicable"
             else: 
                 boiler_design_pressure = f"{boiler_design_pressure} kg/cm2(g)/Bar"
-                
+            
+            if is_punching_details_for_boiler_selected == "0" or is_punching_details_for_boiler_selected == 0:
+                boiler_connected_load = "Not Applicable"
+                boiler_model = "Not Applicable"
+                boiler_fuel = "Not Applicable"
+                boiler_year = "Not Applicable"
+                boiler_evaporation = "Not Applicable"
+                boiler_output = "Not Applicable"
+                boiler_connected_load = "Not Applicable"
+                boiler_design_pressure = "Not Applicable"
+                mcc_boiler_power_supply = "Not Applicable"
+                mcc_boiler_control_supply  = "Not Applicable"
 
+
+            panel_sheet["C58"] = boiler_model
+            panel_sheet["C59"] = boiler_fuel
+            panel_sheet["C60"] = boiler_year
+            panel_sheet["C61"] = mcc_boiler_power_supply
+            panel_sheet["C62"] = mcc_boiler_control_supply
             panel_sheet["C63"] = boiler_evaporation
             panel_sheet["C64"] = boiler_output
             panel_sheet["C65"] = boiler_connected_load
             panel_sheet["C66"] = boiler_design_pressure
 
 
-            panel_sheet["C68"] = heater_model
-            panel_sheet["C69"] = heater_fuel
-            panel_sheet["C70"] = heater_year
-            panel_sheet["C71"] = (
+            mcc_heater_power_supply = (
                 f"{heater_power_supply_vac}, {heater_power_supply_phase}, {heater_power_supply_frequency}"
             )
-            panel_sheet["C72"] = (
+            mcc_heater_control_supply = (
                 f"{heater_control_supply_vac}, {heater_control_supply_phase}, {heater_control_supply_frequency}"
             )
 
@@ -1220,17 +1246,34 @@ def get_design_basis_excel():
             else: 
                 heater_temperature = f"{heater_temperature} kg/cm2(g)/Bar"
 
+            if is_punching_details_for_heater_selected == "0" or is_punching_details_for_heater_selected == 0:
+                heater_model = "Not Applicable"
+                heater_fuel = "Not Applicable"
+                heater_year = "Not Applicable"
+                mcc_heater_power_supply = "Not Applicable"
+                mcc_heater_control_supply = "Not Applicable"
+                heater_evaporation = "Not Applicable"
+                heater_output = "Not Applicable"
+                heater_connected_load = "Not Applicable"
+                heater_temperature = "Not Applicable"
+
+
+            panel_sheet["C68"] = heater_model
+            panel_sheet["C69"] = heater_fuel
+            panel_sheet["C70"] = heater_year
+            panel_sheet["C71"] = mcc_heater_power_supply
+            panel_sheet["C72"] = mcc_heater_control_supply
             panel_sheet["C73"] = heater_evaporation
             panel_sheet["C74"] = heater_output
             panel_sheet["C75"] = heater_connected_load
             panel_sheet["C76"] = heater_temperature
 
-            panel_sheet["C78"] = spg_name_plate_unit_name
-            panel_sheet["C79"] = spg_name_plate_capacity
-            panel_sheet["C80"] = spg_name_plate_manufacturing_year
-            panel_sheet["C81"] = spg_name_plate_weight
-            panel_sheet["C82"] = spg_name_plate_oc_number
-            panel_sheet["C83"] = spg_name_plate_part_code
+            panel_sheet["C78"] = na_to_string(spg_name_plate_unit_name)
+            panel_sheet["C79"] = na_to_string(spg_name_plate_capacity)
+            panel_sheet["C80"] = na_to_string(spg_name_plate_manufacturing_year)
+            panel_sheet["C81"] = na_to_string(spg_name_plate_weight)
+            panel_sheet["C82"] = na_to_string(spg_name_plate_oc_number)
+            panel_sheet["C83"] = na_to_string(spg_name_plate_part_code)
 
         elif project_panel.get("panel_main_type") == "PCC":
 
@@ -1347,10 +1390,19 @@ def get_design_basis_excel():
 
             pcc_incomer_data = f"{incomer_ampere}, {incomer_pole} Pole {incomer_type} \n{incomer_above_ampere}, {incomer_above_pole} Pole {incomer_above_type}"
 
-            panel_sheet["C5"] = pcc_incomer_data
-            panel_sheet["C6"] = na_to_string(led_type_on_input)
-            panel_sheet["C7"] = na_to_string(led_type_off_input)
-            panel_sheet["C8"] = na_to_string(led_type_trip_input)
+            if is_indication_on_selected == "0" or is_indication_on_selected == 0:
+                led_type_on_input = "Not Applicable"
+            
+            if is_indication_off_selected == "0" or is_indication_off_selected == 0:
+                led_type_off_input = "Not Applicable"
+
+            if is_indication_trip_selected == "0" or is_indication_trip_selected == 0:
+                led_type_trip_input = "Not Applicable"
+
+            panel_sheet["C5"] = na_to_string(pcc_incomer_data)
+            panel_sheet["C6"] = led_type_on_input
+            panel_sheet["C7"] = led_type_off_input
+            panel_sheet["C8"] = led_type_trip_input
             panel_sheet["C9"] = na_to_string(is_blue_cb_spring_charge_selected)
             panel_sheet["C10"] = na_to_string(is_red_cb_in_service)
             panel_sheet["C11"] = na_to_string(is_white_healthy_trip_circuit_selected)
@@ -1378,29 +1430,51 @@ def get_design_basis_excel():
             panel_sheet["C20"] = current_transformer_configuration
 
             # General
+
+            panel_sheet["C22"] = ga_moc_material #MOC
+            panel_sheet["C23"] = ga_moc_thickness_door # Component Mounting Plate Thickness 
+            panel_sheet["C24"] = door_thickness # Door Thickness 
+            panel_sheet["C25"] = ga_moc_thickness_covers # Top & Side Thickness
+            panel_sheet["C26"] = ga_gland_plate_thickness # Gland Plate Thickness
+            panel_sheet["C27"] = ga_gland_plate_3mm_drill_type # Gland Plate Type
+            panel_sheet["C28"] = ga_pcc_compartmental # Panel Front Type
+            panel_sheet["C29"] = ga_pcc_construction_front_type # Type of Construction for Board
+            panel_sheet["C30"] = incoming_drawout_type
+            panel_sheet["C31"] = outgoing_drawout_type
+            panel_sheet["C32"] = ga_pcc_construction_type # Panel Construction Type
+            panel_sheet["C33"] = ga_panel_mounting_frame # Panel Mounting
+            panel_sheet["C34"] = f"{ga_panel_mounting_height} mm" # Height of Base Frame
+
+            if is_marshalling_section_selected == 0 or is_marshalling_section_selected == "0":
+                marshalling_section_text_area = "Not Applicable"
+
+            panel_sheet["C35"] = marshalling_section_text_area # Marshalling Section
+            panel_sheet["C36"] = num_to_string(is_cable_alley_section_selected) 
+            panel_sheet["C37"] = num_to_string(is_power_and_bus_separation_section_selected) # BUS
+            panel_sheet["C38"] = num_to_string(is_both_side_extension_section_selected) # Extension on Both sides
+            panel_sheet["C39"] = ga_busbar_chamber_position # Busbar Chamber position
+            panel_sheet["C40"] = ga_power_and_control_busbar_separation # BUSBAR
+            panel_sheet["C41"] = ga_enclosure_protection_degree # Degree of Enclosure
+            panel_sheet["C42"] = ga_cable_entry_position # BUSBAR
+
             # end 
 
-            panel_sheet["C44"] = ppc_painting_standards
+            panel_sheet["C44"] = "AS per OEM Standard"
             panel_sheet["C45"] = ppc_interior_and_exterior_paint_shade
             panel_sheet["C46"] = ppc_component_mounting_plate_paint_shade
             
             panel_sheet["C47"] = ppc_minimum_coating_thickness  
-            panel_sheet["C48"] = ppc_base_frame_paint_shade
+            panel_sheet["C48"] = "Black"
             panel_sheet["C49"] = ppc_pretreatment_panel_standard
             panel_sheet["C50"] = general_requirments_for_construction
             
-            # panel_sheet["C52"] = vfd_auto_manual_selection
             panel_sheet["C52"] = commissioning_spare
             panel_sheet["C53"] = two_year_operational_spare
-            
 
-            panel_sheet["C56"] = na_to_string(boiler_model)
-            panel_sheet["C57"] = na_to_string(boiler_fuel)
-            panel_sheet["C58"] = na_to_string(boiler_year)
-            panel_sheet["C59"] = (
+            pcc_boiler_power_supply = (
                 f"{boiler_power_supply_vac}, {boiler_power_supply_phase}, {boiler_power_supply_frequency}"
             )
-            panel_sheet["C60"] = (
+            pcc_boiler_control_supply = (
                 f"{boiler_control_supply_vac}, {boiler_control_supply_phase}, {boiler_control_supply_frequency}"
             )
 
@@ -1423,21 +1497,35 @@ def get_design_basis_excel():
                 boiler_design_pressure = "Not Applicable"
             else: 
                 boiler_design_pressure = f"{boiler_design_pressure} kg/cm2(g)/Bar"
+
                 
+            if is_punching_details_for_boiler_selected == "0" or is_punching_details_for_boiler_selected == 0:
+                boiler_connected_load = "Not Applicable"
+                boiler_model = "Not Applicable"
+                boiler_fuel = "Not Applicable"
+                boiler_year = "Not Applicable"
+                boiler_evaporation = "Not Applicable"
+                boiler_output = "Not Applicable"
+                boiler_connected_load = "Not Applicable"
+                boiler_design_pressure = "Not Applicable"
+                pcc_boiler_power_supply = "Not Applicable"
+                pcc_boiler_control_supply  = "Not Applicable"
 
-            panel_sheet["C61"] = na_to_string(boiler_evaporation)
-            panel_sheet["C62"] = na_to_string(boiler_output)
-            panel_sheet["C63"] = na_to_string(boiler_connected_load)
-            panel_sheet["C64"] = na_to_string(boiler_design_pressure)
+            panel_sheet["C56"] = boiler_model
+            panel_sheet["C57"] = boiler_fuel
+            panel_sheet["C58"] = boiler_year
+            panel_sheet["C59"] = pcc_boiler_power_supply
+            panel_sheet["C60"] = pcc_boiler_control_supply
+            panel_sheet["C61"] = boiler_evaporation
+            panel_sheet["C62"] = boiler_output
+            panel_sheet["C63"] = boiler_connected_load
+            panel_sheet["C64"] = boiler_design_pressure
 
-
-            panel_sheet["C66"] = na_to_string(heater_model)
-            panel_sheet["C67"] = na_to_string(heater_fuel)
-            panel_sheet["C68"] = na_to_string(heater_year)
-            panel_sheet["C69"] = (
+            pcc_heater_power_supply = (
                 f"{heater_power_supply_vac}, {heater_power_supply_phase}, {heater_power_supply_frequency}"
             )
-            panel_sheet["C70"] = (
+            
+            pcc_heater_control_supply = (
                 f"{heater_control_supply_vac}, {heater_control_supply_phase}, {heater_control_supply_frequency}"
             )
 
@@ -1461,12 +1549,26 @@ def get_design_basis_excel():
             else: 
                 heater_temperature = f"{heater_temperature} kg/cm2(g)/Bar"
 
+            if is_punching_details_for_heater_selected == "0" or is_punching_details_for_heater_selected == 0:
+                heater_model = "Not Applicable"
+                heater_fuel = "Not Applicable"
+                heater_year = "Not Applicable"
+                pcc_heater_power_supply = "Not Applicable"
+                pcc_heater_control_supply = "Not Applicable"
+                heater_evaporation = "Not Applicable"
+                heater_output = "Not Applicable"
+                heater_connected_load = "Not Applicable"
+                heater_temperature = "Not Applicable"
 
-
-            panel_sheet["C71"] = na_to_string(heater_evaporation)
-            panel_sheet["C72"] = na_to_string(heater_output)
-            panel_sheet["C73"] = na_to_string(heater_connected_load)
-            panel_sheet["C74"] = na_to_string(heater_temperature)
+            panel_sheet["C66"] = heater_model
+            panel_sheet["C67"] = heater_fuel
+            panel_sheet["C68"] = heater_year
+            panel_sheet["C69"] = pcc_heater_power_supply
+            panel_sheet["C70"] = pcc_heater_control_supply
+            panel_sheet["C71"] = heater_evaporation
+            panel_sheet["C72"] = heater_output
+            panel_sheet["C73"] = heater_connected_load
+            panel_sheet["C74"] = heater_temperature
 
             panel_sheet["C76"] = na_to_string(spg_name_plate_unit_name)
             panel_sheet["C77"] = na_to_string(spg_name_plate_capacity)
@@ -1474,8 +1576,6 @@ def get_design_basis_excel():
             panel_sheet["C79"] = na_to_string(spg_name_plate_weight)
             panel_sheet["C80"] = na_to_string(spg_name_plate_oc_number)
             panel_sheet["C81"] = na_to_string(spg_name_plate_part_code)
-
-            
 
         else:
             mcc_panel_data = frappe.db.get_list(

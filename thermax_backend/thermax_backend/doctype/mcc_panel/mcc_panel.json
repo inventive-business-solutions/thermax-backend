@@ -42,6 +42,7 @@
   "mi_digital",
   "mi_communication_protocol",
   "ga_moc_material",
+  "door_thickness",
   "ga_moc_thickness_door",
   "ga_moc_thickness_covers",
   "ga_mcc_compartmental",
@@ -718,11 +719,17 @@
    "fieldname": "ga_gland_plate_thickness",
    "fieldtype": "Data",
    "label": "GA Gland Plate Thickness"
+  },
+  {
+   "fieldname": "door_thickness",
+   "fieldtype": "Link",
+   "label": "Door Thickness",
+   "options": "GA MOC Thickness Door"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-11 18:45:42.313258",
+ "modified": "2025-01-12 22:42:18.992086",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "MCC Panel",
