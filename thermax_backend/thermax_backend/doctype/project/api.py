@@ -32,8 +32,8 @@ def trigger_approver_notification_mail(
         },
     )
     frappe.sendmail(
-        recipients=approvar_email,
-        cc=creator_email,
+        recipients=[approvar_email],
+        cc=[creator_email],
         subject=subject,
         message=template,
         now=True,
