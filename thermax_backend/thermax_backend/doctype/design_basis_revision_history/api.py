@@ -2746,7 +2746,7 @@ def get_design_basis_excel():
             # Universal Modules
             panel_sheet["C138"] = plc_panel.get("universal_module_channel_density")
             panel_sheet["C139"] = plc_panel.get("universal_module_loop_current")
-            panel_sheet["C140"] = plc_panel.get("universal_module_isolation")
+            panel_sheet["C140"] = na_to_string(plc_panel.get("universal_module_isolation"))
             panel_sheet["C141"] = plc_panel.get("universal_module_input_type")
             panel_sheet["C142"] = plc_panel.get("universal_module_scan_time")
             is_universal_module_hart_protocol_support_selected = plc_panel.get(
