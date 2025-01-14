@@ -34,7 +34,8 @@
   "min_humidity",
   "max_humidity",
   "avg_humidity",
-  "performance_humidity"
+  "performance_humidity",
+  "is_saved"
  ],
  "fields": [
   {
@@ -226,11 +227,17 @@
    "fieldname": "performance_humidity",
    "fieldtype": "Data",
    "label": "Performance Humidity"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_saved",
+   "fieldtype": "Check",
+   "label": "Is Saved"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-12 21:01:37.431671",
+ "modified": "2025-01-14 12:15:54.980315",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Project Information",
