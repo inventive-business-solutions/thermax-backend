@@ -28,7 +28,7 @@
    "fieldname": "status",
    "fieldtype": "Select",
    "label": "Status",
-   "options": "Review Unsubmitted\nReview Submitted\nReview Resubmitted\nReview Resubmitted Again\nApproved\nReleased"
+   "options": "Review Unsubmitted\nReview Submitted\nReview Resubmitted\nReview Resubmitted Again\nApproved\nReleased\nCopied"
   },
   {
    "default": "Issued for Review",
@@ -59,7 +59,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-02 23:47:06.342070",
+ "modified": "2025-01-14 14:33:15.771167",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Design Basis Revision History",
