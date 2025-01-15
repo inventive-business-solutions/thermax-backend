@@ -110,23 +110,20 @@ def get_design_basis_excel():
     payload = frappe.local.form_dict
     revision_id = payload["revision_id"]
 
-    design_basis_revision_data = frappe.get_doc(
-        "Design Basis Revision History", revision_id
-    ).as_dict()
-    project_id = design_basis_revision_data.get("project_id")
-    project_data = frappe.get_doc("Project", project_id).as_dict()
-
     # Define the path to the template
     template_path = frappe.get_app_path(
         "thermax_backend", "templates", "design_basis_template.xlsx"
     )
-
     template_workbook = load_workbook(template_path)
 
-    project_description = design_basis_revision_data.get("description")
-    project_status = design_basis_revision_data.get("status")
-    owner = design_basis_revision_data.get("owner")
+    design_basis_revision_data = frappe.get_doc(
+        "Design Basis Revision History", revision_id
+    ).as_dict()
 
+    project_id = design_basis_revision_data.get("project_id")
+    revision_data_with_pid = frappe.db.get_list("Design Basis Revision History", {"project_id": project_id}, "*")
+
+    project_data = frappe.get_doc("Project", project_id).as_dict()
     division_name = project_data.get("division")
     project_name = project_data.get("project_name")
     project_oc_number = project_data.get("project_oc_number")
@@ -134,6 +131,12 @@ def get_design_basis_excel():
     client_name = project_data.get("client_name")
     consultant_name = project_data.get("consultant_name")
     modified = project_data.get("modified")
+
+
+    # project_description = design_basis_revision_data.get("description")
+    # project_status = design_basis_revision_data.get("status")
+    owner = design_basis_revision_data.get("owner")
+
 
     ########################################################################################################################
 
@@ -159,7 +162,7 @@ def get_design_basis_excel():
         "name_initial",
     )
 
-    revision_date = modified.strftime("%d-%m-%Y")
+    # revision_date = modified.strftime("%d-%m-%Y")
 
     # COVER SHEET ################################################################################################################################
 
@@ -170,11 +173,20 @@ def get_design_basis_excel():
     cover_sheet["D9"] = project_name.upper()
     cover_sheet["D10"] = project_oc_number.upper()
 
-    cover_sheet["C33"] = revision_date
-    cover_sheet["D33"] = project_description
-    cover_sheet["E33"] = prepped_by_initial
-    cover_sheet["F33"] = checked_by_initial
-    cover_sheet["G33"] = super_user_initial
+    index = 33
+
+    for i in range(len(revision_data_with_pid) - 1, -1, -1):
+        current_revision = revision_data_with_pid[i]
+        revision_date = current_revision.get("modified")
+        project_description = current_revision.get("description")
+
+        cover_sheet[f"B{index}"] = f"R{len(revision_data_with_pid) - i - 1}"
+        cover_sheet[f"C{index}"] = revision_date
+        cover_sheet[f"D{index}"] = project_description
+        cover_sheet[f"E{index}"] = prepped_by_initial
+        cover_sheet[f"F{index}"] = checked_by_initial
+        cover_sheet[f"G{index}"] = super_user_initial
+        index = index - 1
 
     match division_name:
         case "Heating":
@@ -282,25 +294,24 @@ def get_design_basis_excel():
     temp_area_of_classification = "Not Applicable"
 
     if len(main_packages_data_array) > 0:
+        package_name_array = []
+        safe_area_array = []
+        hazard_area_array = []
 
-        main_packages_data = frappe.get_doc("Project Main Package",{ "revision_id": revision_id },"*").as_dict()
+        for package in main_packages_data_array:
+            package_name = package.get("main_package_name")
+            current_package_id = package.get("name")
+            package_name_array.append(package_name)
 
-        temp_main_package_name = main_packages_data.get("main_package_name")
+            current_package_data = frappe.get_doc("Project Main Package", {"name":current_package_id}, "*").as_dict()
+            sub_package_data = current_package_data["sub_packages"]
 
-        sub_package_data = main_packages_data["sub_packages"]
-        safe_sub_package = []
-        hazardous_sub_package = []
-
-        if len(sub_package_data) > 0:
-            for sub_package in sub_package_data:
-                if sub_package["area_of_classification"] == "Safe Area":
-                    safe_sub_package.append(sub_package['sub_package_name'])
-                else:
-                    hazardous_sub_package.append(sub_package['sub_package_name'])
-
-            safe_sub_package = ', '.join(safe_sub_package)
-            hazardous_sub_package = ', '.join(hazardous_sub_package)
-
+            if len(sub_package_data) > 0:
+                for sub_package in sub_package_data:
+                    if sub_package["area_of_classification"] == "Safe Area":
+                        safe_area_array.append(sub_package["sub_package_name"])
+                    else:
+                        hazard_area_array.append(sub_package["sub_package_name"])
         area_classification_data = frappe.db.get_value(
             "Project Main Package",
             {"revision_id": revision_id},
@@ -323,7 +334,7 @@ def get_design_basis_excel():
                 value if value is not None else default_values[field]
                 for value, field in zip(area_classification_data, default_values.keys())
             ]
-
+        
         # Safeguard against missing indices in area_classification_data
         standard = area_classification_data[0] if len(area_classification_data) > 0 else ""
         classification_1 = (
@@ -338,21 +349,17 @@ def get_design_basis_excel():
             f"Standard-{standard}, {classification_1}, Gas Group-{gas_group}, Temperature Class-{temperature_class}"
         )
 
-        if len(sub_package_data) > 0:
+        package_name_array = ", ".join(package_name_array)
+        safe_area_sub_package = ", ".join(safe_area_array)
+        hazard_area_sub_package = ", ".join(hazard_area_array)
 
-            for sub_package in sub_package_data:
-                if sub_package["area_of_classification"] == "Safe Area" and (sub_package["is_sub_package_selected"] == 1 or sub_package["is_sub_package_selected"] == "1"):
-                    temp_safe_area = safe_sub_package
-                if sub_package["area_of_classification"] == "Hazardous Area" and (sub_package["is_sub_package_selected"] == 1 or sub_package["is_sub_package_selected"] == "1"):
-                    temp_hazardous_area = hazardous_sub_package
-                    temp_area_of_classification = area_classification_data
+        temp_main_package_name = package_name_array
 
-        # main_package_name = ""
-        # # if len(main_packages_data) > 1:
-        # main_package_name = main_packages_data.get("main_package_name")
-
-        
-
+        if len(safe_area_array) > 0: 
+            temp_safe_area = safe_area_sub_package
+        if len(hazard_area_array) > 0:
+            temp_hazardous_area = hazard_area_sub_package
+            temp_area_of_classification = area_classification_data
 
 
     design_basis_sheet["C20"] = temp_main_package_name
@@ -967,13 +974,6 @@ def get_design_basis_excel():
     design_basis_sheet["C99"] = handle_make_of_component(cc_digital_meters)
     design_basis_sheet["C100"] = na_to_string(cc_communication_protocol)
 
-    
-    # if cc_current_transformer == "NA":
-    #     cc_current_transformer = "Not Applicable"
-    # else:
-    #     cc_current_transformer = f"{cc_current_transformer} kW & Above"
-    
-
     design_basis_sheet["C102"] = check_value_kW(cc_current_transformer)
     design_basis_sheet["C103"] = na_to_string(cc_current_transformer_coating)
     design_basis_sheet["C104"] = na_to_string(cc_current_transformer_quantity)
@@ -1052,9 +1052,19 @@ def get_design_basis_excel():
 
     design_basis_sheet["C152"] = cc_safe_field_motor_type
     design_basis_sheet["C153"] = na_to_string(cc_safe_field_motor_enclosure)
-    design_basis_sheet["C154"] = na_to_string(cc_safe_field_motor_material)
+
+    if cc_safe_field_motor_material == "CRCA" or cc_safe_field_motor_material == "SS 316" or cc_safe_field_motor_material == "SS 306":
+        cc_safe_field_motor_material = f"{cc_safe_field_motor_material}, {cc_safe_field_motor_thickness} mm"
+        cc_safe_field_motor_cable_entry = f"{cc_safe_field_motor_cable_entry}, 3 mm"
+    elif cc_safe_field_motor_material == "NA":
+        cc_safe_field_motor_material = "Not Applicable"
+
+    design_basis_sheet["C154"] = cc_safe_field_motor_material
     design_basis_sheet["C155"] = na_to_string(cc_safe_field_motor_qty)
     design_basis_sheet["C156"] = na_to_string(cc_safe_field_motor_isolator_color_shade)
+
+
+
     design_basis_sheet["C157"] = cc_safe_field_motor_cable_entry
     design_basis_sheet["C158"] = na_to_string(cc_safe_field_motor_canopy)
 
@@ -2312,39 +2322,17 @@ def get_design_basis_excel():
             panel_sheet["C11"] = na_to_string(is_white_healthy_trip_circuit_selected)
             panel_sheet["C12"] = na_to_string(alarm_annunciator)
 
-            analog_data = (
-                mi_analog.replace("[", "")
-                .replace("]", "")
-                .replace('"', "")
-                .replace(",", ", ")
-                if mi_analog is not None
-                else "Not Applicable"
-            )
-            digital_data = (
-                mi_digital.replace("[", "")
-                .replace("]", "")
-                .replace('"', "")
-                .replace(",", ", ")
-                if mi_digital is not None
-                else "Not Applicable"
-            )
-
-            if "NA" in mi_analog:
-                analog_data = "Not Applicable"
-
-            if "NA" in mi_digital:
-                digital_data = "Not Applicable"
 
             if "NA" in mi_communication_protocol:
                 mi_communication_protocol = "Not Applicable"
 
-            panel_sheet["C14"] = analog_data
-            panel_sheet["C15"] = digital_data
-            panel_sheet["C16"] = mi_communication_protocol
+            panel_sheet["C14"] = na_to_string(current_transformer_coating)
+            panel_sheet["C15"] = na_to_string(current_transformer_number)
+            panel_sheet["C16"] = na_to_string(current_transformer_configuration)
 
-            panel_sheet["C18"] = na_to_string(current_transformer_coating)
-            panel_sheet["C19"] = na_to_string(current_transformer_number)
-            panel_sheet["C20"] = na_to_string(current_transformer_configuration)
+            panel_sheet["C18"] = handle_make_of_component(mi_analog)
+            panel_sheet["C19"] = handle_make_of_component(mi_digital)
+            panel_sheet["C20"] = handle_make_of_component(mi_communication_protocol)
 
             panel_sheet["C22"] = ga_moc_material  # MOC
             panel_sheet["C23"] = na_to_string(ga_moc_thickness_door)  # Component Mounting Plate Thickness
@@ -2590,17 +2578,17 @@ def get_design_basis_excel():
             )
 
             # PLC Hardware
-            panel_sheet["C72"] = ""
+            panel_sheet["C72"] = handle_make_of_component(plc)
             panel_sheet["C73"] = plc_panel.get(
                 "plc_cpu_system_series", "Not Applicable"
             )
             panel_sheet["C74"] = plc_panel.get(
                 "plc_cpu_system_input_voltage", "Not Applicable"
             )
-            panel_sheet["C75"] = plc_panel.get(
+            plc_cpu = plc_panel.get(
                 "plc_cpu_system_memory_free_space_after_program", "Not Applicable"
             )
-
+            panel_sheet["C75"] = f"{plc_cpu} %"
             # Redundancy
             panel_sheet["C77"] = num_to_string(
                 plc_panel.get("is_power_supply_plc_cpu_system_selected", "0")
@@ -2659,13 +2647,13 @@ def get_design_basis_excel():
                 plc_panel.get("indicating_lamp_colour_for_ups_power_supply", "NA")
             )
 
-            # DI Modules
+            # # DI Modules
             panel_sheet["C94"] = plc_panel.get("di_module_channel_density")
-            panel_sheet["C95"] = plc_panel.get("loop_current")
-            panel_sheet["C96"] = plc_panel.get("isolation")
+            panel_sheet["C95"] = plc_panel.get("loop_current") #UI Error
+            panel_sheet["C96"] = plc_panel.get("isolation") # UI Error
             panel_sheet["C97"] = plc_panel.get("di_module_input_type")
-            panel_sheet["C98"] = plc_panel.get("interrogation_voltage")
-            panel_sheet["C99"] = plc_panel.get("scan_time")
+            panel_sheet["C98"] = plc_panel.get("interrogation_voltage") # UI Error
+            panel_sheet["C99"] = plc_panel.get("scan_time") #UI Error
 
             # DO Modules
             panel_sheet["C101"] = plc_panel.get("do_module_channel_density")
@@ -2673,10 +2661,10 @@ def get_design_basis_excel():
             panel_sheet["C103"] = na_to_string(plc_panel.get("do_module_isolation"))
             panel_sheet["C104"] = plc_panel.get("do_module_output_type")
 
-            # Interposing Relay
+            # # Interposing Relay
             is_no_of_contacts_selected = plc_panel.get("is_no_of_contacts_selected")
             panel_sheet["C106"] = na_to_string(plc_panel.get("interposing_relay", "NA"))
-            panel_sheet["C107"] = plc_panel.get("interposing_relay_contacts_rating")
+            # panel_sheet["C107"] = na_to_string(plc_panel.get("interposing_relay_contacts_rating")) # UI Error
             panel_sheet["C108"] = (
                 plc_panel.get("no_of_contacts")
                 if int(is_no_of_contacts_selected) == 1
@@ -2713,7 +2701,7 @@ def get_design_basis_excel():
                 else "Not Applicable"
             )
 
-            # RTD Modules
+            # # RTD Modules
             panel_sheet["C124"] = plc_panel.get("rtd_module_channel_density")
             panel_sheet["C125"] = plc_panel.get("rtd_module_loop_current")
             panel_sheet["C126"] = na_to_string(plc_panel.get("rtd_module_isolation"))
@@ -2780,9 +2768,10 @@ def get_design_basis_excel():
 
             # HMI
             is_hmi_selected = int(plc_panel.get("is_hmi_selected", 0))
+            hmi_size = na_to_string(plc_panel.get("hmi_size", "NA"))
             panel_sheet["C152"] = (
-                na_to_string(plc_panel.get("hmi_size", "NA"))
-                if is_hmi_selected == 1
+                f"{hmi_size} inch"
+                if int(is_hmi_selected) == 1
                 else "Not Applicable"
             )
             panel_sheet["C153"] = (
@@ -2876,7 +2865,13 @@ def get_design_basis_excel():
             panel_sheet["C168"] = plc_panel.get(
                 "pc_hardware_specifications", "Not Applicable"
             )
-            panel_sheet["C169"] = plc_panel.get("monitor_size", "Not Applicable")
+            monitor_size_data = plc_panel.get("monitor_size")
+            if "NA" in monitor_size_data:
+                monitor_size_data = "Not Applicable"
+            else: 
+                monitor_size_data = f"{monitor_size_data} inch"
+            
+            panel_sheet["C169"] = monitor_size_data
             panel_sheet["C170"] = plc_panel.get(
                 "windows_operating_system", "Not Applicable"
             )
@@ -2891,22 +2886,22 @@ def get_design_basis_excel():
             )
             panel_sheet["C172"] = (
                 "Applicable"
-                if is_printer_with_suitable_communication_cable_selected == 1
+                if int(is_printer_with_suitable_communication_cable_selected) == 1
                 else "Not Applicable"
             )
             panel_sheet["C173"] = (
                 plc_panel.get("printer_type", 0)
-                if is_printer_with_suitable_communication_cable_selected == 1
+                if int(is_printer_with_suitable_communication_cable_selected) == 1
                 else "Not Applicable"
             )
             panel_sheet["C174"] = (
                 plc_panel.get("printer_size", 0)
-                if is_printer_with_suitable_communication_cable_selected == 1
+                if int(is_printer_with_suitable_communication_cable_selected) == 1
                 else "Not Applicable"
             )
             panel_sheet["C175"] = (
                 plc_panel.get("printer_quantity", 0)
-                if is_printer_with_suitable_communication_cable_selected == 1
+                if int(is_printer_with_suitable_communication_cable_selected) == 1
                 else "Not Applicable"
             )
 
@@ -2935,15 +2930,9 @@ def get_design_basis_excel():
             )
 
             # Communication
-            panel_sheet["C181"] = plc_panel.get(
-                "interface_signal_and_control_logic_implementation", "Not Applicable"
-            )
-            panel_sheet["C182"] = plc_panel.get(
-                "differential_pressure_flow_linearization", "Not Applicable"
-            )
-            panel_sheet["C183"] = plc_panel.get(
-                "third_party_comm_protocol_for_plc_cpu_system", "Not Applicable"
-            )
+            panel_sheet["C181"] = na_to_string(plc_panel.get("interface_signal_and_control_logic_implementation", "Not Applicable"))
+            panel_sheet["C182"] = na_to_string(plc_panel.get("differential_pressure_flow_linearization", "Not Applicable"))
+            panel_sheet["C183"] = na_to_string(plc_panel.get("third_party_comm_protocol_for_plc_cpu_system", "Not Applicable"))
             panel_sheet["C184"] = plc_panel.get(
                 "third_party_communication_protocol", "Not Applicable"
             )
