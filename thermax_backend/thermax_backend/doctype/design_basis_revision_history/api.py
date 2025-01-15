@@ -99,7 +99,7 @@ def num_to_string(value):
 
 
 def na_to_string(value):
-    if "NA" in value or value is None:
+    if (value is None) or ("NA" in value):
         return "Not Applicable"
     return value
 
@@ -130,7 +130,6 @@ def get_design_basis_excel():
     project_name = project_data.get("project_name")
     project_oc_number = project_data.get("project_oc_number")
     approver = project_data.get("approver")
-    client_name = project_data.get("client_name")
     consultant_name = project_data.get("consultant_name")
     modified = project_data.get("modified")
 
@@ -168,7 +167,7 @@ def get_design_basis_excel():
 
     cover_sheet["A3"] = division_name.upper()
     cover_sheet["D6"] = project_name.upper()
-    cover_sheet["D7"] = client_name.upper()
+    cover_sheet["D7"] = project_data.get("client_name").upper()
     cover_sheet["D8"] = consultant_name.upper()
     cover_sheet["D9"] = project_name.upper()
     cover_sheet["D10"] = project_oc_number.upper()
@@ -241,23 +240,9 @@ def get_design_basis_excel():
 
     project_info_freq = project_info_data.get("frequency")
     preojct_info_freq_var = project_info_data.get("frequency_variation")
-    project_info_frequency_data = f"{project_info_freq} Hz , {preojct_info_freq_var}%"
 
     project_info_fault = project_info_data.get("fault_level")
     project_info_sec = project_info_data.get("sec")
-    fault_data = f"{project_info_fault} kA, {project_info_sec} Sec"
-
-    ambient_temperature_max = project_info_data.get("ambient_temperature_max")
-    ambient_temperature_min = project_info_data.get("ambient_temperature_min")
-    electrical_design_temperature = project_info_data.get(
-        "electrical_design_temperature"
-    )
-    seismic_zone = project_info_data.get("seismic_zone")
-    min_humidity = project_info_data.get("min_humidity")
-    max_humidity = project_info_data.get("max_humidity")
-    avg_humidity = project_info_data.get("avg_humidity")
-    performance_humidity = project_info_data.get("performance_humidity")
-    altitude = project_info_data.get("altitude")
 
     general_info_data = frappe.db.get_list(
         "Design Basis General Info", {"revision_id": revision_id}, "*"
@@ -269,17 +254,23 @@ def get_design_basis_excel():
     design_basis_sheet["C5"] = lv_data
     design_basis_sheet["C6"] = control_supply_data
     design_basis_sheet["C7"] = utility_supply_data
-    design_basis_sheet["C8"] = project_info_frequency_data
-    design_basis_sheet["C9"] = fault_data
-    design_basis_sheet["C10"] = f"{ambient_temperature_max} Deg. C"
-    design_basis_sheet["C11"] = f"{ambient_temperature_min} Deg. C"
-    design_basis_sheet["C12"] = f"{electrical_design_temperature} Deg. C"
-    design_basis_sheet["C13"] = int(seismic_zone)
-    design_basis_sheet["C14"] = f"{max_humidity}%"
-    design_basis_sheet["C15"] = f"{min_humidity}%"
-    design_basis_sheet["C16"] = f"{avg_humidity}%"
-    design_basis_sheet["C17"] = f"{performance_humidity}%"
-    design_basis_sheet["C18"] = f"{altitude} meters"
+    design_basis_sheet["C8"] = f"{project_info_freq} Hz , {preojct_info_freq_var}%"
+    design_basis_sheet["C9"] = f"{project_info_fault} kA, {project_info_sec} Sec"
+    design_basis_sheet["C10"] = (
+        f'{project_info_data.get("ambient_temperature_max")} Deg. C'
+    )
+    design_basis_sheet["C11"] = (
+        f'{project_info_data.get("ambient_temperature_min")} Deg. C'
+    )
+    design_basis_sheet["C12"] = (
+        f'{project_info_data.get("electrical_design_temperature")} Deg. C'
+    )
+    design_basis_sheet["C13"] = int(project_info_data.get("seismic_zone"))
+    design_basis_sheet["C14"] = f'{project_info_data.get("max_humidity")}%'
+    design_basis_sheet["C15"] = f'{project_info_data.get("min_humidity")}%'
+    design_basis_sheet["C16"] = f'{project_info_data.get("avg_humidity")}%'
+    design_basis_sheet["C17"] = f'{project_info_data.get("performance_humidity")}%'
+    design_basis_sheet["C18"] = f'{project_info_data.get("altitude")} meters'
 
     main_packages_data_array = frappe.db.get_list(
         "Project Main Package",
@@ -304,7 +295,7 @@ def get_design_basis_excel():
             package_name_array.append(package_name)
 
             current_package_data = frappe.get_doc(
-                "Project Main Package", {"name": current_package_id}, "*"
+                "Project Main Package", current_package_id
             ).as_dict()
             sub_package_data = current_package_data["sub_packages"]
 
@@ -378,8 +369,6 @@ def get_design_basis_excel():
     )
     motor_parameters_data = motor_parameters_data[0]
 
-    safe_area_efficiency_level = motor_parameters_data.get("safe_area_efficiency_level")
-    safe_area_insulation_class = motor_parameters_data.get("safe_area_insulation_class")
     safe_area_temperature_rise = motor_parameters_data.get("safe_area_temperature_rise")
     safe_area_enclosure_ip_rating = motor_parameters_data.get(
         "safe_area_enclosure_ip_rating"
@@ -557,8 +546,6 @@ def get_design_basis_excel():
         or general_info_data.get("is_package_selection_enabled") == "1"
     ):
         if temp_safe_area == "Not Applicable":
-            safe_area_efficiency_level = "Not Applicable"
-            safe_area_insulation_class = "Not Applicable"
             safe_area_temperature_rise = "Not Applicable"
             safe_area_enclosure_ip_rating = "Not Applicable"
             safe_area_max_temperature = "Not Applicable"
@@ -602,8 +589,16 @@ def get_design_basis_excel():
             hazardous_area_paint_type_and_shade = "Not Applicable"
             hazardous_area_starts_hour_permissible = "Not Applicable"
 
-    design_basis_sheet["C27"] = safe_area_efficiency_level
-    design_basis_sheet["C28"] = safe_area_insulation_class
+    design_basis_sheet["C27"] = (
+        "Not Applicable"
+        if temp_safe_area == "Not Applicable"
+        else motor_parameters_data.get("safe_area_efficiency_level")
+    )
+    design_basis_sheet["C28"] = (
+        "Not Applicable"
+        if temp_safe_area == "Not Applicable"
+        else motor_parameters_data.get("safe_area_insulation_class")
+    )
     design_basis_sheet["C29"] = safe_area_temperature_rise
     design_basis_sheet["C30"] = safe_area_enclosure_ip_rating
     design_basis_sheet["C31"] = safe_area_max_temperature
@@ -1308,7 +1303,6 @@ def get_design_basis_excel():
     for project_panel in project_panel_data:
         panel_id = project_panel.get("name")
         if project_panel.get("panel_main_type") == "MCC":
-
             mcc_panel_data = frappe.db.get_list(
                 "MCC Panel", {"revision_id": revision_id, "panel_id": panel_id}, "*"
             )
@@ -1515,7 +1509,7 @@ def get_design_basis_excel():
             panel_sheet["C7"] = led_type_off_input
             panel_sheet["C8"] = led_type_trip_input
 
-            if not "ACB" in incomer_type:
+            if incomer_type is None or "ACB" not in incomer_type:
                 is_blue_cb_spring_charge_selected = "NA"
                 is_red_cb_in_service = "NA"
                 is_white_healthy_trip_circuit_selected = "NA"
@@ -1577,7 +1571,7 @@ def get_design_basis_excel():
             panel_sheet["C29"] = (
                 ga_mcc_construction_front_type  # Type of Construction for Board
             )
-            if "Non" in ga_mcc_compartmental:
+            if (ga_mcc_compartmental is None) or ("Non" in ga_mcc_compartmental):
                 incoming_drawout_type = "Not Applicable"
                 outgoing_drawout_type = "Not Applicable"
 
@@ -2812,7 +2806,7 @@ def get_design_basis_excel():
                 f"{hmi_size} inch" if int(is_hmi_selected) == 1 else "Not Applicable"
             )
             panel_sheet["C153"] = (
-                na_to_string(plc_panel.get("hmi_quantity", "NA"))
+                plc_panel.get("hmi_quantity", 0)
                 if is_hmi_selected == 1
                 else "Not Applicable"
             )

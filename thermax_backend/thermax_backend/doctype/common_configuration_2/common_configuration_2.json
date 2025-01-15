@@ -386,7 +386,7 @@
    "fieldname": "hazardous_lpbs_material",
    "fieldtype": "Link",
    "label": "Hazardous Push Button Material",
-   "options": "Local Push Button Station Material"
+   "options": "Field Motor Isolator General Material"
   },
   {
    "fieldname": "hazardous_lpbs_qty",
@@ -433,7 +433,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-10 15:46:02.096890",
+ "modified": "2025-01-15 22:23:48.475310",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Common Configuration 2",
