@@ -121,7 +121,9 @@ def get_design_basis_excel():
     ).as_dict()
 
     project_id = design_basis_revision_data.get("project_id")
-    revision_data_with_pid = frappe.db.get_list("Design Basis Revision History", {"project_id": project_id}, "*")
+    revision_data_with_pid = frappe.db.get_list(
+        "Design Basis Revision History", {"project_id": project_id}, "*"
+    )
 
     project_data = frappe.get_doc("Project", project_id).as_dict()
     division_name = project_data.get("division")
@@ -132,11 +134,9 @@ def get_design_basis_excel():
     consultant_name = project_data.get("consultant_name")
     modified = project_data.get("modified")
 
-
     # project_description = design_basis_revision_data.get("description")
     # project_status = design_basis_revision_data.get("status")
     owner = design_basis_revision_data.get("owner")
-
 
     ########################################################################################################################
 
@@ -303,7 +303,9 @@ def get_design_basis_excel():
             current_package_id = package.get("name")
             package_name_array.append(package_name)
 
-            current_package_data = frappe.get_doc("Project Main Package", {"name":current_package_id}, "*").as_dict()
+            current_package_data = frappe.get_doc(
+                "Project Main Package", {"name": current_package_id}, "*"
+            ).as_dict()
             sub_package_data = current_package_data["sub_packages"]
 
             if len(sub_package_data) > 0:
@@ -334,20 +336,22 @@ def get_design_basis_excel():
                 value if value is not None else default_values[field]
                 for value, field in zip(area_classification_data, default_values.keys())
             ]
-        
+
         # Safeguard against missing indices in area_classification_data
-        standard = area_classification_data[0] if len(area_classification_data) > 0 else ""
+        standard = (
+            area_classification_data[0] if len(area_classification_data) > 0 else ""
+        )
         classification_1 = (
             area_classification_data[1] if len(area_classification_data) > 1 else ""
         )
-        gas_group = area_classification_data[2] if len(area_classification_data) > 2 else ""
+        gas_group = (
+            area_classification_data[2] if len(area_classification_data) > 2 else ""
+        )
         temperature_class = (
             area_classification_data[3] if len(area_classification_data) > 3 else ""
         )
 
-        area_classification_data = (
-            f"Standard-{standard}, {classification_1}, Gas Group-{gas_group}, Temperature Class-{temperature_class}"
-        )
+        area_classification_data = f"Standard-{standard}, {classification_1}, Gas Group-{gas_group}, Temperature Class-{temperature_class}"
 
         package_name_array = ", ".join(package_name_array)
         safe_area_sub_package = ", ".join(safe_area_array)
@@ -355,12 +359,11 @@ def get_design_basis_excel():
 
         temp_main_package_name = package_name_array
 
-        if len(safe_area_array) > 0: 
+        if len(safe_area_array) > 0:
             temp_safe_area = safe_area_sub_package
         if len(hazard_area_array) > 0:
             temp_hazardous_area = hazard_area_sub_package
             temp_area_of_classification = area_classification_data
-
 
     design_basis_sheet["C20"] = temp_main_package_name
     design_basis_sheet["C21"] = temp_safe_area
@@ -465,7 +468,7 @@ def get_design_basis_excel():
     def check_value_kW_below(value):
         if value == "NA" or value == "Not Applicable":
             return "Not Applicable"
-        elif value  == "All":
+        elif value == "All":
             return f"{value} kW"
         else:
             return f"{value} kW and Below"
@@ -475,7 +478,7 @@ def get_design_basis_excel():
             return "Not Applicable"
         elif value == "As per OEM Standard":
             return value
-        elif value  == "All":
+        elif value == "All":
             return f"{value} kW"
         else:
             return f"{value} kW and Above"
@@ -501,8 +504,9 @@ def get_design_basis_excel():
     safe_area_certification = f"{safe_area_certification}"
     safe_area_bearing_rtd = safe_area_bearing_rtd
     safe_area_winding_rtd = safe_area_winding_rtd
-    safe_area_service_factor = int(safe_area_service_factor) if safe_area_service_factor else ""
-        
+    safe_area_service_factor = (
+        int(safe_area_service_factor) if safe_area_service_factor else ""
+    )
 
     if safe_area_certification == "None":
         safe_area_certification = "Not Applicable"
@@ -511,13 +515,11 @@ def get_design_basis_excel():
         safe_area_bearing_rtd = "Not Applicable"
     if safe_area_winding_rtd == "NA":
         safe_area_winding_rtd = "Not Applicable"
-    
+
     if safe_area_service_factor == "1" or safe_area_service_factor == 1:
         safe_area_service_factor = "Applicable"
     else:
         safe_area_service_factor = "Not Applicable"
-
-    
 
     hazardous_area_max_temperature = f"{hazardous_area_max_temperature} Deg. C"
     hazardous_area_min_temperature = f"{hazardous_area_min_temperature} Deg. C"
@@ -528,8 +530,9 @@ def get_design_basis_excel():
     hazardous_area_certification = f"{hazardous_area_certification}"
     hazardous_area_bearing_rtd = hazardous_area_bearing_rtd
     hazardous_area_winding_rtd = hazardous_area_winding_rtd
-    hazardous_area_service_factor = int(hazardous_area_service_factor) if hazardous_area_service_factor else ""
-
+    hazardous_area_service_factor = (
+        int(hazardous_area_service_factor) if hazardous_area_service_factor else ""
+    )
 
     if hazardous_area_certification == "None":
         hazardous_area_certification = "Not Applicable"
@@ -549,9 +552,10 @@ def get_design_basis_excel():
     else:
         hazardous_area_service_factor = "Not Applicable"
 
-
-    
-    if  general_info_data.get("is_package_selection_enabled") == 1 or general_info_data.get("is_package_selection_enabled") == "1" :
+    if (
+        general_info_data.get("is_package_selection_enabled") == 1
+        or general_info_data.get("is_package_selection_enabled") == "1"
+    ):
         if temp_safe_area == "Not Applicable":
             safe_area_efficiency_level = "Not Applicable"
             safe_area_insulation_class = "Not Applicable"
@@ -597,7 +601,6 @@ def get_design_basis_excel():
             hazardous_area_terminal_box_material = "Not Applicable"
             hazardous_area_paint_type_and_shade = "Not Applicable"
             hazardous_area_starts_hour_permissible = "Not Applicable"
-
 
     design_basis_sheet["C27"] = safe_area_efficiency_level
     design_basis_sheet["C28"] = safe_area_insulation_class
@@ -652,7 +655,10 @@ def get_design_basis_excel():
 
     def handle_make_of_component(component):
         component = (
-            component.replace('"', "").replace("[", "").replace("]", "").replace(",", ", ")
+            component.replace('"', "")
+            .replace("[", "")
+            .replace("]", "")
+            .replace(",", ", ")
             if component
             else "NA"
         )
@@ -676,9 +682,9 @@ def get_design_basis_excel():
     design_basis_sheet["C51"] = na_to_string(handle_make_of_component(cable))
     design_basis_sheet["C52"] = handle_make_of_component(lv_switchgear)
     design_basis_sheet["C53"] = na_to_string(handle_make_of_component(panel_enclosure))
-    design_basis_sheet["C54"] = na_to_string(handle_make_of_component(
-        variable_frequency_speed_drive_vfd_vsd
-    ))
+    design_basis_sheet["C54"] = na_to_string(
+        handle_make_of_component(variable_frequency_speed_drive_vfd_vsd)
+    )
     design_basis_sheet["C55"] = na_to_string(handle_make_of_component(soft_starter))
     design_basis_sheet["C56"] = na_to_string(handle_make_of_component(plc))
 
@@ -912,8 +918,10 @@ def get_design_basis_excel():
     )
     cc_control_transformer_type = common_config_data.get("control_transformer_type")
 
-    
-    if cc_is_control_transformer_applicable == "0" or cc_is_control_transformer_applicable == 0:
+    if (
+        cc_is_control_transformer_applicable == "0"
+        or cc_is_control_transformer_applicable == 0
+    ):
         cc_control_transformer_primary_voltage = "NA"
         cc_control_transformer_secondary_voltage_copy = "NA"
         cc_control_transformer_coating = "NA"
@@ -930,7 +938,6 @@ def get_design_basis_excel():
     design_basis_sheet["C64"] = na_to_string(cc_control_transformer_quantity)
     design_basis_sheet["C65"] = na_to_string(cc_control_transformer_configuration)
     design_basis_sheet["C66"] = na_to_string(cc_control_transformer_type)
-
 
     apfc_data = f"{cc_apfc_relay} Stage"
     if apfc_data == "NA":
@@ -959,13 +966,11 @@ def get_design_basis_excel():
     design_basis_sheet["C88"] = cc_instrument_earth
     design_basis_sheet["C89"] = cc_general_note_busbar_and_insulation_materials
 
-
-
     design_basis_sheet["C91"] = check_value_kW_below(cc_dol_starter)
     design_basis_sheet["C92"] = check_value_kW(cc_star_delta_starter)
     design_basis_sheet["C93"] = cc_mcc_switchgear_type
     if division_name != "SPG":
-        cc_switchgear_combination =  "Not Applicable"
+        cc_switchgear_combination = "Not Applicable"
     design_basis_sheet["C94"] = cc_switchgear_combination
 
     design_basis_sheet["C96"] = check_value_kW(cc_ammeter)
@@ -1004,7 +1009,6 @@ def get_design_basis_excel():
     design_basis_sheet["C129"] = na_to_string(cc_control_terminal)
     design_basis_sheet["C130"] = f"{cc_spare_terminal} %"
 
-
     design_basis_sheet["C132"] = na_to_string(cc_push_button_start)
     design_basis_sheet["C133"] = na_to_string(cc_push_button_stop)
     design_basis_sheet["C134"] = na_to_string(cc_push_button_ess)
@@ -1023,9 +1027,10 @@ def get_design_basis_excel():
     design_basis_sheet["C142"] = na_to_string(cc_reset_dropdown)
     design_basis_sheet["C143"] = na_to_string(cc_lamp_test_push_button)
 
-
     if cc_selector_switch_applicable == "Applicable":
-        cc_selector_switch_applicable = f"{cc_selector_switch_applicable}, {cc_selector_switch_lockable}"
+        cc_selector_switch_applicable = (
+            f"{cc_selector_switch_applicable}, {cc_selector_switch_lockable}"
+        )
 
     design_basis_sheet["C145"] = cc_selector_switch_applicable
 
@@ -1033,7 +1038,10 @@ def get_design_basis_excel():
     design_basis_sheet["C148"] = na_to_string(cc_stopped_closed)
     design_basis_sheet["C149"] = na_to_string(cc_trip)
 
-    if cc_is_local_push_button_station_selected == 0 or cc_is_local_push_button_station_selected == "0":
+    if (
+        cc_is_local_push_button_station_selected == 0
+        or cc_is_local_push_button_station_selected == "0"
+    ):
         cc_safe_field_motor_type = "Not Applicable"
         cc_safe_field_motor_enclosure = "Not Applicable"
         cc_safe_field_motor_material = "Not Applicable"
@@ -1053,8 +1061,14 @@ def get_design_basis_excel():
     design_basis_sheet["C152"] = cc_safe_field_motor_type
     design_basis_sheet["C153"] = na_to_string(cc_safe_field_motor_enclosure)
 
-    if cc_safe_field_motor_material == "CRCA" or cc_safe_field_motor_material == "SS 316" or cc_safe_field_motor_material == "SS 306":
-        cc_safe_field_motor_material = f"{cc_safe_field_motor_material}, {cc_safe_field_motor_thickness} mm"
+    if (
+        cc_safe_field_motor_material == "CRCA"
+        or cc_safe_field_motor_material == "SS 316"
+        or cc_safe_field_motor_material == "SS 306"
+    ):
+        cc_safe_field_motor_material = (
+            f"{cc_safe_field_motor_material}, {cc_safe_field_motor_thickness} mm"
+        )
         cc_safe_field_motor_cable_entry = f"{cc_safe_field_motor_cable_entry}, 3 mm"
     elif cc_safe_field_motor_material == "NA":
         cc_safe_field_motor_material = "Not Applicable"
@@ -1063,8 +1077,6 @@ def get_design_basis_excel():
     design_basis_sheet["C155"] = na_to_string(cc_safe_field_motor_qty)
     design_basis_sheet["C156"] = na_to_string(cc_safe_field_motor_isolator_color_shade)
 
-
-
     design_basis_sheet["C157"] = cc_safe_field_motor_cable_entry
     design_basis_sheet["C158"] = na_to_string(cc_safe_field_motor_canopy)
 
@@ -1072,11 +1084,16 @@ def get_design_basis_excel():
     design_basis_sheet["D153"] = na_to_string(cc_hazardous_field_motor_enclosure)
     design_basis_sheet["D154"] = na_to_string(cc_hazardous_field_motor_material)
     design_basis_sheet["D155"] = na_to_string(cc_hazardous_field_motor_qty)
-    design_basis_sheet["D156"] = na_to_string(cc_hazardous_field_motor_isolator_color_shade)
+    design_basis_sheet["D156"] = na_to_string(
+        cc_hazardous_field_motor_isolator_color_shade
+    )
     design_basis_sheet["D157"] = cc_hazardous_field_motor_cable_entry
     design_basis_sheet["D158"] = na_to_string(cc_hazardous_field_motor_canopy)
 
-    if cc_is_local_push_button_station_selected == 0 or cc_is_local_push_button_station_selected == "0":
+    if (
+        cc_is_local_push_button_station_selected == 0
+        or cc_is_local_push_button_station_selected == "0"
+    ):
         cc_lpbs_push_button_start_color = "Not Applicable"
         cc_forward_push_button_start = "Not Applicable"
         cc_reverse_push_button_start = "Not Applicable"
@@ -1248,12 +1265,13 @@ def get_design_basis_excel():
     gland_type_hazardous_area = "Not Applicable"
 
     if temp_hazardous_area != "Not Applicable":
-        gland_type_hazardous_area = f"{temp_area_of_classification}, with Dual Certification"
+        gland_type_hazardous_area = (
+            f"{temp_area_of_classification}, with Dual Certification"
+        )
 
     if temp_safe_area != "Not Applicable":
         gland_type_safe_area = "Weatherproof"
 
-    
     design_basis_sheet["C203"] = gland_type_safe_area
     design_basis_sheet["C204"] = gland_type_hazardous_area
 
@@ -1267,7 +1285,6 @@ def get_design_basis_excel():
         ct_cable_tray_moc = f"{ct_cable_tray_moc}, {ct_cable_tray_moc_input}"
 
     design_basis_sheet["C211"] = ct_cable_tray_moc
-
 
     earthing_layout_data = frappe.db.get_list(
         "Layout Earthing", {"revision_id": revision_id}, "*"
@@ -1502,7 +1519,7 @@ def get_design_basis_excel():
                 is_blue_cb_spring_charge_selected = "NA"
                 is_red_cb_in_service = "NA"
                 is_white_healthy_trip_circuit_selected = "NA"
-                
+
             panel_sheet["C9"] = na_to_string(is_blue_cb_spring_charge_selected)
             panel_sheet["C10"] = na_to_string(is_red_cb_in_service)
             panel_sheet["C11"] = na_to_string(is_white_healthy_trip_circuit_selected)
@@ -1543,11 +1560,19 @@ def get_design_basis_excel():
             panel_sheet["C20"] = na_to_string(current_transformer_configuration)
 
             panel_sheet["C22"] = ga_moc_material  # MOC
-            panel_sheet["C23"] = na_to_string(ga_moc_thickness_door)  # Component Mounting Plate Thickness
+            panel_sheet["C23"] = na_to_string(
+                ga_moc_thickness_door
+            )  # Component Mounting Plate Thickness
             panel_sheet["C24"] = na_to_string(door_thickness)  # Door Thickness
-            panel_sheet["C25"] = na_to_string(ga_moc_thickness_covers)  # Top & Side Thickness
-            panel_sheet["C26"] = na_to_string(ga_gland_plate_thickness)  # Gland Plate Thickness
-            panel_sheet["C27"] = na_to_string(ga_gland_plate_3mm_drill_type)  # Gland Plate Type
+            panel_sheet["C25"] = na_to_string(
+                ga_moc_thickness_covers
+            )  # Top & Side Thickness
+            panel_sheet["C26"] = na_to_string(
+                ga_gland_plate_thickness
+            )  # Gland Plate Thickness
+            panel_sheet["C27"] = na_to_string(
+                ga_gland_plate_3mm_drill_type
+            )  # Gland Plate Type
             panel_sheet["C28"] = ga_mcc_compartmental  # Panel Front Type
             panel_sheet["C29"] = (
                 ga_mcc_construction_front_type  # Type of Construction for Board
@@ -2322,7 +2347,6 @@ def get_design_basis_excel():
             panel_sheet["C11"] = na_to_string(is_white_healthy_trip_circuit_selected)
             panel_sheet["C12"] = na_to_string(alarm_annunciator)
 
-
             if "NA" in mi_communication_protocol:
                 mi_communication_protocol = "Not Applicable"
 
@@ -2335,11 +2359,19 @@ def get_design_basis_excel():
             panel_sheet["C20"] = handle_make_of_component(mi_communication_protocol)
 
             panel_sheet["C22"] = ga_moc_material  # MOC
-            panel_sheet["C23"] = na_to_string(ga_moc_thickness_door)  # Component Mounting Plate Thickness
+            panel_sheet["C23"] = na_to_string(
+                ga_moc_thickness_door
+            )  # Component Mounting Plate Thickness
             panel_sheet["C24"] = na_to_string(door_thickness)  # Door Thickness
-            panel_sheet["C25"] = na_to_string(ga_moc_thickness_covers)  # Top & Side Thickness
-            panel_sheet["C26"] = na_to_string(ga_gland_plate_thickness)  # Gland Plate Thickness
-            panel_sheet["C27"] = na_to_string(ga_gland_plate_3mm_drill_type)  # Gland Plate Type
+            panel_sheet["C25"] = na_to_string(
+                ga_moc_thickness_covers
+            )  # Top & Side Thickness
+            panel_sheet["C26"] = na_to_string(
+                ga_gland_plate_thickness
+            )  # Gland Plate Thickness
+            panel_sheet["C27"] = na_to_string(
+                ga_gland_plate_3mm_drill_type
+            )  # Gland Plate Type
             panel_sheet["C28"] = ga_mcc_compartmental  # Panel Front Type
             panel_sheet["C29"] = (
                 ga_mcc_construction_front_type  # Type of Construction for Board
@@ -2492,7 +2524,6 @@ def get_design_basis_excel():
             panel_sheet["C225"] = na_to_string(spg_name_plate_weight)
             panel_sheet["C226"] = spg_name_plate_oc_number
             panel_sheet["C227"] = na_to_string(spg_name_plate_part_code)
-
 
             plc_panel_1 = frappe.db.get_list(
                 "Panel PLC 1 - 3",
@@ -2649,11 +2680,13 @@ def get_design_basis_excel():
 
             # # DI Modules
             panel_sheet["C94"] = plc_panel.get("di_module_channel_density")
-            panel_sheet["C95"] = plc_panel.get("loop_current") #UI Error
-            panel_sheet["C96"] = plc_panel.get("isolation") # UI Error
+            panel_sheet["C95"] = plc_panel.get("di_module_loop_current")
+            panel_sheet["C96"] = plc_panel.get("di_module_isolation")  # UI Error
             panel_sheet["C97"] = plc_panel.get("di_module_input_type")
-            panel_sheet["C98"] = plc_panel.get("interrogation_voltage") # UI Error
-            panel_sheet["C99"] = plc_panel.get("scan_time") #UI Error
+            panel_sheet["C98"] = plc_panel.get(
+                "di_module_interrogation_voltage"
+            )  # UI Error
+            panel_sheet["C99"] = plc_panel.get("di_module_scan_time")
 
             # DO Modules
             panel_sheet["C101"] = plc_panel.get("do_module_channel_density")
@@ -2664,7 +2697,9 @@ def get_design_basis_excel():
             # # Interposing Relay
             is_no_of_contacts_selected = plc_panel.get("is_no_of_contacts_selected")
             panel_sheet["C106"] = na_to_string(plc_panel.get("interposing_relay", "NA"))
-            # panel_sheet["C107"] = na_to_string(plc_panel.get("interposing_relay_contacts_rating")) # UI Error
+            panel_sheet["C107"] = na_to_string(
+                plc_panel.get("interposing_relay_contacts_rating")
+            )
             panel_sheet["C108"] = (
                 plc_panel.get("no_of_contacts")
                 if int(is_no_of_contacts_selected) == 1
@@ -2719,7 +2754,9 @@ def get_design_basis_excel():
             # Thermocouple Modules
             panel_sheet["C131"] = plc_panel.get("thermocouple_module_channel_density")
             panel_sheet["C132"] = plc_panel.get("thermocouple_module_loop_current")
-            panel_sheet["C133"] = na_to_string(plc_panel.get("thermocouple_module_isolation"))
+            panel_sheet["C133"] = na_to_string(
+                plc_panel.get("thermocouple_module_isolation")
+            )
             panel_sheet["C134"] = plc_panel.get("thermocouple_module_input_type")
             panel_sheet["C135"] = plc_panel.get("thermocouple_module_scan_time")
             is_thermocouple_module_hart_protocol_support_selected = plc_panel.get(
@@ -2734,7 +2771,9 @@ def get_design_basis_excel():
             # Universal Modules
             panel_sheet["C138"] = plc_panel.get("universal_module_channel_density")
             panel_sheet["C139"] = plc_panel.get("universal_module_loop_current")
-            panel_sheet["C140"] = na_to_string(plc_panel.get("universal_module_isolation"))
+            panel_sheet["C140"] = na_to_string(
+                plc_panel.get("universal_module_isolation")
+            )
             panel_sheet["C141"] = plc_panel.get("universal_module_input_type")
             panel_sheet["C142"] = plc_panel.get("universal_module_scan_time")
             is_universal_module_hart_protocol_support_selected = plc_panel.get(
@@ -2770,9 +2809,7 @@ def get_design_basis_excel():
             is_hmi_selected = int(plc_panel.get("is_hmi_selected", 0))
             hmi_size = na_to_string(plc_panel.get("hmi_size", "NA"))
             panel_sheet["C152"] = (
-                f"{hmi_size} inch"
-                if int(is_hmi_selected) == 1
-                else "Not Applicable"
+                f"{hmi_size} inch" if int(is_hmi_selected) == 1 else "Not Applicable"
             )
             panel_sheet["C153"] = (
                 na_to_string(plc_panel.get("hmi_quantity", "NA"))
@@ -2868,9 +2905,9 @@ def get_design_basis_excel():
             monitor_size_data = plc_panel.get("monitor_size")
             if "NA" in monitor_size_data:
                 monitor_size_data = "Not Applicable"
-            else: 
+            else:
                 monitor_size_data = f"{monitor_size_data} inch"
-            
+
             panel_sheet["C169"] = monitor_size_data
             panel_sheet["C170"] = plc_panel.get(
                 "windows_operating_system", "Not Applicable"
@@ -2930,9 +2967,22 @@ def get_design_basis_excel():
             )
 
             # Communication
-            panel_sheet["C181"] = na_to_string(plc_panel.get("interface_signal_and_control_logic_implementation", "Not Applicable"))
-            panel_sheet["C182"] = na_to_string(plc_panel.get("differential_pressure_flow_linearization", "Not Applicable"))
-            panel_sheet["C183"] = na_to_string(plc_panel.get("third_party_comm_protocol_for_plc_cpu_system", "Not Applicable"))
+            panel_sheet["C181"] = na_to_string(
+                plc_panel.get(
+                    "interface_signal_and_control_logic_implementation",
+                    "Not Applicable",
+                )
+            )
+            panel_sheet["C182"] = na_to_string(
+                plc_panel.get(
+                    "differential_pressure_flow_linearization", "Not Applicable"
+                )
+            )
+            panel_sheet["C183"] = na_to_string(
+                plc_panel.get(
+                    "third_party_comm_protocol_for_plc_cpu_system", "Not Applicable"
+                )
+            )
             panel_sheet["C184"] = plc_panel.get(
                 "third_party_communication_protocol", "Not Applicable"
             )
