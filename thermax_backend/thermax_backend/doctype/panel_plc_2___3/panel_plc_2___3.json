@@ -101,9 +101,8 @@
   },
   {
    "fieldname": "di_module_input_type",
-   "fieldtype": "Link",
-   "label": "DI Module Input Type",
-   "options": "DI Modules Type Of Input"
+   "fieldtype": "Data",
+   "label": "DI Module Input Type"
   },
   {
    "fieldname": "do_modules_section",
@@ -402,7 +401,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-14 10:55:58.949820",
+ "modified": "2025-01-15 19:50:53.524138",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Panel PLC 2 - 3",
