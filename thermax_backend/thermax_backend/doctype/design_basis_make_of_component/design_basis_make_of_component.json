@@ -46,44 +46,37 @@
   {
    "fieldname": "motor",
    "fieldtype": "Text",
-   "label": "Motor",
-   "options": "Motors Make"
+   "label": "Motor"
   },
   {
    "fieldname": "cable",
    "fieldtype": "Text",
-   "label": "Cable",
-   "options": "Cables Make"
+   "label": "Cable"
   },
   {
    "fieldname": "lv_switchgear",
    "fieldtype": "Text",
-   "label": "LV Switchgear",
-   "options": "LV Switchgear Make"
+   "label": "LV Switchgear"
   },
   {
    "fieldname": "panel_enclosure",
    "fieldtype": "Text",
-   "label": "Panel Enclosure",
-   "options": "Panel Enclosure Make"
+   "label": "Panel Enclosure"
   },
   {
    "fieldname": "variable_frequency_speed_drive_vfd_vsd",
    "fieldtype": "Text",
-   "label": "Variable Frequency Speed Drive VFD VSD",
-   "options": "VFD VSD Make"
+   "label": "Variable Frequency Speed Drive VFD VSD"
   },
   {
    "fieldname": "soft_starter",
    "fieldtype": "Text",
-   "label": "Soft Starter",
-   "options": "Soft Starter Make"
+   "label": "Soft Starter"
   },
   {
    "fieldname": "plc",
    "fieldtype": "Text",
-   "label": "PLC",
-   "options": "PLC Make"
+   "label": "PLC"
   },
   {
    "fieldname": "preferred_motor",
@@ -127,8 +120,7 @@
   {
    "fieldname": "gland_make",
    "fieldtype": "Text",
-   "label": "Gland Make",
-   "options": "Gland Make"
+   "label": "Gland Make"
   },
   {
    "fieldname": "preferred_gland_make",
@@ -138,7 +130,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-12 21:05:45.886271",
+ "modified": "2025-01-15 13:45:18.066337",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Design Basis Make of Component",
