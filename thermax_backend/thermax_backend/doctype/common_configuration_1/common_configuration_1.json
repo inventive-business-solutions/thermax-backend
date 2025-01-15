@@ -1,434 +1,434 @@
 {
-  "actions": [],
-  "allow_rename": 1,
-  "autoname": "hash",
-  "creation": "2024-12-26 11:26:16.024234",
-  "doctype": "DocType",
-  "engine": "InnoDB",
-  "field_order": [
-    "linking_keys_section",
-    "revision_id",
-    "section_break_jebs",
-    "dol_starter",
-    "star_delta_starter",
-    "ammeter",
-    "ammeter_configuration",
-    "mcc_switchgear_type",
-    "switchgear_combination",
-    "is_control_transformer_applicable",
-    "control_transformer_primary_voltage",
-    "control_transformer_secondary_voltage_copy",
-    "control_transformer_coating",
-    "control_transformer_quantity",
-    "control_transformer_configuration",
-    "digital_meters",
-    "analog_meters",
-    "communication_protocol",
-    "pole",
-    "supply_feeder_standard",
-    "dm_standard",
-    "power_wiring_color",
-    "power_wiring_size",
-    "control_wiring_color",
-    "control_wiring_size",
-    "vdc_24_wiring_color",
-    "vdc_24_wiring_size",
-    "analog_signal_wiring_color",
-    "analog_signal_wiring_size",
-    "ct_wiring_color",
-    "ct_wiring_size",
-    "rtd_thermocouple_wiring_color",
-    "rtd_thermocouple_wiring_size",
-    "cable_insulation_pvc",
-    "air_clearance_between_phase_to_phase_bus",
-    "air_clearance_between_phase_to_neutral_bus",
-    "ferrule",
-    "ferrule_note",
-    "device_identification_of_components",
-    "general_note_internal_wiring",
-    "common_requirement",
-    "power_terminal_clipon",
-    "power_terminal_busbar_type",
-    "control_terminal",
-    "spare_terminal",
-    "forward_push_button_start",
-    "reverse_push_button_start",
-    "push_button_start",
-    "push_button_stop",
-    "push_button_ess",
-    "potentiometer",
-    "is_push_button_speed_selected",
-    "speed_increase_pb",
-    "speed_decrease_pb",
-    "alarm_acknowledge_and_lamp_test",
-    "lamp_test_push_button",
-    "test_dropdown",
-    "reset_dropdown"
-  ],
-  "fields": [
-    {
-      "fieldname": "linking_keys_section",
-      "fieldtype": "Section Break",
-      "label": "Linking Keys"
-    },
-    {
-      "fieldname": "revision_id",
-      "fieldtype": "Link",
-      "label": "Revision ID",
-      "options": "Design Basis Revision History"
-    },
-    {
-      "fieldname": "section_break_jebs",
-      "fieldtype": "Section Break"
-    },
-    {
-      "fieldname": "dol_starter",
-      "fieldtype": "Link",
-      "label": "DOL Starter",
-      "options": "DOL Starter"
-    },
-    {
-      "fieldname": "star_delta_starter",
-      "fieldtype": "Link",
-      "label": "Star Delta Starter",
-      "options": "Star Delta Starter"
-    },
-    {
-      "fieldname": "ammeter",
-      "fieldtype": "Link",
-      "label": "Ammeter",
-      "options": "Ammeter"
-    },
-    {
-      "fieldname": "ammeter_configuration",
-      "fieldtype": "Link",
-      "label": "Ammeter Configuration",
-      "options": "Ammeter Configuration"
-    },
-    {
-      "fieldname": "mcc_switchgear_type",
-      "fieldtype": "Link",
-      "label": "MCC Switchgear Type",
-      "options": "MCC Switchgear Type"
-    },
-    {
-      "fieldname": "switchgear_combination",
-      "fieldtype": "Link",
-      "label": "Switchgear Combination",
-      "options": "Switchgear Combination"
-    },
-    {
-      "fieldname": "pole",
-      "fieldtype": "Link",
-      "label": "Pole",
-      "options": "Supply Feeder Pole"
-    },
-    {
-      "fieldname": "supply_feeder_standard",
-      "fieldtype": "Select",
-      "label": "Supply Feeder Standard",
-      "options": "IEC\nIS"
-    },
-    {
-      "fieldname": "dm_standard",
-      "fieldtype": "Link",
-      "label": "Design and Manufacturer's Standard",
-      "options": "Supply Feeder DM Standard"
-    },
-    {
-      "fieldname": "power_wiring_color",
-      "fieldtype": "Link",
-      "label": "Power Wiring Color",
-      "options": "Power Wiring Color"
-    },
-    {
-      "fieldname": "power_wiring_size",
-      "fieldtype": "Link",
-      "label": "Power Wiring Size",
-      "options": "Power Wiring Size"
-    },
-    {
-      "fieldname": "control_wiring_color",
-      "fieldtype": "Link",
-      "label": "Control Wiring Color",
-      "options": "Control Wiring Color"
-    },
-    {
-      "fieldname": "control_wiring_size",
-      "fieldtype": "Link",
-      "label": "Control Wiring Size",
-      "options": "Control Wiring Size"
-    },
-    {
-      "fieldname": "vdc_24_wiring_color",
-      "fieldtype": "Link",
-      "label": "24 VDC Wiring Color",
-      "options": "VDC 24 Wiring Color"
-    },
-    {
-      "fieldname": "vdc_24_wiring_size",
-      "fieldtype": "Link",
-      "label": "24 VDC Wiring Size",
-      "options": "VDC 24 Wiring Size"
-    },
-    {
-      "fieldname": "analog_signal_wiring_color",
-      "fieldtype": "Link",
-      "label": "Analog Signal Wiring Color",
-      "options": "Analog Signal Wiring Color"
-    },
-    {
-      "fieldname": "analog_signal_wiring_size",
-      "fieldtype": "Link",
-      "label": "Analog Signal Wiring Size",
-      "options": "Analog Signal Wiring Size"
-    },
-    {
-      "fieldname": "ct_wiring_color",
-      "fieldtype": "Link",
-      "label": "CT Wiring Color",
-      "options": "CT Wiring Color"
-    },
-    {
-      "fieldname": "ct_wiring_size",
-      "fieldtype": "Link",
-      "label": "CT Wiring Size",
-      "options": "CT Wiring Size"
-    },
-    {
-      "fieldname": "cable_insulation_pvc",
-      "fieldtype": "Link",
-      "label": "Cable Insulation PVC",
-      "options": "Cable Insulation PVC"
-    },
-    {
-      "fieldname": "ferrule",
-      "fieldtype": "Link",
-      "label": "Ferrule",
-      "options": "Ferrule"
-    },
-    {
-      "fieldname": "common_requirement",
-      "fieldtype": "Text",
-      "label": "Common Requirement"
-    },
-    {
-      "fieldname": "spare_terminal",
-      "fieldtype": "Link",
-      "label": "Spare Terminal",
-      "options": "Spare Terminal"
-    },
-    {
-      "fieldname": "push_button_start",
-      "fieldtype": "Link",
-      "label": "Push Button Start",
-      "options": "Push Button Start Color"
-    },
-    {
-      "fieldname": "push_button_stop",
-      "fieldtype": "Link",
-      "label": "Push Button Stop",
-      "options": "Push Button Stop Color"
-    },
-    {
-      "fieldname": "push_button_ess",
-      "fieldtype": "Link",
-      "label": "Push Button ESS",
-      "options": "Push Button ESS"
-    },
-    {
-      "fieldname": "is_push_button_speed_selected",
-      "fieldtype": "Select",
-      "label": "Is Push Button Speed Selected",
-      "options": "0\n1"
-    },
-    {
-      "fieldname": "speed_increase_pb",
-      "fieldtype": "Link",
-      "label": "Speed Increase PB",
-      "options": "Speed Increase PB"
-    },
-    {
-      "fieldname": "speed_decrease_pb",
-      "fieldtype": "Link",
-      "label": "Speed Decrease PB",
-      "options": "Speed Decrease PB"
-    },
-    {
-      "fieldname": "alarm_acknowledge_and_lamp_test",
-      "fieldtype": "Link",
-      "label": "Alarm Knowledge Push Button",
-      "options": "Alarm Acknowledge Dropdown"
-    },
-    {
-      "fieldname": "lamp_test_push_button",
-      "fieldtype": "Link",
-      "label": "Lamp Test Push Button",
-      "options": "Lamp Test Dropdown"
-    },
-    {
-      "fieldname": "rtd_thermocouple_wiring_color",
-      "fieldtype": "Link",
-      "label": "RTD Thermocouple Wiring Color",
-      "options": "Analog Signal Wiring Color"
-    },
-    {
-      "fieldname": "rtd_thermocouple_wiring_size",
-      "fieldtype": "Link",
-      "label": "RTD Thermocouple Wiring Size",
-      "options": "Analog Signal Wiring Size"
-    },
-    {
-      "fieldname": "test_dropdown",
-      "fieldtype": "Link",
-      "label": "Test Dropdown",
-      "options": "Test Dropdown"
-    },
-    {
-      "fieldname": "reset_dropdown",
-      "fieldtype": "Link",
-      "label": "Reset Dropdown",
-      "options": "Reset Dropdown"
-    },
-    {
-      "default": "0",
-      "fieldname": "is_control_transformer_applicable",
-      "fieldtype": "Check",
-      "label": "Is Control Transformer Applicable"
-    },
-    {
-      "fieldname": "control_transformer_primary_voltage",
-      "fieldtype": "Link",
-      "label": "Control Transformer primary voltage",
-      "options": "Control Transformer primary voltage"
-    },
-    {
-      "fieldname": "control_transformer_secondary_voltage_copy",
-      "fieldtype": "Link",
-      "label": "Control Transformer secondary voltage",
-      "options": "Control Transformer primary voltage"
-    },
-    {
-      "fieldname": "control_transformer_coating",
-      "fieldtype": "Link",
-      "label": "Control Transformer Coating",
-      "options": "Current Transformer Coating"
-    },
-    {
-      "fieldname": "control_transformer_quantity",
-      "fieldtype": "Link",
-      "label": "Control Transformer Quantity",
-      "options": "Control Transformer Quantity"
-    },
-    {
-      "fieldname": "control_transformer_configuration",
-      "fieldtype": "Link",
-      "label": "Control Transformer Configuration",
-      "options": "Control Transformer Configuration"
-    },
-    {
-      "fieldname": "digital_meters",
-      "fieldtype": "Small Text",
-      "label": "Digital Meters"
-    },
-    {
-      "fieldname": "analog_meters",
-      "fieldtype": "Small Text",
-      "label": "Analog Meters"
-    },
-    {
-      "fieldname": "communication_protocol",
-      "fieldtype": "Link",
-      "label": "Communication Protocol",
-      "options": "Communication Protocol"
-    },
-    {
-      "fieldname": "air_clearance_between_phase_to_phase_bus",
-      "fieldtype": "Link",
-      "label": "Air clearance between phase to phase Bus",
-      "options": "Air Clearance Doctype"
-    },
-    {
-      "fieldname": "air_clearance_between_phase_to_neutral_bus",
-      "fieldtype": "Link",
-      "label": "Air clearance between phase to neutral Bus",
-      "options": "Air Clearance Doctype"
-    },
-    {
-      "fieldname": "ferrule_note",
-      "fieldtype": "Data",
-      "label": "Ferrule Note"
-    },
-    {
-      "fieldname": "device_identification_of_components",
-      "fieldtype": "Data",
-      "label": "Device identification of components"
-    },
-    {
-      "fieldname": "general_note_internal_wiring",
-      "fieldtype": "Text",
-      "label": "General Note Internal Wiring"
-    },
-    {
-      "fieldname": "power_terminal_clipon",
-      "fieldtype": "Link",
-      "label": "Power Terminal Clipon",
-      "options": "Power Terminal Clipon"
-    },
-    {
-      "fieldname": "power_terminal_busbar_type",
-      "fieldtype": "Link",
-      "label": "Power Terminal Busbar Type",
-      "options": "Power Terminal Busbar Type"
-    },
-    {
-      "fieldname": "control_terminal",
-      "fieldtype": "Link",
-      "label": "Control Terminal",
-      "options": "Control Terminal"
-    },
-    {
-      "fieldname": "forward_push_button_start",
-      "fieldtype": "Link",
-      "label": "Forward Push Button Start",
-      "options": "Forward and Reverse Push Button"
-    },
-    {
-      "fieldname": "reverse_push_button_start",
-      "fieldtype": "Link",
-      "label": "Reverse Push Button Start",
-      "options": "Forward and Reverse Push Button"
-    },
-    {
-      "fieldname": "potentiometer",
-      "fieldtype": "Select",
-      "label": "Potentiometer",
-      "options": "0\n1"
-    }
-  ],
-  "index_web_pages_for_search": 1,
-  "links": [],
-  "modified": "2025-01-12 01:05:27.549175",
-  "modified_by": "Administrator",
-  "module": "Thermax Backend",
-  "name": "Common Configuration 1",
-  "naming_rule": "Random",
-  "owner": "Administrator",
-  "permissions": [
-    {
-      "create": 1,
-      "delete": 1,
-      "email": 1,
-      "export": 1,
-      "print": 1,
-      "read": 1,
-      "report": 1,
-      "role": "System Manager",
-      "share": 1,
-      "write": 1
-    }
-  ],
-  "sort_field": "modified",
-  "sort_order": "DESC",
-  "states": []
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2024-12-26 11:26:16.024234",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "linking_keys_section",
+  "revision_id",
+  "section_break_jebs",
+  "dol_starter",
+  "star_delta_starter",
+  "ammeter",
+  "ammeter_configuration",
+  "mcc_switchgear_type",
+  "switchgear_combination",
+  "is_control_transformer_applicable",
+  "control_transformer_primary_voltage",
+  "control_transformer_secondary_voltage_copy",
+  "control_transformer_coating",
+  "control_transformer_quantity",
+  "control_transformer_configuration",
+  "digital_meters",
+  "analog_meters",
+  "communication_protocol",
+  "pole",
+  "supply_feeder_standard",
+  "dm_standard",
+  "power_wiring_color",
+  "power_wiring_size",
+  "control_wiring_color",
+  "control_wiring_size",
+  "vdc_24_wiring_color",
+  "vdc_24_wiring_size",
+  "analog_signal_wiring_color",
+  "analog_signal_wiring_size",
+  "ct_wiring_color",
+  "ct_wiring_size",
+  "rtd_thermocouple_wiring_color",
+  "rtd_thermocouple_wiring_size",
+  "cable_insulation_pvc",
+  "air_clearance_between_phase_to_phase_bus",
+  "air_clearance_between_phase_to_neutral_bus",
+  "ferrule",
+  "ferrule_note",
+  "device_identification_of_components",
+  "general_note_internal_wiring",
+  "common_requirement",
+  "power_terminal_clipon",
+  "power_terminal_busbar_type",
+  "control_terminal",
+  "spare_terminal",
+  "forward_push_button_start",
+  "reverse_push_button_start",
+  "push_button_start",
+  "push_button_stop",
+  "push_button_ess",
+  "potentiometer",
+  "is_push_button_speed_selected",
+  "speed_increase_pb",
+  "speed_decrease_pb",
+  "alarm_acknowledge_and_lamp_test",
+  "lamp_test_push_button",
+  "test_dropdown",
+  "reset_dropdown"
+ ],
+ "fields": [
+  {
+   "fieldname": "linking_keys_section",
+   "fieldtype": "Section Break",
+   "label": "Linking Keys"
+  },
+  {
+   "fieldname": "revision_id",
+   "fieldtype": "Link",
+   "label": "Revision ID",
+   "options": "Design Basis Revision History"
+  },
+  {
+   "fieldname": "section_break_jebs",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "dol_starter",
+   "fieldtype": "Link",
+   "label": "DOL Starter",
+   "options": "DOL Starter"
+  },
+  {
+   "fieldname": "star_delta_starter",
+   "fieldtype": "Link",
+   "label": "Star Delta Starter",
+   "options": "Star Delta Starter"
+  },
+  {
+   "fieldname": "ammeter",
+   "fieldtype": "Link",
+   "label": "Ammeter",
+   "options": "Ammeter"
+  },
+  {
+   "fieldname": "ammeter_configuration",
+   "fieldtype": "Link",
+   "label": "Ammeter Configuration",
+   "options": "Ammeter Configuration"
+  },
+  {
+   "fieldname": "mcc_switchgear_type",
+   "fieldtype": "Link",
+   "label": "MCC Switchgear Type",
+   "options": "MCC Switchgear Type"
+  },
+  {
+   "fieldname": "switchgear_combination",
+   "fieldtype": "Link",
+   "label": "Switchgear Combination",
+   "options": "Switchgear Combination"
+  },
+  {
+   "fieldname": "pole",
+   "fieldtype": "Link",
+   "label": "Pole",
+   "options": "Supply Feeder Pole"
+  },
+  {
+   "fieldname": "supply_feeder_standard",
+   "fieldtype": "Select",
+   "label": "Supply Feeder Standard",
+   "options": "IEC\nIS"
+  },
+  {
+   "fieldname": "dm_standard",
+   "fieldtype": "Link",
+   "label": "Design and Manufacturer's Standard",
+   "options": "Supply Feeder DM Standard"
+  },
+  {
+   "fieldname": "power_wiring_color",
+   "fieldtype": "Link",
+   "label": "Power Wiring Color",
+   "options": "Power Wiring Color"
+  },
+  {
+   "fieldname": "power_wiring_size",
+   "fieldtype": "Link",
+   "label": "Power Wiring Size",
+   "options": "Power Wiring Size"
+  },
+  {
+   "fieldname": "control_wiring_color",
+   "fieldtype": "Link",
+   "label": "Control Wiring Color",
+   "options": "Control Wiring Color"
+  },
+  {
+   "fieldname": "control_wiring_size",
+   "fieldtype": "Link",
+   "label": "Control Wiring Size",
+   "options": "Control Wiring Size"
+  },
+  {
+   "fieldname": "vdc_24_wiring_color",
+   "fieldtype": "Link",
+   "label": "24 VDC Wiring Color",
+   "options": "VDC 24 Wiring Color"
+  },
+  {
+   "fieldname": "vdc_24_wiring_size",
+   "fieldtype": "Link",
+   "label": "24 VDC Wiring Size",
+   "options": "VDC 24 Wiring Size"
+  },
+  {
+   "fieldname": "analog_signal_wiring_color",
+   "fieldtype": "Link",
+   "label": "Analog Signal Wiring Color",
+   "options": "Analog Signal Wiring Color"
+  },
+  {
+   "fieldname": "analog_signal_wiring_size",
+   "fieldtype": "Link",
+   "label": "Analog Signal Wiring Size",
+   "options": "Analog Signal Wiring Size"
+  },
+  {
+   "fieldname": "ct_wiring_color",
+   "fieldtype": "Link",
+   "label": "CT Wiring Color",
+   "options": "CT Wiring Color"
+  },
+  {
+   "fieldname": "ct_wiring_size",
+   "fieldtype": "Link",
+   "label": "CT Wiring Size",
+   "options": "CT Wiring Size"
+  },
+  {
+   "fieldname": "cable_insulation_pvc",
+   "fieldtype": "Link",
+   "label": "Cable Insulation PVC",
+   "options": "Cable Insulation PVC"
+  },
+  {
+   "fieldname": "ferrule",
+   "fieldtype": "Link",
+   "label": "Ferrule",
+   "options": "Ferrule"
+  },
+  {
+   "fieldname": "common_requirement",
+   "fieldtype": "Text",
+   "label": "Common Requirement"
+  },
+  {
+   "fieldname": "spare_terminal",
+   "fieldtype": "Link",
+   "label": "Spare Terminal",
+   "options": "Spare Terminal"
+  },
+  {
+   "fieldname": "push_button_start",
+   "fieldtype": "Link",
+   "label": "Push Button Start",
+   "options": "Push Button Start Color"
+  },
+  {
+   "fieldname": "push_button_stop",
+   "fieldtype": "Link",
+   "label": "Push Button Stop",
+   "options": "Push Button Stop Color"
+  },
+  {
+   "fieldname": "push_button_ess",
+   "fieldtype": "Link",
+   "label": "Push Button ESS",
+   "options": "Push Button ESS"
+  },
+  {
+   "fieldname": "is_push_button_speed_selected",
+   "fieldtype": "Select",
+   "label": "Is Push Button Speed Selected",
+   "options": "0\n1"
+  },
+  {
+   "fieldname": "speed_increase_pb",
+   "fieldtype": "Link",
+   "label": "Speed Increase PB",
+   "options": "Speed Increase PB"
+  },
+  {
+   "fieldname": "speed_decrease_pb",
+   "fieldtype": "Link",
+   "label": "Speed Decrease PB",
+   "options": "Speed Decrease PB"
+  },
+  {
+   "fieldname": "alarm_acknowledge_and_lamp_test",
+   "fieldtype": "Link",
+   "label": "Alarm Knowledge Push Button",
+   "options": "Alarm Acknowledge Dropdown"
+  },
+  {
+   "fieldname": "lamp_test_push_button",
+   "fieldtype": "Link",
+   "label": "Lamp Test Push Button",
+   "options": "Lamp Test Dropdown"
+  },
+  {
+   "fieldname": "rtd_thermocouple_wiring_color",
+   "fieldtype": "Link",
+   "label": "RTD Thermocouple Wiring Color",
+   "options": "Analog Signal Wiring Color"
+  },
+  {
+   "fieldname": "rtd_thermocouple_wiring_size",
+   "fieldtype": "Link",
+   "label": "RTD Thermocouple Wiring Size",
+   "options": "Analog Signal Wiring Size"
+  },
+  {
+   "fieldname": "test_dropdown",
+   "fieldtype": "Link",
+   "label": "Test Dropdown",
+   "options": "Test Dropdown"
+  },
+  {
+   "fieldname": "reset_dropdown",
+   "fieldtype": "Link",
+   "label": "Reset Dropdown",
+   "options": "Reset Dropdown"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_control_transformer_applicable",
+   "fieldtype": "Check",
+   "label": "Is Control Transformer Applicable"
+  },
+  {
+   "fieldname": "control_transformer_primary_voltage",
+   "fieldtype": "Link",
+   "label": "Control Transformer primary voltage",
+   "options": "Control Transformer primary voltage"
+  },
+  {
+   "fieldname": "control_transformer_secondary_voltage_copy",
+   "fieldtype": "Link",
+   "label": "Control Transformer secondary voltage",
+   "options": "Control Transformer secondary voltage"
+  },
+  {
+   "fieldname": "control_transformer_coating",
+   "fieldtype": "Link",
+   "label": "Control Transformer Coating",
+   "options": "Current Transformer Coating"
+  },
+  {
+   "fieldname": "control_transformer_quantity",
+   "fieldtype": "Link",
+   "label": "Control Transformer Quantity",
+   "options": "Control Transformer Quantity"
+  },
+  {
+   "fieldname": "control_transformer_configuration",
+   "fieldtype": "Link",
+   "label": "Control Transformer Configuration",
+   "options": "Control Transformer Configuration"
+  },
+  {
+   "fieldname": "digital_meters",
+   "fieldtype": "Small Text",
+   "label": "Digital Meters"
+  },
+  {
+   "fieldname": "analog_meters",
+   "fieldtype": "Small Text",
+   "label": "Analog Meters"
+  },
+  {
+   "fieldname": "communication_protocol",
+   "fieldtype": "Link",
+   "label": "Communication Protocol",
+   "options": "Communication Protocol"
+  },
+  {
+   "fieldname": "air_clearance_between_phase_to_phase_bus",
+   "fieldtype": "Link",
+   "label": "Air clearance between phase to phase Bus",
+   "options": "Air Clearance Doctype"
+  },
+  {
+   "fieldname": "air_clearance_between_phase_to_neutral_bus",
+   "fieldtype": "Link",
+   "label": "Air clearance between phase to neutral Bus",
+   "options": "Air Clearance Doctype"
+  },
+  {
+   "fieldname": "ferrule_note",
+   "fieldtype": "Data",
+   "label": "Ferrule Note"
+  },
+  {
+   "fieldname": "device_identification_of_components",
+   "fieldtype": "Data",
+   "label": "Device identification of components"
+  },
+  {
+   "fieldname": "general_note_internal_wiring",
+   "fieldtype": "Text",
+   "label": "General Note Internal Wiring"
+  },
+  {
+   "fieldname": "power_terminal_clipon",
+   "fieldtype": "Link",
+   "label": "Power Terminal Clipon",
+   "options": "Power Terminal Clipon"
+  },
+  {
+   "fieldname": "power_terminal_busbar_type",
+   "fieldtype": "Link",
+   "label": "Power Terminal Busbar Type",
+   "options": "Power Terminal Busbar Type"
+  },
+  {
+   "fieldname": "control_terminal",
+   "fieldtype": "Link",
+   "label": "Control Terminal",
+   "options": "Control Terminal"
+  },
+  {
+   "fieldname": "forward_push_button_start",
+   "fieldtype": "Link",
+   "label": "Forward Push Button Start",
+   "options": "Forward and Reverse Push Button"
+  },
+  {
+   "fieldname": "reverse_push_button_start",
+   "fieldtype": "Link",
+   "label": "Reverse Push Button Start",
+   "options": "Forward and Reverse Push Button"
+  },
+  {
+   "fieldname": "potentiometer",
+   "fieldtype": "Select",
+   "label": "Potentiometer",
+   "options": "0\n1"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-01-15 16:07:03.018943",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "Common Configuration 1",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
 }
