@@ -91,7 +91,7 @@ from datetime import datetime
 
 
 @frappe.whitelist()
-def get_local_isolator_excel(): 
+def get_lpbs_excel(): 
     payload = frappe.local.form_dict
     revision_id = payload.get("revision_id")
 
@@ -124,9 +124,12 @@ def get_local_isolator_excel():
     # loading the sheets 
 
     cover_sheet = template_workbook["COVER"]
-    isolator_sheet = template_workbook["ISOLATOR"]
-    isolator_safe_area_sheet = template_workbook["ISOLATOR  LIST SAFE AREA"]
-    isolator_hazard_area_sheet = template_workbook["ISOLATOR LIST HAZARDOUS AREA"]
+    instruction_name_sheet = template_workbook["INSTRUCTION PAGE"]
+    specification_sheet = template_workbook["SPECIFICATION"]
+    lpbs_safe_sheet = template_workbook[" LPBS LIST SAFE AREA"]
+    lpbs_hazard_sheet = template_workbook["LPBS LIST HAZARDOUS AREA "]
+    selection_criteria_sheet = template_workbook["SELECTION CRITERIA"]
+    solator_hazard_area_sheet = template_workbook["ISOLATOR LIST HAZARDOUS AREA"]
 
 
     # cover page sheet populating
@@ -202,74 +205,75 @@ def get_local_isolator_excel():
     )
     common_config_data = common_config_data[0]
 
-    cc_is_field_motor_isolator_selected = common_config_data.get("is_field_motor_isolator_selected") 
-    cc_is_safe_area_isolator_selected = common_config_data.get("is_safe_area_isolator_selected") 
-    cc_safe_field_motor_type = common_config_data.get("safe_field_motor_type") 
-    cc_hazardous_field_motor_type = common_config_data.get("hazardous_field_motor_type") 
-    cc_safe_field_motor_enclosure = common_config_data.get("safe_field_motor_enclosure") 
-    cc_hazardous_field_motor_enclosure = common_config_data.get("hazardous_field_motor_enclosure") 
-    cc_safe_field_motor_material = common_config_data.get("safe_field_motor_material") 
-    cc_hazardous_field_motor_material = common_config_data.get("hazardous_field_motor_material") 
-    cc_safe_field_motor_thickness = common_config_data.get("safe_field_motor_thickness") 
-    cc_hazardous_field_motor_thickness = common_config_data.get("hazardous_field_motor_thickness") 
-    cc_safe_field_motor_qty = common_config_data.get("safe_field_motor_qty") 
-    cc_hazardous_field_motor_qty = common_config_data.get("hazardous_field_motor_qty") 
-    cc_safe_field_motor_isolator_color_shade = common_config_data.get("safe_field_motor_isolator_color_shade") 
-    cc_hazardous_field_motor_isolator_color_shade = common_config_data.get("hazardous_field_motor_isolator_color_shade") 
-    cc_safe_field_motor_cable_entry = common_config_data.get("safe_field_motor_cable_entry") 
-    cc_hazardous_field_motor_cable_entry = common_config_data.get("hazardous_field_motor_cable_entry") 
-    cc_safe_field_motor_canopy = common_config_data.get("safe_field_motor_canopy") 
-    cc_hazardous_field_motor_canopy = common_config_data.get("hazardous_field_motor_canopy") 
-    cc_safe_field_motor_canopy_type = common_config_data.get("safe_field_motor_canopy_type") 
-    cc_hazardous_field_motor_canopy_type = common_config_data.get("hazardous_field_motor_canopy_type") 
+    is_local_push_button_station_selected = common_config_data.get("is_local_push_button_station_selected") 
+    selector_switch_applicable = common_config_data.get("selector_switch_applicable") 
+    selector_switch_lockable = common_config_data.get("selector_switch_lockable") 
+    running_open = common_config_data.get("running_open") 
+    stopped_closed = common_config_data.get("stopped_closed") 
+    trip = common_config_data.get("trip") 
+    safe_lpbs_type = common_config_data.get("safe_lpbs_type") 
+    hazardous_lpbs_type = common_config_data.get("hazardous_lpbs_type") 
+    safe_lpbs_enclosure = common_config_data.get("safe_lpbs_enclosure") 
+    hazardous_lpbs_enclosure = common_config_data.get("hazardous_lpbs_enclosure") 
+    safe_lpbs_thickness = common_config_data.get("safe_lpbs_thickness") 
+    hazardous_lpbs_thickness = common_config_data.get("hazardous_lpbs_thickness") 
+    safe_lpbs_material = common_config_data.get("safe_lpbs_material") 
+    hazardous_lpbs_material = common_config_data.get("hazardous_lpbs_material") 
+    safe_lpbs_qty = common_config_data.get("safe_lpbs_qty") 
+    hazardous_lpbs_qty = common_config_data.get("hazardous_lpbs_qty") 
+    safe_lpbs_color_shade = common_config_data.get("safe_lpbs_color_shade") 
+    hazardous_lpbs_color_shade = common_config_data.get("hazardous_lpbs_color_shade") 
+    safe_lpbs_canopy = common_config_data.get("safe_lpbs_canopy") 
+    hazardous_lpbs_canopy = common_config_data.get("hazardous_lpbs_canopy") 
+    safe_lpbs_canopy_type = common_config_data.get("safe_lpbs_canopy_type") 
+    hazardous_lpbs_canopy_type = common_config_data.get("hazardous_lpbs_canopy_type") 
+    lpbs_push_button_start_color = common_config_data.get("lpbs_push_button_start_color") 
+    lpbs_indication_lamp_start_color = common_config_data.get("lpbs_indication_lamp_start_color") 
+    lpbs_indication_lamp_stop_color = common_config_data.get("lpbs_indication_lamp_stop_color") 
+    lpbs_speed_increase = common_config_data.get("lpbs_speed_increase") 
+    lpbs_speed_decrease = common_config_data.get("lpbs_speed_decrease") 
 
-    if int(cc_is_field_motor_isolator_selected) == 0 or int(cc_is_safe_area_isolator_selected) == 0:
-        cc_safe_field_motor_type = "Not Applicable"
-        cc_safe_field_motor_enclosure = "Not Applicable"
-        cc_safe_field_motor_material = "Not Applicable"
-        cc_safe_field_motor_qty = "Not Applicable"
-        cc_safe_field_motor_isolator_color_shade = "Not Applicable"
-        cc_safe_field_motor_cable_entry = "Not Applicable"
-        cc_safe_field_motor_canopy = "Not Applicable"
-        cc_safe_field_motor_canopy_type = "Not Applicable"
+    if cc_is_local_push_button_station_selected == 0 or cc_is_local_push_button_station_selected == "0":
+        cc_lpbs_push_button_start_color = "Not Applicable"
+        cc_forward_push_button_start = "Not Applicable"
+        cc_reverse_push_button_start = "Not Applicable"
+        cc_push_button_ess = "Not Applicable"
+        cc_lpbs_speed_increase = "Not Applicable"
+        cc_lpbs_speed_decrease = "Not Applicable"
+        cc_lpbs_indication_lamp_start_color = "Not Applicable"
+        cc_lpbs_indication_lamp_stop_color = "Not Applicable"
+        cc_safe_lpbs_type = "Not Applicable"
+        cc_safe_lpbs_enclosure = "Not Applicable"
+        cc_safe_lpbs_material = "Not Applicable"
+        cc_safe_lpbs_qty = "Not Applicable"
+        cc_safe_lpbs_color_shade = "Not Applicable"
+        cc_safe_lpbs_canopy = "Not Applicable"
+        cc_safe_lpbs_canopy_type = "Not Applicable"
 
-        cc_hazardous_field_motor_type = "Not Applicable"
-        cc_hazardous_field_motor_enclosure = "Not Applicable"
-        cc_hazardous_field_motor_material = "Not Applicable"
-        cc_hazardous_field_motor_qty = "Not Applicable"
-        cc_hazardous_field_motor_isolator_color_shade = "Not Applicable"
-        cc_hazardous_field_motor_cable_entry = "Not Applicable"
-        cc_hazardous_field_motor_canopy = "Not Applicable"
-        cc_hazardous_field_motor_canopy_type = "Not Applicable"
+    specification_sheet["C160"] = na_to_string(cc_lpbs_push_button_start_color)
+    specification_sheet["C161"] = na_to_string(cc_forward_push_button_start)
+    specification_sheet["C162"] = na_to_string(cc_reverse_push_button_start)
+    specification_sheet["C163"] = na_to_string(cc_push_button_ess)
+    specification_sheet["C164"] = na_to_string(cc_lpbs_speed_increase)
+    specification_sheet["C165"] = na_to_string(cc_lpbs_speed_decrease)
+    specification_sheet["C166"] = na_to_string(cc_lpbs_indication_lamp_start_color)
+    specification_sheet["C167"] = na_to_string(cc_lpbs_indication_lamp_stop_color)
 
-    
-    isolator_sheet["C3"] = cc_safe_field_motor_type
-    isolator_sheet["C4"] = na_to_string(cc_safe_field_motor_enclosure)
+    specification_sheet["C169"] = na_to_string(cc_safe_lpbs_type)
+    specification_sheet["C170"] = na_to_string(cc_safe_lpbs_enclosure)
+    specification_sheet["C171"] = na_to_string(cc_safe_lpbs_material)
+    specification_sheet["C172"] = na_to_string(cc_safe_lpbs_qty)
+    specification_sheet["C173"] = na_to_string(cc_safe_lpbs_color_shade)
+    specification_sheet["C174"] = na_to_string(cc_safe_lpbs_canopy)
+    specification_sheet["C175"] = na_to_string(cc_safe_lpbs_canopy_type)
 
-    if cc_safe_field_motor_material == "CRCA" or cc_safe_field_motor_material == "SS 316" or cc_safe_field_motor_material == "SS 306":
-        cc_safe_field_motor_material = f"{cc_safe_field_motor_material}, {cc_safe_field_motor_thickness} mm"
-        cc_safe_field_motor_cable_entry = f"{cc_safe_field_motor_cable_entry}, 3 mm"
-    elif cc_safe_field_motor_material == "NA":
-        cc_safe_field_motor_material = "Not Applicable"
-
-    isolator_sheet["C5"] = cc_safe_field_motor_material
-    isolator_sheet["C6"] = na_to_string(cc_safe_field_motor_qty)
-    isolator_sheet["C7"] = na_to_string(cc_safe_field_motor_isolator_color_shade)
-    isolator_sheet["C8"] = cc_safe_field_motor_cable_entry
-    isolator_sheet["C9"] = na_to_string(cc_safe_field_motor_canopy)
-    isolator_sheet["C10"] = na_to_string(cc_safe_field_motor_canopy_type)
-
-
-    isolator_sheet["D3"] = cc_hazardous_field_motor_type
-    isolator_sheet["D4"] = na_to_string(cc_hazardous_field_motor_enclosure)
-    isolator_sheet["D5"] = na_to_string(cc_hazardous_field_motor_material)
-    isolator_sheet["D6"] = na_to_string(cc_hazardous_field_motor_qty)
-    isolator_sheet["D7"] = na_to_string(cc_hazardous_field_motor_isolator_color_shade)
-    isolator_sheet["D8"] = cc_hazardous_field_motor_cable_entry
-    isolator_sheet["D9"] = na_to_string(cc_hazardous_field_motor_canopy)
-    isolator_sheet["D10"] = na_to_string(cc_hazardous_field_motor_canopy_type)
-
-
+    specification_sheet["D169"] = na_to_string(cc_hazardous_lpbs_type)
+    specification_sheet["D170"] = na_to_string(cc_hazardous_lpbs_enclosure)
+    specification_sheet["D171"] = na_to_string(cc_hazardous_lpbs_material)
+    specification_sheet["D172"] = na_to_string(cc_hazardous_lpbs_qty)
+    specification_sheet["D173"] = na_to_string(cc_hazardous_lpbs_color_shade)
+    specification_sheet["D174"] = na_to_string(cc_hazardous_lpbs_canopy)
+    specification_sheet["D175"] = na_to_string(cc_hazardous_lpbs_canopy_type)
 
     output = io.BytesIO()
     template_workbook.save(output)
