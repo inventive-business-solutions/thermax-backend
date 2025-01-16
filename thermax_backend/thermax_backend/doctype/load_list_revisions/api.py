@@ -18,7 +18,6 @@ def get_load_list_excel():
     revision_id = payload.get("revision_id")
     revision_data = frappe.get_doc("Load List Revisions", revision_id).as_dict()
     project_id = revision_data.get("project_id")
-
     project = frappe.get_doc("Project", project_id).as_dict()
 
     template_workbook = create_load_list_common_sheets(project, revision_data)
