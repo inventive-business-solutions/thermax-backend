@@ -44,14 +44,14 @@ def get_load_list_excel():
         incomer_power_supply=incomer_power_supply,
     )
 
-    template_workbook.save("electrical_load_list.xlsx")
+    # template_workbook.save("electrical_load_list.xlsx")
 
-    # output = io.BytesIO()
-    # template_workbook.save(output)
-    # output.seek(0)
+    output = io.BytesIO()
+    template_workbook.save(output)
+    output.seek(0)
 
-    # frappe.local.response.filename = "generated_design_basis.xlsx"
-    # frappe.local.response.filecontent = output.getvalue()
-    # frappe.local.response.type = "binary"
+    frappe.local.response.filename = "generated_design_basis.xlsx"
+    frappe.local.response.filecontent = output.getvalue()
+    frappe.local.response.type = "binary"
 
     return _("File generated successfully.")
