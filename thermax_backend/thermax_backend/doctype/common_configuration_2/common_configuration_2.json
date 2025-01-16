@@ -11,6 +11,7 @@
   "section_break_dlhi",
   "is_field_motor_isolator_selected",
   "is_safe_area_isolator_selected",
+  "is_hazardous_area_isolator_selected",
   "is_local_push_button_station_selected",
   "selector_switch_applicable",
   "selector_switch_lockable",
@@ -326,11 +327,17 @@
    "fieldtype": "Link",
    "label": "Hazardous Local Push Button Canopy Type",
    "options": "Field Motor Isolator Canopy Type"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_hazardous_area_isolator_selected",
+   "fieldtype": "Check",
+   "label": "Is Hazardous Area Isolator Selected"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-16 14:28:28.627879",
+ "modified": "2025-01-16 17:57:04.164221",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Common Configuration 2",
