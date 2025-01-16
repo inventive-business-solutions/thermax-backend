@@ -91,7 +91,7 @@ from datetime import datetime
 
 
 @frappe.whitelist()
-def get_local_isolator_excel(): 
+def get_lpbs_excel(): 
     payload = frappe.local.form_dict
     revision_id = payload.get("revision_id")
 
@@ -124,6 +124,10 @@ def get_local_isolator_excel():
     # loading the sheets 
 
     cover_sheet = template_workbook["COVER"]
+    instruction_name_sheet = template_workbook["INSTRUCTION PAGE"]
+    specificaiton_sheet = template_workbook["SPECIFICATION"]
+    lpbs_safe_sheet = template_workbook[" LPBS LIST SAFE AREA"]
+    lpbs_safe_sheet = template_workbook["LPBS LIST HAZARDOUS AREA "]
     isolator_sheet = template_workbook["ISOLATOR"]
     isolator_safe_area_sheet = template_workbook["ISOLATOR  LIST SAFE AREA"]
     isolator_hazard_area_sheet = template_workbook["ISOLATOR LIST HAZARDOUS AREA"]

@@ -1,0 +1,81 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-01-16 12:25:28.399836",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "linking_keys_section",
+  "revision_id",
+  "section_break_rwlv",
+  "is_field_motor_isolator_selected",
+  "is_safe_area_isolator_selected",
+  "is_safe_lpbs_selected",
+  "is_local_push_button_station_selected"
+ ],
+ "fields": [
+  {
+   "fieldname": "linking_keys_section",
+   "fieldtype": "Section Break",
+   "label": "Linking Keys"
+  },
+  {
+   "fieldname": "revision_id",
+   "fieldtype": "Link",
+   "label": "Revision ID",
+   "options": "Design Basis Revision History"
+  },
+  {
+   "fieldname": "section_break_rwlv",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_field_motor_isolator_selected",
+   "fieldtype": "Check",
+   "label": "Is Field Motor Isolator Selected"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_safe_area_isolator_selected",
+   "fieldtype": "Check",
+   "label": "Is Safe Area Isolator Selected"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_safe_lpbs_selected",
+   "fieldtype": "Check",
+   "label": "Is Safe LPBS Selected"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_local_push_button_station_selected",
+   "fieldtype": "Check",
+   "label": "Is Local Push Button Station Selected"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-01-16 12:27:27.650889",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "Common Config 2",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
