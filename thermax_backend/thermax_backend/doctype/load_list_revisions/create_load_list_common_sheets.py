@@ -36,7 +36,9 @@ def create_load_list_common_sheets(project, revision_data):
             "thermax_backend", "templates", "ipg_load_list_template.xlsx"
         )
     else:
-        raise ValueError(f"template does not exist for: {division_name}")
+        template_path = frappe.frappe.get_app_path(
+            "thermax_backend", "templates", "heating_load_list_template.xlsx"
+        )
 
     template_workbook = load_workbook(template_path)
 
