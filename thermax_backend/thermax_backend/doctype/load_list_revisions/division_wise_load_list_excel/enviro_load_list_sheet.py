@@ -1,9 +1,10 @@
 import frappe
 from openpyxl import load_workbook
+from openpyxl.styles import Alignment
 
 
 def get_enviro_load_list_excel(
-    electrical_load_list_data, panels_data, template_workbook
+    electrical_load_list_data, panels_data, template_workbook, incomer_power_supply
 ):
     """
     Gets the Excel workbook for the "Heating" or "WWS SPG" division.
@@ -11,27 +12,41 @@ def get_enviro_load_list_excel(
 
     load_list_output_sheet = template_workbook["LOAD LIST OUTPUT"]
     all_panels_sheet = template_workbook.copy_worksheet(load_list_output_sheet)
+    number_of_panels = len(panels_data)
 
     all_panels_sheet = create_enviro_load_list_excel(
         electrical_load_list_data=electrical_load_list_data,
         load_list_output_sheet=all_panels_sheet,
+        incomer_power_supply=incomer_power_supply,
+        number_of_panels=number_of_panels,
+        panel_name="All Panels",
     )
 
-    for panel_name, panel_data in panels_data.items():
-        panel_sheet = template_workbook.copy_worksheet(load_list_output_sheet)
-        panel_sheet.title = panel_name
+    if number_of_panels > 1:
+        for panel_name, panel_data in panels_data.items():
+            panel_sheet = template_workbook.copy_worksheet(load_list_output_sheet)
+            panel_sheet.title = panel_name
 
-        panel_sheet = create_enviro_load_list_excel(
-            electrical_load_list_data=panel_data,
-            load_list_output_sheet=panel_sheet,
-        )
+            panel_sheet = create_enviro_load_list_excel(
+                electrical_load_list_data=panel_data,
+                load_list_output_sheet=panel_sheet,
+                incomer_power_supply=incomer_power_supply,
+                number_of_panels=number_of_panels,
+                panel_name=panel_name,
+            )
 
     template_workbook.remove(load_list_output_sheet)
     all_panels_sheet.title = "LOAD LIST OUTPUT"
     return template_workbook
 
 
-def create_enviro_load_list_excel(electrical_load_list_data, load_list_output_sheet):
+def create_enviro_load_list_excel(
+    electrical_load_list_data,
+    load_list_output_sheet,
+    incomer_power_supply,
+    number_of_panels,
+    panel_name,
+):
     """
     Generates an Excel sheet for the electrical load list for the "Heating" or "WWS SPG" division.
     Args:
@@ -207,14 +222,25 @@ def create_enviro_load_list_excel(electrical_load_list_data, load_list_output_sh
         total_load = total_working_kw * 1000 / (1.732 * supply_voltage * 0.8)
     load_list_output_sheet[f"D{calculated_row_start_number + 7}"] = round(total_load, 2)
 
-    # Row Gap
-    load_list_output_sheet.merge_cells(
-        f"A{calculated_row_start_number + 8}:R{calculated_row_start_number + 8}"
-    )
-    load_list_output_sheet.row_dimensions[calculated_row_start_number + 8].height = 15
+    sheet_title = load_list_output_sheet.title
 
-    load_list_output_sheet.merge_cells(
-        f"D{calculated_row_start_number + 8}:R{calculated_row_start_number + 8}"
-    )
+    if number_of_panels > 1 and sheet_title == "LOAD LIST OUTPUT Copy":
+        load_list_output_sheet.delete_rows(calculated_row_start_number + 8, 2)
+    else:
+        # Row Gap
+        load_list_output_sheet.merge_cells(
+            f"A{calculated_row_start_number + 8}:R{calculated_row_start_number + 8}"
+        )
+        load_list_output_sheet.row_dimensions[
+            calculated_row_start_number + 8
+        ].height = 15
+        load_list_output_sheet[calculated_row_start_number + 8][0].alignment = (
+            Alignment(horizontal="left", vertical="center")
+        )
+
+        load_list_output_sheet[f"B{calculated_row_start_number + 9}"] = panel_name
+        load_list_output_sheet[f"C{calculated_row_start_number + 9}"] = (
+            f"POWER SUPPLY \n {incomer_power_supply}"
+        )
 
     return load_list_output_sheet
