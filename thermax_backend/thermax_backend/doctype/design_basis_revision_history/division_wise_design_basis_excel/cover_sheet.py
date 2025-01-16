@@ -42,7 +42,9 @@ def create_cover_sheet(cover_sheet, project_data, revision_data, division_name):
 
         cover_sheet[f"B{index}"] = f"R{len(revision_data_with_pid) - i - 1}"
         cover_sheet[f"C{index}"] = revision_date
-        cover_sheet[f"D{index}"] = "Issued for Approval"
+        if((len(revision_data_with_pid) - i - 1) == 0):
+            project_description = "Issued for Approval"
+        cover_sheet[f"D{index}"] = project_description
         cover_sheet[f"E{index}"] = prepped_by_initial
         cover_sheet[f"F{index}"] = checked_by_initial
         cover_sheet[f"G{index}"] = super_user_initial

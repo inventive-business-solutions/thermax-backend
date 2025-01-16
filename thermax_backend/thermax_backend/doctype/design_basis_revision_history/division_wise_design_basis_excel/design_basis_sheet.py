@@ -580,6 +580,17 @@ def get_design_basis_sheet(
     cc_is_local_push_button_station_selected = common_config_data.get(
         "is_local_push_button_station_selected"
     )
+
+    cc_is_safe_lpbs_selected = common_config_data.get(
+        "is_safe_lpbs_selected"
+    )
+    cc_is_hazardous_lpbs_selected = common_config_data.get(
+        "is_hazardous_lpbs_selected"
+    )
+    cc_is_hazardous_area_isolator_selected = common_config_data.get(
+        "is_hazardous_area_isolator_selected"
+    )
+
     cc_selector_switch_applicable = common_config_data.get("selector_switch_applicable")
     cc_selector_switch_lockable = common_config_data.get("selector_switch_lockable")
     cc_running_open = common_config_data.get("running_open")
@@ -648,6 +659,8 @@ def get_design_basis_sheet(
     )
     cc_lpbs_speed_increase = common_config_data.get("lpbs_speed_increase")
     cc_lpbs_speed_decrease = common_config_data.get("lpbs_speed_decrease")
+
+    
     cc_apfc_relay = common_config_data.get("apfc_relay")
     cc_power_bus_main_busbar_selection = common_config_data.get(
         "power_bus_main_busbar_selection"
@@ -717,7 +730,7 @@ def get_design_basis_sheet(
     design_basis_sheet["C66"] = na_to_string(cc_control_transformer_type)
 
     apfc_data = f"{cc_apfc_relay} Stage"
-    if apfc_data == "NA":
+    if "NA" in apfc_data:
         apfc_data = "Not Applicable"
 
     design_basis_sheet["C68"] = apfc_data
@@ -745,9 +758,14 @@ def get_design_basis_sheet(
 
     design_basis_sheet["C91"] = check_value_kW_below(cc_dol_starter)
     design_basis_sheet["C92"] = check_value_kW(cc_star_delta_starter)
+
     design_basis_sheet["C93"] = cc_mcc_switchgear_type
     if division_name != "SPG":
         cc_switchgear_combination = "Not Applicable"
+
+    if not "Fuseless" in cc_mcc_switchgear_type:
+        cc_switchgear_combination = "Not Applicable"
+
     design_basis_sheet["C94"] = cc_switchgear_combination
 
     design_basis_sheet["C96"] = check_value_kW(cc_ammeter)
@@ -816,8 +834,7 @@ def get_design_basis_sheet(
     design_basis_sheet["C149"] = na_to_string(cc_trip)
 
     if (
-        cc_is_local_push_button_station_selected == 0
-        or cc_is_local_push_button_station_selected == "0"
+        int(cc_is_field_motor_isolator_selected) == 0
     ):
         cc_safe_field_motor_type = "Not Applicable"
         cc_safe_field_motor_enclosure = "Not Applicable"
@@ -834,6 +851,24 @@ def get_design_basis_sheet(
         cc_hazardous_field_motor_isolator_color_shade = "Not Applicable"
         cc_hazardous_field_motor_cable_entry = "Not Applicable"
         cc_hazardous_field_motor_canopy = "Not Applicable"
+    else: 
+        if int(cc_is_safe_area_isolator_selected) == 0:
+            cc_safe_field_motor_type = "Not Applicable"
+            cc_safe_field_motor_enclosure = "Not Applicable"
+            cc_safe_field_motor_material = "Not Applicable"
+            cc_safe_field_motor_qty = "Not Applicable"
+            cc_safe_field_motor_isolator_color_shade = "Not Applicable"
+            cc_safe_field_motor_cable_entry = "Not Applicable"
+            cc_safe_field_motor_canopy = "Not Applicable"
+        
+        if int(cc_is_hazardous_area_isolator_selected) == 0:
+            cc_hazardous_field_motor_type = "Not Applicable"
+            cc_hazardous_field_motor_enclosure = "Not Applicable"
+            cc_hazardous_field_motor_material = "Not Applicable"
+            cc_hazardous_field_motor_qty = "Not Applicable"
+            cc_hazardous_field_motor_isolator_color_shade = "Not Applicable"
+            cc_hazardous_field_motor_cable_entry = "Not Applicable"
+            cc_hazardous_field_motor_canopy = "Not Applicable"
 
     design_basis_sheet["C152"] = cc_safe_field_motor_type
     design_basis_sheet["C153"] = na_to_string(cc_safe_field_motor_enclosure)
@@ -853,12 +888,24 @@ def get_design_basis_sheet(
     design_basis_sheet["C154"] = cc_safe_field_motor_material
     design_basis_sheet["C155"] = na_to_string(cc_safe_field_motor_qty)
     design_basis_sheet["C156"] = na_to_string(cc_safe_field_motor_isolator_color_shade)
-
     design_basis_sheet["C157"] = cc_safe_field_motor_cable_entry
     design_basis_sheet["C158"] = na_to_string(cc_safe_field_motor_canopy)
-
     design_basis_sheet["D152"] = cc_hazardous_field_motor_type
     design_basis_sheet["D153"] = na_to_string(cc_hazardous_field_motor_enclosure)
+
+    if (
+        cc_hazardous_field_motor_material == "CRCA"
+        or cc_hazardous_field_motor_material == "SS 316"
+        or cc_hazardous_field_motor_material == "SS 306"
+    ):
+        cc_hazardous_field_motor_material = (
+            f"{cc_hazardous_field_motor_material}, {cc_hazardous_field_motor_thickness} mm"
+        )
+        cc_hazardous_field_motor_cable_entry = f"{cc_hazardous_field_motor_cable_entry}, 3 mm"
+    elif cc_hazardous_field_motor_material == "NA":
+        cc_hazardous_field_motor_material = "Not Applicable"
+
+
     design_basis_sheet["D154"] = na_to_string(cc_hazardous_field_motor_material)
     design_basis_sheet["D155"] = na_to_string(cc_hazardous_field_motor_qty)
     design_basis_sheet["D156"] = na_to_string(
@@ -868,8 +915,7 @@ def get_design_basis_sheet(
     design_basis_sheet["D158"] = na_to_string(cc_hazardous_field_motor_canopy)
 
     if (
-        cc_is_local_push_button_station_selected == 0
-        or cc_is_local_push_button_station_selected == "0"
+        int(cc_is_local_push_button_station_selected) == 0
     ):
         cc_lpbs_push_button_start_color = "Not Applicable"
         cc_forward_push_button_start = "Not Applicable"
@@ -879,6 +925,7 @@ def get_design_basis_sheet(
         cc_lpbs_speed_decrease = "Not Applicable"
         cc_lpbs_indication_lamp_start_color = "Not Applicable"
         cc_lpbs_indication_lamp_stop_color = "Not Applicable"
+
         cc_safe_lpbs_type = "Not Applicable"
         cc_safe_lpbs_enclosure = "Not Applicable"
         cc_safe_lpbs_material = "Not Applicable"
@@ -886,6 +933,26 @@ def get_design_basis_sheet(
         cc_safe_lpbs_color_shade = "Not Applicable"
         cc_safe_lpbs_canopy = "Not Applicable"
         cc_safe_lpbs_canopy_type = "Not Applicable"
+    
+    else:
+        if int(cc_is_safe_lpbs_selected) == 0:
+            cc_safe_lpbs_type = "Not Applicable"
+            cc_safe_lpbs_enclosure = "Not Applicable"
+            cc_safe_lpbs_material = "Not Applicable"
+            cc_safe_lpbs_qty = "Not Applicable"
+            cc_safe_lpbs_color_shade = "Not Applicable"
+            cc_safe_lpbs_canopy = "Not Applicable"
+            cc_safe_lpbs_canopy_type = "Not Applicable"
+        
+        if int(cc_is_hazardous_lpbs_selected) == 0:
+            cc_hazardous_lpbs_type = "Not Applicable"
+            cc_hazardous_lpbs_enclosure = "Not Applicable"
+            cc_hazardous_lpbs_material = "Not Applicable"
+            cc_hazardous_lpbs_qty = "Not Applicable"
+            cc_hazardous_lpbs_color_shade = "Not Applicable"
+            cc_hazardous_lpbs_canopy = "Not Applicable"
+            cc_hazardous_lpbs_canopy_type = "Not Applicable"
+
 
     design_basis_sheet["C160"] = na_to_string(cc_lpbs_push_button_start_color)
     design_basis_sheet["C161"] = na_to_string(cc_forward_push_button_start)
@@ -895,6 +962,18 @@ def get_design_basis_sheet(
     design_basis_sheet["C165"] = na_to_string(cc_lpbs_speed_decrease)
     design_basis_sheet["C166"] = na_to_string(cc_lpbs_indication_lamp_start_color)
     design_basis_sheet["C167"] = na_to_string(cc_lpbs_indication_lamp_stop_color)
+
+    if (
+        cc_safe_lpbs_material == "CRCA"
+        or cc_safe_lpbs_material == "SS 316"
+        or cc_safe_lpbs_material == "SS 306"
+    ):
+        cc_safe_lpbs_material = (
+            f"{cc_safe_lpbs_material}, {cc_hazardous_field_motor_thickness} mm"
+        )
+        cc_hazardous_field_motor_cable_entry = f"{cc_hazardous_field_motor_cable_entry}, 3 mm"
+    elif cc_safe_lpbs_material == "NA":
+        cc_safe_lpbs_material = "Not Applicable"
 
     design_basis_sheet["C169"] = na_to_string(cc_safe_lpbs_type)
     design_basis_sheet["C170"] = na_to_string(cc_safe_lpbs_enclosure)
@@ -961,8 +1040,18 @@ def get_design_basis_sheet(
     design_basis_sheet["C188"] = f"{ct_motor_voltage_drop_during_starting} %"
     design_basis_sheet["C189"] = f"{ct_motor_voltage_drop_during_running} %"
     design_basis_sheet["C190"] = ct_voltage_grade
-    design_basis_sheet["C191"] = f"{ct_copper_conductor} Sq. mm & Below"
-    design_basis_sheet["C192"] = f"{ct_aluminium_conductor} Sq. mm & Above"
+    if "NA" in ct_copper_conductor:
+        ct_copper_conductor = "Not Applicable"
+    else :
+        ct_copper_conductor = f"{ct_copper_conductor} Sq. mm & Below"
+    
+    if "NA" in ct_aluminium_conductor:
+        ct_aluminium_conductor = "Not Applicable"
+    else :
+        ct_aluminium_conductor = f"{ct_aluminium_conductor} Sq. mm & Above"
+
+    design_basis_sheet["C191"] = ct_copper_conductor
+    design_basis_sheet["C192"] = ct_aluminium_conductor
     design_basis_sheet["C193"] = ct_touching_factor_air
     design_basis_sheet["C194"] = ct_ambient_temp_factor_air
     design_basis_sheet["C195"] = ct_derating_factor_air
