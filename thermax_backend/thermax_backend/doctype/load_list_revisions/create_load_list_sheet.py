@@ -12,7 +12,9 @@ from thermax_backend.thermax_backend.doctype.load_list_revisions.division_wise_l
 )
 
 
-def create_load_list_excel(revision_data, project, template_workbook):
+def create_load_list_excel(
+    template_workbook, revision_data, project, incomer_power_supply
+):
     """
     Generates an Excel sheet for the electrical load list based on the specified division.
 
@@ -43,6 +45,7 @@ def create_load_list_excel(revision_data, project, template_workbook):
             electrical_load_list_data=electrical_load_list_data,
             panels_data=panels_data,
             template_workbook=template_workbook,
+            incomer_power_supply=incomer_power_supply,
         )
     elif division_name == "WWS SPG":
         template_workbook = get_spg_load_list_excel(
