@@ -21,17 +21,18 @@ def get_heating_load_list_excel(
         panel_name="All Panels",
     )
 
-    for panel_name, panel_data in panels_data.items():
-        panel_sheet = template_workbook.copy_worksheet(load_list_output_sheet)
-        panel_sheet.title = panel_name
+    if number_of_panels > 1:
+        for panel_name, panel_data in panels_data.items():
+            panel_sheet = template_workbook.copy_worksheet(load_list_output_sheet)
+            panel_sheet.title = panel_name
 
-        panel_sheet = create_heating_load_list_excel(
-            electrical_load_list_data=panel_data,
-            load_list_output_sheet=panel_sheet,
-            incomer_power_supply=incomer_power_supply,
-            number_of_panels=number_of_panels,
-            panel_name=panel_name,
-        )
+            panel_sheet = create_heating_load_list_excel(
+                electrical_load_list_data=panel_data,
+                load_list_output_sheet=panel_sheet,
+                incomer_power_supply=incomer_power_supply,
+                number_of_panels=number_of_panels,
+                panel_name=panel_name,
+            )
 
     template_workbook.remove(load_list_output_sheet)
     all_panels_sheet.title = "LOAD LIST OUTPUT"
@@ -229,15 +230,5 @@ def create_heating_load_list_excel(
         load_list_output_sheet[f"C{calculated_row_start_number + 9}"] = (
             f"POWER SUPPLY \n {incomer_power_supply}"
         )
-
-    # # Row Gap
-    # load_list_output_sheet.merge_cells(
-    #     f"A{calculated_row_start_number + 8}:P{calculated_row_start_number + 8}"
-    # )
-    # load_list_output_sheet.row_dimensions[calculated_row_start_number + 8].height = 15
-
-    # load_list_output_sheet[f"D{calculated_row_start_number + 8}"] = (
-    #     "POWER SUPPLY FROM CLIENT"
-    # )
 
     return load_list_output_sheet
