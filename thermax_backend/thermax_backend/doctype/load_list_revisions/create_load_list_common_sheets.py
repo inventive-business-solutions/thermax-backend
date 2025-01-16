@@ -6,12 +6,9 @@ from thermax_backend.thermax_backend.doctype.load_list_revisions.cover_sheet imp
 from thermax_backend.thermax_backend.doctype.load_list_revisions.notes_sheet import (
     create_notes_sheet,
 )
-from thermax_backend.thermax_backend.doctype.load_list_revisions.revision_sheet import (
-    create_revision_sheet,
-)
 
 
-def create_load_list_common_sheets(project, revision_data):
+def create_load_list_common_sheets(project, revision_data, incomer_power_supply):
     """
     Generates the common sheets for the load list Excel file.
     """
@@ -43,11 +40,16 @@ def create_load_list_common_sheets(project, revision_data):
     template_workbook = load_workbook(template_path)
 
     cover_sheet = template_workbook["COVER"]
-    revision_sheet = template_workbook["REVISION"]
     notes_sheet = template_workbook["NOTES"]
 
-    cover_sheet = create_cover_sheet(cover_sheet, division_name, project, revision_data)
-    revision_sheet = create_revision_sheet(revision_sheet, project)
-    notes_sheet = create_notes_sheet(notes_sheet, project)
+    cover_sheet = create_cover_sheet(
+        cover_sheet=cover_sheet,
+        project_data=project,
+        revision_data=revision_data,
+        division_name=division_name,
+    )
+    notes_sheet = create_notes_sheet(
+        notes_sheet=notes_sheet, incomer_power_supply=incomer_power_supply
+    )
 
     return template_workbook
