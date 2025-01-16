@@ -34,7 +34,7 @@ def create_cover_sheet(cover_sheet, project_data, revision_data, division_name):
     cover_sheet["D8"] = consultant_name.upper()
     cover_sheet["D9"] = project_name.upper()
     cover_sheet["D10"] = project_oc_number.upper()
-    cover_sheet["D11"] = "VOLTAGE DROP CALCULATION"
+    cover_sheet["D11"] = static_documents.get("electrical_cable_schedule").upper()
 
     index = 33
 
