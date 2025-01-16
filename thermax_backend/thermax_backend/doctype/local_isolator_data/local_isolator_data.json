@@ -9,12 +9,15 @@
  "field_order": [
   "data_section",
   "fmi_type",
-  "fmi_enclosure",
-  "fmi_material",
-  "fmi_quantity",
+  "fmi_ip_protection",
+  "fmi_enclouser_moc",
+  "fmi_enclosure_thickness",
+  "fmi_qty",
   "ifm_isolator_color_shade",
   "ifm_cable_entry",
-  "canopy_on_top"
+  "canopy",
+  "canopy_type",
+  "area"
  ],
  "fields": [
   {
@@ -28,21 +31,6 @@
    "label": "FMI Type"
   },
   {
-   "fieldname": "fmi_enclosure",
-   "fieldtype": "Data",
-   "label": "FMI Enclosure"
-  },
-  {
-   "fieldname": "fmi_material",
-   "fieldtype": "Data",
-   "label": "FMI Material"
-  },
-  {
-   "fieldname": "fmi_quantity",
-   "fieldtype": "Data",
-   "label": "FMI Quantity"
-  },
-  {
    "fieldname": "ifm_isolator_color_shade",
    "fieldtype": "Data",
    "label": "IFM Isolator Color Shade"
@@ -53,15 +41,45 @@
    "label": "IFM Cable Entry"
   },
   {
-   "fieldname": "canopy_on_top",
+   "fieldname": "fmi_ip_protection",
    "fieldtype": "Data",
-   "label": "Canopy on Top"
+   "label": "FMI IP Protection"
+  },
+  {
+   "fieldname": "fmi_enclosure_thickness",
+   "fieldtype": "Data",
+   "label": "FMI Enclosure Thickness"
+  },
+  {
+   "fieldname": "fmi_enclouser_moc",
+   "fieldtype": "Data",
+   "label": "FMI Enclosure MOC"
+  },
+  {
+   "fieldname": "fmi_qty",
+   "fieldtype": "Data",
+   "label": "FMI Quantity"
+  },
+  {
+   "fieldname": "canopy",
+   "fieldtype": "Data",
+   "label": "Canopy"
+  },
+  {
+   "fieldname": "canopy_type",
+   "fieldtype": "Data",
+   "label": "Canopy Type"
+  },
+  {
+   "fieldname": "area",
+   "fieldtype": "Data",
+   "label": "Area"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-12-03 18:01:44.135069",
+ "modified": "2025-01-16 18:59:37.066042",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Local Isolator Data",
