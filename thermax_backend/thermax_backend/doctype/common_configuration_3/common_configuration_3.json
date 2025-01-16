@@ -11,6 +11,7 @@
   "section_break_dmjt",
   "column_break_sthc",
   "is_safe_lpbs_selected",
+  "is_hazardous_lpbs_selected",
   "lpbs_indication_lamp_start_color",
   "lpbs_indication_lamp_stop_color",
   "lpbs_speed_increase",
@@ -276,11 +277,17 @@
    "fieldname": "is_safe_lpbs_selected",
    "fieldtype": "Check",
    "label": "Is Safe LPBS Selected"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_hazardous_lpbs_selected",
+   "fieldtype": "Check",
+   "label": "Is Hazardous LPBS Selected"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-16 14:28:22.178992",
+ "modified": "2025-01-16 17:56:43.426827",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Common Configuration 3",
