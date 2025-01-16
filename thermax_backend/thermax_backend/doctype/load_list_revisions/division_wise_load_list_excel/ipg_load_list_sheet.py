@@ -229,7 +229,7 @@ def create_ipg_load_list_excel(
     else:
         # Row Gap
         load_list_output_sheet.merge_cells(
-            f"A{calculated_row_start_number + 8}:R{calculated_row_start_number + 8}"
+            f"A{calculated_row_start_number + 8}:Q{calculated_row_start_number + 8}"
         )
         load_list_output_sheet.row_dimensions[
             calculated_row_start_number + 8

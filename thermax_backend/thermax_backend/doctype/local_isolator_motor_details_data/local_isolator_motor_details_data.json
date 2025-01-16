@@ -14,7 +14,15 @@
   "working_kw",
   "motor_rated_current",
   "local_isolator",
-  "motor_location"
+  "motor_location",
+  "isolator_rating",
+  "gland_size",
+  "package",
+  "area",
+  "standard",
+  "zone",
+  "temprature_class",
+  "gas_group"
  ],
  "fields": [
   {
@@ -56,12 +64,52 @@
    "fieldname": "motor_location",
    "fieldtype": "Data",
    "label": "Motor Location"
+  },
+  {
+   "fieldname": "isolator_rating",
+   "fieldtype": "Data",
+   "label": "Isolator Rating"
+  },
+  {
+   "fieldname": "gland_size",
+   "fieldtype": "Data",
+   "label": "Gland Size"
+  },
+  {
+   "fieldname": "package",
+   "fieldtype": "Data",
+   "label": "Package"
+  },
+  {
+   "fieldname": "area",
+   "fieldtype": "Data",
+   "label": "Area"
+  },
+  {
+   "fieldname": "standard",
+   "fieldtype": "Data",
+   "label": "Standard"
+  },
+  {
+   "fieldname": "zone",
+   "fieldtype": "Data",
+   "label": "Zone"
+  },
+  {
+   "fieldname": "temprature_class",
+   "fieldtype": "Data",
+   "label": "Temprature Class"
+  },
+  {
+   "fieldname": "gas_group",
+   "fieldtype": "Data",
+   "label": "Gas Group"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-12-08 17:45:12.314856",
+ "modified": "2025-01-16 19:01:45.903533",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Local Isolator Motor Details Data",
