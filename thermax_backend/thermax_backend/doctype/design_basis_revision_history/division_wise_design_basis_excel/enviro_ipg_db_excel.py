@@ -960,11 +960,7 @@ def get_enviro_ipg_db_excel(
 
             # UPS
             ups_scope = plc_panel.get("ups_scope")
-            panel_sheet["C62"] = (
-                "Not Applicable"
-                if ups_scope == "Client Scope"
-                else na_to_string(plc_panel.get("ups_make", "NA"))
-            )
+            panel_sheet["C62"] = ups_scope
             panel_sheet["C63"] = (
                 "Not Applicable"
                 if ups_scope == "Client Scope"

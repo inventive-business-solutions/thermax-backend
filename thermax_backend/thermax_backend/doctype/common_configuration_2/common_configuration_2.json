@@ -51,22 +51,7 @@
   "hazardous_lpbs_canopy",
   "safe_lpbs_canopy_type",
   "hazardous_lpbs_canopy_type",
-  "lpbs_push_button_start_color",
-  "lpbs_indication_lamp_start_color",
-  "lpbs_indication_lamp_stop_color",
-  "lpbs_speed_increase",
-  "lpbs_speed_decrease",
-  "apfc_relay",
-  "power_bus_main_busbar_selection",
-  "power_bus_heat_pvc_sleeve",
-  "power_bus_material",
-  "power_bus_current_density",
-  "power_bus_rating_of_busbar",
-  "control_bus_main_busbar_selection",
-  "control_bus_heat_pvc_sleeve",
-  "control_bus_material",
-  "control_bus_current_density",
-  "control_bus_rating_of_busbar"
+  "lpbs_push_button_start_color"
  ],
  "fields": [
   {
@@ -271,94 +256,6 @@
    "options": "LPBS Start Push Button Color"
   },
   {
-   "fieldname": "lpbs_indication_lamp_start_color",
-   "fieldtype": "Link",
-   "label": "LPBS Start / On Indication Lamp Color",
-   "options": "LPBS Start On Indication Lamp Color"
-  },
-  {
-   "fieldname": "lpbs_indication_lamp_stop_color",
-   "fieldtype": "Link",
-   "label": "Stop / OFF Indication Lamp Color",
-   "options": "LPBS Stop Off Indication Lamp Color"
-  },
-  {
-   "fieldname": "lpbs_speed_increase",
-   "fieldtype": "Link",
-   "label": "LPBS Speed Increase Push Button",
-   "options": "LPBS Speed Increase Push Button"
-  },
-  {
-   "fieldname": "lpbs_speed_decrease",
-   "fieldtype": "Link",
-   "label": "LPBS Speed Decrease Push Button",
-   "options": "Speed Decrease PB"
-  },
-  {
-   "fieldname": "apfc_relay",
-   "fieldtype": "Link",
-   "label": "APFC Relay",
-   "options": "APFC Relay"
-  },
-  {
-   "fieldname": "power_bus_main_busbar_selection",
-   "fieldtype": "Link",
-   "label": "Power Bus Main Busbar Selection",
-   "options": "Power Bus Main Busbar Selection"
-  },
-  {
-   "fieldname": "power_bus_heat_pvc_sleeve",
-   "fieldtype": "Link",
-   "label": "Power Bus PVC Sleeve",
-   "options": "Power Bus Heat Shrinkable Color PVC sleeve"
-  },
-  {
-   "fieldname": "power_bus_material",
-   "fieldtype": "Link",
-   "label": "Power Bus Material",
-   "options": "Power Bus Material"
-  },
-  {
-   "fieldname": "power_bus_current_density",
-   "fieldtype": "Link",
-   "label": "Power Bus Current Density",
-   "options": "Power Bus Current Density"
-  },
-  {
-   "fieldname": "power_bus_rating_of_busbar",
-   "fieldtype": "Data",
-   "label": "Power Bus Rating of Busbar"
-  },
-  {
-   "fieldname": "control_bus_main_busbar_selection",
-   "fieldtype": "Link",
-   "label": "Control Bus Main Busbar Selection",
-   "options": "Control Bus Main Busbar Selection"
-  },
-  {
-   "fieldname": "control_bus_heat_pvc_sleeve",
-   "fieldtype": "Link",
-   "label": "Controrl Bus PVC Sleeve",
-   "options": "Control Bus Heat Shrinkable Color PVC sleeve"
-  },
-  {
-   "fieldname": "control_bus_material",
-   "fieldtype": "Link",
-   "label": "Control Bus Material",
-   "options": "Control Bus Material"
-  },
-  {
-   "fieldname": "control_bus_current_density",
-   "fieldtype": "Link",
-   "label": "Control Bus Current Density",
-   "options": "Control Bus Current Density"
-  },
-  {
-   "fieldname": "control_bus_rating_of_busbar",
-   "fieldtype": "Data",
-   "label": "Control Bus Rating of Busbar"
-  },
-  {
    "fieldname": "hazardous_lpbs_type",
    "fieldtype": "Link",
    "label": "Hazardous Local Push Button Type",
@@ -433,7 +330,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-15 22:23:48.475310",
+ "modified": "2025-01-16 14:28:28.627879",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Common Configuration 2",

@@ -10,6 +10,9 @@
   "revision_id",
   "section_break_dmjt",
   "column_break_sthc",
+  "is_safe_lpbs_selected",
+  "lpbs_indication_lamp_start_color",
+  "lpbs_indication_lamp_stop_color",
   "lpbs_speed_increase",
   "lpbs_speed_decrease",
   "apfc_relay",
@@ -255,11 +258,29 @@
    "fieldtype": "Link",
    "label": "LPBS Speed Decrease Push Button",
    "options": "Speed Decrease PB"
+  },
+  {
+   "fieldname": "lpbs_indication_lamp_start_color",
+   "fieldtype": "Link",
+   "label": "LPBS Start / On Indication Lamp Color",
+   "options": "LPBS Start On Indication Lamp Color"
+  },
+  {
+   "fieldname": "lpbs_indication_lamp_stop_color",
+   "fieldtype": "Link",
+   "label": "Stop / OFF Indication Lamp Color",
+   "options": "LPBS Stop Off Indication Lamp Color"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_safe_lpbs_selected",
+   "fieldtype": "Check",
+   "label": "Is Safe LPBS Selected"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-16 12:14:30.986646",
+ "modified": "2025-01-16 14:28:22.178992",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Common Configuration 3",
