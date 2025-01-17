@@ -1,13 +1,13 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:client_name",
+ "autoname": "hash",
  "creation": "2024-09-26 15:30:57.385863",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "client_name",
-  "email"
+  "division"
  ],
  "fields": [
   {
@@ -17,18 +17,19 @@
    "unique": 1
   },
   {
-   "fieldname": "email",
-   "fieldtype": "Data",
-   "label": "Email"
+   "fieldname": "division",
+   "fieldtype": "Link",
+   "label": "Division",
+   "options": "Division"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-09 18:10:58.044870",
+ "modified": "2025-01-17 18:07:44.014438",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Client",
- "naming_rule": "By fieldname",
+ "naming_rule": "Random",
  "owner": "Administrator",
  "permissions": [
   {
