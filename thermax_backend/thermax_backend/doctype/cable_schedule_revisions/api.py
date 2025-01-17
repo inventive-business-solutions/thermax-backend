@@ -21,15 +21,15 @@ def get_voltage_drop_excel():
     revision_id = payload.get("revision_id")
     template_workbook = create_voltage_drop_excel(revision_id)
 
-    # template_workbook.save("voltage_dropdown_calculation.xlsx")
+    template_workbook.save("voltage_dropdown_calculation.xlsx")
 
-    output = io.BytesIO()
-    template_workbook.save(output)
-    output.seek(0)
+    # output = io.BytesIO()
+    # template_workbook.save(output)
+    # output.seek(0)
 
-    frappe.local.response.filename = "voltage_drop_calculation.xlsx"
-    frappe.local.response.filecontent = output.getvalue()
-    frappe.local.response.type = "binary"
+    # frappe.local.response.filename = "voltage_drop_calculation.xlsx"
+    # frappe.local.response.filecontent = output.getvalue()
+    # frappe.local.response.type = "binary"
 
     return _("Voltage Drop Excel Created")
 
@@ -50,18 +50,28 @@ def get_cable_schedule_excel():
     excel_payload = cable_schedule_revision.get("excel_payload")
     cable_schedule_data = frappe.parse_json(excel_payload)
     if division == "Heating":
-        template_workbook = create_heating_excel(cable_schedule_data)
+        template_workbook = create_heating_excel(
+            cable_schedule_data=cable_schedule_data,
+            project=project,
+            revision_data=cable_schedule_revision,
+            division_name=division,
+        )
     else:
-        template_workbook = create_other_division_excel(cable_schedule_data)
+        template_workbook = create_other_division_excel(
+            cable_schedule_data=cable_schedule_data,
+            project=project,
+            revision_data=cable_schedule_revision,
+            division_name=division,
+        )
 
-    # template_workbook.save("cable_schedule.xlsx")
+    template_workbook.save("cable_schedule.xlsx")
 
-    output = io.BytesIO()
-    template_workbook.save(output)
-    output.seek(0)
+    # output = io.BytesIO()
+    # template_workbook.save(output)
+    # output.seek(0)
 
-    frappe.local.response.filename = "cable_schedule.xlsx"
-    frappe.local.response.filecontent = output.getvalue()
-    frappe.local.response.type = "binary"
+    # frappe.local.response.filename = "cable_schedule.xlsx"
+    # frappe.local.response.filecontent = output.getvalue()
+    # frappe.local.response.type = "binary"
 
     return _("Cable Schedule Excel Created")
