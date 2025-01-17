@@ -16,7 +16,7 @@ def get_spg_db_excel(
     revision_id,
 ):
     project_panel_data = frappe.db.get_list(
-        "Project Panel Data", {"revision_id": revision_id}, "*"
+        "Project Panel Data", {"revision_id": revision_id}, "*", order_by="creation asc"
     )
 
     for project_panel in project_panel_data:
@@ -586,6 +586,11 @@ def get_spg_db_excel(
             panel_sheet["C29"] = (
                 ga_pcc_construction_front_type  # Type of Construction for Board
             )
+            
+            if (ga_pcc_compartmental is None) or ("Non" in ga_pcc_compartmental):
+                incoming_drawout_type = "Not Applicable"
+                outgoing_drawout_type = "Not Applicable"
+
             panel_sheet["C30"] = incoming_drawout_type
             panel_sheet["C31"] = outgoing_drawout_type
             panel_sheet["C32"] = ga_pcc_construction_type  # Panel Construction Type
@@ -967,11 +972,7 @@ def get_spg_db_excel(
 
             # UPS
             ups_scope = plc_panel.get("ups_scope")
-            panel_sheet["C62"] = (
-                "Not Applicable"
-                if ups_scope == "Client Scope"
-                else na_to_string(plc_panel.get("ups_make", "NA"))
-            )
+            panel_sheet["C62"] = ups_scope
             panel_sheet["C63"] = (
                 "Not Applicable"
                 if ups_scope == "Client Scope"
@@ -1090,11 +1091,9 @@ def get_spg_db_excel(
             # # DI Modules
             panel_sheet["C94"] = plc_panel.get("di_module_channel_density")
             panel_sheet["C95"] = plc_panel.get("di_module_loop_current")
-            panel_sheet["C96"] = plc_panel.get("di_module_isolation")  # UI Error
+            panel_sheet["C96"] = na_to_string(plc_panel.get("di_module_isolation"))  # UI Error
             panel_sheet["C97"] = plc_panel.get("di_module_input_type")
-            panel_sheet["C98"] = plc_panel.get(
-                "di_module_interrogation_voltage"
-            )  # UI Error
+            panel_sheet["C98"] = na_to_string(plc_panel.get("di_module_interrogation_voltage"))  # UI Error
             panel_sheet["C99"] = plc_panel.get("di_module_scan_time")
 
             # DO Modules
