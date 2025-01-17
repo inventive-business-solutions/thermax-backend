@@ -28,15 +28,13 @@
   },
   {
    "fieldname": "client_name",
-   "fieldtype": "Link",
-   "label": "Client Name",
-   "options": "Client"
+   "fieldtype": "Data",
+   "label": "Client Name"
   },
   {
    "fieldname": "consultant_name",
-   "fieldtype": "Link",
-   "label": "Consultant Name",
-   "options": "Consultant"
+   "fieldtype": "Data",
+   "label": "Consultant Name"
   },
   {
    "fieldname": "division",
@@ -63,7 +61,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-09 18:11:02.034703",
+ "modified": "2025-01-17 18:16:56.793811",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Project",
