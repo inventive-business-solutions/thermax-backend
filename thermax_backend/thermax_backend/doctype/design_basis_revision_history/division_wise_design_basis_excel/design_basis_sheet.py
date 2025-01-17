@@ -762,9 +762,9 @@ def get_design_basis_sheet(
     design_basis_sheet["C93"] = cc_mcc_switchgear_type
     if division_name != "SPG":
         cc_switchgear_combination = "Not Applicable"
-
-    if not "Fuseless" in cc_mcc_switchgear_type:
-        cc_switchgear_combination = "Not Applicable"
+    else:
+        if not "Fuseless" in cc_mcc_switchgear_type:
+            cc_switchgear_combination = "Not Applicable"
 
     design_basis_sheet["C94"] = cc_switchgear_combination
 
@@ -879,7 +879,7 @@ def get_design_basis_sheet(
         or cc_safe_field_motor_material == "SS 306"
     ):
         cc_safe_field_motor_material = (
-            f"{cc_safe_field_motor_material}, {cc_safe_field_motor_thickness} mm"
+            f"{cc_safe_field_motor_material}, {cc_safe_field_motor_thickness}"
         )
         cc_safe_field_motor_cable_entry = f"{cc_safe_field_motor_cable_entry}, 3 mm"
     elif cc_safe_field_motor_material == "NA":
@@ -969,7 +969,7 @@ def get_design_basis_sheet(
         or cc_safe_lpbs_material == "SS 306"
     ):
         cc_safe_lpbs_material = (
-            f"{cc_safe_lpbs_material}, {cc_hazardous_field_motor_thickness} mm"
+            f"{cc_safe_lpbs_material}, {cc_hazardous_field_motor_thickness}"
         )
         cc_hazardous_field_motor_cable_entry = f"{cc_hazardous_field_motor_cable_entry}, 3 mm"
     elif cc_safe_lpbs_material == "NA":
@@ -1043,12 +1043,18 @@ def get_design_basis_sheet(
     if "NA" in ct_copper_conductor:
         ct_copper_conductor = "Not Applicable"
     else :
-        ct_copper_conductor = f"{ct_copper_conductor} Sq. mm & Below"
+        if ct_copper_conductor == "All":
+            ct_copper_conductor = "All"
+        else:
+            ct_copper_conductor = f"{ct_copper_conductor} Sq. mm & Below"
     
     if "NA" in ct_aluminium_conductor:
         ct_aluminium_conductor = "Not Applicable"
     else :
-        ct_aluminium_conductor = f"{ct_aluminium_conductor} Sq. mm & Above"
+        if ct_aluminium_conductor == "All":
+            ct_aluminium_conductor = "All"
+        else:
+            ct_aluminium_conductor = f"{ct_aluminium_conductor} Sq. mm & Above"
 
     design_basis_sheet["C191"] = ct_copper_conductor
     design_basis_sheet["C192"] = ct_aluminium_conductor

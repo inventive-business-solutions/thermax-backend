@@ -247,9 +247,8 @@
   },
   {
    "fieldname": "marshalling_cabinet_for_plc_and_ups",
-   "fieldtype": "Link",
-   "label": "Marshalling Cabinet For PLC and UPS",
-   "options": "Marshalling Cabinet for PLC and UPS"
+   "fieldtype": "Data",
+   "label": "Marshalling Cabinet For PLC and UPS"
   },
   {
    "fieldname": "panel_mounted_push_buttons_indication_lamps_and_colors_section",
@@ -293,7 +292,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-13 13:26:18.801670",
+ "modified": "2025-01-17 01:18:26.773859",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Panel PLC 1 - 3",
