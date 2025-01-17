@@ -89,9 +89,11 @@ from datetime import datetime
 #     )
 #     return "Approval notification mail sent successfully"
 
+const_revision_id = "st486uu99i"
+
 
 @frappe.whitelist()
-def get_lpbs_excel(): 
+def get_local_isolator_excel(): 
     payload = frappe.local.form_dict
     revision_id = payload.get("revision_id")
 
@@ -124,12 +126,11 @@ def get_lpbs_excel():
     # loading the sheets 
 
     cover_sheet = template_workbook["COVER"]
-    instruction_name_sheet = template_workbook["INSTRUCTION PAGE"]
+    instruction_sheet = template_workbook["INSTRUCTION PAGE"]
     specification_sheet = template_workbook["SPECIFICATION"]
     lpbs_safe_sheet = template_workbook[" LPBS LIST SAFE AREA"]
     lpbs_hazard_sheet = template_workbook["LPBS LIST HAZARDOUS AREA "]
-    selection_criteria_sheet = template_workbook["SELECTION CRITERIA"]
-    solator_hazard_area_sheet = template_workbook["ISOLATOR LIST HAZARDOUS AREA"]
+    selection_sheet = template_workbook["SELECTION CRITERIA"]
 
 
     # cover page sheet populating
@@ -148,15 +149,18 @@ def get_lpbs_excel():
 
     revision_date = modified.strftime("%d-%m-%Y")
     revision_data_with_pid = frappe.db.get_list("Design Basis Revision History", {"project_id": project_id}, "*")
+    static_document_list_data = frappe.get_doc("Static Document List", {"project_id":project_id}, "*").as_dict()
+
+    lpbs_specifications_and_list = static_document_list_data.get("lpbs_specifications_and_list")
 
 
     cover_sheet["A3"] = division_name.upper()
-    cover_sheet["D6"] = project_name.upper()
+    # cover_sheet["D6"] = project_name.upper()
     cover_sheet["D7"] = client_name.upper()
     cover_sheet["D8"] = consultant_name.upper()
     cover_sheet["D9"] = project_name.upper()
     cover_sheet["D10"] = project_oc_number.upper()
-    cover_sheet["D11"] = "LOCAL ISOLATOR SPECIFICAITON LIST"
+    cover_sheet["D11"] = lpbs_specifications_and_list
 
     index = 33
 
@@ -200,80 +204,164 @@ def get_lpbs_excel():
         return value
     # Fetch the Design Basis revision data (then isolator data form that)
 
-    common_config_data = frappe.db.get_list(
-        "Common Configuration 2", {"revision_id": revision_id}, "*"
-    )
-    common_config_data = common_config_data[0]
+    lpbs_revision_data = frappe.get_doc(
+        "LPBS Specification Revisions", const_revision_id, "*"
+    ).as_dict()
 
-    is_local_push_button_station_selected = common_config_data.get("is_local_push_button_station_selected") 
-    selector_switch_applicable = common_config_data.get("selector_switch_applicable") 
-    selector_switch_lockable = common_config_data.get("selector_switch_lockable") 
-    running_open = common_config_data.get("running_open") 
-    stopped_closed = common_config_data.get("stopped_closed") 
-    trip = common_config_data.get("trip") 
-    safe_lpbs_type = common_config_data.get("safe_lpbs_type") 
-    hazardous_lpbs_type = common_config_data.get("hazardous_lpbs_type") 
-    safe_lpbs_enclosure = common_config_data.get("safe_lpbs_enclosure") 
-    hazardous_lpbs_enclosure = common_config_data.get("hazardous_lpbs_enclosure") 
-    safe_lpbs_thickness = common_config_data.get("safe_lpbs_thickness") 
-    hazardous_lpbs_thickness = common_config_data.get("hazardous_lpbs_thickness") 
-    safe_lpbs_material = common_config_data.get("safe_lpbs_material") 
-    hazardous_lpbs_material = common_config_data.get("hazardous_lpbs_material") 
-    safe_lpbs_qty = common_config_data.get("safe_lpbs_qty") 
-    hazardous_lpbs_qty = common_config_data.get("hazardous_lpbs_qty") 
-    safe_lpbs_color_shade = common_config_data.get("safe_lpbs_color_shade") 
-    hazardous_lpbs_color_shade = common_config_data.get("hazardous_lpbs_color_shade") 
-    safe_lpbs_canopy = common_config_data.get("safe_lpbs_canopy") 
-    hazardous_lpbs_canopy = common_config_data.get("hazardous_lpbs_canopy") 
-    safe_lpbs_canopy_type = common_config_data.get("safe_lpbs_canopy_type") 
-    hazardous_lpbs_canopy_type = common_config_data.get("hazardous_lpbs_canopy_type") 
-    lpbs_push_button_start_color = common_config_data.get("lpbs_push_button_start_color") 
-    lpbs_indication_lamp_start_color = common_config_data.get("lpbs_indication_lamp_start_color") 
-    lpbs_indication_lamp_stop_color = common_config_data.get("lpbs_indication_lamp_stop_color") 
-    lpbs_speed_increase = common_config_data.get("lpbs_speed_increase") 
-    lpbs_speed_decrease = common_config_data.get("lpbs_speed_decrease") 
+    lpbs_data = lpbs_revision_data.get("lpbs_specification_data")
+    safe_lpbs_data = {}
+    hazard_lpbs_data = {}
 
-    if cc_is_local_push_button_station_selected == 0 or cc_is_local_push_button_station_selected == "0":
-        cc_lpbs_push_button_start_color = "Not Applicable"
-        cc_forward_push_button_start = "Not Applicable"
-        cc_reverse_push_button_start = "Not Applicable"
-        cc_push_button_ess = "Not Applicable"
-        cc_lpbs_speed_increase = "Not Applicable"
-        cc_lpbs_speed_decrease = "Not Applicable"
-        cc_lpbs_indication_lamp_start_color = "Not Applicable"
-        cc_lpbs_indication_lamp_stop_color = "Not Applicable"
-        cc_safe_lpbs_type = "Not Applicable"
-        cc_safe_lpbs_enclosure = "Not Applicable"
-        cc_safe_lpbs_material = "Not Applicable"
-        cc_safe_lpbs_qty = "Not Applicable"
-        cc_safe_lpbs_color_shade = "Not Applicable"
-        cc_safe_lpbs_canopy = "Not Applicable"
-        cc_safe_lpbs_canopy_type = "Not Applicable"
+    for data in lpbs_data:
+        if data["area"] == "Safe":
+            safe_lpbs_data = data
+        else:
+            hazard_lpbs_data = data
 
-    specification_sheet["C160"] = na_to_string(cc_lpbs_push_button_start_color)
-    specification_sheet["C161"] = na_to_string(cc_forward_push_button_start)
-    specification_sheet["C162"] = na_to_string(cc_reverse_push_button_start)
-    specification_sheet["C163"] = na_to_string(cc_push_button_ess)
-    specification_sheet["C164"] = na_to_string(cc_lpbs_speed_increase)
-    specification_sheet["C165"] = na_to_string(cc_lpbs_speed_decrease)
-    specification_sheet["C166"] = na_to_string(cc_lpbs_indication_lamp_start_color)
-    specification_sheet["C167"] = na_to_string(cc_lpbs_indication_lamp_stop_color)
 
-    specification_sheet["C169"] = na_to_string(cc_safe_lpbs_type)
-    specification_sheet["C170"] = na_to_string(cc_safe_lpbs_enclosure)
-    specification_sheet["C171"] = na_to_string(cc_safe_lpbs_material)
-    specification_sheet["C172"] = na_to_string(cc_safe_lpbs_qty)
-    specification_sheet["C173"] = na_to_string(cc_safe_lpbs_color_shade)
-    specification_sheet["C174"] = na_to_string(cc_safe_lpbs_canopy)
-    specification_sheet["C175"] = na_to_string(cc_safe_lpbs_canopy_type)
+    
+    specification_sheet["C3"] = safe_lpbs_data.get("lpbs_type")
+    specification_sheet["C4"] = safe_lpbs_data.get("lpbs_enclosure")
 
-    specification_sheet["D169"] = na_to_string(cc_hazardous_lpbs_type)
-    specification_sheet["D170"] = na_to_string(cc_hazardous_lpbs_enclosure)
-    specification_sheet["D171"] = na_to_string(cc_hazardous_lpbs_material)
-    specification_sheet["D172"] = na_to_string(cc_hazardous_lpbs_qty)
-    specification_sheet["D173"] = na_to_string(cc_hazardous_lpbs_color_shade)
-    specification_sheet["D174"] = na_to_string(cc_hazardous_lpbs_canopy)
-    specification_sheet["D175"] = na_to_string(cc_hazardous_lpbs_canopy_type)
+    safe_lpbs_material = safe_lpbs_data.get("lpbs_material")
+    # safe_fmi_enclosure_thickness = safe_lpbs_data.get("fmi_enclosure_thickness")
+    safe_lpbs_cable_entry = safe_lpbs_data.get("ifm_cable_entry")
+
+    if (
+        safe_lpbs_material == "CRCA"
+        or safe_lpbs_material == "SS 316"
+        or safe_lpbs_material == "SS 306"
+    ):
+        # safe_lpbs_material = (
+        #     f"{safe_lpbs_material}, {safe_fmi_enclosure_thickness} mm"
+        # )
+        safe_lpbs_cable_entry = f"{safe_lpbs_cable_entry}, 3 mm"
+    elif safe_lpbs_material == "NA":
+        safe_lpbs_material = "Not Applicable"
+
+
+    specification_sheet["C5"] = safe_lpbs_material
+    specification_sheet["C6"] = safe_lpbs_data.get("fmi_qty")
+    specification_sheet["C7"] = safe_lpbs_data.get("ifm_isolator_color_shade")
+    specification_sheet["C8"] = safe_lpbs_cable_entry
+    specification_sheet["C9"] = safe_lpbs_data.get("canopy")
+    specification_sheet["C10"] = safe_lpbs_data.get("canopy_type")
+
+
+    hazard_fmi_enclouser_moc = hazard_lpbs_data.get("fmi_enclouser_moc")
+    hazard_fmi_enclosure_thickness = hazard_lpbs_data.get("fmi_enclosure_thickness")
+    hazard_ifm_cable_entry = hazard_lpbs_data.get("ifm_cable_entry")
+
+    if (
+        hazard_fmi_enclouser_moc == "CRCA"
+        or hazard_fmi_enclouser_moc == "SS 316"
+        or hazard_fmi_enclouser_moc == "SS 306"
+    ):
+        # hazard_fmi_enclouser_moc = (
+        #     f"{hazard_fmi_enclouser_moc}, {hazard_fmi_enclosure_thickness} mm"
+        # )
+        hazard_ifm_cable_entry = f"{hazard_ifm_cable_entry}, 3 mm"
+    elif hazard_fmi_enclouser_moc == "NA":
+        hazard_fmi_enclouser_moc = "Not Applicable"
+
+    specification_sheet["D3"] = hazard_lpbs_data.get("fmi_type")
+    specification_sheet["D4"] = hazard_lpbs_data.get("fmi_ip_protection")
+    specification_sheet["D5"] = hazard_fmi_enclouser_moc
+    specification_sheet["D6"] = hazard_lpbs_data.get("fmi_qty")
+    specification_sheet["D7"] = hazard_lpbs_data.get("ifm_isolator_color_shade")
+    specification_sheet["D8"] = hazard_ifm_cable_entry
+    specification_sheet["D9"] = hazard_lpbs_data.get("canopy")
+    specification_sheet["D10"] = hazard_lpbs_data.get("canopy_type")
+    
+    local_isolator_motor_details_data = lpbs_revision_data.get("local_isolator_motor_details_data")
+    safe_motor_details = []
+    hazard_motor_details = []
+
+    for i in range(len(local_isolator_motor_details_data)):
+        if local_isolator_motor_details_data[i].get("area") == "Safe":
+            safe_motor_details.append(local_isolator_motor_details_data[i])
+        else:
+            hazard_motor_details.append(local_isolator_motor_details_data[i])
+
+    index = 3
+
+    for i in range(len(safe_motor_details)):
+        # area_data = local_isolator_motor_details_data[i].get("area")
+        # if area_data == "Safe":
+        lpbs_safe_sheet[f"A{index}"] = i + 1
+        lpbs_safe_sheet[f"B{index}"] = safe_motor_details[i].get("tag_number")
+        lpbs_safe_sheet[f"C{index}"] = safe_motor_details[i].get("service_description")
+        lpbs_safe_sheet[f"D{index}"] = safe_motor_details[i].get("working_kw")
+        lpbs_safe_sheet[f"E{index}"] = ""
+        motor_location = safe_motor_details[i].get("motor_location")
+        area = safe_motor_details[i].get("area")
+
+        lpbs_safe_sheet[f"G{index}"] = motor_location
+
+        if area == "Safe":
+            canopy = safe_lpbs_data.get("canopy")
+        else: 
+            canopy = hazard_lpbs_data.get("canopy")
+
+
+        canopy_required = ""
+        if canopy == "All":
+            canopy_required = "Yes"
+        else: 
+            if canopy == "OUTDOOR" and motor_location == "OUTDOOR":
+                canopy_required = "Yes"
+            else:
+                canopy_required = "No"
+            
+
+        lpbs_safe_sheet[f"F{index}"] = canopy_required
+        lpbs_safe_sheet[f"H{index}"] = safe_motor_details[i].get("gland_size")
+        index = index + 1
+
+    lpbs_safe_sheet[f"C{index + 5}"] = "Total Quantity"
+    lpbs_safe_sheet[f"D{index + 5}"] = int(len(safe_motor_details))
+    lpbs_safe_sheet[f"F{index + 5}"] = "Nos"
+
+    for i in range(len(hazard_motor_details)):
+        # area_data = local_isolator_motor_details_data[i].get("area")
+        # if area_data == "Hazardous":
+        lpbs_hazard_sheet[f"A{index}"] = i + 1
+        lpbs_hazard_sheet[f"B{index}"] = hazard_motor_details[i].get("tag_number")
+        lpbs_hazard_sheet[f"C{index}"] = hazard_motor_details[i].get("service_description")
+        lpbs_hazard_sheet[f"D{index}"] = hazard_motor_details[i].get("working_kw")
+        lpbs_hazard_sheet[f"E{index}"] = ""
+        motor_location = hazard_motor_details[i].get("motor_location")
+        area = hazard_motor_details[i].get("area")
+
+        lpbs_hazard_sheet[f"K{index}"] = motor_location
+
+        if area == "Safe":
+            canopy = safe_lpbs_data.get("canopy")
+        else: 
+            canopy = hazard_lpbs_data.get("canopy")
+
+
+        canopy_required = ""
+        if canopy == "All":
+            canopy_required = "Yes"
+        else: 
+            if canopy == "OUTDOOR" and motor_location == "OUTDOOR":
+                canopy_required = "Yes"
+            else:
+                canopy_required = "No"
+            
+
+        lpbs_hazard_sheet[f"F{index}"] = canopy_required
+        lpbs_hazard_sheet[f"G{index}"] = hazard_motor_details[i].get("standard")
+        lpbs_hazard_sheet[f"H{index}"] = hazard_motor_details[i].get("zone")
+        lpbs_hazard_sheet[f"I{index}"] = hazard_motor_details[i].get("gas_group")
+        lpbs_hazard_sheet[f"J{index}"] = hazard_motor_details[i].get("temprature_class")
+        lpbs_hazard_sheet[f"L{index}"] = hazard_motor_details[i].get("gland_size")
+        index = index + 1
+
+    lpbs_hazard_sheet[f"C{index + 5}"] = "Total Quantity"
+    lpbs_hazard_sheet[f"D{index + 5}"] = int(len(hazard_motor_details))
+    lpbs_hazard_sheet[f"F{index + 5}"] = "Nos"
 
     output = io.BytesIO()
     template_workbook.save(output)

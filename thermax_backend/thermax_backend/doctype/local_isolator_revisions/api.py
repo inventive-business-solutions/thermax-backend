@@ -89,6 +89,8 @@ from datetime import datetime
 #     )
 #     return "Approval notification mail sent successfully"
 
+const_revision_id = "st486uu99i"
+
 
 @frappe.whitelist()
 def get_local_isolator_excel(): 
@@ -145,15 +147,18 @@ def get_local_isolator_excel():
 
     revision_date = modified.strftime("%d-%m-%Y")
     revision_data_with_pid = frappe.db.get_list("Design Basis Revision History", {"project_id": project_id}, "*")
+    static_document_list_data = frappe.get_doc("Static Document List", {"project_id":project_id}, "*").as_dict()
+
+    local_isolator_specifications_and_list = static_document_list_data.get("local_isolator_specifications_and_list")
 
 
     cover_sheet["A3"] = division_name.upper()
-    cover_sheet["D6"] = project_name.upper()
+    # cover_sheet["D6"] = project_name.upper()
     cover_sheet["D7"] = client_name.upper()
     cover_sheet["D8"] = consultant_name.upper()
     cover_sheet["D9"] = project_name.upper()
     cover_sheet["D10"] = project_oc_number.upper()
-    cover_sheet["D11"] = "LOCAL ISOLATOR SPECIFICAITON LIST"
+    cover_sheet["D11"] = local_isolator_specifications_and_list
 
     index = 33
 
@@ -197,79 +202,166 @@ def get_local_isolator_excel():
         return value
     # Fetch the Design Basis revision data (then isolator data form that)
 
-    common_config_data = frappe.db.get_list(
-        "Common Configuration 2", {"revision_id": revision_id}, "*"
-    )
-    common_config_data = common_config_data[0]
+    local_isolator_revisions_data = frappe.get_doc(
+        "Local Isolator Revisions", const_revision_id, "*"
+    ).as_dict()
 
-    cc_is_field_motor_isolator_selected = common_config_data.get("is_field_motor_isolator_selected") 
-    cc_is_safe_area_isolator_selected = common_config_data.get("is_safe_area_isolator_selected") 
-    cc_safe_field_motor_type = common_config_data.get("safe_field_motor_type") 
-    cc_hazardous_field_motor_type = common_config_data.get("hazardous_field_motor_type") 
-    cc_safe_field_motor_enclosure = common_config_data.get("safe_field_motor_enclosure") 
-    cc_hazardous_field_motor_enclosure = common_config_data.get("hazardous_field_motor_enclosure") 
-    cc_safe_field_motor_material = common_config_data.get("safe_field_motor_material") 
-    cc_hazardous_field_motor_material = common_config_data.get("hazardous_field_motor_material") 
-    cc_safe_field_motor_thickness = common_config_data.get("safe_field_motor_thickness") 
-    cc_hazardous_field_motor_thickness = common_config_data.get("hazardous_field_motor_thickness") 
-    cc_safe_field_motor_qty = common_config_data.get("safe_field_motor_qty") 
-    cc_hazardous_field_motor_qty = common_config_data.get("hazardous_field_motor_qty") 
-    cc_safe_field_motor_isolator_color_shade = common_config_data.get("safe_field_motor_isolator_color_shade") 
-    cc_hazardous_field_motor_isolator_color_shade = common_config_data.get("hazardous_field_motor_isolator_color_shade") 
-    cc_safe_field_motor_cable_entry = common_config_data.get("safe_field_motor_cable_entry") 
-    cc_hazardous_field_motor_cable_entry = common_config_data.get("hazardous_field_motor_cable_entry") 
-    cc_safe_field_motor_canopy = common_config_data.get("safe_field_motor_canopy") 
-    cc_hazardous_field_motor_canopy = common_config_data.get("hazardous_field_motor_canopy") 
-    cc_safe_field_motor_canopy_type = common_config_data.get("safe_field_motor_canopy_type") 
-    cc_hazardous_field_motor_canopy_type = common_config_data.get("hazardous_field_motor_canopy_type") 
+    local_isolator_data = local_isolator_revisions_data.get("local_isolator_data")
+    safe_isolator_data = {}
+    hazard_isolator_data = {}
 
-    if int(cc_is_field_motor_isolator_selected) == 0 or int(cc_is_safe_area_isolator_selected) == 0:
-        cc_safe_field_motor_type = "Not Applicable"
-        cc_safe_field_motor_enclosure = "Not Applicable"
-        cc_safe_field_motor_material = "Not Applicable"
-        cc_safe_field_motor_qty = "Not Applicable"
-        cc_safe_field_motor_isolator_color_shade = "Not Applicable"
-        cc_safe_field_motor_cable_entry = "Not Applicable"
-        cc_safe_field_motor_canopy = "Not Applicable"
-        cc_safe_field_motor_canopy_type = "Not Applicable"
+    for data in local_isolator_data:
+        if data["area"] == "Safe":
+            safe_isolator_data = data
+        else:
+            hazard_isolator_data = data
 
-        cc_hazardous_field_motor_type = "Not Applicable"
-        cc_hazardous_field_motor_enclosure = "Not Applicable"
-        cc_hazardous_field_motor_material = "Not Applicable"
-        cc_hazardous_field_motor_qty = "Not Applicable"
-        cc_hazardous_field_motor_isolator_color_shade = "Not Applicable"
-        cc_hazardous_field_motor_cable_entry = "Not Applicable"
-        cc_hazardous_field_motor_canopy = "Not Applicable"
-        cc_hazardous_field_motor_canopy_type = "Not Applicable"
 
     
-    isolator_sheet["C3"] = cc_safe_field_motor_type
-    isolator_sheet["C4"] = na_to_string(cc_safe_field_motor_enclosure)
+    isolator_sheet["C3"] = safe_isolator_data.get("fmi_type")
+    isolator_sheet["C4"] = safe_isolator_data.get("fmi_ip_protection")
 
-    if cc_safe_field_motor_material == "CRCA" or cc_safe_field_motor_material == "SS 316" or cc_safe_field_motor_material == "SS 306":
-        cc_safe_field_motor_material = f"{cc_safe_field_motor_material}, {cc_safe_field_motor_thickness} mm"
-        cc_safe_field_motor_cable_entry = f"{cc_safe_field_motor_cable_entry}, 3 mm"
-    elif cc_safe_field_motor_material == "NA":
-        cc_safe_field_motor_material = "Not Applicable"
+    safe_fmi_enclouser_moc = safe_isolator_data.get("fmi_enclouser_moc")
+    safe_fmi_enclosure_thickness = safe_isolator_data.get("fmi_enclosure_thickness")
+    safe_ifm_cable_entry = safe_isolator_data.get("ifm_cable_entry")
 
-    isolator_sheet["C5"] = cc_safe_field_motor_material
-    isolator_sheet["C6"] = na_to_string(cc_safe_field_motor_qty)
-    isolator_sheet["C7"] = na_to_string(cc_safe_field_motor_isolator_color_shade)
-    isolator_sheet["C8"] = cc_safe_field_motor_cable_entry
-    isolator_sheet["C9"] = na_to_string(cc_safe_field_motor_canopy)
-    isolator_sheet["C10"] = na_to_string(cc_safe_field_motor_canopy_type)
-
-
-    isolator_sheet["D3"] = cc_hazardous_field_motor_type
-    isolator_sheet["D4"] = na_to_string(cc_hazardous_field_motor_enclosure)
-    isolator_sheet["D5"] = na_to_string(cc_hazardous_field_motor_material)
-    isolator_sheet["D6"] = na_to_string(cc_hazardous_field_motor_qty)
-    isolator_sheet["D7"] = na_to_string(cc_hazardous_field_motor_isolator_color_shade)
-    isolator_sheet["D8"] = cc_hazardous_field_motor_cable_entry
-    isolator_sheet["D9"] = na_to_string(cc_hazardous_field_motor_canopy)
-    isolator_sheet["D10"] = na_to_string(cc_hazardous_field_motor_canopy_type)
+    if (
+        safe_fmi_enclouser_moc == "CRCA"
+        or safe_fmi_enclouser_moc == "SS 316"
+        or safe_fmi_enclouser_moc == "SS 306"
+    ):
+        # safe_fmi_enclouser_moc = (
+        #     f"{safe_fmi_enclouser_moc}, {safe_fmi_enclosure_thickness} mm"
+        # )
+        safe_ifm_cable_entry = f"{safe_ifm_cable_entry}, 3 mm"
+    elif safe_fmi_enclouser_moc == "NA":
+        safe_fmi_enclouser_moc = "Not Applicable"
 
 
+    isolator_sheet["C5"] = safe_fmi_enclouser_moc
+    isolator_sheet["C6"] = safe_isolator_data.get("fmi_qty")
+    isolator_sheet["C7"] = safe_isolator_data.get("ifm_isolator_color_shade")
+    isolator_sheet["C8"] = safe_ifm_cable_entry
+    isolator_sheet["C9"] = safe_isolator_data.get("canopy")
+    isolator_sheet["C10"] = safe_isolator_data.get("canopy_type")
+
+
+    hazard_fmi_enclouser_moc = hazard_isolator_data.get("fmi_enclouser_moc")
+    hazard_fmi_enclosure_thickness = hazard_isolator_data.get("fmi_enclosure_thickness")
+    hazard_ifm_cable_entry = hazard_isolator_data.get("ifm_cable_entry")
+
+    if (
+        hazard_fmi_enclouser_moc == "CRCA"
+        or hazard_fmi_enclouser_moc == "SS 316"
+        or hazard_fmi_enclouser_moc == "SS 306"
+    ):
+        # hazard_fmi_enclouser_moc = (
+        #     f"{hazard_fmi_enclouser_moc}, {hazard_fmi_enclosure_thickness} mm"
+        # )
+        hazard_ifm_cable_entry = f"{hazard_ifm_cable_entry}, 3 mm"
+    elif hazard_fmi_enclouser_moc == "NA":
+        hazard_fmi_enclouser_moc = "Not Applicable"
+
+    isolator_sheet["D3"] = hazard_isolator_data.get("fmi_type")
+    isolator_sheet["D4"] = hazard_isolator_data.get("fmi_ip_protection")
+    isolator_sheet["D5"] = hazard_fmi_enclouser_moc
+    isolator_sheet["D6"] = hazard_isolator_data.get("fmi_qty")
+    isolator_sheet["D7"] = hazard_isolator_data.get("ifm_isolator_color_shade")
+    isolator_sheet["D8"] = hazard_ifm_cable_entry
+    isolator_sheet["D9"] = hazard_isolator_data.get("canopy")
+    isolator_sheet["D10"] = hazard_isolator_data.get("canopy_type")
+    
+    local_isolator_motor_details_data = local_isolator_revisions_data.get("local_isolator_motor_details_data")
+    safe_motor_details = []
+    hazard_motor_details = []
+
+    for i in range(len(local_isolator_motor_details_data)):
+        if local_isolator_motor_details_data[i].get("area") == "Safe":
+            safe_motor_details.append(local_isolator_motor_details_data[i])
+        else:
+            hazard_motor_details.append(local_isolator_motor_details_data[i])
+
+    index = 3
+
+    for i in range(len(safe_motor_details)):
+        # area_data = local_isolator_motor_details_data[i].get("area")
+        # if area_data == "Safe":
+        isolator_safe_area_sheet[f"A{index}"] = i + 1
+        isolator_safe_area_sheet[f"B{index}"] = safe_motor_details[i].get("tag_number")
+        isolator_safe_area_sheet[f"C{index}"] = safe_motor_details[i].get("service_description")
+        isolator_safe_area_sheet[f"D{index}"] = safe_motor_details[i].get("working_kw")
+        isolator_safe_area_sheet[f"E{index}"] = ""
+        motor_location = safe_motor_details[i].get("motor_location")
+        area = safe_motor_details[i].get("area")
+
+        isolator_safe_area_sheet[f"G{index}"] = motor_location
+
+        if area == "Safe":
+            canopy = safe_isolator_data.get("canopy")
+        else: 
+            canopy = hazard_isolator_data.get("canopy")
+
+
+        canopy_required = ""
+        if canopy == "All":
+            canopy_required = "Yes"
+        else: 
+            if canopy == "OUTDOOR" and motor_location == "OUTDOOR":
+                canopy_required = "Yes"
+            else:
+                canopy_required = "No"
+            
+
+        isolator_safe_area_sheet[f"F{index}"] = canopy_required
+        isolator_safe_area_sheet[f"H{index}"] = safe_motor_details[i].get("gland_size")
+        # isolator_safe_area_sheet[f"I{index}"] = local_isolator_motor_details_data[i].get("gland_size")
+        # isolator_safe_area_sheet[f"J{index}"] = local_isolator_motor_details_data[i].get("gland_size")
+        index = index + 1
+
+    isolator_safe_area_sheet[f"C{index + 5}"] = "Total Quantity"
+    isolator_safe_area_sheet[f"D{index + 5}"] = int(len(safe_motor_details))
+    isolator_safe_area_sheet[f"F{index + 5}"] = "Nos"
+
+    for i in range(len(hazard_motor_details)):
+        # area_data = local_isolator_motor_details_data[i].get("area")
+        # if area_data == "Hazardous":
+        isolator_hazard_area_sheet[f"A{index}"] = i + 1
+        isolator_hazard_area_sheet[f"B{index}"] = hazard_motor_details[i].get("tag_number")
+        isolator_hazard_area_sheet[f"C{index}"] = hazard_motor_details[i].get("service_description")
+        isolator_hazard_area_sheet[f"D{index}"] = hazard_motor_details[i].get("working_kw")
+        isolator_hazard_area_sheet[f"E{index}"] = ""
+        motor_location = hazard_motor_details[i].get("motor_location")
+        area = hazard_motor_details[i].get("area")
+
+        isolator_hazard_area_sheet[f"K{index}"] = motor_location
+
+        if area == "Safe":
+            canopy = safe_isolator_data.get("canopy")
+        else: 
+            canopy = hazard_isolator_data.get("canopy")
+
+
+        canopy_required = ""
+        if canopy == "All":
+            canopy_required = "Yes"
+        else: 
+            if canopy == "OUTDOOR" and motor_location == "OUTDOOR":
+                canopy_required = "Yes"
+            else:
+                canopy_required = "No"
+            
+
+        isolator_hazard_area_sheet[f"F{index}"] = canopy_required
+        isolator_hazard_area_sheet[f"G{index}"] = hazard_motor_details[i].get("standard")
+        isolator_hazard_area_sheet[f"H{index}"] = hazard_motor_details[i].get("zone")
+        isolator_hazard_area_sheet[f"I{index}"] = hazard_motor_details[i].get("gas_group")
+        isolator_hazard_area_sheet[f"J{index}"] = hazard_motor_details[i].get("temprature_class")
+        isolator_hazard_area_sheet[f"L{index}"] = hazard_motor_details[i].get("gland_size")
+        index = index + 1
+
+    isolator_hazard_area_sheet[f"C{index + 5}"] = "Total Quantity"
+    isolator_hazard_area_sheet[f"D{index + 5}"] = int(len(hazard_motor_details))
+    isolator_hazard_area_sheet[f"F{index + 5}"] = "Nos"
 
     output = io.BytesIO()
     template_workbook.save(output)

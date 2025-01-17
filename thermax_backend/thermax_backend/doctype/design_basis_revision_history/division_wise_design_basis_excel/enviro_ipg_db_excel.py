@@ -16,7 +16,7 @@ def get_enviro_ipg_db_excel(
     revision_id,
 ):
     project_panel_data = frappe.db.get_list(
-        "Project Panel Data", {"revision_id": revision_id}, "*"
+        "Project Panel Data", {"revision_id": revision_id}, "*", order_by="creation asc"
     )
 
     for project_panel in project_panel_data:
@@ -599,6 +599,11 @@ def get_enviro_ipg_db_excel(
             panel_sheet["C29"] = (
                 ga_pcc_construction_front_type  # Type of Construction for Board
             )
+
+            if (ga_pcc_compartmental is None) or ("Non" in ga_pcc_compartmental):
+                incoming_drawout_type = "Not Applicable"
+                outgoing_drawout_type = "Not Applicable"
+                
             panel_sheet["C30"] = incoming_drawout_type
             panel_sheet["C31"] = outgoing_drawout_type
             panel_sheet["C32"] = ga_pcc_construction_type  # Panel Construction Type
@@ -996,12 +1001,12 @@ def get_enviro_ipg_db_excel(
             panel_sheet["C69"] = (
                 "Not Applicable"
                 if ups_scope == "Client Scope"
-                else plc_panel.get("ups_battery_backup_time")
+                else na_to_string(plc_panel.get("ups_battery_backup_time", "NA"))
             )
             panel_sheet["C70"] = (
                 "Not Applicable"
                 if ups_scope == "Client Scope"
-                else plc_panel.get("ups_redundancy")
+                else na_to_string(plc_panel.get("ups_redundancy", "NA"))
             )
 
             plc = make_of_components_data.get("plc")
@@ -1079,11 +1084,9 @@ def get_enviro_ipg_db_excel(
             # # DI Modules
             panel_sheet["C94"] = plc_panel.get("di_module_channel_density")
             panel_sheet["C95"] = plc_panel.get("di_module_loop_current")
-            panel_sheet["C96"] = plc_panel.get("di_module_isolation")  # UI Error
+            panel_sheet["C96"] = na_to_string(plc_panel.get("di_module_isolation"))  # UI Error
             panel_sheet["C97"] = plc_panel.get("di_module_input_type")
-            panel_sheet["C98"] = plc_panel.get(
-                "di_module_interrogation_voltage"
-            )  # UI Error
+            panel_sheet["C98"] = na_to_string(plc_panel.get("di_module_interrogation_voltage"))  # UI Error
             panel_sheet["C99"] = plc_panel.get("di_module_scan_time")
 
             # DO Modules
