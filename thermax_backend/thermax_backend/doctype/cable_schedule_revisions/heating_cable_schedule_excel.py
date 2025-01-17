@@ -1,11 +1,15 @@
 import frappe
 from openpyxl import load_workbook
+from thermax_backend.thermax_backend.doctype.cable_schedule_revisions.cover_sheet import (
+    create_cover_sheet,
+)
 from thermax_backend.thermax_backend.doctype.cable_schedule_revisions.other_division_cable_schedule_excel import (
     cell_styles,
 )
+from openpyxl.styles import Border, Side
 
 
-def create_heating_excel(cable_schedule_data):
+def create_heating_excel(cable_schedule_data, project, revision_data, division_name):
     """
     Creates an Excel sheet for the cable schedule based on the specified revision ID.
     """
@@ -15,7 +19,15 @@ def create_heating_excel(cable_schedule_data):
     )
 
     template_workbook = load_workbook(template_path)
-    cable_schedule_sheet = template_workbook["Cable Schedule_C0"]
+    cover_sheet = template_workbook["COVER"]
+
+    cover_sheet = create_cover_sheet(
+        cover_sheet=cover_sheet,
+        project_data=project,
+        revision_data=revision_data,
+        division_name=division_name,
+    )
+    cable_schedule_sheet = template_workbook["Cable Schedule"]
 
     template_row_number = 11
     current_row = template_row_number
@@ -75,7 +87,7 @@ def create_heating_excel(cable_schedule_data):
                     row=template_row_number, column=col
                 )
                 target_cell = cable_schedule_sheet.cell(row=current_row, column=col)
-                target_cell.font = cell_styles.get("bold")
+                # target_cell.font = cell_styles.get("bold")
                 target_cell.border = cell_styles.get("thin_border")
 
             cable_schedule_sheet.cell(row=current_row, column=1).value = (
@@ -98,27 +110,37 @@ def create_heating_excel(cable_schedule_data):
             cable_schedule_sheet.cell(row=current_row, column=8).value = cable.get(
                 "scope"
             )
-            cable_schedule_sheet.cell(row=current_row, column=9).value = cable.get(
-                "number_of_runs"
+            number_of_runs = cable.get("number_of_runs", 0)
+            cable_schedule_sheet.cell(row=current_row, column=9).value = int(
+                number_of_runs
             )
             cable_schedule_sheet.cell(row=current_row, column=10).value = cable.get(
                 "pair_core"
             )
-            cable_schedule_sheet.cell(row=current_row, column=11).value = cable.get(
-                "sizemm2"
+            sizemm2 = cable.get("sizemm2", 0)
+            cable_schedule_sheet.cell(row=current_row, column=11).value = round(
+                float(sizemm2), 2
             )
             cable_schedule_sheet.cell(row=current_row, column=12).value = cable.get(
                 "appx_length"
             )
-            cable_schedule_sheet.cell(row=current_row, column=13).value = cable.get(
-                "cable_od"
-            )
+            cable_od = cable.get("cable_od", 0)
+            try:
+                cable_schedule_sheet.cell(row=current_row, column=13).value = round(
+                    float(cable_od), 2
+                )
+            except ValueError:
+                cable_schedule_sheet.cell(row=current_row, column=13).value = 0
             cable_schedule_sheet.cell(row=current_row, column=14).value = cable.get(
                 "gland_size"
             )
-            cable_schedule_sheet.cell(row=current_row, column=15).value = cable.get(
-                "gland_qty"
-            )
+            gland_qty = cable.get("gland_qty", 0)
+            try:
+                cable_schedule_sheet.cell(row=current_row, column=15).value = int(
+                    gland_qty
+                )
+            except ValueError:
+                cable_schedule_sheet.cell(row=current_row, column=15).value = 0
             cable_schedule_sheet.cell(row=current_row, column=16).value = cable.get(
                 "reducer"
             )
@@ -128,6 +150,12 @@ def create_heating_excel(cable_schedule_data):
             cable_schedule_sheet.cell(row=current_row, column=18).value = cable.get(
                 "comment"
             )
+            # cable_schedule_sheet.cell(row=current_row, column=18).style = Border(
+            #     right=Side(style="thin"),
+            #     left=Side(),
+            #     top=Side(),
+            #     bottom=Side(),
+            # )
             current_row += 1
 
     return template_workbook

@@ -6,6 +6,9 @@ from openpyxl import load_workbook
 from openpyxl.worksheet.datavalidation import DataValidation
 from openpyxl.styles import Font
 
+from thermax_backend.thermax_backend.doctype.cable_schedule_revisions.cover_sheet import (
+    create_cover_sheet,
+)
 from thermax_backend.thermax_backend.doctype.cable_schedule_revisions.excel_formulae import (
     get_47_au_column_formula,
     get_48_av_column_formula,
@@ -176,7 +179,9 @@ def write_table_rows(sheet, start_row, data, style, unit):
     return start_row  # Return the next row after the table ends
 
 
-def create_other_division_excel(cable_schedule_data):
+def create_other_division_excel(
+    cable_schedule_data, project, revision_data, division_name
+):
     """
     Creates an Excel sheet for the cable schedule based on the specified revision ID.
     """
@@ -185,6 +190,14 @@ def create_other_division_excel(cable_schedule_data):
     )
 
     template_workbook = load_workbook(template_path)
+    # cover_sheet = template_workbook["COVER"]
+
+    # cover_sheet = create_cover_sheet(
+    #     cover_sheet=cover_sheet,
+    #     project_data=project,
+    #     revision_data=revision_data,
+    #     division_name=division_name,
+    # )
     center_border_style = get_center_border_style()
     left_center_style = get_left_center_style()
     center_border_bold = get_center_border_bold_style()
