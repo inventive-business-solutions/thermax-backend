@@ -7,85 +7,168 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "section_break_ukxg",
+  "lpbs_push_button_start_color",
+  "lpbs_forward_push_button_start",
+  "lpbs_reverse_push_button_start",
+  "lpbs_push_button_ess",
+  "lpbs_speed_increase",
+  "lpbs_speed_decrease",
+  "lpbs_indication_lamp_start_color",
+  "lpbs_indication_lamp_stop_color",
+  "section_break_dfuc",
+  "hazardous_lpbs_type",
+  "hazardous_ip_protection",
+  "hazardous_lpbs_qty",
+  "hazardous_lpbs_thickness",
+  "hazardous_lpbs_color_shade",
+  "hazardous_lpbs_canopy",
+  "hazardous_lpbs_canopy_type",
   "data_section",
-  "lpbs_type",
-  "lpbs_enclosure",
-  "lpbs_material",
-  "lpbs_quantity",
-  "lpbs_isolator_color_shade",
-  "canopy_on_top",
-  "start_push_button_color",
-  "start_on_indication_lamp_color",
-  "stop_off_indication_lamp_color",
-  "pbc_speed_1",
-  "pbc_speed_2"
+  "safe_lpbs_type",
+  "safe_lpbs_ip_protection",
+  "safe_lpbs_moc",
+  "safe_lpbs_quantity",
+  "safe_lpbs_thickness",
+  "safe_lpbs_color_shade",
+  "safe_lpbs_canopy",
+  "safe_lpbs_canopy_type"
  ],
  "fields": [
   {
    "fieldname": "data_section",
    "fieldtype": "Section Break",
-   "label": "Data"
+   "label": "Safe Area"
   },
   {
-   "fieldname": "lpbs_type",
+   "fieldname": "safe_lpbs_type",
    "fieldtype": "Data",
-   "label": "LPBS Type"
+   "label": "Safe LPBS Type"
   },
   {
-   "fieldname": "lpbs_enclosure",
+   "fieldname": "safe_lpbs_ip_protection",
    "fieldtype": "Data",
-   "label": "LPBS Enclosure"
+   "label": "Safe LPBS IP Protection"
   },
   {
-   "fieldname": "lpbs_material",
+   "fieldname": "safe_lpbs_moc",
    "fieldtype": "Data",
-   "label": "LPBS Material"
+   "label": "Safe LPBS MOC"
   },
   {
-   "fieldname": "lpbs_quantity",
+   "fieldname": "safe_lpbs_quantity",
    "fieldtype": "Data",
-   "label": "LPBS Quantity"
+   "label": "Safe LPBS Quantity"
   },
   {
-   "fieldname": "lpbs_isolator_color_shade",
+   "fieldname": "safe_lpbs_thickness",
    "fieldtype": "Data",
-   "label": "LPBS Isolator Color Shade"
+   "label": "Safe LPBS Thickness"
   },
   {
-   "fieldname": "canopy_on_top",
+   "fieldname": "safe_lpbs_color_shade",
    "fieldtype": "Data",
-   "label": "Canopy on Top"
+   "label": "Safe LPBS Color Shade"
   },
   {
-   "fieldname": "start_push_button_color",
+   "fieldname": "safe_lpbs_canopy",
    "fieldtype": "Data",
-   "label": "Start Push Button Color"
+   "label": "Safe LPBS Canopy"
   },
   {
-   "fieldname": "start_on_indication_lamp_color",
+   "fieldname": "safe_lpbs_canopy_type",
    "fieldtype": "Data",
-   "label": "Start on Indication Lamp Color"
+   "label": "Safe LPBS Canopy Type"
   },
   {
-   "fieldname": "stop_off_indication_lamp_color",
-   "fieldtype": "Data",
-   "label": "Stop off Indication Lamp Color"
+   "fieldname": "section_break_dfuc",
+   "fieldtype": "Section Break",
+   "label": "Hazardous Area"
   },
   {
-   "fieldname": "pbc_speed_1",
+   "fieldname": "hazardous_lpbs_type",
    "fieldtype": "Data",
-   "label": "PBC Speed 1"
+   "label": "Hazardous LPBS Type"
   },
   {
-   "fieldname": "pbc_speed_2",
+   "fieldname": "hazardous_ip_protection",
    "fieldtype": "Data",
-   "label": "PBC Speed 2"
+   "label": "Hazardous IP Protection"
+  },
+  {
+   "fieldname": "hazardous_lpbs_qty",
+   "fieldtype": "Data",
+   "label": "Hazardous LPBS Qty"
+  },
+  {
+   "fieldname": "hazardous_lpbs_thickness",
+   "fieldtype": "Data",
+   "label": "Hazardous LPBS Thickness"
+  },
+  {
+   "fieldname": "hazardous_lpbs_color_shade",
+   "fieldtype": "Data",
+   "label": "Hazardous LPBS Color Shade"
+  },
+  {
+   "fieldname": "hazardous_lpbs_canopy",
+   "fieldtype": "Data",
+   "label": "Hazardous LPBS Canopy"
+  },
+  {
+   "fieldname": "hazardous_lpbs_canopy_type",
+   "fieldtype": "Data",
+   "label": "Hazardous LPBS Canopy Type"
+  },
+  {
+   "fieldname": "section_break_ukxg",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "lpbs_push_button_start_color",
+   "fieldtype": "Data",
+   "label": "LPBS Push Button Start Color"
+  },
+  {
+   "fieldname": "lpbs_forward_push_button_start",
+   "fieldtype": "Data",
+   "label": "LPBS Forward Push Button Start"
+  },
+  {
+   "fieldname": "lpbs_reverse_push_button_start",
+   "fieldtype": "Data",
+   "label": "LPBS Reverse Push Button Start"
+  },
+  {
+   "fieldname": "lpbs_push_button_ess",
+   "fieldtype": "Data",
+   "label": "LPBS Push Button ESS"
+  },
+  {
+   "fieldname": "lpbs_speed_increase",
+   "fieldtype": "Data",
+   "label": "LPBS Speed Increase"
+  },
+  {
+   "fieldname": "lpbs_speed_decrease",
+   "fieldtype": "Data",
+   "label": "LPBS Speed Decrease"
+  },
+  {
+   "fieldname": "lpbs_indication_lamp_start_color",
+   "fieldtype": "Data",
+   "label": "LPBS Indication Lamp Start Color"
+  },
+  {
+   "fieldname": "lpbs_indication_lamp_stop_color",
+   "fieldtype": "Data",
+   "label": "LPBS Indication Lamp Stop Color"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-12-03 17:53:08.380656",
+ "modified": "2025-01-17 18:48:03.654273",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "LPBS Specification Data",
