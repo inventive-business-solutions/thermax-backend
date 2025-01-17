@@ -271,7 +271,7 @@
    "fieldname": "panel_power_supply_on_color",
    "fieldtype": "Link",
    "label": "Panel Power Supply On Color",
-   "options": "Panel Power Supply On"
+   "options": "Panel Power Supply Off"
   },
   {
    "fieldname": "panel_power_supply_off_color",
@@ -292,7 +292,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-17 01:18:26.773859",
+ "modified": "2025-01-17 10:37:08.204035",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Panel PLC 1 - 3",
