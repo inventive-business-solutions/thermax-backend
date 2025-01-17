@@ -89,7 +89,7 @@ from datetime import datetime
 #     )
 #     return "Approval notification mail sent successfully"
 
-const_revision_id = "st486uu99i"
+# const_revision_id = "st486uu99i"
 
 
 @frappe.whitelist()
@@ -97,10 +97,15 @@ def get_local_isolator_excel():
     payload = frappe.local.form_dict
     revision_id = payload.get("revision_id")
 
-    design_basis_revision_data = frappe.get_doc(
-        "Design Basis Revision History", revision_id
+    local_isolator_revisions_data = frappe.get_doc(
+        "Local Isolator Revisions", revision_id, "*"
     ).as_dict()
-    project_id = design_basis_revision_data.get("project_id")
+
+    project_id = local_isolator_revisions_data.get("project_id")
+
+    design_basis_revision_data = frappe.get_doc(
+        "Design Basis Revision History", {"project_id":project_id}, "*"
+    ).as_dict()
 
     # Loading the workbook 
     template_path = frappe.frappe.get_app_path(
@@ -123,7 +128,7 @@ def get_local_isolator_excel():
     consultant_name = project_data.get("consultant_name")
     modified = project_data.get("modified")
 
-    # loading the sheets 
+    # # loading the sheets 
 
     cover_sheet = template_workbook["COVER"]
     isolator_sheet = template_workbook["ISOLATOR"]
@@ -201,10 +206,6 @@ def get_local_isolator_excel():
             return "Not Applicable"
         return value
     # Fetch the Design Basis revision data (then isolator data form that)
-
-    local_isolator_revisions_data = frappe.get_doc(
-        "Local Isolator Revisions", const_revision_id, "*"
-    ).as_dict()
 
     local_isolator_data = local_isolator_revisions_data.get("local_isolator_data")
     safe_isolator_data = {}
@@ -314,13 +315,13 @@ def get_local_isolator_excel():
 
         isolator_safe_area_sheet[f"F{index}"] = canopy_required
         isolator_safe_area_sheet[f"H{index}"] = safe_motor_details[i].get("gland_size")
-        # isolator_safe_area_sheet[f"I{index}"] = local_isolator_motor_details_data[i].get("gland_size")
-        # isolator_safe_area_sheet[f"J{index}"] = local_isolator_motor_details_data[i].get("gland_size")
         index = index + 1
 
     isolator_safe_area_sheet[f"C{index + 5}"] = "Total Quantity"
     isolator_safe_area_sheet[f"D{index + 5}"] = int(len(safe_motor_details))
     isolator_safe_area_sheet[f"F{index + 5}"] = "Nos"
+
+    index = 3
 
     for i in range(len(hazard_motor_details)):
         # area_data = local_isolator_motor_details_data[i].get("area")

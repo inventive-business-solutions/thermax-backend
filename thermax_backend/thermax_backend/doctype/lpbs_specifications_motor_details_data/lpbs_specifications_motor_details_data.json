@@ -1,0 +1,98 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2025-01-17 12:58:17.677578",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "tag_number",
+  "service_description",
+  "working_kw",
+  "lpbs_type",
+  "motor_location",
+  "gland__size",
+  "package",
+  "area",
+  "standard",
+  "zone",
+  "temperature_class",
+  "gas_group"
+ ],
+ "fields": [
+  {
+   "fieldname": "tag_number",
+   "fieldtype": "Data",
+   "label": "Tag Number"
+  },
+  {
+   "fieldname": "service_description",
+   "fieldtype": "Data",
+   "label": "Service Description"
+  },
+  {
+   "fieldname": "working_kw",
+   "fieldtype": "Data",
+   "label": "Working kW"
+  },
+  {
+   "fieldname": "lpbs_type",
+   "fieldtype": "Data",
+   "label": "LPBS Type"
+  },
+  {
+   "fieldname": "motor_location",
+   "fieldtype": "Data",
+   "label": "Motor Location"
+  },
+  {
+   "fieldname": "gland__size",
+   "fieldtype": "Data",
+   "label": "Gland  Size"
+  },
+  {
+   "fieldname": "package",
+   "fieldtype": "Data",
+   "label": "Package"
+  },
+  {
+   "fieldname": "area",
+   "fieldtype": "Data",
+   "label": "Area"
+  },
+  {
+   "fieldname": "standard",
+   "fieldtype": "Data",
+   "label": "Standard"
+  },
+  {
+   "fieldname": "zone",
+   "fieldtype": "Data",
+   "label": "Zone"
+  },
+  {
+   "fieldname": "temperature_class",
+   "fieldtype": "Data",
+   "label": "Temperature Class"
+  },
+  {
+   "fieldname": "gas_group",
+   "fieldtype": "Data",
+   "label": "Gas Group"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-01-17 18:38:13.496228",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "LPBS Specifications Motor Details Data",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
