@@ -97,14 +97,21 @@ def get_local_isolator_excel():
     payload = frappe.local.form_dict
     revision_id = payload.get("revision_id")
 
-    design_basis_revision_data = frappe.get_doc(
-        "Design Basis Revision History", revision_id
+    lpbs_specifications_revision_data = frappe.get_doc(
+        "LPBS Specification Revisions",
+        revision_id,
+        "*"
     ).as_dict()
-    project_id = design_basis_revision_data.get("project_id")
+    
+    project_id = lpbs_specifications_revision_data.get("project_id")
+
+    design_basis_revision_data = frappe.get_doc(
+        "Design Basis Revision History", {"project_id": project_id}
+    ).as_dict()
 
     # Loading the workbook 
     template_path = frappe.frappe.get_app_path(
-        "thermax_backend", "templates", "local_isolator_specification_template.xlsx"
+        "thermax_backend", "templates", "lpbs_specification_template.xlsx"
     )
     template_workbook = load_workbook(template_path)
 
@@ -208,161 +215,62 @@ def get_local_isolator_excel():
         "LPBS Specification Revisions", const_revision_id, "*"
     ).as_dict()
 
-    lpbs_data = lpbs_revision_data.get("lpbs_specification_data")
-    safe_lpbs_data = {}
-    hazard_lpbs_data = {}
+    lpbs_specification_data = lpbs_revision_data.get("lpbs_specification_data")
+    lpbs_specification_motor_details = lpbs_revision_data.get("lpbs_specifications_motor_details")
 
-    for data in lpbs_data:
-        if data["area"] == "Safe":
-            safe_lpbs_data = data
-        else:
-            hazard_lpbs_data = data
+    specification_sheet["C3"] = lpbs_specification_data.get("safe_lpbs_type")
+    specification_sheet["C4"] = lpbs_specification_data.get("safe_lpbs_ip_protection")
+    specification_sheet["C5"] = lpbs_specification_data.get("safe_lpbs_moc")
+    specification_sheet["C6"] = lpbs_specification_data.get("safe_lpbs_quantity")
+    specification_sheet["C7"] = lpbs_specification_data.get("safe_lpbs_color_shade")
+    specification_sheet["C8"] = lpbs_specification_data.get("") # safe cabel entry
+    specification_sheet["C9"] = lpbs_specification_data.get("safe_lpbs_canopy")
+    specification_sheet["C10"] = lpbs_specification_data.get("safe_lpbs_canopy_type")
 
+    specification_sheet["D3"] = lpbs_specification_data.get("hazardous_lpbs_type")
+    specification_sheet["D4"] = lpbs_specification_data.get("hazardous_ip_protection")
+    specification_sheet["D5"] = lpbs_specification_data.get("hazardous_lpbs_moc")
+    specification_sheet["D6"] = lpbs_specification_data.get("hazardous_lpbs_qty")
+    specification_sheet["D7"] = lpbs_specification_data.get("hazardous_lpbs_color_shade")
+    specification_sheet["D8"] = lpbs_specification_data.get("") #hazardous cable entry
+    specification_sheet["D9"] = lpbs_specification_data.get("hazardous_lpbs_canopy")
+    specification_sheet["D10"] = lpbs_specification_data.get("hazardous_lpbs_canopy_type")
 
-    
-    specification_sheet["C3"] = safe_lpbs_data.get("lpbs_type")
-    specification_sheet["C4"] = safe_lpbs_data.get("lpbs_enclosure")
-
-    safe_lpbs_material = safe_lpbs_data.get("lpbs_material")
-    # safe_fmi_enclosure_thickness = safe_lpbs_data.get("fmi_enclosure_thickness")
-    safe_lpbs_cable_entry = safe_lpbs_data.get("ifm_cable_entry")
-
-    if (
-        safe_lpbs_material == "CRCA"
-        or safe_lpbs_material == "SS 316"
-        or safe_lpbs_material == "SS 306"
-    ):
-        # safe_lpbs_material = (
-        #     f"{safe_lpbs_material}, {safe_fmi_enclosure_thickness} mm"
-        # )
-        safe_lpbs_cable_entry = f"{safe_lpbs_cable_entry}, 3 mm"
-    elif safe_lpbs_material == "NA":
-        safe_lpbs_material = "Not Applicable"
-
-
-    specification_sheet["C5"] = safe_lpbs_material
-    specification_sheet["C6"] = safe_lpbs_data.get("fmi_qty")
-    specification_sheet["C7"] = safe_lpbs_data.get("ifm_isolator_color_shade")
-    specification_sheet["C8"] = safe_lpbs_cable_entry
-    specification_sheet["C9"] = safe_lpbs_data.get("canopy")
-    specification_sheet["C10"] = safe_lpbs_data.get("canopy_type")
-
-
-    hazard_fmi_enclouser_moc = hazard_lpbs_data.get("fmi_enclouser_moc")
-    hazard_fmi_enclosure_thickness = hazard_lpbs_data.get("fmi_enclosure_thickness")
-    hazard_ifm_cable_entry = hazard_lpbs_data.get("ifm_cable_entry")
-
-    if (
-        hazard_fmi_enclouser_moc == "CRCA"
-        or hazard_fmi_enclouser_moc == "SS 316"
-        or hazard_fmi_enclouser_moc == "SS 306"
-    ):
-        # hazard_fmi_enclouser_moc = (
-        #     f"{hazard_fmi_enclouser_moc}, {hazard_fmi_enclosure_thickness} mm"
-        # )
-        hazard_ifm_cable_entry = f"{hazard_ifm_cable_entry}, 3 mm"
-    elif hazard_fmi_enclouser_moc == "NA":
-        hazard_fmi_enclouser_moc = "Not Applicable"
-
-    specification_sheet["D3"] = hazard_lpbs_data.get("fmi_type")
-    specification_sheet["D4"] = hazard_lpbs_data.get("fmi_ip_protection")
-    specification_sheet["D5"] = hazard_fmi_enclouser_moc
-    specification_sheet["D6"] = hazard_lpbs_data.get("fmi_qty")
-    specification_sheet["D7"] = hazard_lpbs_data.get("ifm_isolator_color_shade")
-    specification_sheet["D8"] = hazard_ifm_cable_entry
-    specification_sheet["D9"] = hazard_lpbs_data.get("canopy")
-    specification_sheet["D10"] = hazard_lpbs_data.get("canopy_type")
-    
-    local_isolator_motor_details_data = lpbs_revision_data.get("local_isolator_motor_details_data")
+    # motor details sheet 
     safe_motor_details = []
     hazard_motor_details = []
 
-    for i in range(len(local_isolator_motor_details_data)):
-        if local_isolator_motor_details_data[i].get("area") == "Safe":
-            safe_motor_details.append(local_isolator_motor_details_data[i])
+    for i in range(len(lpbs_specification_motor_details)):
+        if lpbs_specification_motor_details[i].get("area") == "Safe":
+            safe_motor_details.append(lpbs_specification_motor_details[i])
         else:
-            hazard_motor_details.append(local_isolator_motor_details_data[i])
+            hazard_motor_details.append(lpbs_specification_motor_details[i])
 
     index = 3
 
     for i in range(len(safe_motor_details)):
-        # area_data = local_isolator_motor_details_data[i].get("area")
-        # if area_data == "Safe":
         lpbs_safe_sheet[f"A{index}"] = i + 1
         lpbs_safe_sheet[f"B{index}"] = safe_motor_details[i].get("tag_number")
         lpbs_safe_sheet[f"C{index}"] = safe_motor_details[i].get("service_description")
         lpbs_safe_sheet[f"D{index}"] = safe_motor_details[i].get("working_kw")
-        lpbs_safe_sheet[f"E{index}"] = ""
-        motor_location = safe_motor_details[i].get("motor_location")
-        area = safe_motor_details[i].get("area")
-
-        lpbs_safe_sheet[f"G{index}"] = motor_location
-
-        if area == "Safe":
-            canopy = safe_lpbs_data.get("canopy")
-        else: 
-            canopy = hazard_lpbs_data.get("canopy")
-
-
-        canopy_required = ""
-        if canopy == "All":
-            canopy_required = "Yes"
-        else: 
-            if canopy == "OUTDOOR" and motor_location == "OUTDOOR":
-                canopy_required = "Yes"
-            else:
-                canopy_required = "No"
-            
-
-        lpbs_safe_sheet[f"F{index}"] = canopy_required
+        lpbs_safe_sheet[f"E{index}"] = safe_motor_details[i].get("lpbs_type")
+        lpbs_safe_sheet[f"G{index}"] = safe_motor_details[i].get("motor_location")
         lpbs_safe_sheet[f"H{index}"] = safe_motor_details[i].get("gland_size")
-        index = index + 1
 
-    lpbs_safe_sheet[f"C{index + 5}"] = "Total Quantity"
-    lpbs_safe_sheet[f"D{index + 5}"] = int(len(safe_motor_details))
-    lpbs_safe_sheet[f"F{index + 5}"] = "Nos"
+    index = 3
+    for i in  range(len(hazard_motor_details)):
+        lpbs_safe_sheet[f"A{index}"] = i + 1
+        lpbs_safe_sheet[f"B{index}"] = safe_motor_details[i].get("tag_number")
+        lpbs_safe_sheet[f"C{index}"] = safe_motor_details[i].get("service_description")
+        lpbs_safe_sheet[f"D{index}"] = safe_motor_details[i].get("working_kw")
+        lpbs_safe_sheet[f"E{index}"] = safe_motor_details[i].get("lpbs_type")
+        lpbs_safe_sheet[f"G{index}"] = safe_motor_details[i].get("zone")
+        lpbs_safe_sheet[f"H{index}"] = safe_motor_details[i].get("gas_group")
+        lpbs_safe_sheet[f"I{index}"] = safe_motor_details[i].get("temperature_class")
+        lpbs_safe_sheet[f"J{index}"] = safe_motor_details[i].get("motor_location")
+        lpbs_safe_sheet[f"K{index}"] = safe_motor_details[i].get("gland_size")
 
-    for i in range(len(hazard_motor_details)):
-        # area_data = local_isolator_motor_details_data[i].get("area")
-        # if area_data == "Hazardous":
-        lpbs_hazard_sheet[f"A{index}"] = i + 1
-        lpbs_hazard_sheet[f"B{index}"] = hazard_motor_details[i].get("tag_number")
-        lpbs_hazard_sheet[f"C{index}"] = hazard_motor_details[i].get("service_description")
-        lpbs_hazard_sheet[f"D{index}"] = hazard_motor_details[i].get("working_kw")
-        lpbs_hazard_sheet[f"E{index}"] = ""
-        motor_location = hazard_motor_details[i].get("motor_location")
-        area = hazard_motor_details[i].get("area")
-
-        lpbs_hazard_sheet[f"K{index}"] = motor_location
-
-        if area == "Safe":
-            canopy = safe_lpbs_data.get("canopy")
-        else: 
-            canopy = hazard_lpbs_data.get("canopy")
-
-
-        canopy_required = ""
-        if canopy == "All":
-            canopy_required = "Yes"
-        else: 
-            if canopy == "OUTDOOR" and motor_location == "OUTDOOR":
-                canopy_required = "Yes"
-            else:
-                canopy_required = "No"
-            
-
-        lpbs_hazard_sheet[f"F{index}"] = canopy_required
-        lpbs_hazard_sheet[f"G{index}"] = hazard_motor_details[i].get("standard")
-        lpbs_hazard_sheet[f"H{index}"] = hazard_motor_details[i].get("zone")
-        lpbs_hazard_sheet[f"I{index}"] = hazard_motor_details[i].get("gas_group")
-        lpbs_hazard_sheet[f"J{index}"] = hazard_motor_details[i].get("temprature_class")
-        lpbs_hazard_sheet[f"L{index}"] = hazard_motor_details[i].get("gland_size")
-        index = index + 1
-
-    lpbs_hazard_sheet[f"C{index + 5}"] = "Total Quantity"
-    lpbs_hazard_sheet[f"D{index + 5}"] = int(len(hazard_motor_details))
-    lpbs_hazard_sheet[f"F{index + 5}"] = "Nos"
-
+    
     output = io.BytesIO()
     template_workbook.save(output)
     output.seek(0)

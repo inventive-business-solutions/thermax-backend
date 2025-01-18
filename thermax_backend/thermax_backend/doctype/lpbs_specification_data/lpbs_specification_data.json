@@ -19,6 +19,7 @@
   "section_break_dfuc",
   "hazardous_lpbs_type",
   "hazardous_ip_protection",
+  "hazardous_lpbs_moc",
   "hazardous_lpbs_qty",
   "hazardous_lpbs_thickness",
   "hazardous_lpbs_color_shade",
@@ -163,12 +164,17 @@
    "fieldname": "lpbs_indication_lamp_stop_color",
    "fieldtype": "Data",
    "label": "LPBS Indication Lamp Stop Color"
+  },
+  {
+   "fieldname": "hazardous_lpbs_moc",
+   "fieldtype": "Data",
+   "label": "Hazardous LPBS MOC"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-01-17 18:48:03.654273",
+ "modified": "2025-01-18 13:19:16.165852",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "LPBS Specification Data",
