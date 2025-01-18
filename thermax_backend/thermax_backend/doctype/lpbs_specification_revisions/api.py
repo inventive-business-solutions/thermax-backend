@@ -218,23 +218,79 @@ def get_local_isolator_excel():
     lpbs_specification_data = lpbs_revision_data.get("lpbs_specification_data")
     lpbs_specification_motor_details = lpbs_revision_data.get("lpbs_specifications_motor_details")
 
-    specification_sheet["C3"] = lpbs_specification_data.get("safe_lpbs_type")
-    specification_sheet["C4"] = lpbs_specification_data.get("safe_lpbs_ip_protection")
-    specification_sheet["C5"] = lpbs_specification_data.get("safe_lpbs_moc")
-    specification_sheet["C6"] = lpbs_specification_data.get("safe_lpbs_quantity")
-    specification_sheet["C7"] = lpbs_specification_data.get("safe_lpbs_color_shade")
-    specification_sheet["C8"] = lpbs_specification_data.get("") # safe cabel entry
-    specification_sheet["C9"] = lpbs_specification_data.get("safe_lpbs_canopy")
-    specification_sheet["C10"] = lpbs_specification_data.get("safe_lpbs_canopy_type")
+    safe_lpbs_type = lpbs_specification_data.get("safe_lpbs_type")
+    safe_lpbs_ip_protection = lpbs_specification_data.get("safe_lpbs_ip_protection")
+    safe_lpbs_moc = lpbs_specification_data.get("safe_lpbs_moc")
+    safe_lpbs_thickness = lpbs_specification_data.get("safe_lpbs_thickness")
+    safe_lpbs_quantity = lpbs_specification_data.get("safe_lpbs_quantity")
+    safe_lpbs_color_shade = lpbs_specification_data.get("safe_lpbs_color_shade")
+    safe_lpbs_cable_entry = lpbs_specification_data.get("safe_lpbs_cable_entry") # safe cabel entry
+    safe_lpbs_canopy = lpbs_specification_data.get("safe_lpbs_canopy")
+    safe_lpbs_canopy_type = lpbs_specification_data.get("safe_lpbs_canopy_type")
 
-    specification_sheet["D3"] = lpbs_specification_data.get("hazardous_lpbs_type")
-    specification_sheet["D4"] = lpbs_specification_data.get("hazardous_ip_protection")
-    specification_sheet["D5"] = lpbs_specification_data.get("hazardous_lpbs_moc")
-    specification_sheet["D6"] = lpbs_specification_data.get("hazardous_lpbs_qty")
-    specification_sheet["D7"] = lpbs_specification_data.get("hazardous_lpbs_color_shade")
-    specification_sheet["D8"] = lpbs_specification_data.get("") #hazardous cable entry
-    specification_sheet["D9"] = lpbs_specification_data.get("hazardous_lpbs_canopy")
-    specification_sheet["D10"] = lpbs_specification_data.get("hazardous_lpbs_canopy_type")
+    if (
+        safe_lpbs_moc == "CRCA"
+        or safe_lpbs_moc == "SS 316"
+        or safe_lpbs_moc == "SS 306"
+    ):
+        safe_lpbs_moc = (
+            f"{safe_lpbs_moc}, {safe_lpbs_thickness}"
+        )
+        hazard_ifm_cable_entry = f"{hazard_ifm_cable_entry}, 3 mm"
+    elif safe_lpbs_moc == "NA":
+        safe_lpbs_moc = "Not Applicable"
+
+    specification_sheet["C3"] = safe_lpbs_type
+    specification_sheet["C4"] = safe_lpbs_ip_protection
+    specification_sheet["C5"] = safe_lpbs_moc
+    specification_sheet["C6"] = safe_lpbs_quantity
+    specification_sheet["C7"] = safe_lpbs_color_shade
+    specification_sheet["C8"] = safe_lpbs_cable_entry
+    specification_sheet["C9"] = safe_lpbs_canopy
+    specification_sheet["C10"] = safe_lpbs_canopy_type
+
+
+    hazardous_lpbs_type = lpbs_specification_data.get("hazardous_lpbs_type")
+    hazardous_ip_protection = lpbs_specification_data.get("hazardous_ip_protection")
+    hazardous_lpbs_moc = lpbs_specification_data.get("hazardous_lpbs_moc")
+    hazardous_lpbs_thickness = lpbs_specification_data.get("hazardous_lpbs_thickness")
+    hazardous_lpbs_qty = lpbs_specification_data.get("hazardous_lpbs_qty")
+    hazardous_lpbs_color_shade = lpbs_specification_data.get("hazardous_lpbs_color_shade")
+    hazardous_lpbs_cable_entry = lpbs_specification_data.get("hazardous_lpbs_cable_entry") #hazardous cable entry
+    hazardous_lpbs_canopy = lpbs_specification_data.get("hazardous_lpbs_canopy")
+    hazardous_lpbs_canopy_type = lpbs_specification_data.get("hazardous_lpbs_canopy_type")
+
+    if (
+        hazardous_lpbs_moc == "CRCA"
+        or hazardous_lpbs_moc == "SS 316"
+        or hazardous_lpbs_moc == "SS 306"
+    ):
+        safe_lpbs_moc = (
+            f"{hazardous_lpbs_moc}, {hazardous_lpbs_thickness}"
+        )
+        hazardous_lpbs_cable_entry = f"{hazardous_lpbs_cable_entry}, 3 mm"
+    elif hazardous_lpbs_moc == "NA":
+        hazardous_lpbs_moc = "Not Applicable"
+
+    specification_sheet["D3"] = hazardous_lpbs_type
+    specification_sheet["D4"] = hazardous_ip_protection
+    specification_sheet["D5"] = hazardous_lpbs_moc
+    specification_sheet["D6"] = hazardous_lpbs_qty
+    specification_sheet["D7"] = hazardous_lpbs_color_shade
+    specification_sheet["D8"] = hazardous_lpbs_cable_entry
+    specification_sheet["D9"] = hazardous_lpbs_canopy
+    specification_sheet["D10"] = hazardous_lpbs_canopy_type
+
+    # Push Button Color
+    specification_sheet["C13"] = lpbs_specification_data.get("lpbs_push_button_start_color")
+    specification_sheet["C14"] = lpbs_specification_data.get("lpbs_forward_push_button_start")
+    specification_sheet["C15"] = lpbs_specification_data.get("lpbs_reverse_push_button_start")
+    specification_sheet["C16"] = lpbs_specification_data.get("lpbs_push_button_start_color")
+    specification_sheet["C17"] = lpbs_specification_data.get("lpbs_push_button_start_color")
+    specification_sheet["C18"] = lpbs_specification_data.get("lpbs_push_button_start_color")
+    specification_sheet["C19"] = lpbs_specification_data.get("lpbs_push_button_start_color")
+    specification_sheet["C20"] = lpbs_specification_data.get("lpbs_push_button_start_color")
+
 
     # motor details sheet 
     safe_motor_details = []
