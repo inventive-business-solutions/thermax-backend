@@ -5,111 +5,25 @@ from copy import copy
 import io
 from datetime import datetime
 
-# @frappe.whiltelist()
-# def trigger_review_submission_mail(
-#     approver_email, project_owner_email, project_oc_number, project_name, subject
-# ):
-#     approver = frappe.get_doc("User", approver_email)
-#     project_owner = frappe.get_doc("User", project_owner_email)
-#     template = frappe.render_template(
-#         "/templates/db_review_submission.html",
-#         {
-#             "approver_first_name": approver.first_name,
-#             "approver_last_name": approver.last_name,
-#             "project_oc_number": project_oc_number,
-#             "project_name": project_name,
-#             "sent_by": f"{project_owner.first_name} {project_owner.last_name}",
-#         },
-#     )
-#     frappe.sendmail(
-#         recipients=approver_email,
-#         cc=project_owner_email,
-#         subject=subject,
-#         message=template,
-#         now=True,
-#     )
-#     return "Submit for review notification mail sent successfully"
-
-# @frappe.whitelist()
-# def trigger_review_resubmission_mail(
-#     approver_email,
-#     project_owner_email,
-#     project_oc_number,
-#     project_name,
-#     feedback_description,
-#     subject,
-#     attachments,
-# ):
-#     approver = frappe.get_doc("User", approver_email)
-#     project_owner = frappe.get_doc("User", project_owner_email)
-#     template = frappe.render_template(
-#         "/templates/db_review_resubmission.html",
-#         {
-#             "owner_first_name": project_owner.first_name,
-#             "owner_last_name": project_owner.last_name,
-#             "project_oc_number": project_oc_number,
-#             "project_name": project_name,
-#             "feedback_description": feedback_description,
-#             "approvar_name": f"{approver.first_name} {approver.last_name}",
-#         },
-#     )
-#     frappe.sendmail(
-#         recipients=project_owner_email,
-#         cc=approver_email,
-#         subject=subject,
-#         message=template,
-#         now=True,
-#         attachments=attachments,
-#     )
-#     return "Resubmit for review notification mail sent successfully"
-
-
-# @frappe.whitelist()
-# def trigger_review_approval_mail(
-#     approver_email, project_owner_email, project_oc_number, project_name, subject
-# ):
-#     approver = frappe.get_doc("User", approver_email)
-#     project_owner = frappe.get_doc("User", project_owner_email)
-#     template = frappe.render_template(
-#         "/templates/db_review_approval.html",
-#         {
-#             "owner_first_name": project_owner.first_name,
-#             "owner_last_name": project_owner.last_name,
-#             "project_oc_number": project_oc_number,
-#             "project_name": project_name,
-#             "approvar_name": f"{approver.first_name} {approver.last_name}",
-#         },
-#     )
-#     frappe.sendmail(
-#         recipients=project_owner_email,
-#         cc=approver_email,
-#         subject=subject,
-#         message=template,
-#         now=True,
-#     )
-#     return "Approval notification mail sent successfully"
-
 # revision_id = "st486uu99i"
 
 
 @frappe.whitelist()
-def get_motor_spec_excel(): 
+def get_motor_spec_excel():
     payload = frappe.local.form_dict
     revision_id = payload.get("revision_id")
 
     motor_spec_revision_data = frappe.get_doc(
-        "Motor Specification Revisions",
-        revision_id,
-        "*"
+        "Motor Specification Revisions", revision_id, "*"
     ).as_dict()
-    
+
     project_id = motor_spec_revision_data.get("project_id")
 
     design_basis_revision_data = frappe.get_doc(
         "Design Basis Revision History", {"project_id": project_id}
     ).as_dict()
 
-    # Loading the workbook 
+    # Loading the workbook
     template_path = frappe.frappe.get_app_path(
         "thermax_backend", "templates", "motor_specification_template.xlsx"
     )
@@ -130,7 +44,7 @@ def get_motor_spec_excel():
     consultant_name = project_data.get("consultant_name")
     modified = project_data.get("modified")
 
-    # loading the sheets 
+    # loading the sheets
 
     cover_sheet = template_workbook["COVER"]
     instruction_sheet = template_workbook["INSTRUCTION PAGE"]
@@ -139,7 +53,6 @@ def get_motor_spec_excel():
     safe_area_motor_bom_sheet = template_workbook[" SAFE AREA MOTOR BOM"]
     hazardous_area_motor_list_sheet = template_workbook[" HAZARDOUS AREA MOTOR LIST "]
     hazardous_area_motor_bom_sheet = template_workbook[" HAZARDOUS AREA MOTOR BOM  "]
-
 
     # cover page sheet populating
 
@@ -156,11 +69,16 @@ def get_motor_spec_excel():
     )
 
     revision_date = modified.strftime("%d-%m-%Y")
-    revision_data_with_pid = frappe.db.get_list("Design Basis Revision History", {"project_id": project_id}, "*")
-    static_document_list_data = frappe.get_doc("Static Document List", {"project_id":project_id}, "*").as_dict()
+    revision_data_with_pid = frappe.db.get_list(
+        "Design Basis Revision History", {"project_id": project_id}, "*"
+    )
+    static_document_list_data = frappe.get_doc(
+        "Static Document List", {"project_id": project_id}, "*"
+    ).as_dict()
 
-    motor_specification_static_document = static_document_list_data.get("motor_specification")
-
+    motor_specification_static_document = static_document_list_data.get(
+        "motor_specification"
+    )
 
     cover_sheet["A3"] = division_name.upper()
     # cover_sheet["D6"] = project_name.upper()
@@ -196,18 +114,19 @@ def get_motor_spec_excel():
             cover_sheet["A4"] = "PUNE - 411 026"
         case _:
             cover_sheet["A4"] = "PUNE - 411 026"
-    
-    
-    # SPECIFICATION SHEET 
-    
+
+    # SPECIFICATION SHEET
+
     motor_specification_data = motor_spec_revision_data.get("motor_specification_data")
 
     specification_sheet["D4"] = (
-        f"{motor_specification_data.get("standard")}, {motor_specification_data.get("zone")}, {motor_specification_data.get("gas_group")}, {motor_specification_data.get("temperature_class")}"
+        f'{motor_specification_data.get("standard")}, {motor_specification_data.get("zone")}, {motor_specification_data.get("gas_group")}, {motor_specification_data.get("temperature_class")}'
     )
     specification_sheet["D5"] = motor_specification_data.get("ambient_temperature")
     specification_sheet["D6"] = motor_specification_data.get("ambient_temperature")
-    specification_sheet["D7"] = motor_specification_data.get("electrical_design_temperature")
+    specification_sheet["D7"] = motor_specification_data.get(
+        "electrical_design_temperature"
+    )
     specification_sheet["D8"] = motor_specification_data.get("max_humidity")
     specification_sheet["D9"] = motor_specification_data.get("min_humidity")
     specification_sheet["D10"] = motor_specification_data.get("avg_humidity")
@@ -216,11 +135,13 @@ def get_motor_spec_excel():
     specification_sheet["D13"] = motor_specification_data.get("sesmic_zone")
 
     specification_sheet["E4"] = (
-        f"{motor_specification_data.get("standard")}, {motor_specification_data.get("zone")}, {motor_specification_data.get("gas_group")}, {motor_specification_data.get("temperature_class")}"
+        f'{motor_specification_data.get("standard")}, {motor_specification_data.get("zone")}, {motor_specification_data.get("gas_group")}, {motor_specification_data.get("temperature_class")}'
     )
     specification_sheet["E5"] = motor_specification_data.get("ambient_temperature")
     specification_sheet["E6"] = motor_specification_data.get("ambient_temperature")
-    specification_sheet["E7"] = motor_specification_data.get("electrical_design_temperature")
+    specification_sheet["E7"] = motor_specification_data.get(
+        "electrical_design_temperature"
+    )
     specification_sheet["E8"] = motor_specification_data.get("max_humidity")
     specification_sheet["E9"] = motor_specification_data.get("min_humidity")
     specification_sheet["E10"] = motor_specification_data.get("avg_humidity")
@@ -228,8 +149,6 @@ def get_motor_spec_excel():
     specification_sheet["E12"] = motor_specification_data.get("altitude")
     specification_sheet["E13"] = motor_specification_data.get("sesmic_zone")
 
-    
-    
     output = io.BytesIO()
     template_workbook.save(output)
     output.seek(0)
