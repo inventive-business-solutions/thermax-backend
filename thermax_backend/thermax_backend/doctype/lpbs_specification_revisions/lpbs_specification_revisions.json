@@ -1,83 +1,83 @@
 {
- "actions": [],
- "allow_rename": 1,
- "autoname": "hash",
- "creation": "2024-12-03 17:56:28.464699",
- "doctype": "DocType",
- "engine": "InnoDB",
- "field_order": [
-  "linking_keys_section",
-  "project_id",
-  "revision_data_section",
-  "status",
-  "description",
-  "lpbs_specification_data",
-  "lpbs_specifications_motor_details"
- ],
- "fields": [
-  {
-   "fieldname": "project_id",
-   "fieldtype": "Link",
-   "label": "Project ID",
-   "options": "Project"
-  },
-  {
-   "fieldname": "status",
-   "fieldtype": "Select",
-   "label": "Status",
-   "options": "Not Released\nReleased"
-  },
-  {
-   "fieldname": "description",
-   "fieldtype": "Text",
-   "label": "Description"
-  },
-  {
-   "fieldname": "lpbs_specification_data",
-   "fieldtype": "Table",
-   "label": "LPBS Specification Data",
-   "options": "LPBS Specification Data"
-  },
-  {
-   "fieldname": "lpbs_specifications_motor_details",
-   "fieldtype": "Table",
-   "label": "LPBS Specifications Motor Details",
-   "options": "LPBS Specifications Motor Details Data"
-  },
-  {
-   "fieldname": "linking_keys_section",
-   "fieldtype": "Section Break",
-   "label": "Linking Keys"
-  },
-  {
-   "fieldname": "revision_data_section",
-   "fieldtype": "Section Break",
-   "label": "Revision Data"
-  }
- ],
- "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2025-01-18 19:31:50.390199",
- "modified_by": "Administrator",
- "module": "Thermax Backend",
- "name": "LPBS Specification Revisions",
- "naming_rule": "Random",
- "owner": "Administrator",
- "permissions": [
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "System Manager",
-   "share": 1,
-   "write": 1
-  }
- ],
- "sort_field": "creation",
- "sort_order": "DESC",
- "states": []
+  "actions": [],
+  "allow_rename": 1,
+  "autoname": "hash",
+  "creation": "2024-12-03 17:56:28.464699",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "linking_keys_section",
+    "project_id",
+    "revision_data_section",
+    "status",
+    "description",
+    "lpbs_specification_data",
+    "lpbs_specifications_motor_details"
+  ],
+  "fields": [
+    {
+      "fieldname": "project_id",
+      "fieldtype": "Link",
+      "label": "Project ID",
+      "options": "Project"
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "label": "Status",
+      "options": "Not Released\nReleased"
+    },
+    {
+      "fieldname": "description",
+      "fieldtype": "Text",
+      "label": "Description"
+    },
+    {
+      "fieldname": "lpbs_specification_data",
+      "fieldtype": "Table",
+      "label": "LPBS Specification Data",
+      "options": "LPBS Specification Data"
+    },
+    {
+      "fieldname": "lpbs_specifications_motor_details",
+      "fieldtype": "Table",
+      "label": "LPBS Specifications Motor Details",
+      "options": "LPBS Specifications Motor Details Data"
+    },
+    {
+      "fieldname": "linking_keys_section",
+      "fieldtype": "Section Break",
+      "label": "Linking Keys"
+    },
+    {
+      "fieldname": "revision_data_section",
+      "fieldtype": "Section Break",
+      "label": "Revision Data"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2025-01-18 19:31:50.390199",
+  "modified_by": "Administrator",
+  "module": "Thermax Backend",
+  "name": "LPBS Specification Revisions",
+  "naming_rule": "Random",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "creation",
+  "sort_order": "DESC",
+  "states": []
 }

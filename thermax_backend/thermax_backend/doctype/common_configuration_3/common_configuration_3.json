@@ -12,6 +12,9 @@
   "column_break_sthc",
   "is_safe_lpbs_selected",
   "is_hazardous_lpbs_selected",
+  "lpbs_forward_push_button_start",
+  "lpbs_reverse_push_button_start",
+  "lpbs_push_button_ess",
   "lpbs_indication_lamp_start_color",
   "lpbs_indication_lamp_stop_color",
   "lpbs_speed_increase",
@@ -283,11 +286,29 @@
    "fieldname": "is_hazardous_lpbs_selected",
    "fieldtype": "Check",
    "label": "Is Hazardous LPBS Selected"
+  },
+  {
+   "fieldname": "lpbs_forward_push_button_start",
+   "fieldtype": "Link",
+   "label": "LPBS forward Push Button Start",
+   "options": "Forward and Reverse Push Button"
+  },
+  {
+   "fieldname": "lpbs_reverse_push_button_start",
+   "fieldtype": "Link",
+   "label": "LPBS Reverse Push Button Start",
+   "options": "Forward and Reverse Push Button"
+  },
+  {
+   "fieldname": "lpbs_push_button_ess",
+   "fieldtype": "Link",
+   "label": "LPBS Push Button ESS",
+   "options": "Push Button ESS"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-16 17:56:43.426827",
+ "modified": "2025-01-18 15:47:06.268930",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Common Configuration 3",

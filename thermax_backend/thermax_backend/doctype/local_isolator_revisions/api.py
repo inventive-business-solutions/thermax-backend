@@ -347,7 +347,7 @@ def get_local_isolator_excel():
         if canopy == "All":
             canopy_required = "Yes"
         else: 
-            if canopy == "OUTDOOR" and motor_location == "OUTDOOR":
+            if "OUT" in canopy and "OUT" in motor_location:
                 canopy_required = "Yes"
             else:
                 canopy_required = "No"
@@ -386,7 +386,7 @@ def get_local_isolator_excel():
         if canopy == "All":
             canopy_required = "Yes"
         else: 
-            if canopy == "OUTDOOR" and motor_location == "OUTDOOR":
+            if "OUT" in canopy  and "OUT" in motor_location:
                 canopy_required = "Yes"
             else:
                 canopy_required = "No"

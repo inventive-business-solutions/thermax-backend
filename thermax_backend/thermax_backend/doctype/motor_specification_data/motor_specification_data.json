@@ -8,38 +8,38 @@
  "engine": "InnoDB",
  "field_order": [
   "data_section",
-  "ambient_temperature",
-  "altitude",
   "area_classification",
   "standard",
   "zone",
   "gas_group",
   "temperature_class",
-  "voltage",
-  "frequency",
-  "combined_voltage_frequency_variation",
-  "degree_of_protection",
-  "insulation_class",
-  "temperature_rise_limit",
-  "cooling_type",
-  "frame_material",
-  "material_of_terminal_box"
+  "dm_standard",
+  "safe_area_enclosure_ip_rating",
+  "hazardous_area_enclosure_ip_rating",
+  "safe_area_duty",
+  "hazardous_area_duty",
+  "safe_area_insulation_class",
+  "hazardous_area_insulation_class",
+  "safe_area_temperature_rise",
+  "hazardous_area_temperature_rise",
+  "safe_area_start_hour_permissible",
+  "hazardous_area_start_hour_permissible",
+  "safe_area_service_factor",
+  "hazardous_area_service_factor",
+  "safe_area_cooling_type",
+  "hazardous_area_cooling_type",
+  "safe_area_body_material",
+  "hazardous_area_body_material",
+  "safe_area_terminal_box_material",
+  "hazardous_area_terminal_box_material",
+  "safe_area_paint_type_and_shade",
+  "hazardous_area_paint_type_and_shade"
  ],
  "fields": [
   {
    "fieldname": "data_section",
    "fieldtype": "Section Break",
    "label": "Data"
-  },
-  {
-   "fieldname": "ambient_temperature",
-   "fieldtype": "Data",
-   "label": "Ambient Temperature"
-  },
-  {
-   "fieldname": "altitude",
-   "fieldtype": "Data",
-   "label": "Altitude"
   },
   {
    "fieldname": "area_classification",
@@ -67,55 +67,115 @@
    "label": "Temperature Class"
   },
   {
-   "fieldname": "voltage",
+   "fieldname": "dm_standard",
    "fieldtype": "Data",
-   "label": "Voltage"
+   "label": "DM Standard"
   },
   {
-   "fieldname": "frequency",
+   "fieldname": "safe_area_enclosure_ip_rating",
    "fieldtype": "Data",
-   "label": "Frequency"
+   "label": "Safe Area Enclosure IP Rating"
   },
   {
-   "fieldname": "combined_voltage_frequency_variation",
+   "fieldname": "hazardous_area_enclosure_ip_rating",
    "fieldtype": "Data",
-   "label": "Combined Voltage Frequency Variation"
+   "label": "Hazardous Area Enclosure IP Rating"
   },
   {
-   "fieldname": "degree_of_protection",
+   "fieldname": "safe_area_duty",
    "fieldtype": "Data",
-   "label": "Degree of Protection"
+   "label": "Safe Area Duty"
   },
   {
-   "fieldname": "insulation_class",
+   "fieldname": "hazardous_area_duty",
    "fieldtype": "Data",
-   "label": "Insulation Class"
+   "label": "Hazardous Area Duty"
   },
   {
-   "fieldname": "temperature_rise_limit",
+   "fieldname": "safe_area_insulation_class",
    "fieldtype": "Data",
-   "label": "Temperature Rise Limit"
+   "label": "Safe Area Insulation Class"
   },
   {
-   "fieldname": "cooling_type",
+   "fieldname": "hazardous_area_insulation_class",
    "fieldtype": "Data",
-   "label": "Cooling Type"
+   "label": "Hazardous Area Insulation Class"
   },
   {
-   "fieldname": "frame_material",
+   "fieldname": "safe_area_temperature_rise",
    "fieldtype": "Data",
-   "label": "Frame Material"
+   "label": "Safe Area Temperature Rise"
   },
   {
-   "fieldname": "material_of_terminal_box",
+   "fieldname": "hazardous_area_temperature_rise",
    "fieldtype": "Data",
-   "label": "Material of Terminal Box"
+   "label": "Hazardous Area Temperature Rise"
+  },
+  {
+   "fieldname": "safe_area_start_hour_permissible",
+   "fieldtype": "Data",
+   "label": "Safe Area Start Hour Permissible"
+  },
+  {
+   "fieldname": "hazardous_area_start_hour_permissible",
+   "fieldtype": "Data",
+   "label": "Hazardous Area Start Hour Permissible"
+  },
+  {
+   "fieldname": "safe_area_service_factor",
+   "fieldtype": "Data",
+   "label": "Safe Area Service Factor"
+  },
+  {
+   "fieldname": "hazardous_area_service_factor",
+   "fieldtype": "Data",
+   "label": "Hazardous Area Service Factor"
+  },
+  {
+   "fieldname": "safe_area_cooling_type",
+   "fieldtype": "Data",
+   "label": "Safe Area Cooling Type"
+  },
+  {
+   "fieldname": "hazardous_area_cooling_type",
+   "fieldtype": "Data",
+   "label": "Hazardous Area Cooling Type"
+  },
+  {
+   "fieldname": "safe_area_body_material",
+   "fieldtype": "Data",
+   "label": "Safe Area Body Material"
+  },
+  {
+   "fieldname": "hazardous_area_body_material",
+   "fieldtype": "Data",
+   "label": "Hazardous Area Body Material"
+  },
+  {
+   "fieldname": "safe_area_terminal_box_material",
+   "fieldtype": "Data",
+   "label": "Safe Area Terminal Box Material"
+  },
+  {
+   "fieldname": "hazardous_area_terminal_box_material",
+   "fieldtype": "Data",
+   "label": "Hazardous Area Terminal Box Material"
+  },
+  {
+   "fieldname": "safe_area_paint_type_and_shade",
+   "fieldtype": "Data",
+   "label": "Safe Area Paint Type and Shade"
+  },
+  {
+   "fieldname": "hazardous_area_paint_type_and_shade",
+   "fieldtype": "Data",
+   "label": "Hazardous Area Paint Type and Shade"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-12-03 17:17:14.980357",
+ "modified": "2025-01-18 22:05:34.755613",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Motor Specification Data",
