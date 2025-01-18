@@ -7,7 +7,6 @@
  "engine": "InnoDB",
  "field_order": [
   "linking_keys_section",
-  "project_id",
   "panel_id",
   "section_break_mvwt",
   "panel_name",
@@ -22,12 +21,6 @@
    "fieldname": "linking_keys_section",
    "fieldtype": "Section Break",
    "label": "Linking Keys"
-  },
-  {
-   "fieldname": "project_id",
-   "fieldtype": "Link",
-   "label": "Project ID",
-   "options": "Project"
   },
   {
    "fieldname": "panel_id",
@@ -77,7 +70,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-18 14:43:54.382490",
+ "modified": "2025-01-18 20:07:58.906898",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Panel GA Revisions",

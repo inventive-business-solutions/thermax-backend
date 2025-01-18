@@ -6,7 +6,9 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "linking_keys_section",
   "revision_id",
+  "general_info_data_section",
   "is_package_selection_enabled",
   "battery_limit"
  ],
@@ -28,11 +30,21 @@
    "fieldtype": "Link",
    "label": "Revision ID",
    "options": "Design Basis Revision History"
+  },
+  {
+   "fieldname": "linking_keys_section",
+   "fieldtype": "Section Break",
+   "label": "Linking Keys"
+  },
+  {
+   "fieldname": "general_info_data_section",
+   "fieldtype": "Section Break",
+   "label": "General Info Data"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-21 13:07:51.299370",
+ "modified": "2025-01-18 21:17:21.171997",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Design Basis General Info",

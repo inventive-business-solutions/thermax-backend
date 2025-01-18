@@ -6,7 +6,9 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "linking_keys_section",
   "project_id",
+  "revision_data_section",
   "status",
   "description",
   "motor_specification_data",
@@ -41,11 +43,21 @@
    "fieldtype": "Table",
    "label": "Motor Details Data",
    "options": "Motor Details Data"
+  },
+  {
+   "fieldname": "linking_keys_section",
+   "fieldtype": "Section Break",
+   "label": "Linking Keys"
+  },
+  {
+   "fieldname": "revision_data_section",
+   "fieldtype": "Section Break",
+   "label": "Revision Data"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-03 17:30:03.022013",
+ "modified": "2025-01-18 19:27:28.720900",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Motor Specification Revisions",

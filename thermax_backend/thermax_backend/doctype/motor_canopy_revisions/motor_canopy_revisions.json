@@ -6,7 +6,9 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "linking_keys_section",
   "project_id",
+  "revision_data_section",
   "status",
   "description",
   "motor_canopy_data"
@@ -34,11 +36,21 @@
    "fieldtype": "Table",
    "label": "Motor Canopy Data",
    "options": "Motor Canopy Data"
+  },
+  {
+   "fieldname": "linking_keys_section",
+   "fieldtype": "Section Break",
+   "label": "Linking Keys"
+  },
+  {
+   "fieldname": "revision_data_section",
+   "fieldtype": "Section Break",
+   "label": "Revision Data"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-03 09:55:32.134021",
+ "modified": "2025-01-18 19:26:28.320356",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Motor Canopy Revisions",

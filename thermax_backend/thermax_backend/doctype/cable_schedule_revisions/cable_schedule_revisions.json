@@ -6,7 +6,9 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "linking_keys_section",
   "project_id",
+  "revision_data_section",
   "status",
   "description",
   "cable_schedule_data",
@@ -46,11 +48,21 @@
    "fieldname": "multicore_cable_config",
    "fieldtype": "JSON",
    "label": "Multicolor Cable Config"
+  },
+  {
+   "fieldname": "linking_keys_section",
+   "fieldtype": "Section Break",
+   "label": "Linking Keys"
+  },
+  {
+   "fieldname": "revision_data_section",
+   "fieldtype": "Section Break",
+   "label": "Revision Data"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-13 13:12:46.861230",
+ "modified": "2025-01-18 19:22:16.622563",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Cable Schedule Revisions",

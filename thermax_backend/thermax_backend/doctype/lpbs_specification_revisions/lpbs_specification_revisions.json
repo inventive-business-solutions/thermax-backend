@@ -6,11 +6,11 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "linking_keys_section",
   "project_id",
+  "revision_data_section",
   "status",
   "description",
-  "is_safe_lpbs_selected",
-  "is_hazardous_lpbs_selected",
   "lpbs_specification_data",
   "lpbs_specifications_motor_details"
  ],
@@ -45,21 +45,19 @@
    "options": "LPBS Specifications Motor Details Data"
   },
   {
-   "default": "0",
-   "fieldname": "is_safe_lpbs_selected",
-   "fieldtype": "Check",
-   "label": "Is Safe LPBS Selected"
+   "fieldname": "linking_keys_section",
+   "fieldtype": "Section Break",
+   "label": "Linking Keys"
   },
   {
-   "default": "0",
-   "fieldname": "is_hazardous_lpbs_selected",
-   "fieldtype": "Check",
-   "label": "Is Hazardous LPBS Selected"
+   "fieldname": "revision_data_section",
+   "fieldtype": "Section Break",
+   "label": "Revision Data"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-18 13:18:17.358726",
+ "modified": "2025-01-18 19:31:50.390199",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "LPBS Specification Revisions",
