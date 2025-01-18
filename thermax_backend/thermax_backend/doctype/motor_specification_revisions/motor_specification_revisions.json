@@ -32,20 +32,18 @@
   },
   {
    "fieldname": "motor_specification_data",
-   "fieldtype": "Table",
-   "label": "Motor Specification Data",
-   "options": "Motor Specification Data"
+   "fieldtype": "JSON",
+   "label": "Motor Specification Data"
   },
   {
    "fieldname": "motor_details_data",
-   "fieldtype": "Table",
-   "label": "Motor Details Data",
-   "options": "Motor Details Data"
+   "fieldtype": "JSON",
+   "label": "Motor Details Data"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-03 17:30:03.022013",
+ "modified": "2025-01-18 21:35:28.130560",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Motor Specification Revisions",
