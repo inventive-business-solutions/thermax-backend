@@ -89,11 +89,11 @@ from datetime import datetime
 #     )
 #     return "Approval notification mail sent successfully"
 
-const_revision_id = "st486uu99i"
+# revision_id = "st486uu99i"
 
 
 @frappe.whitelist()
-def get_local_isolator_excel(): 
+def get_lpbs_specification_excel(): 
     payload = frappe.local.form_dict
     revision_id = payload.get("revision_id")
 
@@ -212,7 +212,7 @@ def get_local_isolator_excel():
     # Fetch the Design Basis revision data (then isolator data form that)
 
     lpbs_revision_data = frappe.get_doc(
-        "LPBS Specification Revisions", const_revision_id, "*"
+        "LPBS Specification Revisions", revision_id, "*"
     ).as_dict()
 
     lpbs_specification_data = lpbs_revision_data.get("lpbs_specification_data")
@@ -285,8 +285,8 @@ def get_local_isolator_excel():
     specification_sheet["C13"] = lpbs_specification_data.get("lpbs_push_button_start_color")
     specification_sheet["C14"] = lpbs_specification_data.get("lpbs_forward_push_button_start")
     specification_sheet["C15"] = lpbs_specification_data.get("lpbs_reverse_push_button_start")
-    specification_sheet["C16"] = lpbs_specification_data.get("lpbs_push_button_start_color")
-    specification_sheet["C17"] = lpbs_specification_data.get("lpbs_push_button_start_color")
+    specification_sheet["C16"] = lpbs_specification_data.get("lpbs_push_button_ess")
+    specification_sheet["C17"] = lpbs_specification_data.get("lpbs_speed_increase")
     specification_sheet["C18"] = lpbs_specification_data.get("lpbs_push_button_start_color")
     specification_sheet["C19"] = lpbs_specification_data.get("lpbs_push_button_start_color")
     specification_sheet["C20"] = lpbs_specification_data.get("lpbs_push_button_start_color")
