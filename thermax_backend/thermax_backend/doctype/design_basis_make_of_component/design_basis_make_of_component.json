@@ -41,7 +41,8 @@
   },
   {
    "fieldname": "section_break_mwgx",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Make of Component Data"
   },
   {
    "fieldname": "motor",
@@ -130,7 +131,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-15 13:45:18.066337",
+ "modified": "2025-01-18 11:59:37.018561",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Design Basis Make of Component",

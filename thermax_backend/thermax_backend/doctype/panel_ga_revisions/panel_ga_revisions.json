@@ -2,7 +2,7 @@
  "actions": [],
  "allow_rename": 1,
  "autoname": "hash",
- "creation": "2024-12-20 15:19:01.590120",
+ "creation": "2025-01-18 14:19:27.718655",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
@@ -14,22 +14,14 @@
   "is_released",
   "status",
   "description",
-  "sld_path",
-  "switchgear_selection_data",
-  "incomer_data",
-  "busbar_sizing_data"
+  "path",
+  "panel_ga_data"
  ],
  "fields": [
   {
-   "fieldname": "panel_name",
-   "fieldtype": "Data",
-   "label": "Panel Name"
-  },
-  {
-   "fieldname": "switchgear_selection_data",
-   "fieldtype": "Table",
-   "label": "Switchgear Selection Data",
-   "options": "Switchgear Selection Data"
+   "fieldname": "linking_keys_section",
+   "fieldtype": "Section Break",
+   "label": "Linking Keys"
   },
   {
    "fieldname": "project_id",
@@ -38,15 +30,20 @@
    "options": "Project"
   },
   {
-   "fieldname": "description",
-   "fieldtype": "Text",
-   "label": "Description"
+   "fieldname": "panel_id",
+   "fieldtype": "Link",
+   "label": "Panel ID",
+   "options": "Project Panel Data"
   },
   {
-   "fieldname": "incomer_data",
-   "fieldtype": "Table",
-   "label": "Incomer Data",
-   "options": "Incomer Data"
+   "fieldname": "section_break_mvwt",
+   "fieldtype": "Section Break",
+   "label": "Revision Data"
+  },
+  {
+   "fieldname": "panel_name",
+   "fieldtype": "Data",
+   "label": "Panel Name"
   },
   {
    "default": "0",
@@ -62,39 +59,28 @@
    "options": "DEFAULT\nDOWNLOAD_READY\nIN_PROCESS\nSUCCESS\nERROR"
   },
   {
-   "fieldname": "sld_path",
+   "fieldname": "description",
+   "fieldtype": "Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "path",
    "fieldtype": "Small Text",
-   "label": "SLD Path"
+   "label": "Path"
   },
   {
-   "fieldname": "linking_keys_section",
-   "fieldtype": "Section Break",
-   "label": "Linking Keys"
-  },
-  {
-   "fieldname": "section_break_mvwt",
-   "fieldtype": "Section Break",
-   "label": "Revision Data"
-  },
-  {
-   "fieldname": "panel_id",
-   "fieldtype": "Link",
-   "label": "Panel ID",
-   "options": "Project Panel Data"
-  },
-  {
-   "fieldname": "busbar_sizing_data",
+   "fieldname": "panel_ga_data",
    "fieldtype": "Table",
-   "label": "Busbar Sizing Data",
-   "options": "Busbar Sizing Data"
+   "label": "Panel GA Data",
+   "options": "Panel GA Data"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-18 14:54:22.155200",
+ "modified": "2025-01-18 14:43:54.382490",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
- "name": "SLD Revisions",
+ "name": "Panel GA Revisions",
  "naming_rule": "Random",
  "owner": "Administrator",
  "permissions": [
