@@ -9,6 +9,8 @@
   "project_id",
   "status",
   "description",
+  "is_safe_lpbs_selected",
+  "is_hazardous_lpbs_selected",
   "lpbs_specification_data",
   "lpbs_specifications_motor_details"
  ],
@@ -41,11 +43,23 @@
    "fieldtype": "Table",
    "label": "LPBS Specifications Motor Details",
    "options": "LPBS Specifications Motor Details Data"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_safe_lpbs_selected",
+   "fieldtype": "Check",
+   "label": "Is Safe LPBS Selected"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_hazardous_lpbs_selected",
+   "fieldtype": "Check",
+   "label": "Is Hazardous LPBS Selected"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-17 18:49:47.954152",
+ "modified": "2025-01-18 13:18:17.358726",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "LPBS Specification Revisions",

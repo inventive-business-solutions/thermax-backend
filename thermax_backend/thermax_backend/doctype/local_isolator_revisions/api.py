@@ -208,6 +208,11 @@ def get_local_isolator_excel():
     # Fetch the Design Basis revision data (then isolator data form that)
 
     local_isolator_data = local_isolator_revisions_data.get("local_isolator_data")
+    
+    is_safe_area_isolator_selected = local_isolator_revisions_data.get("is_safe_area_isolator_selected")
+    is_hazardous_area_isolator_selected = local_isolator_revisions_data.get("is_hazardous_area_isolator_selected")
+
+
     safe_isolator_data = {}
     hazard_isolator_data = {}
 
@@ -219,68 +224,103 @@ def get_local_isolator_excel():
 
 
     
-    isolator_sheet["C3"] = safe_isolator_data.get("fmi_type")
-    isolator_sheet["C4"] = safe_isolator_data.get("fmi_ip_protection")
-
+   
+    safe_fmi_type = safe_isolator_data.get("fmi_type")
+    safe_fmi_ip_protection = safe_isolator_data.get("fmi_ip_protection")
     safe_fmi_enclouser_moc = safe_isolator_data.get("fmi_enclouser_moc")
     safe_fmi_enclosure_thickness = safe_isolator_data.get("fmi_enclosure_thickness")
     safe_ifm_cable_entry = safe_isolator_data.get("ifm_cable_entry")
+    safe_fmi_qty = safe_isolator_data.get("fmi_qty")
+    safe_ifm_isolator_color_shade = safe_isolator_data.get("ifm_isolator_color_shade")
+    safe_canopy = safe_isolator_data.get("canopy")
+    safe_canopy_type = safe_isolator_data.get("canopy_type")
 
     if (
         safe_fmi_enclouser_moc == "CRCA"
         or safe_fmi_enclouser_moc == "SS 316"
         or safe_fmi_enclouser_moc == "SS 306"
     ):
-        # safe_fmi_enclouser_moc = (
-        #     f"{safe_fmi_enclouser_moc}, {safe_fmi_enclosure_thickness} mm"
-        # )
+        safe_fmi_enclouser_moc = (
+            f"{safe_fmi_enclouser_moc}, {safe_fmi_enclosure_thickness}"
+        )
         safe_ifm_cable_entry = f"{safe_ifm_cable_entry}, 3 mm"
     elif safe_fmi_enclouser_moc == "NA":
         safe_fmi_enclouser_moc = "Not Applicable"
 
+    
+    if int(is_safe_area_isolator_selected) == 0:
+        safe_fmi_type = "Not Applicable"
+        safe_fmi_ip_protection = "Not Applicable"
+        safe_fmi_enclouser_moc = "Not Applicable"
+        safe_fmi_enclosure_thickness = "Not Applicable"
+        safe_ifm_cable_entry = "Not Applicable"
+        safe_fmi_qty = "Not Applicable"
+        safe_ifm_isolator_color_shade = "Not Applicable"
+        safe_canopy = "Not Applicable"
+        safe_canopy_type = "Not Applicable"
 
+    isolator_sheet["C3"] = safe_fmi_type
+    isolator_sheet["C4"] = safe_fmi_ip_protection
     isolator_sheet["C5"] = safe_fmi_enclouser_moc
-    isolator_sheet["C6"] = safe_isolator_data.get("fmi_qty")
-    isolator_sheet["C7"] = safe_isolator_data.get("ifm_isolator_color_shade")
+    isolator_sheet["C6"] = safe_fmi_qty
+    isolator_sheet["C7"] = safe_ifm_isolator_color_shade
     isolator_sheet["C8"] = safe_ifm_cable_entry
-    isolator_sheet["C9"] = safe_isolator_data.get("canopy")
-    isolator_sheet["C10"] = safe_isolator_data.get("canopy_type")
+    isolator_sheet["C9"] = safe_canopy
+    isolator_sheet["C10"] = safe_canopy_type
 
-
+    hazard_fmi_type = hazard_isolator_data.get("fmi_type")
+    hazard_fmi_ip_protection = hazard_isolator_data.get("fmi_ip_protection")
     hazard_fmi_enclouser_moc = hazard_isolator_data.get("fmi_enclouser_moc")
     hazard_fmi_enclosure_thickness = hazard_isolator_data.get("fmi_enclosure_thickness")
-    hazard_ifm_cable_entry = hazard_isolator_data.get("ifm_cable_entry")
+    hazard_ifm_cable_entry = hazard_isolator_data.get("ifm_cable_entry") 
+    hazard_fmi_qty = hazard_isolator_data.get("fmi_qty")
+    hazard_ifm_isolator_color_shade = hazard_isolator_data.get("ifm_isolator_color_shade")
+    hazard_canopy = hazard_isolator_data.get("canopy")
+    hazard_canopy_type = hazard_isolator_data.get("canopy_Type")
 
     if (
         hazard_fmi_enclouser_moc == "CRCA"
         or hazard_fmi_enclouser_moc == "SS 316"
         or hazard_fmi_enclouser_moc == "SS 306"
     ):
-        # hazard_fmi_enclouser_moc = (
-        #     f"{hazard_fmi_enclouser_moc}, {hazard_fmi_enclosure_thickness} mm"
-        # )
+        hazard_fmi_enclouser_moc = (
+            f"{hazard_fmi_enclouser_moc}, {hazard_fmi_enclosure_thickness} mm"
+        )
         hazard_ifm_cable_entry = f"{hazard_ifm_cable_entry}, 3 mm"
     elif hazard_fmi_enclouser_moc == "NA":
         hazard_fmi_enclouser_moc = "Not Applicable"
 
-    isolator_sheet["D3"] = hazard_isolator_data.get("fmi_type")
-    isolator_sheet["D4"] = hazard_isolator_data.get("fmi_ip_protection")
+    
+    if int(is_hazardous_area_isolator_selected) == 0:
+        hazard_fmi_type = "Not Applicable"
+        hazard_fmi_ip_protection = "Not Applicable"
+        hazard_fmi_enclouser_moc = "Not Applicable"
+        hazard_fmi_enclosure_thickness = "Not Applicable"
+        hazard_ifm_cable_entry = "Not Applicable"
+        hazard_fmi_qty = "Not Applicable"
+        hazard_ifm_isolator_color_shade = "Not Applicable"
+        hazard_canopy = "Not Applicable"
+        hazard_canopy_type = "Not Applicable"
+
+    isolator_sheet["D3"] = hazard_fmi_type
+    isolator_sheet["D4"] = hazard_fmi_ip_protection
     isolator_sheet["D5"] = hazard_fmi_enclouser_moc
-    isolator_sheet["D6"] = hazard_isolator_data.get("fmi_qty")
-    isolator_sheet["D7"] = hazard_isolator_data.get("ifm_isolator_color_shade")
+    isolator_sheet["D6"] = hazard_fmi_qty
+    isolator_sheet["D7"] = hazard_ifm_isolator_color_shade
     isolator_sheet["D8"] = hazard_ifm_cable_entry
-    isolator_sheet["D9"] = hazard_isolator_data.get("canopy")
-    isolator_sheet["D10"] = hazard_isolator_data.get("canopy_type")
+    isolator_sheet["D9"] = hazard_canopy
+    isolator_sheet["D10"] = hazard_canopy_type
     
     local_isolator_motor_details_data = local_isolator_revisions_data.get("local_isolator_motor_details_data")
     safe_motor_details = []
     hazard_motor_details = []
 
     for i in range(len(local_isolator_motor_details_data)):
-        if local_isolator_motor_details_data[i].get("area") == "Safe":
-            safe_motor_details.append(local_isolator_motor_details_data[i])
-        else:
-            hazard_motor_details.append(local_isolator_motor_details_data[i])
+        if local_isolator_motor_details_data[i].get("local_isolator") == "Yes":
+            if local_isolator_motor_details_data[i].get("area") == "Safe" or local_isolator_motor_details_data[i].get("area") == "NA":
+                safe_motor_details.append(local_isolator_motor_details_data[i])
+            else:
+                hazard_motor_details.append(local_isolator_motor_details_data[i])
 
     index = 3
 
@@ -363,6 +403,12 @@ def get_local_isolator_excel():
     isolator_hazard_area_sheet[f"C{index + 5}"] = "Total Quantity"
     isolator_hazard_area_sheet[f"D{index + 5}"] = int(len(hazard_motor_details))
     isolator_hazard_area_sheet[f"F{index + 5}"] = "Nos"
+
+    if len(safe_motor_details) < 1:
+        template_workbook.remove(isolator_safe_area_sheet)
+    
+    if len(hazard_motor_details) < 1:
+        template_workbook.remove(isolator_hazard_area_sheet)
 
     output = io.BytesIO()
     template_workbook.save(output)

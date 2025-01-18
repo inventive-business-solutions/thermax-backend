@@ -9,6 +9,8 @@
   "project_id",
   "status",
   "description",
+  "is_safe_area_isolator_selected",
+  "is_hazardous_area_isolator_selected",
   "local_isolator_data",
   "local_isolator_motor_details_data"
  ],
@@ -41,11 +43,23 @@
    "fieldtype": "Table",
    "label": "Local Isolator Motor Details Data",
    "options": "Local Isolator Motor Details Data"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_safe_area_isolator_selected",
+   "fieldtype": "Check",
+   "label": "Is Safe Area Isolator Selected"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_hazardous_area_isolator_selected",
+   "fieldtype": "Check",
+   "label": "Is Hazardous Area Isolator Selected"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-03 18:09:26.904674",
+ "modified": "2025-01-18 13:16:39.153679",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Local Isolator Revisions",
