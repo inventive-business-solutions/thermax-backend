@@ -6,8 +6,10 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "is_safe_area_present",
+  "linking_keys_section",
   "revision_id",
+  "motor_parameter_data_section",
+  "is_safe_area_present",
   "safe_area_efficiency_level",
   "safe_area_insulation_class",
   "safe_area_temperature_rise",
@@ -306,11 +308,21 @@
    "fieldname": "is_safe_area_present",
    "fieldtype": "Check",
    "label": "Is Safe Area Present"
+  },
+  {
+   "fieldname": "linking_keys_section",
+   "fieldtype": "Section Break",
+   "label": "Linking Keys"
+  },
+  {
+   "fieldname": "motor_parameter_data_section",
+   "fieldtype": "Section Break",
+   "label": "Motor Parameter Data"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-09 16:34:41.067680",
+ "modified": "2025-01-18 11:57:16.496148",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Design Basis Motor Parameters",

@@ -1,0 +1,136 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2025-01-18 14:45:04.085996",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "fields_section",
+  "fault_current",
+  "fault_duration",
+  "operating_temperature",
+  "maximum_temperature_during_fault",
+  "ambient_temperature",
+  "maximum_busbar_temperature_rise",
+  "material",
+  "material_constant",
+  "enclosure_height",
+  "enclosure_depth",
+  "enclosure_horizontal_busbar_chamber_height",
+  "enclosure_horizontal_cable_chamber_height",
+  "enclosure_vertical_busbar_chamber_width",
+  "enclosure_vertical_cable_chamber_width",
+  "busbar_size"
+ ],
+ "fields": [
+  {
+   "fieldname": "fields_section",
+   "fieldtype": "Section Break",
+   "label": "Fields"
+  },
+  {
+   "fieldname": "fault_current",
+   "fieldtype": "Float",
+   "label": "Fault Current",
+   "precision": "2"
+  },
+  {
+   "fieldname": "fault_duration",
+   "fieldtype": "Float",
+   "label": "Fault Duration",
+   "precision": "2"
+  },
+  {
+   "fieldname": "operating_temperature",
+   "fieldtype": "Float",
+   "label": "Operating Temperature",
+   "precision": "2"
+  },
+  {
+   "fieldname": "maximum_temperature_during_fault",
+   "fieldtype": "Float",
+   "label": "Maximum Temperature During Fault",
+   "precision": "2"
+  },
+  {
+   "fieldname": "ambient_temperature",
+   "fieldtype": "Float",
+   "label": "Ambient Temperature",
+   "precision": "2"
+  },
+  {
+   "fieldname": "maximum_busbar_temperature_rise",
+   "fieldtype": "Float",
+   "label": "Maximum Busbar Temperature Rise",
+   "precision": "2"
+  },
+  {
+   "fieldname": "material",
+   "fieldtype": "Data",
+   "label": "Material"
+  },
+  {
+   "fieldname": "material_constant",
+   "fieldtype": "Float",
+   "label": "Material Constant",
+   "precision": "2"
+  },
+  {
+   "fieldname": "enclosure_height",
+   "fieldtype": "Float",
+   "label": "Enclosure Height",
+   "precision": "2"
+  },
+  {
+   "fieldname": "enclosure_depth",
+   "fieldtype": "Float",
+   "label": "Enclosure Depth",
+   "precision": "2"
+  },
+  {
+   "fieldname": "enclosure_horizontal_busbar_chamber_height",
+   "fieldtype": "Float",
+   "label": "Enclosure Horizontal Busbar Chamber Height",
+   "precision": "2"
+  },
+  {
+   "fieldname": "enclosure_horizontal_cable_chamber_height",
+   "fieldtype": "Float",
+   "label": "Enclosure Horizontal Cable Chamber Height",
+   "precision": "2"
+  },
+  {
+   "fieldname": "enclosure_vertical_busbar_chamber_width",
+   "fieldtype": "Float",
+   "label": "Enclosure Vertical Busbar Chamber Width",
+   "precision": "2"
+  },
+  {
+   "fieldname": "enclosure_vertical_cable_chamber_width",
+   "fieldtype": "Float",
+   "label": "Enclosure Vertical Cable Chamber Width",
+   "precision": "2"
+  },
+  {
+   "fieldname": "busbar_size",
+   "fieldtype": "Data",
+   "label": "Busbar Size",
+   "precision": "2"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-01-18 14:53:29.339982",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "Busbar Sizing Data",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
