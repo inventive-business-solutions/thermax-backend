@@ -1,4 +1,4 @@
-# Copyright (c) 2024, Abhishek Bankar and Contributors
+# Copyright (c) 2025, Abhishek Bankar and Contributors
 # See license.txt
 
 # import frappe
@@ -6,24 +6,24 @@ from frappe.tests import IntegrationTestCase, UnitTestCase
 
 
 # On IntegrationTestCase, the doctype test records and all
-# link-field test record depdendencies are recursively loaded
+# link-field test record dependencies are recursively loaded
 # Use these module variables to add/remove to/from that list
 EXTRA_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
 IGNORE_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
 
 
-class UnitTestPanelPLC1(UnitTestCase):
+class UnitTestPanelSpecificationsRevisions(UnitTestCase):
 	"""
-	Unit tests for PanelPLC1.
+	Unit tests for PanelSpecificationsRevisions.
 	Use this class for testing individual functions and methods.
 	"""
 
 	pass
 
 
-class IntegrationTestPanelPLC1(IntegrationTestCase):
+class IntegrationTestPanelSpecificationsRevisions(IntegrationTestCase):
 	"""
-	Integration tests for PanelPLC1.
+	Integration tests for PanelSpecificationsRevisions.
 	Use this class for testing interactions between multiple components.
 	"""
 

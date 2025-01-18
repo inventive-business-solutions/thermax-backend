@@ -8,7 +8,6 @@
  "engine": "InnoDB",
  "field_order": [
   "linking_keys_section",
-  "revision_id",
   "panel_id",
   "supply_requirements_section",
   "ups_control_voltage",
@@ -55,12 +54,6 @@
    "fieldname": "linking_keys_section",
    "fieldtype": "Section Break",
    "label": "Linking Keys"
-  },
-  {
-   "fieldname": "revision_id",
-   "fieldtype": "Link",
-   "label": "Revision ID",
-   "options": "Design Basis Revision History"
   },
   {
    "fieldname": "panel_id",
@@ -292,7 +285,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-17 10:37:08.204035",
+ "modified": "2025-01-18 12:39:57.144999",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Panel PLC 1 - 3",
