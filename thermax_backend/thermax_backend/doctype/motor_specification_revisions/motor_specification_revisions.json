@@ -10,6 +10,8 @@
   "project_id",
   "revision_data_section",
   "status",
+  "is_copied",
+  "clone_note",
   "description",
   "is_safe_area_selected",
   "is_hazardous_area_selected",
@@ -67,11 +69,22 @@
    "fieldname": "is_hazardous_area_selected",
    "fieldtype": "Check",
    "label": "Is Hazardous Area Selected"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_copied",
+   "fieldtype": "Check",
+   "label": "Is Copied"
+  },
+  {
+   "fieldname": "clone_note",
+   "fieldtype": "Small Text",
+   "label": "Clone Note"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-20 16:29:44.102599",
+ "modified": "2025-01-20 19:17:40.432087",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Motor Specification Revisions",

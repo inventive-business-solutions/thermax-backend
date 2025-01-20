@@ -8,6 +8,8 @@
  "field_order": [
   "project_id",
   "status",
+  "is_copied",
+  "clone_note",
   "description",
   "motor_canopy_data"
  ],
@@ -34,11 +36,22 @@
    "fieldtype": "Table",
    "label": "Motor Canopy Data",
    "options": "Motor Canopy Data"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_copied",
+   "fieldtype": "Check",
+   "label": "Is Copied"
+  },
+  {
+   "fieldname": "clone_note",
+   "fieldtype": "Small Text",
+   "label": "Clone Note"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-03 09:55:32.134021",
+ "modified": "2025-01-20 19:15:53.203096",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Motor Canopy Revisions",

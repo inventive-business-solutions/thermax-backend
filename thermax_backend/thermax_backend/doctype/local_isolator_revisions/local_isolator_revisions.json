@@ -8,6 +8,8 @@
  "field_order": [
   "project_id",
   "status",
+  "is_copied",
+  "clone_note",
   "description",
   "is_safe_area_isolator_selected",
   "is_hazardous_area_isolator_selected",
@@ -55,11 +57,22 @@
    "fieldname": "is_hazardous_area_isolator_selected",
    "fieldtype": "Check",
    "label": "Is Hazardous Area Isolator Selected"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_copied",
+   "fieldtype": "Check",
+   "label": "Is Copied"
+  },
+  {
+   "fieldname": "clone_note",
+   "fieldtype": "Small Text",
+   "label": "Clone Note"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-18 13:16:39.153679",
+ "modified": "2025-01-20 19:16:34.412807",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Local Isolator Revisions",
