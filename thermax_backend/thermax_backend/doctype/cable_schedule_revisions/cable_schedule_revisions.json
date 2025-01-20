@@ -8,6 +8,8 @@
  "field_order": [
   "project_id",
   "status",
+  "is_copied",
+  "clone_note",
   "description",
   "cable_schedule_data",
   "excel_payload",
@@ -46,11 +48,22 @@
    "fieldname": "multicore_cable_config",
    "fieldtype": "JSON",
    "label": "Multicolor Cable Config"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_copied",
+   "fieldtype": "Check",
+   "label": "Is Copied"
+  },
+  {
+   "fieldname": "clone_note",
+   "fieldtype": "Small Text",
+   "label": "Clone Note"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-13 13:12:46.861230",
+ "modified": "2025-01-20 19:15:19.612290",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Cable Schedule Revisions",
