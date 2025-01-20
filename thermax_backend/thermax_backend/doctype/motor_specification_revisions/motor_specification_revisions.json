@@ -11,6 +11,8 @@
   "revision_data_section",
   "status",
   "description",
+  "is_safe_area_selected",
+  "is_hazardous_area_selected",
   "motor_specification_data",
   "motor_details_data"
  ],
@@ -53,11 +55,23 @@
    "fieldname": "revision_data_section",
    "fieldtype": "Section Break",
    "label": "Revision Data"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_safe_area_selected",
+   "fieldtype": "Check",
+   "label": "Is Safe Area Selected"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_hazardous_area_selected",
+   "fieldtype": "Check",
+   "label": "Is Hazardous Area Selected"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-18 22:17:21.162001",
+ "modified": "2025-01-20 16:29:44.102599",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Motor Specification Revisions",
