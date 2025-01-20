@@ -9,6 +9,8 @@
  "field_order": [
   "project_id",
   "status",
+  "is_copied",
+  "clone_note",
   "description",
   "electrical_load_list_data"
  ],
@@ -35,11 +37,22 @@
    "fieldtype": "Table",
    "label": "Electrical Load List Data",
    "options": "Load List Data"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_copied",
+   "fieldtype": "Check",
+   "label": "Is Copied"
+  },
+  {
+   "fieldname": "clone_note",
+   "fieldtype": "Small Text",
+   "label": "Clone Note"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-02 19:20:34.193282",
+ "modified": "2025-01-20 19:13:33.677346",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Load List Revisions",
