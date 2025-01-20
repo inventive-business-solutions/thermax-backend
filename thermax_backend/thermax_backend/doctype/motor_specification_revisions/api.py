@@ -117,22 +117,26 @@ def get_motor_spec_excel():
 
     # SPECIFICATION SHEET
 
+    project_info_data =  frappe.db.get_list(
+        "Motor Specification Revisions", {"project_id": project_id}, "*"
+    )
+
     motor_specification_data = motor_spec_revision_data.get("motor_specification_data")
 
     specification_sheet["D4"] = (
         f'{motor_specification_data.get("standard")}, {motor_specification_data.get("zone")}, {motor_specification_data.get("gas_group")}, {motor_specification_data.get("temperature_class")}'
     )
-    specification_sheet["D5"] = motor_specification_data.get("ambient_temperature")
-    specification_sheet["D6"] = motor_specification_data.get("ambient_temperature")
-    specification_sheet["D7"] = motor_specification_data.get(
+    specification_sheet["D5"] = project_info_data.get("ambient_temperature_max")
+    specification_sheet["D6"] = project_info_data.get("ambient_temperature_min")
+    specification_sheet["D7"] = project_info_data.get(
         "electrical_design_temperature"
     )
-    specification_sheet["D8"] = motor_specification_data.get("max_humidity")
-    specification_sheet["D9"] = motor_specification_data.get("min_humidity")
-    specification_sheet["D10"] = motor_specification_data.get("avg_humidity")
-    specification_sheet["D11"] = motor_specification_data.get("humidity_performance")
-    specification_sheet["D12"] = motor_specification_data.get("altitude")
-    specification_sheet["D13"] = motor_specification_data.get("sesmic_zone")
+    specification_sheet["D8"] = project_info_data.get("max_humidity")
+    specification_sheet["D9"] = project_info_data.get("min_humidity")
+    specification_sheet["D10"] = project_info_data.get("avg_humidity")
+    specification_sheet["D11"] = project_info_data.get("performance_humidity")
+    specification_sheet["D12"] = project_info_data.get("altitude")
+    specification_sheet["D13"] = project_info_data.get("seismic_zone")
 
     specification_sheet["E4"] = (
         f'{motor_specification_data.get("standard")}, {motor_specification_data.get("zone")}, {motor_specification_data.get("gas_group")}, {motor_specification_data.get("temperature_class")}'
