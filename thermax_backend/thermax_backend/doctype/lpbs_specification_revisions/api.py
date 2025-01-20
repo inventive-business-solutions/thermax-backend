@@ -89,9 +89,6 @@ from datetime import datetime
 #     )
 #     return "Approval notification mail sent successfully"
 
-# revision_id = "st486uu99i"
-
-
 @frappe.whitelist()
 def get_lpbs_specification_excel(): 
     payload = frappe.local.form_dict
