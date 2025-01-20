@@ -9,6 +9,7 @@
  "field_order": [
   "linking_keys_section",
   "panel_id",
+  "revision_id",
   "supply_requirements_section",
   "ups_control_voltage",
   "non_ups_control_voltage",
@@ -281,11 +282,17 @@
    "fieldname": "indicating_lamp_colour_for_ups_power_supply",
    "fieldtype": "Data",
    "label": "Indicating Lamp Color for Ups Power Supply Copy"
+  },
+  {
+   "fieldname": "revision_id",
+   "fieldtype": "Link",
+   "label": "Revision ID",
+   "options": "Design Basis Revision History"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-18 12:39:57.144999",
+ "modified": "2025-01-20 15:06:15.659177",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Panel PLC 1 - 3",
