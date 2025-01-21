@@ -21,15 +21,15 @@ def get_voltage_drop_excel():
     revision_id = payload.get("revision_id")
     template_workbook = create_voltage_drop_excel(revision_id)
 
-    template_workbook.save("voltage_dropdown_calculation.xlsx")
+    # template_workbook.save("voltage_dropdown_calculation.xlsx")
 
-    # output = io.BytesIO()
-    # template_workbook.save(output)
-    # output.seek(0)
+    output = io.BytesIO()
+    template_workbook.save(output)
+    output.seek(0)
 
-    # frappe.local.response.filename = "voltage_drop_calculation.xlsx"
-    # frappe.local.response.filecontent = output.getvalue()
-    # frappe.local.response.type = "binary"
+    frappe.local.response.filename = "voltage_drop_calculation.xlsx"
+    frappe.local.response.filecontent = output.getvalue()
+    frappe.local.response.type = "binary"
 
     return _("Voltage Drop Excel Created")
 

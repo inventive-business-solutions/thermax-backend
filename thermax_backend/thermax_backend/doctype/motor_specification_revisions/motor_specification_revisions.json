@@ -1,110 +1,110 @@
 {
- "actions": [],
- "allow_rename": 1,
- "autoname": "hash",
- "creation": "2024-12-03 17:27:54.951249",
- "doctype": "DocType",
- "engine": "InnoDB",
- "field_order": [
-  "linking_keys_section",
-  "project_id",
-  "revision_data_section",
-  "status",
-  "is_copied",
-  "clone_note",
-  "description",
-  "is_safe_area_selected",
-  "is_hazardous_area_selected",
-  "motor_specification_data",
-  "motor_details_data"
- ],
- "fields": [
-  {
-   "fieldname": "project_id",
-   "fieldtype": "Link",
-   "label": "Project ID",
-   "options": "Project"
-  },
-  {
-   "fieldname": "status",
-   "fieldtype": "Select",
-   "label": "Status",
-   "options": "Not Released\nReleased"
-  },
-  {
-   "fieldname": "description",
-   "fieldtype": "Text",
-   "label": "Description"
-  },
-  {
-   "fieldname": "motor_specification_data",
-   "fieldtype": "Table",
-   "label": "Motor Specification Data",
-   "options": "Motor Specification Data"
-  },
-  {
-   "fieldname": "motor_details_data",
-   "fieldtype": "Table",
-   "label": "Motor Details Data",
-   "options": "Motor Details Data"
-  },
-  {
-   "fieldname": "linking_keys_section",
-   "fieldtype": "Section Break",
-   "label": "Linking Keys"
-  },
-  {
-   "fieldname": "revision_data_section",
-   "fieldtype": "Section Break",
-   "label": "Revision Data"
-  },
-  {
-   "default": "0",
-   "fieldname": "is_safe_area_selected",
-   "fieldtype": "Check",
-   "label": "Is Safe Area Selected"
-  },
-  {
-   "default": "0",
-   "fieldname": "is_hazardous_area_selected",
-   "fieldtype": "Check",
-   "label": "Is Hazardous Area Selected"
-  },
-  {
-   "default": "0",
-   "fieldname": "is_copied",
-   "fieldtype": "Check",
-   "label": "Is Copied"
-  },
-  {
-   "fieldname": "clone_note",
-   "fieldtype": "Small Text",
-   "label": "Clone Note"
-  }
- ],
- "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2025-01-20 19:17:40.432087",
- "modified_by": "Administrator",
- "module": "Thermax Backend",
- "name": "Motor Specification Revisions",
- "naming_rule": "Random",
- "owner": "Administrator",
- "permissions": [
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "System Manager",
-   "share": 1,
-   "write": 1
-  }
- ],
- "sort_field": "creation",
- "sort_order": "DESC",
- "states": []
+  "actions": [],
+  "allow_rename": 1,
+  "autoname": "hash",
+  "creation": "2024-12-03 17:27:54.951249",
+  "doctype": "DocType",
+  "engine": "InnoDB",
+  "field_order": [
+    "linking_keys_section",
+    "project_id",
+    "revision_data_section",
+    "status",
+    "is_copied",
+    "clone_note",
+    "description",
+    "is_safe_area_selected",
+    "is_hazardous_area_selected",
+    "motor_specification_data",
+    "motor_details_data"
+  ],
+  "fields": [
+    {
+      "fieldname": "project_id",
+      "fieldtype": "Link",
+      "label": "Project ID",
+      "options": "Project"
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "label": "Status",
+      "options": "Not Released\nReleased"
+    },
+    {
+      "fieldname": "description",
+      "fieldtype": "Text",
+      "label": "Description"
+    },
+    {
+      "fieldname": "motor_specification_data",
+      "fieldtype": "Table",
+      "label": "Motor Specification Data",
+      "options": "Motor Specification Data"
+    },
+    {
+      "fieldname": "motor_details_data",
+      "fieldtype": "Table",
+      "label": "Motor Details Data",
+      "options": "Motor Details Data"
+    },
+    {
+      "fieldname": "linking_keys_section",
+      "fieldtype": "Section Break",
+      "label": "Linking Keys"
+    },
+    {
+      "fieldname": "revision_data_section",
+      "fieldtype": "Section Break",
+      "label": "Revision Data"
+    },
+    {
+      "default": "0",
+      "fieldname": "is_safe_area_selected",
+      "fieldtype": "Check",
+      "label": "Is Safe Area Selected"
+    },
+    {
+      "default": "0",
+      "fieldname": "is_hazardous_area_selected",
+      "fieldtype": "Check",
+      "label": "Is Hazardous Area Selected"
+    },
+    {
+      "default": "0",
+      "fieldname": "is_copied",
+      "fieldtype": "Check",
+      "label": "Is Copied"
+    },
+    {
+      "fieldname": "clone_note",
+      "fieldtype": "Small Text",
+      "label": "Clone Note"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2025-01-20 19:17:40.432087",
+  "modified_by": "Administrator",
+  "module": "Thermax Backend",
+  "name": "Motor Specification Revisions",
+  "naming_rule": "Random",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "creation",
+  "sort_order": "DESC",
+  "states": []
 }
