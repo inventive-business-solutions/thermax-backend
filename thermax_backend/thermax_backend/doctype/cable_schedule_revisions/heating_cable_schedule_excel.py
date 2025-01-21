@@ -118,9 +118,7 @@ def create_heating_excel(cable_schedule_data, project, revision_data, division_n
                 "pair_core"
             )
             sizemm2 = cable.get("sizemm2", 0)
-            cable_schedule_sheet.cell(row=current_row, column=11).value = round(
-                float(sizemm2), 2
-            )
+            cable_schedule_sheet.cell(row=current_row, column=11).value = sizemm2
             cable_schedule_sheet.cell(row=current_row, column=12).value = cable.get(
                 "appx_length"
             )
