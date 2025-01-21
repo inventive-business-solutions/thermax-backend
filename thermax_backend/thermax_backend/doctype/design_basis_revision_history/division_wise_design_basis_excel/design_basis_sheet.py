@@ -344,10 +344,10 @@ def get_design_basis_sheet(
     if hazardous_area_winding_rtd == "NA":
         hazardous_area_winding_rtd = "Not Applicable"
 
-    if hazardous_area_service_factor == "1" or hazardous_area_service_factor == 1:
-        hazardous_area_service_factor = "Applicable"
-    else:
-        hazardous_area_service_factor = "Not Applicable"
+    # if hazardous_area_service_factor == "1" or hazardous_area_service_factor == 1:
+    #     hazardous_area_service_factor = "Applicable"
+    # else:
+    #     hazardous_area_service_factor = "Not Applicable"
 
     if (
         general_info_data.get("is_package_selection_enabled") == 1
