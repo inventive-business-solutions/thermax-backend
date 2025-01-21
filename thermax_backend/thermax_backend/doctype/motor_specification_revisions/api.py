@@ -277,6 +277,50 @@ def get_motor_specification_excel():
         safe_area_motor_list_sheet[f"AD{index}"] = data.get("remark")
 
 
+    index = 4
+
+    for data in hazard_data:
+        hazardous_area_motor_list_sheet[f"A{index}"] = index - 3
+        hazardous_area_motor_list_sheet[f"B{index}"] = data.get("tag_number")
+        hazardous_area_motor_list_sheet[f"C{index}"] = data.get("service_description")
+        hazardous_area_motor_list_sheet[f"D{index}"] = data.get("working_kw")
+        hazardous_area_motor_list_sheet[f"E{index}"] = data.get("motor_rated_current")
+        hazardous_area_motor_list_sheet[f"F{index}"] = data.get("rpm")
+        hazardous_area_motor_list_sheet[f"G{index}"] = data.get("type_of_mounting")
+        hazardous_area_motor_list_sheet[f"H{index}"] = data.get("motor_frame_size")
+        hazardous_area_motor_list_sheet[f"I{index}"] = data.get("motor_gd2")
+        hazardous_area_motor_list_sheet[f"J{index}"] = data.get("gd2_of_driven_equipment")
+        hazardous_area_motor_list_sheet[f"K{index}"] = data.get("bkw")
+        hazardous_area_motor_list_sheet[f"L{index}"] = data.get("type_of_couplings")
+        hazardous_area_motor_list_sheet[f"M{index}"] = data.get("motor_location")
+        hazardous_area_motor_list_sheet[f"N{index}"] = data.get("supply_voltage")
+        hazardous_area_motor_list_sheet[f"O{index}"] = 50
+        hazardous_area_motor_list_sheet[f"P{index}"] = "Feeder Type"
+        hazardous_area_motor_list_sheet[f"Q{index}"] = data.get("cable_size")
+        hazardous_area_motor_list_sheet[f"R{index}"] = data.get("space_heater")
+        roller_bearing = "No"
+        if data.get("type_of_bearing") == "Roller":
+            roller_bearing = "Yes"
+        
+        hazardous_area_motor_list_sheet[f"S{index}"] = roller_bearing
+
+        insulated_bearing = "No"
+        if "nsulat" in data.get("type_of_bearing"):
+            insulated_bearing = "Yes"
+
+        hazardous_area_motor_list_sheet[f"T{index}"] = insulated_bearing
+        hazardous_area_motor_list_sheet[f"U{index}"] = data.get("thermistor")
+        hazardous_area_motor_list_sheet[f"V{index}"] = data.get("bearing_rtd")
+        hazardous_area_motor_list_sheet[f"W{index}"] = data.get("winding_rtd")
+        hazardous_area_motor_list_sheet[f"X{index}"] = data.get("efficiency")
+        # safe_area_motor_list_sheet[f"Y{index}"] = 
+        hazardous_area_motor_list_sheet[f"Z{index}"] = data.get("power_factor")
+        # safe_area_motor_list_sheet[f"AA{index}"] = 
+        hazardous_area_motor_list_sheet[f"AB{index}"] = data.get("make")
+        hazardous_area_motor_list_sheet[f"AC{index}"] = data.get("part_code")
+        hazardous_area_motor_list_sheet[f"AD{index}"] = data.get("remark")
+
+
     output = io.BytesIO()
     template_workbook.save(output)
     output.seek(0)
