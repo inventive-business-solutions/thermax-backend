@@ -190,14 +190,14 @@ def create_other_division_excel(
     )
 
     template_workbook = load_workbook(template_path)
-    # cover_sheet = template_workbook["COVER"]
+    cover_sheet = template_workbook["COVER"]
 
-    # cover_sheet = create_cover_sheet(
-    #     cover_sheet=cover_sheet,
-    #     project_data=project,
-    #     revision_data=revision_data,
-    #     division_name=division_name,
-    # )
+    cover_sheet = create_cover_sheet(
+        cover_sheet=cover_sheet,
+        project_data=project,
+        revision_data=revision_data,
+        division_name=division_name,
+    )
     center_border_style = get_center_border_style()
     left_center_style = get_left_center_style()
     center_border_bold = get_center_border_bold_style()
