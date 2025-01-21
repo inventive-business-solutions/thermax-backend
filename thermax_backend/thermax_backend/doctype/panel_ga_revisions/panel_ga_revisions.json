@@ -13,6 +13,8 @@
   "panel_name",
   "is_released",
   "status",
+  "is_copied",
+  "clone_note",
   "description",
   "path",
   "panel_ga_data"
@@ -64,6 +66,7 @@
    "label": "Description"
   },
   {
+   "default": "\"\"",
    "fieldname": "path",
    "fieldtype": "Small Text",
    "label": "Path"
@@ -73,11 +76,22 @@
    "fieldtype": "Table",
    "label": "Panel GA Data",
    "options": "Panel GA Data"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_copied",
+   "fieldtype": "Check",
+   "label": "Is Copied"
+  },
+  {
+   "fieldname": "clone_note",
+   "fieldtype": "Small Text",
+   "label": "Clone Note"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-18 14:43:54.382490",
+ "modified": "2025-01-20 23:32:26.746836",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Panel GA Revisions",

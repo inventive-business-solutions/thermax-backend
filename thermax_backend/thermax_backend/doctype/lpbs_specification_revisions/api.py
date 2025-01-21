@@ -335,7 +335,7 @@ def get_lpbs_specification_excel():
     index = 3
 
     for i in range(len(safe_motor_details)):
-        lpbs_safe_sheet[f"A{index}"] = i
+        lpbs_safe_sheet[f"A{index}"] = i + 1
         lpbs_safe_sheet[f"B{index}"] = safe_motor_details[i].get("tag_number")
         lpbs_safe_sheet[f"C{index}"] = safe_motor_details[i].get("service_description")
         lpbs_safe_sheet[f"D{index}"] = safe_motor_details[i].get("working_kw")
@@ -355,17 +355,27 @@ def get_lpbs_specification_excel():
 
         lpbs_safe_sheet[f"F{index}"] = canopy_required
         lpbs_safe_sheet[f"H{index}"] = safe_motor_details[i].get("gland_size")
+        index = index + 1
 
     type_count = {motor_type["lpbs_type"]: sum(1 for t in safe_motor_details if t["lpbs_type"] == motor_type["lpbs_type"]) for motor_type in safe_motor_details}
-    a = 3
+    a = index + 5
+    val = 1
     for key, value in type_count.items():
-        lpbs_safe_sheet[f"M{a}"] = key
-        lpbs_safe_sheet[f"N{a}"] = value
+        lpbs_safe_sheet[f"B{a}"] = val
+        lpbs_safe_sheet[f"C{a}"] = "LPBS Type"
+        lpbs_safe_sheet[f"D{a}"] = key
+        lpbs_safe_sheet[f"E{a}"] = value
+        # lpbs_safe_sheet[f"O{a}"] = "No.s"
         a = a + 1
+        val = val + 1
+    
+    lpbs_safe_sheet[f"C{a}"] = "Total" 
+    lpbs_safe_sheet[f"D{a}"] = int(len(safe_motor_details))
+
 
     index = 3
     for i in  range(len(hazard_motor_details)):
-        lpbs_hazard_sheet[f"A{index}"] = i
+        lpbs_hazard_sheet[f"A{index}"] = i+1
         lpbs_hazard_sheet[f"B{index}"] = hazard_motor_details[i].get("tag_number")
         lpbs_hazard_sheet[f"C{index}"] = hazard_motor_details[i].get("service_description")
         lpbs_hazard_sheet[f"D{index}"] = hazard_motor_details[i].get("working_kw")
@@ -388,6 +398,22 @@ def get_lpbs_specification_excel():
         lpbs_hazard_sheet[f"I{index}"] = hazard_motor_details[i].get("gas_group")
         lpbs_hazard_sheet[f"J{index}"] = hazard_motor_details[i].get("temperature_class")
         lpbs_hazard_sheet[f"L{index}"] = hazard_motor_details[i].get("gland_size")
+        index = index + 1
+
+    type_count = {motor_type["lpbs_type"]: sum(1 for t in hazard_motor_details if t["lpbs_type"] == motor_type["lpbs_type"]) for motor_type in hazard_motor_details}
+    a = index + 5
+    val = 1
+    for key, value in type_count.items():
+        lpbs_hazard_sheet[f"B{a}"] = val
+        lpbs_hazard_sheet[f"C{a}"] = "LPBS Type"
+        lpbs_hazard_sheet[f"D{a}"] = key
+        lpbs_hazard_sheet[f"E{a}"] = value
+        # lpbs_safe_sheet[f"O{a}"] = "No.s"
+        a = a + 1
+        val = val + 1
+    
+    lpbs_hazard_sheet[f"C{a}"] = "Total" 
+    lpbs_hazard_sheet[f"D{a}"] = int(len(hazard_motor_details))
 
     if int(is_safe_lpbs_selected) == 0:
         template_workbook.remove(lpbs_safe_sheet)

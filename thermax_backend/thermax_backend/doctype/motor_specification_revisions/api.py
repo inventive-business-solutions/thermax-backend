@@ -189,8 +189,91 @@ def get_motor_specification_excel():
 
     # Motor Parameters
 
-    # specification_sheet["D41"] = 
+    motor_parameters_data = frappe.get_doc(
+        "Design Basis Motor Parameters",
+        {"revision_id": project_revision_id},
+        "*"
+    ).as_dict()
+
+    specification_sheet["D24"] = motor_parameters_data.get("safe_area_enclosure_ip_rating")
+    specification_sheet["D25"] = motor_parameters_data.get("safe_area_duty")
     
+
+    specification_sheet["E24"] = motor_parameters_data.get("hazardous_area_enclosure_ip_rating")
+    specification_sheet["E25"] = motor_parameters_data.get("hazardous_area_duty")
+    
+
+    specification_sheet["D30"] = motor_parameters_data.get("safe_area_insulation_class")
+    specification_sheet["D31"] = motor_parameters_data.get("safe_area_temperature_rise")
+    specification_sheet["D33"] = motor_parameters_data.get("safe_area_starts_hour_permissible")
+    specification_sheet["D34"] = motor_parameters_data.get("safe_area_service_factor")
+    specification_sheet["D35"] = motor_parameters_data.get("safe_area_cooling_type")
+    specification_sheet["D42"] = motor_parameters_data.get("safe_area_terminal_box_ip_rating")
+    specification_sheet["D45"] = motor_parameters_data.get("safe_area_paint_type_and_shade")
+
+    specification_sheet["E30"] = motor_parameters_data.get("hazardous_area_insulation_class")
+    specification_sheet["E31"] = motor_parameters_data.get("hazardous_area_temperature_rise")
+    specification_sheet["E33"] = motor_parameters_data.get("hazardous_area_starts_hour_permissible")
+    specification_sheet["E34"] = motor_parameters_data.get("hazardous_area_service_factor")
+    specification_sheet["E35"] = motor_parameters_data.get("hazardous_area_cooling_type")
+    specification_sheet["E42"] = motor_parameters_data.get("hazardous_area_terminal_box_ip_rating")
+    specification_sheet["E45"] = motor_parameters_data.get("hazardous_area_paint_type_and_shade")
+
+    motor_details_data = motor_spec_revision_data.get("motor_details_data")
+    safe_data = []
+    hazard_data = []
+
+    for data in motor_details_data:
+        if data.get("area") == "Safe":
+            safe_data.append(data)
+        else: 
+            hazard_data.append(data)
+
+    # SAFE AREA MOTOR LIST 
+
+    index = 4
+
+    for data in safe_data:
+        safe_area_motor_list_sheet[f"A{index}"] = index - 3
+        safe_area_motor_list_sheet[f"B{index}"] = data.get("tag_number")
+        safe_area_motor_list_sheet[f"C{index}"] = data.get("service_description")
+        safe_area_motor_list_sheet[f"D{index}"] = data.get("working_kw")
+        safe_area_motor_list_sheet[f"E{index}"] = data.get("motor_rated_current")
+        safe_area_motor_list_sheet[f"F{index}"] = data.get("rpm")
+        safe_area_motor_list_sheet[f"G{index}"] = data.get("type_of_mounting")
+        safe_area_motor_list_sheet[f"H{index}"] = data.get("motor_frame_size")
+        safe_area_motor_list_sheet[f"I{index}"] = data.get("motor_gd2")
+        safe_area_motor_list_sheet[f"J{index}"] = data.get("gd2_of_driven_equipment")
+        safe_area_motor_list_sheet[f"K{index}"] = data.get("bkw")
+        safe_area_motor_list_sheet[f"L{index}"] = data.get("type_of_couplings")
+        safe_area_motor_list_sheet[f"M{index}"] = data.get("motor_location")
+        safe_area_motor_list_sheet[f"N{index}"] = data.get("supply_voltage")
+        safe_area_motor_list_sheet[f"O{index}"] = 50
+        safe_area_motor_list_sheet[f"P{index}"] = "Feeder Type"
+        safe_area_motor_list_sheet[f"Q{index}"] = data.get("cable_size")
+        safe_area_motor_list_sheet[f"R{index}"] = data.get("space_heater")
+        roller_bearing = "No"
+        if data.get("type_of_bearing") == "Roller":
+            roller_bearing = "Yes"
+        
+        safe_area_motor_list_sheet[f"S{index}"] = roller_bearing
+
+        insulated_bearing = "No"
+        if "nsulat" in data.get("type_of_bearing"):
+            insulated_bearing = "Yes"
+
+        safe_area_motor_list_sheet[f"T{index}"] = insulated_bearing
+        safe_area_motor_list_sheet[f"U{index}"] = data.get("thermistor")
+        safe_area_motor_list_sheet[f"V{index}"] = data.get("bearing_rtd")
+        safe_area_motor_list_sheet[f"W{index}"] = data.get("winding_rtd")
+        safe_area_motor_list_sheet[f"X{index}"] = data.get("efficiency")
+        # safe_area_motor_list_sheet[f"Y{index}"] = 
+        safe_area_motor_list_sheet[f"Z{index}"] = data.get("power_factor")
+        # safe_area_motor_list_sheet[f"AA{index}"] = 
+        safe_area_motor_list_sheet[f"AB{index}"] = data.get("make")
+        safe_area_motor_list_sheet[f"AC{index}"] = data.get("part_code")
+        safe_area_motor_list_sheet[f"AD{index}"] = data.get("remark")
+
 
     output = io.BytesIO()
     template_workbook.save(output)
