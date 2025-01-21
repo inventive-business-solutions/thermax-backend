@@ -276,6 +276,7 @@ def get_motor_specification_excel():
         safe_area_motor_list_sheet[f"AC{index}"] = data.get("part_code")
         safe_area_motor_list_sheet[f"AD{index}"] = data.get("remark")
 
+    
 
     index = 4
 
