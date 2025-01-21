@@ -10,7 +10,11 @@
     "project_id",
     "revision_data_section",
     "status",
+    "is_copied",
+    "clone_note",
     "description",
+    "is_safe_area_selected",
+    "is_hazardous_area_selected",
     "motor_specification_data",
     "motor_details_data"
   ],
@@ -53,11 +57,34 @@
       "fieldname": "revision_data_section",
       "fieldtype": "Section Break",
       "label": "Revision Data"
+    },
+    {
+      "default": "0",
+      "fieldname": "is_safe_area_selected",
+      "fieldtype": "Check",
+      "label": "Is Safe Area Selected"
+    },
+    {
+      "default": "0",
+      "fieldname": "is_hazardous_area_selected",
+      "fieldtype": "Check",
+      "label": "Is Hazardous Area Selected"
+    },
+    {
+      "default": "0",
+      "fieldname": "is_copied",
+      "fieldtype": "Check",
+      "label": "Is Copied"
+    },
+    {
+      "fieldname": "clone_note",
+      "fieldtype": "Small Text",
+      "label": "Clone Note"
     }
   ],
   "index_web_pages_for_search": 1,
   "links": [],
-  "modified": "2024-12-03 17:30:03.022013",
+  "modified": "2025-01-20 19:17:40.432087",
   "modified_by": "Administrator",
   "module": "Thermax Backend",
   "name": "Motor Specification Revisions",

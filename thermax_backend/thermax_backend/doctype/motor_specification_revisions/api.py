@@ -9,7 +9,7 @@ from datetime import datetime
 
 
 @frappe.whitelist()
-def get_motor_spec_excel():
+def get_motor_specification_excel():
     payload = frappe.local.form_dict
     revision_id = payload.get("revision_id")
 
@@ -23,7 +23,9 @@ def get_motor_spec_excel():
         "Design Basis Revision History", {"project_id": project_id}
     ).as_dict()
 
-    # Loading the workbook
+    project_revision_id = design_basis_revision_data.get("revision_id")
+
+    # # Loading the workbook
     template_path = frappe.frappe.get_app_path(
         "thermax_backend", "templates", "motor_specification_template.xlsx"
     )
@@ -117,37 +119,161 @@ def get_motor_spec_excel():
 
     # SPECIFICATION SHEET
 
+    project_info_data =  frappe.db.get_list(
+        "Motor Specification Revisions", {"project_id": project_id}, "*"
+    )
+    project_info_data = project_info_data[0]
+
     motor_specification_data = motor_spec_revision_data.get("motor_specification_data")
 
     specification_sheet["D4"] = (
-        f'{motor_specification_data.get("standard")}, {motor_specification_data.get("zone")}, {motor_specification_data.get("gas_group")}, {motor_specification_data.get("temperature_class")}'
+        f'{project_info_data.get("standard")}, {project_info_data.get("zone")}, {project_info_data.get("gas_group")}, {project_info_data.get("temperature_class")}'
     )
-    specification_sheet["D5"] = motor_specification_data.get("ambient_temperature")
-    specification_sheet["D6"] = motor_specification_data.get("ambient_temperature")
-    specification_sheet["D7"] = motor_specification_data.get(
+    specification_sheet["D5"] = project_info_data.get("ambient_temperature_max")
+    specification_sheet["D6"] = project_info_data.get("ambient_temperature_min")
+    specification_sheet["D7"] = project_info_data.get(
         "electrical_design_temperature"
     )
-    specification_sheet["D8"] = motor_specification_data.get("max_humidity")
-    specification_sheet["D9"] = motor_specification_data.get("min_humidity")
-    specification_sheet["D10"] = motor_specification_data.get("avg_humidity")
-    specification_sheet["D11"] = motor_specification_data.get("humidity_performance")
-    specification_sheet["D12"] = motor_specification_data.get("altitude")
-    specification_sheet["D13"] = motor_specification_data.get("sesmic_zone")
+    specification_sheet["D8"] = project_info_data.get("max_humidity")
+    specification_sheet["D9"] = project_info_data.get("min_humidity")
+    specification_sheet["D10"] = project_info_data.get("avg_humidity")
+    specification_sheet["D11"] = project_info_data.get("performance_humidity")
+    specification_sheet["D12"] = project_info_data.get("altitude")
+    specification_sheet["D13"] = project_info_data.get("seismic_zone")
 
     specification_sheet["E4"] = (
-        f'{motor_specification_data.get("standard")}, {motor_specification_data.get("zone")}, {motor_specification_data.get("gas_group")}, {motor_specification_data.get("temperature_class")}'
+        f'{project_info_data.get("standard")}, {project_info_data.get("zone")}, {project_info_data.get("gas_group")}, {project_info_data.get("temperature_class")}'
     )
-    specification_sheet["E5"] = motor_specification_data.get("ambient_temperature")
-    specification_sheet["E6"] = motor_specification_data.get("ambient_temperature")
-    specification_sheet["E7"] = motor_specification_data.get(
+    specification_sheet["E5"] = project_info_data.get("ambient_temperature_max")
+    specification_sheet["E6"] = project_info_data.get("ambient_temperature_min")
+    specification_sheet["E7"] = project_info_data.get(
         "electrical_design_temperature"
     )
-    specification_sheet["E8"] = motor_specification_data.get("max_humidity")
-    specification_sheet["E9"] = motor_specification_data.get("min_humidity")
-    specification_sheet["E10"] = motor_specification_data.get("avg_humidity")
-    specification_sheet["E11"] = motor_specification_data.get("humidity_performance")
-    specification_sheet["E12"] = motor_specification_data.get("altitude")
-    specification_sheet["E13"] = motor_specification_data.get("sesmic_zone")
+    specification_sheet["E8"] = project_info_data.get("max_humidity")
+    specification_sheet["E9"] = project_info_data.get("min_humidity")
+    specification_sheet["E10"] = project_info_data.get("avg_humidity")
+    specification_sheet["E11"] = project_info_data.get("performance_humidity")
+    specification_sheet["E12"] = project_info_data.get("altitude")
+    specification_sheet["E13"] = project_info_data.get("seismic_zone")
+
+
+    # ELECTRICAL PARAMETERS 
+    specification_sheet["D15"] = project_info_data.get("main_supply_lv")
+    specification_sheet["D16"] = project_info_data.get("main_supply_lv_phase")
+    specification_sheet["D17"] = project_info_data.get("frequency")
+    specification_sheet["D18"] = project_info_data.get("fault_level")
+    specification_sheet["D19"] = "50 KA for 0.25 Sec. for motors"
+
+
+    specification_sheet["E15"] = project_info_data.get("main_supply_lv")
+    specification_sheet["E16"] = project_info_data.get("main_supply_lv_phase")
+    specification_sheet["E17"] = project_info_data.get("frequency")
+    specification_sheet["E18"] = project_info_data.get("fault_level")
+    specification_sheet["E19"] = "50 KA for 0.25 Sec. for motors"
+
+
+    cc_1 = frappe.get_doc("Common Configuration 1", {"revision_id": project_revision_id}, "*").as_dict()
+    cc_2 = frappe.get_doc("Common Configuration 2", {"revision_id": project_revision_id}, "*").as_dict()
+    cc_3 = frappe.get_doc("Common Configuration 3", {"revision_id": project_revision_id}, "*").as_dict()
+
+    common_config_data = cc_1 | cc_2 | cc_3
+
+    specification_sheet["D21"] = common_config_data.get("dm_standard")
+    specification_sheet["D22"] = "Low Voltage Squirrel Cage Induction Motor"
+    specification_sheet["D23"] = "Copper"
+
+    specification_sheet["D21"] = common_config_data.get("dm_standard")
+    specification_sheet["D22"] = "Low Voltage Squirrel Cage Induction Motor"
+    specification_sheet["D23"] = "Copper"
+
+
+    # Motor Parameters
+
+    motor_parameters_data = frappe.get_doc(
+        "Design Basis Motor Parameters",
+        {"revision_id": project_revision_id},
+        "*"
+    ).as_dict()
+
+    specification_sheet["D24"] = motor_parameters_data.get("safe_area_enclosure_ip_rating")
+    specification_sheet["D25"] = motor_parameters_data.get("safe_area_duty")
+    
+
+    specification_sheet["E24"] = motor_parameters_data.get("hazardous_area_enclosure_ip_rating")
+    specification_sheet["E25"] = motor_parameters_data.get("hazardous_area_duty")
+    
+
+    specification_sheet["D30"] = motor_parameters_data.get("safe_area_insulation_class")
+    specification_sheet["D31"] = motor_parameters_data.get("safe_area_temperature_rise")
+    specification_sheet["D33"] = motor_parameters_data.get("safe_area_starts_hour_permissible")
+    specification_sheet["D34"] = motor_parameters_data.get("safe_area_service_factor")
+    specification_sheet["D35"] = motor_parameters_data.get("safe_area_cooling_type")
+    specification_sheet["D42"] = motor_parameters_data.get("safe_area_terminal_box_ip_rating")
+    specification_sheet["D45"] = motor_parameters_data.get("safe_area_paint_type_and_shade")
+
+    specification_sheet["E30"] = motor_parameters_data.get("hazardous_area_insulation_class")
+    specification_sheet["E31"] = motor_parameters_data.get("hazardous_area_temperature_rise")
+    specification_sheet["E33"] = motor_parameters_data.get("hazardous_area_starts_hour_permissible")
+    specification_sheet["E34"] = motor_parameters_data.get("hazardous_area_service_factor")
+    specification_sheet["E35"] = motor_parameters_data.get("hazardous_area_cooling_type")
+    specification_sheet["E42"] = motor_parameters_data.get("hazardous_area_terminal_box_ip_rating")
+    specification_sheet["E45"] = motor_parameters_data.get("hazardous_area_paint_type_and_shade")
+
+    motor_details_data = motor_spec_revision_data.get("motor_details_data")
+    safe_data = []
+    hazard_data = []
+
+    for data in motor_details_data:
+        if data.get("area") == "Safe":
+            safe_data.append(data)
+        else: 
+            hazard_data.append(data)
+
+    # SAFE AREA MOTOR LIST 
+
+    index = 4
+
+    for data in safe_data:
+        safe_area_motor_list_sheet[f"A{index}"] = index - 3
+        safe_area_motor_list_sheet[f"B{index}"] = data.get("tag_number")
+        safe_area_motor_list_sheet[f"C{index}"] = data.get("service_description")
+        safe_area_motor_list_sheet[f"D{index}"] = data.get("working_kw")
+        safe_area_motor_list_sheet[f"E{index}"] = data.get("motor_rated_current")
+        safe_area_motor_list_sheet[f"F{index}"] = data.get("rpm")
+        safe_area_motor_list_sheet[f"G{index}"] = data.get("type_of_mounting")
+        safe_area_motor_list_sheet[f"H{index}"] = data.get("motor_frame_size")
+        safe_area_motor_list_sheet[f"I{index}"] = data.get("motor_gd2")
+        safe_area_motor_list_sheet[f"J{index}"] = data.get("gd2_of_driven_equipment")
+        safe_area_motor_list_sheet[f"K{index}"] = data.get("bkw")
+        safe_area_motor_list_sheet[f"L{index}"] = data.get("type_of_couplings")
+        safe_area_motor_list_sheet[f"M{index}"] = data.get("motor_location")
+        safe_area_motor_list_sheet[f"N{index}"] = data.get("supply_voltage")
+        safe_area_motor_list_sheet[f"O{index}"] = 50
+        safe_area_motor_list_sheet[f"P{index}"] = "Feeder Type"
+        safe_area_motor_list_sheet[f"Q{index}"] = data.get("cable_size")
+        safe_area_motor_list_sheet[f"R{index}"] = data.get("space_heater")
+        roller_bearing = "No"
+        if data.get("type_of_bearing") == "Roller":
+            roller_bearing = "Yes"
+        
+        safe_area_motor_list_sheet[f"S{index}"] = roller_bearing
+
+        insulated_bearing = "No"
+        if "nsulat" in data.get("type_of_bearing"):
+            insulated_bearing = "Yes"
+
+        safe_area_motor_list_sheet[f"T{index}"] = insulated_bearing
+        safe_area_motor_list_sheet[f"U{index}"] = data.get("thermistor")
+        safe_area_motor_list_sheet[f"V{index}"] = data.get("bearing_rtd")
+        safe_area_motor_list_sheet[f"W{index}"] = data.get("winding_rtd")
+        safe_area_motor_list_sheet[f"X{index}"] = data.get("efficiency")
+        # safe_area_motor_list_sheet[f"Y{index}"] = 
+        safe_area_motor_list_sheet[f"Z{index}"] = data.get("power_factor")
+        # safe_area_motor_list_sheet[f"AA{index}"] = 
+        safe_area_motor_list_sheet[f"AB{index}"] = data.get("make")
+        safe_area_motor_list_sheet[f"AC{index}"] = data.get("part_code")
+        safe_area_motor_list_sheet[f"AD{index}"] = data.get("remark")
+
 
     output = io.BytesIO()
     template_workbook.save(output)
