@@ -193,6 +193,7 @@ override_whitelisted_methods = {
     "local_isolator_revisions.get_local_isolator_excel":"thermax_backend.thermax_backend.doctype.local_isolator_revisions.api.get_local_isolator_excel",
     "lpbs_specification_revisions.get_lpbs_specification_excel":"thermax_backend.thermax_backend.doctype.lpbs_specification_revisions.api.get_lpbs_specification_excel",
     "motor_specification_revisions.get_motor_specification_excel":"thermax_backend.thermax_backend.doctype.motor_specification_revisions.api.get_motor_specification_excel",
+    "motor_canopy_revisions.get_motor_canopy_excel":"thermax_backend.thermax_backend.doctype.motor_canopy_revisions.api.get_motor_canopy_excel",
 
     "design_basis_make_of_component.get_make_of_component_dropdowns": "thermax_backend.thermax_backend.doctype.design_basis_make_of_component.api.get_make_of_component_dropdowns",
     "design_basis_motor_parameters.get_motor_parameters_dropdowns": "thermax_backend.thermax_backend.doctype.design_basis_motor_parameters.api.get_motor_parameters_dropdowns",
