@@ -34,7 +34,10 @@ def create_cover_sheet(cover_sheet, project_data, revision_data, division_name):
     cover_sheet["D8"] = consultant_name.upper()
     cover_sheet["D9"] = project_name.upper()
     cover_sheet["D10"] = project_oc_number.upper()
-    cover_sheet["D11"] = static_documents.get("electrical_load_list", "TBD").upper()
+    doc_name = static_documents.get("electrical_load_list", "TBD")
+    if doc_name is None:
+        doc_name = "TBD"
+    cover_sheet["D11"] = doc_name
 
     index = 33
 
