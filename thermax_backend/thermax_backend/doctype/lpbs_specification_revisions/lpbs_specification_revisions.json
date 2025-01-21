@@ -6,13 +6,13 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "linking_keys_section",
   "project_id",
+  "revision_data_section",
   "status",
   "is_copied",
   "clone_note",
   "description",
-  "is_safe_lpbs_selected",
-  "is_hazardous_lpbs_selected",
   "lpbs_specification_data",
   "lpbs_specifications_motor_details"
  ],
@@ -47,16 +47,14 @@
    "options": "LPBS Specifications Motor Details Data"
   },
   {
-   "default": "0",
-   "fieldname": "is_safe_lpbs_selected",
-   "fieldtype": "Check",
-   "label": "Is Safe LPBS Selected"
+   "fieldname": "linking_keys_section",
+   "fieldtype": "Section Break",
+   "label": "Linking Keys"
   },
   {
-   "default": "0",
-   "fieldname": "is_hazardous_lpbs_selected",
-   "fieldtype": "Check",
-   "label": "Is Hazardous LPBS Selected"
+   "fieldname": "revision_data_section",
+   "fieldtype": "Section Break",
+   "label": "Revision Data"
   },
   {
    "default": "0",

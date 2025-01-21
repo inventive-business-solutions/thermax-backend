@@ -7,7 +7,9 @@
  "engine": "InnoDB",
  "field_order": [
   "linking_keys_section",
+  "linking_keys_section",
   "project_id",
+  "revision_data_section",
   "revision_data_section",
   "status",
   "is_copied",
@@ -80,6 +82,16 @@
    "fieldname": "clone_note",
    "fieldtype": "Small Text",
    "label": "Clone Note"
+  },
+  {
+   "fieldname": "linking_keys_section",
+   "fieldtype": "Section Break",
+   "label": "Linking Keys"
+  },
+  {
+   "fieldname": "revision_data_section",
+   "fieldtype": "Section Break",
+   "label": "Revision Data"
   }
  ],
  "index_web_pages_for_search": 1,

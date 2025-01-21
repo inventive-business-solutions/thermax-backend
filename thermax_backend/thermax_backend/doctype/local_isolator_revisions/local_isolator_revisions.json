@@ -6,13 +6,13 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "linking_keys_section",
   "project_id",
+  "revision_data_section",
   "status",
   "is_copied",
   "clone_note",
   "description",
-  "is_safe_area_isolator_selected",
-  "is_hazardous_area_isolator_selected",
   "local_isolator_data",
   "local_isolator_motor_details_data"
  ],
@@ -47,16 +47,14 @@
    "options": "Local Isolator Motor Details Data"
   },
   {
-   "default": "0",
-   "fieldname": "is_safe_area_isolator_selected",
-   "fieldtype": "Check",
-   "label": "Is Safe Area Isolator Selected"
+   "fieldname": "linking_keys_section",
+   "fieldtype": "Section Break",
+   "label": "Linking Keys"
   },
   {
-   "default": "0",
-   "fieldname": "is_hazardous_area_isolator_selected",
-   "fieldtype": "Check",
-   "label": "Is Hazardous Area Isolator Selected"
+   "fieldname": "revision_data_section",
+   "fieldtype": "Section Break",
+   "label": "Revision Data"
   },
   {
    "default": "0",

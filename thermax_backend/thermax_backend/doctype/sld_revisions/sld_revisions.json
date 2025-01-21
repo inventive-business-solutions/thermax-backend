@@ -7,7 +7,6 @@
  "engine": "InnoDB",
  "field_order": [
   "linking_keys_section",
-  "project_id",
   "panel_id",
   "section_break_mvwt",
   "panel_name",
@@ -30,12 +29,6 @@
    "fieldtype": "Table",
    "label": "Switchgear Selection Data",
    "options": "Switchgear Selection Data"
-  },
-  {
-   "fieldname": "project_id",
-   "fieldtype": "Link",
-   "label": "Project ID",
-   "options": "Project"
   },
   {
    "fieldname": "description",
@@ -91,7 +84,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-18 14:54:22.155200",
+ "modified": "2025-01-18 19:56:30.381250",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "SLD Revisions",

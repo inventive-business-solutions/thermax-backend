@@ -7,7 +7,6 @@
  "engine": "InnoDB",
  "field_order": [
   "linking_keys_section",
-  "project_id",
   "panel_id",
   "section_break_mvwt",
   "panel_name",
@@ -25,12 +24,6 @@
    "fieldname": "linking_keys_section",
    "fieldtype": "Section Break",
    "label": "Linking Keys"
-  },
-  {
-   "fieldname": "project_id",
-   "fieldtype": "Link",
-   "label": "Project ID",
-   "options": "Project"
   },
   {
    "fieldname": "panel_id",
