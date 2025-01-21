@@ -23,7 +23,7 @@ def get_motor_specification_excel():
         "Design Basis Revision History", {"project_id": project_id}
     ).as_dict()
 
-    project_revision_id = design_basis_revision_data.get("revision_id")
+    project_revision_id = design_basis_revision_data.get("name")
 
     # # Loading the workbook
     template_path = frappe.frappe.get_app_path(
@@ -120,7 +120,7 @@ def get_motor_specification_excel():
     # SPECIFICATION SHEET
 
     project_info_data =  frappe.db.get_list(
-        "Motor Specification Revisions", {"project_id": project_id}, "*"
+        "Project Information", {"project_id": project_id}, "*"
     )
     project_info_data = project_info_data[0]
 
@@ -172,9 +172,12 @@ def get_motor_specification_excel():
     specification_sheet["E19"] = "50 KA for 0.25 Sec. for motors"
 
 
-    cc_1 = frappe.get_doc("Common Configuration 1", {"revision_id": project_revision_id}, "*").as_dict()
-    cc_2 = frappe.get_doc("Common Configuration 2", {"revision_id": project_revision_id}, "*").as_dict()
-    cc_3 = frappe.get_doc("Common Configuration 3", {"revision_id": project_revision_id}, "*").as_dict()
+    cc_1 = frappe.db.get_list("Common Configuration 1", {"revision_id": project_revision_id}, "*")
+    cc_1 = cc_1[0]
+    cc_2 = frappe.db.get_list("Common Configuration 2", {"revision_id": project_revision_id}, "*")
+    cc_2 = cc_2[0]
+    cc_3 = frappe.db.get_list("Common Configuration 3", {"revision_id": project_revision_id}, "*")
+    cc_3 = cc_3[0]
 
     common_config_data = cc_1 | cc_2 | cc_3
 
@@ -201,7 +204,7 @@ def get_motor_specification_excel():
 
     specification_sheet["E24"] = motor_parameters_data.get("hazardous_area_enclosure_ip_rating")
     specification_sheet["E25"] = motor_parameters_data.get("hazardous_area_duty")
-    
+
 
     specification_sheet["D30"] = motor_parameters_data.get("safe_area_insulation_class")
     specification_sheet["D31"] = motor_parameters_data.get("safe_area_temperature_rise")
@@ -210,7 +213,6 @@ def get_motor_specification_excel():
     specification_sheet["D35"] = motor_parameters_data.get("safe_area_cooling_type")
     specification_sheet["D42"] = motor_parameters_data.get("safe_area_terminal_box_ip_rating")
     specification_sheet["D45"] = motor_parameters_data.get("safe_area_paint_type_and_shade")
-
     specification_sheet["E30"] = motor_parameters_data.get("hazardous_area_insulation_class")
     specification_sheet["E31"] = motor_parameters_data.get("hazardous_area_temperature_rise")
     specification_sheet["E33"] = motor_parameters_data.get("hazardous_area_starts_hour_permissible")
