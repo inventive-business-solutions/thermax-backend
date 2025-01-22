@@ -39,7 +39,7 @@
   {
    "fieldname": "linking_keys_section",
    "fieldtype": "Section Break",
-   "label": "Linking Keys"
+   "label": "Primary Key"
   },
   {
    "fieldname": "section_break_dxon",
@@ -48,7 +48,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-05 12:12:03.724290",
+ "modified": "2025-01-22 01:35:50.314582",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Dynamic Document List",
