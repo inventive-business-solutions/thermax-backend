@@ -204,9 +204,11 @@ def get_design_basis_excel():
             revision_id=revision_id,
         )
 
-    template_workbook.remove(mcc_sheet)
-    template_workbook.remove(pcc_sheet)
-    template_workbook.remove(mcc_cum_plc_sheet)
+        # MCC
+
+    # template_workbook.remove(mcc_sheet)
+    # template_workbook.remove(pcc_sheet)
+    # template_workbook.remove(mcc_cum_plc_sheet)
 
     # Load the workbook from the template path
     # template_workbook.save("design_basis.xlsx")
