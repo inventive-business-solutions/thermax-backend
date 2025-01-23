@@ -277,6 +277,7 @@ def get_motor_specification_excel():
         safe_area_motor_list_sheet[f"AB{index}"] = data.get("make")
         safe_area_motor_list_sheet[f"AC{index}"] = data.get("part_code")
         safe_area_motor_list_sheet[f"AD{index}"] = data.get("remark")
+        index = index + 1
 
     # safe_area_motor_bom_sheet
     count_dict = defaultdict(int)
@@ -288,7 +289,7 @@ def get_motor_specification_excel():
     index = 3
 
     for key, count in count_dict.items():
-        safe_area_motor_bom_sheet[f"A{index}"] = index - 3
+        safe_area_motor_bom_sheet[f"A{index}"] = index - 1
         # safe_area_motor_bom_sheet[f"B{index}"] = index - 3
         safe_area_motor_bom_sheet[f"C{index}"] = key
         safe_area_motor_bom_sheet[f"D{index}"] = "NOS"
@@ -296,7 +297,7 @@ def get_motor_specification_excel():
         # safe_area_motor_bom_sheet[f"F{index}"] = 
         index += 1
 
-
+    index = 3
     for data in hazard_data:
         hazardous_area_motor_list_sheet[f"A{index}"] = index - 2
         hazardous_area_motor_list_sheet[f"B{index}"] = data.get("tag_number")
@@ -337,6 +338,7 @@ def get_motor_specification_excel():
         hazardous_area_motor_list_sheet[f"AB{index}"] = data.get("make")
         hazardous_area_motor_list_sheet[f"AC{index}"] = data.get("part_code")
         hazardous_area_motor_list_sheet[f"AD{index}"] = data.get("remark")
+        index = index + 1
 
     count_dict = defaultdict(int)
     # Iterate through each motor detail in the correct structure
