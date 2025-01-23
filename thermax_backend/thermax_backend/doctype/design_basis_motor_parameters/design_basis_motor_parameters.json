@@ -58,21 +58,18 @@
  "fields": [
   {
    "fieldname": "safe_area_efficiency_level",
-   "fieldtype": "Link",
-   "label": "Safe Area Efficiency Level",
-   "options": "Efficiency Level Safe Area"
+   "fieldtype": "Data",
+   "label": "Safe Area Efficiency Level"
   },
   {
    "fieldname": "safe_area_insulation_class",
-   "fieldtype": "Link",
-   "label": "Safe Area Insulation Class",
-   "options": "Insulation Class Safe Area"
+   "fieldtype": "Data",
+   "label": "Safe Area Insulation Class"
   },
   {
    "fieldname": "safe_area_temperature_rise",
-   "fieldtype": "Link",
-   "label": "Safe Area Temperature Rise",
-   "options": "Safe Temperature Rise"
+   "fieldtype": "Data",
+   "label": "Safe Area Temperature Rise"
   },
   {
    "fieldname": "safe_area_enclosure_ip_rating",
@@ -96,21 +93,18 @@
   },
   {
    "fieldname": "safe_area_terminal_box_ip_rating",
-   "fieldtype": "Link",
-   "label": "Safe Area Terminal Box IP Rating",
-   "options": "IP rating for Terminal Box Safe"
+   "fieldtype": "Data",
+   "label": "Safe Area Terminal Box IP Rating"
   },
   {
    "fieldname": "safe_area_thermister",
-   "fieldtype": "Link",
-   "label": "Safe Area Thermister",
-   "options": "Thermister Safe"
+   "fieldtype": "Data",
+   "label": "Safe Area Thermister"
   },
   {
    "fieldname": "safe_area_space_heater",
-   "fieldtype": "Link",
-   "label": "Safe Area Space Heater",
-   "options": "Space Heater Safe"
+   "fieldtype": "Data",
+   "label": "Safe Area Space Heater"
   },
   {
    "fieldname": "safe_area_certification",
@@ -119,15 +113,13 @@
   },
   {
    "fieldname": "safe_area_bearing_rtd",
-   "fieldtype": "Link",
-   "label": "Safe Area Bearing RTD",
-   "options": "Bearing RTD Safe"
+   "fieldtype": "Data",
+   "label": "Safe Area Bearing RTD"
   },
   {
    "fieldname": "safe_area_winding_rtd",
-   "fieldtype": "Link",
-   "label": "Safe Area Winding RTD",
-   "options": "Winding RTD Safe"
+   "fieldtype": "Data",
+   "label": "Safe Area Winding RTD"
   },
   {
    "fieldname": "safe_area_bearing_type",
@@ -146,15 +138,13 @@
   },
   {
    "fieldname": "safe_area_body_material",
-   "fieldtype": "Link",
-   "label": "Safe Area Body Material",
-   "options": "Body Material Safe"
+   "fieldtype": "Data",
+   "label": "Safe Area Body Material"
   },
   {
    "fieldname": "safe_area_terminal_box_material",
-   "fieldtype": "Link",
-   "label": "Safe Area Terminal Box Material",
-   "options": "Material of Terminal Box Safe"
+   "fieldtype": "Data",
+   "label": "Safe Area Terminal Box Material"
   },
   {
    "fieldname": "safe_area_paint_type_and_shade",
@@ -172,21 +162,18 @@
   },
   {
    "fieldname": "hazardous_area_efficiency_level",
-   "fieldtype": "Link",
-   "label": "Hazardous Area Efficiency Level",
-   "options": "Efficiency Level Hazardous Area"
+   "fieldtype": "Data",
+   "label": "Hazardous Area Efficiency Level"
   },
   {
    "fieldname": "hazardous_area_insulation_class",
-   "fieldtype": "Link",
-   "label": "Hazardous Area Insulation Class",
-   "options": "Insulation Class Hazardous Area"
+   "fieldtype": "Data",
+   "label": "Hazardous Area Insulation Class"
   },
   {
    "fieldname": "hazardous_area_temperature_rise",
-   "fieldtype": "Link",
-   "label": "Hazardous Area Temperature Rise",
-   "options": "Hazardous Temperature Rise"
+   "fieldtype": "Data",
+   "label": "Hazardous Area Temperature Rise"
   },
   {
    "fieldname": "hazardous_area_enclosure_ip_rating",
@@ -210,21 +197,18 @@
   },
   {
    "fieldname": "hazardous_area_terminal_box_ip_rating",
-   "fieldtype": "Link",
-   "label": "Hazardous Area Terminal Box IP Rating",
-   "options": "IP rating for Terminal Box Hazardous"
+   "fieldtype": "Data",
+   "label": "Hazardous Area Terminal Box IP Rating"
   },
   {
    "fieldname": "hazardous_area_thermister",
-   "fieldtype": "Link",
-   "label": "Hazardous Area Thermister",
-   "options": "Thermister Hazardous"
+   "fieldtype": "Data",
+   "label": "Hazardous Area Thermister"
   },
   {
    "fieldname": "hazardous_area_space_heater",
-   "fieldtype": "Link",
-   "label": "Hazardous Area Space Heater",
-   "options": "Space Heater Hazardous"
+   "fieldtype": "Data",
+   "label": "Hazardous Area Space Heater"
   },
   {
    "fieldname": "revision_id",
@@ -245,21 +229,18 @@
   },
   {
    "fieldname": "hazardous_area_certification",
-   "fieldtype": "Link",
-   "label": "Hazardous Area Certification",
-   "options": "Hazardous Area Certification"
+   "fieldtype": "Data",
+   "label": "Hazardous Area Certification"
   },
   {
    "fieldname": "hazardous_area_bearing_rtd",
-   "fieldtype": "Link",
-   "label": "Hazardous Area Bearing RTD",
-   "options": "Bearing RTD Hazardous"
+   "fieldtype": "Data",
+   "label": "Hazardous Area Bearing RTD"
   },
   {
    "fieldname": "hazardous_area_winding_rtd",
-   "fieldtype": "Link",
-   "label": "Hazardous Area Winding RTD",
-   "options": "Winding RTD Hazardous"
+   "fieldtype": "Data",
+   "label": "Hazardous Area Winding RTD"
   },
   {
    "fieldname": "hazardous_area_bearing_type",
@@ -283,15 +264,13 @@
   },
   {
    "fieldname": "hazardous_area_body_material",
-   "fieldtype": "Link",
-   "label": "Hazardous Area Body Material",
-   "options": "Body Material Hazardous"
+   "fieldtype": "Data",
+   "label": "Hazardous Area Body Material"
   },
   {
    "fieldname": "hazardous_area_terminal_box_material",
-   "fieldtype": "Link",
-   "label": "Hazardous Area Terminal Box Material",
-   "options": "Material of Terminal Box Hazardous"
+   "fieldtype": "Data",
+   "label": "Hazardous Area Terminal Box Material"
   },
   {
    "fieldname": "hazardous_area_paint_type_and_shade",
@@ -322,7 +301,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-18 11:57:16.496148",
+ "modified": "2025-01-23 19:47:50.708290",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Design Basis Motor Parameters",

@@ -33,21 +33,18 @@
   },
   {
    "fieldname": "earthing_system",
-   "fieldtype": "Link",
-   "label": "Earthing System",
-   "options": "Earthing System"
+   "fieldtype": "Data",
+   "label": "Earthing System"
   },
   {
    "fieldname": "earth_strip",
-   "fieldtype": "Link",
-   "label": "Earth Strip",
-   "options": "Earth Strip"
+   "fieldtype": "Data",
+   "label": "Earth Strip"
   },
   {
    "fieldname": "earth_pit",
-   "fieldtype": "Link",
-   "label": "Earth Pit",
-   "options": "Earth Pit"
+   "fieldtype": "Data",
+   "label": "Earth Pit"
   },
   {
    "fieldname": "soil_resistivity",
@@ -57,7 +54,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-06 04:00:31.771776",
+ "modified": "2025-01-23 20:08:13.463365",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Layout Earthing",

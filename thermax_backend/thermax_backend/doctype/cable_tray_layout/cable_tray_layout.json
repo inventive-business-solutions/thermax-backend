@@ -30,6 +30,7 @@
   "moc",
   "type_of_gland",
   "cable_trays_section",
+  "cable_tray_cover",
   "future_space_on_trays",
   "cable_placement",
   "orientation",
@@ -96,8 +97,7 @@
   "sct_mesh_type_thickness",
   "is_sct_conduit_selected",
   "sct_conduit_moc",
-  "sct_conduit_size",
-  "cable_tray_cover"
+  "sct_conduit_size"
  ],
  "fields": [
   {
@@ -118,51 +118,43 @@
   },
   {
    "fieldname": "number_of_cores",
-   "fieldtype": "Link",
-   "label": "Number of Cores",
-   "options": "Layout Number Of Cores"
+   "fieldtype": "Data",
+   "label": "Number of Cores"
   },
   {
    "fieldname": "specific_requirement",
-   "fieldtype": "Link",
-   "label": "Specific Requirement",
-   "options": "Layout Specific Requirement"
+   "fieldtype": "Data",
+   "label": "Specific Requirement"
   },
   {
    "fieldname": "type_of_insulation",
-   "fieldtype": "Link",
-   "label": "Type of Insulation",
-   "options": "Layout Type of Insulation"
+   "fieldtype": "Data",
+   "label": "Type of Insulation"
   },
   {
    "fieldname": "color_scheme",
-   "fieldtype": "Link",
-   "label": "Color Scheme",
-   "options": "Layout Color Scheme"
+   "fieldtype": "Data",
+   "label": "Color Scheme"
   },
   {
    "fieldname": "motor_voltage_drop_during_running",
-   "fieldtype": "Link",
-   "label": "Motor voltage drop during running",
-   "options": "Layout Running Motor Voltage Drop"
+   "fieldtype": "Data",
+   "label": "Motor voltage drop during running"
   },
   {
    "fieldname": "cable_installation",
-   "fieldtype": "Link",
-   "label": "Cable Installation",
-   "options": "Layout Cable Installation"
+   "fieldtype": "Data",
+   "label": "Cable Installation"
   },
   {
    "fieldname": "motor_voltage_drop_during_starting",
-   "fieldtype": "Link",
-   "label": "Motor voltage drop during starting",
-   "options": "Layout Starting Motor Voltage Drop"
+   "fieldtype": "Data",
+   "label": "Motor voltage drop during starting"
   },
   {
    "fieldname": "voltage_grade",
-   "fieldtype": "Link",
-   "label": "Voltage Grade",
-   "options": "Layout Voltage Grade"
+   "fieldtype": "Data",
+   "label": "Voltage Grade"
   },
   {
    "fieldname": "gland_details_section",
@@ -171,21 +163,18 @@
   },
   {
    "fieldname": "gland_make",
-   "fieldtype": "Link",
-   "label": "Gland Make",
-   "options": "Gland Make"
+   "fieldtype": "Data",
+   "label": "Gland Make"
   },
   {
    "fieldname": "moc",
-   "fieldtype": "Link",
-   "label": "MOC",
-   "options": "Gland MOC"
+   "fieldtype": "Data",
+   "label": "MOC"
   },
   {
    "fieldname": "type_of_gland",
-   "fieldtype": "Link",
-   "label": "Type Of Gland",
-   "options": "Type Of Gland"
+   "fieldtype": "Data",
+   "label": "Type Of Gland"
   },
   {
    "fieldname": "cable_trays_section",
@@ -194,21 +183,18 @@
   },
   {
    "fieldname": "future_space_on_trays",
-   "fieldtype": "Link",
-   "label": "Future Space on Trays",
-   "options": "Future Space on Trays"
+   "fieldtype": "Data",
+   "label": "Future Space on Trays"
   },
   {
    "fieldname": "cable_placement",
-   "fieldtype": "Link",
-   "label": "Cable Placement",
-   "options": "Cable Placement"
+   "fieldtype": "Data",
+   "label": "Cable Placement"
   },
   {
    "fieldname": "orientation",
-   "fieldtype": "Link",
-   "label": "Orientation",
-   "options": "Cable Tray Orientation"
+   "fieldtype": "Data",
+   "label": "Orientation"
   },
   {
    "fieldname": "vertical_distance",
@@ -228,16 +214,14 @@
   {
    "default": "0",
    "fieldname": "is_dry_area_selected",
-   "fieldtype": "Select",
-   "label": "Is Dry Area Selected",
-   "options": "0\n1"
+   "fieldtype": "Check",
+   "label": "Is Dry Area Selected"
   },
   {
    "default": "0",
    "fieldname": "is_wet_area_selected",
-   "fieldtype": "Select",
-   "label": "Is Wet Area Selected",
-   "options": "0\n1"
+   "fieldtype": "Check",
+   "label": "Is Wet Area Selected"
   },
   {
    "fieldname": "power_cable_tray_section",
@@ -247,96 +231,81 @@
   {
    "default": "0",
    "fieldname": "is_pct_perforated_type_selected",
-   "fieldtype": "Select",
-   "label": "Is PCT Perforated Type Selected",
-   "options": "0\n1"
+   "fieldtype": "Check",
+   "label": "Is PCT Perforated Type Selected"
   },
   {
    "fieldname": "pct_perforated_type_width",
-   "fieldtype": "Link",
-   "label": "PCT Perforated Type Width",
-   "options": "Cable Tray Width"
+   "fieldtype": "Data",
+   "label": "PCT Perforated Type Width"
   },
   {
    "fieldname": "pct_perforated_type_height",
-   "fieldtype": "Link",
-   "label": "PCT Perforated Type Height",
-   "options": "Cable Tray Height"
+   "fieldtype": "Data",
+   "label": "PCT Perforated Type Height"
   },
   {
    "fieldname": "pct_perforated_type_thickness",
-   "fieldtype": "Link",
-   "label": "PCT Perforated Type Thickness",
-   "options": "Cable Tray Thickness"
+   "fieldtype": "Data",
+   "label": "PCT Perforated Type Thickness"
   },
   {
    "default": "0",
    "fieldname": "is_pct_ladder_type_selected",
-   "fieldtype": "Select",
-   "label": "Is PCT Ladder Type Selected",
-   "options": "0\n1"
+   "fieldtype": "Check",
+   "label": "Is PCT Ladder Type Selected"
   },
   {
    "fieldname": "pct_ladder_type_width",
-   "fieldtype": "Link",
-   "label": "PCT Ladder Type Width",
-   "options": "Cable Tray Width"
+   "fieldtype": "Data",
+   "label": "PCT Ladder Type Width"
   },
   {
    "fieldname": "pct_ladder_type_height",
-   "fieldtype": "Link",
-   "label": "PCT Ladder Type Height",
-   "options": "Cable Tray Height"
+   "fieldtype": "Data",
+   "label": "PCT Ladder Type Height"
   },
   {
    "fieldname": "pct_ladder_type_thickness",
-   "fieldtype": "Link",
-   "label": "PCT Ladder Type Thickness",
-   "options": "Cable Tray Thickness"
+   "fieldtype": "Data",
+   "label": "PCT Ladder Type Thickness"
   },
   {
    "default": "0",
    "fieldname": "is_pct_mesh_type_selected",
-   "fieldtype": "Select",
-   "label": "Is PCT Mesh Type Selected",
-   "options": "0\n1"
+   "fieldtype": "Check",
+   "label": "Is PCT Mesh Type Selected"
   },
   {
    "fieldname": "pct_mesh_type_width",
-   "fieldtype": "Link",
-   "label": "PCT Mesh Type Width",
-   "options": "Cable Tray Width"
+   "fieldtype": "Data",
+   "label": "PCT Mesh Type Width"
   },
   {
    "fieldname": "pct_mesh_type_height",
-   "fieldtype": "Link",
-   "label": "PCT Mesh Type Height",
-   "options": "Cable Tray Height"
+   "fieldtype": "Data",
+   "label": "PCT Mesh Type Height"
   },
   {
    "fieldname": "pct_mesh_type_thickness",
-   "fieldtype": "Link",
-   "label": "PCT Mesh Type Thickness",
-   "options": "Cable Tray Thickness"
+   "fieldtype": "Data",
+   "label": "PCT Mesh Type Thickness"
   },
   {
    "default": "0",
    "fieldname": "is_pct_conduit_selected",
-   "fieldtype": "Select",
-   "label": "Is PCT Conduit Selected",
-   "options": "0\n1"
+   "fieldtype": "Check",
+   "label": "Is PCT Conduit Selected"
   },
   {
    "fieldname": "pct_conduit_moc",
-   "fieldtype": "Link",
-   "label": "PCT Conduit MOC",
-   "options": "Conduit MOC"
+   "fieldtype": "Data",
+   "label": "PCT Conduit MOC"
   },
   {
    "fieldname": "pct_conduit_size",
-   "fieldtype": "Link",
-   "label": "PCT Conduit Size",
-   "options": "Conduit Size"
+   "fieldtype": "Data",
+   "label": "PCT Conduit Size"
   },
   {
    "fieldname": "control_cable_tray_section",
@@ -346,96 +315,82 @@
   {
    "default": "0",
    "fieldname": "is_cct_perforated_type_selected",
-   "fieldtype": "Select",
-   "label": "Is CCT Perforated Type Selected",
-   "options": "0\n1"
+   "fieldtype": "Check",
+   "label": "Is CCT Perforated Type Selected"
   },
   {
    "fieldname": "cct_perforated_type_width",
-   "fieldtype": "Link",
-   "label": "CCT Perforated Type Width",
-   "options": "Cable Tray Width"
+   "fieldtype": "Data",
+   "label": "CCT Perforated Type Width"
   },
   {
    "fieldname": "cct_perforated_type_height",
-   "fieldtype": "Link",
-   "label": "CCT Perforated Type Height",
-   "options": "Cable Tray Height"
+   "fieldtype": "Data",
+   "label": "CCT Perforated Type Height"
   },
   {
    "fieldname": "cct_perforated_type_thickness",
-   "fieldtype": "Link",
-   "label": "CCT Perforated Type Thickness",
-   "options": "Cable Tray Thickness"
+   "fieldtype": "Data",
+   "label": "CCT Perforated Type Thickness"
   },
   {
    "default": "0",
    "fieldname": "is_cct_ladder_type_selected",
-   "fieldtype": "Select",
+   "fieldtype": "Check",
    "label": "Is CCT Ladder Type Selected",
    "options": "0\n1"
   },
   {
    "fieldname": "cct_ladder_type_width",
-   "fieldtype": "Link",
-   "label": "CCT Ladder Type Width",
-   "options": "Cable Tray Width"
+   "fieldtype": "Data",
+   "label": "CCT Ladder Type Width"
   },
   {
    "fieldname": "cct_ladder_type_height",
-   "fieldtype": "Link",
-   "label": "CCT Ladder Type Height",
-   "options": "Cable Tray Height"
+   "fieldtype": "Data",
+   "label": "CCT Ladder Type Height"
   },
   {
    "fieldname": "cct_ladder_type_thickness",
-   "fieldtype": "Link",
-   "label": "CCT Ladder Type Thickness",
-   "options": "Cable Tray Thickness"
+   "fieldtype": "Data",
+   "label": "CCT Ladder Type Thickness"
   },
   {
    "default": "0",
    "fieldname": "is_cct_mesh_type_selected",
-   "fieldtype": "Select",
-   "label": "Is CCT Mesh Type Selected",
-   "options": "0\n1"
+   "fieldtype": "Check",
+   "label": "Is CCT Mesh Type Selected"
   },
   {
    "fieldname": "cct_mesh_type_width",
-   "fieldtype": "Link",
-   "label": "CCT Mesh Type Width",
-   "options": "Cable Tray Width"
+   "fieldtype": "Data",
+   "label": "CCT Mesh Type Width"
   },
   {
    "fieldname": "cct_mesh_type_height",
-   "fieldtype": "Link",
-   "label": "CCT Mesh Type Height",
-   "options": "Cable Tray Height"
+   "fieldtype": "Data",
+   "label": "CCT Mesh Type Height"
   },
   {
    "fieldname": "cct_mesh_type_thickness",
-   "fieldtype": "Link",
-   "label": "CCT Mesh Type Thickness",
-   "options": "Cable Tray Thickness"
+   "fieldtype": "Data",
+   "label": "CCT Mesh Type Thickness"
   },
   {
    "default": "0",
    "fieldname": "is_cct_conduit_selected",
-   "fieldtype": "Select",
-   "label": "Is CCT Conduit Selected",
-   "options": "0\n1"
+   "fieldtype": "Check",
+   "label": "Is CCT Conduit Selected"
   },
   {
    "fieldname": "cct_conduit_moc",
-   "fieldtype": "Link",
-   "label": "CCT Conduit MOC",
-   "options": "Conduit MOC"
+   "fieldtype": "Data",
+   "label": "CCT Conduit MOC"
   },
   {
    "fieldname": "cct_conduit_size",
-   "fieldtype": "Link",
-   "label": "CCT Conduit Size",
-   "options": "Conduit Size"
+   "fieldtype": "Data",
+   "label": "CCT Conduit Size"
   },
   {
    "fieldname": "single_cable_tray_section",
@@ -445,151 +400,127 @@
   {
    "default": "0",
    "fieldname": "is_sct_perforated_type_selected",
-   "fieldtype": "Select",
-   "label": "Is SCT Perforated Type Selected",
-   "options": "0\n1"
+   "fieldtype": "Check",
+   "label": "Is SCT Perforated Type Selected"
   },
   {
    "fieldname": "sct_perforated_type_width",
-   "fieldtype": "Link",
-   "label": "SCT Perforated Type Width",
-   "options": "Cable Tray Width"
+   "fieldtype": "Data",
+   "label": "SCT Perforated Type Width"
   },
   {
    "fieldname": "sct_perforated_type_height",
-   "fieldtype": "Link",
-   "label": "SCT Perforated Type Height",
-   "options": "Cable Tray Height"
+   "fieldtype": "Data",
+   "label": "SCT Perforated Type Height"
   },
   {
    "fieldname": "sct_perforated_type_thickness",
-   "fieldtype": "Link",
-   "label": "SCT Perforated Type Thickness",
-   "options": "Cable Tray Thickness"
+   "fieldtype": "Data",
+   "label": "SCT Perforated Type Thickness"
   },
   {
    "default": "0",
    "fieldname": "is_sct_ladder_type_selected",
-   "fieldtype": "Select",
-   "label": "Is SCT Ladder Type Selected",
-   "options": "0\n1"
+   "fieldtype": "Check",
+   "label": "Is SCT Ladder Type Selected"
   },
   {
    "fieldname": "sct_ladder_type_width",
-   "fieldtype": "Link",
-   "label": "SCT Ladder Type Width",
-   "options": "Cable Tray Width"
+   "fieldtype": "Data",
+   "label": "SCT Ladder Type Width"
   },
   {
    "fieldname": "sct_ladder_type_height",
-   "fieldtype": "Link",
-   "label": "SCT Ladder Type Height",
-   "options": "Cable Tray Height"
+   "fieldtype": "Data",
+   "label": "SCT Ladder Type Height"
   },
   {
    "fieldname": "sct_ladder_type_thickness",
-   "fieldtype": "Link",
-   "label": "SCT Ladder Type Thickness",
-   "options": "Cable Tray Thickness"
+   "fieldtype": "Data",
+   "label": "SCT Ladder Type Thickness"
   },
   {
    "default": "0",
    "fieldname": "is_sct_mesh_type_selected",
-   "fieldtype": "Select",
-   "label": "Is SCT Mesh Type Selected",
-   "options": "0\n1"
+   "fieldtype": "Check",
+   "label": "Is SCT Mesh Type Selected"
   },
   {
    "fieldname": "sct_mesh_type_width",
-   "fieldtype": "Link",
-   "label": "SCT Mesh Type Width",
-   "options": "Cable Tray Width"
+   "fieldtype": "Data",
+   "label": "SCT Mesh Type Width"
   },
   {
    "fieldname": "sct_mesh_type_height",
-   "fieldtype": "Link",
-   "label": "SCT Mesh Type Height",
-   "options": "Cable Tray Height"
+   "fieldtype": "Data",
+   "label": "SCT Mesh Type Height"
   },
   {
    "fieldname": "sct_mesh_type_thickness",
-   "fieldtype": "Link",
-   "label": "SCT Mesh Type Thickness",
-   "options": "Cable Tray Thickness"
+   "fieldtype": "Data",
+   "label": "SCT Mesh Type Thickness"
   },
   {
    "default": "0",
    "fieldname": "is_sct_conduit_selected",
-   "fieldtype": "Select",
-   "label": "Is SCT Conduit Selected",
-   "options": "0\n1"
+   "fieldtype": "Check",
+   "label": "Is SCT Conduit Selected"
   },
   {
    "fieldname": "sct_conduit_moc",
-   "fieldtype": "Link",
-   "label": "SCT Conduit MOC",
-   "options": "Conduit MOC"
+   "fieldtype": "Data",
+   "label": "SCT Conduit MOC"
   },
   {
    "fieldname": "sct_conduit_size",
-   "fieldtype": "Link",
-   "label": "SCT Conduit Size",
-   "options": "Conduit Size"
+   "fieldtype": "Data",
+   "label": "SCT Conduit Size"
   },
   {
    "fetch_if_empty": 1,
    "fieldname": "pct_perforated_type_max_width",
-   "fieldtype": "Link",
-   "label": "PCT Perforated Type Max. Width",
-   "options": "Cable Tray Width"
+   "fieldtype": "Data",
+   "label": "PCT Perforated Type Max. Width"
   },
   {
    "fieldname": "pct_ladder_type_max_width",
-   "fieldtype": "Link",
-   "label": "PCT Ladder Type Max. Width",
-   "options": "Cable Tray Width"
+   "fieldtype": "Data",
+   "label": "PCT Ladder Type Max. Width"
   },
   {
    "fieldname": "pct_mesh_type_max_length",
-   "fieldtype": "Link",
-   "label": "PCT Mesh Type Max. Width",
-   "options": "Cable Tray Width"
+   "fieldtype": "Data",
+   "label": "PCT Mesh Type Max. Width"
   },
   {
    "fieldname": "cct_perforated_type_max_width",
-   "fieldtype": "Link",
-   "label": "CCT Perforated Type Max. Width",
-   "options": "Cable Tray Width"
+   "fieldtype": "Data",
+   "label": "CCT Perforated Type Max. Width"
   },
   {
    "fieldname": "cct_ladder_type_max_width",
-   "fieldtype": "Link",
-   "label": "CCT Ladder Type Max. Width",
-   "options": "Cable Tray Width"
+   "fieldtype": "Data",
+   "label": "CCT Ladder Type Max. Width"
   },
   {
    "fieldname": "cct_mesh_type_max_width",
-   "fieldtype": "Link",
-   "label": "CCT Mesh Type Max. Width",
-   "options": "Cable Tray Width"
+   "fieldtype": "Data",
+   "label": "CCT Mesh Type Max. Width"
   },
   {
    "fieldname": "sct_perforated_type_max_width",
-   "fieldtype": "Link",
-   "label": "SCT Perforated Type Max. Width",
-   "options": "Cable Tray Width"
+   "fieldtype": "Data",
+   "label": "SCT Perforated Type Max. Width"
   },
   {
    "fieldname": "sct_ladder_type_max_width",
-   "fieldtype": "Link",
-   "label": "SCT Ladder Type Max. Width",
-   "options": "Cable Tray Width"
+   "fieldtype": "Data",
+   "label": "SCT Ladder Type Max. Width"
   },
   {
    "fieldname": "sct_mesh_type_max_width",
-   "fieldtype": "Link",
-   "label": "SCT Mesh Type Max. Width",
-   "options": "Cable Tray Width"
+   "fieldtype": "Data",
+   "label": "SCT Mesh Type Max. Width"
   },
   {
    "fieldname": "derating_factor_air",
@@ -623,28 +554,24 @@
   },
   {
    "fieldname": "copper_conductor",
-   "fieldtype": "Link",
-   "label": "Copper Conductor",
-   "options": "Layout Conductor"
+   "fieldtype": "Data",
+   "label": "Copper Conductor"
   },
   {
    "fieldname": "aluminium_conductor",
-   "fieldtype": "Link",
-   "label": "Aluminium Conductor",
-   "options": "Layout Conductor"
+   "fieldtype": "Data",
+   "label": "Aluminium Conductor"
   },
   {
    "default": "0",
    "fieldname": "cable_tray_cover",
-   "fieldtype": "Select",
-   "label": "Cable Tray Cover",
-   "options": "0\n1"
+   "fieldtype": "Check",
+   "label": "Is Cable Tray Cover Selected"
   },
   {
    "fieldname": "cable_tray_moc",
-   "fieldtype": "Link",
-   "label": "Cable Tray MOC",
-   "options": "Cable Tray MOC"
+   "fieldtype": "Data",
+   "label": "Cable Tray MOC"
   },
   {
    "fieldname": "cable_tray_moc_input",
@@ -654,7 +581,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-23 05:03:36.093425",
+ "modified": "2025-01-23 20:04:16.787410",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Cable Tray Layout",
