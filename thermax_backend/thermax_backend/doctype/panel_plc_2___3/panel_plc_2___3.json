@@ -88,9 +88,8 @@
   },
   {
    "fieldname": "di_module_channel_density",
-   "fieldtype": "Link",
-   "label": "DI Module Channel Density",
-   "options": "Channel Density"
+   "fieldtype": "Data",
+   "label": "DI Module Channel Density"
   },
   {
    "fieldname": "di_module_input_type",
@@ -104,9 +103,8 @@
   },
   {
    "fieldname": "do_module_channel_density",
-   "fieldtype": "Link",
-   "label": "DO Module Channel Density",
-   "options": "Channel Density"
+   "fieldtype": "Data",
+   "label": "DO Module Channel Density"
   },
   {
    "fieldname": "do_module_loop_current",
@@ -115,9 +113,8 @@
   },
   {
    "fieldname": "do_module_isolation",
-   "fieldtype": "Link",
-   "label": "DO Module Isolation",
-   "options": "Isolation Dropdown"
+   "fieldtype": "Data",
+   "label": "DO Module Isolation"
   },
   {
    "fieldname": "do_module_output_type",
@@ -131,9 +128,8 @@
   },
   {
    "fieldname": "interposing_relay",
-   "fieldtype": "Link",
-   "label": "Interposing Relay",
-   "options": "Interposing Relay"
+   "fieldtype": "Data",
+   "label": "Interposing Relay"
   },
   {
    "fieldname": "interposing_relay_contacts_rating",
@@ -148,9 +144,8 @@
   },
   {
    "fieldname": "no_of_contacts",
-   "fieldtype": "Link",
-   "label": "No of Contacts",
-   "options": "Number of Contacts"
+   "fieldtype": "Data",
+   "label": "No of Contacts"
   },
   {
    "fieldname": "ai_modules_section",
@@ -159,9 +154,8 @@
   },
   {
    "fieldname": "ai_module_channel_density",
-   "fieldtype": "Link",
-   "label": "AI Module Channel Density",
-   "options": "Channel Density"
+   "fieldtype": "Data",
+   "label": "AI Module Channel Density"
   },
   {
    "fieldname": "ai_module_loop_current",
@@ -170,9 +164,8 @@
   },
   {
    "fieldname": "ai_module_isolation",
-   "fieldtype": "Link",
-   "label": "AI Module Isolation",
-   "options": "Isolation Dropdown"
+   "fieldtype": "Data",
+   "label": "AI Module Isolation"
   },
   {
    "fieldname": "ai_module_input_type",
@@ -376,15 +369,13 @@
   },
   {
    "fieldname": "di_module_isolation",
-   "fieldtype": "Link",
-   "label": "DI Module Isolation",
-   "options": "Isolation Dropdown"
+   "fieldtype": "Data",
+   "label": "DI Module Isolation"
   },
   {
    "fieldname": "di_module_interrogation_voltage",
-   "fieldtype": "Link",
-   "label": "DI Module Interrogation Voltage",
-   "options": "DI Modules Interrogation Voltage"
+   "fieldtype": "Data",
+   "label": "DI Module Interrogation Voltage"
   },
   {
    "fieldname": "di_module_scan_time",
@@ -394,7 +385,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-18 19:15:50.058409",
+ "modified": "2025-01-23 16:28:01.804564",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Panel PLC 2 - 3",
