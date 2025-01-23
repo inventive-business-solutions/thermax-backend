@@ -53,121 +53,104 @@
   {
    "default": "11 KV",
    "fieldname": "main_supply_mv",
-   "fieldtype": "Link",
-   "label": "Main Supply MV",
-   "options": "Main Supply MV"
+   "fieldtype": "Data",
+   "label": "Main Supply MV"
   },
   {
    "default": "+/- 10.0",
    "fieldname": "main_supply_mv_variation",
-   "fieldtype": "Link",
-   "label": "Main Supply MV Variation",
-   "options": "Voltage Variation"
+   "fieldtype": "Data",
+   "label": "Main Supply MV Variation"
   },
   {
    "default": "3 Phase / 4 Wire",
    "fieldname": "main_supply_mv_phase",
-   "fieldtype": "Link",
-   "label": "Main Supply MV Phase",
-   "options": "Main Supply Phase"
+   "fieldtype": "Data",
+   "label": "Main Supply MV Phase"
   },
   {
    "default": "415 VAC",
    "fieldname": "main_supply_lv",
-   "fieldtype": "Link",
-   "label": "Main Supply LV",
-   "options": "Main Supply LV"
+   "fieldtype": "Data",
+   "label": "Main Supply LV"
   },
   {
    "default": "+/- 10.0",
    "fieldname": "main_supply_lv_variation",
-   "fieldtype": "Link",
-   "label": "Main Supply LV Variation",
-   "options": "Voltage Variation"
+   "fieldtype": "Data",
+   "label": "Main Supply LV Variation"
   },
   {
    "default": "3 Phase / 4 Wire",
    "fieldname": "main_supply_lv_phase",
-   "fieldtype": "Link",
-   "label": "Main Supply LV Phase",
-   "options": "Main Supply Phase"
+   "fieldtype": "Data",
+   "label": "Main Supply LV Phase"
   },
   {
    "default": "230 VAC",
    "fieldname": "control_supply",
-   "fieldtype": "Link",
-   "label": "Control Supply",
-   "options": "Control Supply"
+   "fieldtype": "Data",
+   "label": "Control Supply"
   },
   {
    "default": "+/- 10.0",
    "fieldname": "control_supply_variation",
-   "fieldtype": "Link",
-   "label": "Control Supply Variation",
-   "options": "Voltage Variation"
+   "fieldtype": "Data",
+   "label": "Control Supply Variation"
   },
   {
    "default": "1 Phase",
    "fieldname": "control_supply_phase",
-   "fieldtype": "Link",
-   "label": "Control Supply Phase",
-   "options": "Control and Utility Supply Phase"
+   "fieldtype": "Data",
+   "label": "Control Supply Phase"
   },
   {
    "default": "230 VAC",
    "fieldname": "utility_supply",
-   "fieldtype": "Link",
-   "label": "Utility Supply",
-   "options": "Utility Supply"
+   "fieldtype": "Data",
+   "label": "Utility Supply"
   },
   {
    "default": "+/- 10.0",
    "fieldname": "utility_supply_variation",
-   "fieldtype": "Link",
-   "label": "Utility Supply Variation",
-   "options": "Voltage Variation"
+   "fieldtype": "Data",
+   "label": "Utility Supply Variation"
   },
   {
    "default": "1 Phase",
    "fieldname": "utility_supply_phase",
-   "fieldtype": "Link",
-   "label": "Utility Supply Phase",
-   "options": "Control and Utility Supply Phase"
+   "fieldtype": "Data",
+   "label": "Utility Supply Phase"
   },
   {
    "default": "50",
    "fieldname": "frequency",
-   "fieldtype": "Link",
-   "label": "Frequency",
-   "options": "Frequency"
+   "fieldtype": "Data",
+   "label": "Frequency"
   },
   {
    "default": "+/- 5.0",
    "fieldname": "frequency_variation",
-   "fieldtype": "Link",
-   "label": "Frequency Variation",
-   "options": "Frequency Variation"
+   "fieldtype": "Data",
+   "label": "Frequency Variation"
   },
   {
    "default": "50",
    "fieldname": "fault_level",
-   "fieldtype": "Link",
-   "label": "Fault Level",
-   "options": "Fault Level"
+   "fieldtype": "Data",
+   "label": "Fault Level"
   },
   {
    "default": "1",
    "fieldname": "sec",
-   "fieldtype": "Link",
-   "label": "Sec",
-   "options": "Sec"
+   "fieldtype": "Data",
+   "label": "Sec"
   },
   {
    "default": "40",
    "fieldname": "ambient_temperature_max",
-   "fieldtype": "Link",
-   "label": "Ambient Temperature Max",
-   "options": "Ambient Temperature Max"
+   "fieldtype": "Data",
+   "label": "Ambient Temperature Max"
   },
   {
    "default": "40",
@@ -178,9 +161,8 @@
   {
    "default": "50",
    "fieldname": "electrical_design_temperature",
-   "fieldtype": "Link",
-   "label": "Electrical Design Temperature",
-   "options": "Electrical Design Temp"
+   "fieldtype": "Data",
+   "label": "Electrical Design Temperature"
   },
   {
    "default": "2",
@@ -237,7 +219,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-14 12:15:54.980315",
+ "modified": "2025-01-22 15:14:04.722680",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Project Information",

@@ -7,12 +7,11 @@
  "engine": "InnoDB",
  "field_order": [
   "linking_keys_section",
-  "linking_keys_section",
   "project_id",
-  "revision_data_section",
   "revision_data_section",
   "status",
   "is_copied",
+  "is_saved",
   "clone_note",
   "description",
   "is_safe_area_selected",
@@ -92,11 +91,17 @@
    "fieldname": "revision_data_section",
    "fieldtype": "Section Break",
    "label": "Revision Data"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_saved",
+   "fieldtype": "Check",
+   "label": "Is Saved"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-20 19:17:40.432087",
+ "modified": "2025-01-23 13:11:44.283007",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Motor Specification Revisions",

@@ -65,7 +65,8 @@
   },
   {
    "fieldname": "section_break_dmjt",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Common Configuration 3 Data"
   },
   {
    "fieldname": "column_break_sthc",
@@ -74,27 +75,23 @@
   },
   {
    "fieldname": "earth_bus_main_busbar_selection",
-   "fieldtype": "Link",
-   "label": "Earth Bus Main Busbar Selection",
-   "options": "Earth Bus Main Busbar Selection"
+   "fieldtype": "Data",
+   "label": "Earth Bus Main Busbar Selection"
   },
   {
    "fieldname": "earth_bus_busbar_position",
-   "fieldtype": "Link",
-   "label": "Earth Bus Busbar Position",
-   "options": "Earth Bus Busbar Position"
+   "fieldtype": "Data",
+   "label": "Earth Bus Busbar Position"
   },
   {
    "fieldname": "earth_bus_material",
-   "fieldtype": "Link",
-   "label": "Earth Bus Material",
-   "options": "Earth Bus Material"
+   "fieldtype": "Data",
+   "label": "Earth Bus Material"
   },
   {
    "fieldname": "earth_bus_current_density",
-   "fieldtype": "Link",
-   "label": "Earth Bus Current Density",
-   "options": "Earth Bus Current Density"
+   "fieldtype": "Data",
+   "label": "Earth Bus Current Density"
   },
   {
    "fieldname": "earth_bus_rating_of_busbar",
@@ -118,9 +115,8 @@
   },
   {
    "fieldname": "metering_for_feeders",
-   "fieldtype": "Link",
-   "label": "Metering For Feeders",
-   "options": "Metering for Feeder"
+   "fieldtype": "Data",
+   "label": "Metering For Feeders"
   },
   {
    "fieldname": "cooling_fans",
@@ -159,51 +155,43 @@
   },
   {
    "fieldname": "current_transformer",
-   "fieldtype": "Link",
-   "label": "Current Transformer",
-   "options": "Current Transformer"
+   "fieldtype": "Data",
+   "label": "Current Transformer"
   },
   {
    "fieldname": "current_transformer_coating",
-   "fieldtype": "Link",
-   "label": "Current Transformer Coating",
-   "options": "Current Transformer Coating"
+   "fieldtype": "Data",
+   "label": "Current Transformer Coating"
   },
   {
    "fieldname": "current_transformer_quantity",
-   "fieldtype": "Link",
-   "label": "Current Transformer Quantity",
-   "options": "Current Transformer Number"
+   "fieldtype": "Data",
+   "label": "Current Transformer Quantity"
   },
   {
    "fieldname": "current_transformer_configuration",
-   "fieldtype": "Link",
-   "label": "Current Transformer Configuration",
-   "options": "Current Transformer Configuration"
+   "fieldtype": "Data",
+   "label": "Current Transformer Configuration"
   },
   {
    "fieldname": "control_transformer_type",
-   "fieldtype": "Link",
-   "label": "Control Transformer Type",
-   "options": "Control Transformer Type"
+   "fieldtype": "Data",
+   "label": "Control Transformer Type"
   },
   {
    "fieldname": "control_bus_heat_pvc_sleeve",
-   "fieldtype": "Link",
-   "label": "Control Bus PVC Sleeve",
-   "options": "Control Bus Heat Shrinkable Color PVC sleeve"
+   "fieldtype": "Data",
+   "label": "Control Bus PVC Sleeve"
   },
   {
    "fieldname": "control_bus_material",
-   "fieldtype": "Link",
-   "label": "Control Bus Material",
-   "options": "Control Bus Material"
+   "fieldtype": "Data",
+   "label": "Control Bus Material"
   },
   {
    "fieldname": "control_bus_current_density",
-   "fieldtype": "Link",
-   "label": "Control Bus Current Density",
-   "options": "Control Bus Current Density"
+   "fieldtype": "Data",
+   "label": "Control Bus Current Density"
   },
   {
    "fieldname": "control_bus_rating_of_busbar",
@@ -212,39 +200,33 @@
   },
   {
    "fieldname": "control_bus_main_busbar_selection",
-   "fieldtype": "Link",
-   "label": "Control Bus Main Busbar Selection",
-   "options": "Control Bus Main Busbar Selection"
+   "fieldtype": "Data",
+   "label": "Control Bus Main Busbar Selection"
   },
   {
    "fieldname": "apfc_relay",
-   "fieldtype": "Link",
-   "label": "APFC Relay",
-   "options": "APFC Relay"
+   "fieldtype": "Data",
+   "label": "APFC Relay"
   },
   {
    "fieldname": "power_bus_main_busbar_selection",
-   "fieldtype": "Link",
-   "label": "Power Bus Main Busbar Selection",
-   "options": "Power Bus Main Busbar Selection"
+   "fieldtype": "Data",
+   "label": "Power Bus Main Busbar Selection"
   },
   {
    "fieldname": "power_bus_heat_pvc_sleeve",
-   "fieldtype": "Link",
-   "label": "Power Bus PVC Sleeve",
-   "options": "Power Bus Heat Shrinkable Color PVC sleeve"
+   "fieldtype": "Data",
+   "label": "Power Bus PVC Sleeve"
   },
   {
    "fieldname": "power_bus_material",
-   "fieldtype": "Link",
-   "label": "Power Bus Material",
-   "options": "Power Bus Material"
+   "fieldtype": "Data",
+   "label": "Power Bus Material"
   },
   {
    "fieldname": "power_bus_current_density",
-   "fieldtype": "Link",
-   "label": "Power Bus Current Density",
-   "options": "Power Bus Current Density"
+   "fieldtype": "Data",
+   "label": "Power Bus Current Density"
   },
   {
    "fieldname": "power_bus_rating_of_busbar",
@@ -253,27 +235,23 @@
   },
   {
    "fieldname": "lpbs_speed_increase",
-   "fieldtype": "Link",
-   "label": "LPBS Speed Increase Push Button",
-   "options": "LPBS Speed Increase Push Button"
+   "fieldtype": "Data",
+   "label": "LPBS Speed Increase Push Button"
   },
   {
    "fieldname": "lpbs_speed_decrease",
-   "fieldtype": "Link",
-   "label": "LPBS Speed Decrease Push Button",
-   "options": "Speed Decrease PB"
+   "fieldtype": "Data",
+   "label": "LPBS Speed Decrease Push Button"
   },
   {
    "fieldname": "lpbs_indication_lamp_start_color",
-   "fieldtype": "Link",
-   "label": "LPBS Start / On Indication Lamp Color",
-   "options": "LPBS Start On Indication Lamp Color"
+   "fieldtype": "Data",
+   "label": "LPBS Start / On Indication Lamp Color"
   },
   {
    "fieldname": "lpbs_indication_lamp_stop_color",
-   "fieldtype": "Link",
-   "label": "Stop / OFF Indication Lamp Color",
-   "options": "LPBS Stop Off Indication Lamp Color"
+   "fieldtype": "Data",
+   "label": "Stop / OFF Indication Lamp Color"
   },
   {
    "default": "0",
@@ -289,26 +267,23 @@
   },
   {
    "fieldname": "lpbs_forward_push_button_start",
-   "fieldtype": "Link",
-   "label": "LPBS forward Push Button Start",
-   "options": "Forward and Reverse Push Button"
+   "fieldtype": "Data",
+   "label": "LPBS forward Push Button Start"
   },
   {
    "fieldname": "lpbs_reverse_push_button_start",
-   "fieldtype": "Link",
-   "label": "LPBS Reverse Push Button Start",
-   "options": "Forward and Reverse Push Button"
+   "fieldtype": "Data",
+   "label": "LPBS Reverse Push Button Start"
   },
   {
    "fieldname": "lpbs_push_button_ess",
-   "fieldtype": "Link",
-   "label": "LPBS Push Button ESS",
-   "options": "Push Button ESS"
+   "fieldtype": "Data",
+   "label": "LPBS Push Button ESS"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-18 15:47:06.268930",
+ "modified": "2025-01-22 15:43:08.641261",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Common Configuration 3",

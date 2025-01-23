@@ -9,7 +9,6 @@
  "field_order": [
   "linking_keys_section",
   "panel_id",
-  "revision_id",
   "supply_requirements_section",
   "ups_control_voltage",
   "non_ups_control_voltage",
@@ -69,15 +68,13 @@
   },
   {
    "fieldname": "ups_control_voltage",
-   "fieldtype": "Link",
-   "label": "UPS Control Voltage",
-   "options": "PLC Control Voltage"
+   "fieldtype": "Data",
+   "label": "UPS Control Voltage"
   },
   {
    "fieldname": "non_ups_control_voltage",
-   "fieldtype": "Link",
-   "label": "Non UPS Control Voltage",
-   "options": "PLC Control Voltage"
+   "fieldtype": "Data",
+   "label": "Non UPS Control Voltage"
   },
   {
    "default": "0",
@@ -92,39 +89,33 @@
   },
   {
    "fieldname": "ups_scope",
-   "fieldtype": "Link",
-   "label": "UPS Scope",
-   "options": "PLC UPS Scope"
+   "fieldtype": "Data",
+   "label": "UPS Scope"
   },
   {
    "fieldname": "ups_input_voltage_3p",
-   "fieldtype": "Link",
-   "label": "UPS Input Voltage 3P",
-   "options": "PLC UPS 3 Phase Voltage"
+   "fieldtype": "Data",
+   "label": "UPS Input Voltage 3P"
   },
   {
    "fieldname": "ups_input_voltage_1p",
-   "fieldtype": "Link",
-   "label": "UPS Input Voltage 1P",
-   "options": "PLC UPS 1 Phase Voltage"
+   "fieldtype": "Data",
+   "label": "UPS Input Voltage 1P"
   },
   {
    "fieldname": "ups_output_voltage_1p",
-   "fieldtype": "Link",
-   "label": "UPS Output Voltage 1P",
-   "options": "PLC UPS 1 Phase Voltage"
+   "fieldtype": "Data",
+   "label": "UPS Output Voltage 1P"
   },
   {
    "fieldname": "ups_type",
-   "fieldtype": "Link",
-   "label": "UPS Type",
-   "options": "PLC UPS Type"
+   "fieldtype": "Data",
+   "label": "UPS Type"
   },
   {
    "fieldname": "ups_battery_type",
-   "fieldtype": "Link",
-   "label": "UPS Battery Type",
-   "options": "PLC UPS Battery Type"
+   "fieldtype": "Data",
+   "label": "UPS Battery Type"
   },
   {
    "default": "0",
@@ -134,15 +125,13 @@
   },
   {
    "fieldname": "ups_battery_backup_time",
-   "fieldtype": "Link",
-   "label": "UPS Battery Backup Time",
-   "options": "PLC UPS Battery Backup Time"
+   "fieldtype": "Data",
+   "label": "UPS Battery Backup Time"
   },
   {
    "fieldname": "ups_redundancy",
-   "fieldtype": "Link",
-   "label": "UPS Redundancy",
-   "options": "UPS Redundancy"
+   "fieldtype": "Data",
+   "label": "UPS Redundancy"
   },
   {
    "fieldname": "plc_hardware_section",
@@ -156,9 +145,8 @@
   },
   {
    "fieldname": "plc_cpu_system_input_voltage",
-   "fieldtype": "Link",
-   "label": "PLC CPU System Input Voltage",
-   "options": "PLC Control Voltage"
+   "fieldtype": "Data",
+   "label": "PLC CPU System Input Voltage"
   },
   {
    "fieldname": "plc_cpu_system_battery_backup",
@@ -219,9 +207,8 @@
   },
   {
    "fieldname": "plc_cpu_system",
-   "fieldtype": "Link",
-   "label": "PLC CPU System",
-   "options": "PLC CPU System"
+   "fieldtype": "Data",
+   "label": "PLC CPU System"
   },
   {
    "fieldname": "plc_panel_mounted_section",
@@ -241,7 +228,7 @@
   },
   {
    "fieldname": "marshalling_cabinet_for_plc_and_ups",
-   "fieldtype": "Data",
+   "fieldtype": "Small Text",
    "label": "Marshalling Cabinet For PLC and UPS"
   },
   {
@@ -257,21 +244,18 @@
   },
   {
    "fieldname": "electronic_hooter_acknowledge",
-   "fieldtype": "Link",
-   "label": "Electronic Hooter Acknowledge",
-   "options": "Electronic Hooter Acknowledge"
+   "fieldtype": "Data",
+   "label": "Electronic Hooter Acknowledge"
   },
   {
    "fieldname": "panel_power_supply_on_color",
-   "fieldtype": "Link",
-   "label": "Panel Power Supply On Color",
-   "options": "Panel Power Supply Off"
+   "fieldtype": "Data",
+   "label": "Panel Power Supply On Color"
   },
   {
    "fieldname": "panel_power_supply_off_color",
-   "fieldtype": "Link",
-   "label": "Panel Power Supply Off Color",
-   "options": "Panel Power Supply Off"
+   "fieldtype": "Data",
+   "label": "Panel Power Supply Off Color"
   },
   {
    "fieldname": "indicating_lamp_color_for_nonups_power_supply",
@@ -282,17 +266,11 @@
    "fieldname": "indicating_lamp_colour_for_ups_power_supply",
    "fieldtype": "Data",
    "label": "Indicating Lamp Color for Ups Power Supply Copy"
-  },
-  {
-   "fieldname": "revision_id",
-   "fieldtype": "Link",
-   "label": "Revision ID",
-   "options": "Design Basis Revision History"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-20 16:30:00.456396",
+ "modified": "2025-01-22 17:00:21.554294",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Panel PLC 1 - 3",
