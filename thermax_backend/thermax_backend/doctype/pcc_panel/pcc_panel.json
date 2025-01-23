@@ -26,9 +26,9 @@
   "led_type_off_input",
   "is_indication_trip_selected",
   "led_type_trip_input",
-  "is_blue_cb_spring_charge_selected",
+  "acb_spring_charge_indication_lamp",
   "is_red_cb_in_service",
-  "is_white_healthy_trip_circuit_selected",
+  "trip_circuit_healthy_indication_lamp",
   "is_other_selected",
   "control_transformer_coating",
   "control_transformer_configuration",
@@ -136,39 +136,33 @@
   },
   {
    "fieldname": "incomer_ampere",
-   "fieldtype": "Link",
-   "label": "Incomer Ampere",
-   "options": "SD Incomer Ampere"
+   "fieldtype": "Data",
+   "label": "Incomer Ampere"
   },
   {
    "fieldname": "incomer_pole",
-   "fieldtype": "Link",
-   "label": "Incomer Pole",
-   "options": "SD Incomer Pole"
+   "fieldtype": "Data",
+   "label": "Incomer Pole"
   },
   {
    "fieldname": "incomer_type",
-   "fieldtype": "Link",
-   "label": "Incomer Type",
-   "options": "SD Incomer Type"
+   "fieldtype": "Data",
+   "label": "Incomer Type"
   },
   {
    "fieldname": "incomer_above_ampere",
-   "fieldtype": "Link",
-   "label": "Incomer Above Ampere",
-   "options": "SD Incomer Above Ampere"
+   "fieldtype": "Data",
+   "label": "Incomer Above Ampere"
   },
   {
    "fieldname": "incomer_above_pole",
-   "fieldtype": "Link",
-   "label": "Incomer Above Pole",
-   "options": "SD Incomer Above Pole"
+   "fieldtype": "Data",
+   "label": "Incomer Above Pole"
   },
   {
    "fieldname": "incomer_above_type",
-   "fieldtype": "Link",
-   "label": "Incomer Above Type",
-   "options": "SD Incomer Above Type"
+   "fieldtype": "Data",
+   "label": "Incomer Above Type"
   },
   {
    "default": "0",
@@ -197,27 +191,13 @@
   {
    "default": "0",
    "fieldname": "is_led_type_lamp_selected",
-   "fieldtype": "Select",
-   "label": "Is LED Type Lamp Selected",
-   "options": "0\n1"
-  },
-  {
-   "fieldname": "is_blue_cb_spring_charge_selected",
-   "fieldtype": "Link",
-   "label": "Is Blue CB Spring Charge Selected",
-   "options": "ACB Spring Charge Indication lamp"
+   "fieldtype": "Check",
+   "label": "Is LED Type Lamp Selected"
   },
   {
    "fieldname": "is_red_cb_in_service",
-   "fieldtype": "Link",
-   "label": "Is Red CB In Service",
-   "options": "ACB Service Indication lamp"
-  },
-  {
-   "fieldname": "is_white_healthy_trip_circuit_selected",
-   "fieldtype": "Link",
-   "label": "Is White Healthy Trip Circuit Selected",
-   "options": "Trip Circuit Healthy Indication lamp"
+   "fieldtype": "Data",
+   "label": "ACB Service Indication lamp"
   },
   {
    "fieldname": "alarm_annunciator",
@@ -242,9 +222,8 @@
   },
   {
    "fieldname": "mi_communication_protocol",
-   "fieldtype": "Link",
-   "label": "MI Communication Protocol",
-   "options": "Communication Protocol"
+   "fieldtype": "Data",
+   "label": "MI Communication Protocol"
   },
   {
    "fieldname": "general_arrangement_section",
@@ -253,39 +232,33 @@
   },
   {
    "fieldname": "ga_moc_material",
-   "fieldtype": "Link",
-   "label": "GA MOC Material",
-   "options": "GA MOC"
+   "fieldtype": "Data",
+   "label": "GA MOC Material"
   },
   {
    "fieldname": "ga_moc_thickness_door",
-   "fieldtype": "Link",
-   "label": "GA MOC Thickness Door",
-   "options": "GA MOC Thickness Door"
+   "fieldtype": "Data",
+   "label": "GA MOC Thickness Door"
   },
   {
    "fieldname": "ga_moc_thickness_covers",
-   "fieldtype": "Link",
-   "label": "GA MOC Thickness Covers",
-   "options": "GA MOC Thickness Covers"
+   "fieldtype": "Data",
+   "label": "GA MOC Thickness Covers"
   },
   {
    "fieldname": "ga_pcc_compartmental",
-   "fieldtype": "Link",
-   "label": "GA PCC Compartmental",
-   "options": "GA MCC Compartmental"
+   "fieldtype": "Data",
+   "label": "GA PCC Compartmental"
   },
   {
    "fieldname": "ga_pcc_construction_front_type",
-   "fieldtype": "Link",
-   "label": "GA PCC Construction Front Type",
-   "options": "GA MCC Construction Front Type"
+   "fieldtype": "Data",
+   "label": "GA PCC Construction Front Type"
   },
   {
    "fieldname": "ga_pcc_construction_type",
-   "fieldtype": "Link",
-   "label": "GA PCC Construction Type",
-   "options": "GA MCC Construction Type"
+   "fieldtype": "Data",
+   "label": "GA PCC Construction Type"
   },
   {
    "fieldname": "busbar_material_of_construction",
@@ -295,28 +268,24 @@
   },
   {
    "fieldname": "ga_current_density",
-   "fieldtype": "Link",
-   "label": "GA Current Density",
-   "options": "GA Current Density"
+   "fieldtype": "Data",
+   "label": "GA Current Density"
   },
   {
    "fieldname": "ga_panel_mounting_frame",
-   "fieldtype": "Link",
-   "label": "GA Panel Mounting Frame",
-   "options": "GA Panel Mounting Frame"
+   "fieldtype": "Data",
+   "label": "GA Panel Mounting Frame"
   },
   {
    "fieldname": "ga_panel_mounting_height",
-   "fieldtype": "Link",
-   "label": "GA Panel Mounting Height",
-   "options": "GA Panel Mounting Height"
+   "fieldtype": "Data",
+   "label": "GA Panel Mounting Height"
   },
   {
    "default": "1",
    "fieldname": "is_marshalling_section_selected",
-   "fieldtype": "Select",
-   "label": "Is Marshalling Section Selected",
-   "options": "0\n1"
+   "fieldtype": "Check",
+   "label": "Is Marshalling Section Selected"
   },
   {
    "default": "1",
@@ -338,39 +307,33 @@
   },
   {
    "fieldname": "ga_gland_plate_3mm_drill_type",
-   "fieldtype": "Link",
-   "label": "GA Gland Plate 3mm Drill Type",
-   "options": "GA Gland Plate 3mm Drill Type"
+   "fieldtype": "Data",
+   "label": "GA Gland Plate 3mm Drill Type"
   },
   {
    "fieldname": "ga_gland_plate_3mm_attachment_type",
-   "fieldtype": "Link",
-   "label": "GA Gland Plate 3mm Attachment Type",
-   "options": "GA Gland Plate 3mm Attachment Type"
+   "fieldtype": "Data",
+   "label": "GA Gland Plate 3mm Attachment Type"
   },
   {
    "fieldname": "ga_busbar_chamber_position",
-   "fieldtype": "Link",
-   "label": "GA Busbar Chamber Position",
-   "options": "GA Busbar Chamber Position"
+   "fieldtype": "Data",
+   "label": "GA Busbar Chamber Position"
   },
   {
    "fieldname": "ga_power_and_control_busbar_separation",
-   "fieldtype": "Link",
-   "label": "GA Power and Control Busbar Separation",
-   "options": "GA Power and Control Busbar Separation"
+   "fieldtype": "Data",
+   "label": "GA Power and Control Busbar Separation"
   },
   {
    "fieldname": "ga_enclosure_protection_degree",
-   "fieldtype": "Link",
-   "label": "GA Enclosure Protection Degree",
-   "options": "GA Enclosure Protection Degree"
+   "fieldtype": "Data",
+   "label": "GA Enclosure Protection Degree"
   },
   {
    "fieldname": "ga_cable_entry_position",
-   "fieldtype": "Link",
-   "label": "GA Cable Entry Position",
-   "options": "GA Cable Entry Position"
+   "fieldtype": "Data",
+   "label": "GA Cable Entry Position"
   },
   {
    "fieldname": "paintingpowder_coating_section",
@@ -379,27 +342,23 @@
   },
   {
    "fieldname": "ppc_painting_standards",
-   "fieldtype": "Link",
-   "label": "PPC Painting Standards",
-   "options": "PPC Painting Standards"
+   "fieldtype": "Data",
+   "label": "PPC Painting Standards"
   },
   {
    "fieldname": "ppc_interior_and_exterior_paint_shade",
-   "fieldtype": "Link",
-   "label": "PPC Interior and Exterior Paint Shade",
-   "options": "PPC Interior and Exterior Paint Shade"
+   "fieldtype": "Data",
+   "label": "PPC Interior and Exterior Paint Shade"
   },
   {
    "fieldname": "ppc_component_mounting_plate_paint_shade",
-   "fieldtype": "Link",
-   "label": "PPC Component Mounting Plate Paint Shade",
-   "options": "PPC Component Mounting Plate Paint Shade"
+   "fieldtype": "Data",
+   "label": "PPC Component Mounting Plate Paint Shade"
   },
   {
    "fieldname": "ppc_base_frame_paint_shade",
-   "fieldtype": "Link",
-   "label": "PPC Base Frame Paint Shade",
-   "options": "PPC Base Frame Paint Shade"
+   "fieldtype": "Data",
+   "label": "PPC Base Frame Paint Shade"
   },
   {
    "fieldname": "ppc_minimum_coating_thickness",
@@ -408,7 +367,7 @@
   },
   {
    "fieldname": "ppc_pretreatment_panel_standard",
-   "fieldtype": "Small Text",
+   "fieldtype": "Data",
    "label": "PPC Pretreatment Panel Standard"
   },
   {
@@ -419,9 +378,8 @@
   {
    "default": "0",
    "fieldname": "is_punching_details_for_boiler_selected",
-   "fieldtype": "Select",
-   "label": "Is Punching Details for Boiler Selected",
-   "options": "0\n1"
+   "fieldtype": "Check",
+   "label": "Is Punching Details for Boiler Selected"
   },
   {
    "fieldname": "boiler_model",
@@ -491,9 +449,8 @@
   {
    "default": "0",
    "fieldname": "is_punching_details_for_heater_selected",
-   "fieldtype": "Select",
-   "label": "Is Punching Details for Heater Selected",
-   "options": "0\n1"
+   "fieldtype": "Check",
+   "label": "Is Punching Details for Heater Selected"
   },
   {
    "fieldname": "heater_model",
@@ -607,7 +564,7 @@
   },
   {
    "fieldname": "special_note",
-   "fieldtype": "Data",
+   "fieldtype": "Text",
    "label": "Special Note"
   },
   {
@@ -627,67 +584,58 @@
    "label": "Is Other Selected"
   },
   {
+   "default": "0",
    "fieldname": "is_spg_applicable",
-   "fieldtype": "Select",
-   "label": "Is Spg Applicable",
-   "options": "0\n1"
+   "fieldtype": "Check",
+   "label": "Is SPG Applicable"
   },
   {
    "default": "0",
    "fieldname": "is_indication_on_selected",
    "fieldtype": "Check",
-   "label": "Is Indication ON Selected",
-   "options": "0\n1"
+   "label": "Is Indication ON Selected"
   },
   {
    "default": "0",
    "fieldname": "is_indication_off_selected",
    "fieldtype": "Check",
-   "label": "Is Indication OFF Selected",
-   "options": "0\n1"
+   "label": "Is Indication OFF Selected"
   },
   {
    "default": "0",
    "fieldname": "is_indication_trip_selected",
    "fieldtype": "Check",
-   "label": "Is Indication Trip Selected",
-   "options": "0\n1"
+   "label": "Is Indication Trip Selected"
   },
   {
    "fieldname": "led_type_on_input",
-   "fieldtype": "Link",
-   "label": "LED Type ON Input",
-   "options": "ON Indication Lamp"
+   "fieldtype": "Data",
+   "label": "LED Type ON Input"
   },
   {
    "fieldname": "led_type_off_input",
-   "fieldtype": "Link",
-   "label": "LED Type OFF Input",
-   "options": "OFF Indication Lamp"
+   "fieldtype": "Data",
+   "label": "LED Type OFF Input"
   },
   {
    "fieldname": "led_type_trip_input",
-   "fieldtype": "Link",
-   "label": "LED Type Trip Input",
-   "options": "Trip Indication Lamp"
+   "fieldtype": "Data",
+   "label": "LED Type Trip Input"
   },
   {
    "fieldname": "current_transformer_coating",
-   "fieldtype": "Link",
-   "label": "Current Transformer Coating",
-   "options": "Current Transformer Coating"
+   "fieldtype": "Data",
+   "label": "Current Transformer Coating"
   },
   {
    "fieldname": "current_transformer_number",
-   "fieldtype": "Link",
-   "label": "Current Transformer Number",
-   "options": "Current Transformer Number"
+   "fieldtype": "Data",
+   "label": "Current Transformer Number"
   },
   {
    "fieldname": "current_transformer_configuration",
-   "fieldtype": "Link",
-   "label": "Current Transformer Configuration",
-   "options": "Current Transformer Configuration"
+   "fieldtype": "Data",
+   "label": "Current Transformer Configuration"
   },
   {
    "fieldname": "incoming_drawout_type",
@@ -721,19 +669,28 @@
   },
   {
    "fieldname": "door_thickness",
-   "fieldtype": "Link",
-   "label": "Door Thickness",
-   "options": "GA MOC Thickness Door"
+   "fieldtype": "Data",
+   "label": "Door Thickness"
   },
   {
    "fieldname": "ga_gland_plate_thickness",
    "fieldtype": "Data",
    "label": "GA Gland Plate Thickness"
+  },
+  {
+   "fieldname": "acb_spring_charge_indication_lamp",
+   "fieldtype": "Data",
+   "label": "ACB Spring Charge Indication lamp"
+  },
+  {
+   "fieldname": "trip_circuit_healthy_indication_lamp",
+   "fieldtype": "Data",
+   "label": "Trip Circuit Healthy Indication lamp"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-18 12:36:29.915993",
+ "modified": "2025-01-22 16:46:36.387929",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "PCC Panel",
