@@ -196,6 +196,10 @@ def get_lpbs_specification_excel():
             cover_sheet["A4"] = "PUNE - 411 026"
 
 
+    # # INSTRUCTION PAGE 
+
+    instruction_sheet["A1"] = f"{project_oc_number.upper()} -INSTRUCTIONS TO LOCAL PUSH BUTTON STATIONS VENDORS"
+
     # # ISOLATOR SHEET 
 
     def num_to_string(value):
@@ -370,7 +374,7 @@ def get_lpbs_specification_excel():
         val = val + 1
     
     lpbs_safe_sheet[f"C{a}"] = "Total" 
-    lpbs_safe_sheet[f"D{a}"] = int(len(safe_motor_details))
+    lpbs_safe_sheet[f"E{a}"] = int(len(safe_motor_details))
 
 
     index = 3
@@ -413,7 +417,7 @@ def get_lpbs_specification_excel():
         val = val + 1
     
     lpbs_hazard_sheet[f"C{a}"] = "Total" 
-    lpbs_hazard_sheet[f"D{a}"] = int(len(hazard_motor_details))
+    lpbs_hazard_sheet[f"E{a}"] = int(len(hazard_motor_details))
 
     if int(is_safe_lpbs_selected) == 0:
         template_workbook.remove(lpbs_safe_sheet)

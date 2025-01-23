@@ -11,13 +11,13 @@
   "section_break_mvwt",
   "panel_name",
   "status",
+  "design_basis_revision_id",
+  "sld_height_of_panel",
   "is_released",
   "is_copied",
   "is_saved",
   "clone_note",
   "description",
-  "switchgear_selection_data",
-  "incomer_data",
   "path"
  ],
  "fields": [
@@ -61,18 +61,6 @@
    "label": "Description"
   },
   {
-   "fieldname": "switchgear_selection_data",
-   "fieldtype": "Table",
-   "label": "Switchgear Selection Data",
-   "options": "Switchgear Selection Data"
-  },
-  {
-   "fieldname": "incomer_data",
-   "fieldtype": "Table",
-   "label": "Incomer Data",
-   "options": "Incomer Data"
-  },
-  {
    "default": "0",
    "fieldname": "is_copied",
    "fieldtype": "Check",
@@ -94,11 +82,22 @@
    "fieldname": "is_saved",
    "fieldtype": "Check",
    "label": "Is Saved"
+  },
+  {
+   "fieldname": "design_basis_revision_id",
+   "fieldtype": "Data",
+   "label": "Design Basis Revision ID"
+  },
+  {
+   "fieldname": "sld_height_of_panel",
+   "fieldtype": "Float",
+   "label": "SLD Height of Panel",
+   "precision": "2"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-23 13:16:32.738777",
+ "modified": "2025-01-23 17:57:15.821570",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Panel Specifications Revisions",
