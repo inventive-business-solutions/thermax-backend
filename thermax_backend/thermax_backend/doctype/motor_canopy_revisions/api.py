@@ -117,7 +117,7 @@ def get_motor_canopy_excel():
         combine_list_sheet[f"A{index}"] = index - 2
         combine_list_sheet[f"B{index}"] = data.get("tag_number")
         combine_list_sheet[f"C{index}"] = data.get("service_description")
-        combine_list_sheet[f"D{index}"] = "kW rating NA"
+        combine_list_sheet[f"D{index}"] = data.get("kw_rating")
         combine_list_sheet[f"E{index}"] = data.get("quantity")
         combine_list_sheet[f"F{index}"] = data.get("rpm")
         combine_list_sheet[f"G{index}"] = data.get("motor_mounting_type")
