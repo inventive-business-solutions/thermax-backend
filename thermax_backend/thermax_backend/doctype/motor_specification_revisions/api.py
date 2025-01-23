@@ -118,6 +118,11 @@ def get_motor_specification_excel():
         case _:
             cover_sheet["A4"] = "PUNE - 411 026"
 
+
+    # INSTRUCTION SHEET
+
+    instruction_sheet["A1"] = f"{project_oc_number}  -INSTRUCTIONS TO LOCAL PUSH BUTTON STATIONS VENDORS"
+
     # SPECIFICATION SHEET
 
     project_info_data =  frappe.db.get_list(
@@ -126,6 +131,7 @@ def get_motor_specification_excel():
     project_info_data = project_info_data[0]
 
     motor_specification_data = motor_spec_revision_data.get("motor_specification_data")
+    motor_specification_data = motor_specification_data[0]
 
     specification_sheet["C4"] = "Not Applicable"
     specification_sheet["C5"] = project_info_data.get("ambient_temperature_max")
@@ -140,9 +146,14 @@ def get_motor_specification_excel():
     specification_sheet["C12"] = project_info_data.get("altitude")
     specification_sheet["C13"] = project_info_data.get("seismic_zone")
 
-    specification_sheet["D4"] = (
-        f'{project_info_data.get("standard")}, {project_info_data.get("zone")}, {project_info_data.get("gas_group")}, {project_info_data.get("temperature_class")}'
+    hazard_area_classification_data = (
+        f"{motor_specification_data.get("standard")}, {motor_specification_data.get("zone")}, {motor_specification_data.get("gas_group")}, {motor_spec_revision_data.get("temperature_class")}"
     )
+
+    # if "NA" in hazard_area_classification_data or "None" in hazard_area_classification_data:
+    #     hazard_area_classification_data = "Not Applicable"
+
+    # specification_sheet["D4"] = hazard_area_classification_data
     specification_sheet["D5"] = project_info_data.get("ambient_temperature_max")
     specification_sheet["D6"] = project_info_data.get("ambient_temperature_min")
     specification_sheet["D7"] = project_info_data.get(
@@ -242,7 +253,7 @@ def get_motor_specification_excel():
         motor_rating_data = data.get("working_kw")
         kw_data = "W"
         
-        if motor_rating_data == "":
+        if float(motor_rating_data) == 0:
             kw_data = "S"
             motor_rating_data = data.get("standby_kw")
 
@@ -280,7 +291,7 @@ def get_motor_specification_excel():
         safe_area_motor_list_sheet[f"V{index}"] = data.get("bearing_rtd")
         safe_area_motor_list_sheet[f"W{index}"] = data.get("winding_rtd")
         safe_area_motor_list_sheet[f"X{index}"] = data.get("efficiency")
-        # safe_area_motor_list_sheet[f"Y{index}"] = 
+        safe_area_motor_list_sheet[f"Y{index}"] = data.get("motor_rated_current")
         safe_area_motor_list_sheet[f"Z{index}"] = data.get("power_factor")
         # safe_area_motor_list_sheet[f"AA{index}"] = 
         safe_area_motor_list_sheet[f"AB{index}"] = data.get("make")
@@ -298,7 +309,7 @@ def get_motor_specification_excel():
     index = 3
 
     for key, count in count_dict.items():
-        safe_area_motor_bom_sheet[f"A{index}"] = index - 1
+        safe_area_motor_bom_sheet[f"A{index}"] = index - 2
         # safe_area_motor_bom_sheet[f"B{index}"] = index - 3
         safe_area_motor_bom_sheet[f"C{index}"] = key
         safe_area_motor_bom_sheet[f"D{index}"] = "NOS"
@@ -311,7 +322,7 @@ def get_motor_specification_excel():
         motor_rating_data = data.get("working_kw")
         kw_data = "W"
         
-        if motor_rating_data == "":
+        if float(motor_rating_data) == 0:
             kw_data = "S"
             motor_rating_data = data.get("standby_kw")
 
@@ -348,7 +359,7 @@ def get_motor_specification_excel():
         hazardous_area_motor_list_sheet[f"V{index}"] = data.get("bearing_rtd")
         hazardous_area_motor_list_sheet[f"W{index}"] = data.get("winding_rtd")
         hazardous_area_motor_list_sheet[f"X{index}"] = data.get("efficiency")
-        # safe_area_motor_list_sheet[f"Y{index}"] = 
+        hazardous_area_motor_list_sheet[f"Y{index}"] = data.get("motor_rated_current")
         hazardous_area_motor_list_sheet[f"Z{index}"] = data.get("power_factor")
         # safe_area_motor_list_sheet[f"AA{index}"] = 
         hazardous_area_motor_list_sheet[f"AB{index}"] = data.get("make")

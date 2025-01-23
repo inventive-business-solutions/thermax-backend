@@ -276,7 +276,7 @@ def get_local_isolator_excel():
     hazard_fmi_qty = hazard_isolator_data.get("fmi_qty")
     hazard_ifm_isolator_color_shade = hazard_isolator_data.get("ifm_isolator_color_shade")
     hazard_canopy = hazard_isolator_data.get("canopy")
-    hazard_canopy_type = hazard_isolator_data.get("canopy_Type")
+    hazard_canopy_type = hazard_isolator_data.get("canopy_type")
 
     if (
         hazard_fmi_enclouser_moc == "CRCA"
@@ -284,7 +284,7 @@ def get_local_isolator_excel():
         or hazard_fmi_enclouser_moc == "SS 306"
     ):
         hazard_fmi_enclouser_moc = (
-            f"{hazard_fmi_enclouser_moc}, {hazard_fmi_enclosure_thickness} mm"
+            f"{hazard_fmi_enclouser_moc}, {hazard_fmi_enclosure_thickness}"
         )
         hazard_ifm_cable_entry = f"{hazard_ifm_cable_entry}, 3 mm"
     elif hazard_fmi_enclouser_moc == "NA":
@@ -407,8 +407,8 @@ def get_local_isolator_excel():
     if len(safe_motor_details) < 1:
         template_workbook.remove(isolator_safe_area_sheet)
     
-    if len(hazard_motor_details) < 1:
-        template_workbook.remove(isolator_hazard_area_sheet)
+    # if len(hazard_motor_details) < 1:
+    #     template_workbook.remove(isolator_hazard_area_sheet)
 
     output = io.BytesIO()
     template_workbook.save(output)

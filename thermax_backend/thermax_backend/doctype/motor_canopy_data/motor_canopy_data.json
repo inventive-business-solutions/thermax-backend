@@ -10,6 +10,7 @@
   "data_section",
   "tag_number",
   "service_description",
+  "kw_rating",
   "quantity",
   "motor_rated_current",
   "rpm",
@@ -111,12 +112,17 @@
    "fieldname": "description",
    "fieldtype": "Small Text",
    "label": "Description"
+  },
+  {
+   "fieldname": "kw_rating",
+   "fieldtype": "Data",
+   "label": "kW rating"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-01-18 15:54:26.914533",
+ "modified": "2025-01-23 15:13:35.803811",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Motor Canopy Data",
