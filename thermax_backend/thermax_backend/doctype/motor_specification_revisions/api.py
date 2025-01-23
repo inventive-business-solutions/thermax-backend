@@ -127,9 +127,7 @@ def get_motor_specification_excel():
 
     motor_specification_data = motor_spec_revision_data.get("motor_specification_data")
 
-    specification_sheet["C4"] = (
-        f'{project_info_data.get("standard")}, {project_info_data.get("zone")}, {project_info_data.get("gas_group")}, {project_info_data.get("temperature_class")}'
-    )
+    specification_sheet["C4"] = "Not Applicable"
     specification_sheet["C5"] = project_info_data.get("ambient_temperature_max")
     specification_sheet["C6"] = project_info_data.get("ambient_temperature_min")
     specification_sheet["C7"] = project_info_data.get(
@@ -186,9 +184,9 @@ def get_motor_specification_excel():
     specification_sheet["C22"] = "Low Voltage Squirrel Cage Induction Motor"
     specification_sheet["C23"] = "Copper"
 
-    specification_sheet["C21"] = common_config_data.get("dm_standard")
-    specification_sheet["C22"] = "Low Voltage Squirrel Cage Induction Motor"
-    specification_sheet["C23"] = "Copper"
+    specification_sheet["D21"] = common_config_data.get("dm_standard")
+    specification_sheet["D22"] = "Low Voltage Squirrel Cage Induction Motor"
+    specification_sheet["D23"] = "Copper"
 
 
     # Motor Parameters
@@ -212,6 +210,7 @@ def get_motor_specification_excel():
     specification_sheet["C33"] = motor_parameters_data.get("safe_area_starts_hour_permissible")
     specification_sheet["C34"] = motor_parameters_data.get("safe_area_service_factor")
     specification_sheet["C35"] = motor_parameters_data.get("safe_area_cooling_type")
+    specification_sheet["C41"] = motor_parameters_data.get("safe_area_body_material")
     specification_sheet["C42"] = motor_parameters_data.get("safe_area_terminal_box_ip_rating")
     specification_sheet["C45"] = motor_parameters_data.get("safe_area_paint_type_and_shade")
 
@@ -220,6 +219,7 @@ def get_motor_specification_excel():
     specification_sheet["D33"] = motor_parameters_data.get("hazardous_area_starts_hour_permissible")
     specification_sheet["D34"] = motor_parameters_data.get("hazardous_area_service_factor")
     specification_sheet["D35"] = motor_parameters_data.get("hazardous_area_cooling_type")
+    specification_sheet["D41"] = motor_parameters_data.get("hazardous_area_body_material")
     specification_sheet["D42"] = motor_parameters_data.get("hazardous_area_terminal_box_ip_rating")
     specification_sheet["D45"] = motor_parameters_data.get("hazardous_area_paint_type_and_shade")
 
@@ -238,11 +238,20 @@ def get_motor_specification_excel():
     index = 3
 
     for data in safe_data:
+
+        motor_rating_data = data.get("working_kw")
+        kw_data = "W"
+        
+        if motor_rating_data == "":
+            kw_data = "S"
+            motor_rating_data = data.get("standby_kw")
+
+        
         safe_area_motor_list_sheet[f"A{index}"] = index - 2
         safe_area_motor_list_sheet[f"B{index}"] = data.get("tag_number")
         safe_area_motor_list_sheet[f"C{index}"] = data.get("service_description")
-        safe_area_motor_list_sheet[f"D{index}"] = data.get("working_kw")
-        safe_area_motor_list_sheet[f"E{index}"] = data.get("motor_rated_current")
+        safe_area_motor_list_sheet[f"D{index}"] = kw_data
+        safe_area_motor_list_sheet[f"E{index}"] = motor_rating_data
         safe_area_motor_list_sheet[f"F{index}"] = data.get("rpm")
         safe_area_motor_list_sheet[f"G{index}"] = data.get("type_of_mounting")
         safe_area_motor_list_sheet[f"H{index}"] = data.get("motor_frame_size")
@@ -253,7 +262,7 @@ def get_motor_specification_excel():
         safe_area_motor_list_sheet[f"M{index}"] = data.get("motor_location")
         safe_area_motor_list_sheet[f"N{index}"] = data.get("supply_voltage")
         safe_area_motor_list_sheet[f"O{index}"] = 50
-        safe_area_motor_list_sheet[f"P{index}"] = "Feeder Type"
+        safe_area_motor_list_sheet[f"P{index}"] = data.get("starter_type")
         safe_area_motor_list_sheet[f"Q{index}"] = data.get("cable_size")
         safe_area_motor_list_sheet[f"R{index}"] = data.get("space_heater")
         roller_bearing = "No"
@@ -277,6 +286,7 @@ def get_motor_specification_excel():
         safe_area_motor_list_sheet[f"AB{index}"] = data.get("make")
         safe_area_motor_list_sheet[f"AC{index}"] = data.get("part_code")
         safe_area_motor_list_sheet[f"AD{index}"] = data.get("remark")
+        index = index + 1
 
     # safe_area_motor_bom_sheet
     count_dict = defaultdict(int)
@@ -288,7 +298,7 @@ def get_motor_specification_excel():
     index = 3
 
     for key, count in count_dict.items():
-        safe_area_motor_bom_sheet[f"A{index}"] = index - 3
+        safe_area_motor_bom_sheet[f"A{index}"] = index - 1
         # safe_area_motor_bom_sheet[f"B{index}"] = index - 3
         safe_area_motor_bom_sheet[f"C{index}"] = key
         safe_area_motor_bom_sheet[f"D{index}"] = "NOS"
@@ -296,13 +306,20 @@ def get_motor_specification_excel():
         # safe_area_motor_bom_sheet[f"F{index}"] = 
         index += 1
 
-
+    index = 3
     for data in hazard_data:
+        motor_rating_data = data.get("working_kw")
+        kw_data = "W"
+        
+        if motor_rating_data == "":
+            kw_data = "S"
+            motor_rating_data = data.get("standby_kw")
+
         hazardous_area_motor_list_sheet[f"A{index}"] = index - 2
         hazardous_area_motor_list_sheet[f"B{index}"] = data.get("tag_number")
         hazardous_area_motor_list_sheet[f"C{index}"] = data.get("service_description")
-        hazardous_area_motor_list_sheet[f"D{index}"] = data.get("working_kw")
-        hazardous_area_motor_list_sheet[f"E{index}"] = data.get("motor_rated_current")
+        hazardous_area_motor_list_sheet[f"D{index}"] = kw_data
+        hazardous_area_motor_list_sheet[f"E{index}"] = motor_rating_data
         hazardous_area_motor_list_sheet[f"F{index}"] = data.get("rpm")
         hazardous_area_motor_list_sheet[f"G{index}"] = data.get("type_of_mounting")
         hazardous_area_motor_list_sheet[f"H{index}"] = data.get("motor_frame_size")
@@ -313,7 +330,7 @@ def get_motor_specification_excel():
         hazardous_area_motor_list_sheet[f"M{index}"] = data.get("motor_location")
         hazardous_area_motor_list_sheet[f"N{index}"] = data.get("supply_voltage")
         hazardous_area_motor_list_sheet[f"O{index}"] = 50
-        hazardous_area_motor_list_sheet[f"P{index}"] = "Feeder Type"
+        hazardous_area_motor_list_sheet[f"P{index}"] = data.get("starter_type")
         hazardous_area_motor_list_sheet[f"Q{index}"] = data.get("cable_size")
         hazardous_area_motor_list_sheet[f"R{index}"] = data.get("space_heater")
         roller_bearing = "No"
@@ -337,6 +354,7 @@ def get_motor_specification_excel():
         hazardous_area_motor_list_sheet[f"AB{index}"] = data.get("make")
         hazardous_area_motor_list_sheet[f"AC{index}"] = data.get("part_code")
         hazardous_area_motor_list_sheet[f"AD{index}"] = data.get("remark")
+        index = index + 1
 
     count_dict = defaultdict(int)
     # Iterate through each motor detail in the correct structure
