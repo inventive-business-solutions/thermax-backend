@@ -319,10 +319,26 @@ def get_lpbs_specification_excel():
 
     id = 22
 
-    keys_with_yes = [key for key, value in config_data.items() if value == 'yes']
+    def handle_label(value):
+        switcher = {
+            "lpbs_start_push_button": "Start Push Button",
+            "off_indication_lamp_push_button": "OFF Indication Lamp",
+            "on_indication_lamp_push_button": "ON Indication Lamp",
+            "analog_ammeter_push_button": "Analog Ammeter",
+            "analog_rpm_push_button": "Analog RPM",
+            "emergency_stop_push_button": "Emergency Stop Button",
+            "forward_start_push_button": "Forward Start Push Button",
+            "reverse_start_push_button": "Reverse Start Push Button",
+            "speed_decrease_push_button": "Speed Increase Push Button",
+            "speed_increase_push_button": "Speed Decrease Push Button",
+        }
+        return switcher.get(value, "Invalid option")
+
+    keys_with_yes = [key for key, value in config_data.items() if value == 'Yes']
 
     for j in range(len(keys_with_yes)):
-        specification_sheet[f"{id}"] = keys_with_yes[j]
+        value = handle_label(keys_with_yes[j])
+        specification_sheet[f"B{id}"] = value
         id = id + 1
 
 
