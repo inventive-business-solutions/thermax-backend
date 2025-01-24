@@ -137,7 +137,7 @@ def get_design_basis_excel():
         )
     else:
         template_path = frappe.frappe.get_app_path(
-            "thermax_backend", "templates", "heating_load_list_template.xlsx"
+            "thermax_backend", "templates", "heating_design_basis_template.xlsx"
         )
 
     template_workbook = load_workbook(template_path)
