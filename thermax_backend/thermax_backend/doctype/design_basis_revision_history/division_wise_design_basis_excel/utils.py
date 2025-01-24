@@ -4,10 +4,16 @@ def num_to_string(value):
     return "Not Applicable"
 
 
-def na_to_string(value):
+def handle_none_to_string(value):
     if (value is None) or (value == "NA") or (value == "None"):
         return "Not Applicable"
     return value
+
+
+def handle_none_to_number(value):
+    if (value is None) or (value == "NA") or (value == "None"):
+        return 0
+    return int(value)
 
 
 def handle_make_of_component(component):
@@ -16,12 +22,12 @@ def handle_make_of_component(component):
         if component
         else "NA"
     )
-    component = na_to_string(component)
+    component = handle_none_to_string(component)
     return component
 
 
 def check_value_kW_below(value):
-    value = na_to_string(value)
+    value = handle_none_to_string(value)
     if value == "All":
         return f"{value} kW"
     elif value == "Not Applicable":
@@ -31,7 +37,7 @@ def check_value_kW_below(value):
 
 
 def check_value_kW(value):
-    value = na_to_string(value)
+    value = handle_none_to_string(value)
     if value == "As per OEM Standard" or value == "Not Applicable":
         return value
     elif value == "All":

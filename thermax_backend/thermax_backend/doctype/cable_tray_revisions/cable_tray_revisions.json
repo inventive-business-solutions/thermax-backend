@@ -1,0 +1,116 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2025-01-24 17:02:38.588758",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "linking_keys_section",
+  "project_id",
+  "design_basis_revision_id",
+  "cable_schedule_revision_id",
+  "section_break_mvwt",
+  "is_released",
+  "is_copied",
+  "is_saved",
+  "status",
+  "clone_note",
+  "input_path",
+  "output_path"
+ ],
+ "fields": [
+  {
+   "fieldname": "linking_keys_section",
+   "fieldtype": "Section Break",
+   "label": "Linking Keys"
+  },
+  {
+   "fieldname": "section_break_mvwt",
+   "fieldtype": "Section Break",
+   "label": "Revision Data"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "FILE_NOT_UPLOADED\nIN_QUEUE\nIN_PROCESS\nREADY_FOR_DOWNLOAD\nFAILED"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_released",
+   "fieldtype": "Check",
+   "label": "Is Released"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_copied",
+   "fieldtype": "Check",
+   "label": "Is Copied"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_saved",
+   "fieldtype": "Check",
+   "label": "Is Saved"
+  },
+  {
+   "fieldname": "clone_note",
+   "fieldtype": "Small Text",
+   "label": "Clone Note"
+  },
+  {
+   "fieldname": "project_id",
+   "fieldtype": "Link",
+   "label": "Project ID",
+   "options": "Project"
+  },
+  {
+   "fieldname": "design_basis_revision_id",
+   "fieldtype": "Data",
+   "label": "Design Basis Revision ID"
+  },
+  {
+   "fieldname": "cable_schedule_revision_id",
+   "fieldtype": "Data",
+   "label": "Cable Schedule Revision ID"
+  },
+  {
+   "default": "\"\"",
+   "fieldname": "output_path",
+   "fieldtype": "Small Text",
+   "label": "Output Path"
+  },
+  {
+   "default": "\"\"",
+   "fieldname": "input_path",
+   "fieldtype": "Small Text",
+   "label": "Input Path"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-01-24 17:15:12.967310",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "Cable Tray Revisions",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
