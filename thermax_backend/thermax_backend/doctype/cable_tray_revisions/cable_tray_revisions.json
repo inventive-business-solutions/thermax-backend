@@ -31,10 +31,11 @@
    "label": "Revision Data"
   },
   {
+   "default": "DEFAULT",
    "fieldname": "status",
    "fieldtype": "Select",
    "label": "Status",
-   "options": "FILE_NOT_UPLOADED\nIN_QUEUE\nIN_PROCESS\nREADY_FOR_DOWNLOAD\nFAILED"
+   "options": "DEFAULT\nIN_QUEUE\nIN_PROCESS\nREADY_FOR_DOWNLOAD\nFAILED"
   },
   {
    "default": "0",
@@ -90,7 +91,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-24 17:15:12.967310",
+ "modified": "2025-01-24 18:56:49.554088",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Cable Tray Revisions",
