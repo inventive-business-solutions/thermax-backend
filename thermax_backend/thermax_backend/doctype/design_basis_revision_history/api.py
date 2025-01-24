@@ -127,7 +127,7 @@ def get_design_basis_excel():
         template_path = frappe.frappe.get_app_path(
             "thermax_backend", "templates", "heating_design_basis_template.xlsx"
         )
-    elif division_name == "WWS SPG":
+    elif division_name == "WWS SPG" or division_name == "WWS Services":
         template_path = frappe.frappe.get_app_path(
             "thermax_backend", "templates", "spg_design_basis_template.xlsx"
         )
