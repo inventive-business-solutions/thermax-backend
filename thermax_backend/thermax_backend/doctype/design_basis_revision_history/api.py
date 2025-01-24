@@ -143,9 +143,9 @@ def get_design_basis_excel():
     template_workbook = load_workbook(template_path)
     cover_sheet = template_workbook["COVER"]
     design_basis_sheet = template_workbook["Design Basis"]
-    mcc_sheet = template_workbook["MCC"]
-    pcc_sheet = template_workbook["PCC"]
-    mcc_cum_plc_sheet = template_workbook["MCC CUM PLC"]
+    mcc_sheet = template_workbook["MCC VTUS88BP"]
+    pcc_sheet = template_workbook["PCC VTUS88BP"]
+    mcc_cum_plc_sheet = template_workbook["MCC CUM PLC VTUS88BP"]
 
     make_of_components_data = frappe.db.get_list(
         "Design Basis Make of Component", {"revision_id": revision_id}, "*"
@@ -206,9 +206,9 @@ def get_design_basis_excel():
 
         # MCC
 
-    # template_workbook.remove(mcc_sheet)
-    # template_workbook.remove(pcc_sheet)
-    # template_workbook.remove(mcc_cum_plc_sheet)
+    template_workbook.remove(mcc_sheet)
+    template_workbook.remove(pcc_sheet)
+    template_workbook.remove(mcc_cum_plc_sheet)
 
     # Load the workbook from the template path
     # template_workbook.save("design_basis.xlsx")
