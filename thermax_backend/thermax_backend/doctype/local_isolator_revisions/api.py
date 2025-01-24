@@ -223,8 +223,6 @@ def get_local_isolator_excel():
             hazard_isolator_data = data
 
 
-    
-   
     safe_fmi_type = safe_isolator_data.get("fmi_type")
     safe_fmi_ip_protection = safe_isolator_data.get("fmi_ip_protection")
     safe_fmi_enclouser_moc = safe_isolator_data.get("fmi_enclouser_moc")
@@ -359,7 +357,7 @@ def get_local_isolator_excel():
 
     isolator_safe_area_sheet[f"C{index + 5}"] = "Total Quantity"
     isolator_safe_area_sheet[f"D{index + 5}"] = int(len(safe_motor_details))
-    isolator_safe_area_sheet[f"F{index + 5}"] = "Nos"
+    isolator_safe_area_sheet[f"E{index + 5}"] = "Nos"
 
     index = 3
 
@@ -402,7 +400,7 @@ def get_local_isolator_excel():
 
     isolator_hazard_area_sheet[f"C{index + 5}"] = "Total Quantity"
     isolator_hazard_area_sheet[f"D{index + 5}"] = int(len(hazard_motor_details))
-    isolator_hazard_area_sheet[f"F{index + 5}"] = "Nos"
+    isolator_hazard_area_sheet[f"E{index + 5}"] = "Nos"
 
     if len(safe_motor_details) < 1:
         template_workbook.remove(isolator_safe_area_sheet)

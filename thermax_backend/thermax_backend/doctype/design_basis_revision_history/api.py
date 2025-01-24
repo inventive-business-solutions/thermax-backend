@@ -17,8 +17,8 @@ from thermax_backend.thermax_backend.doctype.design_basis_revision_history.divis
 from thermax_backend.thermax_backend.doctype.design_basis_revision_history.division_wise_design_basis_excel.heating_db_excel import (
     get_heating_db_excel,
 )
-from thermax_backend.thermax_backend.doctype.design_basis_revision_history.division_wise_design_basis_excel.spg_db_excel import (
-    get_spg_db_excel,
+from thermax_backend.thermax_backend.doctype.design_basis_revision_history.division_wise_design_basis_excel.wws_services_spg_db_excel import (
+    get_wws_services_spg_db_excel,
 )
 
 
@@ -127,7 +127,7 @@ def get_design_basis_excel():
         template_path = frappe.frappe.get_app_path(
             "thermax_backend", "templates", "heating_design_basis_template.xlsx"
         )
-    elif division_name == "WWS SPG":
+    elif division_name == "WWS SPG" or division_name == "WWS Services":
         template_path = frappe.frappe.get_app_path(
             "thermax_backend", "templates", "spg_design_basis_template.xlsx"
         )
@@ -137,15 +137,15 @@ def get_design_basis_excel():
         )
     else:
         template_path = frappe.frappe.get_app_path(
-            "thermax_backend", "templates", "heating_load_list_template.xlsx"
+            "thermax_backend", "templates", "heating_design_basis_template.xlsx"
         )
 
     template_workbook = load_workbook(template_path)
     cover_sheet = template_workbook["COVER"]
     design_basis_sheet = template_workbook["Design Basis"]
-    mcc_sheet = template_workbook["MCC"]
-    pcc_sheet = template_workbook["PCC"]
-    mcc_cum_plc_sheet = template_workbook["MCC CUM PLC"]
+    mcc_sheet = template_workbook["MCC VTUS88BP"]
+    pcc_sheet = template_workbook["PCC VTUS88BP"]
+    mcc_cum_plc_sheet = template_workbook["MCC CUM PLC VTUS88BP"]
 
     make_of_components_data = frappe.db.get_list(
         "Design Basis Make of Component", {"revision_id": revision_id}, "*"
@@ -183,8 +183,8 @@ def get_design_basis_excel():
             make_of_components_data=make_of_components_data,
             revision_id=revision_id,
         )
-    elif division_name == "WWS SPG":
-        template_workbook = get_spg_db_excel(
+    elif division_name == "WWS SPG" or division_name == "WWS Services":
+        template_workbook = get_wws_services_spg_db_excel(
             template_workbook=template_workbook,
             mcc_sheet=mcc_sheet,
             pcc_sheet=pcc_sheet,
@@ -206,9 +206,9 @@ def get_design_basis_excel():
 
         # MCC
 
-    # template_workbook.remove(mcc_sheet)
-    # template_workbook.remove(pcc_sheet)
-    # template_workbook.remove(mcc_cum_plc_sheet)
+    template_workbook.remove(mcc_sheet)
+    template_workbook.remove(pcc_sheet)
+    template_workbook.remove(mcc_cum_plc_sheet)
 
     # Load the workbook from the template path
     # template_workbook.save("design_basis.xlsx")

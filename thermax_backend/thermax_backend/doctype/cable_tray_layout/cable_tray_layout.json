@@ -30,7 +30,7 @@
   "moc",
   "type_of_gland",
   "cable_trays_section",
-  "cable_tray_cover",
+  "is_cable_tray_cover_selected",
   "future_space_on_trays",
   "cable_placement",
   "orientation",
@@ -563,12 +563,6 @@
    "label": "Aluminium Conductor"
   },
   {
-   "default": "0",
-   "fieldname": "cable_tray_cover",
-   "fieldtype": "Check",
-   "label": "Is Cable Tray Cover Selected"
-  },
-  {
    "fieldname": "cable_tray_moc",
    "fieldtype": "Data",
    "label": "Cable Tray MOC"
@@ -577,11 +571,17 @@
    "fieldname": "cable_tray_moc_input",
    "fieldtype": "Data",
    "label": "Cable Tray MOC Input"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_cable_tray_cover_selected",
+   "fieldtype": "Check",
+   "label": "Is Cable Tray Cover Selected"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-23 20:04:16.787410",
+ "modified": "2025-01-24 16:27:09.961468",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Cable Tray Layout",

@@ -1,12 +1,13 @@
 import frappe
 from thermax_backend.thermax_backend.doctype.design_basis_revision_history.division_wise_design_basis_excel.utils import (
     handle_make_of_component,
-    na_to_string,
+    handle_none_to_string,
+    handle_none_to_number,
     num_to_string,
 )
 
 
-def get_spg_db_excel(
+def get_wws_services_spg_db_excel(
     template_workbook,
     mcc_sheet,
     pcc_sheet,
@@ -23,40 +24,39 @@ def get_spg_db_excel(
         panel_id = project_panel.get("name")
         if project_panel.get("panel_main_type") == "MCC":
             mcc_panel_data = frappe.db.get_list(
-                "MCC Panel", {"revision_id": revision_id, "panel_id": panel_id}, "*"
+                "MCC Panel", {"panel_id": panel_id}, "*"
             )
+            panel_sheet = template_workbook.copy_worksheet(mcc_sheet)
+            panel_sheet.title = project_panel.get("panel_name")
             if len(mcc_panel_data) == 0:
                 continue
             mcc_panel_data = mcc_panel_data[0]
 
-            panel_sheet = template_workbook.copy_worksheet(mcc_sheet)
-            panel_sheet.title = project_panel.get("panel_name")
-
             panel_sheet["B3"] = project_panel.get("panel_name")
 
-            incomer_ampere = mcc_panel_data.get("incomer_ampere")
-            incomer_pole = mcc_panel_data.get("incomer_pole")
-            incomer_type = mcc_panel_data.get("incomer_type")
-            incomer_above_ampere = mcc_panel_data.get("incomer_above_ampere")
-            incomer_above_pole = mcc_panel_data.get("incomer_above_pole")
-            incomer_above_type = mcc_panel_data.get("incomer_above_type")
-            is_under_or_over_voltage_selected = mcc_panel_data.get(
-                "is_under_or_over_voltage_selected"
+            incomer_ampere = handle_none_to_string(mcc_panel_data.get("incomer_ampere"))
+            incomer_pole = handle_none_to_string(mcc_panel_data.get("incomer_pole"))
+            incomer_type = handle_none_to_string(mcc_panel_data.get("incomer_type"))
+            incomer_above_ampere = handle_none_to_string(
+                mcc_panel_data.get("incomer_above_ampere")
             )
-            is_lsig_selected = mcc_panel_data.get("is_lsig_selected")
-            is_lsi_selected = mcc_panel_data.get("is_lsi_selected")
-            is_neural_link_with_disconnect_facility_selected = mcc_panel_data.get(
-                "is_neural_link_with_disconnect_facility_selected"
+            incomer_above_pole = handle_none_to_string(
+                mcc_panel_data.get("incomer_above_pole")
             )
-            is_led_type_lamp_selected = mcc_panel_data.get("is_led_type_lamp_selected")
-            is_indication_on_selected = mcc_panel_data.get("is_indication_on_selected")
+            incomer_above_type = handle_none_to_string(
+                mcc_panel_data.get("incomer_above_type")
+            )
+
+            is_indication_on_selected = handle_none_to_number(
+                mcc_panel_data.get("is_indication_on_selected")
+            )
             led_type_on_input = mcc_panel_data.get("led_type_on_input")
-            is_indication_off_selected = mcc_panel_data.get(
-                "is_indication_off_selected"
+            is_indication_off_selected = handle_none_to_number(
+                mcc_panel_data.get("is_indication_off_selected")
             )
             led_type_off_input = mcc_panel_data.get("led_type_off_input")
-            is_indication_trip_selected = mcc_panel_data.get(
-                "is_indication_trip_selected"
+            is_indication_trip_selected = handle_none_to_number(
+                mcc_panel_data.get("is_indication_trip_selected")
             )
             led_type_trip_input = mcc_panel_data.get("led_type_trip_input")
             is_blue_cb_spring_charge_selected = mcc_panel_data.get(
@@ -66,17 +66,11 @@ def get_spg_db_excel(
             is_white_healthy_trip_circuit_selected = mcc_panel_data.get(
                 "is_white_healthy_trip_circuit_selected"
             )
-            is_other_selected = mcc_panel_data.get("is_other_selected")
-            led_type_other_input = mcc_panel_data.get("led_type_other_input")
+
             current_transformer_coating = mcc_panel_data.get(
                 "current_transformer_coating"
             )
-            control_transformer_coating = mcc_panel_data.get(
-                "control_transformer_coating"
-            )
-            control_transformer_configuration = mcc_panel_data.get(
-                "control_transformer_configuration"
-            )
+
             current_transformer_number = mcc_panel_data.get(
                 "current_transformer_number"
             )
@@ -100,10 +94,7 @@ def get_spg_db_excel(
             incoming_drawout_type = mcc_panel_data.get("incoming_drawout_type")
             outgoing_drawout_type = mcc_panel_data.get("outgoing_drawout_type")
             ga_mcc_construction_type = mcc_panel_data.get("ga_mcc_construction_type")
-            busbar_material_of_construction = mcc_panel_data.get(
-                "busbar_material_of_construction"
-            )
-            ga_current_density = mcc_panel_data.get("ga_current_density")
+
             ga_panel_mounting_frame = mcc_panel_data.get("ga_panel_mounting_frame")
             ga_panel_mounting_height = mcc_panel_data.get("ga_panel_mounting_height")
             is_marshalling_section_selected = mcc_panel_data.get(
@@ -138,16 +129,13 @@ def get_spg_db_excel(
             general_requirments_for_construction = mcc_panel_data.get(
                 "general_requirments_for_construction"
             )
-            ppc_painting_standards = mcc_panel_data.get("ppc_painting_standards")
             ppc_interior_and_exterior_paint_shade = mcc_panel_data.get(
                 "ppc_interior_and_exterior_paint_shade"
             )
             ppc_component_mounting_plate_paint_shade = mcc_panel_data.get(
                 "ppc_component_mounting_plate_paint_shade"
             )
-            ppc_base_frame_paint_shade = mcc_panel_data.get(
-                "ppc_base_frame_paint_shade"
-            )
+
             ppc_minimum_coating_thickness = mcc_panel_data.get(
                 "ppc_minimum_coating_thickness"
             )
@@ -159,50 +147,7 @@ def get_spg_db_excel(
                 "two_year_operational_spare"
             )
             commissioning_spare = mcc_panel_data.get("commissioning_spare")
-            is_punching_details_for_boiler_selected = mcc_panel_data.get(
-                "is_punching_details_for_boiler_selected"
-            )
-            boiler_model = mcc_panel_data.get("boiler_model")
-            boiler_fuel = mcc_panel_data.get("boiler_fuel")
-            boiler_year = mcc_panel_data.get("boiler_year")
-            boiler_power_supply_vac = mcc_panel_data.get("boiler_power_supply_vac")
-            boiler_power_supply_phase = mcc_panel_data.get("boiler_power_supply_phase")
-            boiler_power_supply_frequency = mcc_panel_data.get(
-                "boiler_power_supply_frequency"
-            )
-            boiler_control_supply_vac = mcc_panel_data.get("boiler_control_supply_vac")
-            boiler_control_supply_phase = mcc_panel_data.get(
-                "boiler_control_supply_phase"
-            )
-            boiler_control_supply_frequency = mcc_panel_data.get(
-                "boiler_control_supply_frequency"
-            )
-            boiler_evaporation = mcc_panel_data.get("boiler_evaporation")
-            boiler_output = mcc_panel_data.get("boiler_output")
-            boiler_connected_load = mcc_panel_data.get("boiler_connected_load")
-            boiler_design_pressure = mcc_panel_data.get("boiler_design_pressure")
-            is_punching_details_for_heater_selected = mcc_panel_data.get(
-                "is_punching_details_for_heater_selected"
-            )
-            heater_model = mcc_panel_data.get("heater_model")
-            heater_fuel = mcc_panel_data.get("heater_fuel")
-            heater_year = mcc_panel_data.get("heater_year")
-            heater_power_supply_vac = mcc_panel_data.get("heater_power_supply_vac")
-            heater_power_supply_phase = mcc_panel_data.get("heater_power_supply_phase")
-            heater_power_supply_frequency = mcc_panel_data.get(
-                "heater_power_supply_frequency"
-            )
-            heater_control_supply_vac = mcc_panel_data.get("heater_control_supply_vac")
-            heater_control_supply_phase = mcc_panel_data.get(
-                "heater_control_supply_phase"
-            )
-            heater_control_supply_frequency = mcc_panel_data.get(
-                "heater_control_supply_frequency"
-            )
-            heater_evaporation = mcc_panel_data.get("heater_evaporation")
-            heater_output = mcc_panel_data.get("heater_output")
-            heater_connected_load = mcc_panel_data.get("heater_connected_load")
-            heater_temperature = mcc_panel_data.get("heater_temperature")
+
             is_spg_applicable = mcc_panel_data.get("is_spg_applicable")
             spg_name_plate_unit_name = mcc_panel_data.get("spg_name_plate_unit_name")
             spg_name_plate_capacity = mcc_panel_data.get("spg_name_plate_capacity")
@@ -212,33 +157,34 @@ def get_spg_db_excel(
             spg_name_plate_weight = mcc_panel_data.get("spg_name_plate_weight")
             spg_name_plate_oc_number = mcc_panel_data.get("spg_name_plate_oc_number")
             spg_name_plate_part_code = mcc_panel_data.get("spg_name_plate_part_code")
-            special_note = mcc_panel_data.get("special_note")
 
             incomer_data = f"Upto {incomer_ampere}, {incomer_pole} Pole {incomer_type} \nAbove {incomer_above_ampere}, {incomer_above_pole} Pole {incomer_above_type} "
 
-            if is_indication_on_selected == "0" or is_indication_on_selected == 0:
+            if is_indication_on_selected == 0:
                 led_type_on_input = "Not Applicable"
 
-            if is_indication_off_selected == "0" or is_indication_off_selected == 0:
+            if is_indication_off_selected == 0:
                 led_type_off_input = "Not Applicable"
 
-            if is_indication_trip_selected == "0" or is_indication_trip_selected == 0:
+            if is_indication_trip_selected == 0:
                 led_type_trip_input = "Not Applicable"
 
-            panel_sheet["C5"] = na_to_string(incomer_data)
+            panel_sheet["C5"] = handle_none_to_string(incomer_data)
             panel_sheet["C6"] = led_type_on_input
             panel_sheet["C7"] = led_type_off_input
             panel_sheet["C8"] = led_type_trip_input
 
-            if incomer_type is None or "ACB" not in incomer_type:
+            if "ACB" not in incomer_type:
                 is_blue_cb_spring_charge_selected = "NA"
                 is_red_cb_in_service = "NA"
                 is_white_healthy_trip_circuit_selected = "NA"
 
-            panel_sheet["C9"] = na_to_string(is_blue_cb_spring_charge_selected)
-            panel_sheet["C10"] = na_to_string(is_red_cb_in_service)
-            panel_sheet["C11"] = na_to_string(is_white_healthy_trip_circuit_selected)
-            panel_sheet["C12"] = na_to_string(alarm_annunciator)
+            panel_sheet["C9"] = handle_none_to_string(is_blue_cb_spring_charge_selected)
+            panel_sheet["C10"] = handle_none_to_string(is_red_cb_in_service)
+            panel_sheet["C11"] = handle_none_to_string(
+                is_white_healthy_trip_circuit_selected
+            )
+            panel_sheet["C12"] = handle_none_to_string(alarm_annunciator)
 
             if "NA" in mi_communication_protocol:
                 mi_communication_protocol = "Not Applicable"
@@ -247,22 +193,24 @@ def get_spg_db_excel(
             panel_sheet["C15"] = handle_make_of_component(mi_digital)
             panel_sheet["C16"] = mi_communication_protocol
 
-            panel_sheet["C18"] = na_to_string(current_transformer_coating)
-            panel_sheet["C19"] = na_to_string(current_transformer_number)
-            panel_sheet["C20"] = na_to_string(current_transformer_configuration)
+            panel_sheet["C18"] = handle_none_to_string(current_transformer_coating)
+            panel_sheet["C19"] = handle_none_to_string(current_transformer_number)
+            panel_sheet["C20"] = handle_none_to_string(
+                current_transformer_configuration
+            )
 
             panel_sheet["C22"] = ga_moc_material  # MOC
-            panel_sheet["C23"] = na_to_string(
+            panel_sheet["C23"] = handle_none_to_string(
                 ga_moc_thickness_door
             )  # Component Mounting Plate Thickness
-            panel_sheet["C24"] = na_to_string(door_thickness)  # Door Thickness
-            panel_sheet["C25"] = na_to_string(
+            panel_sheet["C24"] = handle_none_to_string(door_thickness)  # Door Thickness
+            panel_sheet["C25"] = handle_none_to_string(
                 ga_moc_thickness_covers
             )  # Top & Side Thickness
-            panel_sheet["C26"] = na_to_string(
+            panel_sheet["C26"] = handle_none_to_string(
                 ga_gland_plate_thickness
             )  # Gland Plate Thickness
-            panel_sheet["C27"] = na_to_string(
+            panel_sheet["C27"] = handle_none_to_string(
                 ga_gland_plate_3mm_drill_type
             )  # Gland Plate Type
             panel_sheet["C28"] = ga_mcc_compartmental  # Panel Front Type
@@ -316,50 +264,51 @@ def get_spg_db_excel(
             if is_spg_applicable == "0" or is_spg_applicable == 0:
                 spg_name_plate_oc_number = "Not Applicable"
 
-            panel_sheet["C57"] = na_to_string(spg_name_plate_unit_name)
-            panel_sheet["C58"] = na_to_string(spg_name_plate_capacity)
-            panel_sheet["C59"] = na_to_string(spg_name_plate_manufacturing_year)
-            panel_sheet["C60"] = na_to_string(spg_name_plate_weight)
+            panel_sheet["C57"] = handle_none_to_string(spg_name_plate_unit_name)
+            panel_sheet["C58"] = handle_none_to_string(spg_name_plate_capacity)
+            panel_sheet["C59"] = handle_none_to_string(
+                spg_name_plate_manufacturing_year
+            )
+            panel_sheet["C60"] = handle_none_to_string(spg_name_plate_weight)
             panel_sheet["C61"] = spg_name_plate_oc_number
-            panel_sheet["C62"] = na_to_string(spg_name_plate_part_code)
+            panel_sheet["C62"] = handle_none_to_string(spg_name_plate_part_code)
 
         elif project_panel.get("panel_main_type") == "PCC":
 
             pcc_panel_data = frappe.db.get_list(
-                "PCC Panel", {"revision_id": revision_id, "panel_id": panel_id}, "*"
+                "PCC Panel", {"panel_id": panel_id}, "*"
             )
+            panel_sheet = template_workbook.copy_worksheet(pcc_sheet)
+            panel_sheet.title = project_panel.get("panel_name")
             if len(pcc_panel_data) == 0:
                 continue
             pcc_panel_data = pcc_panel_data[0]
 
-            panel_sheet = template_workbook.copy_worksheet(pcc_sheet)
-            panel_sheet.title = project_panel.get("panel_name")
-
             panel_sheet["B3"] = project_data.get("panel_name")
 
-            incomer_ampere = pcc_panel_data.get("incomer_ampere")
-            incomer_pole = pcc_panel_data.get("incomer_pole")
-            incomer_type = pcc_panel_data.get("incomer_type")
-            incomer_above_ampere = pcc_panel_data.get("incomer_above_ampere")
-            incomer_above_pole = pcc_panel_data.get("incomer_above_pole")
-            incomer_above_type = pcc_panel_data.get("incomer_above_type")
-            is_under_or_over_voltage_selected = pcc_panel_data.get(
-                "is_under_or_over_voltage_selected"
+            incomer_ampere = handle_none_to_string(pcc_panel_data.get("incomer_ampere"))
+            incomer_pole = handle_none_to_string(pcc_panel_data.get("incomer_pole"))
+            incomer_type = handle_none_to_string(pcc_panel_data.get("incomer_type"))
+            incomer_above_ampere = handle_none_to_string(
+                pcc_panel_data.get("incomer_above_ampere")
             )
-            is_lsig_selected = pcc_panel_data.get("is_lsig_selected")
-            is_lsi_selected = pcc_panel_data.get("is_lsi_selected")
-            is_neural_link_with_disconnect_facility_selected = pcc_panel_data.get(
-                "is_neural_link_with_disconnect_facility_selected"
+            incomer_above_pole = handle_none_to_string(
+                pcc_panel_data.get("incomer_above_pole")
             )
-            is_led_type_lamp_selected = pcc_panel_data.get("is_led_type_lamp_selected")
-            is_indication_on_selected = pcc_panel_data.get("is_indication_on_selected")
+            incomer_above_type = handle_none_to_string(
+                pcc_panel_data.get("incomer_above_type")
+            )
+
+            is_indication_on_selected = handle_none_to_number(
+                pcc_panel_data.get("is_indication_on_selected")
+            )
             led_type_on_input = pcc_panel_data.get("led_type_on_input")
-            is_indication_off_selected = pcc_panel_data.get(
-                "is_indication_off_selected"
+            is_indication_off_selected = handle_none_to_number(
+                pcc_panel_data.get("is_indication_off_selected")
             )
             led_type_off_input = pcc_panel_data.get("led_type_off_input")
-            is_indication_trip_selected = pcc_panel_data.get(
-                "is_indication_trip_selected"
+            is_indication_trip_selected = handle_none_to_number(
+                pcc_panel_data.get("is_indication_trip_selected")
             )
             led_type_trip_input = pcc_panel_data.get("led_type_trip_input")
             is_blue_cb_spring_charge_selected = pcc_panel_data.get(
@@ -369,13 +318,7 @@ def get_spg_db_excel(
             is_white_healthy_trip_circuit_selected = pcc_panel_data.get(
                 "is_white_healthy_trip_circuit_selected"
             )
-            is_other_selected = pcc_panel_data.get("is_other_selected")
-            control_transformer_coating = pcc_panel_data.get(
-                "control_transformer_coating"
-            )
-            control_transformer_configuration = pcc_panel_data.get(
-                "control_transformer_configuration"
-            )
+
             current_transformer_coating = pcc_panel_data.get(
                 "current_transformer_coating"
             )
@@ -385,28 +328,34 @@ def get_spg_db_excel(
             current_transformer_configuration = pcc_panel_data.get(
                 "current_transformer_configuration"
             )
-            alarm_annunciator = pcc_panel_data.get("alarm_annunciator")
-            led_type_other_input = pcc_panel_data.get("led_type_other_input")
-            mi_analog = pcc_panel_data.get("mi_analog", "NA")
-            mi_digital = pcc_panel_data.get("mi_digital", "NA")
-            mi_communication_protocol = pcc_panel_data.get(
-                "mi_communication_protocol", "NA"
+            alarm_annunciator = handle_none_to_string(
+                pcc_panel_data.get("alarm_annunciator")
             )
-            ga_moc_material = pcc_panel_data.get("ga_moc_material")
-            door_thickness = pcc_panel_data.get("door_thickness")
-            ga_moc_thickness_door = pcc_panel_data.get("ga_moc_thickness_door")
-            ga_moc_thickness_covers = pcc_panel_data.get("ga_moc_thickness_covers")
-            ga_pcc_compartmental = pcc_panel_data.get("ga_pcc_compartmental")
+            mi_analog = handle_none_to_string(pcc_panel_data.get("mi_analog"))
+            mi_digital = handle_none_to_string(pcc_panel_data.get("mi_digital"))
+            mi_communication_protocol = handle_none_to_string(
+                pcc_panel_data.get("mi_communication_protocol")
+            )
+            ga_moc_material = handle_none_to_string(
+                pcc_panel_data.get("ga_moc_material")
+            )
+            door_thickness = handle_none_to_string(pcc_panel_data.get("door_thickness"))
+            ga_moc_thickness_door = handle_none_to_string(
+                pcc_panel_data.get("ga_moc_thickness_door")
+            )
+            ga_moc_thickness_covers = handle_none_to_string(
+                pcc_panel_data.get("ga_moc_thickness_covers")
+            )
+            ga_pcc_compartmental = handle_none_to_string(
+                pcc_panel_data.get("ga_pcc_compartmental")
+            )
             ga_pcc_construction_front_type = pcc_panel_data.get(
                 "ga_pcc_construction_front_type"
             )
             ga_pcc_construction_type = pcc_panel_data.get("ga_pcc_construction_type")
             incoming_drawout_type = pcc_panel_data.get("incoming_drawout_type")
             outgoing_drawout_type = pcc_panel_data.get("outgoing_drawout_type")
-            busbar_material_of_construction = pcc_panel_data.get(
-                "busbar_material_of_construction"
-            )
-            ga_current_density = pcc_panel_data.get("ga_current_density")
+
             ga_panel_mounting_frame = pcc_panel_data.get("ga_panel_mounting_frame")
             ga_panel_mounting_height = pcc_panel_data.get("ga_panel_mounting_height")
             is_marshalling_section_selected = pcc_panel_data.get(
@@ -442,16 +391,13 @@ def get_spg_db_excel(
             general_requirments_for_construction = pcc_panel_data.get(
                 "general_requirments_for_construction"
             )
-            ppc_painting_standards = pcc_panel_data.get("ppc_painting_standards")
             ppc_interior_and_exterior_paint_shade = pcc_panel_data.get(
                 "ppc_interior_and_exterior_paint_shade"
             )
             ppc_component_mounting_plate_paint_shade = pcc_panel_data.get(
                 "ppc_component_mounting_plate_paint_shade"
             )
-            ppc_base_frame_paint_shade = pcc_panel_data.get(
-                "ppc_base_frame_paint_shade"
-            )
+
             ppc_minimum_coating_thickness = pcc_panel_data.get(
                 "ppc_minimum_coating_thickness"
             )
@@ -462,50 +408,7 @@ def get_spg_db_excel(
             two_year_operational_spare = pcc_panel_data.get(
                 "two_year_operational_spare"
             )
-            is_punching_details_for_boiler_selected = pcc_panel_data.get(
-                "is_punching_details_for_boiler_selected"
-            )
-            boiler_model = pcc_panel_data.get("boiler_model")
-            boiler_fuel = pcc_panel_data.get("boiler_fuel")
-            boiler_year = pcc_panel_data.get("boiler_year")
-            boiler_power_supply_vac = pcc_panel_data.get("boiler_power_supply_vac")
-            boiler_power_supply_phase = pcc_panel_data.get("boiler_power_supply_phase")
-            boiler_power_supply_frequency = pcc_panel_data.get(
-                "boiler_power_supply_frequency"
-            )
-            boiler_control_supply_vac = pcc_panel_data.get("boiler_control_supply_vac")
-            boiler_control_supply_phase = pcc_panel_data.get(
-                "boiler_control_supply_phase"
-            )
-            boiler_control_supply_frequency = pcc_panel_data.get(
-                "boiler_control_supply_frequency"
-            )
-            boiler_evaporation = pcc_panel_data.get("boiler_evaporation")
-            boiler_output = pcc_panel_data.get("boiler_output")
-            boiler_connected_load = pcc_panel_data.get("boiler_connected_load")
-            boiler_design_pressure = pcc_panel_data.get("boiler_design_pressure")
-            is_punching_details_for_heater_selected = pcc_panel_data.get(
-                "is_punching_details_for_heater_selected"
-            )
-            heater_model = pcc_panel_data.get("heater_model")
-            heater_fuel = pcc_panel_data.get("heater_fuel")
-            heater_year = pcc_panel_data.get("heater_year")
-            heater_power_supply_vac = pcc_panel_data.get("heater_power_supply_vac")
-            heater_power_supply_phase = pcc_panel_data.get("heater_power_supply_phase")
-            heater_power_supply_frequency = pcc_panel_data.get(
-                "heater_power_supply_frequency"
-            )
-            heater_control_supply_vac = pcc_panel_data.get("heater_control_supply_vac")
-            heater_control_supply_phase = pcc_panel_data.get(
-                "heater_control_supply_phase"
-            )
-            heater_control_supply_frequency = pcc_panel_data.get(
-                "heater_control_supply_frequency"
-            )
-            heater_evaporation = pcc_panel_data.get("heater_evaporation")
-            heater_output = pcc_panel_data.get("heater_output")
-            heater_connected_load = pcc_panel_data.get("heater_connected_load")
-            heater_temperature = pcc_panel_data.get("heater_temperature")
+
             is_spg_applicable = pcc_panel_data.get("is_spg_applicable")
             spg_name_plate_unit_name = pcc_panel_data.get("spg_name_plate_unit_name")
             spg_name_plate_capacity = pcc_panel_data.get("spg_name_plate_capacity")
@@ -515,32 +418,33 @@ def get_spg_db_excel(
             spg_name_plate_weight = pcc_panel_data.get("spg_name_plate_weight")
             spg_name_plate_oc_number = pcc_panel_data.get("spg_name_plate_oc_number")
             spg_name_plate_part_code = pcc_panel_data.get("spg_name_plate_part_code")
-            special_note = pcc_panel_data.get("special_note")
 
             pcc_incomer_data = f"Upto {incomer_ampere}, {incomer_pole} Pole {incomer_type} \nAbove {incomer_above_ampere}, {incomer_above_pole} Pole {incomer_above_type}"
 
-            if is_indication_on_selected == "0" or is_indication_on_selected == 0:
+            if is_indication_on_selected == 0:
                 led_type_on_input = "Not Applicable"
 
-            if is_indication_off_selected == "0" or is_indication_off_selected == 0:
+            if is_indication_off_selected == 0:
                 led_type_off_input = "Not Applicable"
 
-            if is_indication_trip_selected == "0" or is_indication_trip_selected == 0:
+            if is_indication_trip_selected == 0:
                 led_type_trip_input = "Not Applicable"
 
-            panel_sheet["C5"] = na_to_string(pcc_incomer_data)
+            panel_sheet["C5"] = handle_none_to_string(pcc_incomer_data)
             panel_sheet["C6"] = led_type_on_input
             panel_sheet["C7"] = led_type_off_input
             panel_sheet["C8"] = led_type_trip_input
-            if not "ACB" in incomer_type:
+            if "ACB" not in incomer_type:
                 is_blue_cb_spring_charge_selected = "NA"
                 is_red_cb_in_service = "NA"
                 is_white_healthy_trip_circuit_selected = "NA"
 
-            panel_sheet["C9"] = na_to_string(is_blue_cb_spring_charge_selected)
-            panel_sheet["C10"] = na_to_string(is_red_cb_in_service)
-            panel_sheet["C11"] = na_to_string(is_white_healthy_trip_circuit_selected)
-            panel_sheet["C12"] = na_to_string(alarm_annunciator)
+            panel_sheet["C9"] = handle_none_to_string(is_blue_cb_spring_charge_selected)
+            panel_sheet["C10"] = handle_none_to_string(is_red_cb_in_service)
+            panel_sheet["C11"] = handle_none_to_string(
+                is_white_healthy_trip_circuit_selected
+            )
+            panel_sheet["C12"] = handle_none_to_string(alarm_annunciator)
 
             analog_data = (
                 mi_analog.replace("[", "")
@@ -586,7 +490,7 @@ def get_spg_db_excel(
             panel_sheet["C29"] = (
                 ga_pcc_construction_front_type  # Type of Construction for Board
             )
-            
+
             if (ga_pcc_compartmental is None) or ("Non" in ga_pcc_compartmental):
                 incoming_drawout_type = "Not Applicable"
                 outgoing_drawout_type = "Not Applicable"
@@ -635,49 +539,51 @@ def get_spg_db_excel(
             if is_spg_applicable == "0" or is_spg_applicable == 0:
                 spg_name_plate_oc_number = "Not Applicable"
 
-            panel_sheet["C55"] = na_to_string(spg_name_plate_unit_name)
-            panel_sheet["C56"] = na_to_string(spg_name_plate_capacity)
-            panel_sheet["C57"] = na_to_string(spg_name_plate_manufacturing_year)
-            panel_sheet["C58"] = na_to_string(spg_name_plate_weight)
+            panel_sheet["C55"] = handle_none_to_string(spg_name_plate_unit_name)
+            panel_sheet["C56"] = handle_none_to_string(spg_name_plate_capacity)
+            panel_sheet["C57"] = handle_none_to_string(
+                spg_name_plate_manufacturing_year
+            )
+            panel_sheet["C58"] = handle_none_to_string(spg_name_plate_weight)
             panel_sheet["C59"] = spg_name_plate_oc_number
-            panel_sheet["C60"] = na_to_string(spg_name_plate_part_code)
+            panel_sheet["C60"] = handle_none_to_string(spg_name_plate_part_code)
 
         else:
             mcc_panel_data = frappe.db.get_list(
-                "MCC Panel", {"revision_id": revision_id, "panel_id": panel_id}, "*"
+                "MCC Panel", {"panel_id": panel_id}, "*"
             )
+            panel_sheet = template_workbook.copy_worksheet(mcc_cum_plc_sheet)
+            panel_sheet.title = project_panel.get("panel_name")
+
             if len(mcc_panel_data) == 0:
                 continue
             mcc_panel_data = mcc_panel_data[0]
 
-            panel_sheet = template_workbook.copy_worksheet(mcc_cum_plc_sheet)
-            panel_sheet.title = project_panel.get("panel_name")
-
             panel_sheet["B3"] = project_panel.get("panel_name")
 
-            incomer_ampere = mcc_panel_data.get("incomer_ampere")
-            incomer_pole = mcc_panel_data.get("incomer_pole")
-            incomer_type = mcc_panel_data.get("incomer_type")
-            incomer_above_ampere = mcc_panel_data.get("incomer_above_ampere")
-            incomer_above_pole = mcc_panel_data.get("incomer_above_pole")
-            incomer_above_type = mcc_panel_data.get("incomer_above_type")
-            is_under_or_over_voltage_selected = mcc_panel_data.get(
-                "is_under_or_over_voltage_selected"
+            incomer_ampere = handle_none_to_string(mcc_panel_data.get("incomer_ampere"))
+            incomer_pole = handle_none_to_string(mcc_panel_data.get("incomer_pole"))
+            incomer_type = handle_none_to_string(mcc_panel_data.get("incomer_type"))
+            incomer_above_ampere = handle_none_to_string(
+                mcc_panel_data.get("incomer_above_ampere")
             )
-            is_lsig_selected = mcc_panel_data.get("is_lsig_selected")
-            is_lsi_selected = mcc_panel_data.get("is_lsi_selected")
-            is_neural_link_with_disconnect_facility_selected = mcc_panel_data.get(
-                "is_neural_link_with_disconnect_facility_selected"
+            incomer_above_pole = handle_none_to_string(
+                mcc_panel_data.get("incomer_above_pole")
             )
-            is_led_type_lamp_selected = mcc_panel_data.get("is_led_type_lamp_selected")
-            is_indication_on_selected = mcc_panel_data.get("is_indication_on_selected")
+            incomer_above_type = handle_none_to_string(
+                mcc_panel_data.get("incomer_above_type")
+            )
+
+            is_indication_on_selected = handle_none_to_number(
+                mcc_panel_data.get("is_indication_on_selected")
+            )
             led_type_on_input = mcc_panel_data.get("led_type_on_input")
-            is_indication_off_selected = mcc_panel_data.get(
-                "is_indication_off_selected"
+            is_indication_off_selected = handle_none_to_number(
+                mcc_panel_data.get("is_indication_off_selected")
             )
             led_type_off_input = mcc_panel_data.get("led_type_off_input")
-            is_indication_trip_selected = mcc_panel_data.get(
-                "is_indication_trip_selected"
+            is_indication_trip_selected = handle_none_to_number(
+                mcc_panel_data.get("is_indication_trip_selected")
             )
             led_type_trip_input = mcc_panel_data.get("led_type_trip_input")
             is_blue_cb_spring_charge_selected = mcc_panel_data.get(
@@ -687,17 +593,11 @@ def get_spg_db_excel(
             is_white_healthy_trip_circuit_selected = mcc_panel_data.get(
                 "is_white_healthy_trip_circuit_selected"
             )
-            is_other_selected = mcc_panel_data.get("is_other_selected")
-            led_type_other_input = mcc_panel_data.get("led_type_other_input")
+
             current_transformer_coating = mcc_panel_data.get(
                 "current_transformer_coating"
             )
-            control_transformer_coating = mcc_panel_data.get(
-                "control_transformer_coating"
-            )
-            control_transformer_configuration = mcc_panel_data.get(
-                "control_transformer_configuration"
-            )
+
             current_transformer_number = mcc_panel_data.get(
                 "current_transformer_number"
             )
@@ -710,21 +610,26 @@ def get_spg_db_excel(
             mi_communication_protocol = (
                 mcc_panel_data.get("mi_communication_protocol") or "NA"
             )
-            ga_moc_material = mcc_panel_data.get("ga_moc_material")
-            door_thickness = mcc_panel_data.get("door_thickness")
-            ga_moc_thickness_door = mcc_panel_data.get("ga_moc_thickness_door")
-            ga_moc_thickness_covers = mcc_panel_data.get("ga_moc_thickness_covers")
-            ga_mcc_compartmental = mcc_panel_data.get("ga_mcc_compartmental")
+            ga_moc_material = handle_none_to_string(
+                mcc_panel_data.get("ga_moc_material")
+            )
+            door_thickness = handle_none_to_string(mcc_panel_data.get("door_thickness"))
+            ga_moc_thickness_door = handle_none_to_string(
+                mcc_panel_data.get("ga_moc_thickness_door")
+            )
+            ga_moc_thickness_covers = handle_none_to_string(
+                mcc_panel_data.get("ga_moc_thickness_covers")
+            )
+            ga_mcc_compartmental = handle_none_to_string(
+                mcc_panel_data.get("ga_mcc_compartmental")
+            )
             ga_mcc_construction_front_type = mcc_panel_data.get(
                 "ga_mcc_construction_front_type"
             )
             incoming_drawout_type = mcc_panel_data.get("incoming_drawout_type")
             outgoing_drawout_type = mcc_panel_data.get("outgoing_drawout_type")
             ga_mcc_construction_type = mcc_panel_data.get("ga_mcc_construction_type")
-            busbar_material_of_construction = mcc_panel_data.get(
-                "busbar_material_of_construction"
-            )
-            ga_current_density = mcc_panel_data.get("ga_current_density")
+
             ga_panel_mounting_frame = mcc_panel_data.get("ga_panel_mounting_frame")
             ga_panel_mounting_height = mcc_panel_data.get("ga_panel_mounting_height")
             is_marshalling_section_selected = mcc_panel_data.get(
@@ -759,16 +664,13 @@ def get_spg_db_excel(
             general_requirments_for_construction = mcc_panel_data.get(
                 "general_requirments_for_construction"
             )
-            ppc_painting_standards = mcc_panel_data.get("ppc_painting_standards")
             ppc_interior_and_exterior_paint_shade = mcc_panel_data.get(
                 "ppc_interior_and_exterior_paint_shade"
             )
             ppc_component_mounting_plate_paint_shade = mcc_panel_data.get(
                 "ppc_component_mounting_plate_paint_shade"
             )
-            ppc_base_frame_paint_shade = mcc_panel_data.get(
-                "ppc_base_frame_paint_shade"
-            )
+
             ppc_minimum_coating_thickness = mcc_panel_data.get(
                 "ppc_minimum_coating_thickness"
             )
@@ -780,50 +682,7 @@ def get_spg_db_excel(
                 "two_year_operational_spare"
             )
             commissioning_spare = mcc_panel_data.get("commissioning_spare")
-            is_punching_details_for_boiler_selected = mcc_panel_data.get(
-                "is_punching_details_for_boiler_selected"
-            )
-            boiler_model = mcc_panel_data.get("boiler_model")
-            boiler_fuel = mcc_panel_data.get("boiler_fuel")
-            boiler_year = mcc_panel_data.get("boiler_year")
-            boiler_power_supply_vac = mcc_panel_data.get("boiler_power_supply_vac")
-            boiler_power_supply_phase = mcc_panel_data.get("boiler_power_supply_phase")
-            boiler_power_supply_frequency = mcc_panel_data.get(
-                "boiler_power_supply_frequency"
-            )
-            boiler_control_supply_vac = mcc_panel_data.get("boiler_control_supply_vac")
-            boiler_control_supply_phase = mcc_panel_data.get(
-                "boiler_control_supply_phase"
-            )
-            boiler_control_supply_frequency = mcc_panel_data.get(
-                "boiler_control_supply_frequency"
-            )
-            boiler_evaporation = mcc_panel_data.get("boiler_evaporation")
-            boiler_output = mcc_panel_data.get("boiler_output")
-            boiler_connected_load = mcc_panel_data.get("boiler_connected_load")
-            boiler_design_pressure = mcc_panel_data.get("boiler_design_pressure")
-            is_punching_details_for_heater_selected = mcc_panel_data.get(
-                "is_punching_details_for_heater_selected"
-            )
-            heater_model = mcc_panel_data.get("heater_model")
-            heater_fuel = mcc_panel_data.get("heater_fuel")
-            heater_year = mcc_panel_data.get("heater_year")
-            heater_power_supply_vac = mcc_panel_data.get("heater_power_supply_vac")
-            heater_power_supply_phase = mcc_panel_data.get("heater_power_supply_phase")
-            heater_power_supply_frequency = mcc_panel_data.get(
-                "heater_power_supply_frequency"
-            )
-            heater_control_supply_vac = mcc_panel_data.get("heater_control_supply_vac")
-            heater_control_supply_phase = mcc_panel_data.get(
-                "heater_control_supply_phase"
-            )
-            heater_control_supply_frequency = mcc_panel_data.get(
-                "heater_control_supply_frequency"
-            )
-            heater_evaporation = mcc_panel_data.get("heater_evaporation")
-            heater_output = mcc_panel_data.get("heater_output")
-            heater_connected_load = mcc_panel_data.get("heater_connected_load")
-            heater_temperature = mcc_panel_data.get("heater_temperature")
+
             is_spg_applicable = mcc_panel_data.get("is_spg_applicable")
             spg_name_plate_unit_name = mcc_panel_data.get("spg_name_plate_unit_name")
             spg_name_plate_capacity = mcc_panel_data.get("spg_name_plate_capacity")
@@ -833,51 +692,54 @@ def get_spg_db_excel(
             spg_name_plate_weight = mcc_panel_data.get("spg_name_plate_weight")
             spg_name_plate_oc_number = mcc_panel_data.get("spg_name_plate_oc_number")
             spg_name_plate_part_code = mcc_panel_data.get("spg_name_plate_part_code")
-            special_note = mcc_panel_data.get("special_note")
 
             incomer_data = f"Upto {incomer_ampere}, {incomer_pole} Pole {incomer_type} \nAbove {incomer_above_ampere}, {incomer_above_pole} Pole {incomer_above_type} "
 
-            if is_indication_on_selected == "0" or is_indication_on_selected == 0:
+            if is_indication_on_selected == 0:
                 led_type_on_input = "Not Applicable"
 
-            if is_indication_off_selected == "0" or is_indication_off_selected == 0:
+            if is_indication_off_selected == 0:
                 led_type_off_input = "Not Applicable"
 
-            if is_indication_trip_selected == "0" or is_indication_trip_selected == 0:
+            if is_indication_trip_selected == 0:
                 led_type_trip_input = "Not Applicable"
 
-            panel_sheet["C5"] = na_to_string(incomer_data)
+            panel_sheet["C5"] = handle_none_to_string(incomer_data)
             panel_sheet["C6"] = led_type_on_input
             panel_sheet["C7"] = led_type_off_input
             panel_sheet["C8"] = led_type_trip_input
-            panel_sheet["C9"] = na_to_string(is_blue_cb_spring_charge_selected)
-            panel_sheet["C10"] = na_to_string(is_red_cb_in_service)
-            panel_sheet["C11"] = na_to_string(is_white_healthy_trip_circuit_selected)
-            panel_sheet["C12"] = na_to_string(alarm_annunciator)
+            panel_sheet["C9"] = handle_none_to_string(is_blue_cb_spring_charge_selected)
+            panel_sheet["C10"] = handle_none_to_string(is_red_cb_in_service)
+            panel_sheet["C11"] = handle_none_to_string(
+                is_white_healthy_trip_circuit_selected
+            )
+            panel_sheet["C12"] = handle_none_to_string(alarm_annunciator)
 
             if "NA" in mi_communication_protocol:
                 mi_communication_protocol = "Not Applicable"
 
-            panel_sheet["C14"] = na_to_string(current_transformer_coating)
-            panel_sheet["C15"] = na_to_string(current_transformer_number)
-            panel_sheet["C16"] = na_to_string(current_transformer_configuration)
+            panel_sheet["C14"] = handle_none_to_string(current_transformer_coating)
+            panel_sheet["C15"] = handle_none_to_string(current_transformer_number)
+            panel_sheet["C16"] = handle_none_to_string(
+                current_transformer_configuration
+            )
 
             panel_sheet["C18"] = handle_make_of_component(mi_analog)
             panel_sheet["C19"] = handle_make_of_component(mi_digital)
             panel_sheet["C20"] = handle_make_of_component(mi_communication_protocol)
 
             panel_sheet["C22"] = ga_moc_material  # MOC
-            panel_sheet["C23"] = na_to_string(
+            panel_sheet["C23"] = handle_none_to_string(
                 ga_moc_thickness_door
             )  # Component Mounting Plate Thickness
-            panel_sheet["C24"] = na_to_string(door_thickness)  # Door Thickness
-            panel_sheet["C25"] = na_to_string(
+            panel_sheet["C24"] = handle_none_to_string(door_thickness)  # Door Thickness
+            panel_sheet["C25"] = handle_none_to_string(
                 ga_moc_thickness_covers
             )  # Top & Side Thickness
-            panel_sheet["C26"] = na_to_string(
+            panel_sheet["C26"] = handle_none_to_string(
                 ga_gland_plate_thickness
             )  # Gland Plate Thickness
-            panel_sheet["C27"] = na_to_string(
+            panel_sheet["C27"] = handle_none_to_string(
                 ga_gland_plate_3mm_drill_type
             )  # Gland Plate Type
             panel_sheet["C28"] = ga_mcc_compartmental  # Panel Front Type
@@ -931,12 +793,14 @@ def get_spg_db_excel(
             if is_spg_applicable == "0" or is_spg_applicable == 0:
                 spg_name_plate_oc_number = "Not Applicable"
 
-            panel_sheet["C197"] = na_to_string(spg_name_plate_unit_name)
-            panel_sheet["C198"] = na_to_string(spg_name_plate_capacity)
-            panel_sheet["C199"] = na_to_string(spg_name_plate_manufacturing_year)
-            panel_sheet["C200"] = na_to_string(spg_name_plate_weight)
+            panel_sheet["C197"] = handle_none_to_string(spg_name_plate_unit_name)
+            panel_sheet["C198"] = handle_none_to_string(spg_name_plate_capacity)
+            panel_sheet["C199"] = handle_none_to_string(
+                spg_name_plate_manufacturing_year
+            )
+            panel_sheet["C200"] = handle_none_to_string(spg_name_plate_weight)
             panel_sheet["C201"] = spg_name_plate_oc_number
-            panel_sheet["C202"] = na_to_string(spg_name_plate_part_code)
+            panel_sheet["C202"] = handle_none_to_string(spg_name_plate_part_code)
 
             plc_panel_1 = frappe.db.get_list(
                 "Panel PLC 1 - 3",
@@ -960,10 +824,10 @@ def get_spg_db_excel(
             plc_panel = {**plc_panel_1, **plc_panel_2, **plc_panel_3}
             # PLC fields
             # Supply Requirements
-            panel_sheet["C58"] = na_to_string(
+            panel_sheet["C58"] = handle_none_to_string(
                 plc_panel.get("ups_control_voltage", "NA")
             )
-            panel_sheet["C59"] = na_to_string(
+            panel_sheet["C59"] = handle_none_to_string(
                 plc_panel.get("non_ups_control_voltage", "NA")
             )
             panel_sheet["C60"] = num_to_string(
@@ -976,27 +840,27 @@ def get_spg_db_excel(
             panel_sheet["C63"] = (
                 "Not Applicable"
                 if ups_scope == "Client Scope"
-                else na_to_string(plc_panel.get("ups_input_voltage_3p", "NA"))
+                else handle_none_to_string(plc_panel.get("ups_input_voltage_3p", "NA"))
             )
             panel_sheet["C64"] = (
                 "Not Applicable"
                 if ups_scope == "Client Scope"
-                else na_to_string(plc_panel.get("ups_input_voltage_1p", "NA"))
+                else handle_none_to_string(plc_panel.get("ups_input_voltage_1p", "NA"))
             )
             panel_sheet["C65"] = (
                 "Not Applicable"
                 if ups_scope == "Client Scope"
-                else na_to_string(plc_panel.get("ups_output_voltage_1p", "NA"))
+                else handle_none_to_string(plc_panel.get("ups_output_voltage_1p", "NA"))
             )
             panel_sheet["C66"] = (
                 "Not Applicable"
                 if ups_scope == "Client Scope"
-                else na_to_string(plc_panel.get("ups_type", "NA"))
+                else handle_none_to_string(plc_panel.get("ups_type", "NA"))
             )
             panel_sheet["C67"] = (
                 "Not Applicable"
                 if ups_scope == "Client Scope"
-                else na_to_string(plc_panel.get("ups_battery_type", "NA"))
+                else handle_none_to_string(plc_panel.get("ups_battery_type", "NA"))
             )
             panel_sheet["C68"] = (
                 "Not Applicable"
@@ -1057,167 +921,187 @@ def get_spg_db_excel(
 
             # PLC Panel Mounted
             panel_sheet["C85"] = plc_panel.get("panel_mounted_ac", "Not Applicable")
-            is_marshalling_cabinet_for_plc_and_ups_selected = plc_panel.get(
-                "is_marshalling_cabinet_for_plc_and_ups_selected", 0
+            is_marshalling_cabinet_for_plc_and_ups_selected = handle_none_to_number(
+                plc_panel.get("is_marshalling_cabinet_for_plc_and_ups_selected")
             )
             panel_sheet["C86"] = (
                 plc_panel.get("marshalling_cabinet_for_plc_and_ups")
-                if int(is_marshalling_cabinet_for_plc_and_ups_selected) == 1
+                if is_marshalling_cabinet_for_plc_and_ups_selected == 1
                 else "Not Applicable"
             )
 
             # Panel Mounted Push Buttons , Indication Lamps & Colors
-            is_electronic_hooter_selected = plc_panel.get(
-                "is_electronic_hooter_selected"
+            is_electronic_hooter_selected = handle_none_to_number(
+                plc_panel.get("is_electronic_hooter_selected")
             )
             panel_sheet["C88"] = (
                 plc_panel.get("electronic_hooter_acknowledge")
-                if int(is_electronic_hooter_selected) == 1
+                if is_electronic_hooter_selected == 1
                 else "Not Applicable"
             )
-            panel_sheet["C89"] = na_to_string(
+            panel_sheet["C89"] = handle_none_to_string(
                 plc_panel.get("panel_power_supply_on_color", "NA")
             )
-            panel_sheet["C90"] = na_to_string(
+            panel_sheet["C90"] = handle_none_to_string(
                 plc_panel.get("panel_power_supply_off_color", "NA")
             )
-            panel_sheet["C91"] = na_to_string(
+            panel_sheet["C91"] = handle_none_to_string(
                 plc_panel.get("indicating_lamp_color_for_nonups_power_supply", "NA")
             )
-            panel_sheet["C92"] = na_to_string(
+            panel_sheet["C92"] = handle_none_to_string(
                 plc_panel.get("indicating_lamp_colour_for_ups_power_supply", "NA")
             )
 
             # # DI Modules
             panel_sheet["C94"] = plc_panel.get("di_module_channel_density")
             panel_sheet["C95"] = plc_panel.get("di_module_loop_current")
-            panel_sheet["C96"] = na_to_string(plc_panel.get("di_module_isolation"))  # UI Error
+            panel_sheet["C96"] = handle_none_to_string(
+                plc_panel.get("di_module_isolation")
+            )  # UI Error
             panel_sheet["C97"] = plc_panel.get("di_module_input_type")
-            panel_sheet["C98"] = na_to_string(plc_panel.get("di_module_interrogation_voltage"))  # UI Error
+            panel_sheet["C98"] = handle_none_to_string(
+                plc_panel.get("di_module_interrogation_voltage")
+            )  # UI Error
             panel_sheet["C99"] = plc_panel.get("di_module_scan_time")
 
             # DO Modules
             panel_sheet["C101"] = plc_panel.get("do_module_channel_density")
             panel_sheet["C102"] = plc_panel.get("do_module_loop_current")
-            panel_sheet["C103"] = na_to_string(plc_panel.get("do_module_isolation"))
+            panel_sheet["C103"] = handle_none_to_string(
+                plc_panel.get("do_module_isolation")
+            )
             panel_sheet["C104"] = plc_panel.get("do_module_output_type")
 
             # # Interposing Relay
-            is_no_of_contacts_selected = plc_panel.get("is_no_of_contacts_selected")
-            panel_sheet["C106"] = na_to_string(plc_panel.get("interposing_relay", "NA"))
-            panel_sheet["C107"] = na_to_string(
+            is_no_of_contacts_selected = handle_none_to_number(
+                plc_panel.get("is_no_of_contacts_selected")
+            )
+            panel_sheet["C106"] = handle_none_to_string(
+                plc_panel.get("interposing_relay", "NA")
+            )
+            panel_sheet["C107"] = handle_none_to_string(
                 plc_panel.get("interposing_relay_contacts_rating")
             )
             panel_sheet["C108"] = (
                 plc_panel.get("no_of_contacts")
-                if int(is_no_of_contacts_selected) == 1
+                if is_no_of_contacts_selected == 1
                 else "Not Applicable"
             )
 
             # AI Modules
             panel_sheet["C110"] = plc_panel.get("ai_module_channel_density")
             panel_sheet["C111"] = plc_panel.get("ai_module_loop_current")
-            panel_sheet["C112"] = na_to_string(plc_panel.get("ai_module_isolation"))
+            panel_sheet["C112"] = handle_none_to_string(
+                plc_panel.get("ai_module_isolation")
+            )
             panel_sheet["C113"] = plc_panel.get("ai_module_input_type")
             panel_sheet["C114"] = plc_panel.get("ai_module_scan_time")
-            is_ai_module_hart_protocol_support_selected = plc_panel.get(
-                "is_ai_module_hart_protocol_support_selected"
+            is_ai_module_hart_protocol_support_selected = handle_none_to_number(
+                plc_panel.get("is_ai_module_hart_protocol_support_selected")
             )
             panel_sheet["C115"] = (
                 "Applicable"
-                if int(is_ai_module_hart_protocol_support_selected) == 1
+                if is_ai_module_hart_protocol_support_selected == 1
                 else "Not Applicable"
             )
 
             # AO Modules
             panel_sheet["C117"] = plc_panel.get("ao_module_channel_density")
             panel_sheet["C118"] = plc_panel.get("ao_module_loop_current")
-            panel_sheet["C119"] = na_to_string(plc_panel.get("ao_module_isolation"))
+            panel_sheet["C119"] = handle_none_to_string(
+                plc_panel.get("ao_module_isolation")
+            )
             panel_sheet["C120"] = plc_panel.get("ao_module_output_type")
             panel_sheet["C121"] = plc_panel.get("ao_module_scan_time")
-            is_ao_module_hart_protocol_support_selected = plc_panel.get(
-                "is_ao_module_hart_protocol_support_selected"
+            is_ao_module_hart_protocol_support_selected = handle_none_to_number(
+                plc_panel.get("is_ao_module_hart_protocol_support_selected")
             )
             panel_sheet["C122"] = (
                 "Applicable"
-                if int(is_ao_module_hart_protocol_support_selected) == 1
+                if is_ao_module_hart_protocol_support_selected == 1
                 else "Not Applicable"
             )
 
             # # RTD Modules
             panel_sheet["C124"] = plc_panel.get("rtd_module_channel_density")
             panel_sheet["C125"] = plc_panel.get("rtd_module_loop_current")
-            panel_sheet["C126"] = na_to_string(plc_panel.get("rtd_module_isolation"))
+            panel_sheet["C126"] = handle_none_to_string(
+                plc_panel.get("rtd_module_isolation")
+            )
             panel_sheet["C127"] = plc_panel.get("rtd_module_input_type")
             panel_sheet["C128"] = plc_panel.get("rtd_module_scan_time")
-            is_rtd_module_hart_protocol_support_selected = plc_panel.get(
-                "is_rtd_module_hart_protocol_support_selected"
+            is_rtd_module_hart_protocol_support_selected = handle_none_to_number(
+                plc_panel.get("is_rtd_module_hart_protocol_support_selected")
             )
             panel_sheet["C129"] = (
                 "Applicable"
-                if int(is_rtd_module_hart_protocol_support_selected) == 1
+                if is_rtd_module_hart_protocol_support_selected == 1
                 else "Not Applicable"
             )
 
             # Thermocouple Modules
             panel_sheet["C131"] = plc_panel.get("thermocouple_module_channel_density")
             panel_sheet["C132"] = plc_panel.get("thermocouple_module_loop_current")
-            panel_sheet["C133"] = na_to_string(
+            panel_sheet["C133"] = handle_none_to_string(
                 plc_panel.get("thermocouple_module_isolation")
             )
             panel_sheet["C134"] = plc_panel.get("thermocouple_module_input_type")
             panel_sheet["C135"] = plc_panel.get("thermocouple_module_scan_time")
-            is_thermocouple_module_hart_protocol_support_selected = plc_panel.get(
-                "is_thermocouple_module_hart_protocol_support_selected"
+            is_thermocouple_module_hart_protocol_support_selected = (
+                handle_none_to_number(
+                    plc_panel.get(
+                        "is_thermocouple_module_hart_protocol_support_selected"
+                    )
+                )
             )
             panel_sheet["C136"] = (
                 "Applicable"
-                if int(is_thermocouple_module_hart_protocol_support_selected) == 1
+                if is_thermocouple_module_hart_protocol_support_selected == 1
                 else "Not Applicable"
             )
 
             # Universal Modules
             panel_sheet["C138"] = plc_panel.get("universal_module_channel_density")
             panel_sheet["C139"] = plc_panel.get("universal_module_loop_current")
-            panel_sheet["C140"] = na_to_string(
+            panel_sheet["C140"] = handle_none_to_string(
                 plc_panel.get("universal_module_isolation")
             )
             panel_sheet["C141"] = plc_panel.get("universal_module_input_type")
             panel_sheet["C142"] = plc_panel.get("universal_module_scan_time")
-            is_universal_module_hart_protocol_support_selected = plc_panel.get(
-                "is_universal_module_hart_protocol_support_selected"
+            is_universal_module_hart_protocol_support_selected = handle_none_to_number(
+                plc_panel.get("is_universal_module_hart_protocol_support_selected")
             )
             panel_sheet["C143"] = (
                 "Applicable"
-                if int(is_universal_module_hart_protocol_support_selected) == 1
+                if is_universal_module_hart_protocol_support_selected == 1
                 else "Not Applicable"
             )
 
             # Terminal Block Connectors
-            panel_sheet["C145"] = na_to_string(
+            panel_sheet["C145"] = handle_none_to_string(
                 plc_panel.get("di_module_terminal", "NA")
             )
-            panel_sheet["C146"] = na_to_string(
+            panel_sheet["C146"] = handle_none_to_string(
                 plc_panel.get("do_module_terminal", "NA")
             )
-            panel_sheet["C147"] = na_to_string(
+            panel_sheet["C147"] = handle_none_to_string(
                 plc_panel.get("ai_module_terminal", "NA")
             )
-            panel_sheet["C148"] = na_to_string(
+            panel_sheet["C148"] = handle_none_to_string(
                 plc_panel.get("ao_module_terminal", "NA")
             )
-            panel_sheet["C149"] = na_to_string(
+            panel_sheet["C149"] = handle_none_to_string(
                 plc_panel.get("rtd_module_terminal", "NA")
             )
-            panel_sheet["C150"] = na_to_string(
+            panel_sheet["C150"] = handle_none_to_string(
                 plc_panel.get("thermocouple_module_terminal", "NA")
             )
 
             # HMI
-            is_hmi_selected = int(plc_panel.get("is_hmi_selected", 0))
-            hmi_size = na_to_string(plc_panel.get("hmi_size", "NA"))
+            is_hmi_selected = handle_none_to_number(plc_panel.get("is_hmi_selected"))
+            hmi_size = handle_none_to_string(plc_panel.get("hmi_size", "NA"))
             panel_sheet["C152"] = (
-                f"{hmi_size} inch" if int(is_hmi_selected) == 1 else "Not Applicable"
+                f"{hmi_size} inch" if is_hmi_selected == 1 else "Not Applicable"
             )
             panel_sheet["C153"] = (
                 plc_panel.get("hmi_quantity", 0)
@@ -1225,28 +1109,28 @@ def get_spg_db_excel(
                 else "Not Applicable"
             )
             panel_sheet["C154"] = (
-                na_to_string(plc_panel.get("hmi_hardware_make", "NA"))
+                handle_none_to_string(plc_panel.get("hmi_hardware_make", "NA"))
                 if is_hmi_selected == 1
                 else "Not Applicable"
             )
             panel_sheet["C155"] = (
-                na_to_string(plc_panel.get("hmi_series", "NA"))
+                handle_none_to_string(plc_panel.get("hmi_series", "NA"))
                 if is_hmi_selected == 1
                 else "Not Applicable"
             )
             panel_sheet["C156"] = (
-                na_to_string(plc_panel.get("hmi_input_voltage", "NA"))
+                handle_none_to_string(plc_panel.get("hmi_input_voltage", "NA"))
                 if is_hmi_selected == 1
                 else "Not Applicable"
             )
             panel_sheet["C157"] = (
-                na_to_string(plc_panel.get("hmi_battery_backup", "NA"))
+                handle_none_to_string(plc_panel.get("hmi_battery_backup", "NA"))
                 if is_hmi_selected == 1
                 else "Not Applicable"
             )
 
             # Human Interface Device
-            is_engineering_station_quantity_selected = int(
+            is_engineering_station_quantity_selected = handle_none_to_number(
                 plc_panel.get("is_engineering_station_quantity_selected", 0)
             )
             panel_sheet["C159"] = (
@@ -1255,9 +1139,11 @@ def get_spg_db_excel(
                 else "Not Applicable"
             )
 
-            is_engineering_cum_operating_station_quantity_selected = int(
-                plc_panel.get(
-                    "is_engineering_cum_operating_station_quantity_selected", 0
+            is_engineering_cum_operating_station_quantity_selected = (
+                handle_none_to_number(
+                    plc_panel.get(
+                        "is_engineering_cum_operating_station_quantity_selected", 0
+                    )
                 )
             )
             panel_sheet["C160"] = (
@@ -1266,7 +1152,7 @@ def get_spg_db_excel(
                 else "Not Applicable"
             )
 
-            is_operating_station_quantity_selected = int(
+            is_operating_station_quantity_selected = handle_none_to_number(
                 plc_panel.get("is_operating_station_quantity_selected", 0)
             )
             panel_sheet["C161"] = (
@@ -1276,9 +1162,11 @@ def get_spg_db_excel(
             )
 
             # Software License
-            is_scada_program_development_license_quantity_selected = int(
-                plc_panel.get(
-                    "is_scada_program_development_license_quantity_selected", 0
+            is_scada_program_development_license_quantity_selected = (
+                handle_none_to_number(
+                    plc_panel.get(
+                        "is_scada_program_development_license_quantity_selected", 0
+                    )
                 )
             )
             panel_sheet["C163"] = (
@@ -1287,7 +1175,7 @@ def get_spg_db_excel(
                 else "Not Applicable"
             )
 
-            is_scada_runtime_license_quantity_selected = int(
+            is_scada_runtime_license_quantity_selected = handle_none_to_number(
                 plc_panel.get("is_scada_runtime_license_quantity_selected", 0)
             )
             panel_sheet["C164"] = (
@@ -1296,7 +1184,7 @@ def get_spg_db_excel(
                 else "Not Applicable"
             )
 
-            is_plc_progamming_software_license_quantity = int(
+            is_plc_progamming_software_license_quantity = handle_none_to_number(
                 plc_panel.get("is_plc_progamming_software_license_quantity", 0)
             )
             panel_sheet["C165"] = (
@@ -1310,13 +1198,9 @@ def get_spg_db_excel(
             panel_sheet["C168"] = plc_panel.get(
                 "pc_hardware_specifications", "Not Applicable"
             )
-            monitor_size_data = plc_panel.get("monitor_size")
-            if "NA" in monitor_size_data:
-                monitor_size_data = "Not Applicable"
-            else:
-                monitor_size_data = f"{monitor_size_data} inch"
+            monitor_size_data = handle_none_to_string(plc_panel.get("monitor_size"))
 
-            panel_sheet["C169"] = monitor_size_data
+            panel_sheet["C169"] = f"{monitor_size_data} inch"
             panel_sheet["C170"] = plc_panel.get(
                 "windows_operating_system", "Not Applicable"
             )
@@ -1324,50 +1208,58 @@ def get_spg_db_excel(
                 "hardware_between_plc_and_scada_pc", "Not Applicable"
             )
 
-            is_printer_with_suitable_communication_cable_selected = int(
-                plc_panel.get(
-                    "is_printer_with_suitable_communication_cable_selected", 0
+            is_printer_with_suitable_communication_cable_selected = (
+                handle_none_to_number(
+                    plc_panel.get(
+                        "is_printer_with_suitable_communication_cable_selected", 0
+                    )
                 )
             )
             panel_sheet["C172"] = (
                 "Applicable"
-                if int(is_printer_with_suitable_communication_cable_selected) == 1
+                if is_printer_with_suitable_communication_cable_selected == 1
                 else "Not Applicable"
             )
             panel_sheet["C173"] = (
                 plc_panel.get("printer_type", 0)
-                if int(is_printer_with_suitable_communication_cable_selected) == 1
+                if is_printer_with_suitable_communication_cable_selected == 1
                 else "Not Applicable"
             )
             panel_sheet["C174"] = (
                 plc_panel.get("printer_size", 0)
-                if int(is_printer_with_suitable_communication_cable_selected) == 1
+                if is_printer_with_suitable_communication_cable_selected == 1
                 else "Not Applicable"
             )
             panel_sheet["C175"] = (
                 plc_panel.get("printer_quantity", 0)
-                if int(is_printer_with_suitable_communication_cable_selected) == 1
+                if is_printer_with_suitable_communication_cable_selected == 1
                 else "Not Applicable"
             )
 
             panel_sheet["C176"] = (
                 "Applicable"
-                if int(plc_panel.get("is_furniture_selected", 0)) == 1
+                if handle_none_to_number(plc_panel.get("is_furniture_selected", 0)) == 1
                 else "Not Applicable"
             )
             panel_sheet["C177"] = (
                 "Applicable"
-                if int(plc_panel.get("is_console_with_chair_selected", 0)) == 1
+                if handle_none_to_number(
+                    plc_panel.get("is_console_with_chair_selected", 0)
+                )
+                == 1
                 else "Not Applicable"
             )
             panel_sheet["C178"] = (
                 "Applicable"
-                if int(plc_panel.get("is_plc_logic_diagram_selected", 0)) == 1
+                if handle_none_to_number(
+                    plc_panel.get("is_plc_logic_diagram_selected", 0)
+                )
+                == 1
                 else "Not Applicable"
             )
             panel_sheet["C179"] = (
                 "Applicable"
-                if int(
+                if handle_none_to_number(
                     plc_panel.get("is_loop_drawing_for_complete_project_selected", 0)
                 )
                 == 1
@@ -1375,18 +1267,18 @@ def get_spg_db_excel(
             )
 
             # Communication
-            panel_sheet["C181"] = na_to_string(
+            panel_sheet["C181"] = handle_none_to_string(
                 plc_panel.get(
                     "interface_signal_and_control_logic_implementation",
                     "Not Applicable",
                 )
             )
-            panel_sheet["C182"] = na_to_string(
+            panel_sheet["C182"] = handle_none_to_string(
                 plc_panel.get(
                     "differential_pressure_flow_linearization", "Not Applicable"
                 )
             )
-            panel_sheet["C183"] = na_to_string(
+            panel_sheet["C183"] = handle_none_to_string(
                 plc_panel.get(
                     "third_party_comm_protocol_for_plc_cpu_system", "Not Applicable"
                 )
@@ -1398,8 +1290,8 @@ def get_spg_db_excel(
                 "hardware_between_plc_and_third_party", "Not Applicable"
             )
 
-            is_client_system_comm_with_plc_cpu_selected = int(
-                plc_panel.get("is_client_system_comm_with_plc_cpu_selected", 0)
+            is_client_system_comm_with_plc_cpu_selected = handle_none_to_number(
+                plc_panel.get("is_client_system_comm_with_plc_cpu_selected")
             )
             panel_sheet["C186"] = (
                 "Applicable"
