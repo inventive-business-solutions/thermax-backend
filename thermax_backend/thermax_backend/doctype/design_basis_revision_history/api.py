@@ -17,8 +17,8 @@ from thermax_backend.thermax_backend.doctype.design_basis_revision_history.divis
 from thermax_backend.thermax_backend.doctype.design_basis_revision_history.division_wise_design_basis_excel.heating_db_excel import (
     get_heating_db_excel,
 )
-from thermax_backend.thermax_backend.doctype.design_basis_revision_history.division_wise_design_basis_excel.spg_db_excel import (
-    get_spg_db_excel,
+from thermax_backend.thermax_backend.doctype.design_basis_revision_history.division_wise_design_basis_excel.wws_services_spg_db_excel import (
+    get_wws_services_spg_db_excel,
 )
 
 
@@ -183,8 +183,8 @@ def get_design_basis_excel():
             make_of_components_data=make_of_components_data,
             revision_id=revision_id,
         )
-    elif division_name == "WWS SPG":
-        template_workbook = get_spg_db_excel(
+    elif division_name == "WWS SPG" or division_name == "WWS Services":
+        template_workbook = get_wws_services_spg_db_excel(
             template_workbook=template_workbook,
             mcc_sheet=mcc_sheet,
             pcc_sheet=pcc_sheet,

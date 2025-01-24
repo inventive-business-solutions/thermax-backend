@@ -254,12 +254,18 @@ def get_enviro_ipg_db_excel(
 
             panel_sheet["B3"] = project_data.get("panel_name")
 
-            incomer_ampere = pcc_panel_data.get("incomer_ampere")
-            incomer_pole = pcc_panel_data.get("incomer_pole")
-            incomer_type = pcc_panel_data.get("incomer_type")
-            incomer_above_ampere = pcc_panel_data.get("incomer_above_ampere")
-            incomer_above_pole = pcc_panel_data.get("incomer_above_pole")
-            incomer_above_type = pcc_panel_data.get("incomer_above_type")
+            incomer_ampere = handle_none_to_string(pcc_panel_data.get("incomer_ampere"))
+            incomer_pole = handle_none_to_string(pcc_panel_data.get("incomer_pole"))
+            incomer_type = handle_none_to_string(pcc_panel_data.get("incomer_type"))
+            incomer_above_ampere = handle_none_to_string(
+                pcc_panel_data.get("incomer_above_ampere")
+            )
+            incomer_above_pole = handle_none_to_string(
+                pcc_panel_data.get("incomer_above_pole")
+            )
+            incomer_above_type = handle_none_to_string(
+                pcc_panel_data.get("incomer_above_type")
+            )
 
             is_indication_on_selected = pcc_panel_data.get("is_indication_on_selected")
             led_type_on_input = pcc_panel_data.get("led_type_on_input")
@@ -288,17 +294,27 @@ def get_enviro_ipg_db_excel(
             current_transformer_configuration = pcc_panel_data.get(
                 "current_transformer_configuration"
             )
-            alarm_annunciator = pcc_panel_data.get("alarm_annunciator")
-            mi_analog = pcc_panel_data.get("mi_analog", "NA")
-            mi_digital = pcc_panel_data.get("mi_digital", "NA")
-            mi_communication_protocol = pcc_panel_data.get(
-                "mi_communication_protocol", "NA"
+            alarm_annunciator = handle_none_to_string(
+                pcc_panel_data.get("alarm_annunciator")
             )
-            ga_moc_material = pcc_panel_data.get("ga_moc_material")
-            door_thickness = pcc_panel_data.get("door_thickness")
-            ga_moc_thickness_door = pcc_panel_data.get("ga_moc_thickness_door")
-            ga_moc_thickness_covers = pcc_panel_data.get("ga_moc_thickness_covers")
-            ga_pcc_compartmental = pcc_panel_data.get("ga_pcc_compartmental")
+            mi_analog = handle_none_to_string(pcc_panel_data.get("mi_analog"))
+            mi_digital = handle_none_to_string(pcc_panel_data.get("mi_digital"))
+            mi_communication_protocol = handle_none_to_string(
+                pcc_panel_data.get("mi_communication_protocol")
+            )
+            ga_moc_material = handle_none_to_string(
+                pcc_panel_data.get("ga_moc_material")
+            )
+            door_thickness = handle_none_to_string(pcc_panel_data.get("door_thickness"))
+            ga_moc_thickness_door = handle_none_to_string(
+                pcc_panel_data.get("ga_moc_thickness_door")
+            )
+            ga_moc_thickness_covers = handle_none_to_string(
+                pcc_panel_data.get("ga_moc_thickness_covers")
+            )
+            ga_pcc_compartmental = handle_none_to_string(
+                pcc_panel_data.get("ga_pcc_compartmental")
+            )
             ga_pcc_construction_front_type = pcc_panel_data.get(
                 "ga_pcc_construction_front_type"
             )
@@ -374,6 +390,7 @@ def get_enviro_ipg_db_excel(
             panel_sheet["C6"] = led_type_on_input
             panel_sheet["C7"] = led_type_off_input
             panel_sheet["C8"] = led_type_trip_input
+
             if not "ACB" in incomer_type:
                 is_blue_cb_spring_charge_selected = "NA"
                 is_red_cb_in_service = "NA"
@@ -398,15 +415,6 @@ def get_enviro_ipg_db_excel(
                 .replace('"', "")
                 .replace(",", ", ")
             )
-
-            if "NA" in mi_analog:
-                analog_data = "Not Applicable"
-
-            if "NA" in mi_digital:
-                digital_data = "Not Applicable"
-
-            if "NA" in mi_communication_protocol:
-                mi_communication_protocol = "Not Applicable"
 
             panel_sheet["C14"] = analog_data
             panel_sheet["C15"] = digital_data
@@ -524,17 +532,27 @@ def get_enviro_ipg_db_excel(
             current_transformer_configuration = mcc_panel_data.get(
                 "current_transformer_configuration"
             )
-            alarm_annunciator = mcc_panel_data.get("alarm_annunciator")
-            mi_analog = mcc_panel_data.get("mi_analog") or "NA"
-            mi_digital = mcc_panel_data.get("mi_digital") or "NA"
-            mi_communication_protocol = (
-                mcc_panel_data.get("mi_communication_protocol") or "NA"
+            alarm_annunciator = handle_none_to_string(
+                mcc_panel_data.get("alarm_annunciator")
             )
-            ga_moc_material = mcc_panel_data.get("ga_moc_material")
-            door_thickness = mcc_panel_data.get("door_thickness")
-            ga_moc_thickness_door = mcc_panel_data.get("ga_moc_thickness_door")
-            ga_moc_thickness_covers = mcc_panel_data.get("ga_moc_thickness_covers")
-            ga_mcc_compartmental = mcc_panel_data.get("ga_mcc_compartmental")
+            mi_analog = handle_none_to_string(mcc_panel_data.get("mi_analog"))
+            mi_digital = handle_none_to_string(mcc_panel_data.get("mi_digital"))
+            mi_communication_protocol = handle_none_to_string(
+                mcc_panel_data.get("mi_communication_protocol")
+            )
+            ga_moc_material = handle_none_to_string(
+                mcc_panel_data.get("ga_moc_material")
+            )
+            door_thickness = handle_none_to_string(mcc_panel_data.get("door_thickness"))
+            ga_moc_thickness_door = handle_none_to_string(
+                mcc_panel_data.get("ga_moc_thickness_door")
+            )
+            ga_moc_thickness_covers = handle_none_to_string(
+                mcc_panel_data.get("ga_moc_thickness_covers")
+            )
+            ga_mcc_compartmental = handle_none_to_string(
+                mcc_panel_data.get("ga_mcc_compartmental")
+            )
             ga_mcc_construction_front_type = mcc_panel_data.get(
                 "ga_mcc_construction_front_type"
             )
@@ -810,22 +828,22 @@ def get_enviro_ipg_db_excel(
 
             # PLC Panel Mounted
             panel_sheet["C85"] = plc_panel.get("panel_mounted_ac", "Not Applicable")
-            is_marshalling_cabinet_for_plc_and_ups_selected = plc_panel.get(
-                "is_marshalling_cabinet_for_plc_and_ups_selected", 0
+            is_marshalling_cabinet_for_plc_and_ups_selected = handle_none_to_number(
+                plc_panel.get("is_marshalling_cabinet_for_plc_and_ups_selected")
             )
             panel_sheet["C86"] = (
                 plc_panel.get("marshalling_cabinet_for_plc_and_ups")
-                if int(is_marshalling_cabinet_for_plc_and_ups_selected) == 1
+                if is_marshalling_cabinet_for_plc_and_ups_selected == 1
                 else "Not Applicable"
             )
 
             # Panel Mounted Push Buttons , Indication Lamps & Colors
-            is_electronic_hooter_selected = plc_panel.get(
-                "is_electronic_hooter_selected"
+            is_electronic_hooter_selected = handle_none_to_number(
+                plc_panel.get("is_electronic_hooter_selected")
             )
             panel_sheet["C88"] = (
                 plc_panel.get("electronic_hooter_acknowledge")
-                if int(is_electronic_hooter_selected) == 1
+                if is_electronic_hooter_selected == 1
                 else "Not Applicable"
             )
             panel_sheet["C89"] = handle_none_to_string(
@@ -862,7 +880,9 @@ def get_enviro_ipg_db_excel(
             panel_sheet["C104"] = plc_panel.get("do_module_output_type")
 
             # # Interposing Relay
-            is_no_of_contacts_selected = plc_panel.get("is_no_of_contacts_selected")
+            is_no_of_contacts_selected = handle_none_to_number(
+                plc_panel.get("is_no_of_contacts_selected")
+            )
             panel_sheet["C106"] = handle_none_to_string(
                 plc_panel.get("interposing_relay", "NA")
             )
@@ -871,7 +891,7 @@ def get_enviro_ipg_db_excel(
             )
             panel_sheet["C108"] = (
                 plc_panel.get("no_of_contacts")
-                if int(is_no_of_contacts_selected) == 1
+                if is_no_of_contacts_selected == 1
                 else "Not Applicable"
             )
 
@@ -883,12 +903,12 @@ def get_enviro_ipg_db_excel(
             )
             panel_sheet["C113"] = plc_panel.get("ai_module_input_type")
             panel_sheet["C114"] = plc_panel.get("ai_module_scan_time")
-            is_ai_module_hart_protocol_support_selected = plc_panel.get(
-                "is_ai_module_hart_protocol_support_selected"
+            is_ai_module_hart_protocol_support_selected = handle_none_to_number(
+                plc_panel.get("is_ai_module_hart_protocol_support_selected")
             )
             panel_sheet["C115"] = (
                 "Applicable"
-                if int(is_ai_module_hart_protocol_support_selected) == 1
+                if is_ai_module_hart_protocol_support_selected == 1
                 else "Not Applicable"
             )
 
@@ -900,12 +920,12 @@ def get_enviro_ipg_db_excel(
             )
             panel_sheet["C120"] = plc_panel.get("ao_module_output_type")
             panel_sheet["C121"] = plc_panel.get("ao_module_scan_time")
-            is_ao_module_hart_protocol_support_selected = plc_panel.get(
-                "is_ao_module_hart_protocol_support_selected"
+            is_ao_module_hart_protocol_support_selected = handle_none_to_number(
+                plc_panel.get("is_ao_module_hart_protocol_support_selected")
             )
             panel_sheet["C122"] = (
                 "Applicable"
-                if int(is_ao_module_hart_protocol_support_selected) == 1
+                if is_ao_module_hart_protocol_support_selected == 1
                 else "Not Applicable"
             )
 
@@ -917,12 +937,12 @@ def get_enviro_ipg_db_excel(
             )
             panel_sheet["C127"] = plc_panel.get("rtd_module_input_type")
             panel_sheet["C128"] = plc_panel.get("rtd_module_scan_time")
-            is_rtd_module_hart_protocol_support_selected = plc_panel.get(
-                "is_rtd_module_hart_protocol_support_selected"
+            is_rtd_module_hart_protocol_support_selected = handle_none_to_number(
+                plc_panel.get("is_rtd_module_hart_protocol_support_selected")
             )
             panel_sheet["C129"] = (
                 "Applicable"
-                if int(is_rtd_module_hart_protocol_support_selected) == 1
+                if is_rtd_module_hart_protocol_support_selected == 1
                 else "Not Applicable"
             )
 
@@ -934,12 +954,16 @@ def get_enviro_ipg_db_excel(
             )
             panel_sheet["C134"] = plc_panel.get("thermocouple_module_input_type")
             panel_sheet["C135"] = plc_panel.get("thermocouple_module_scan_time")
-            is_thermocouple_module_hart_protocol_support_selected = plc_panel.get(
-                "is_thermocouple_module_hart_protocol_support_selected"
+            is_thermocouple_module_hart_protocol_support_selected = (
+                handle_none_to_number(
+                    plc_panel.get(
+                        "is_thermocouple_module_hart_protocol_support_selected"
+                    )
+                )
             )
             panel_sheet["C136"] = (
                 "Applicable"
-                if int(is_thermocouple_module_hart_protocol_support_selected) == 1
+                if is_thermocouple_module_hart_protocol_support_selected == 1
                 else "Not Applicable"
             )
 
@@ -951,12 +975,12 @@ def get_enviro_ipg_db_excel(
             )
             panel_sheet["C141"] = plc_panel.get("universal_module_input_type")
             panel_sheet["C142"] = plc_panel.get("universal_module_scan_time")
-            is_universal_module_hart_protocol_support_selected = plc_panel.get(
-                "is_universal_module_hart_protocol_support_selected"
+            is_universal_module_hart_protocol_support_selected = handle_none_to_number(
+                plc_panel.get("is_universal_module_hart_protocol_support_selected")
             )
             panel_sheet["C143"] = (
                 "Applicable"
-                if int(is_universal_module_hart_protocol_support_selected) == 1
+                if is_universal_module_hart_protocol_support_selected == 1
                 else "Not Applicable"
             )
 
@@ -981,10 +1005,10 @@ def get_enviro_ipg_db_excel(
             )
 
             # HMI
-            is_hmi_selected = int(plc_panel.get("is_hmi_selected", 0))
-            hmi_size = handle_none_to_string(plc_panel.get("hmi_size", "NA"))
+            is_hmi_selected = handle_none_to_number(plc_panel.get("is_hmi_selected"))
+            hmi_size = handle_none_to_string(plc_panel.get("hmi_size"))
             panel_sheet["C152"] = (
-                f"{hmi_size} inch" if int(is_hmi_selected) == 1 else "Not Applicable"
+                f"{hmi_size} inch" if is_hmi_selected == 1 else "Not Applicable"
             )
             panel_sheet["C153"] = (
                 plc_panel.get("hmi_quantity", 0)
@@ -1013,7 +1037,7 @@ def get_enviro_ipg_db_excel(
             )
 
             # Human Interface Device
-            is_engineering_station_quantity_selected = int(
+            is_engineering_station_quantity_selected = handle_none_to_number(
                 plc_panel.get("is_engineering_station_quantity_selected", 0)
             )
             panel_sheet["C159"] = (
@@ -1022,18 +1046,21 @@ def get_enviro_ipg_db_excel(
                 else "Not Applicable"
             )
 
-            is_engineering_cum_operating_station_quantity_selected = int(
-                plc_panel.get(
-                    "is_engineering_cum_operating_station_quantity_selected", 0
+            is_engineering_cum_operating_station_quantity_selected = (
+                handle_none_to_number(
+                    plc_panel.get(
+                        "is_engineering_cum_operating_station_quantity_selected", 0
+                    )
                 )
             )
+
             panel_sheet["C160"] = (
                 plc_panel.get("engineering_cum_operating_station_quantity", 0)
                 if is_engineering_cum_operating_station_quantity_selected == 1
                 else "Not Applicable"
             )
 
-            is_operating_station_quantity_selected = int(
+            is_operating_station_quantity_selected = handle_none_to_number(
                 plc_panel.get("is_operating_station_quantity_selected", 0)
             )
             panel_sheet["C161"] = (
@@ -1043,9 +1070,11 @@ def get_enviro_ipg_db_excel(
             )
 
             # Software License
-            is_scada_program_development_license_quantity_selected = int(
-                plc_panel.get(
-                    "is_scada_program_development_license_quantity_selected", 0
+            is_scada_program_development_license_quantity_selected = (
+                handle_none_to_number(
+                    plc_panel.get(
+                        "is_scada_program_development_license_quantity_selected", 0
+                    )
                 )
             )
             panel_sheet["C163"] = (
@@ -1054,7 +1083,7 @@ def get_enviro_ipg_db_excel(
                 else "Not Applicable"
             )
 
-            is_scada_runtime_license_quantity_selected = int(
+            is_scada_runtime_license_quantity_selected = handle_none_to_number(
                 plc_panel.get("is_scada_runtime_license_quantity_selected", 0)
             )
             panel_sheet["C164"] = (
@@ -1063,7 +1092,7 @@ def get_enviro_ipg_db_excel(
                 else "Not Applicable"
             )
 
-            is_plc_progamming_software_license_quantity = int(
+            is_plc_progamming_software_license_quantity = handle_none_to_number(
                 plc_panel.get("is_plc_progamming_software_license_quantity", 0)
             )
             panel_sheet["C165"] = (
@@ -1077,13 +1106,9 @@ def get_enviro_ipg_db_excel(
             panel_sheet["C168"] = plc_panel.get(
                 "pc_hardware_specifications", "Not Applicable"
             )
-            monitor_size_data = plc_panel.get("monitor_size")
-            if "NA" in monitor_size_data:
-                monitor_size_data = "Not Applicable"
-            else:
-                monitor_size_data = f"{monitor_size_data} inch"
+            monitor_size_data = handle_none_to_number(plc_panel.get("monitor_size"))
 
-            panel_sheet["C169"] = monitor_size_data
+            panel_sheet["C169"] = f"{monitor_size_data} inch"
             panel_sheet["C170"] = plc_panel.get(
                 "windows_operating_system", "Not Applicable"
             )
@@ -1091,50 +1116,58 @@ def get_enviro_ipg_db_excel(
                 "hardware_between_plc_and_scada_pc", "Not Applicable"
             )
 
-            is_printer_with_suitable_communication_cable_selected = int(
-                plc_panel.get(
-                    "is_printer_with_suitable_communication_cable_selected", 0
+            is_printer_with_suitable_communication_cable_selected = (
+                handle_none_to_number(
+                    plc_panel.get(
+                        "is_printer_with_suitable_communication_cable_selected", 0
+                    )
                 )
             )
             panel_sheet["C172"] = (
                 "Applicable"
-                if int(is_printer_with_suitable_communication_cable_selected) == 1
+                if is_printer_with_suitable_communication_cable_selected == 1
                 else "Not Applicable"
             )
             panel_sheet["C173"] = (
                 plc_panel.get("printer_type", 0)
-                if int(is_printer_with_suitable_communication_cable_selected) == 1
+                if is_printer_with_suitable_communication_cable_selected == 1
                 else "Not Applicable"
             )
             panel_sheet["C174"] = (
                 plc_panel.get("printer_size", 0)
-                if int(is_printer_with_suitable_communication_cable_selected) == 1
+                if is_printer_with_suitable_communication_cable_selected == 1
                 else "Not Applicable"
             )
             panel_sheet["C175"] = (
                 plc_panel.get("printer_quantity", 0)
-                if int(is_printer_with_suitable_communication_cable_selected) == 1
+                if is_printer_with_suitable_communication_cable_selected == 1
                 else "Not Applicable"
             )
 
             panel_sheet["C176"] = (
                 "Applicable"
-                if int(plc_panel.get("is_furniture_selected", 0)) == 1
+                if handle_none_to_number(plc_panel.get("is_furniture_selected", 0)) == 1
                 else "Not Applicable"
             )
             panel_sheet["C177"] = (
                 "Applicable"
-                if int(plc_panel.get("is_console_with_chair_selected", 0)) == 1
+                if handle_none_to_number(
+                    plc_panel.get("is_console_with_chair_selected", 0)
+                )
+                == 1
                 else "Not Applicable"
             )
             panel_sheet["C178"] = (
                 "Applicable"
-                if int(plc_panel.get("is_plc_logic_diagram_selected", 0)) == 1
+                if handle_none_to_number(
+                    plc_panel.get("is_plc_logic_diagram_selected", 0)
+                )
+                == 1
                 else "Not Applicable"
             )
             panel_sheet["C179"] = (
                 "Applicable"
-                if int(
+                if handle_none_to_number(
                     plc_panel.get("is_loop_drawing_for_complete_project_selected", 0)
                 )
                 == 1
@@ -1165,7 +1198,7 @@ def get_enviro_ipg_db_excel(
                 "hardware_between_plc_and_third_party", "Not Applicable"
             )
 
-            is_client_system_comm_with_plc_cpu_selected = int(
+            is_client_system_comm_with_plc_cpu_selected = handle_none_to_number(
                 plc_panel.get("is_client_system_comm_with_plc_cpu_selected", 0)
             )
             panel_sheet["C186"] = (
