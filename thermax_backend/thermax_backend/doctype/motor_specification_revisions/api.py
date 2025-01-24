@@ -146,14 +146,19 @@ def get_motor_specification_excel():
     specification_sheet["C12"] = project_info_data.get("altitude")
     specification_sheet["C13"] = project_info_data.get("seismic_zone")
 
+    standard_data = motor_specification_data.get("standard")
+    zone_data = motor_specification_data.get("zone")
+    temp_class_data = motor_specification_data.get("temperature_class")
+    gas_group_data = motor_specification_data.get("gas_group")
+
     hazard_area_classification_data = (
-        f"{motor_specification_data.get("standard")}, {motor_specification_data.get("zone")}, {motor_specification_data.get("gas_group")}, {motor_spec_revision_data.get("temperature_class")}"
+        f"{standard_data}, {zone_data}, {temp_class_data}, {gas_group_data}"
     )
 
-    # if "NA" in hazard_area_classification_data or "None" in hazard_area_classification_data:
-    #     hazard_area_classification_data = "Not Applicable"
+    if "NA" in hazard_area_classification_data or "None" in hazard_area_classification_data:
+        hazard_area_classification_data = "Not Applicable"
 
-    # specification_sheet["D4"] = hazard_area_classification_data
+    specification_sheet["D4"] = hazard_area_classification_data
     specification_sheet["D5"] = project_info_data.get("ambient_temperature_max")
     specification_sheet["D6"] = project_info_data.get("ambient_temperature_min")
     specification_sheet["D7"] = project_info_data.get(
