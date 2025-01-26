@@ -44,12 +44,12 @@ def get_heating_db_excel(
             is_indication_on_selected = handle_none_to_number(
                 mcc_panel_data.get("is_indication_on_selected")
             )
-            is_indication_off_selected = mcc_panel_data.get(
-                "is_indication_off_selected"
+            is_indication_off_selected = handle_none_to_number(
+                mcc_panel_data.get("is_indication_off_selected")
             )
             led_type_off_input = mcc_panel_data.get("led_type_off_input")
-            is_indication_trip_selected = mcc_panel_data.get(
-                "is_indication_trip_selected"
+            is_indication_trip_selected = handle_none_to_number(
+                mcc_panel_data.get("is_indication_trip_selected")
             )
             led_type_trip_input = mcc_panel_data.get("led_type_trip_input")
             is_blue_cb_spring_charge_selected = mcc_panel_data.get(
@@ -185,10 +185,10 @@ def get_heating_db_excel(
             heater_connected_load = mcc_panel_data.get("heater_connected_load")
             heater_temperature = mcc_panel_data.get("heater_temperature")
 
-            if is_indication_off_selected == "0" or is_indication_off_selected == 0:
+            if is_indication_off_selected == 0:
                 led_type_off_input = "Not Applicable"
 
-            if is_indication_trip_selected == "0" or is_indication_trip_selected == 0:
+            if is_indication_trip_selected == 0:
                 led_type_trip_input = "Not Applicable"
 
             incomer_data = f"Upto {incomer_ampere}, {incomer_pole} Pole {incomer_type} \nAbove {incomer_above_ampere}, {incomer_above_pole} Pole {incomer_above_type}"
@@ -405,14 +405,16 @@ def get_heating_db_excel(
                 pcc_panel_data.get("incomer_above_type")
             )
 
-            is_indication_on_selected = pcc_panel_data.get("is_indication_on_selected")
+            is_indication_on_selected = handle_none_to_number(
+                pcc_panel_data.get("is_indication_on_selected")
+            )
             led_type_on_input = pcc_panel_data.get("led_type_on_input")
-            is_indication_off_selected = pcc_panel_data.get(
-                "is_indication_off_selected"
+            is_indication_off_selected = handle_none_to_number(
+                pcc_panel_data.get("is_indication_off_selected")
             )
             led_type_off_input = pcc_panel_data.get("led_type_off_input")
-            is_indication_trip_selected = pcc_panel_data.get(
-                "is_indication_trip_selected"
+            is_indication_trip_selected = handle_none_to_number(
+                pcc_panel_data.get("is_indication_trip_selected")
             )
             led_type_trip_input = pcc_panel_data.get("led_type_trip_input")
             is_blue_cb_spring_charge_selected = pcc_panel_data.get(
@@ -555,20 +557,20 @@ def get_heating_db_excel(
 
             pcc_incomer_data = f"Upto {incomer_ampere}, {incomer_pole} Pole {incomer_type} \nAbove {incomer_above_ampere}, {incomer_above_pole} Pole {incomer_above_type}"
 
-            if is_indication_on_selected == "0" or is_indication_on_selected == 0:
+            if is_indication_on_selected == 0:
                 led_type_on_input = "Not Applicable"
 
-            if is_indication_off_selected == "0" or is_indication_off_selected == 0:
+            if is_indication_off_selected == 0:
                 led_type_off_input = "Not Applicable"
 
-            if is_indication_trip_selected == "0" or is_indication_trip_selected == 0:
+            if is_indication_trip_selected == 0:
                 led_type_trip_input = "Not Applicable"
 
             panel_sheet["C5"] = handle_none_to_string(pcc_incomer_data)
             panel_sheet["C6"] = led_type_on_input
             panel_sheet["C7"] = led_type_off_input
             panel_sheet["C8"] = led_type_trip_input
-            if not "ACB" in incomer_type:
+            if "ACB" not in incomer_type:
                 is_blue_cb_spring_charge_selected = "NA"
                 is_red_cb_in_service = "NA"
                 is_white_healthy_trip_circuit_selected = "NA"
@@ -774,14 +776,16 @@ def get_heating_db_excel(
             incomer_above_pole = mcc_panel_data.get("incomer_above_pole")
             incomer_above_type = mcc_panel_data.get("incomer_above_type")
 
-            is_indication_on_selected = mcc_panel_data.get("is_indication_on_selected")
+            is_indication_on_selected = handle_none_to_number(
+                mcc_panel_data.get("is_indication_on_selected")
+            )
             led_type_on_input = mcc_panel_data.get("led_type_on_input")
-            is_indication_off_selected = mcc_panel_data.get(
-                "is_indication_off_selected"
+            is_indication_off_selected = handle_none_to_number(
+                mcc_panel_data.get("is_indication_off_selected")
             )
             led_type_off_input = mcc_panel_data.get("led_type_off_input")
-            is_indication_trip_selected = mcc_panel_data.get(
-                "is_indication_trip_selected"
+            is_indication_trip_selected = handle_none_to_number(
+                mcc_panel_data.get("is_indication_trip_selected")
             )
             led_type_trip_input = mcc_panel_data.get("led_type_trip_input")
             is_blue_cb_spring_charge_selected = mcc_panel_data.get(
@@ -917,11 +921,15 @@ def get_heating_db_excel(
             is_punching_details_for_heater_selected = mcc_panel_data.get(
                 "is_punching_details_for_heater_selected"
             )
-            heater_model = mcc_panel_data.get("heater_model")
-            heater_fuel = mcc_panel_data.get("heater_fuel")
-            heater_year = mcc_panel_data.get("heater_year")
-            heater_power_supply_vac = mcc_panel_data.get("heater_power_supply_vac")
-            heater_power_supply_phase = mcc_panel_data.get("heater_power_supply_phase")
+            heater_model = handle_none_to_string(mcc_panel_data.get("heater_model"))
+            heater_fuel = handle_none_to_string(mcc_panel_data.get("heater_fuel"))
+            heater_year = handle_none_to_string(mcc_panel_data.get("heater_year"))
+            heater_power_supply_vac = handle_none_to_string(
+                mcc_panel_data.get("heater_power_supply_vac")
+            )
+            heater_power_supply_phase = handle_none_to_string(
+                mcc_panel_data.get("heater_power_supply_phase")
+            )
             heater_power_supply_frequency = mcc_panel_data.get(
                 "heater_power_supply_frequency"
             )
@@ -939,13 +947,13 @@ def get_heating_db_excel(
 
             incomer_data = f"Upto {incomer_ampere}, {incomer_pole} Pole {incomer_type} \nAbove {incomer_above_ampere}, {incomer_above_pole} Pole {incomer_above_type} "
 
-            if is_indication_on_selected == "0" or is_indication_on_selected == 0:
+            if is_indication_on_selected == 0:
                 led_type_on_input = "Not Applicable"
 
-            if is_indication_off_selected == "0" or is_indication_off_selected == 0:
+            if is_indication_off_selected == 0:
                 led_type_off_input = "Not Applicable"
 
-            if is_indication_trip_selected == "0" or is_indication_trip_selected == 0:
+            if is_indication_trip_selected == 0:
                 led_type_trip_input = "Not Applicable"
 
             panel_sheet["C5"] = handle_none_to_string(incomer_data)
@@ -1129,19 +1137,19 @@ def get_heating_db_excel(
 
             plc_panel_1 = frappe.db.get_list(
                 "Panel PLC 1 - 3",
-                {"revision_id": revision_id, "panel_id": panel_id},
+                {"panel_id": panel_id},
                 "*",
             )
             plc_panel_1 = plc_panel_1[0] if len(plc_panel_1) > 0 else {}
             plc_panel_2 = frappe.db.get_list(
                 "Panel PLC 2 - 3",
-                {"revision_id": revision_id, "panel_id": panel_id},
+                {"panel_id": panel_id},
                 "*",
             )
             plc_panel_2 = plc_panel_2[0] if len(plc_panel_2) > 0 else {}
             plc_panel_3 = frappe.db.get_list(
                 "Panel PLC 3 - 3",
-                {"revision_id": revision_id, "panel_id": panel_id},
+                {"panel_id": panel_id},
                 "*",
             )
             plc_panel_3 = plc_panel_3[0] if len(plc_panel_3) > 0 else {}
