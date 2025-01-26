@@ -41,14 +41,16 @@ def get_enviro_ipg_db_excel(
             incomer_above_pole = mcc_panel_data.get("incomer_above_pole")
             incomer_above_type = mcc_panel_data.get("incomer_above_type")
 
-            is_indication_on_selected = mcc_panel_data.get("is_indication_on_selected")
+            is_indication_on_selected = handle_none_to_number(
+                mcc_panel_data.get("is_indication_on_selected")
+            )
             led_type_on_input = mcc_panel_data.get("led_type_on_input")
-            is_indication_off_selected = mcc_panel_data.get(
-                "is_indication_off_selected"
+            is_indication_off_selected = handle_none_to_number(
+                mcc_panel_data.get("is_indication_off_selected")
             )
             led_type_off_input = mcc_panel_data.get("led_type_off_input")
-            is_indication_trip_selected = mcc_panel_data.get(
-                "is_indication_trip_selected"
+            is_indication_trip_selected = handle_none_to_number(
+                mcc_panel_data.get("is_indication_trip_selected")
             )
             led_type_trip_input = mcc_panel_data.get("led_type_trip_input")
             is_blue_cb_spring_charge_selected = mcc_panel_data.get(
@@ -142,13 +144,13 @@ def get_enviro_ipg_db_excel(
 
             incomer_data = f"Upto {incomer_ampere}, {incomer_pole} Pole {incomer_type} \nAbove {incomer_above_ampere}, {incomer_above_pole} Pole {incomer_above_type} "
 
-            if is_indication_on_selected == "0" or is_indication_on_selected == 0:
+            if is_indication_on_selected == 0:
                 led_type_on_input = "Not Applicable"
 
-            if is_indication_off_selected == "0" or is_indication_off_selected == 0:
+            if is_indication_off_selected == 0:
                 led_type_off_input = "Not Applicable"
 
-            if is_indication_trip_selected == "0" or is_indication_trip_selected == 0:
+            if is_indication_trip_selected == 0:
                 led_type_trip_input = "Not Applicable"
 
             panel_sheet["C5"] = handle_none_to_string(incomer_data)
@@ -267,14 +269,16 @@ def get_enviro_ipg_db_excel(
                 pcc_panel_data.get("incomer_above_type")
             )
 
-            is_indication_on_selected = pcc_panel_data.get("is_indication_on_selected")
+            is_indication_on_selected = handle_none_to_number(
+                pcc_panel_data.get("is_indication_on_selected")
+            )
             led_type_on_input = pcc_panel_data.get("led_type_on_input")
-            is_indication_off_selected = pcc_panel_data.get(
-                "is_indication_off_selected"
+            is_indication_off_selected = handle_none_to_number(
+                pcc_panel_data.get("is_indication_off_selected")
             )
             led_type_off_input = pcc_panel_data.get("led_type_off_input")
-            is_indication_trip_selected = pcc_panel_data.get(
-                "is_indication_trip_selected"
+            is_indication_trip_selected = handle_none_to_number(
+                pcc_panel_data.get("is_indication_trip_selected")
             )
             led_type_trip_input = pcc_panel_data.get("led_type_trip_input")
             is_blue_cb_spring_charge_selected = pcc_panel_data.get(
@@ -504,14 +508,16 @@ def get_enviro_ipg_db_excel(
             incomer_above_pole = mcc_panel_data.get("incomer_above_pole")
             incomer_above_type = mcc_panel_data.get("incomer_above_type")
 
-            is_indication_on_selected = mcc_panel_data.get("is_indication_on_selected")
+            is_indication_on_selected = handle_none_to_number(
+                mcc_panel_data.get("is_indication_on_selected")
+            )
             led_type_on_input = mcc_panel_data.get("led_type_on_input")
-            is_indication_off_selected = mcc_panel_data.get(
-                "is_indication_off_selected"
+            is_indication_off_selected = handle_none_to_number(
+                mcc_panel_data.get("is_indication_off_selected")
             )
             led_type_off_input = mcc_panel_data.get("led_type_off_input")
-            is_indication_trip_selected = mcc_panel_data.get(
-                "is_indication_trip_selected"
+            is_indication_trip_selected = handle_none_to_number(
+                mcc_panel_data.get("is_indication_trip_selected")
             )
             led_type_trip_input = mcc_panel_data.get("led_type_trip_input")
             is_blue_cb_spring_charge_selected = mcc_panel_data.get(
@@ -709,19 +715,19 @@ def get_enviro_ipg_db_excel(
 
             plc_panel_1 = frappe.db.get_list(
                 "Panel PLC 1 - 3",
-                {"revision_id": revision_id, "panel_id": panel_id},
+                {"panel_id": panel_id},
                 "*",
             )
             plc_panel_1 = plc_panel_1[0] if len(plc_panel_1) > 0 else {}
             plc_panel_2 = frappe.db.get_list(
                 "Panel PLC 2 - 3",
-                {"revision_id": revision_id, "panel_id": panel_id},
+                {"panel_id": panel_id},
                 "*",
             )
             plc_panel_2 = plc_panel_2[0] if len(plc_panel_2) > 0 else {}
             plc_panel_3 = frappe.db.get_list(
                 "Panel PLC 3 - 3",
-                {"revision_id": revision_id, "panel_id": panel_id},
+                {"panel_id": panel_id},
                 "*",
             )
             plc_panel_3 = plc_panel_3[0] if len(plc_panel_3) > 0 else {}

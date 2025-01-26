@@ -804,19 +804,19 @@ def get_wws_services_spg_db_excel(
 
             plc_panel_1 = frappe.db.get_list(
                 "Panel PLC 1 - 3",
-                {"revision_id": revision_id, "panel_id": panel_id},
+                {"panel_id": panel_id},
                 "*",
             )
             plc_panel_1 = plc_panel_1[0] if len(plc_panel_1) > 0 else {}
             plc_panel_2 = frappe.db.get_list(
                 "Panel PLC 2 - 3",
-                {"revision_id": revision_id, "panel_id": panel_id},
+                {"panel_id": panel_id},
                 "*",
             )
             plc_panel_2 = plc_panel_2[0] if len(plc_panel_2) > 0 else {}
             plc_panel_3 = frappe.db.get_list(
                 "Panel PLC 3 - 3",
-                {"revision_id": revision_id, "panel_id": panel_id},
+                {"panel_id": panel_id},
                 "*",
             )
             plc_panel_3 = plc_panel_3[0] if len(plc_panel_3) > 0 else {}
