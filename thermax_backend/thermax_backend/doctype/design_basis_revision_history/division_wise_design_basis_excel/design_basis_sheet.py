@@ -92,7 +92,9 @@ def get_design_basis_sheet(
     design_basis_sheet["C12"] = (
         f'{project_info_data.get("electrical_design_temperature")} Deg. C'
     )
-    design_basis_sheet["C13"] = int(project_info_data.get("seismic_zone", 0))
+    design_basis_sheet["C13"] = handle_none_to_number(
+        project_info_data.get("seismic_zone")
+    )
     design_basis_sheet["C14"] = f'{project_info_data.get("max_humidity")}%'
     design_basis_sheet["C15"] = f'{project_info_data.get("min_humidity")}%'
     design_basis_sheet["C16"] = f'{project_info_data.get("avg_humidity")}%'
@@ -134,17 +136,17 @@ def get_design_basis_sheet(
 
     design_basis_sheet["C20"] = (
         ", ".join(main_package_name_array)
-        if len(main_package_name_array) > 1
+        if len(main_package_name_array) > 0
         else "Not Applicable"
     )
     design_basis_sheet["C21"] = (
         ", ".join(safe_area_sub_package_names)
-        if len(main_package_name_array) > 1
+        if len(safe_area_sub_package_names) > 0
         else "Not Applicable"
     )
     design_basis_sheet["C22"] = (
         ", ".join(hazardous_area_sub_package_names)
-        if len(main_package_name_array) > 1
+        if len(hazardous_area_sub_package_names) > 0
         else "Not Applicable"
     )
 
@@ -163,7 +165,7 @@ def get_design_basis_sheet(
 
     design_basis_sheet["C23"] = (
         area_classification_data
-        if len(main_package_name_array) > 1
+        if len(hazardous_area_sub_package_names) > 0
         else "Not Applicable"
     )
     design_basis_sheet["C24"] = battery_limit
@@ -368,13 +370,25 @@ def get_design_basis_sheet(
     design_basis_sheet["C28"] = safe_area_insulation_class
     design_basis_sheet["C29"] = safe_area_temperature_rise
     design_basis_sheet["C30"] = safe_area_enclosure_ip_rating
-    design_basis_sheet["C31"] = f"{safe_area_max_temperature} Deg. C"
-    design_basis_sheet["C32"] = f"{safe_area_min_temperature} Deg. C"
-    design_basis_sheet["C33"] = f"{safe_area_altitude} meters"
+    design_basis_sheet["C31"] = (
+        f"{safe_area_max_temperature} Deg. C"
+        if safe_area_max_temperature != "Not Applicable"
+        else "Not Applicable"
+    )
+    design_basis_sheet["C32"] = (
+        f"{safe_area_min_temperature} Deg. C"
+        if safe_area_min_temperature != "Not Applicable"
+        else "Not Applicable"
+    )
+    design_basis_sheet["C33"] = (
+        f"{safe_area_altitude} meters"
+        if safe_area_altitude != "Not Applicable"
+        else "Not Applicable"
+    )
     design_basis_sheet["C34"] = safe_area_terminal_box_ip_rating
     design_basis_sheet["C35"] = check_value_kW(safe_area_thermister)
     design_basis_sheet["C36"] = check_value_kW(safe_area_space_heater)
-    design_basis_sheet["C37"] = safe_area_certification
+    design_basis_sheet["C37"] = "Not Applicable"
     design_basis_sheet["C38"] = check_value_kW(safe_area_bearing_rtd)
     design_basis_sheet["C39"] = check_value_kW(safe_area_winding_rtd)
     design_basis_sheet["C40"] = safe_area_bearing_type
@@ -574,20 +588,24 @@ def get_design_basis_sheet(
     cc_lamp_test_push_button = common_config_data.get("lamp_test_push_button")
     cc_test_dropdown = common_config_data.get("test_dropdown")
     cc_reset_dropdown = common_config_data.get("reset_dropdown")
-    cc_is_field_motor_isolator_selected = common_config_data.get(
-        "is_field_motor_isolator_selected"
+    is_field_motor_isolator_selected = handle_none_to_number(
+        common_config_data.get("is_field_motor_isolator_selected")
     )
-    cc_is_safe_area_isolator_selected = common_config_data.get(
-        "is_safe_area_isolator_selected"
+    is_safe_area_isolator_selected = handle_none_to_number(
+        common_config_data.get("is_safe_area_isolator_selected")
     )
-    cc_is_local_push_button_station_selected = common_config_data.get(
-        "is_local_push_button_station_selected"
+    is_local_push_button_station_selected = handle_none_to_number(
+        common_config_data.get("is_local_push_button_station_selected")
     )
 
-    cc_is_safe_lpbs_selected = common_config_data.get("is_safe_lpbs_selected")
-    cc_is_hazardous_lpbs_selected = common_config_data.get("is_hazardous_lpbs_selected")
-    cc_is_hazardous_area_isolator_selected = common_config_data.get(
-        "is_hazardous_area_isolator_selected"
+    is_safe_lpbs_selected = handle_none_to_number(
+        common_config_data.get("is_safe_lpbs_selected")
+    )
+    is_hazardous_lpbs_selected = handle_none_to_number(
+        common_config_data.get("is_hazardous_lpbs_selected")
+    )
+    is_hazardous_area_isolator_selected = handle_none_to_number(
+        common_config_data.get("is_hazardous_area_isolator_selected")
     )
 
     cc_selector_switch_applicable = common_config_data.get("selector_switch_applicable")
@@ -806,10 +824,10 @@ def get_design_basis_sheet(
     design_basis_sheet["C92"] = check_value_kW(cc_star_delta_starter)
 
     design_basis_sheet["C93"] = cc_mcc_switchgear_type
-    if division_name != "SPG":
+    if division_name != "WWS SPG" or division_name != "WWS Services":
         cc_switchgear_combination = "Not Applicable"
     else:
-        if not "Fuseless" in cc_mcc_switchgear_type:
+        if "Fuseless" not in cc_mcc_switchgear_type:
             cc_switchgear_combination = "Not Applicable"
 
     design_basis_sheet["C94"] = cc_switchgear_combination
@@ -883,7 +901,7 @@ def get_design_basis_sheet(
     design_basis_sheet["C148"] = handle_none_to_string(cc_stopped_closed)
     design_basis_sheet["C149"] = handle_none_to_string(cc_trip)
 
-    if int(cc_is_field_motor_isolator_selected) == 0:
+    if is_field_motor_isolator_selected == 0:
         cc_safe_field_motor_type = "Not Applicable"
         cc_safe_field_motor_enclosure = "Not Applicable"
         cc_safe_field_motor_material = "Not Applicable"
@@ -900,7 +918,7 @@ def get_design_basis_sheet(
         cc_hazardous_field_motor_cable_entry = "Not Applicable"
         cc_hazardous_field_motor_canopy = "Not Applicable"
     else:
-        if int(cc_is_safe_area_isolator_selected) == 0:
+        if is_safe_area_isolator_selected == 0:
             cc_safe_field_motor_type = "Not Applicable"
             cc_safe_field_motor_enclosure = "Not Applicable"
             cc_safe_field_motor_material = "Not Applicable"
@@ -909,7 +927,7 @@ def get_design_basis_sheet(
             cc_safe_field_motor_cable_entry = "Not Applicable"
             cc_safe_field_motor_canopy = "Not Applicable"
 
-        if int(cc_is_hazardous_area_isolator_selected) == 0:
+        if is_hazardous_area_isolator_selected == 0:
             cc_hazardous_field_motor_type = "Not Applicable"
             cc_hazardous_field_motor_enclosure = "Not Applicable"
             cc_hazardous_field_motor_material = "Not Applicable"
@@ -967,7 +985,7 @@ def get_design_basis_sheet(
     design_basis_sheet["D157"] = cc_hazardous_field_motor_cable_entry
     design_basis_sheet["D158"] = handle_none_to_string(cc_hazardous_field_motor_canopy)
 
-    if int(cc_is_local_push_button_station_selected) == 0:
+    if is_local_push_button_station_selected == 0:
         cc_lpbs_push_button_start_color = "Not Applicable"
         cc_forward_push_button_start = "Not Applicable"
         cc_reverse_push_button_start = "Not Applicable"
@@ -985,8 +1003,16 @@ def get_design_basis_sheet(
         cc_safe_lpbs_canopy = "Not Applicable"
         cc_safe_lpbs_canopy_type = "Not Applicable"
 
+        cc_hazardous_lpbs_type = "Not Applicable"
+        cc_hazardous_lpbs_enclosure = "Not Applicable"
+        cc_hazardous_lpbs_material = "Not Applicable"
+        cc_hazardous_lpbs_qty = "Not Applicable"
+        cc_hazardous_lpbs_color_shade = "Not Applicable"
+        cc_hazardous_lpbs_canopy = "Not Applicable"
+        cc_hazardous_lpbs_canopy_type = "Not Applicable"
+
     else:
-        if int(cc_is_safe_lpbs_selected) == 0:
+        if is_safe_lpbs_selected == 0:
             cc_safe_lpbs_type = "Not Applicable"
             cc_safe_lpbs_enclosure = "Not Applicable"
             cc_safe_lpbs_material = "Not Applicable"
@@ -995,7 +1021,7 @@ def get_design_basis_sheet(
             cc_safe_lpbs_canopy = "Not Applicable"
             cc_safe_lpbs_canopy_type = "Not Applicable"
 
-        if int(cc_is_hazardous_lpbs_selected) == 0:
+        if is_hazardous_lpbs_selected == 0:
             cc_hazardous_lpbs_type = "Not Applicable"
             cc_hazardous_lpbs_enclosure = "Not Applicable"
             cc_hazardous_lpbs_material = "Not Applicable"
@@ -1028,26 +1054,24 @@ def get_design_basis_sheet(
         cc_hazardous_field_motor_cable_entry = (
             f"{cc_hazardous_field_motor_cable_entry}, 3 mm"
         )
-    elif cc_safe_lpbs_material == "NA":
-        cc_safe_lpbs_material = "Not Applicable"
 
-    design_basis_sheet["C169"] = handle_none_to_string(cc_safe_lpbs_type)
-    design_basis_sheet["C170"] = handle_none_to_string(cc_safe_lpbs_enclosure)
-    design_basis_sheet["C171"] = handle_none_to_string(cc_safe_lpbs_material)
-    design_basis_sheet["C172"] = handle_none_to_string(cc_safe_lpbs_qty)
-    design_basis_sheet["C173"] = handle_none_to_string(cc_safe_lpbs_color_shade)
-    design_basis_sheet["C174"] = handle_none_to_string(cc_safe_lpbs_canopy)
-    design_basis_sheet["C175"] = handle_none_to_string(cc_safe_lpbs_canopy_type)
+    design_basis_sheet["C169"] = cc_safe_lpbs_type
+    design_basis_sheet["C170"] = cc_safe_lpbs_enclosure
+    design_basis_sheet["C171"] = cc_safe_lpbs_material
+    design_basis_sheet["C172"] = cc_safe_lpbs_qty
+    design_basis_sheet["C173"] = cc_safe_lpbs_color_shade
+    design_basis_sheet["C174"] = cc_safe_lpbs_canopy
+    design_basis_sheet["C175"] = cc_safe_lpbs_canopy_type
 
-    design_basis_sheet["D169"] = handle_none_to_string(cc_hazardous_lpbs_type)
-    design_basis_sheet["D170"] = handle_none_to_string(cc_hazardous_lpbs_enclosure)
-    design_basis_sheet["D171"] = handle_none_to_string(cc_hazardous_lpbs_material)
-    design_basis_sheet["D172"] = handle_none_to_string(cc_hazardous_lpbs_qty)
-    design_basis_sheet["D173"] = handle_none_to_string(cc_hazardous_lpbs_color_shade)
-    design_basis_sheet["D174"] = handle_none_to_string(cc_hazardous_lpbs_canopy)
-    design_basis_sheet["D175"] = handle_none_to_string(cc_hazardous_lpbs_canopy_type)
+    design_basis_sheet["D169"] = cc_hazardous_lpbs_type
+    design_basis_sheet["D170"] = cc_hazardous_lpbs_enclosure
+    design_basis_sheet["D171"] = cc_hazardous_lpbs_material
+    design_basis_sheet["D172"] = cc_hazardous_lpbs_qty
+    design_basis_sheet["D173"] = cc_hazardous_lpbs_color_shade
+    design_basis_sheet["D174"] = cc_hazardous_lpbs_canopy
+    design_basis_sheet["D175"] = cc_hazardous_lpbs_canopy_type
 
-    design_basis_sheet["C177"] = handle_none_to_string(cc_ferrule)
+    design_basis_sheet["C177"] = cc_ferrule
     design_basis_sheet["C178"] = cc_ferrule_note
     design_basis_sheet["C179"] = cc_device_identification_of_components
 
