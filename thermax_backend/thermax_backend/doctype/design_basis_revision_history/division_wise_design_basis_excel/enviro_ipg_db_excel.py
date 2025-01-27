@@ -254,7 +254,7 @@ def get_enviro_ipg_db_excel(
                 continue
             pcc_panel_data = pcc_panel_data[0]
 
-            panel_sheet["B3"] = project_data.get("panel_name")
+            panel_sheet["B3"] = project_panel.get("panel_name")
 
             incomer_ampere = handle_none_to_string(pcc_panel_data.get("incomer_ampere"))
             incomer_pole = handle_none_to_string(pcc_panel_data.get("incomer_pole"))
