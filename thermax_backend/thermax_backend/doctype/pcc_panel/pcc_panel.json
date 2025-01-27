@@ -67,7 +67,6 @@
   "ga_power_and_control_busbar_separation",
   "ga_enclosure_protection_degree",
   "ga_cable_entry_position",
-  "general_requirments_for_construction",
   "paintingpowder_coating_section",
   "ppc_painting_standards",
   "ppc_interior_and_exterior_paint_shade",
@@ -77,6 +76,7 @@
   "ppc_pretreatment_panel_standard",
   "commissioning_spare",
   "two_year_operational_spare",
+  "general_requirments_for_construction",
   "punching_details_section",
   "is_punching_details_for_boiler_selected",
   "boiler_model",
@@ -362,7 +362,7 @@
   },
   {
    "fieldname": "ppc_pretreatment_panel_standard",
-   "fieldtype": "Data",
+   "fieldtype": "Small Text",
    "label": "PPC Pretreatment Panel Standard"
   },
   {
@@ -649,17 +649,17 @@
   },
   {
    "fieldname": "general_requirments_for_construction",
-   "fieldtype": "Data",
+   "fieldtype": "Small Text",
    "label": "General Requirements for Construction"
   },
   {
    "fieldname": "commissioning_spare",
-   "fieldtype": "Data",
+   "fieldtype": "Small Text",
    "label": "Commissioning Spare"
   },
   {
    "fieldname": "two_year_operational_spare",
-   "fieldtype": "Data",
+   "fieldtype": "Small Text",
    "label": "Two Year Operational Spare"
   },
   {
@@ -690,7 +690,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-27 11:42:06.064184",
+ "modified": "2025-01-27 12:22:59.813462",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "PCC Panel",
