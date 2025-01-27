@@ -59,22 +59,25 @@ def get_panel_specification_excel():
         "*"
     ).as_dict()
 
-    plc_data = frappe.db.get_list(
-        "Panel PLC 1 - 3",
-        {"revision_id": project_revision_id}
-    )
-
     
+    for project_panel in project_panel_data:
+        panel_id = project_panel.get("name")
 
+        if project_panel.get("type") != "PCC" and project_panel.get("type") != "MCC":
+            mcc_panel_data = frappe.db.get_list(
+                "MCC Panel", {"panel_id": panel_id}, "*"
+            )
 
+            if len(mcc_panel_data) == 0:
+                continue
+            mcc_panel_data = mcc_panel_data[0]
 
-    # PLC SPECIFICATION SHEET 
+            
+            # PLC SPECIFICATION SHEET 
 
-    
-
-    plc_specification_sheet["C9"] = "TBD"
-    plc_specification_sheet["C10"] = "TBD"
-    plc_specification_sheet["C11"] = "TBD"
+            plc_specification_sheet["C9"] = "TBD"
+            plc_specification_sheet["C10"] = "TBD"
+            plc_specification_sheet["C11"] = "TBD"
 
 
 
