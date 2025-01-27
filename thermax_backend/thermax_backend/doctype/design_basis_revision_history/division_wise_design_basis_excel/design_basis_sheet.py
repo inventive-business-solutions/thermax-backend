@@ -92,7 +92,9 @@ def get_design_basis_sheet(
     design_basis_sheet["C12"] = (
         f'{project_info_data.get("electrical_design_temperature")} Deg. C'
     )
-    design_basis_sheet["C13"] = int(project_info_data.get("seismic_zone", 0))
+    design_basis_sheet["C13"] = handle_none_to_number(
+        project_info_data.get("seismic_zone")
+    )
     design_basis_sheet["C14"] = f'{project_info_data.get("max_humidity")}%'
     design_basis_sheet["C15"] = f'{project_info_data.get("min_humidity")}%'
     design_basis_sheet["C16"] = f'{project_info_data.get("avg_humidity")}%'
@@ -106,87 +108,66 @@ def get_design_basis_sheet(
         order_by="creation asc",
     )
 
-    temp_main_package_name = "Not Applicable"
-    temp_safe_area = "Not Applicable"
-    temp_hazardous_area = "Not Applicable"
-    temp_area_of_classification = "Not Applicable"
+    main_package_name_array = []
+    safe_area_sub_package_names = []
+    hazardous_area_sub_package_names = []
+    hazardous_area_sub_packages = []
 
-    if len(main_packages_data_array) > 0:
-        package_name_array = []
-        safe_area_array = []
-        hazard_area_array = []
+    for package in main_packages_data_array:
+        package_name = package.get("main_package_name")
+        current_package_id = package.get("name")
+        main_package_name_array.append(package_name)
 
-        for package in main_packages_data_array:
-            package_name = package.get("main_package_name")
-            current_package_id = package.get("name")
-            package_name_array.append(package_name)
+        current_package_data = frappe.get_doc(
+            "Project Main Package", current_package_id
+        ).as_dict()
+        sub_package_data = current_package_data["sub_packages"]
 
-            current_package_data = frappe.get_doc(
-                "Project Main Package", current_package_id
-            ).as_dict()
-            sub_package_data = current_package_data["sub_packages"]
+        for sub_package in sub_package_data:
+            is_sub_package_selected = sub_package.get("is_sub_package_selected")
+            if is_sub_package_selected == 1:
+                if sub_package["area_of_classification"] == "Safe Area":
+                    safe_area_sub_package_names.append(sub_package["sub_package_name"])
+                if sub_package["area_of_classification"] == "Hazardous Area":
+                    hazardous_area_sub_packages.append(package)
+                    hazardous_area_sub_package_names.append(
+                        sub_package["sub_package_name"]
+                    )
 
-            if len(sub_package_data) > 0:
-                for sub_package in sub_package_data:
-                    if sub_package["area_of_classification"] == "Safe Area":
-                        safe_area_array.append(sub_package["sub_package_name"])
-                    else:
-                        hazard_area_array.append(sub_package["sub_package_name"])
-        area_classification_data = frappe.db.get_value(
-            "Project Main Package",
-            {"revision_id": revision_id},
-            ["standard", "zone", "gas_group", "temperature_class"],
-        )
+    design_basis_sheet["C20"] = (
+        ", ".join(main_package_name_array)
+        if len(main_package_name_array) > 0
+        else "Not Applicable"
+    )
+    design_basis_sheet["C21"] = (
+        ", ".join(safe_area_sub_package_names)
+        if len(safe_area_sub_package_names) > 0
+        else "Not Applicable"
+    )
+    design_basis_sheet["C22"] = (
+        ", ".join(hazardous_area_sub_package_names)
+        if len(hazardous_area_sub_package_names) > 0
+        else "Not Applicable"
+    )
 
-        default_values = {
-            "standard": "IS",  # Replace with your actual default value
-            "zone": "Zone 2",  # Replace with your actual default value
-            "gas_group": "IIA/IIB",  # Replace with your actual default value
-            "temperature_class": "T3",  # Replace with your actual default value
-        }
+    if len(hazardous_area_sub_packages) > 0:
+        standard = hazardous_area_sub_packages[0].get("standard")
+        zone = hazardous_area_sub_packages[0].get("zone")
+        gas_group = hazardous_area_sub_packages[0].get("gas_group")
+        temperature_class = hazardous_area_sub_packages[0].get("temperature_class")
+    else:
+        standard = "IS"
+        zone = "Zone 2"
+        gas_group = "IIA/IIB"
+        temperature_class = "T3"
 
-        if area_classification_data is None:
-            area_classification_data = [
-                default_values[field] for field in default_values.keys()
-            ]
-        else:
-            area_classification_data = [
-                value if value is not None else default_values[field]
-                for value, field in zip(area_classification_data, default_values.keys())
-            ]
+    area_classification_data = f"Standard-{standard}, {zone}, Gas Group-{gas_group}, Temperature Class-{temperature_class}"
 
-        # Safeguard against missing indices in area_classification_data
-        standard = (
-            area_classification_data[0] if len(area_classification_data) > 0 else ""
-        )
-        classification_1 = (
-            area_classification_data[1] if len(area_classification_data) > 1 else ""
-        )
-        gas_group = (
-            area_classification_data[2] if len(area_classification_data) > 2 else ""
-        )
-        temperature_class = (
-            area_classification_data[3] if len(area_classification_data) > 3 else ""
-        )
-
-        area_classification_data = f"Standard-{standard}, {classification_1}, Gas Group-{gas_group}, Temperature Class-{temperature_class}"
-
-        package_name_array = ", ".join(package_name_array)
-        safe_area_sub_package = ", ".join(safe_area_array)
-        hazard_area_sub_package = ", ".join(hazard_area_array)
-
-        temp_main_package_name = package_name_array
-
-        if len(safe_area_array) > 0:
-            temp_safe_area = safe_area_sub_package
-        if len(hazard_area_array) > 0:
-            temp_hazardous_area = hazard_area_sub_package
-            temp_area_of_classification = area_classification_data
-
-    design_basis_sheet["C20"] = temp_main_package_name
-    design_basis_sheet["C21"] = temp_safe_area
-    design_basis_sheet["C22"] = temp_hazardous_area
-    design_basis_sheet["C23"] = temp_area_of_classification
+    design_basis_sheet["C23"] = (
+        area_classification_data
+        if len(hazardous_area_sub_package_names) > 0
+        else "Not Applicable"
+    )
     design_basis_sheet["C24"] = battery_limit
 
     # MOTOR PARAMETERS
@@ -196,80 +177,131 @@ def get_design_basis_sheet(
     )
     motor_parameters_data = motor_parameters_data[0]
 
-    hazardous_area_efficiency_level = handle_none_to_string(
-        motor_parameters_data.get("hazardous_area_efficiency_level", "Not Applicable")
+    safe_area_efficiency_level = handle_none_to_string(
+        motor_parameters_data.get("safe_area_efficiency_level")
     )
-    hazardous_area_insulation_class = handle_none_to_string(
-        motor_parameters_data.get("hazardous_area_insulation_class", "Not Applicable")
+    safe_area_insulation_class = handle_none_to_string(
+        motor_parameters_data.get("safe_area_insulation_class")
     )
-    hazardous_area_temperature_rise = handle_none_to_string(
-        motor_parameters_data.get("hazardous_area_temperature_rise", "Not Applicable")
+    safe_area_temperature_rise = handle_none_to_string(
+        motor_parameters_data.get("safe_area_temperature_rise")
     )
-    hazardous_area_enclosure_ip_rating = handle_none_to_string(
-        motor_parameters_data.get(
-            "hazardous_area_enclosure_ip_rating", "Not Applicable"
-        )
+    safe_area_enclosure_ip_rating = handle_none_to_string(
+        motor_parameters_data.get("safe_area_enclosure_ip_rating")
     )
-    hazardous_area_max_temperature = handle_none_to_string(
-        motor_parameters_data.get("hazardous_area_max_temperature", "Not Applicable")
+    safe_area_max_temperature = handle_none_to_string(
+        motor_parameters_data.get("safe_area_max_temperature")
     )
-    hazardous_area_min_temperature = handle_none_to_string(
-        motor_parameters_data.get("hazardous_area_min_temperature", "Not Applicable")
+    safe_area_min_temperature = handle_none_to_string(
+        motor_parameters_data.get("safe_area_min_temperature")
     )
-    hazardous_area_altitude = handle_none_to_string(
-        motor_parameters_data.get("hazardous_area_altitude", "Not Applicable")
+    safe_area_altitude = handle_none_to_string(
+        motor_parameters_data.get("safe_area_altitude")
     )
-    hazardous_area_terminal_box_ip_rating = handle_none_to_string(
-        motor_parameters_data.get(
-            "hazardous_area_terminal_box_ip_rating", "Not Applicable"
-        )
+    safe_area_terminal_box_ip_rating = handle_none_to_string(
+        motor_parameters_data.get("safe_area_terminal_box_ip_rating")
     )
-    hazardous_area_thermister = handle_none_to_string(
-        motor_parameters_data.get("hazardous_area_thermister", "Not Applicable")
+    safe_area_thermister = handle_none_to_string(
+        motor_parameters_data.get("safe_area_thermister")
     )
-    hazardous_area_space_heater = handle_none_to_string(
-        motor_parameters_data.get("hazardous_area_space_heater", "Not Applicable")
+    safe_area_space_heater = handle_none_to_string(
+        motor_parameters_data.get("safe_area_space_heater")
     )
-    hazardous_area_certification = handle_none_to_string(
-        motor_parameters_data.get("hazardous_area_certification", "Not Applicable")
+    safe_area_certification = handle_none_to_string(
+        motor_parameters_data.get("safe_area_certification")
     )
-    hazardous_area_bearing_rtd = handle_none_to_string(
-        motor_parameters_data.get("hazardous_area_bearing_rtd", "Not Applicable")
+    safe_area_bearing_rtd = handle_none_to_string(
+        motor_parameters_data.get("safe_area_bearing_rtd")
     )
-    hazardous_area_winding_rtd = handle_none_to_string(
-        motor_parameters_data.get("hazardous_area_winding_rtd", "Not Applicable")
+    safe_area_winding_rtd = handle_none_to_string(
+        motor_parameters_data.get("safe_area_winding_rtd")
     )
-    hazardous_area_bearing_type = handle_none_to_string(
-        motor_parameters_data.get("hazardous_area_bearing_type", "Not Applicable")
+    safe_area_bearing_type = handle_none_to_string(
+        motor_parameters_data.get("safe_area_bearing_type")
     )
-    hazardous_area_duty = handle_none_to_string(
-        motor_parameters_data.get("hazardous_area_duty", "Not Applicable")
+    safe_area_duty = handle_none_to_string(motor_parameters_data.get("safe_area_duty"))
+    safe_area_service_factor = handle_none_to_number(
+        motor_parameters_data.get("safe_area_service_factor")
     )
-    hazardous_area_service_factor = handle_none_to_string(
-        motor_parameters_data.get("hazardous_area_service_factor", "Not Applicable")
+    safe_area_cooling_type = handle_none_to_string(
+        motor_parameters_data.get("safe_area_cooling_type")
     )
-    hazardous_area_cooling_type = handle_none_to_string(
-        motor_parameters_data.get("hazardous_area_cooling_type", "Not Applicable")
+    safe_area_body_material = handle_none_to_string(
+        motor_parameters_data.get("safe_area_body_material")
     )
-    hazardous_area_body_material = handle_none_to_string(
-        motor_parameters_data.get("hazardous_area_body_material", "Not Applicable")
+    safe_area_terminal_box_material = handle_none_to_string(
+        motor_parameters_data.get("safe_area_terminal_box_material")
     )
-    hazardous_area_terminal_box_material = handle_none_to_string(
-        motor_parameters_data.get(
-            "hazardous_area_terminal_box_material", "Not Applicable"
-        )
+    safe_area_paint_type_and_shade = handle_none_to_string(
+        motor_parameters_data.get("safe_area_paint_type_and_shade")
     )
-    hazardous_area_paint_type_and_shade = handle_none_to_string(
-        motor_parameters_data.get(
-            "hazardous_area_paint_type_and_shade", "Not Applicable"
-        )
-    )
-    hazardous_area_starts_hour_permissible = handle_none_to_string(
-        motor_parameters_data.get(
-            "hazardous_area_starts_hour_permissible", "Not Applicable"
-        )
+    safe_area_starts_hour_permissible = handle_none_to_string(
+        motor_parameters_data.get("safe_area_starts_hour_permissible")
     )
 
+    hazardous_area_efficiency_level = handle_none_to_string(
+        motor_parameters_data.get("hazardous_area_efficiency_level")
+    )
+    hazardous_area_insulation_class = handle_none_to_string(
+        motor_parameters_data.get("hazardous_area_insulation_class")
+    )
+    hazardous_area_temperature_rise = handle_none_to_string(
+        motor_parameters_data.get("hazardous_area_temperature_rise")
+    )
+    hazardous_area_enclosure_ip_rating = handle_none_to_string(
+        motor_parameters_data.get("hazardous_area_enclosure_ip_rating")
+    )
+    hazardous_area_max_temperature = handle_none_to_string(
+        motor_parameters_data.get("hazardous_area_max_temperature")
+    )
+    hazardous_area_min_temperature = handle_none_to_string(
+        motor_parameters_data.get("hazardous_area_min_temperature")
+    )
+    hazardous_area_altitude = handle_none_to_string(
+        motor_parameters_data.get("hazardous_area_altitude")
+    )
+    hazardous_area_terminal_box_ip_rating = handle_none_to_string(
+        motor_parameters_data.get("hazardous_area_terminal_box_ip_rating")
+    )
+    hazardous_area_thermister = handle_none_to_string(
+        motor_parameters_data.get("hazardous_area_thermister")
+    )
+    hazardous_area_space_heater = handle_none_to_string(
+        motor_parameters_data.get("hazardous_area_space_heater")
+    )
+    hazardous_area_certification = handle_none_to_string(
+        motor_parameters_data.get("hazardous_area_certification")
+    )
+    hazardous_area_bearing_rtd = handle_none_to_string(
+        motor_parameters_data.get("hazardous_area_bearing_rtd")
+    )
+    hazardous_area_winding_rtd = handle_none_to_string(
+        motor_parameters_data.get("hazardous_area_winding_rtd")
+    )
+    hazardous_area_bearing_type = handle_none_to_string(
+        motor_parameters_data.get("hazardous_area_bearing_type")
+    )
+    hazardous_area_duty = handle_none_to_string(
+        motor_parameters_data.get("hazardous_area_duty")
+    )
+    hazardous_area_service_factor = handle_none_to_string(
+        motor_parameters_data.get("hazardous_area_service_factor")
+    )
+    hazardous_area_cooling_type = handle_none_to_string(
+        motor_parameters_data.get("hazardous_area_cooling_type")
+    )
+    hazardous_area_body_material = handle_none_to_string(
+        motor_parameters_data.get("hazardous_area_body_material")
+    )
+    hazardous_area_terminal_box_material = handle_none_to_string(
+        motor_parameters_data.get("hazardous_area_terminal_box_material")
+    )
+    hazardous_area_paint_type_and_shade = handle_none_to_string(
+        motor_parameters_data.get("hazardous_area_paint_type_and_shade")
+    )
+    hazardous_area_starts_hour_permissible = handle_none_to_string(
+        motor_parameters_data.get("hazardous_area_starts_hour_permissible")
+    )
     hazardous_area_bearing_rtd = handle_none_to_string(hazardous_area_bearing_rtd)
     hazardous_area_winding_rtd = handle_none_to_string(hazardous_area_winding_rtd)
 
@@ -277,22 +309,41 @@ def get_design_basis_sheet(
     hazardous_area_min_temperature = f"{hazardous_area_min_temperature} Deg. C"
     hazardous_area_altitude = f"{hazardous_area_altitude} meters"
 
-    if hazardous_area_thermister == "NA" or hazardous_area_thermister == "As per OEM":
+    if hazardous_area_thermister == "As per OEM":
         hazardous_area_thermister = "Not Applicable"
-    elif hazardous_area_thermister == "All":
+
+    if hazardous_area_thermister == "All":
         hazardous_area_thermister = f"{hazardous_area_thermister} kW"
 
-    if hazardous_area_bearing_rtd == "NA":
-        hazardous_area_bearing_rtd = "Not Applicable"
-    if hazardous_area_winding_rtd == "NA":
-        hazardous_area_winding_rtd = "Not Applicable"
+    is_package_selection_enabled = handle_none_to_number(
+        general_info_data.get("is_package_selection_enabled")
+    )
 
-    if (
-        general_info_data.get("is_package_selection_enabled") == 1
-        or general_info_data.get("is_package_selection_enabled") == "1"
-    ):
-        if temp_hazardous_area == "Not Applicable":
-            # hazard ke sare fields not applicable kar do
+    if is_package_selection_enabled == 1:
+        if len(safe_area_sub_package_names) == 0:
+            safe_area_efficiency_level = "Not Applicable"
+            safe_area_insulation_class = "Not Applicable"
+            safe_area_temperature_rise = "Not Applicable"
+            safe_area_enclosure_ip_rating = "Not Applicable"
+            safe_area_max_temperature = "Not Applicable"
+            safe_area_min_temperature = "Not Applicable"
+            safe_area_altitude = "Not Applicable"
+            safe_area_terminal_box_ip_rating = "Not Applicable"
+            safe_area_thermister = "Not Applicable"
+            safe_area_space_heater = "Not Applicable"
+            safe_area_certification = "Not Applicable"
+            safe_area_bearing_rtd = "Not Applicable"
+            safe_area_winding_rtd = "Not Applicable"
+            safe_area_bearing_type = "Not Applicable"
+            safe_area_duty = "Not Applicable"
+            safe_area_service_factor = "Not Applicable"
+            safe_area_cooling_type = "Not Applicable"
+            safe_area_body_material = "Not Applicable"
+            safe_area_terminal_box_material = "Not Applicable"
+            safe_area_paint_type_and_shade = "Not Applicable"
+            safe_area_starts_hour_permissible = "Not Applicable"
+
+        if len(hazardous_area_sub_package_names) == 0:
             hazardous_area_efficiency_level = "Not Applicable"
             hazardous_area_insulation_class = "Not Applicable"
             hazardous_area_temperature_rise = "Not Applicable"
@@ -315,144 +366,39 @@ def get_design_basis_sheet(
             hazardous_area_paint_type_and_shade = "Not Applicable"
             hazardous_area_starts_hour_permissible = "Not Applicable"
 
-    design_basis_sheet["C27"] = (
-        "Not Applicable"
-        if temp_safe_area == "Not Applicable"
-        else motor_parameters_data.get("safe_area_efficiency_level")
-    )
-    design_basis_sheet["C28"] = (
-        "Not Applicable"
-        if temp_safe_area == "Not Applicable"
-        else motor_parameters_data.get("safe_area_insulation_class")
-    )
-    design_basis_sheet["C29"] = (
-        "Not Applicable"
-        if temp_safe_area == "Not Applicable"
-        else motor_parameters_data.get("safe_area_temperature_rise", "Not Applicable")
-    )
-    design_basis_sheet["C30"] = (
-        "Not Applicable"
-        if temp_safe_area == "Not Applicable"
-        else motor_parameters_data.get("safe_area_enclosure_ip_rating")
-    )
+    design_basis_sheet["C27"] = safe_area_efficiency_level
+    design_basis_sheet["C28"] = safe_area_insulation_class
+    design_basis_sheet["C29"] = safe_area_temperature_rise
+    design_basis_sheet["C30"] = safe_area_enclosure_ip_rating
     design_basis_sheet["C31"] = (
-        "Not Applicable"
-        if temp_safe_area == "Not Applicable"
-        else f'{motor_parameters_data.get("safe_area_max_temperature", "Not Applicable")} Deg. C'
+        f"{safe_area_max_temperature} Deg. C"
+        if safe_area_max_temperature != "Not Applicable"
+        else "Not Applicable"
     )
     design_basis_sheet["C32"] = (
-        "Not Applicable"
-        if temp_safe_area == "Not Applicable"
-        else f'{motor_parameters_data.get("safe_area_min_temperature", "Not Applicable")} Deg. C'
+        f"{safe_area_min_temperature} Deg. C"
+        if safe_area_min_temperature != "Not Applicable"
+        else "Not Applicable"
     )
     design_basis_sheet["C33"] = (
-        "Not Applicable"
-        if temp_safe_area == "Not Applicable"
-        else f'{motor_parameters_data.get("safe_area_altitude", "Not Applicable")} meters'
+        f"{safe_area_altitude} meters"
+        if safe_area_altitude != "Not Applicable"
+        else "Not Applicable"
     )
-    design_basis_sheet["C34"] = (
-        "Not Applicable"
-        if temp_safe_area == "Not Applicable"
-        else motor_parameters_data.get(
-            "safe_area_terminal_box_ip_rating", "Not Applicable"
-        )
-    )
-    safe_area_thermister = (
-        "Not Applicable"
-        if temp_safe_area == "Not Applicable"
-        else motor_parameters_data.get("safe_area_thermister", "Not Applicable")
-    )
+    design_basis_sheet["C34"] = safe_area_terminal_box_ip_rating
     design_basis_sheet["C35"] = check_value_kW(safe_area_thermister)
-    safe_area_space_heater = (
-        "Not Applicable"
-        if temp_safe_area == "Not Applicable"
-        else motor_parameters_data.get("safe_area_space_heater", "Not Applicable")
-    )
     design_basis_sheet["C36"] = check_value_kW(safe_area_space_heater)
-    design_basis_sheet["C37"] = (
-        "Not Applicable"
-        if temp_safe_area == "Not Applicable"
-        else motor_parameters_data.get("safe_area_certification", "Not Applicable")
-    )
-    safe_area_bearing_rtd = (
-        "Not Applicable"
-        if temp_safe_area == "Not Applicable"
-        else handle_none_to_string(
-            motor_parameters_data.get("safe_area_bearing_rtd", "Not Applicable")
-        )
-    )
+    design_basis_sheet["C37"] = "Not Applicable"
     design_basis_sheet["C38"] = check_value_kW(safe_area_bearing_rtd)
-    safe_area_winding_rtd = (
-        "Not Applicable"
-        if temp_safe_area == "Not Applicable"
-        else handle_none_to_string(
-            motor_parameters_data.get("safe_area_winding_rtd", "Not Applicable")
-        )
-    )
     design_basis_sheet["C39"] = check_value_kW(safe_area_winding_rtd)
-    design_basis_sheet["C40"] = (
-        "Not Applicable"
-        if temp_safe_area == "Not Applicable"
-        else handle_none_to_string(
-            motor_parameters_data.get("safe_area_bearing_type", "Not Applicable")
-        )
-    )
-    design_basis_sheet["C41"] = (
-        "Not Applicable"
-        if temp_safe_area == "Not Applicable"
-        else handle_none_to_string(
-            motor_parameters_data.get("safe_area_duty", "Not Applicable")
-        )
-    )
-
-    design_basis_sheet["C42"] = (
-        "Not Applicable"
-        if temp_safe_area == "Not Applicable"
-        else handle_none_to_number(
-            motor_parameters_data.get("safe_area_service_factor", 0)
-        )
-    )
-    design_basis_sheet["C43"] = (
-        "Not Applicable"
-        if temp_safe_area == "Not Applicable"
-        else handle_none_to_string(
-            motor_parameters_data.get("safe_area_cooling_type", "Not Applicable")
-        )
-    )
-    design_basis_sheet["C44"] = (
-        "Not Applicable"
-        if temp_safe_area == "Not Applicable"
-        else handle_none_to_string(
-            motor_parameters_data.get("safe_area_body_material", "Not Applicable")
-        )
-    )
-    design_basis_sheet["C45"] = (
-        "Not Applicable"
-        if temp_safe_area == "Not Applicable"
-        else handle_none_to_string(
-            motor_parameters_data.get(
-                "safe_area_terminal_box_material", "Not Applicable"
-            )
-        )
-    )
-    design_basis_sheet["C46"] = (
-        "Not Applicable"
-        if temp_safe_area == "Not Applicable"
-        else handle_none_to_string(
-            motor_parameters_data.get(
-                "safe_area_paint_type_and_shade", "Not Applicable"
-            )
-        )
-    )
-    design_basis_sheet["C47"] = (
-        "Not Applicable"
-        if temp_safe_area == "Not Applicable"
-        else handle_none_to_string(
-            motor_parameters_data.get(
-                "safe_area_starts_hour_permissible", "Not Applicable"
-            )
-        )
-    )
+    design_basis_sheet["C40"] = safe_area_bearing_type
+    design_basis_sheet["C41"] = safe_area_duty
+    design_basis_sheet["C42"] = safe_area_service_factor
+    design_basis_sheet["C43"] = safe_area_cooling_type
+    design_basis_sheet["C44"] = safe_area_body_material
+    design_basis_sheet["C45"] = safe_area_terminal_box_material
+    design_basis_sheet["C46"] = safe_area_paint_type_and_shade
+    design_basis_sheet["C47"] = safe_area_starts_hour_permissible
 
     design_basis_sheet["D27"] = hazardous_area_efficiency_level
     design_basis_sheet["D28"] = hazardous_area_insulation_class
@@ -642,20 +588,24 @@ def get_design_basis_sheet(
     cc_lamp_test_push_button = common_config_data.get("lamp_test_push_button")
     cc_test_dropdown = common_config_data.get("test_dropdown")
     cc_reset_dropdown = common_config_data.get("reset_dropdown")
-    cc_is_field_motor_isolator_selected = common_config_data.get(
-        "is_field_motor_isolator_selected"
+    is_field_motor_isolator_selected = handle_none_to_number(
+        common_config_data.get("is_field_motor_isolator_selected")
     )
-    cc_is_safe_area_isolator_selected = common_config_data.get(
-        "is_safe_area_isolator_selected"
+    is_safe_area_isolator_selected = handle_none_to_number(
+        common_config_data.get("is_safe_area_isolator_selected")
     )
-    cc_is_local_push_button_station_selected = common_config_data.get(
-        "is_local_push_button_station_selected"
+    is_local_push_button_station_selected = handle_none_to_number(
+        common_config_data.get("is_local_push_button_station_selected")
     )
 
-    cc_is_safe_lpbs_selected = common_config_data.get("is_safe_lpbs_selected")
-    cc_is_hazardous_lpbs_selected = common_config_data.get("is_hazardous_lpbs_selected")
-    cc_is_hazardous_area_isolator_selected = common_config_data.get(
-        "is_hazardous_area_isolator_selected"
+    is_safe_lpbs_selected = handle_none_to_number(
+        common_config_data.get("is_safe_lpbs_selected")
+    )
+    is_hazardous_lpbs_selected = handle_none_to_number(
+        common_config_data.get("is_hazardous_lpbs_selected")
+    )
+    is_hazardous_area_isolator_selected = handle_none_to_number(
+        common_config_data.get("is_hazardous_area_isolator_selected")
     )
 
     cc_selector_switch_applicable = common_config_data.get("selector_switch_applicable")
@@ -874,10 +824,10 @@ def get_design_basis_sheet(
     design_basis_sheet["C92"] = check_value_kW(cc_star_delta_starter)
 
     design_basis_sheet["C93"] = cc_mcc_switchgear_type
-    if division_name != "SPG":
+    if division_name != "WWS SPG" or division_name != "WWS Services":
         cc_switchgear_combination = "Not Applicable"
     else:
-        if not "Fuseless" in cc_mcc_switchgear_type:
+        if "Fuseless" not in cc_mcc_switchgear_type:
             cc_switchgear_combination = "Not Applicable"
 
     design_basis_sheet["C94"] = cc_switchgear_combination
@@ -951,7 +901,7 @@ def get_design_basis_sheet(
     design_basis_sheet["C148"] = handle_none_to_string(cc_stopped_closed)
     design_basis_sheet["C149"] = handle_none_to_string(cc_trip)
 
-    if int(cc_is_field_motor_isolator_selected) == 0:
+    if is_field_motor_isolator_selected == 0:
         cc_safe_field_motor_type = "Not Applicable"
         cc_safe_field_motor_enclosure = "Not Applicable"
         cc_safe_field_motor_material = "Not Applicable"
@@ -968,7 +918,7 @@ def get_design_basis_sheet(
         cc_hazardous_field_motor_cable_entry = "Not Applicable"
         cc_hazardous_field_motor_canopy = "Not Applicable"
     else:
-        if int(cc_is_safe_area_isolator_selected) == 0:
+        if is_safe_area_isolator_selected == 0:
             cc_safe_field_motor_type = "Not Applicable"
             cc_safe_field_motor_enclosure = "Not Applicable"
             cc_safe_field_motor_material = "Not Applicable"
@@ -977,7 +927,7 @@ def get_design_basis_sheet(
             cc_safe_field_motor_cable_entry = "Not Applicable"
             cc_safe_field_motor_canopy = "Not Applicable"
 
-        if int(cc_is_hazardous_area_isolator_selected) == 0:
+        if is_hazardous_area_isolator_selected == 0:
             cc_hazardous_field_motor_type = "Not Applicable"
             cc_hazardous_field_motor_enclosure = "Not Applicable"
             cc_hazardous_field_motor_material = "Not Applicable"
@@ -1035,7 +985,7 @@ def get_design_basis_sheet(
     design_basis_sheet["D157"] = cc_hazardous_field_motor_cable_entry
     design_basis_sheet["D158"] = handle_none_to_string(cc_hazardous_field_motor_canopy)
 
-    if int(cc_is_local_push_button_station_selected) == 0:
+    if is_local_push_button_station_selected == 0:
         cc_lpbs_push_button_start_color = "Not Applicable"
         cc_forward_push_button_start = "Not Applicable"
         cc_reverse_push_button_start = "Not Applicable"
@@ -1053,8 +1003,16 @@ def get_design_basis_sheet(
         cc_safe_lpbs_canopy = "Not Applicable"
         cc_safe_lpbs_canopy_type = "Not Applicable"
 
+        cc_hazardous_lpbs_type = "Not Applicable"
+        cc_hazardous_lpbs_enclosure = "Not Applicable"
+        cc_hazardous_lpbs_material = "Not Applicable"
+        cc_hazardous_lpbs_qty = "Not Applicable"
+        cc_hazardous_lpbs_color_shade = "Not Applicable"
+        cc_hazardous_lpbs_canopy = "Not Applicable"
+        cc_hazardous_lpbs_canopy_type = "Not Applicable"
+
     else:
-        if int(cc_is_safe_lpbs_selected) == 0:
+        if is_safe_lpbs_selected == 0:
             cc_safe_lpbs_type = "Not Applicable"
             cc_safe_lpbs_enclosure = "Not Applicable"
             cc_safe_lpbs_material = "Not Applicable"
@@ -1063,7 +1021,7 @@ def get_design_basis_sheet(
             cc_safe_lpbs_canopy = "Not Applicable"
             cc_safe_lpbs_canopy_type = "Not Applicable"
 
-        if int(cc_is_hazardous_lpbs_selected) == 0:
+        if is_hazardous_lpbs_selected == 0:
             cc_hazardous_lpbs_type = "Not Applicable"
             cc_hazardous_lpbs_enclosure = "Not Applicable"
             cc_hazardous_lpbs_material = "Not Applicable"
@@ -1096,26 +1054,24 @@ def get_design_basis_sheet(
         cc_hazardous_field_motor_cable_entry = (
             f"{cc_hazardous_field_motor_cable_entry}, 3 mm"
         )
-    elif cc_safe_lpbs_material == "NA":
-        cc_safe_lpbs_material = "Not Applicable"
 
-    design_basis_sheet["C169"] = handle_none_to_string(cc_safe_lpbs_type)
-    design_basis_sheet["C170"] = handle_none_to_string(cc_safe_lpbs_enclosure)
-    design_basis_sheet["C171"] = handle_none_to_string(cc_safe_lpbs_material)
-    design_basis_sheet["C172"] = handle_none_to_string(cc_safe_lpbs_qty)
-    design_basis_sheet["C173"] = handle_none_to_string(cc_safe_lpbs_color_shade)
-    design_basis_sheet["C174"] = handle_none_to_string(cc_safe_lpbs_canopy)
-    design_basis_sheet["C175"] = handle_none_to_string(cc_safe_lpbs_canopy_type)
+    design_basis_sheet["C169"] = cc_safe_lpbs_type
+    design_basis_sheet["C170"] = cc_safe_lpbs_enclosure
+    design_basis_sheet["C171"] = cc_safe_lpbs_material
+    design_basis_sheet["C172"] = cc_safe_lpbs_qty
+    design_basis_sheet["C173"] = cc_safe_lpbs_color_shade
+    design_basis_sheet["C174"] = cc_safe_lpbs_canopy
+    design_basis_sheet["C175"] = cc_safe_lpbs_canopy_type
 
-    design_basis_sheet["D169"] = handle_none_to_string(cc_hazardous_lpbs_type)
-    design_basis_sheet["D170"] = handle_none_to_string(cc_hazardous_lpbs_enclosure)
-    design_basis_sheet["D171"] = handle_none_to_string(cc_hazardous_lpbs_material)
-    design_basis_sheet["D172"] = handle_none_to_string(cc_hazardous_lpbs_qty)
-    design_basis_sheet["D173"] = handle_none_to_string(cc_hazardous_lpbs_color_shade)
-    design_basis_sheet["D174"] = handle_none_to_string(cc_hazardous_lpbs_canopy)
-    design_basis_sheet["D175"] = handle_none_to_string(cc_hazardous_lpbs_canopy_type)
+    design_basis_sheet["D169"] = cc_hazardous_lpbs_type
+    design_basis_sheet["D170"] = cc_hazardous_lpbs_enclosure
+    design_basis_sheet["D171"] = cc_hazardous_lpbs_material
+    design_basis_sheet["D172"] = cc_hazardous_lpbs_qty
+    design_basis_sheet["D173"] = cc_hazardous_lpbs_color_shade
+    design_basis_sheet["D174"] = cc_hazardous_lpbs_canopy
+    design_basis_sheet["D175"] = cc_hazardous_lpbs_canopy_type
 
-    design_basis_sheet["C177"] = handle_none_to_string(cc_ferrule)
+    design_basis_sheet["C177"] = cc_ferrule
     design_basis_sheet["C178"] = cc_ferrule_note
     design_basis_sheet["C179"] = cc_device_identification_of_components
 
@@ -1234,12 +1190,12 @@ def get_design_basis_sheet(
     gland_type_safe_area = "Not Applicable"
     gland_type_hazardous_area = "Not Applicable"
 
-    if temp_hazardous_area != "Not Applicable":
+    if len(hazardous_area_sub_package_names) > 0:
         gland_type_hazardous_area = (
-            f"{temp_area_of_classification}, with Dual Certification"
+            f"{area_classification_data}, with Dual Certification"
         )
 
-    if temp_safe_area != "Not Applicable":
+    if len(safe_area_sub_package_names) > 0:
         gland_type_safe_area = "Weatherproof"
 
     design_basis_sheet["C203"] = gland_type_safe_area

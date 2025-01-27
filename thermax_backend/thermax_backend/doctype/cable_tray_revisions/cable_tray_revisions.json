@@ -77,13 +77,11 @@
    "label": "Cable Schedule Revision ID"
   },
   {
-   "default": "\"\"",
    "fieldname": "output_path",
    "fieldtype": "Small Text",
    "label": "Output Path"
   },
   {
-   "default": "\"\"",
    "fieldname": "input_path",
    "fieldtype": "Small Text",
    "label": "Input Path"
@@ -91,7 +89,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-24 18:56:49.554088",
+ "modified": "2025-01-27 16:22:06.856295",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Cable Tray Revisions",
