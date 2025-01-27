@@ -27,7 +27,7 @@
   "is_indication_trip_selected",
   "led_type_trip_input",
   "acb_spring_charge_indication_lamp",
-  "is_red_cb_in_service",
+  "acb_service_indication_lamp",
   "trip_circuit_healthy_indication_lamp",
   "is_other_selected",
   "control_transformer_coating",
@@ -193,11 +193,6 @@
    "fieldname": "is_led_type_lamp_selected",
    "fieldtype": "Check",
    "label": "Is LED Type Lamp Selected"
-  },
-  {
-   "fieldname": "is_red_cb_in_service",
-   "fieldtype": "Data",
-   "label": "ACB Service Indication lamp"
   },
   {
    "fieldname": "alarm_annunciator",
@@ -686,11 +681,16 @@
    "fieldname": "trip_circuit_healthy_indication_lamp",
    "fieldtype": "Data",
    "label": "Trip Circuit Healthy Indication lamp"
+  },
+  {
+   "fieldname": "acb_service_indication_lamp",
+   "fieldtype": "Data",
+   "label": "ACB Service Indication lamp"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-22 16:46:36.387929",
+ "modified": "2025-01-27 11:42:06.064184",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "PCC Panel",

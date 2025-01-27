@@ -123,12 +123,12 @@
   },
   {
    "fieldname": "safe_area_bearing_type",
-   "fieldtype": "Data",
+   "fieldtype": "Small Text",
    "label": "Safe Area Bearing Type"
   },
   {
    "fieldname": "safe_area_duty",
-   "fieldtype": "Data",
+   "fieldtype": "Small Text",
    "label": "Safe Area Duty"
   },
   {
@@ -244,12 +244,12 @@
   },
   {
    "fieldname": "hazardous_area_bearing_type",
-   "fieldtype": "Data",
+   "fieldtype": "Small Text",
    "label": "Hazardous Area Bearing Type"
   },
   {
    "fieldname": "hazardous_area_duty",
-   "fieldtype": "Data",
+   "fieldtype": "Small Text",
    "label": "Hazardous Area Duty"
   },
   {
@@ -301,7 +301,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-23 19:47:50.708290",
+ "modified": "2025-01-27 11:23:38.188891",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Design Basis Motor Parameters",
