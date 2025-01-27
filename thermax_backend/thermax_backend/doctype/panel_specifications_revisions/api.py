@@ -34,9 +34,52 @@ def get_panel_specification_excel():
 
 
     cover_sheet = template_workbook["COVER"]
-    instruction_sheet = template_workbook["INSTRUCTION PAGE"]
-    specification_sheet = template_workbook["SPECIFICATION"]
-    safe_area_motor_list_sheet = template_workbook["SAFE AREA MOTOR LIST  "]
-    safe_area_motor_bom_sheet = template_workbook[" SAFE AREA MOTOR BOM"]
-    hazardous_area_motor_list_sheet = template_workbook[" HAZARDOUS AREA MOTOR LIST "]
-    hazardous_area_motor_bom_sheet = template_workbook[" HAZARDOUS AREA MOTOR BOM  "]
+    mcc_cum_plc_panel_sheet = template_workbook["MCC CUM PLC PANEL"]
+    plc_specification_sheet = template_workbook["PLC SPECIFICATION"]
+
+    dynamic_document_list_data = frappe.get_doc(
+        "Dynamic Document List",
+        project_id,
+        "*"
+    ).as_dict()
+
+    static_document_list_data = frappe.get_doc(
+        "Static Document List",
+        project_id,
+        "*"
+    ).as_dict()
+
+    project_panel_data = frappe.db.get_list(
+        "Project Panel Data", {"revision_id": project_revision_id}, "*", order_by="creation asc"
+    )
+
+    project_info_data = frappe.get_doc(
+        "Project Information",
+        project_id,
+        "*"
+    ).as_dict()
+
+    
+    for project_panel in project_panel_data:
+        panel_id = project_panel.get("name")
+
+        if project_panel.get("type") != "PCC" and project_panel.get("type") != "MCC":
+            mcc_panel_data = frappe.db.get_list(
+                "MCC Panel", {"panel_id": panel_id}, "*"
+            )
+
+            if len(mcc_panel_data) == 0:
+                continue
+            mcc_panel_data = mcc_panel_data[0]
+
+            
+            # PLC SPECIFICATION SHEET 
+
+            plc_specification_sheet["C9"] = "TBD"
+            plc_specification_sheet["C10"] = "TBD"
+            plc_specification_sheet["C11"] = "TBD"
+
+
+
+
+    
