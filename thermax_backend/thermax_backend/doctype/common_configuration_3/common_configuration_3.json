@@ -100,17 +100,17 @@
   },
   {
    "fieldname": "door_earthing",
-   "fieldtype": "Data",
+   "fieldtype": "Small Text",
    "label": "Door Earthing"
   },
   {
    "fieldname": "instrument_earth",
-   "fieldtype": "Data",
+   "fieldtype": "Small Text",
    "label": "Instrument Earth"
   },
   {
    "fieldname": "general_note_busbar_and_insulation_materials",
-   "fieldtype": "Data",
+   "fieldtype": "Small Text",
    "label": "General Note Busbar and Insulation Materials"
   },
   {
@@ -283,7 +283,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-22 15:43:08.641261",
+ "modified": "2025-01-27 11:26:39.555071",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Common Configuration 3",
