@@ -12,8 +12,10 @@ def num_to_string(value):
 
     if int(value) == 0:
         return "Not Applicable"
+    elif int(value) == 1:
+        return "Applicable"
 
-    return "Applicable"
+    return value
 
 def na_to_string(value):
 
@@ -32,13 +34,16 @@ def get_panel_specification_excel():
         "Panel Specifications Revisions", revision_id, "*"
     ).as_dict()
 
-    project_id = panel_spec_revision_data.get("project_id")
+    design_basis_revision_id_data = panel_spec_revision_data.get("design_basis_revision_id")
+
 
     design_basis_revision_data = frappe.get_doc(
-        "Design Basis Revision History", {"project_id": project_id}
+        "Design Basis Revision History", design_basis_revision_id_data, "*"
     ).as_dict()
 
-    project_revision_id = design_basis_revision_data.get("name")
+    project_id = design_basis_revision_data.get("project_id")
+
+    # project_revision_id = design_basis_revision_data.get("name")
 
     # Loading the workbook
     template_path = frappe.frappe.get_app_path(
@@ -47,15 +52,9 @@ def get_panel_specification_excel():
     template_workbook = load_workbook(template_path)
 
 
-    cover_sheet = template_workbook["COVER"]
+    cover_sheet = template_workbook["COVER "]
     mcc_cum_plc_panel_sheet = template_workbook["MCC CUM PLC PANEL"]
     plc_specification_sheet = template_workbook["PLC SPECIFICATION"]
-
-    dynamic_document_list_data = frappe.get_doc(
-        "Dynamic Document List",
-        project_id,
-        "*"
-    ).as_dict()
 
     static_document_list_data = frappe.get_doc(
         "Static Document List",
@@ -64,7 +63,7 @@ def get_panel_specification_excel():
     ).as_dict()
 
     project_panel_data = frappe.db.get_list(
-        "Project Panel Data", {"revision_id": project_revision_id}, "*", order_by="creation asc"
+        "Project Panel Data", {"revision_id": design_basis_revision_id_data}, "*", order_by="creation asc"
     )
 
     project_info_data = frappe.get_doc(
@@ -112,20 +111,20 @@ def get_panel_specification_excel():
             cc_1 = frappe.db.get_list(
                 "Common Configuration 1", {"revision_id": revision_id}, "*"
             )
-            cc_1 = cc_1[0]
+            cc_1 = cc_1[0] if len(cc_1) > 0 else {}
             cc_2 = frappe.db.get_list(
                 "Common Configuration 2", {"revision_id": revision_id}, "*"
             )
-            cc_2 = cc_2[0]
+            cc_2 = cc_2[0] if len(cc_2) > 0 else {}
             cc_3 = frappe.db.get_list(
                 "Common Configuration 3", {"revision_id": revision_id}, "*"
             )
-            cc_3 = cc_3[0]
+            cc_3 = cc_3[0] if len(cc_3) > 0 else {}
 
             common_config_data = cc_1 | cc_2 | cc_3
 
             
-            # PLC SPECIFICATION SHEET 
+    #         # PLC SPECIFICATION SHEET 
 
             plc_specification_sheet["C9"] = "TBD"
             plc_specification_sheet["C10"] = "TBD"
@@ -134,7 +133,9 @@ def get_panel_specification_excel():
 
             plc_specification_sheet["C13"] = plc_panel.get("ups_control_voltage", "NA")
             plc_specification_sheet["C14"] = plc_panel.get("non_ups_control_voltage", "NA")
-            freq_data = f"{project_info_data.get("frequency")}, {project_info_data.get("frequency_variation")}"
+            freq = project_info_data.get("frequency")
+            freq_var = project_info_data.get("frequency_variation")
+            freq_data = f"{freq}, {freq_var}"
             plc_specification_sheet["C15"] = freq_data
 
 
@@ -183,7 +184,7 @@ def get_panel_specification_excel():
 
             # plc_specification_sheet["C61"] = plc_panel.get("general_note_internal_wiring")
             hooter_data = plc_panel.get("is_electronic_hooter_selected")
-            plc_specification_sheet["C62"] = num_to_string(hooter_data)
+            plc_specification_sheet["C62"] = hooter_data
             hooter_acknowledge_data = plc_panel.get("electronic_hooter_acknowledge")
             plc_specification_sheet["C63"] = na_to_string(hooter_acknowledge_data)
 
@@ -205,8 +206,8 @@ def get_panel_specification_excel():
 
             cooling_fans_data = common_config_data.get("cooling_fans")
             louvers_and_filters_data = common_config_data.get("louvers_and_filters")
-            plc_specification_sheet["C82"] = num_to_string(cooling_fans_data)
-            plc_specification_sheet["C82"] = num_to_string(louvers_and_filters_data)
+            plc_specification_sheet["C82"] = cooling_fans_data
+            plc_specification_sheet["C82"] = louvers_and_filters_data
 
             plc_specification_sheet["C85"] = common_config_data.get("commissioning_spare")
             plc_specification_sheet["C86"] = common_config_data.get("two_year_operational_spare")
@@ -219,7 +220,7 @@ def get_panel_specification_excel():
             plc_specification_sheet["C93"] = plc_panel.get("ups_battery_type")
             plc_specification_sheet["C94"] = plc_panel.get("ups_battery_backup_time")
             is_ups_battery_mounting_rack_selected_data = plc_panel.get("is_ups_battery_mounting_rack_selected")
-            plc_specification_sheet["C95"] = num_to_string(is_ups_battery_mounting_rack_selected_data)
+            plc_specification_sheet["C95"] = is_ups_battery_mounting_rack_selected_data
             plc_specification_sheet["C96"] = plc_panel.get("ups_redundancy")
 
             plc_specification_sheet["C98"] = plc_panel.get("hmi_hardware_make")
@@ -244,8 +245,8 @@ def get_panel_specification_excel():
 
             is_no_of_contacts_selected_data = plc_panel.get("is_no_of_contacts_selected")
             no_of_contact_data = plc_panel.get("no_of_contacts")
-            if int(is_no_of_contacts_selected_data) == 0:
-                no_of_contact_data = "Not Applicable"
+            # if int(is_no_of_contacts_selected_data) == 0:
+            #     no_of_contact_data = "Not Applicable"
             plc_specification_sheet["C118"] = no_of_contact_data
 
 
@@ -255,7 +256,7 @@ def get_panel_specification_excel():
             plc_specification_sheet["C123"] = plc_panel.get("ai_module_input_type")
             plc_specification_sheet["C124"] = plc_panel.get("ai_module_scan_time")
             is_ai_module_hart_protocol_support_selected_data = plc_panel.get("is_ai_module_hart_protocol_support_selected")
-            plc_specification_sheet["C125"] = num_to_string(is_ai_module_hart_protocol_support_selected_data)
+            plc_specification_sheet["C125"] = is_ai_module_hart_protocol_support_selected_data
 
             plc_specification_sheet["C127"] = plc_panel.get("ao_module_channel_density")
             plc_specification_sheet["C128"] = plc_panel.get("ao_module_loop_current")
@@ -263,7 +264,7 @@ def get_panel_specification_excel():
             plc_specification_sheet["C130"] = plc_panel.get("ao_module_output_type")
             plc_specification_sheet["C131"] = plc_panel.get("ao_module_scan_time")
             is_ao_module_hart_protocol_support_selected_data = plc_panel.get("is_ao_module_hart_protocol_support_selected")
-            plc_specification_sheet["C132"] = num_to_string(is_ao_module_hart_protocol_support_selected_data)
+            plc_specification_sheet["C132"] = is_ao_module_hart_protocol_support_selected_data
             
 
             plc_specification_sheet["C134"] = plc_panel.get("rtd_module_channel_density")
@@ -272,7 +273,7 @@ def get_panel_specification_excel():
             plc_specification_sheet["C137"] = plc_panel.get("rtd_module_input_type")
             plc_specification_sheet["C138"] = plc_panel.get("rtd_module_scan_time")
             is_rtd_module_hart_protocol_support_selected_data = plc_panel.get("is_rtd_module_hart_protocol_support_selected")
-            plc_specification_sheet["C139"] = num_to_string(is_rtd_module_hart_protocol_support_selected_data)
+            plc_specification_sheet["C139"] = is_rtd_module_hart_protocol_support_selected_data
 
             plc_specification_sheet["C141"] = plc_panel.get("thermocouple_module_channel_density")
             plc_specification_sheet["C142"] = plc_panel.get("thermocouple_module_loop_current")
@@ -280,7 +281,7 @@ def get_panel_specification_excel():
             plc_specification_sheet["C144"] = plc_panel.get("thermocouple_module_input_type")
             plc_specification_sheet["C145"] = plc_panel.get("thermocouple_module_scan_time")
             is_thermocouple_module_hart_protocol_support_selected_data = plc_panel.get("is_thermocouple_module_hart_protocol_support_selected")
-            plc_specification_sheet["C146"] = num_to_string(is_thermocouple_module_hart_protocol_support_selected_data)
+            plc_specification_sheet["C146"] = is_thermocouple_module_hart_protocol_support_selected_data
 
             plc_specification_sheet["C148"] = plc_panel.get("universal_module_channel_density")
             plc_specification_sheet["C149"] = plc_panel.get("universal_module_loop_current")
@@ -288,7 +289,7 @@ def get_panel_specification_excel():
             plc_specification_sheet["C151"] = plc_panel.get("universal_module_input_type")
             plc_specification_sheet["C152"] = plc_panel.get("universal_module_scan_time")
             is_universal_module_hart_protocol_support_selected_data = plc_panel.get("is_universal_module_hart_protocol_support_selected")
-            plc_specification_sheet["C153"] = num_to_string(is_universal_module_hart_protocol_support_selected_data)
+            plc_specification_sheet["C153"] = is_universal_module_hart_protocol_support_selected_data
 
             plc_specification_sheet["C156"] = plc_panel.get("hmi_size")
             plc_specification_sheet["C157"] = plc_panel.get("hmi_quantity")
@@ -300,8 +301,8 @@ def get_panel_specification_excel():
             is_engineering_station_quantity_selected_data = plc_panel.get("is_engineering_station_quantity_selected")
             engineering_station_quantity_data = plc_panel.get("engineering_station_quantity")
 
-            if int(is_engineering_station_quantity_selected_data) == 0:
-                engineering_station_quantity_data = "Not Applicable"
+            # if int(is_engineering_station_quantity_selected_data) == 0:
+            #     engineering_station_quantity_data = "Not Applicable"
 
             plc_specification_sheet["C163"] = engineering_station_quantity_data
 
@@ -309,8 +310,8 @@ def get_panel_specification_excel():
             is_engineering_cum_operating_station_quantity_selected_data = plc_panel.get("is_engineering_cum_operating_station_quantity_selected")
             engineering_cum_operating_station_quantity_data = plc_panel.get("engineering_cum_operating_station_quantity")
 
-            if int(is_engineering_cum_operating_station_quantity_selected_data) == 0:
-                engineering_cum_operating_station_quantity_data = "Not Applicable"
+            # if int(is_engineering_cum_operating_station_quantity_selected_data) == 0:
+            #     engineering_cum_operating_station_quantity_data = "Not Applicable"
 
             plc_specification_sheet["C164"] = engineering_cum_operating_station_quantity_data
 
@@ -318,8 +319,8 @@ def get_panel_specification_excel():
             is_operating_station_quantity_selected_data = plc_panel.get("is_operating_station_quantity_selected")
             operating_station_quantity_data = plc_panel.get("operating_station_quantity")
 
-            if int(is_operating_station_quantity_selected_data) == 0:
-                operating_station_quantity_data = "Not Applicable"
+            # if int(is_operating_station_quantity_selected_data) == 0:
+            #     operating_station_quantity_data = "Not Applicable"
 
             plc_specification_sheet["C165"] = operating_station_quantity_data
 
@@ -336,13 +337,13 @@ def get_panel_specification_excel():
             is_plc_cpu_system_and_third_party_devices_selected_data = plc_panel.get("is_plc_cpu_system_and_third_party_devices_selected")
             is_plc_cpu_system_selected_data = plc_panel.get("is_plc_cpu_system_selected")
 
-            plc_specification_sheet["C171"] =  num_to_string(is_power_supply_plc_cpu_system_selected_data)
-            plc_specification_sheet["C172"] =  num_to_string(is_power_supply_input_output_module_selected_data)
-            plc_specification_sheet["C173"] =  num_to_string(is_plc_input_output_modules_system_selected_data)
-            plc_specification_sheet["C174"] =  num_to_string(is_plc_cpu_system_and_input_output_modules_system_selected_data)
-            plc_specification_sheet["C175"] =  num_to_string(is_plc_cpu_system_and_hmi_scada_selected_data)
-            plc_specification_sheet["C176"] =  num_to_string(is_plc_cpu_system_and_third_party_devices_selected_data)
-            plc_specification_sheet["C177"] =  num_to_string(is_plc_cpu_system_selected_data)
+            plc_specification_sheet["C171"] = is_power_supply_plc_cpu_system_selected_data
+            plc_specification_sheet["C172"] = is_power_supply_input_output_module_selected_data
+            plc_specification_sheet["C173"] = is_plc_input_output_modules_system_selected_data
+            plc_specification_sheet["C174"] = is_plc_cpu_system_and_input_output_modules_system_selected_data
+            plc_specification_sheet["C175"] = is_plc_cpu_system_and_hmi_scada_selected_data
+            plc_specification_sheet["C176"] = is_plc_cpu_system_and_third_party_devices_selected_data
+            plc_specification_sheet["C177"] = is_plc_cpu_system_selected_data
 
 
             plc_specification_sheet["C179"] =  plc_panel.get("system_hardware")
@@ -411,42 +412,60 @@ def get_panel_specification_excel():
             cc_1 = frappe.db.get_list(
                 "Common Configuration 1", {"revision_id": revision_id}, "*"
             )
-            cc_1 = cc_1[0]
+            cc_1 = cc_1[0] if len(cc_1) > 0 else {}
             cc_2 = frappe.db.get_list(
                 "Common Configuration 2", {"revision_id": revision_id}, "*"
             )
-            cc_2 = cc_2[0]
+            cc_2 = cc_2[0] if len(cc_2) > 0 else {}
             cc_3 = frappe.db.get_list(
                 "Common Configuration 3", {"revision_id": revision_id}, "*"
             )
-            cc_3 = cc_3[0]
+            cc_3 = cc_3[0] if len(cc_3) > 0 else {}
 
             common_config_data = cc_1 | cc_2 | cc_3
 
             mcc_cum_plc_panel_sheet["C9"] = common_config_data.get("mcc_switchgear_type")
+            main_supply_lv = project_info_data.get("main_supply_lv")
+            main_supply_lv_variation = project_info_data.get("main_supply_lv_variation")
+            main_supply_lv_phase = project_info_data.get("main_supply_lv_phase")
+
             system_voltage_data = (
-                f"{project_info_data.get("main_supply_lv")}, {project_info_data.get("main_supply_lv_variation")}, {project_info_data.get("main_supply_lv_phase")}"
+                f"{main_supply_lv}, {main_supply_lv_variation}, {main_supply_lv_phase}"
             )
             mcc_cum_plc_panel_sheet["C11"] = system_voltage_data
 
+            freq = project_info_data.get("frequency")
+            freq_var = project_info_data.get("frequency_variation")
             freq_data = (
-                f"{project_info_data.get("frequency")}, {project_info_data.get("frequency_variation")}"
+                f"{freq}, {freq_var}"
             )
             mcc_cum_plc_panel_sheet["C12"] = freq_data
 
+            fault = project_info_data.get("fault_level")
+            sec = project_info_data.get("sec")
+
             fault_data = (
-                f"{project_info_data.get("fault_level")} kA for {project_info_data.get("sec")}"
+                f"{fault} kA for {sec}"
             )
             mcc_cum_plc_panel_sheet["C13"] = fault_data
 
+            utility_supply = project_info_data("utility_supply")
+            utility_supply_variation = project_info_data.get("utility = _supply_variation")
+            utility_supply_phase = project_info_data.get("utility_supply_phase")
+
             utility_data = (
-                f"{project_info_data("utility_supply")}, {project_info_data.get("utility_supply_variation")}, {project_info_data.get("utility_supply_phase")}"
-            )
+                f"{utility_supply}, {utility_supply_variation}, {utility_supply_phase}"
+            ) 
             mcc_cum_plc_panel_sheet["C14"] = utility_data
 
+            control_supply = project_info_data.get("control_supply")
+            control_supply_variation = project_info_data.get("control_supply_variation")
+            control_supply_phase = project_info_data.get("control_supply_phase")
+
             control_data = (
-                f"{project_info_data.get("control_supply")}, {project_info_data.get("control_supply_variation")}, {project_info_data.get("control_supply_variation")}"
+                f"{control_supply}, {control_supply_variation}, {control_supply_phase}"
             )
+
             mcc_cum_plc_panel_sheet["C15"] = control_data
             mcc_cum_plc_panel_sheet["C16"] = project_info_data.get("frequency")
 
@@ -531,3 +550,67 @@ def get_panel_specification_excel():
             mcc_cum_plc_panel_sheet["C94"] = common_config_data.get("air_clearance_between_phase_to_phase_bus")
             # mcc_cum_plc_panel_sheet["C95"] = common_config_data.get("air_clearance_between_phase_to_phase_bus")
             mcc_cum_plc_panel_sheet["C96"] = common_config_data.get("general_note_internal_wiring")
+            
+            
+            mcc_cum_plc_panel_sheet["C99"] = common_config_data.get("push_button_start")
+            mcc_cum_plc_panel_sheet["C100"] = common_config_data.get("forward_push_button_start")
+            mcc_cum_plc_panel_sheet["C101"] = common_config_data.get("reverse_push_button_start")
+            mcc_cum_plc_panel_sheet["C102"] = common_config_data.get("push_button_stop")
+            mcc_cum_plc_panel_sheet["C103"] = common_config_data.get("push_button_ess")
+            mcc_cum_plc_panel_sheet["C104"] = common_config_data.get("speed_increase_pb")
+            mcc_cum_plc_panel_sheet["C105"] = common_config_data.get("speed_decrease_pb")
+            mcc_cum_plc_panel_sheet["C106"] = common_config_data.get("is_potentiometer_selected")
+            # mcc_cum_plc_panel_sheet["C107"] = common_config_data.get("push_button_start")
+            mcc_cum_plc_panel_sheet["C108"] = common_config_data.get("alarm_acknowledge_and_lamp_test")
+            mcc_cum_plc_panel_sheet["C109"] = common_config_data.get("test_dropdown")
+            mcc_cum_plc_panel_sheet["C110"] = common_config_data.get("reset_dropdown")
+            
+            
+            mcc_cum_plc_panel_sheet["C112"] = common_config_data.get("running_open")
+            mcc_cum_plc_panel_sheet["C113"] = common_config_data.get("stopped_closed")
+            mcc_cum_plc_panel_sheet["C114"] = common_config_data.get("trip")
+
+            mcc_cum_plc_panel_sheet["C116"] = common_config_data.get("power_terminal_clipon")
+            mcc_cum_plc_panel_sheet["C117"] = common_config_data.get("power_terminal_busbar_type")
+            mcc_cum_plc_panel_sheet["C118"] = common_config_data.get("control_terminal")
+            mcc_cum_plc_panel_sheet["C119"] = common_config_data.get("spare_terminal")
+            
+            mcc_cum_plc_panel_sheet["C121"] = common_config_data.get("ferrule")
+            mcc_cum_plc_panel_sheet["C122"] = common_config_data.get("ferrule_note")
+            mcc_cum_plc_panel_sheet["C123"] = common_config_data.get("device_identification_of_components")
+            
+            mcc_cum_plc_panel_sheet["C128"] = common_config_data.get("digital_meters")
+            mcc_cum_plc_panel_sheet["C129"] = common_config_data.get("analog_meters")
+            mcc_cum_plc_panel_sheet["C130"] = common_config_data.get("communication_protocol")
+
+            mcc_cum_plc_panel_sheet["C132"] = common_config_data.get("current_transformer_coating")
+            mcc_cum_plc_panel_sheet["C133"] = common_config_data.get("current_transformer_quantity")
+            mcc_cum_plc_panel_sheet["C134"] = common_config_data.get("current_transformer_configuration")
+            # mcc_cum_plc_panel_sheet["C132"] = common_config_data.get("device_identification_of_components")
+            
+            # mcc_cum_plc_panel_sheet["C136"] = common_config_data.get("device_identification_of_components")
+            mcc_cum_plc_panel_sheet["C137"] = common_config_data.get("led_type_on_input")
+            mcc_cum_plc_panel_sheet["C138"] = common_config_data.get("led_type_off_input")
+            # mcc_cum_plc_panel_sheet["C139"] = common_config_data.get("trip_circuit_healthy_indication_lamp")
+            mcc_cum_plc_panel_sheet["C140"] = common_config_data.get("acb_spring_charge_indication_lamp")
+            mcc_cum_plc_panel_sheet["C141"] = common_config_data.get("acb_service_indication_lamp")
+            mcc_cum_plc_panel_sheet["C142"] = common_config_data.get("trip_circuit_healthy_indication_lamp")
+            
+            mcc_cum_plc_panel_sheet["C144"] = common_config_data.get("control_transformer_primary_voltage")
+            mcc_cum_plc_panel_sheet["C145"] = common_config_data.get("control_transformer_secondary_voltage_copy")
+            mcc_cum_plc_panel_sheet["C146"] = common_config_data.get("control_transformer_coating")
+            mcc_cum_plc_panel_sheet["C147"] = common_config_data.get("control_transformer_quantity")
+            mcc_cum_plc_panel_sheet["C148"] = common_config_data.get("control_transformer_configuration")
+            # mcc_cum_plc_panel_sheet["C149"] = common_config_data.get("control_transformer_type")
+
+
+    output = io.BytesIO()
+    template_workbook.save(output)
+    output.seek(0)
+
+    frappe.local.response.filename = "power_cum_plc_panel_specification_template.xlsx"
+    frappe.local.response.filecontent = output.getvalue()
+    frappe.local.response.type = "binary"
+
+    return _("File generated successfully.")
+    
