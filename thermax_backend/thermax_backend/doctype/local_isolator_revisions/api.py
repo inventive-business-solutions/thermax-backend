@@ -5,95 +5,9 @@ from copy import copy
 import io
 from datetime import datetime
 
-# @frappe.whiltelist()
-# def trigger_review_submission_mail(
-#     approver_email, project_owner_email, project_oc_number, project_name, subject
-# ):
-#     approver = frappe.get_doc("User", approver_email)
-#     project_owner = frappe.get_doc("User", project_owner_email)
-#     template = frappe.render_template(
-#         "/templates/db_review_submission.html",
-#         {
-#             "approver_first_name": approver.first_name,
-#             "approver_last_name": approver.last_name,
-#             "project_oc_number": project_oc_number,
-#             "project_name": project_name,
-#             "sent_by": f"{project_owner.first_name} {project_owner.last_name}",
-#         },
-#     )
-#     frappe.sendmail(
-#         recipients=approver_email,
-#         cc=project_owner_email,
-#         subject=subject,
-#         message=template,
-#         now=True,
-#     )
-#     return "Submit for review notification mail sent successfully"
-
-# @frappe.whitelist()
-# def trigger_review_resubmission_mail(
-#     approver_email,
-#     project_owner_email,
-#     project_oc_number,
-#     project_name,
-#     feedback_description,
-#     subject,
-#     attachments,
-# ):
-#     approver = frappe.get_doc("User", approver_email)
-#     project_owner = frappe.get_doc("User", project_owner_email)
-#     template = frappe.render_template(
-#         "/templates/db_review_resubmission.html",
-#         {
-#             "owner_first_name": project_owner.first_name,
-#             "owner_last_name": project_owner.last_name,
-#             "project_oc_number": project_oc_number,
-#             "project_name": project_name,
-#             "feedback_description": feedback_description,
-#             "approvar_name": f"{approver.first_name} {approver.last_name}",
-#         },
-#     )
-#     frappe.sendmail(
-#         recipients=project_owner_email,
-#         cc=approver_email,
-#         subject=subject,
-#         message=template,
-#         now=True,
-#         attachments=attachments,
-#     )
-#     return "Resubmit for review notification mail sent successfully"
-
-
-# @frappe.whitelist()
-# def trigger_review_approval_mail(
-#     approver_email, project_owner_email, project_oc_number, project_name, subject
-# ):
-#     approver = frappe.get_doc("User", approver_email)
-#     project_owner = frappe.get_doc("User", project_owner_email)
-#     template = frappe.render_template(
-#         "/templates/db_review_approval.html",
-#         {
-#             "owner_first_name": project_owner.first_name,
-#             "owner_last_name": project_owner.last_name,
-#             "project_oc_number": project_oc_number,
-#             "project_name": project_name,
-#             "approvar_name": f"{approver.first_name} {approver.last_name}",
-#         },
-#     )
-#     frappe.sendmail(
-#         recipients=project_owner_email,
-#         cc=approver_email,
-#         subject=subject,
-#         message=template,
-#         now=True,
-#     )
-#     return "Approval notification mail sent successfully"
-
-# const_revision_id = "st486uu99i"
-
 
 @frappe.whitelist()
-def get_local_isolator_excel(): 
+def get_local_isolator_excel():
     payload = frappe.local.form_dict
     revision_id = payload.get("revision_id")
 
@@ -104,10 +18,10 @@ def get_local_isolator_excel():
     project_id = local_isolator_revisions_data.get("project_id")
 
     design_basis_revision_data = frappe.get_doc(
-        "Design Basis Revision History", {"project_id":project_id}, "*"
+        "Design Basis Revision History", {"project_id": project_id}, "*"
     ).as_dict()
 
-    # Loading the workbook 
+    # Loading the workbook
     template_path = frappe.frappe.get_app_path(
         "thermax_backend", "templates", "local_isolator_specification_template.xlsx"
     )
@@ -128,13 +42,12 @@ def get_local_isolator_excel():
     consultant_name = project_data.get("consultant_name")
     modified = project_data.get("modified")
 
-    # # loading the sheets 
+    # # loading the sheets
 
     cover_sheet = template_workbook["COVER"]
     isolator_sheet = template_workbook["ISOLATOR"]
     isolator_safe_area_sheet = template_workbook["ISOLATOR  LIST SAFE AREA"]
     isolator_hazard_area_sheet = template_workbook["ISOLATOR LIST HAZARDOUS AREA"]
-
 
     # cover page sheet populating
 
@@ -151,11 +64,16 @@ def get_local_isolator_excel():
     )
 
     revision_date = modified.strftime("%d-%m-%Y")
-    revision_data_with_pid = frappe.db.get_list("Design Basis Revision History", {"project_id": project_id}, "*")
-    static_document_list_data = frappe.get_doc("Static Document List", {"project_id":project_id}, "*").as_dict()
+    revision_data_with_pid = frappe.db.get_list(
+        "Design Basis Revision History", {"project_id": project_id}, "*"
+    )
+    static_document_list_data = frappe.get_doc(
+        "Static Document List", {"project_id": project_id}, "*"
+    ).as_dict()
 
-    local_isolator_specifications_and_list = static_document_list_data.get("local_isolator_specifications_and_list")
-
+    local_isolator_specifications_and_list = static_document_list_data.get(
+        "local_isolator_specifications_and_list"
+    )
 
     cover_sheet["A3"] = division_name.upper()
     # cover_sheet["D6"] = project_name.upper()
@@ -192,26 +110,28 @@ def get_local_isolator_excel():
         case _:
             cover_sheet["A4"] = "PUNE - 411 026"
 
-
-    # ISOLATOR SHEET 
+    # ISOLATOR SHEET
 
     def num_to_string(value):
         if value == 1 or value == "1":
             return "Applicable"
         return "Not Applicable"
 
-
     def na_to_string(value):
         if "NA" in value or value is None:
             return "Not Applicable"
         return value
+
     # Fetch the Design Basis revision data (then isolator data form that)
 
     local_isolator_data = local_isolator_revisions_data.get("local_isolator_data")
-    
-    is_safe_area_isolator_selected = local_isolator_revisions_data.get("is_safe_area_isolator_selected")
-    is_hazardous_area_isolator_selected = local_isolator_revisions_data.get("is_hazardous_area_isolator_selected")
 
+    is_safe_area_isolator_selected = local_isolator_revisions_data.get(
+        "is_safe_area_isolator_selected"
+    )
+    is_hazardous_area_isolator_selected = local_isolator_revisions_data.get(
+        "is_hazardous_area_isolator_selected"
+    )
 
     safe_isolator_data = {}
     hazard_isolator_data = {}
@@ -221,7 +141,6 @@ def get_local_isolator_excel():
             safe_isolator_data = data
         else:
             hazard_isolator_data = data
-
 
     safe_fmi_type = safe_isolator_data.get("fmi_type")
     safe_fmi_ip_protection = safe_isolator_data.get("fmi_ip_protection")
@@ -245,7 +164,6 @@ def get_local_isolator_excel():
     elif safe_fmi_enclouser_moc == "NA":
         safe_fmi_enclouser_moc = "Not Applicable"
 
-    
     if int(is_safe_area_isolator_selected) == 0:
         safe_fmi_type = "Not Applicable"
         safe_fmi_ip_protection = "Not Applicable"
@@ -270,9 +188,11 @@ def get_local_isolator_excel():
     hazard_fmi_ip_protection = hazard_isolator_data.get("fmi_ip_protection")
     hazard_fmi_enclouser_moc = hazard_isolator_data.get("fmi_enclouser_moc")
     hazard_fmi_enclosure_thickness = hazard_isolator_data.get("fmi_enclosure_thickness")
-    hazard_ifm_cable_entry = hazard_isolator_data.get("ifm_cable_entry") 
+    hazard_ifm_cable_entry = hazard_isolator_data.get("ifm_cable_entry")
     hazard_fmi_qty = hazard_isolator_data.get("fmi_qty")
-    hazard_ifm_isolator_color_shade = hazard_isolator_data.get("ifm_isolator_color_shade")
+    hazard_ifm_isolator_color_shade = hazard_isolator_data.get(
+        "ifm_isolator_color_shade"
+    )
     hazard_canopy = hazard_isolator_data.get("canopy")
     hazard_canopy_type = hazard_isolator_data.get("canopy_type")
 
@@ -288,7 +208,6 @@ def get_local_isolator_excel():
     elif hazard_fmi_enclouser_moc == "NA":
         hazard_fmi_enclouser_moc = "Not Applicable"
 
-    
     if int(is_hazardous_area_isolator_selected) == 0:
         hazard_fmi_type = "Not Applicable"
         hazard_fmi_ip_protection = "Not Applicable"
@@ -308,14 +227,19 @@ def get_local_isolator_excel():
     isolator_sheet["D8"] = hazard_ifm_cable_entry
     isolator_sheet["D9"] = hazard_canopy
     isolator_sheet["D10"] = hazard_canopy_type
-    
-    local_isolator_motor_details_data = local_isolator_revisions_data.get("local_isolator_motor_details_data")
+
+    local_isolator_motor_details_data = local_isolator_revisions_data.get(
+        "local_isolator_motor_details_data"
+    )
     safe_motor_details = []
     hazard_motor_details = []
 
     for i in range(len(local_isolator_motor_details_data)):
         if local_isolator_motor_details_data[i].get("local_isolator") == "Yes":
-            if local_isolator_motor_details_data[i].get("area") == "Safe" or local_isolator_motor_details_data[i].get("area") == "NA":
+            if (
+                local_isolator_motor_details_data[i].get("area") == "Safe"
+                or local_isolator_motor_details_data[i].get("area") == "NA"
+            ):
                 safe_motor_details.append(local_isolator_motor_details_data[i])
             else:
                 hazard_motor_details.append(local_isolator_motor_details_data[i])
@@ -327,7 +251,9 @@ def get_local_isolator_excel():
         # if area_data == "Safe":
         isolator_safe_area_sheet[f"A{index}"] = i + 1
         isolator_safe_area_sheet[f"B{index}"] = safe_motor_details[i].get("tag_number")
-        isolator_safe_area_sheet[f"C{index}"] = safe_motor_details[i].get("service_description")
+        isolator_safe_area_sheet[f"C{index}"] = safe_motor_details[i].get(
+            "service_description"
+        )
         isolator_safe_area_sheet[f"D{index}"] = safe_motor_details[i].get("working_kw")
         isolator_safe_area_sheet[f"E{index}"] = ""
         motor_location = safe_motor_details[i].get("motor_location")
@@ -337,19 +263,17 @@ def get_local_isolator_excel():
 
         if area == "Safe":
             canopy = safe_isolator_data.get("canopy")
-        else: 
+        else:
             canopy = hazard_isolator_data.get("canopy")
-
 
         canopy_required = ""
         if canopy == "All":
             canopy_required = "Yes"
-        else: 
+        else:
             if "OUT" in canopy and "OUT" in motor_location:
                 canopy_required = "Yes"
             else:
                 canopy_required = "No"
-            
 
         isolator_safe_area_sheet[f"F{index}"] = canopy_required
         isolator_safe_area_sheet[f"H{index}"] = safe_motor_details[i].get("gland_size")
@@ -365,9 +289,15 @@ def get_local_isolator_excel():
         # area_data = local_isolator_motor_details_data[i].get("area")
         # if area_data == "Hazardous":
         isolator_hazard_area_sheet[f"A{index}"] = i + 1
-        isolator_hazard_area_sheet[f"B{index}"] = hazard_motor_details[i].get("tag_number")
-        isolator_hazard_area_sheet[f"C{index}"] = hazard_motor_details[i].get("service_description")
-        isolator_hazard_area_sheet[f"D{index}"] = hazard_motor_details[i].get("working_kw")
+        isolator_hazard_area_sheet[f"B{index}"] = hazard_motor_details[i].get(
+            "tag_number"
+        )
+        isolator_hazard_area_sheet[f"C{index}"] = hazard_motor_details[i].get(
+            "service_description"
+        )
+        isolator_hazard_area_sheet[f"D{index}"] = hazard_motor_details[i].get(
+            "working_kw"
+        )
         isolator_hazard_area_sheet[f"E{index}"] = ""
         motor_location = hazard_motor_details[i].get("motor_location")
         area = hazard_motor_details[i].get("area")
@@ -376,26 +306,32 @@ def get_local_isolator_excel():
 
         if area == "Safe":
             canopy = safe_isolator_data.get("canopy")
-        else: 
+        else:
             canopy = hazard_isolator_data.get("canopy")
-
 
         canopy_required = ""
         if canopy == "All":
             canopy_required = "Yes"
-        else: 
-            if "OUT" in canopy  and "OUT" in motor_location:
+        else:
+            if "OUT" in canopy and "OUT" in motor_location:
                 canopy_required = "Yes"
             else:
                 canopy_required = "No"
-            
 
         isolator_hazard_area_sheet[f"F{index}"] = canopy_required
-        isolator_hazard_area_sheet[f"G{index}"] = hazard_motor_details[i].get("standard")
+        isolator_hazard_area_sheet[f"G{index}"] = hazard_motor_details[i].get(
+            "standard"
+        )
         isolator_hazard_area_sheet[f"H{index}"] = hazard_motor_details[i].get("zone")
-        isolator_hazard_area_sheet[f"I{index}"] = hazard_motor_details[i].get("gas_group")
-        isolator_hazard_area_sheet[f"J{index}"] = hazard_motor_details[i].get("temprature_class")
-        isolator_hazard_area_sheet[f"L{index}"] = hazard_motor_details[i].get("gland_size")
+        isolator_hazard_area_sheet[f"I{index}"] = hazard_motor_details[i].get(
+            "gas_group"
+        )
+        isolator_hazard_area_sheet[f"J{index}"] = hazard_motor_details[i].get(
+            "temprature_class"
+        )
+        isolator_hazard_area_sheet[f"L{index}"] = hazard_motor_details[i].get(
+            "gland_size"
+        )
         index = index + 1
 
     isolator_hazard_area_sheet[f"C{index + 5}"] = "Total Quantity"
@@ -404,7 +340,7 @@ def get_local_isolator_excel():
 
     if len(safe_motor_details) < 1:
         template_workbook.remove(isolator_safe_area_sheet)
-    
+
     # if len(hazard_motor_details) < 1:
     #     template_workbook.remove(isolator_hazard_area_sheet)
 

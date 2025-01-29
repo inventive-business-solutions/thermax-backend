@@ -4,6 +4,11 @@ from thermax_backend.thermax_backend.doctype.cable_schedule_revisions.cover_shee
     create_cover_sheet,
 )
 
+from thermax_backend.thermax_backend.doctype.design_basis_revision_history.division_wise_design_basis_excel.utils import (
+    handle_none_to_number,
+    handle_none_to_string,
+)
+
 
 def create_voltage_drop_excel(revision_id):
     """
@@ -74,11 +79,13 @@ def create_voltage_drop_excel(revision_id):
         voltage_drop_calculation_sheet.cell(
             row=row, column=3, value=data.get("service_description")
         )
-        standby_kw = data.get("standby_kw")
-        working_kw = data.get("working_kw")
-        non_zero_kw = standby_kw if standby_kw >= 0 else working_kw
+        standby_kw = round(float(data.get("standby_kw")), 2)
+        working_kw = round(float(data.get("working_kw")), 2)
+        non_zero_kw = standby_kw if standby_kw != 0 else working_kw
         voltage_drop_calculation_sheet.cell(row=row, column=4, value=non_zero_kw)
-        voltage_drop_calculation_sheet.cell(row=row, column=5, value="3 Phase")
+        voltage_drop_calculation_sheet.cell(
+            row=row, column=5, value=data.get("supply_phase")
+        )
         starter_type = data.get("starter_type")
         voltage_drop_calculation_sheet.cell(row=row, column=6, value=starter_type)
         voltage_drop_calculation_sheet.cell(
@@ -118,10 +125,19 @@ def create_voltage_drop_excel(revision_id):
         voltage_drop_calculation_sheet.cell(
             row=row, column=16, value=data.get("number_of_runs")
         )
+        # Q Column: CABLE SIZE (Sq.mm)
+        approximate_length = handle_none_to_number(data.get("apex_length"))
+        non_heating_cable_size = data.get("final_cable_size")
+        heating_cable_size = data.get("cable_size_heating_chart", "0")
+        cable_size = (
+            heating_cable_size
+            if division_name == "Heating" and approximate_length <= 100
+            else non_heating_cable_size
+        )
         voltage_drop_calculation_sheet.cell(
             row=row,
             column=17,
-            value=f"{data.get('number_of_runs')} x {data.get('number_of_cores')} x {data.get('final_cable_size')}",
+            value=f"{data.get('number_of_runs')} x {data.get('number_of_cores')} x {cable_size}",
         )
         voltage_drop_calculation_sheet.cell(
             row=row, column=18, value=data.get("resistance_meter")
@@ -130,7 +146,7 @@ def create_voltage_drop_excel(revision_id):
             row=row, column=19, value=data.get("reactance_meter")
         )
         voltage_drop_calculation_sheet.cell(
-            row=row, column=20, value=data.get("apex_length")
+            row=row, column=20, value=approximate_length
         )
         voltage_drop_calculation_sheet.cell(
             row=row, column=21, value=data.get("vd_running")
