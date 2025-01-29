@@ -5,108 +5,23 @@ from copy import copy
 import io
 from datetime import datetime
 
-# @frappe.whiltelist()
-# def trigger_review_submission_mail(
-#     approver_email, project_owner_email, project_oc_number, project_name, subject
-# ):
-#     approver = frappe.get_doc("User", approver_email)
-#     project_owner = frappe.get_doc("User", project_owner_email)
-#     template = frappe.render_template(
-#         "/templates/db_review_submission.html",
-#         {
-#             "approver_first_name": approver.first_name,
-#             "approver_last_name": approver.last_name,
-#             "project_oc_number": project_oc_number,
-#             "project_name": project_name,
-#             "sent_by": f"{project_owner.first_name} {project_owner.last_name}",
-#         },
-#     )
-#     frappe.sendmail(
-#         recipients=approver_email,
-#         cc=project_owner_email,
-#         subject=subject,
-#         message=template,
-#         now=True,
-#     )
-#     return "Submit for review notification mail sent successfully"
-
-# @frappe.whitelist()
-# def trigger_review_resubmission_mail(
-#     approver_email,
-#     project_owner_email,
-#     project_oc_number,
-#     project_name,
-#     feedback_description,
-#     subject,
-#     attachments,
-# ):
-#     approver = frappe.get_doc("User", approver_email)
-#     project_owner = frappe.get_doc("User", project_owner_email)
-#     template = frappe.render_template(
-#         "/templates/db_review_resubmission.html",
-#         {
-#             "owner_first_name": project_owner.first_name,
-#             "owner_last_name": project_owner.last_name,
-#             "project_oc_number": project_oc_number,
-#             "project_name": project_name,
-#             "feedback_description": feedback_description,
-#             "approvar_name": f"{approver.first_name} {approver.last_name}",
-#         },
-#     )
-#     frappe.sendmail(
-#         recipients=project_owner_email,
-#         cc=approver_email,
-#         subject=subject,
-#         message=template,
-#         now=True,
-#         attachments=attachments,
-#     )
-#     return "Resubmit for review notification mail sent successfully"
-
-
-# @frappe.whitelist()
-# def trigger_review_approval_mail(
-#     approver_email, project_owner_email, project_oc_number, project_name, subject
-# ):
-#     approver = frappe.get_doc("User", approver_email)
-#     project_owner = frappe.get_doc("User", project_owner_email)
-#     template = frappe.render_template(
-#         "/templates/db_review_approval.html",
-#         {
-#             "owner_first_name": project_owner.first_name,
-#             "owner_last_name": project_owner.last_name,
-#             "project_oc_number": project_oc_number,
-#             "project_name": project_name,
-#             "approvar_name": f"{approver.first_name} {approver.last_name}",
-#         },
-#     )
-#     frappe.sendmail(
-#         recipients=project_owner_email,
-#         cc=approver_email,
-#         subject=subject,
-#         message=template,
-#         now=True,
-#     )
-#     return "Approval notification mail sent successfully"
 
 @frappe.whitelist()
-def get_lpbs_specification_excel(): 
+def get_lpbs_specification_excel():
     payload = frappe.local.form_dict
     revision_id = payload.get("revision_id")
 
     lpbs_specifications_revision_data = frappe.get_doc(
-        "LPBS Specification Revisions",
-        revision_id,
-        "*"
+        "LPBS Specification Revisions", revision_id, "*"
     ).as_dict()
-    
+
     project_id = lpbs_specifications_revision_data.get("project_id")
 
     design_basis_revision_data = frappe.get_doc(
         "Design Basis Revision History", {"project_id": project_id}
     ).as_dict()
 
-    # Loading the workbook 
+    # Loading the workbook
     template_path = frappe.frappe.get_app_path(
         "thermax_backend", "templates", "lpbs_specification_template.xlsx"
     )
@@ -127,7 +42,7 @@ def get_lpbs_specification_excel():
     consultant_name = project_data.get("consultant_name")
     modified = project_data.get("modified")
 
-    # loading the sheets 
+    # loading the sheets
 
     cover_sheet = template_workbook["COVER"]
     instruction_sheet = template_workbook["INSTRUCTION PAGE"]
@@ -135,7 +50,6 @@ def get_lpbs_specification_excel():
     lpbs_safe_sheet = template_workbook[" LPBS LIST SAFE AREA"]
     lpbs_hazard_sheet = template_workbook["LPBS LIST HAZARDOUS AREA "]
     selection_sheet = template_workbook["SELECTION CRITERIA"]
-
 
     # # cover page sheet populating
 
@@ -152,13 +66,22 @@ def get_lpbs_specification_excel():
     )
 
     revision_date = modified.strftime("%d-%m-%Y")
-    revision_data_with_pid = frappe.db.get_list("Design Basis Revision History", {"project_id": project_id}, "*")
-    static_document_list_data = frappe.get_doc("Static Document List", {"project_id":project_id}, "*").as_dict()
+    revision_data_with_pid = frappe.db.get_list(
+        "Design Basis Revision History", {"project_id": project_id}, "*"
+    )
+    static_document_list_data = frappe.get_doc(
+        "Static Document List", {"project_id": project_id}, "*"
+    ).as_dict()
 
-    lpbs_specifications_and_list = static_document_list_data.get("lpbs_specifications_and_list")
-    is_safe_lpbs_selected = lpbs_specifications_revision_data.get("is_safe_lpbs_selected")
-    is_hazardous_lpbs_selected = lpbs_specifications_revision_data.get("is_hazardous_lpbs_selected")
-
+    lpbs_specifications_and_list = static_document_list_data.get(
+        "lpbs_specifications_and_list"
+    )
+    is_safe_lpbs_selected = lpbs_specifications_revision_data.get(
+        "is_safe_lpbs_selected"
+    )
+    is_hazardous_lpbs_selected = lpbs_specifications_revision_data.get(
+        "is_hazardous_lpbs_selected"
+    )
 
     cover_sheet["A3"] = division_name.upper()
     # cover_sheet["D6"] = project_name.upper()
@@ -195,23 +118,24 @@ def get_lpbs_specification_excel():
         case _:
             cover_sheet["A4"] = "PUNE - 411 026"
 
+    # # INSTRUCTION PAGE
 
-    # # INSTRUCTION PAGE 
+    instruction_sheet["A1"] = (
+        f"{project_oc_number.upper()} -INSTRUCTIONS TO LOCAL PUSH BUTTON STATIONS VENDORS"
+    )
 
-    instruction_sheet["A1"] = f"{project_oc_number.upper()} -INSTRUCTIONS TO LOCAL PUSH BUTTON STATIONS VENDORS"
-
-    # # ISOLATOR SHEET 
+    # # ISOLATOR SHEET
 
     def num_to_string(value):
         if value == 1 or value == "1":
             return "Applicable"
         return "Not Applicable"
 
-
     def na_to_string(value):
         if "NA" in value or value is None:
             return "Not Applicable"
         return value
+
     # Fetch the Design Basis revision data (then isolator data form that)
 
     lpbs_revision_data = frappe.get_doc(
@@ -221,7 +145,9 @@ def get_lpbs_specification_excel():
     lpbs_specification = lpbs_revision_data.get("lpbs_specification_data")
     lpbs_specification_data = lpbs_specification[0]
     config_data = lpbs_specification[1]
-    lpbs_specification_motor_details = lpbs_revision_data.get("lpbs_specifications_motor_details")
+    lpbs_specification_motor_details = lpbs_revision_data.get(
+        "lpbs_specifications_motor_details"
+    )
 
     safe_lpbs_type = lpbs_specification_data.get("safe_lpbs_type")
     safe_lpbs_ip_protection = lpbs_specification_data.get("safe_lpbs_ip_protection")
@@ -229,7 +155,7 @@ def get_lpbs_specification_excel():
     safe_lpbs_thickness = lpbs_specification_data.get("safe_lpbs_thickness")
     safe_lpbs_quantity = lpbs_specification_data.get("safe_lpbs_quantity")
     safe_lpbs_color_shade = lpbs_specification_data.get("safe_lpbs_color_shade")
-    safe_lpbs_cable_entry = "Bottom" # safe cabel entry
+    safe_lpbs_cable_entry = "Bottom"  # safe cabel entry
     safe_lpbs_canopy = lpbs_specification_data.get("safe_lpbs_canopy")
     safe_lpbs_canopy_type = lpbs_specification_data.get("safe_lpbs_canopy_type")
 
@@ -238,9 +164,7 @@ def get_lpbs_specification_excel():
         or safe_lpbs_moc == "SS 316"
         or safe_lpbs_moc == "SS 306"
     ):
-        safe_lpbs_moc = (
-            f"{safe_lpbs_moc}, {safe_lpbs_thickness}"
-        )
+        safe_lpbs_moc = f"{safe_lpbs_moc}, {safe_lpbs_thickness}"
         safe_lpbs_cable_entry = f"{safe_lpbs_cable_entry}, 3 mm"
     elif safe_lpbs_moc == "NA":
         safe_lpbs_moc = "Not Applicable"
@@ -264,30 +188,30 @@ def get_lpbs_specification_excel():
     specification_sheet["C9"] = safe_lpbs_canopy
     specification_sheet["C10"] = safe_lpbs_canopy_type
 
-
     hazardous_lpbs_type = lpbs_specification_data.get("hazardous_lpbs_type")
     hazardous_ip_protection = lpbs_specification_data.get("hazardous_ip_protection")
     hazardous_lpbs_moc = lpbs_specification_data.get("hazardous_lpbs_moc")
     hazardous_lpbs_thickness = lpbs_specification_data.get("hazardous_lpbs_thickness")
     hazardous_lpbs_qty = lpbs_specification_data.get("hazardous_lpbs_qty")
-    hazardous_lpbs_color_shade = lpbs_specification_data.get("hazardous_lpbs_color_shade")
-    hazardous_lpbs_cable_entry = "Bottom" #hazardous cable entry
+    hazardous_lpbs_color_shade = lpbs_specification_data.get(
+        "hazardous_lpbs_color_shade"
+    )
+    hazardous_lpbs_cable_entry = "Bottom"  # hazardous cable entry
     hazardous_lpbs_canopy = lpbs_specification_data.get("hazardous_lpbs_canopy")
-    hazardous_lpbs_canopy_type = lpbs_specification_data.get("hazardous_lpbs_canopy_type")
+    hazardous_lpbs_canopy_type = lpbs_specification_data.get(
+        "hazardous_lpbs_canopy_type"
+    )
 
     if (
         hazardous_lpbs_moc == "CRCA"
         or hazardous_lpbs_moc == "SS 316"
         or hazardous_lpbs_moc == "SS 306"
     ):
-        hazardous_lpbs_moc = (
-            f"{hazardous_lpbs_moc}, {hazardous_lpbs_thickness}"
-        )
+        hazardous_lpbs_moc = f"{hazardous_lpbs_moc}, {hazardous_lpbs_thickness}"
         hazardous_lpbs_cable_entry = f"{hazardous_lpbs_cable_entry}, 3 mm"
     elif hazardous_lpbs_moc == "NA":
         hazardous_lpbs_moc = "Not Applicable"
 
-        
     if int(is_hazardous_lpbs_selected) == 0:
         hazardous_lpbs_type = "Not Applicable"
         hazardous_ip_protection = "Not Applicable"
@@ -308,14 +232,30 @@ def get_lpbs_specification_excel():
     specification_sheet["D10"] = hazardous_lpbs_canopy_type
 
     # Push Button Color
-    specification_sheet["C13"] = lpbs_specification_data.get("lpbs_push_button_start_color")
-    specification_sheet["C14"] = lpbs_specification_data.get("lpbs_forward_push_button_start_color")
-    specification_sheet["C15"] = lpbs_specification_data.get("lpbs_reverse_push_button_start_color")
-    specification_sheet["C16"] = lpbs_specification_data.get("lpbs_push_button_ess_color")
-    specification_sheet["C17"] = lpbs_specification_data.get("lpbs_speed_increase_color")
-    specification_sheet["C18"] = lpbs_specification_data.get("lpbs_speed_decrease_color")
-    specification_sheet["C19"] = lpbs_specification_data.get("lpbs_indication_lamp_start_color")
-    specification_sheet["C20"] = lpbs_specification_data.get("lpbs_indication_lamp_stop_color")
+    specification_sheet["C13"] = lpbs_specification_data.get(
+        "lpbs_push_button_start_color"
+    )
+    specification_sheet["C14"] = lpbs_specification_data.get(
+        "lpbs_forward_push_button_start_color"
+    )
+    specification_sheet["C15"] = lpbs_specification_data.get(
+        "lpbs_reverse_push_button_start_color"
+    )
+    specification_sheet["C16"] = lpbs_specification_data.get(
+        "lpbs_push_button_ess_color"
+    )
+    specification_sheet["C17"] = lpbs_specification_data.get(
+        "lpbs_speed_increase_color"
+    )
+    specification_sheet["C18"] = lpbs_specification_data.get(
+        "lpbs_speed_decrease_color"
+    )
+    specification_sheet["C19"] = lpbs_specification_data.get(
+        "lpbs_indication_lamp_start_color"
+    )
+    specification_sheet["C20"] = lpbs_specification_data.get(
+        "lpbs_indication_lamp_stop_color"
+    )
 
     id = 22
 
@@ -334,15 +274,14 @@ def get_lpbs_specification_excel():
         }
         return switcher.get(value, "Invalid option")
 
-    keys_with_yes = [key for key, value in config_data.items() if value == 'Yes']
+    keys_with_yes = [key for key, value in config_data.items() if value == "Yes"]
 
     for j in range(len(keys_with_yes)):
         value = handle_label(keys_with_yes[j])
         specification_sheet[f"B{id}"] = value
         id = id + 1
 
-
-    # motor details sheet 
+    # motor details sheet
     safe_motor_details = []
     hazard_motor_details = []
 
@@ -364,11 +303,11 @@ def get_lpbs_specification_excel():
         lpbs_safe_sheet[f"G{index}"] = lpbs_safe_motor_location
 
         canopy_required = ""
-        
+
         if safe_lpbs_canopy == "All":
             canopy_required = "Yes"
-        else: 
-            if "OUT" in safe_lpbs_canopy and "OUT" in lpbs_safe_motor_location :
+        else:
+            if "OUT" in safe_lpbs_canopy and "OUT" in lpbs_safe_motor_location:
                 canopy_required = "Yes"
             else:
                 canopy_required = "No"
@@ -377,7 +316,12 @@ def get_lpbs_specification_excel():
         lpbs_safe_sheet[f"H{index}"] = safe_motor_details[i].get("gland_size")
         index = index + 1
 
-    type_count = {motor_type["lpbs_type"]: sum(1 for t in safe_motor_details if t["lpbs_type"] == motor_type["lpbs_type"]) for motor_type in safe_motor_details}
+    type_count = {
+        motor_type["lpbs_type"]: sum(
+            1 for t in safe_motor_details if t["lpbs_type"] == motor_type["lpbs_type"]
+        )
+        for motor_type in safe_motor_details
+    }
     a = index + 5
     val = 1
     for key, value in type_count.items():
@@ -388,26 +332,27 @@ def get_lpbs_specification_excel():
         # lpbs_safe_sheet[f"O{a}"] = "No.s"
         a = a + 1
         val = val + 1
-    
-    lpbs_safe_sheet[f"C{a}"] = "Total" 
+
+    lpbs_safe_sheet[f"C{a}"] = "Total"
     lpbs_safe_sheet[f"E{a}"] = int(len(safe_motor_details))
 
-
     index = 3
-    for i in  range(len(hazard_motor_details)):
-        lpbs_hazard_sheet[f"A{index}"] = i+1
+    for i in range(len(hazard_motor_details)):
+        lpbs_hazard_sheet[f"A{index}"] = i + 1
         lpbs_hazard_sheet[f"B{index}"] = hazard_motor_details[i].get("tag_number")
-        lpbs_hazard_sheet[f"C{index}"] = hazard_motor_details[i].get("service_description")
+        lpbs_hazard_sheet[f"C{index}"] = hazard_motor_details[i].get(
+            "service_description"
+        )
         lpbs_hazard_sheet[f"D{index}"] = hazard_motor_details[i].get("working_kw")
         lpbs_hazard_sheet[f"E{index}"] = hazard_motor_details[i].get("lpbs_type")
         hazard_lpbs_motor_location = hazard_motor_details[i].get("motor_location")
         lpbs_hazard_sheet[f"K{index}"] = hazard_lpbs_motor_location
         canopy_required = ""
-        
+
         if hazardous_lpbs_canopy == "All":
             canopy_required = "Yes"
-        else: 
-            if "OUT" in hazardous_lpbs_canopy and "OUT" in hazard_lpbs_motor_location :
+        else:
+            if "OUT" in hazardous_lpbs_canopy and "OUT" in hazard_lpbs_motor_location:
                 canopy_required = "Yes"
             else:
                 canopy_required = "No"
@@ -416,11 +361,18 @@ def get_lpbs_specification_excel():
         lpbs_hazard_sheet[f"G{index}"] = hazard_motor_details[i].get("standard")
         lpbs_hazard_sheet[f"H{index}"] = hazard_motor_details[i].get("zone")
         lpbs_hazard_sheet[f"I{index}"] = hazard_motor_details[i].get("gas_group")
-        lpbs_hazard_sheet[f"J{index}"] = hazard_motor_details[i].get("temperature_class")
+        lpbs_hazard_sheet[f"J{index}"] = hazard_motor_details[i].get(
+            "temperature_class"
+        )
         lpbs_hazard_sheet[f"L{index}"] = hazard_motor_details[i].get("gland_size")
         index = index + 1
 
-    type_count = {motor_type["lpbs_type"]: sum(1 for t in hazard_motor_details if t["lpbs_type"] == motor_type["lpbs_type"]) for motor_type in hazard_motor_details}
+    type_count = {
+        motor_type["lpbs_type"]: sum(
+            1 for t in hazard_motor_details if t["lpbs_type"] == motor_type["lpbs_type"]
+        )
+        for motor_type in hazard_motor_details
+    }
     a = index + 5
     val = 1
     for key, value in type_count.items():
@@ -431,13 +383,13 @@ def get_lpbs_specification_excel():
         # lpbs_safe_sheet[f"O{a}"] = "No.s"
         a = a + 1
         val = val + 1
-    
-    lpbs_hazard_sheet[f"C{a}"] = "Total" 
+
+    lpbs_hazard_sheet[f"C{a}"] = "Total"
     lpbs_hazard_sheet[f"E{a}"] = int(len(hazard_motor_details))
 
     if int(is_safe_lpbs_selected) == 0:
         template_workbook.remove(lpbs_safe_sheet)
-    
+
     if int(is_hazardous_lpbs_selected) == 0:
         template_workbook.remove(lpbs_hazard_sheet)
 

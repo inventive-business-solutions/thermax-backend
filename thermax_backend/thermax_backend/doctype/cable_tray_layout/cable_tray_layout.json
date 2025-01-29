@@ -9,6 +9,9 @@
   "linking_keys_section",
   "revision_id",
   "power_cable_section",
+  "design_manufacturing_testing_standard_for_cable",
+  "inner_sheath",
+  "outer_sheath",
   "number_of_cores",
   "specific_requirement",
   "type_of_insulation",
@@ -577,11 +580,26 @@
    "fieldname": "is_cable_tray_cover_selected",
    "fieldtype": "Check",
    "label": "Is Cable Tray Cover Selected"
+  },
+  {
+   "fieldname": "design_manufacturing_testing_standard_for_cable",
+   "fieldtype": "Data",
+   "label": "Design, Manufacturing, Testing Standard for Cable"
+  },
+  {
+   "fieldname": "inner_sheath",
+   "fieldtype": "Data",
+   "label": "Inner Sheath"
+  },
+  {
+   "fieldname": "outer_sheath",
+   "fieldtype": "Data",
+   "label": "Outer Sheath"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-24 16:27:09.961468",
+ "modified": "2025-01-29 14:25:54.962844",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Cable Tray Layout",

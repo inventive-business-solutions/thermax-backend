@@ -68,6 +68,13 @@ def create_load_list_excel(
             template_workbook=template_workbook,
             incomer_power_supply=incomer_power_supply,
         )
+    elif division_name == "WWS Services":
+        template_workbook = get_spg_load_list_excel(
+            electrical_load_list_data=electrical_load_list_data,
+            panels_data=panels_data,
+            template_workbook=template_workbook,
+            incomer_power_supply=incomer_power_supply,
+        )
     else:
         raise ValueError(f"Load list template is not present for : {division_name}")
 
