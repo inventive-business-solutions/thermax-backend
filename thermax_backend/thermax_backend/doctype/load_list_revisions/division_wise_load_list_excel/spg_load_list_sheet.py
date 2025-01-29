@@ -13,13 +13,16 @@ def get_spg_load_list_excel(
     load_list_output_sheet = template_workbook["LOAD LIST OUTPUT"]
     all_panels_sheet = template_workbook.copy_worksheet(load_list_output_sheet)
     number_of_panels = len(panels_data)
+    panel_name = "All Panels"
+    if number_of_panels == 1:
+        panel_name = electrical_load_list_data[0].get("panel")
 
     all_panels_sheet = create_spg_load_list_excel(
         electrical_load_list_data=electrical_load_list_data,
         load_list_output_sheet=all_panels_sheet,
         incomer_power_supply=incomer_power_supply,
         number_of_panels=number_of_panels,
-        panel_name="All Panels",
+        panel_name=panel_name,
     )
 
     if number_of_panels > 1:

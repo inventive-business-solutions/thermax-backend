@@ -136,6 +136,7 @@ def create_heating_excel(cable_schedule_data, project, revision_data, division_n
                     )
                 except ValueError:
                     cable_schedule_sheet.cell(row=current_row, column=13).value = 0
+                # N column is for Gland Size
                 cable_schedule_sheet.cell(row=current_row, column=14).value = cable.get(
                     "gland_size"
                 )
