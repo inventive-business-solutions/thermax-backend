@@ -10,6 +10,7 @@
   "panel_id",
   "selection_details_section",
   "incomer_ampere",
+  "panel_incomer_protection",
   "incomer_pole",
   "incomer_type",
   "incomer_above_ampere",
@@ -64,6 +65,7 @@
   "ga_power_and_control_busbar_separation",
   "ga_enclosure_protection_degree",
   "ga_cable_entry_position",
+  "general_requirments_for_construction",
   "paintingpowder_coating_section",
   "ppc_painting_standards",
   "ppc_interior_and_exterior_paint_shade",
@@ -73,7 +75,6 @@
   "ppc_pretreatment_panel_standard",
   "vfd_auto_manual_selection",
   "two_year_operational_spare",
-  "general_requirments_for_construction",
   "commissioning_spare",
   "punching_details_section",
   "is_punching_details_for_boiler_selected",
@@ -638,7 +639,7 @@
   },
   {
    "fieldname": "general_requirments_for_construction",
-   "fieldtype": "Small Text",
+   "fieldtype": "Data",
    "label": "General Requirments For Construction"
   },
   {
@@ -675,11 +676,16 @@
    "fieldname": "trip_circuit_healthy_indication_lamp",
    "fieldtype": "Data",
    "label": "Trip Circuit Healthy Indication lamp"
+  },
+  {
+   "fieldname": "panel_incomer_protection",
+   "fieldtype": "Small Text",
+   "label": "Panel Incomer Protection"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-27 12:23:47.942047",
+ "modified": "2025-01-29 17:41:36.633517",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "MCC Panel",
