@@ -1,0 +1,81 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2025-01-30 11:17:38.552355",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "panel_id",
+  "section_break_wwny",
+  "secondary_voltage_input",
+  "secondary_current_output",
+  "bushing_orientation",
+  "cable_entry",
+  "communication_protocol_input"
+ ],
+ "fields": [
+  {
+   "fieldname": "panel_id",
+   "fieldtype": "Link",
+   "label": "Panel Id",
+   "options": "Project Panel Data"
+  },
+  {
+   "fieldname": "section_break_wwny",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "secondary_voltage_input",
+   "fieldtype": "Data",
+   "label": "Secondary Voltage Input"
+  },
+  {
+   "fieldname": "secondary_current_output",
+   "fieldtype": "Data",
+   "label": "Secondary Current Output"
+  },
+  {
+   "fieldname": "bushing_orientation",
+   "fieldtype": "Link",
+   "label": "Bushing Orientation",
+   "options": "Bushing Orientation"
+  },
+  {
+   "fieldname": "cable_entry",
+   "fieldtype": "Link",
+   "label": "Cable Entry",
+   "options": "TRCC Cable Entry"
+  },
+  {
+   "fieldname": "communication_protocol_input",
+   "fieldtype": "Data",
+   "label": "Communication Protocol Input"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-01-30 13:13:54.237775",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "TRCC Panel",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

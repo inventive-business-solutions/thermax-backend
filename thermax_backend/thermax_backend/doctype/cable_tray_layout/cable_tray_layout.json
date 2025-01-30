@@ -599,14 +599,13 @@
   },
   {
    "fieldname": "cable_tray_cover_input",
-   "fieldtype": "Link",
-   "label": "Cable Tray Cover Input",
-   "options": "Cable Tray Cover Input"
+   "fieldtype": "Data",
+   "label": "Cable Tray Cover Input"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-29 16:21:11.794607",
+ "modified": "2025-01-30 17:30:12.884614",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Cable Tray Layout",

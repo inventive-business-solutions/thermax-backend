@@ -364,14 +364,13 @@
   },
   {
    "fieldname": "cable_insulation_properties",
-   "fieldtype": "Link",
-   "label": "Cable Insulation Properties",
-   "options": "Layout Specific Requirement"
+   "fieldtype": "Data",
+   "label": "Cable Insulation Properties"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-29 16:38:15.940092",
+ "modified": "2025-01-30 17:28:34.259969",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Common Configuration 1",

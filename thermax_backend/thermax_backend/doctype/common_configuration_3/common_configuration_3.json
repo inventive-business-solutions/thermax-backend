@@ -284,20 +284,18 @@
   },
   {
    "fieldname": "power_terminal_type",
-   "fieldtype": "Link",
-   "label": "Power Terminal Type",
-   "options": "Power Terminal Type"
+   "fieldtype": "Data",
+   "label": "Power Terminal Type"
   },
   {
    "fieldname": "control_terminal_type",
-   "fieldtype": "Link",
-   "label": "Control Terminal Type",
-   "options": "Power Terminal Type"
+   "fieldtype": "Data",
+   "label": "Control Terminal Type"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-29 16:53:33.439009",
+ "modified": "2025-01-30 17:22:49.469918",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Common Configuration 3",
