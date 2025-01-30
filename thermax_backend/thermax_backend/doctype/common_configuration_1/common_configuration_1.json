@@ -40,6 +40,7 @@
   "rtd_thermocouple_wiring_color",
   "rtd_thermocouple_wiring_size",
   "cable_insulation_pvc",
+  "cable_insulation_properties",
   "air_clearance_between_phase_to_phase_bus",
   "air_clearance_between_phase_to_neutral_bus",
   "ferrule",
@@ -360,11 +361,17 @@
    "fieldname": "is_potentiometer_selected",
    "fieldtype": "Check",
    "label": "Is Potentiometer Selected"
+  },
+  {
+   "fieldname": "cable_insulation_properties",
+   "fieldtype": "Link",
+   "label": "Cable Insulation Properties",
+   "options": "Layout Specific Requirement"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-22 15:25:28.540251",
+ "modified": "2025-01-29 16:38:15.940092",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Common Configuration 1",
