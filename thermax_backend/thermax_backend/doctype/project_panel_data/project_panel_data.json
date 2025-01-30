@@ -46,7 +46,7 @@
    "fieldname": "panel_main_type",
    "fieldtype": "Select",
    "label": "Panel Main Type",
-   "options": "MCC\nPCC\nMCC cum PCC"
+   "options": "MCC\nPCC\nMCC cum PCC\nTRCC"
   },
   {
    "fieldname": "area_of_classification",
@@ -57,7 +57,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-12-31 10:38:59.902186",
+ "modified": "2025-01-30 11:22:33.542479",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Project Panel Data",
