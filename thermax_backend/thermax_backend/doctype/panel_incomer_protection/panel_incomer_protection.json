@@ -1,35 +1,27 @@
 {
  "actions": [],
- "allow_import": 1,
  "allow_rename": 1,
- "autoname": "field:panel_name",
- "creation": "2024-10-04 09:34:17.630461",
+ "autoname": "field:protection",
+ "creation": "2025-01-29 17:21:55.266017",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "panel_name",
-  "panel_type"
+  "protection"
  ],
  "fields": [
   {
-   "fieldname": "panel_name",
+   "fieldname": "protection",
    "fieldtype": "Data",
-   "label": "Panel Name",
+   "label": "Protection",
    "unique": 1
-  },
-  {
-   "fieldname": "panel_type",
-   "fieldtype": "Select",
-   "label": "Panel Type",
-   "options": "MCC\nPCC\nMCC cum PCC\nTRCC"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-30 11:12:25.362416",
+ "modified": "2025-01-29 17:22:42.738744",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
- "name": "Panel Type",
+ "name": "Panel Incomer Protection",
  "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
@@ -46,7 +38,7 @@
    "write": 1
   }
  ],
- "sort_field": "creation",
+ "sort_field": "modified",
  "sort_order": "DESC",
  "states": []
 }

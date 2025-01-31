@@ -12,6 +12,8 @@
   "column_break_sthc",
   "is_safe_lpbs_selected",
   "is_hazardous_lpbs_selected",
+  "power_terminal_type",
+  "control_terminal_type",
   "lpbs_forward_push_button_start",
   "lpbs_reverse_push_button_start",
   "lpbs_push_button_ess",
@@ -100,17 +102,17 @@
   },
   {
    "fieldname": "door_earthing",
-   "fieldtype": "Small Text",
+   "fieldtype": "Data",
    "label": "Door Earthing"
   },
   {
    "fieldname": "instrument_earth",
-   "fieldtype": "Small Text",
+   "fieldtype": "Data",
    "label": "Instrument Earth"
   },
   {
    "fieldname": "general_note_busbar_and_insulation_materials",
-   "fieldtype": "Small Text",
+   "fieldtype": "Data",
    "label": "General Note Busbar and Insulation Materials"
   },
   {
@@ -279,11 +281,21 @@
    "fieldname": "lpbs_push_button_ess",
    "fieldtype": "Data",
    "label": "LPBS Push Button ESS"
+  },
+  {
+   "fieldname": "power_terminal_type",
+   "fieldtype": "Data",
+   "label": "Power Terminal Type"
+  },
+  {
+   "fieldname": "control_terminal_type",
+   "fieldtype": "Data",
+   "label": "Control Terminal Type"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-27 11:26:39.555071",
+ "modified": "2025-01-30 17:22:49.469918",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Common Configuration 3",
