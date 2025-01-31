@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "hash",
  "creation": "2025-01-31 15:51:32.858739",
@@ -90,7 +91,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-31 15:54:54.874433",
+ "modified": "2025-01-31 16:06:02.655401",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Standard Motor Partcode Library",
