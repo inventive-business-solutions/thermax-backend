@@ -38,7 +38,11 @@
   "number_of_cores",
   "final_cable_size",
   "cable_selected_status",
-  "cable_size_heating_chart"
+  "cable_size_heating_chart",
+  "cable_od",
+  "cable_od_heating_chart",
+  "gland_size",
+  "gland_size_heating_chart"
  ],
  "fields": [
   {
@@ -218,12 +222,32 @@
    "fieldname": "sin_starting",
    "fieldtype": "Float",
    "label": "Sin Starting"
+  },
+  {
+   "fieldname": "cable_od",
+   "fieldtype": "Data",
+   "label": "Cable OD"
+  },
+  {
+   "fieldname": "cable_od_heating_chart",
+   "fieldtype": "Data",
+   "label": "Cable OD Heating Chart"
+  },
+  {
+   "fieldname": "gland_size",
+   "fieldtype": "Data",
+   "label": "Gland Size"
+  },
+  {
+   "fieldname": "gland_size_heating_chart",
+   "fieldtype": "Data",
+   "label": "Gland Size Heating Chart"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-12-14 16:04:35.989096",
+ "modified": "2025-01-31 10:53:44.142303",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Cable Schedule Data",
