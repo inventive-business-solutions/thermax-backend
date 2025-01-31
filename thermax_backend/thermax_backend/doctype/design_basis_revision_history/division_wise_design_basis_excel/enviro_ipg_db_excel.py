@@ -163,11 +163,9 @@ def get_enviro_ipg_db_excel(
                 is_red_cb_in_service = "NA"
                 is_white_healthy_trip_circuit_selected = "NA"
 
-            panel_sheet["C9"] = handle_none_to_string(is_blue_cb_spring_charge_selected)
-            panel_sheet["C10"] = handle_none_to_string(is_red_cb_in_service)
-            panel_sheet["C11"] = handle_none_to_string(
-                is_white_healthy_trip_circuit_selected
-            )
+            panel_sheet["C9"] = is_blue_cb_spring_charge_selected
+            panel_sheet["C10"] = is_red_cb_in_service
+            panel_sheet["C11"] = is_white_healthy_trip_circuit_selected
             panel_sheet["C12"] = handle_none_to_string(alarm_annunciator)
 
             if "NA" in mi_communication_protocol:
