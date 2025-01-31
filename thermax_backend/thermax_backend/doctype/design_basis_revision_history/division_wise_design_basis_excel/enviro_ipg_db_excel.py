@@ -53,12 +53,12 @@ def get_enviro_ipg_db_excel(
                 mcc_panel_data.get("is_indication_trip_selected")
             )
             led_type_trip_input = mcc_panel_data.get("led_type_trip_input")
-            is_blue_cb_spring_charge_selected = mcc_panel_data.get(
-                "is_blue_cb_spring_charge_selected"
+            acb_spring_charge_indication_lamp = mcc_panel_data.get(
+                "acb_spring_charge_indication_lamp"
             )
-            is_red_cb_in_service = mcc_panel_data.get("is_red_cb_in_service")
-            is_white_healthy_trip_circuit_selected = mcc_panel_data.get(
-                "is_white_healthy_trip_circuit_selected"
+            acb_service_indication_lamp = mcc_panel_data.get("acb_service_indication_lamp")
+            trip_circuit_healthy_indication_lamp = mcc_panel_data.get(
+                "trip_circuit_healthy_indication_lamp"
             )
 
             current_transformer_coating = mcc_panel_data.get(
@@ -159,15 +159,13 @@ def get_enviro_ipg_db_excel(
             panel_sheet["C8"] = led_type_trip_input
 
             if incomer_type is None or "ACB" not in incomer_type:
-                is_blue_cb_spring_charge_selected = "NA"
-                is_red_cb_in_service = "NA"
-                is_white_healthy_trip_circuit_selected = "NA"
+                acb_spring_charge_indication_lamp = "NA"
+                acb_service_indication_lamp = "NA"
+                trip_circuit_healthy_indication_lamp = "NA"
 
-            panel_sheet["C9"] = handle_none_to_string(is_blue_cb_spring_charge_selected)
-            panel_sheet["C10"] = handle_none_to_string(is_red_cb_in_service)
-            panel_sheet["C11"] = handle_none_to_string(
-                is_white_healthy_trip_circuit_selected
-            )
+            panel_sheet["C9"] = handle_none_to_string(acb_spring_charge_indication_lamp)
+            panel_sheet["C10"] = handle_none_to_string(acb_service_indication_lamp)
+            panel_sheet["C11"] = handle_none_to_string(trip_circuit_healthy_indication_lamp)
             panel_sheet["C12"] = handle_none_to_string(alarm_annunciator)
 
             if "NA" in mi_communication_protocol:
@@ -281,12 +279,12 @@ def get_enviro_ipg_db_excel(
                 pcc_panel_data.get("is_indication_trip_selected")
             )
             led_type_trip_input = pcc_panel_data.get("led_type_trip_input")
-            is_blue_cb_spring_charge_selected = pcc_panel_data.get(
-                "is_blue_cb_spring_charge_selected"
+            acb_spring_charge_indication_lamp = pcc_panel_data.get(
+                "acb_spring_charge_indication_lamp"
             )
-            is_red_cb_in_service = pcc_panel_data.get("is_red_cb_in_service")
-            is_white_healthy_trip_circuit_selected = pcc_panel_data.get(
-                "is_white_healthy_trip_circuit_selected"
+            acb_service_indication_lamp = pcc_panel_data.get("acb_service_indication_lamp")
+            trip_circuit_healthy_indication_lamp = pcc_panel_data.get(
+                "trip_circuit_healthy_indication_lamp"
             )
 
             current_transformer_coating = pcc_panel_data.get(
@@ -396,14 +394,14 @@ def get_enviro_ipg_db_excel(
             panel_sheet["C8"] = led_type_trip_input
 
             if not "ACB" in incomer_type:
-                is_blue_cb_spring_charge_selected = "NA"
-                is_red_cb_in_service = "NA"
-                is_white_healthy_trip_circuit_selected = "NA"
+                acb_spring_charge_indication_lamp = "NA"
+                acb_service_indication_lamp = "NA"
+                trip_circuit_healthy_indication_lamp = "NA"
 
-            panel_sheet["C9"] = handle_none_to_string(is_blue_cb_spring_charge_selected)
-            panel_sheet["C10"] = handle_none_to_string(is_red_cb_in_service)
+            panel_sheet["C9"] = handle_none_to_string(acb_spring_charge_indication_lamp)
+            panel_sheet["C10"] = handle_none_to_string(acb_service_indication_lamp)
             panel_sheet["C11"] = handle_none_to_string(
-                is_white_healthy_trip_circuit_selected
+                trip_circuit_healthy_indication_lamp
             )
             panel_sheet["C12"] = handle_none_to_string(alarm_annunciator)
 
@@ -520,12 +518,12 @@ def get_enviro_ipg_db_excel(
                 mcc_panel_data.get("is_indication_trip_selected")
             )
             led_type_trip_input = mcc_panel_data.get("led_type_trip_input")
-            is_blue_cb_spring_charge_selected = mcc_panel_data.get(
-                "is_blue_cb_spring_charge_selected"
+            acb_spring_charge_indication_lamp = mcc_panel_data.get(
+                "acb_spring_charge_indication_lamp"
             )
-            is_red_cb_in_service = mcc_panel_data.get("is_red_cb_in_service")
-            is_white_healthy_trip_circuit_selected = mcc_panel_data.get(
-                "is_white_healthy_trip_circuit_selected"
+            acb_service_indication_lamp = mcc_panel_data.get("acb_service_indication_lamp")
+            trip_circuit_healthy_indication_lamp = mcc_panel_data.get(
+                "trip_circuit_healthy_indication_lamp"
             )
 
             current_transformer_coating = mcc_panel_data.get(
@@ -634,10 +632,10 @@ def get_enviro_ipg_db_excel(
             panel_sheet["C6"] = led_type_on_input
             panel_sheet["C7"] = led_type_off_input
             panel_sheet["C8"] = led_type_trip_input
-            panel_sheet["C9"] = handle_none_to_string(is_blue_cb_spring_charge_selected)
-            panel_sheet["C10"] = handle_none_to_string(is_red_cb_in_service)
+            panel_sheet["C9"] = handle_none_to_string(acb_spring_charge_indication_lamp)
+            panel_sheet["C10"] = handle_none_to_string(acb_service_indication_lamp)
             panel_sheet["C11"] = handle_none_to_string(
-                is_white_healthy_trip_circuit_selected
+                trip_circuit_healthy_indication_lamp
             )
             panel_sheet["C12"] = handle_none_to_string(alarm_annunciator)
 
