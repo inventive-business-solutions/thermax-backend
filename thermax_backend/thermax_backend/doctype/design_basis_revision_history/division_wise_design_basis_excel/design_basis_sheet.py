@@ -693,6 +693,15 @@ def get_design_basis_sheet(
     cc_lpbs_indication_lamp_stop_color = common_config_data.get(
         "lpbs_indication_lamp_stop_color"
     )
+    cc_lpbs_forward_push_button_start = common_config_data.get(
+        "lpbs_forward_push_button_start"
+    )
+    cc_lpbs_reverse_push_button_start = common_config_data.get(
+        "lpbs_reverse_push_button_start"
+    )
+    cc_lpbs_push_button_ess = common_config_data.get(
+        "lpbs_push_button_ess"
+    )
     cc_lpbs_speed_increase = common_config_data.get("lpbs_speed_increase")
     cc_lpbs_speed_decrease = common_config_data.get("lpbs_speed_decrease")
 
@@ -1031,9 +1040,9 @@ def get_design_basis_sheet(
             cc_hazardous_lpbs_canopy_type = "Not Applicable"
 
     design_basis_sheet["C160"] = handle_none_to_string(cc_lpbs_push_button_start_color)
-    design_basis_sheet["C161"] = handle_none_to_string(cc_forward_push_button_start)
-    design_basis_sheet["C162"] = handle_none_to_string(cc_reverse_push_button_start)
-    design_basis_sheet["C163"] = handle_none_to_string(cc_push_button_ess)
+    design_basis_sheet["C161"] = handle_none_to_string(cc_lpbs_forward_push_button_start)
+    design_basis_sheet["C162"] = handle_none_to_string(cc_lpbs_reverse_push_button_start)
+    design_basis_sheet["C163"] = handle_none_to_string(cc_lpbs_push_button_ess)
     design_basis_sheet["C164"] = handle_none_to_string(cc_lpbs_speed_increase)
     design_basis_sheet["C165"] = handle_none_to_string(cc_lpbs_speed_decrease)
     design_basis_sheet["C166"] = handle_none_to_string(
