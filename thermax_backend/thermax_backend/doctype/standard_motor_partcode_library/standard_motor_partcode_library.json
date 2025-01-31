@@ -1,0 +1,116 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2025-01-31 15:51:32.858739",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "master_data_section",
+  "kw",
+  "pole",
+  "rpm",
+  "voltage",
+  "frequency",
+  "efficiency_class",
+  "mounting",
+  "frame_size",
+  "make",
+  "document_number",
+  "part_number",
+  "part_description"
+ ],
+ "fields": [
+  {
+   "fieldname": "master_data_section",
+   "fieldtype": "Section Break",
+   "label": "Master Data"
+  },
+  {
+   "fieldname": "kw",
+   "fieldtype": "Float",
+   "label": "KW",
+   "precision": "2"
+  },
+  {
+   "fieldname": "pole",
+   "fieldtype": "Int",
+   "label": "Pole"
+  },
+  {
+   "fieldname": "rpm",
+   "fieldtype": "Int",
+   "label": "RPM"
+  },
+  {
+   "fieldname": "voltage",
+   "fieldtype": "Int",
+   "label": "Voltage"
+  },
+  {
+   "fieldname": "frequency",
+   "fieldtype": "Int",
+   "label": "Frequency"
+  },
+  {
+   "fieldname": "efficiency_class",
+   "fieldtype": "Data",
+   "label": "Efficiency Class"
+  },
+  {
+   "fieldname": "mounting",
+   "fieldtype": "Data",
+   "label": "Mounting"
+  },
+  {
+   "fieldname": "frame_size",
+   "fieldtype": "Data",
+   "label": "Frame Size"
+  },
+  {
+   "fieldname": "make",
+   "fieldtype": "Data",
+   "label": "Make"
+  },
+  {
+   "fieldname": "document_number",
+   "fieldtype": "Data",
+   "label": "Document Number"
+  },
+  {
+   "fieldname": "part_number",
+   "fieldtype": "Data",
+   "label": "Part Number"
+  },
+  {
+   "fieldname": "part_description",
+   "fieldtype": "Small Text",
+   "label": "Part Description"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-01-31 15:54:54.874433",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "Standard Motor Partcode Library",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
