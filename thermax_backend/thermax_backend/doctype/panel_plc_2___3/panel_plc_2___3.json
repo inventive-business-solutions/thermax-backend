@@ -10,6 +10,7 @@
   "linking_keys_section",
   "panel_id",
   "di_modules_section",
+  "is_di_module_selected",
   "di_module_channel_density",
   "di_module_loop_current",
   "di_module_isolation",
@@ -17,6 +18,7 @@
   "di_module_interrogation_voltage",
   "di_module_scan_time",
   "do_modules_section",
+  "is_do_module_selected",
   "do_module_channel_density",
   "do_module_loop_current",
   "do_module_isolation",
@@ -27,6 +29,7 @@
   "is_no_of_contacts_selected",
   "no_of_contacts",
   "ai_modules_section",
+  "is_ai_module_selected",
   "ai_module_channel_density",
   "ai_module_loop_current",
   "ai_module_isolation",
@@ -34,6 +37,7 @@
   "ai_module_scan_time",
   "is_ai_module_hart_protocol_support_selected",
   "ao_modules_section",
+  "is_ao_module_selected",
   "ao_module_channel_density",
   "ao_module_loop_current",
   "ao_module_isolation",
@@ -41,6 +45,7 @@
   "ao_module_scan_time",
   "is_ao_module_hart_protocol_support_selected",
   "rtd_module_section",
+  "is_rtd_module_selected",
   "rtd_module_channel_density",
   "rtd_module_loop_current",
   "rtd_module_isolation",
@@ -48,6 +53,7 @@
   "rtd_module_scan_time",
   "is_rtd_module_hart_protocol_support_selected",
   "thermocouple_module_section",
+  "is_thermocouple_module_selected",
   "thermocouple_module_channel_density",
   "thermocouple_module_loop_current",
   "thermocouple_module_isolation",
@@ -55,6 +61,7 @@
   "thermocouple_module_scan_time",
   "is_thermocouple_module_hart_protocol_support_selected",
   "universal_module_section",
+  "is_universal_module_selected",
   "universal_module_channel_density",
   "universal_module_loop_current",
   "universal_module_isolation",
@@ -381,11 +388,53 @@
    "fieldname": "di_module_scan_time",
    "fieldtype": "Data",
    "label": "DI Module Scan Time"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_di_module_selected",
+   "fieldtype": "Check",
+   "label": "Is DI Module Selected"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_do_module_selected",
+   "fieldtype": "Check",
+   "label": "Is DO Module Selected"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_ai_module_selected",
+   "fieldtype": "Check",
+   "label": "Is AI Module Selected"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_ao_module_selected",
+   "fieldtype": "Check",
+   "label": "Is AO Module Selected"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_rtd_module_selected",
+   "fieldtype": "Check",
+   "label": "Is RTD Module Selected"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_thermocouple_module_selected",
+   "fieldtype": "Check",
+   "label": "Is Thermocouple Module Selected"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_universal_module_selected",
+   "fieldtype": "Check",
+   "label": "Is Universal Module Selected"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-23 16:28:01.804564",
+ "modified": "2025-01-31 11:13:48.495725",
  "modified_by": "Administrator",
  "module": "Thermax Backend",
  "name": "Panel PLC 2 - 3",
