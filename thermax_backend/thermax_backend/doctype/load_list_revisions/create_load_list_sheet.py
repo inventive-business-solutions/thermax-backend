@@ -13,7 +13,7 @@ from thermax_backend.thermax_backend.doctype.load_list_revisions.division_wise_l
 
 
 def create_load_list_excel(
-    template_workbook, revision_data, project, incomer_power_supply
+    template_workbook, revision_data, project, incomer_power_supply, incomer_db_data
 ):
     """
     Generates an Excel sheet for the electrical load list based on the specified division.
@@ -46,6 +46,7 @@ def create_load_list_excel(
             electrical_load_list_data=electrical_load_list_data,
             panels_data=panels_data,
             incomer_power_supply=incomer_power_supply,
+            incomer_db_data=incomer_db_data,
         )
     elif division_name == "WWS SPG":
         template_workbook = get_spg_load_list_excel(
@@ -53,6 +54,7 @@ def create_load_list_excel(
             panels_data=panels_data,
             template_workbook=template_workbook,
             incomer_power_supply=incomer_power_supply,
+            incomer_db_data=incomer_db_data,
         )
     elif division_name == "Enviro":
         template_workbook = get_enviro_load_list_excel(
@@ -60,6 +62,7 @@ def create_load_list_excel(
             panels_data=panels_data,
             template_workbook=template_workbook,
             incomer_power_supply=incomer_power_supply,
+            incomer_db_data=incomer_db_data,
         )
     elif division_name == "WWS IPG":
         template_workbook = get_ipg_load_list_excel(
@@ -67,6 +70,7 @@ def create_load_list_excel(
             panels_data=panels_data,
             template_workbook=template_workbook,
             incomer_power_supply=incomer_power_supply,
+            incomer_db_data=incomer_db_data,
         )
     elif division_name == "WWS Services":
         template_workbook = get_spg_load_list_excel(
@@ -74,6 +78,7 @@ def create_load_list_excel(
             panels_data=panels_data,
             template_workbook=template_workbook,
             incomer_power_supply=incomer_power_supply,
+            incomer_db_data=incomer_db_data,
         )
     else:
         raise ValueError(f"Load list template is not present for : {division_name}")
