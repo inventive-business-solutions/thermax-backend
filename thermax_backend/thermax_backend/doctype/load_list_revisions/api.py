@@ -19,6 +19,9 @@ def get_load_list_excel():
     revision_data = frappe.get_doc("Load List Revisions", revision_id).as_dict()
     project_id = revision_data.get("project_id")
     project = frappe.get_doc("Project", project_id).as_dict()
+    incomer_db_data = frappe.get_all(
+        "Incomer Details", fields=["*"], order_by="incomer_rating ASC"
+    )
 
     project_id = project.get("name")
 
@@ -42,6 +45,7 @@ def get_load_list_excel():
         revision_data=revision_data,
         project=project,
         incomer_power_supply=incomer_power_supply,
+        incomer_db_data=incomer_db_data,
     )
 
     # template_workbook.save("electrical_load_list.xlsx")
@@ -50,7 +54,7 @@ def get_load_list_excel():
     template_workbook.save(output)
     output.seek(0)
 
-    frappe.local.response.filename = "generated_design_basis.xlsx"
+    frappe.local.response.filename = "electrical_load_list.xlsx"
     frappe.local.response.filecontent = output.getvalue()
     frappe.local.response.type = "binary"
 

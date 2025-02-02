@@ -1,0 +1,88 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2025-02-01 16:04:03.179605",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "motor_efficiency_data_section",
+  "kw",
+  "current",
+  "pole",
+  "ie_1_percent",
+  "ie_2_percent",
+  "ie_3_percent",
+  "rpm"
+ ],
+ "fields": [
+  {
+   "fieldname": "motor_efficiency_data_section",
+   "fieldtype": "Section Break",
+   "label": "Motor Efficiency Data"
+  },
+  {
+   "fieldname": "kw",
+   "fieldtype": "Float",
+   "label": "KW",
+   "precision": "2"
+  },
+  {
+   "fieldname": "current",
+   "fieldtype": "Float",
+   "label": "Current",
+   "precision": "2"
+  },
+  {
+   "fieldname": "pole",
+   "fieldtype": "Int",
+   "label": "Pole"
+  },
+  {
+   "fieldname": "ie_1_percent",
+   "fieldtype": "Float",
+   "label": "IE 1 Percent"
+  },
+  {
+   "fieldname": "ie_2_percent",
+   "fieldtype": "Float",
+   "label": "IE 2 Percent"
+  },
+  {
+   "fieldname": "ie_3_percent",
+   "fieldtype": "Float",
+   "label": "IE 3 Percent"
+  },
+  {
+   "fieldname": "rpm",
+   "fieldtype": "Int",
+   "label": "RPM"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-02-01 16:07:34.371469",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "Motor Efficiency",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
