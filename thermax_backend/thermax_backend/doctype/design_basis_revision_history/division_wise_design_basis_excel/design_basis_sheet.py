@@ -533,6 +533,9 @@ def get_design_basis_sheet(
     cc_cable_insulation_pvc = handle_none_to_string(
         common_config_data.get("cable_insulation_pvc", "Not Applicable")
     )
+    cc_cable_insulation_properties = handle_none_to_string(
+        common_config_data.get("cable_insulation_properties", "Not Applicable")
+    )
     cc_air_clearance_between_phase_to_phase_bus = handle_none_to_string(
         common_config_data.get(
             "air_clearance_between_phase_to_phase_bus", "Not Applicable"
@@ -543,6 +546,9 @@ def get_design_basis_sheet(
             "air_clearance_between_phase_to_neutral_bus", "Not Applicable"
         )
     )
+    cc_common_requirement = handle_none_to_string(
+        common_config_data.get("common_requirement")
+    )
     cc_ferrule = handle_none_to_string(common_config_data.get("ferrule"))
     cc_ferrule_note = handle_none_to_string(common_config_data.get("ferrule_note"))
     cc_device_identification_of_components = handle_none_to_string(
@@ -551,15 +557,7 @@ def get_design_basis_sheet(
     cc_general_note_internal_wiring = handle_none_to_string(
         common_config_data.get("general_note_internal_wiring")
     )
-    cc_power_terminal_clipon = handle_none_to_string(
-        common_config_data.get("power_terminal_clipon")
-    )
-    cc_power_terminal_busbar_type = handle_none_to_string(
-        common_config_data.get("power_terminal_busbar_type")
-    )
-    cc_control_terminal = handle_none_to_string(
-        common_config_data.get("control_terminal")
-    )
+
     cc_spare_terminal = handle_none_to_string(common_config_data.get("spare_terminal"))
     cc_forward_push_button_start = handle_none_to_string(
         common_config_data.get("forward_push_button_start")
@@ -585,9 +583,6 @@ def get_design_basis_sheet(
     cc_alarm_acknowledge_and_lamp_test = common_config_data.get(
         "alarm_acknowledge_and_lamp_test"
     )
-    cc_lamp_test_push_button = common_config_data.get("lamp_test_push_button")
-    cc_test_dropdown = common_config_data.get("test_dropdown")
-    cc_reset_dropdown = common_config_data.get("reset_dropdown")
     is_field_motor_isolator_selected = handle_none_to_number(
         common_config_data.get("is_field_motor_isolator_selected")
     )
@@ -620,12 +615,12 @@ def get_design_basis_sheet(
         "hazardous_field_motor_enclosure"
     )
     cc_safe_field_motor_material = common_config_data.get("safe_field_motor_material")
-    cc_hazardous_field_motor_material = common_config_data.get(
-        "hazardous_field_motor_material"
+    cc_hazardous_field_motor_material = handle_none_to_string(
+        common_config_data.get("hazardous_field_motor_material")
     )
     cc_safe_field_motor_thickness = common_config_data.get("safe_field_motor_thickness")
-    cc_hazardous_field_motor_thickness = common_config_data.get(
-        "hazardous_field_motor_thickness"
+    cc_hazardous_field_motor_thickness = handle_none_to_string(
+        common_config_data.get("hazardous_field_motor_thickness")
     )
     cc_safe_field_motor_qty = common_config_data.get("safe_field_motor_qty")
     cc_hazardous_field_motor_qty = common_config_data.get("hazardous_field_motor_qty")
@@ -642,8 +637,8 @@ def get_design_basis_sheet(
         "hazardous_field_motor_cable_entry"
     )
     cc_safe_field_motor_canopy = common_config_data.get("safe_field_motor_canopy")
-    cc_hazardous_field_motor_canopy = common_config_data.get(
-        "hazardous_field_motor_canopy"
+    cc_hazardous_field_motor_canopy = handle_none_to_string(
+        common_config_data.get("hazardous_field_motor_canopy")
     )
 
     cc_safe_lpbs_type = handle_none_to_string(common_config_data.get("safe_lpbs_type"))
@@ -662,6 +657,9 @@ def get_design_basis_sheet(
     cc_hazardous_lpbs_material = handle_none_to_string(
         common_config_data.get("hazardous_lpbs_material")
     )
+    cc_hazardous_lpbs_thickness = handle_none_to_string(
+        common_config_data.get("hazardous_lpbs_thickness")
+    )
     cc_safe_lpbs_qty = handle_none_to_string(common_config_data.get("safe_lpbs_qty"))
     cc_hazardous_lpbs_qty = handle_none_to_string(
         common_config_data.get("hazardous_lpbs_qty")
@@ -672,18 +670,7 @@ def get_design_basis_sheet(
     cc_hazardous_lpbs_color_shade = handle_none_to_string(
         common_config_data.get("hazardous_lpbs_color_shade")
     )
-    cc_safe_lpbs_canopy = handle_none_to_string(
-        common_config_data.get("safe_lpbs_canopy")
-    )
-    cc_hazardous_lpbs_canopy = handle_none_to_string(
-        common_config_data.get("hazardous_lpbs_canopy")
-    )
-    cc_safe_lpbs_canopy_type = handle_none_to_string(
-        common_config_data.get("safe_lpbs_canopy_type")
-    )
-    cc_hazardous_lpbs_canopy_type = handle_none_to_string(
-        common_config_data.get("hazardous_lpbs_canopy_type")
-    )
+
     cc_lpbs_push_button_start_color = common_config_data.get(
         "lpbs_push_button_start_color"
     )
@@ -699,9 +686,7 @@ def get_design_basis_sheet(
     cc_lpbs_reverse_push_button_start = common_config_data.get(
         "lpbs_reverse_push_button_start"
     )
-    cc_lpbs_push_button_ess = common_config_data.get(
-        "lpbs_push_button_ess"
-    )
+    cc_lpbs_push_button_ess = common_config_data.get("lpbs_push_button_ess")
     cc_lpbs_speed_increase = common_config_data.get("lpbs_speed_increase")
     cc_lpbs_speed_decrease = common_config_data.get("lpbs_speed_decrease")
 
@@ -868,47 +853,82 @@ def get_design_basis_sheet(
     design_basis_sheet["C118"] = cc_ct_wiring_size
     design_basis_sheet["C119"] = cc_rtd_thermocouple_wiring_color
     design_basis_sheet["C120"] = cc_rtd_thermocouple_wiring_size
-    design_basis_sheet["C121"] = cc_air_clearance_between_phase_to_phase_bus
-    design_basis_sheet["C122"] = cc_air_clearance_between_phase_to_neutral_bus
-    design_basis_sheet["C123"] = cc_cable_insulation_pvc
-    design_basis_sheet["C124"] = cc_device_identification_of_components
-    design_basis_sheet["C125"] = cc_general_note_internal_wiring
-
-    design_basis_sheet["C127"] = handle_none_to_string(cc_power_terminal_clipon)
-    design_basis_sheet["C128"] = handle_none_to_string(cc_power_terminal_busbar_type)
-    design_basis_sheet["C129"] = handle_none_to_string(cc_control_terminal)
-    design_basis_sheet["C130"] = f"{cc_spare_terminal} %"
-
-    design_basis_sheet["C132"] = handle_none_to_string(cc_push_button_start)
-    design_basis_sheet["C133"] = handle_none_to_string(cc_push_button_stop)
-    design_basis_sheet["C134"] = handle_none_to_string(cc_push_button_ess)
-    design_basis_sheet["C135"] = handle_none_to_string(cc_forward_push_button_start)
-    design_basis_sheet["C136"] = handle_none_to_string(cc_reverse_push_button_start)
-    design_basis_sheet["C137"] = num_to_string(cc_potentiometer)
+    design_basis_sheet["C121"] = cc_cable_insulation_pvc
+    design_basis_sheet["C122"] = cc_cable_insulation_properties
+    design_basis_sheet["C123"] = cc_air_clearance_between_phase_to_phase_bus
+    design_basis_sheet["C124"] = cc_air_clearance_between_phase_to_neutral_bus
+    design_basis_sheet["C125"] = cc_common_requirement
+    design_basis_sheet["C126"] = cc_general_note_internal_wiring
+    # C127 - Terminal Block Details
+    design_basis_sheet["C128"] = handle_none_to_string(
+        common_config_data.get("power_terminal_type")
+    )
+    design_basis_sheet["C129"] = handle_none_to_string(
+        common_config_data.get("power_terminal_clipon")
+    )
+    design_basis_sheet["C130"] = handle_none_to_string(
+        common_config_data.get("power_terminal_busbar_type")
+    )
+    design_basis_sheet["C131"] = handle_none_to_string(
+        common_config_data.get("control_terminal_type")
+    )
+    design_basis_sheet["C132"] = handle_none_to_string(
+        common_config_data.get("control_terminal")
+    )
+    design_basis_sheet["C133"] = (
+        f'{handle_none_to_string(common_config_data.get("spare_terminal"))} %'
+    )
+    # C134 - Panel Mounted Push Button & Colours
+    design_basis_sheet["C135"] = handle_none_to_string(
+        common_config_data.get("push_button_start")
+    )
+    design_basis_sheet["C136"] = handle_none_to_string(
+        common_config_data.get("push_button_stop")
+    )
+    design_basis_sheet["C137"] = cc_push_button_ess
 
     if cc_is_push_button_speed_selected == 0 or cc_is_push_button_speed_selected == "0":
         cc_speed_increase_pb = "Not Applicable"
         cc_speed_decrease_pb = "Not Applicable"
 
-    design_basis_sheet["C138"] = cc_speed_increase_pb
-    design_basis_sheet["C139"] = cc_speed_decrease_pb
-    design_basis_sheet["C140"] = handle_none_to_string(
-        cc_alarm_acknowledge_and_lamp_test
+    design_basis_sheet["C138"] = cc_forward_push_button_start
+    design_basis_sheet["C139"] = cc_reverse_push_button_start
+    design_basis_sheet["C140"] = num_to_string(cc_potentiometer)
+    design_basis_sheet["C141"] = cc_speed_increase_pb
+    design_basis_sheet["C142"] = cc_speed_decrease_pb
+    design_basis_sheet["C143"] = handle_none_to_string(
+        common_config_data.get("alarm_acknowledge_and_lamp_test")
     )
-    design_basis_sheet["C141"] = handle_none_to_string(cc_test_dropdown)
-    design_basis_sheet["C142"] = handle_none_to_string(cc_reset_dropdown)
-    design_basis_sheet["C143"] = handle_none_to_string(cc_lamp_test_push_button)
 
+    design_basis_sheet["C144"] = handle_none_to_string(
+        common_config_data.get("test_dropdown")
+    )
+    design_basis_sheet["C145"] = handle_none_to_string(
+        common_config_data.get("reset_dropdown")
+    )
+    design_basis_sheet["C146"] = handle_none_to_string(
+        common_config_data.get("lamp_test_push_button")
+    )
+    # C147 - Panel Mounted Selector Switch
     if cc_selector_switch_applicable == "Applicable":
         cc_selector_switch_applicable = (
             f"{cc_selector_switch_applicable}, {cc_selector_switch_lockable}"
         )
+    design_basis_sheet["C148"] = cc_selector_switch_applicable
 
-    design_basis_sheet["C145"] = cc_selector_switch_applicable
+    # C149 - Panel Mounted Indicating Lamps & Colours
+    design_basis_sheet["C150"] = handle_none_to_string(cc_running_open)
+    design_basis_sheet["C151"] = handle_none_to_string(cc_stopped_closed)
+    design_basis_sheet["C152"] = handle_none_to_string(cc_trip)
 
-    design_basis_sheet["C147"] = handle_none_to_string(cc_running_open)
-    design_basis_sheet["C148"] = handle_none_to_string(cc_stopped_closed)
-    design_basis_sheet["C149"] = handle_none_to_string(cc_trip)
+    # C153 - Field Motor Isolator (General Specifications)
+    cc_safe_field_motor_canopy_type = handle_none_to_string(
+        common_config_data.get("safe_field_motor_canopy_type")
+    )
+
+    cc_hazardous_field_motor_canopy_type = handle_none_to_string(
+        common_config_data.get("hazardous_field_motor_canopy_type")
+    )
 
     if is_field_motor_isolator_selected == 0:
         cc_safe_field_motor_type = "Not Applicable"
@@ -918,6 +938,7 @@ def get_design_basis_sheet(
         cc_safe_field_motor_isolator_color_shade = "Not Applicable"
         cc_safe_field_motor_cable_entry = "Not Applicable"
         cc_safe_field_motor_canopy = "Not Applicable"
+        cc_safe_field_motor_canopy_type = "Not Applicable"
 
         cc_hazardous_field_motor_type = "Not Applicable"
         cc_hazardous_field_motor_enclosure = "Not Applicable"
@@ -926,6 +947,7 @@ def get_design_basis_sheet(
         cc_hazardous_field_motor_isolator_color_shade = "Not Applicable"
         cc_hazardous_field_motor_cable_entry = "Not Applicable"
         cc_hazardous_field_motor_canopy = "Not Applicable"
+        cc_hazardous_field_motor_canopy_type = "Not Applicable"
     else:
         if is_safe_area_isolator_selected == 0:
             cc_safe_field_motor_type = "Not Applicable"
@@ -935,6 +957,7 @@ def get_design_basis_sheet(
             cc_safe_field_motor_isolator_color_shade = "Not Applicable"
             cc_safe_field_motor_cable_entry = "Not Applicable"
             cc_safe_field_motor_canopy = "Not Applicable"
+            cc_safe_field_motor_canopy_type = "Not Applicable"
 
         if is_hazardous_area_isolator_selected == 0:
             cc_hazardous_field_motor_type = "Not Applicable"
@@ -944,55 +967,63 @@ def get_design_basis_sheet(
             cc_hazardous_field_motor_isolator_color_shade = "Not Applicable"
             cc_hazardous_field_motor_cable_entry = "Not Applicable"
             cc_hazardous_field_motor_canopy = "Not Applicable"
+            cc_hazardous_field_motor_canopy_type = "Not Applicable"
 
-    design_basis_sheet["C152"] = cc_safe_field_motor_type
-    design_basis_sheet["C153"] = handle_none_to_string(cc_safe_field_motor_enclosure)
-
-    if (
-        cc_safe_field_motor_material == "CRCA"
-        or cc_safe_field_motor_material == "SS 316"
-        or cc_safe_field_motor_material == "SS 306"
-    ):
-        cc_safe_field_motor_material = (
-            f"{cc_safe_field_motor_material}, {cc_safe_field_motor_thickness}"
-        )
-        cc_safe_field_motor_cable_entry = f"{cc_safe_field_motor_cable_entry}, 3 mm"
-    elif cc_safe_field_motor_material == "NA":
-        cc_safe_field_motor_material = "Not Applicable"
-
-    design_basis_sheet["C154"] = cc_safe_field_motor_material
-    design_basis_sheet["C155"] = handle_none_to_string(cc_safe_field_motor_qty)
-    design_basis_sheet["C156"] = handle_none_to_string(
+    # C154 - Field Motor Isolator (Safe Area)
+    design_basis_sheet["C155"] = cc_safe_field_motor_type
+    design_basis_sheet["C156"] = handle_none_to_string(cc_safe_field_motor_enclosure)
+    design_basis_sheet["C157"] = (
+        f"{cc_safe_field_motor_material} {cc_safe_field_motor_thickness}"
+    )
+    design_basis_sheet["C158"] = handle_none_to_string(cc_safe_field_motor_qty)
+    design_basis_sheet["C159"] = handle_none_to_string(
         cc_safe_field_motor_isolator_color_shade
     )
-    design_basis_sheet["C157"] = cc_safe_field_motor_cable_entry
-    design_basis_sheet["C158"] = handle_none_to_string(cc_safe_field_motor_canopy)
-    design_basis_sheet["D152"] = cc_hazardous_field_motor_type
-    design_basis_sheet["D153"] = handle_none_to_string(
+
+    cc_field_motor_safe_cable_entry = "Bottom"
+    if cc_safe_field_motor_material in ["CRCA", "SS 316", "SS 306"]:
+        cc_field_motor_safe_cable_entry = "Bottom, 3mm"
+    design_basis_sheet["C160"] = cc_field_motor_safe_cable_entry
+    design_basis_sheet["C161"] = (
+        f"{cc_safe_field_motor_canopy}, {cc_safe_field_motor_canopy_type}"
+    )
+
+    # D154 - Field Motor Isolator (Hazardous Area)
+    design_basis_sheet["D155"] = cc_hazardous_field_motor_type
+    design_basis_sheet["D156"] = handle_none_to_string(
         cc_hazardous_field_motor_enclosure
     )
-
-    if (
-        cc_hazardous_field_motor_material == "CRCA"
-        or cc_hazardous_field_motor_material == "SS 316"
-        or cc_hazardous_field_motor_material == "SS 306"
-    ):
-        cc_hazardous_field_motor_material = f"{cc_hazardous_field_motor_material}, {cc_hazardous_field_motor_thickness} mm"
-        cc_hazardous_field_motor_cable_entry = (
-            f"{cc_hazardous_field_motor_cable_entry}, 3 mm"
-        )
-    elif cc_hazardous_field_motor_material == "NA":
-        cc_hazardous_field_motor_material = "Not Applicable"
-
-    design_basis_sheet["D154"] = handle_none_to_string(
-        cc_hazardous_field_motor_material
+    design_basis_sheet["D157"] = (
+        f"{cc_hazardous_field_motor_material} {cc_hazardous_field_motor_thickness}"
     )
-    design_basis_sheet["D155"] = handle_none_to_string(cc_hazardous_field_motor_qty)
-    design_basis_sheet["D156"] = handle_none_to_string(
+    design_basis_sheet["D158"] = handle_none_to_string(cc_hazardous_field_motor_qty)
+    design_basis_sheet["D159"] = handle_none_to_string(
         cc_hazardous_field_motor_isolator_color_shade
     )
-    design_basis_sheet["D157"] = cc_hazardous_field_motor_cable_entry
-    design_basis_sheet["D158"] = handle_none_to_string(cc_hazardous_field_motor_canopy)
+
+    cc_field_motor_hazardous_cable_entry = "Bottom"
+    if cc_hazardous_field_motor_material in ["CRCA", "SS 316", "SS 306"]:
+        cc_field_motor_safe_cable_entry = "Bottom, 3mm"
+    design_basis_sheet["D160"] = cc_field_motor_hazardous_cable_entry
+
+    design_basis_sheet["D161"] = (
+        f"{cc_hazardous_field_motor_canopy}, {cc_hazardous_field_motor_canopy_type}"
+    )
+
+    # C162 - Local Push Button Station (General Specifications)
+    cc_safe_lpbs_canopy = handle_none_to_string(
+        common_config_data.get("safe_lpbs_canopy")
+    )
+    cc_safe_lpbs_canopy_type = handle_none_to_string(
+        common_config_data.get("safe_lpbs_canopy_type")
+    )
+
+    cc_hazardous_lpbs_canopy = handle_none_to_string(
+        common_config_data.get("hazardous_lpbs_canopy")
+    )
+    cc_hazardous_lpbs_canopy_type = handle_none_to_string(
+        common_config_data.get("hazardous_lpbs_canopy_type")
+    )
 
     if is_local_push_button_station_selected == 0:
         cc_lpbs_push_button_start_color = "Not Applicable"
@@ -1039,119 +1070,99 @@ def get_design_basis_sheet(
             cc_hazardous_lpbs_canopy = "Not Applicable"
             cc_hazardous_lpbs_canopy_type = "Not Applicable"
 
-    design_basis_sheet["C160"] = handle_none_to_string(cc_lpbs_push_button_start_color)
-    design_basis_sheet["C161"] = handle_none_to_string(cc_lpbs_forward_push_button_start)
-    design_basis_sheet["C162"] = handle_none_to_string(cc_lpbs_reverse_push_button_start)
-    design_basis_sheet["C163"] = handle_none_to_string(cc_lpbs_push_button_ess)
-    design_basis_sheet["C164"] = handle_none_to_string(cc_lpbs_speed_increase)
-    design_basis_sheet["C165"] = handle_none_to_string(cc_lpbs_speed_decrease)
-    design_basis_sheet["C166"] = handle_none_to_string(
+    design_basis_sheet["C163"] = handle_none_to_string(cc_lpbs_push_button_start_color)
+    design_basis_sheet["C164"] = handle_none_to_string(
+        cc_lpbs_forward_push_button_start
+    )
+    design_basis_sheet["C165"] = handle_none_to_string(
+        cc_lpbs_reverse_push_button_start
+    )
+    design_basis_sheet["C166"] = handle_none_to_string(cc_lpbs_push_button_ess)
+    design_basis_sheet["C167"] = handle_none_to_string(cc_lpbs_speed_increase)
+    design_basis_sheet["C168"] = handle_none_to_string(cc_lpbs_speed_decrease)
+    design_basis_sheet["C169"] = handle_none_to_string(
         cc_lpbs_indication_lamp_start_color
     )
-    design_basis_sheet["C167"] = handle_none_to_string(
+    design_basis_sheet["C170"] = handle_none_to_string(
         cc_lpbs_indication_lamp_stop_color
     )
 
-    if (
-        cc_safe_lpbs_material == "CRCA"
-        or cc_safe_lpbs_material == "SS 316"
-        or cc_safe_lpbs_material == "SS 306"
-    ):
-        cc_safe_lpbs_material = (
-            f"{cc_safe_lpbs_material}, {cc_hazardous_field_motor_thickness}"
-        )
-        cc_hazardous_field_motor_cable_entry = (
-            f"{cc_hazardous_field_motor_cable_entry}, 3 mm"
-        )
+    # C171 -  LPBS - For Safe Area
+    design_basis_sheet["C172"] = cc_safe_lpbs_type
+    design_basis_sheet["C173"] = cc_safe_lpbs_enclosure
+    design_basis_sheet["C174"] = (
+        f"{cc_safe_lpbs_material}, {cc_safe_field_motor_thickness}"
+    )
+    design_basis_sheet["C175"] = cc_safe_lpbs_qty
+    design_basis_sheet["C176"] = cc_safe_lpbs_color_shade
 
-    design_basis_sheet["C169"] = cc_safe_lpbs_type
-    design_basis_sheet["C170"] = cc_safe_lpbs_enclosure
-    design_basis_sheet["C171"] = cc_safe_lpbs_material
-    design_basis_sheet["C172"] = cc_safe_lpbs_qty
-    design_basis_sheet["C173"] = cc_safe_lpbs_color_shade
-    design_basis_sheet["C174"] = cc_safe_lpbs_canopy
-    design_basis_sheet["C175"] = cc_safe_lpbs_canopy_type
+    cc_lpbs_safe_cable_entry = "Bottom"
+    if cc_safe_lpbs_material in ["CRCA", "SS 316", "SS 306"]:
+        cc_lpbs_safe_cable_entry = "Bottom, 3mm"
+    design_basis_sheet["C177"] = cc_lpbs_safe_cable_entry
 
-    design_basis_sheet["D169"] = cc_hazardous_lpbs_type
-    design_basis_sheet["D170"] = cc_hazardous_lpbs_enclosure
-    design_basis_sheet["D171"] = cc_hazardous_lpbs_material
-    design_basis_sheet["D172"] = cc_hazardous_lpbs_qty
-    design_basis_sheet["D173"] = cc_hazardous_lpbs_color_shade
-    design_basis_sheet["D174"] = cc_hazardous_lpbs_canopy
-    design_basis_sheet["D175"] = cc_hazardous_lpbs_canopy_type
+    design_basis_sheet["C178"] = f"{cc_safe_lpbs_canopy}, {cc_safe_lpbs_canopy_type}"
 
-    design_basis_sheet["C177"] = cc_ferrule
-    design_basis_sheet["C178"] = cc_ferrule_note
-    design_basis_sheet["C179"] = cc_device_identification_of_components
+    # D171 - LPBS - For Hazardous Area
+    design_basis_sheet["D172"] = cc_hazardous_lpbs_type
+    design_basis_sheet["D173"] = cc_hazardous_lpbs_enclosure
 
-    design_basis_sheet["C181"] = cc_cooling_fans
-    design_basis_sheet["C182"] = cc_louvers_and_filters
+    design_basis_sheet["D174"] = (
+        f"{cc_hazardous_lpbs_material}, {cc_hazardous_lpbs_thickness}"
+    )
+    design_basis_sheet["D175"] = cc_hazardous_lpbs_qty
+    design_basis_sheet["D176"] = cc_hazardous_lpbs_color_shade
 
+    cc_hazardous_cable_entry = "Bottom"
+    if cc_hazardous_lpbs_material in ["CRCA", "SS 316", "SS 306"]:
+        cc_hazardous_cable_entry = "Bottom, 3mm"
+    design_basis_sheet["D177"] = cc_hazardous_cable_entry
+
+    design_basis_sheet["D178"] = (
+        f"{cc_hazardous_lpbs_canopy}, {cc_hazardous_lpbs_canopy_type}"
+    )
+
+    # C179 -  Identification of Panel Components
+    design_basis_sheet["C180"] = cc_ferrule
+    design_basis_sheet["C181"] = cc_ferrule_note
+    design_basis_sheet["C182"] = cc_device_identification_of_components
+
+    # C183 - Utility
+    design_basis_sheet["C184"] = cc_cooling_fans
+    design_basis_sheet["C185"] = cc_louvers_and_filters
+
+    # C186 - Field Power Cable
     cable_tray_data = frappe.db.get_list(
         "Cable Tray Layout", {"revision_id": revision_id}, "*"
     )
     cable_tray_data = cable_tray_data[0]
 
-    ct_copper_conductor = handle_none_to_string(
-        cable_tray_data.get("copper_conductor", "Not Applicable")
+    design_basis_sheet["C187"] = handle_none_to_string(
+        cable_tray_data.get("design_manufacturing_testing_standard_for_cable")
     )
-    ct_aluminium_conductor = handle_none_to_string(
-        cable_tray_data.get("aluminium_conductor", "Not Applicable")
-    )
-
-    ct_touching_factor_air = handle_none_to_string(
-        cable_tray_data.get("touching_factor_air", "Not Applicable")
-    )
-    ct_touching_factor_burid = handle_none_to_string(
-        cable_tray_data.get("touching_factor_burid", "Not Applicable")
-    )
-    ct_ambient_temp_factor_air = handle_none_to_string(
-        cable_tray_data.get("ambient_temp_factor_air")
-    )
-    ct_ambient_temp_factor_burid = handle_none_to_string(
-        cable_tray_data.get("ambient_temp_factor_burid")
-    )
-    ct_derating_factor_air = handle_none_to_string(
-        cable_tray_data.get("derating_factor_air")
-    )
-    ct_derating_factor_burid = handle_none_to_string(
-        cable_tray_data.get("derating_factor_burid")
-    )
-    ct_moc = handle_none_to_string(cable_tray_data.get("moc"))
-    ct_type_of_gland = handle_none_to_string(cable_tray_data.get("type_of_gland"))
-    ct_future_space_on_trays = handle_none_to_string(
-        cable_tray_data.get("future_space_on_trays")
-    )
-    ct_cable_placement = handle_none_to_string(cable_tray_data.get("cable_placement"))
-    ct_vertical_distance = handle_none_to_string(
-        cable_tray_data.get("vertical_distance")
-    )
-    ct_horizontal_distance = handle_none_to_string(
-        cable_tray_data.get("horizontal_distance")
-    )
-    ct_cable_tray_moc = handle_none_to_string(cable_tray_data.get("cable_tray_moc"))
-    ct_cable_tray_moc_input = handle_none_to_string(
-        cable_tray_data.get("cable_tray_moc_input")
-    )
-
-    cable_tray_cover = handle_none_to_string(cable_tray_data.get("cable_tray_cover"))
-
-    design_basis_sheet["C184"] = handle_none_to_string(
+    design_basis_sheet["C188"] = handle_none_to_string(
         cable_tray_data.get("number_of_cores")
     )
-    design_basis_sheet["C185"] = handle_none_to_string(
-        cable_tray_data.get("specific_requirement")
-    )
-    design_basis_sheet["C186"] = handle_none_to_string(
-        cable_tray_data.get("type_of_insulation")
-    )
-    design_basis_sheet["C187"] = handle_none_to_string(
+    design_basis_sheet["C189"] = handle_none_to_string(
         cable_tray_data.get("color_scheme")
     )
+    design_basis_sheet["C190"] = handle_none_to_string(
+        cable_tray_data.get("type_of_insulation")
+    )
+    design_basis_sheet["C191"] = handle_none_to_string(
+        cable_tray_data.get("specific_requirement")
+    )
+    design_basis_sheet["C192"] = handle_none_to_string(
+        cable_tray_data.get("inner_sheath")
+    )
+    design_basis_sheet["C193"] = handle_none_to_string(
+        cable_tray_data.get("outer_sheath")
+    )
+
     ct_motor_voltage_drop_during_starting = handle_none_to_string(
         cable_tray_data.get("motor_voltage_drop_during_starting", "Not Applicable")
     )
-    design_basis_sheet["C188"] = (
+    design_basis_sheet["C194"] = (
         f"{ct_motor_voltage_drop_during_starting} %"
         if ct_motor_voltage_drop_during_starting != "Not Applicable"
         else "Not Applicable"
@@ -1160,21 +1171,29 @@ def get_design_basis_sheet(
     ct_motor_voltage_drop_during_running = handle_none_to_string(
         cable_tray_data.get("motor_voltage_drop_during_running", "Not Applicable")
     )
-    design_basis_sheet["C189"] = (
+    design_basis_sheet["C195"] = (
         f"{ct_motor_voltage_drop_during_running} %"
         if ct_motor_voltage_drop_during_running != "Not Applicable"
         else "Not Applicable"
     )
 
-    design_basis_sheet["C190"] = handle_none_to_string(
+    design_basis_sheet["C196"] = handle_none_to_string(
         cable_tray_data.get("voltage_grade", "Not Applicable")
+    )
+
+    ct_copper_conductor = handle_none_to_string(
+        cable_tray_data.get("copper_conductor", "Not Applicable")
     )
 
     if ct_copper_conductor == "All":
         ct_copper_conductor = "All"
     else:
         ct_copper_conductor = f"{ct_copper_conductor} Sq. mm & Below"
+    design_basis_sheet["C197"] = ct_copper_conductor
 
+    ct_aluminium_conductor = handle_none_to_string(
+        cable_tray_data.get("aluminium_conductor", "Not Applicable")
+    )
     if "NA" in ct_aluminium_conductor:
         ct_aluminium_conductor = "Not Applicable"
     else:
@@ -1182,64 +1201,96 @@ def get_design_basis_sheet(
             ct_aluminium_conductor = "All"
         else:
             ct_aluminium_conductor = f"{ct_aluminium_conductor} Sq. mm & Above"
+    design_basis_sheet["C198"] = ct_aluminium_conductor
 
-    design_basis_sheet["C191"] = ct_copper_conductor
-    design_basis_sheet["C192"] = ct_aluminium_conductor
-    design_basis_sheet["C193"] = ct_touching_factor_air
-    design_basis_sheet["C194"] = ct_ambient_temp_factor_air
-    design_basis_sheet["C195"] = ct_derating_factor_air
-    design_basis_sheet["C196"] = ct_touching_factor_burid
-    design_basis_sheet["C197"] = ct_ambient_temp_factor_burid
-    design_basis_sheet["C198"] = ct_derating_factor_burid
+    design_basis_sheet["C199"] = handle_none_to_string(
+        cable_tray_data.get("touching_factor_air", "Not Applicable")
+    )
+    design_basis_sheet["C200"] = handle_none_to_string(
+        cable_tray_data.get("ambient_temp_factor_air")
+    )
+    design_basis_sheet["C201"] = handle_none_to_string(
+        cable_tray_data.get("derating_factor_air")
+    )
+    design_basis_sheet["C202"] = handle_none_to_string(
+        cable_tray_data.get("touching_factor_burid", "Not Applicable")
+    )
+    design_basis_sheet["C203"] = handle_none_to_string(
+        cable_tray_data.get("ambient_temp_factor_burid")
+    )
+    design_basis_sheet["C204"] = handle_none_to_string(
+        cable_tray_data.get("derating_factor_burid")
+    )
 
-    design_basis_sheet["C200"] = handle_make_of_component(gland_make_of_component)
-    design_basis_sheet["C201"] = ct_moc
-    design_basis_sheet["C202"] = ct_type_of_gland
+    # C205 - Gland Details
+    design_basis_sheet["C206"] = handle_make_of_component(gland_make_of_component)
+    design_basis_sheet["C207"] = handle_none_to_string(cable_tray_data.get("moc"))
+    design_basis_sheet["C208"] = handle_none_to_string(
+        cable_tray_data.get("type_of_gland")
+    )
 
     gland_type_safe_area = "Not Applicable"
-    gland_type_hazardous_area = "Not Applicable"
+    if len(safe_area_sub_package_names) > 0:
+        gland_type_safe_area = "Weatherproof"
 
+    design_basis_sheet["C209"] = gland_type_safe_area
+
+    gland_type_hazardous_area = "Not Applicable"
     if len(hazardous_area_sub_package_names) > 0:
         gland_type_hazardous_area = (
             f"{area_classification_data}, with Dual Certification"
         )
+    design_basis_sheet["C210"] = gland_type_hazardous_area
 
-    if len(safe_area_sub_package_names) > 0:
-        gland_type_safe_area = "Weatherproof"
+    # C211 - Cable Trays
+    cable_tray_cover = handle_none_to_string(cable_tray_data.get("cable_tray_cover"))
+    design_basis_sheet["C212"] = num_to_string(cable_tray_cover)
 
-    design_basis_sheet["C203"] = gland_type_safe_area
-    design_basis_sheet["C204"] = gland_type_hazardous_area
+    design_basis_sheet[
+        "C213"
+    ] = f"""{handle_none_to_string(
+        cable_tray_data.get("future_space_on_trays")
+    )} %"""
+    design_basis_sheet["C214"] = handle_none_to_string(
+        cable_tray_data.get("cable_placement")
+    )
+    design_basis_sheet[
+        "C215"
+    ] = f"""{handle_none_to_string(
+        cable_tray_data.get("vertical_distance")
+    )} mm"""
+    design_basis_sheet[
+        "C216"
+    ] = f"""{handle_none_to_string(
+        cable_tray_data.get("horizontal_distance")
+    )} mm"""
 
-    design_basis_sheet["C206"] = num_to_string(cable_tray_cover)
-    design_basis_sheet["C207"] = f"{ct_future_space_on_trays} %"
-    design_basis_sheet["C208"] = ct_cable_placement
-    design_basis_sheet["C209"] = f"{ct_vertical_distance} mm"
-    design_basis_sheet["C210"] = f"{ct_horizontal_distance} mm"
-
+    ct_cable_tray_moc = handle_none_to_string(cable_tray_data.get("cable_tray_moc"))
+    ct_cable_tray_moc_input = handle_none_to_string(
+        cable_tray_data.get("cable_tray_moc_input")
+    )
     if ct_cable_tray_moc == "MS - Hot dipped Galvanised":
         ct_cable_tray_moc = f"{ct_cable_tray_moc}, {ct_cable_tray_moc_input}"
+    design_basis_sheet["C217"] = ct_cable_tray_moc
 
-    design_basis_sheet["C211"] = ct_cable_tray_moc
-
+    # C218 - Earthing
     earthing_layout_data = frappe.db.get_list(
         "Layout Earthing", {"revision_id": revision_id}, "*"
     )
     earthing_layout_data = earthing_layout_data[0]
-
+    design_basis_sheet["C219"] = handle_none_to_string(
+        earthing_layout_data.get("earthing_system")
+    )
+    design_basis_sheet["C220"] = handle_none_to_string(
+        earthing_layout_data.get("earth_strip")
+    )
+    design_basis_sheet["C221"] = handle_none_to_string(
+        earthing_layout_data.get("earth_pit")
+    )
     soil_resistivity = handle_none_to_string(
         earthing_layout_data.get("soil_resistivity")
     )
-
-    design_basis_sheet["C213"] = handle_none_to_string(
-        earthing_layout_data.get("earthing_system")
-    )
-    design_basis_sheet["C214"] = handle_none_to_string(
-        earthing_layout_data.get("earth_strip")
-    )
-    design_basis_sheet["C215"] = handle_none_to_string(
-        earthing_layout_data.get("earth_pit")
-    )
-    design_basis_sheet["C216"] = (
+    design_basis_sheet["C222"] = (
         f"{soil_resistivity} ohm"
         if soil_resistivity != "Not Applicable"
         else "Not Applicable"

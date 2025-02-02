@@ -142,7 +142,7 @@ def get_design_basis_excel():
 
     template_workbook = load_workbook(template_path)
     cover_sheet = template_workbook["COVER"]
-    design_basis_sheet = template_workbook["Design Basis"]
+    design_basis_sheet = template_workbook["DESIGN BASIS"]
     mcc_sheet = template_workbook["MCC VTUS88BP"]
     pcc_sheet = template_workbook["PCC VTUS88BP"]
     mcc_cum_plc_sheet = template_workbook["MCC CUM PLC VTUS88BP"]
