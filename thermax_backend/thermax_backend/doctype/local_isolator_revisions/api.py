@@ -243,11 +243,11 @@ def get_local_isolator_excel():
         hazard_isolator_data=hazard_isolator_data,
     )
 
-    if len(safe_motor_details) < 1:
+    if len(safe_motor_details) < 1 or is_safe_area_isolator_selected == 0:
         template_workbook.remove(isolator_safe_area_sheet)
 
-    # if len(hazard_motor_details) < 1:
-    #     template_workbook.remove(isolator_hazard_area_sheet)
+    if len(hazard_motor_details) < 1 or is_hazardous_area_isolator_selected == 0:
+        template_workbook.remove(isolator_hazard_area_sheet)
 
     # template_workbook.save("local_isolator_specification.xlsx")
 
