@@ -1,0 +1,110 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2025-02-01 19:50:51.409973",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "incomer_details_data_section",
+  "incomer_rating",
+  "cable_material",
+  "cable_runs",
+  "cable_size",
+  "cable_type",
+  "from",
+  "to",
+  "cable_od",
+  "from_gland_size",
+  "to_gland_size",
+  "total_glands"
+ ],
+ "fields": [
+  {
+   "fieldname": "incomer_details_data_section",
+   "fieldtype": "Section Break",
+   "label": "Incomer Details Data"
+  },
+  {
+   "fieldname": "incomer_rating",
+   "fieldtype": "Int",
+   "label": "Incomer Rating"
+  },
+  {
+   "fieldname": "cable_material",
+   "fieldtype": "Data",
+   "label": "Cable Material"
+  },
+  {
+   "fieldname": "cable_runs",
+   "fieldtype": "Int",
+   "label": "Cable Runs"
+  },
+  {
+   "fieldname": "cable_size",
+   "fieldtype": "Data",
+   "label": "Cable Size"
+  },
+  {
+   "fieldname": "cable_type",
+   "fieldtype": "Data",
+   "label": "Cable Type"
+  },
+  {
+   "fieldname": "from",
+   "fieldtype": "Data",
+   "label": "From"
+  },
+  {
+   "fieldname": "to",
+   "fieldtype": "Data",
+   "label": "To"
+  },
+  {
+   "fieldname": "cable_od",
+   "fieldtype": "Data",
+   "label": "Cable OD"
+  },
+  {
+   "fieldname": "from_gland_size",
+   "fieldtype": "Data",
+   "label": "From Gland Size"
+  },
+  {
+   "fieldname": "to_gland_size",
+   "fieldtype": "Data",
+   "label": "To Gland Size"
+  },
+  {
+   "fieldname": "total_glands",
+   "fieldtype": "Int",
+   "label": "Total Glands"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-02-01 19:54:45.605497",
+ "modified_by": "Administrator",
+ "module": "Thermax Backend",
+ "name": "Incomer Details",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

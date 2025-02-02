@@ -5,6 +5,13 @@ from copy import copy
 import io
 from datetime import datetime
 
+from thermax_backend.thermax_backend.doctype.local_isolator_revisions.hazardous_isolator_excel import (
+    create_hazardous_area_isolator_excel,
+)
+from thermax_backend.thermax_backend.doctype.local_isolator_revisions.safe_isolator_excel import (
+    create_safe_area_isolator_excel,
+)
+
 
 @frappe.whitelist()
 def get_local_isolator_excel():
@@ -12,13 +19,13 @@ def get_local_isolator_excel():
     revision_id = payload.get("revision_id")
 
     local_isolator_revisions_data = frappe.get_doc(
-        "Local Isolator Revisions", revision_id, "*"
+        "Local Isolator Revisions", revision_id
     ).as_dict()
 
     project_id = local_isolator_revisions_data.get("project_id")
 
     design_basis_revision_data = frappe.get_doc(
-        "Design Basis Revision History", {"project_id": project_id}, "*"
+        "Design Basis Revision History", {"project_id": project_id}
     ).as_dict()
 
     # Loading the workbook
@@ -31,7 +38,6 @@ def get_local_isolator_excel():
     project_data = frappe.get_doc("Project", project_id).as_dict()
 
     project_description = design_basis_revision_data.get("description")
-    project_status = design_basis_revision_data.get("status")
     owner = design_basis_revision_data.get("owner")
 
     division_name = project_data.get("division")
@@ -68,7 +74,7 @@ def get_local_isolator_excel():
         "Design Basis Revision History", {"project_id": project_id}, "*"
     )
     static_document_list_data = frappe.get_doc(
-        "Static Document List", {"project_id": project_id}, "*"
+        "Static Document List", {"project_id": project_id}
     ).as_dict()
 
     local_isolator_specifications_and_list = static_document_list_data.get(
@@ -112,18 +118,6 @@ def get_local_isolator_excel():
 
     # ISOLATOR SHEET
 
-    def num_to_string(value):
-        if value == 1 or value == "1":
-            return "Applicable"
-        return "Not Applicable"
-
-    def na_to_string(value):
-        if "NA" in value or value is None:
-            return "Not Applicable"
-        return value
-
-    # Fetch the Design Basis revision data (then isolator data form that)
-
     local_isolator_data = local_isolator_revisions_data.get("local_isolator_data")
 
     is_safe_area_isolator_selected = local_isolator_revisions_data.get(
@@ -152,11 +146,7 @@ def get_local_isolator_excel():
     safe_canopy = safe_isolator_data.get("canopy")
     safe_canopy_type = safe_isolator_data.get("canopy_type")
 
-    if (
-        safe_fmi_enclouser_moc == "CRCA"
-        or safe_fmi_enclouser_moc == "SS 316"
-        or safe_fmi_enclouser_moc == "SS 306"
-    ):
+    if safe_fmi_enclouser_moc in ["CRCA", "SS 306", "SS 316"]:
         safe_fmi_enclouser_moc = (
             f"{safe_fmi_enclouser_moc}, {safe_fmi_enclosure_thickness}"
         )
@@ -196,11 +186,7 @@ def get_local_isolator_excel():
     hazard_canopy = hazard_isolator_data.get("canopy")
     hazard_canopy_type = hazard_isolator_data.get("canopy_type")
 
-    if (
-        hazard_fmi_enclouser_moc == "CRCA"
-        or hazard_fmi_enclouser_moc == "SS 316"
-        or hazard_fmi_enclouser_moc == "SS 306"
-    ):
+    if hazard_fmi_enclouser_moc in ["CRCA", "SS 306", "SS 316"]:
         hazard_fmi_enclouser_moc = (
             f"{hazard_fmi_enclouser_moc}, {hazard_fmi_enclosure_thickness}"
         )
@@ -234,109 +220,28 @@ def get_local_isolator_excel():
     safe_motor_details = []
     hazard_motor_details = []
 
-    for i in range(len(local_isolator_motor_details_data)):
-        if local_isolator_motor_details_data[i].get("local_isolator") == "Yes":
-            if (
-                local_isolator_motor_details_data[i].get("area") == "Safe"
-                or local_isolator_motor_details_data[i].get("area") == "NA"
-            ):
-                safe_motor_details.append(local_isolator_motor_details_data[i])
+    for motor_detail in local_isolator_motor_details_data:
+        if motor_detail.get("local_isolator") == "Yes":
+            if motor_detail.get("area") in ("Safe", "NA"):
+                safe_motor_details.append(motor_detail)
             else:
-                hazard_motor_details.append(local_isolator_motor_details_data[i])
+                hazard_motor_details.append(motor_detail)
 
-    index = 3
+    # SAFE AREA ISOLATOR SHEET
+    isolator_safe_area_sheet = create_safe_area_isolator_excel(
+        isolator_safe_area_sheet=isolator_safe_area_sheet,
+        safe_motor_details=safe_motor_details,
+        safe_isolator_data=safe_isolator_data,
+        hazard_isolator_data=hazard_isolator_data,
+    )
 
-    for i in range(len(safe_motor_details)):
-        # area_data = local_isolator_motor_details_data[i].get("area")
-        # if area_data == "Safe":
-        isolator_safe_area_sheet[f"A{index}"] = i + 1
-        isolator_safe_area_sheet[f"B{index}"] = safe_motor_details[i].get("tag_number")
-        isolator_safe_area_sheet[f"C{index}"] = safe_motor_details[i].get(
-            "service_description"
-        )
-        isolator_safe_area_sheet[f"D{index}"] = safe_motor_details[i].get("working_kw")
-        isolator_safe_area_sheet[f"E{index}"] = ""
-        motor_location = safe_motor_details[i].get("motor_location")
-        area = safe_motor_details[i].get("area")
-
-        isolator_safe_area_sheet[f"G{index}"] = motor_location
-
-        if area == "Safe":
-            canopy = safe_isolator_data.get("canopy")
-        else:
-            canopy = hazard_isolator_data.get("canopy")
-
-        canopy_required = ""
-        if canopy == "All":
-            canopy_required = "Yes"
-        else:
-            if "OUT" in canopy and "OUT" in motor_location:
-                canopy_required = "Yes"
-            else:
-                canopy_required = "No"
-
-        isolator_safe_area_sheet[f"F{index}"] = canopy_required
-        isolator_safe_area_sheet[f"H{index}"] = safe_motor_details[i].get("gland_size")
-        index = index + 1
-
-    isolator_safe_area_sheet[f"C{index + 5}"] = "Total Quantity"
-    isolator_safe_area_sheet[f"D{index + 5}"] = int(len(safe_motor_details))
-    isolator_safe_area_sheet[f"E{index + 5}"] = "Nos"
-
-    index = 3
-
-    for i in range(len(hazard_motor_details)):
-        # area_data = local_isolator_motor_details_data[i].get("area")
-        # if area_data == "Hazardous":
-        isolator_hazard_area_sheet[f"A{index}"] = i + 1
-        isolator_hazard_area_sheet[f"B{index}"] = hazard_motor_details[i].get(
-            "tag_number"
-        )
-        isolator_hazard_area_sheet[f"C{index}"] = hazard_motor_details[i].get(
-            "service_description"
-        )
-        isolator_hazard_area_sheet[f"D{index}"] = hazard_motor_details[i].get(
-            "working_kw"
-        )
-        isolator_hazard_area_sheet[f"E{index}"] = ""
-        motor_location = hazard_motor_details[i].get("motor_location")
-        area = hazard_motor_details[i].get("area")
-
-        isolator_hazard_area_sheet[f"K{index}"] = motor_location
-
-        if area == "Safe":
-            canopy = safe_isolator_data.get("canopy")
-        else:
-            canopy = hazard_isolator_data.get("canopy")
-
-        canopy_required = ""
-        if canopy == "All":
-            canopy_required = "Yes"
-        else:
-            if "OUT" in canopy and "OUT" in motor_location:
-                canopy_required = "Yes"
-            else:
-                canopy_required = "No"
-
-        isolator_hazard_area_sheet[f"F{index}"] = canopy_required
-        isolator_hazard_area_sheet[f"G{index}"] = hazard_motor_details[i].get(
-            "standard"
-        )
-        isolator_hazard_area_sheet[f"H{index}"] = hazard_motor_details[i].get("zone")
-        isolator_hazard_area_sheet[f"I{index}"] = hazard_motor_details[i].get(
-            "gas_group"
-        )
-        isolator_hazard_area_sheet[f"J{index}"] = hazard_motor_details[i].get(
-            "temprature_class"
-        )
-        isolator_hazard_area_sheet[f"L{index}"] = hazard_motor_details[i].get(
-            "gland_size"
-        )
-        index = index + 1
-
-    isolator_hazard_area_sheet[f"C{index + 5}"] = "Total Quantity"
-    isolator_hazard_area_sheet[f"D{index + 5}"] = int(len(hazard_motor_details))
-    isolator_hazard_area_sheet[f"E{index + 5}"] = "Nos"
+    # HAZARDOUS AREA ISOLATOR SHEET
+    isolator_hazard_area_sheet = create_hazardous_area_isolator_excel(
+        isolator_hazard_area_sheet=isolator_hazard_area_sheet,
+        hazard_motor_details=hazard_motor_details,
+        safe_isolator_data=safe_isolator_data,
+        hazard_isolator_data=hazard_isolator_data,
+    )
 
     if len(safe_motor_details) < 1:
         template_workbook.remove(isolator_safe_area_sheet)
@@ -344,11 +249,13 @@ def get_local_isolator_excel():
     # if len(hazard_motor_details) < 1:
     #     template_workbook.remove(isolator_hazard_area_sheet)
 
+    # template_workbook.save("local_isolator_specification.xlsx")
+
     output = io.BytesIO()
     template_workbook.save(output)
     output.seek(0)
 
-    frappe.local.response.filename = "local_isolator_specification_template.xlsx"
+    frappe.local.response.filename = "local_isolator_specification.xlsx"
     frappe.local.response.filecontent = output.getvalue()
     frappe.local.response.type = "binary"
 

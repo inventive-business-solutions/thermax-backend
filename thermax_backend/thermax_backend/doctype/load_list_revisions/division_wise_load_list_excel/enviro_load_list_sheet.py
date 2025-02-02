@@ -4,7 +4,11 @@ from openpyxl.styles import Alignment
 
 
 def get_enviro_load_list_excel(
-    electrical_load_list_data, panels_data, template_workbook, incomer_power_supply
+    electrical_load_list_data,
+    panels_data,
+    template_workbook,
+    incomer_power_supply,
+    incomer_db_data,
 ):
     """
     Gets the Excel workbook for the "Heating" or "WWS SPG" division.
@@ -23,6 +27,7 @@ def get_enviro_load_list_excel(
         incomer_power_supply=incomer_power_supply,
         number_of_panels=number_of_panels,
         panel_name=panel_name,
+        incomer_db_data=incomer_db_data,
     )
 
     if number_of_panels > 1:
@@ -36,6 +41,7 @@ def get_enviro_load_list_excel(
                 incomer_power_supply=incomer_power_supply,
                 number_of_panels=number_of_panels,
                 panel_name=panel_name,
+                incomer_db_data=incomer_db_data,
             )
 
     template_workbook.remove(load_list_output_sheet)
@@ -49,6 +55,7 @@ def create_enviro_load_list_excel(
     incomer_power_supply,
     number_of_panels,
     panel_name,
+    incomer_db_data,
 ):
     """
     Generates an Excel sheet for the electrical load list for the "Heating" or "WWS SPG" division.
@@ -223,7 +230,19 @@ def create_enviro_load_list_excel(
         total_load = 0
     else:
         total_load = total_working_kw * 1000 / (1.732 * supply_voltage * 0.8)
+
     load_list_output_sheet[f"D{calculated_row_start_number + 7}"] = round(total_load, 2)
+
+    incomer_rating = total_load * 1.2 - 5
+    first_higher_incomer = next(
+        (
+            incomer.get("incomer_rating", 0)
+            for incomer in incomer_db_data
+            if incomer["incomer_rating"] > incomer_rating
+        ),
+        incomer_rating,
+    )
+    first_higher_incomer = round(first_higher_incomer, 2)
 
     sheet_title = load_list_output_sheet.title
 
@@ -244,6 +263,12 @@ def create_enviro_load_list_excel(
         load_list_output_sheet[f"B{calculated_row_start_number + 9}"] = panel_name
         load_list_output_sheet[f"C{calculated_row_start_number + 9}"] = (
             f"POWER SUPPLY \n {incomer_power_supply}"
+        )
+        load_list_output_sheet.merge_cells(
+            f"D{calculated_row_start_number + 9}:E{calculated_row_start_number + 9}"
+        )
+        load_list_output_sheet[f"D{calculated_row_start_number + 9}"] = (
+            f"I/C {first_higher_incomer} AMP \n MCCB"
         )
 
     return load_list_output_sheet
